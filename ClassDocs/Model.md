@@ -19,6 +19,10 @@ take a card form the deck of CardStarting and returns it (we need this function 
 `SetPLayers(): void`
 function that poplulate the map? of player and put them in the map randomly, the key of the map represents the turn of the player
 
+` PickTwoObjectives(): c[]: CardObjective`
+pick two objective from the deck of the CardObjective and returns it, it is used at the start of the game to generate the two
+objective for each player
+
 # PlayngStation
 
 ## methosds
@@ -32,8 +36,10 @@ If the card is playable it adds it to the the table and updates it, if it is not
 
 ## methosds
 
-`Removecard(c: CardResources)`
-remove the card c form the hand, it can generate a CardNotPresentException
+`Removecard(id: String)`
+remove the card with the id, then calls the function addcard of the PlayngStation associated to the player.
+
+when we wanto to play a card we need to save it locally
 
 `addcard(d: Deck)`
 Pick a card form the deck d and put in the hand, it cand generate DeckNotPresentException
@@ -41,3 +47,8 @@ Pick a card form the deck d and put in the hand, it cand generate DeckNotPresent
 # Deck
 
 The constructor take all the cards saved in memory and puts it in randomly in the list attributs.
+
+# CardGold
+
+`CheckIsPlayable(table: Card[])`
+check if there are enough resources to play the card
