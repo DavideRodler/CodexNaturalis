@@ -52,3 +52,4 @@ The constructor take all the cards saved in memory and puts it in randomly in th
 
 `CheckIsPlayable(table: Card[])`
 check if there are enough resources to play the card
+ciaooooo
