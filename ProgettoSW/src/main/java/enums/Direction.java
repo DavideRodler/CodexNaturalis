@@ -1,6 +1,6 @@
 package enums;
 
-public enum Suit {
+public enum Direction {
     LEFT,
     RIGHT
 }

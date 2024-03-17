@@ -1,6 +1,6 @@
 package enums;
 
-public enum Suit {
+public enum Color {
    BLUE,
     RED,
     GREEN,
