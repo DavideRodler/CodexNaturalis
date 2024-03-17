@@ -1,9 +1,9 @@
 package cards;
 
 public class Card {
-    private int ID;
+    private Integer ID;
 
-    public int getID() {
+    public Integer getId() {
         return ID;
     }
 }
