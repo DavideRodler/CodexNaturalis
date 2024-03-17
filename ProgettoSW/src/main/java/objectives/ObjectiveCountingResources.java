@@ -1,0 +1,10 @@
+package objectives;
+public class ObjectiveCountingResource extends Objective{
+    public Suit Simbol;
+    public boolean checkObjective(Card[][] table){
+    }
+
+    public Suit getSimbol() {
+        return Simbol;
+    }
+}

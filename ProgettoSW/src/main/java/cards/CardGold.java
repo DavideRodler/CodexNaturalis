@@ -24,7 +24,7 @@ public class CardGold extends CardPlaying {
     public int getCostPlant() {
         return costPlant;
     }
-    public boolean checksPlayable(Card[] table){
+    public boolean checkPlayable(Card[][] table){
 
     }
 }
