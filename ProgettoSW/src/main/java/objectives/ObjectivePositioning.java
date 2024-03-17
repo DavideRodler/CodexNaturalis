@@ -1,4 +1,8 @@
 package objectives;
+import cards.Card;
+import enums.Suit;
+import enums.Direction;
+import enums.Position;
 public class ObjectivePositioning extends Objective{
     public Suit colorOneCard;
     public Suit colorTwoCards;

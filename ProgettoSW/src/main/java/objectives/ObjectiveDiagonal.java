@@ -1,4 +1,6 @@
 package objectives;
+import enums.Suit;
+import enums.Direction;
 public class ObjectiveDiagonal extends Objective{
 private Direction direction;
 private Suit color;

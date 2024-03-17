@@ -1,4 +1,5 @@
 package objectives;
+import cards.Card;
 public class ObjectiveCountingGold extends Objective{
 
     private int countInkwell;
