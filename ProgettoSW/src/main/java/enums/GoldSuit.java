@@ -1,6 +1,6 @@
 package enums;
 
-public enum GoldSuit { //gold resources
+public enum GoldSuit {
     QUILL,
     MANUSCRIPT,
     INKWELL

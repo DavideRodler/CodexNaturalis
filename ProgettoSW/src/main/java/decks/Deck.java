@@ -6,21 +6,26 @@ public class Deck {
     private Card[] deck;
     private int counter;
 
+    public Deck(Card[] deck, int counter, boolean isEmpty) {
+        this.deck = deck;
+        this.counter = counter;
+        this.isEmpty = isEmpty;
+    }
+
     public int getCounter() {
         return counter;
     }
     public void setCounter(int counter) {
         this.counter = counter;
-    } //setter
-
-    public boolean isEmpty{ //returns true if the deck is empty
+    }
+    public boolean isEmpty{
     }
 
-    public  Card drawCard(){ //draws card from deck
+    public  Card drawCard(){
 
     }
 
-    public  Card addCardBottom(){ //places back on the bottom of the deck a previously drawn card
+    public  Card addCardBottom(){
     }
 
 }

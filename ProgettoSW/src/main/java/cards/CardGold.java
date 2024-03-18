@@ -1,15 +1,33 @@
 package cards;
 
+import cards.face.Face;
+import cards.face.corner.Corner;
+import cards.face.corner.CornerGold;
+import enums.Suit;
 import objectives.Objective;
 
-public class CardGold extends CardPlaying {
+public class CardGold extends CardResource {
     private int costAnimal;
     private int costInsect;
     private int costFungi;
     private int costPlant;
     private Objective objective;
 
-    //--------------------GETTING FASE STARTING----------------------------
+    public CardGold(int ID, Face front, Face back, Suit symbol, int points, int costAnimal, int costInsect, int costFungi, int costPlant, Objective objective) {
+        super(ID, front, back, symbol, points);
+        this.costAnimal = costAnimal;
+        this.costInsect = costInsect;
+        this.costFungi = costFungi;
+        this.costPlant = costPlant;
+        this.objective = objective;
+    }
+
+    public Card[] generateListGoldCard () {
+        Card[] listCard;
+        Corner corner = new CornerGold();
+        Card gold = new CardGold();
+    }
+
     public int getCostAnimal() {
         return costAnimal;
     }
@@ -28,5 +46,4 @@ public class CardGold extends CardPlaying {
     public boolean checkPlayable(Card[][] table){
 
     }
-    //--------------------GETTING FASE ENDING----------------------------
 }

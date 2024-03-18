@@ -8,10 +8,10 @@ public class ObjectivePositioning extends Objective{
     public Suit colorTwoCards;
 public Direction horizontalDirection;
 public Position verticalDirection;
-    public boolean checkObjective(Card[][] table){ //returns true if objective has been completed
+    public boolean checkObjective(Card[][] table){
 
     }
-    //--------------------GETTING FASE STARTING----------------------------
+
     public Suit getColorOneCard() {
         return colorOneCard;
     }
@@ -27,5 +27,4 @@ public Position verticalDirection;
     public Direction getHorizontalDirection() {
         return horizontalDirection;
     }
-    //--------------------GETTING FASE ENDING----------------------------
 }

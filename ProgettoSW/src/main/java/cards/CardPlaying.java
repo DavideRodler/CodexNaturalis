@@ -6,7 +6,12 @@ public class CardPlaying extends Card {
     private Face front;
     private Face back;
 
-    //--------------------GETTING FASE STARTING----------------------------
+    public CardPlaying(int ID, Face front, Face back) {
+        super(ID);
+        this.front = front;
+        this.back = back;
+    }
+
     public Face getFront() {
         return front;
     }
@@ -14,5 +19,4 @@ public class CardPlaying extends Card {
     public Face getBack() {
         return back;
     }
-    //--------------------GETTING FASE ENDING----------------------------
 }

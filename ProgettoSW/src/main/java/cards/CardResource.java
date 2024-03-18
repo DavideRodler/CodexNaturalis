@@ -1,18 +1,23 @@
 package cards;
 
+import cards.face.Face;
 import enums.Suit;
 
-public class CardResource extends Card{
+public class CardResource extends CardPlaying{
     private Suit symbol;
-    private int Points;
+    private int points;
 
-    //--------------------GETTING FASE STARTING----------------------------
+    public CardResource(int ID, Face front, Face back, Suit symbol, int points) {
+        super(ID, front, back);
+        this.symbol = symbol;
+        this.points = points;
+    }
+
     public Suit getSymbol() {
         return symbol;
     }
 
     public int getPoints() {
-        return Points;
+        return points;
     }
-    //--------------------GETTING FASE ENDING----------------------------
 }

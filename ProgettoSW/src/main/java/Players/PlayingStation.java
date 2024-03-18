@@ -16,7 +16,7 @@ public class PlayingStation {
     private Integer countManuscript;
     private CardStarting cardStarting;
 
-    // Constructor
+    // Costruttore
     public PlayingStation() {
         this.table = new Card[80][80];
         for (int i = 0; i < 80; i++) {
@@ -47,7 +47,7 @@ public class PlayingStation {
     }
 
 
-    //--------------------GETTING FASE STARTING----------------------------
+    // Metodi getter e setter
     public CardStarting getCardStarting() {
         return cardStarting;
     }
@@ -78,9 +78,7 @@ public class PlayingStation {
     public Integer getCountManuscript() {
         return countManuscript;
     }
-    //--------------------GETTING FASE ENDING----------------------------
 
-    //--------------------SETTING FASE STARTING----------------------------
     public void setCountInsect(Integer countInsect) {
         this.countInsect = countInsect;
     }
@@ -111,7 +109,6 @@ public class PlayingStation {
     public void setObjective(CardObjective objective) {
 
     }
-    //--------------------SETTING FASE ENDING----------------------------
 
     private void updateCounters(CardResource card) {
         switch (card.getSymbol()) {

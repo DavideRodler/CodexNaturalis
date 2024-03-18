@@ -5,5 +5,11 @@ public class Card {
 
     public Integer getId() {
         return ID;
-    } //getter
+    }
+
+    public Card(int ID) {
+        this.ID = ID;
+    }
 }
+
+
