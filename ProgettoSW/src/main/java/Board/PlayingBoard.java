@@ -41,7 +41,7 @@ public class PlayingBoard {
     }
 
 
-    //-------------------GETTER-----------------------------
+    //--------------------GETTING FASE STARTING----------------------------
     public Map<String, CardGold> getDeckCardGold() {
         return deckCardGold;
     }
@@ -81,11 +81,11 @@ public class PlayingBoard {
     public CardObjective getSecondObjective() {
         return SecondObjective;
     }
-    //--------------------GETTING FASE ENDED----------------------------
+    //--------------------GETTING FASE ENDING----------------------------
 
 
 
-    //--------------------SETTER----------------------------
+    //--------------------SETTING FASE STARTING----------------------------
     public void setCentralFirstCard(CardResource centralFirstCard) {
         CentralFirstCard = centralFirstCard;
     }
@@ -125,11 +125,13 @@ public class PlayingBoard {
 
 
 
-    CardStarting[] drawCardStarting(){
+   //draw a starting card to be placed in the middle of the player's playing station
+    public CardStarting[] drawCardStarting(){
 
     }
 
-    CardObjective[] pickTwoObjectives(){
+    //draw the two common objectives to be placed on the playing board
+    public CardObjective[] pickTwoObjectives(){
 
     }
 

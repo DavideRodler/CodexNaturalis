@@ -7,5 +7,5 @@ public class CardStarting {
 
     public Suit[] getSymbols() {
         return symbols;
-    }
+    } //getter
 }

@@ -6,10 +6,11 @@ public class ObjectiveCountingGold extends Objective{
     private int countManuscript;
     private int countQuill;
 
-    public boolean checkObjective(Card[][] table){
+    public boolean checkObjective(Card[][] table){ //returns true if objective has been completed
 
     }
 
+    //--------------------GETTING FASE STARTING----------------------------
     public int getCountInkwell() {
         return countInkwell;
     }
@@ -21,4 +22,5 @@ public class ObjectiveCountingGold extends Objective{
     public int getCountManuscript() {
         return countManuscript;
     }
+    //--------------------GETTING FASE ENDING----------------------------
 }

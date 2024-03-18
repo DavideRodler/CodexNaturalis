@@ -8,6 +8,7 @@ public class Face {
     private Corner DownRight;
     private Corner DownLeft;
 
+    //--------------------GETTING FASE STARTING----------------------------
     public Corner GetUpRight() {
         return DownLeft;
     }
@@ -24,3 +25,4 @@ public class Face {
         return DownLeft;
     }
 }
+//--------------------GETTING FASE ENDING----------------------------

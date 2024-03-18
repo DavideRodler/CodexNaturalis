@@ -7,5 +7,5 @@ public class CornerResource extends Corner {
 
     public Suit getDrawing() {
         return drawing;
-    }
+    } //getter
 }

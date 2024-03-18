@@ -21,8 +21,8 @@ public class Player {
     private List<CardResource> hand;
     private final List<CardObjective> secretObjective;
 
-    // Costruttore
-    public Player(String nickname, Integer playerNumber) {
+
+    public Player(String nickname, Integer playerNumber) { //constructor
         this.nickname = nickname;
         this.playerNumber = playerNumber;
         this.numberTurns = 0;
@@ -32,8 +32,8 @@ public class Player {
         this.secretObjective = new ArrayList<>(2);
     }
 
-    //  Getter e Setter methods
 
+    //--------------------GETTING FASE STARTING----------------------------
     public List<CardResource> getHand() {
         return hand;
     }
@@ -65,7 +65,9 @@ public class Player {
     public Integer getNumberTurns() {
         return numberTurns;
     }
+    //--------------------GETTING FASE ENDING----------------------------
 
+    //--------------------SETTING FASE STARTING----------------------------
     public void setNumberTurns(Integer numberTurns) {
         this.numberTurns = numberTurns;
     }
@@ -81,7 +83,7 @@ public class Player {
     public void setPoints(Integer points) {
         this.points = points;
     }
-
+    //--------------------SETTING FASE ENDING----------------------------
 
 
     public void addCardFromDeck(Deck deck) throws DeckEmptyException { //Have to add exception classes

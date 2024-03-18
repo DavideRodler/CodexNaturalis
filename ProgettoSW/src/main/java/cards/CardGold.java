@@ -9,6 +9,7 @@ public class CardGold extends CardPlaying {
     private int costPlant;
     private Objective objective;
 
+    //--------------------GETTING FASE STARTING----------------------------
     public int getCostAnimal() {
         return costAnimal;
     }
@@ -27,4 +28,5 @@ public class CardGold extends CardPlaying {
     public boolean checkPlayable(Card[][] table){
 
     }
+    //--------------------GETTING FASE ENDING----------------------------
 }

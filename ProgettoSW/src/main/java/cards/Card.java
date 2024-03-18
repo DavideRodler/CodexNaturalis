@@ -5,5 +5,5 @@ public class Card {
 
     public Integer getId() {
         return ID;
-    }
+    } //getter
 }

@@ -1,6 +1,6 @@
 package enums;
 
-public enum Color {
+public enum Color { //colors of tokens
    BLUE,
     RED,
     GREEN,

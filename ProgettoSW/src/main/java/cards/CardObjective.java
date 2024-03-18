@@ -5,5 +5,5 @@ public class CardObjective extends Card{
 
     public int getPoints() {
         return points;
-    }
+    } //getter
 }

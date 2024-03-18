@@ -5,5 +5,5 @@ public class Corner {
 
     public boolean isCovered() {
         return covered;
-    }
+    } //getter - return true if the corner is covered
 }

@@ -11,15 +11,16 @@ public class Deck {
     }
     public void setCounter(int counter) {
         this.counter = counter;
-    }
-    public boolean isEmpty{
-    }
+    } //setter
 
-    public  Card drawCard(){
-
+    public boolean isEmpty{ //returns true if the deck is empty
     }
 
-    public  Card addCardBottom(){
+    public  Card drawCard(){ //draws card from deck
+
+    }
+
+    public  Card addCardBottom(){ //places back on the bottom of the deck a previously drawn card
     }
 
 }

@@ -6,6 +6,7 @@ public class CardPlaying extends Card {
     private Face front;
     private Face back;
 
+    //--------------------GETTING FASE STARTING----------------------------
     public Face getFront() {
         return front;
     }
@@ -13,4 +14,5 @@ public class CardPlaying extends Card {
     public Face getBack() {
         return back;
     }
+    //--------------------GETTING FASE ENDING----------------------------
 }
