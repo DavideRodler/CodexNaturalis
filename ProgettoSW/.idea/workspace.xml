@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="">
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="new deckconstructor and card modifications">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cards/CardGold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cards/CardGold.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cards/CardResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cards/CardResource.java" afterDir="false" />
@@ -85,9 +85,22 @@
       <updated>1710252116188</updated>
       <workItem from="1710252117190" duration="597000" />
     </task>
+    <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
+      <option name="closed" value="true" />
+      <created>1710861158555</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710861158555</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="new deckconstructor and card modifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="new deckconstructor and card modifications" />
   </component>
 </project>
