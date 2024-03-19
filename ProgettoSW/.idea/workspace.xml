@@ -4,80 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-=======
-    <list default="true" id="14ee1a5d-451a-4d20-b029-655507f73395" name="Changes" comment="adesso funziaaa">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cards/Card.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cards/CardGold.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cards/CardObjective.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cards/CardPlaying.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cards/CardResource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cards/CardStarting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cards/face/Face.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cards/face/corner/Corner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cards/face/corner/CornerGold.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cards/face/corner/CornerResource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/decks/Deck.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/GoldSuit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/Suit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/objectives/Objective.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClassDocs/Model.md" beforeDir="false" afterPath="$PROJECT_DIR$/../ClassDocs/Model.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="changes of packages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/progettosw/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/progettosw/HelloController.java" beforeDir="false" />
->>>>>>> 57c4c6cadab61b35853077619eb3ef021cf5aad9
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardPlaying.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardPlaying.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-<<<<<<< HEAD
-=======
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Enum" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
->>>>>>> 57c4c6cadab61b35853077619eb3ef021cf5aad9
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
   </component>
-<<<<<<< HEAD
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
-  <component name="ProjectId" id="2dahV6rdOfQ8JesgSo6bQBB1S9B" />
-=======
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7
+  &quot;associatedIndex&quot;: 2
 }</component>
-  <component name="ProjectId" id="2dagwBfj6yrQ03sMQCSOGgyKsqH" />
->>>>>>> 57c4c6cadab61b35853077619eb3ef021cf5aad9
+  <component name="ProjectId" id="2dahV6rdOfQ8JesgSo6bQBB1S9B" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.deckconstructor.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-<<<<<<< HEAD
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW",
@@ -86,22 +45,31 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "vue.rearranger.settings.migration": "true"
-=======
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/tom/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
->>>>>>> 57c4c6cadab61b35853077619eb3ef021cf5aad9
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="deckconstructor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="model.decktameplate.deckconstructor" />
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.decktameplate.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.deckconstructor" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-<<<<<<< HEAD
       <changelist id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="" />
       <created>1710252116188</created>
       <option name="number" value="Default" />
@@ -109,61 +77,54 @@
       <updated>1710252116188</updated>
       <workItem from="1710252117190" duration="597000" />
     </task>
+    <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
+      <option name="closed" value="true" />
+      <created>1710861158555</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710861158555</updated>
+    </task>
+    <task id="LOCAL-00002" summary="changes of packages">
+      <option name="closed" value="true" />
+      <created>1710861621571</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1710861621571</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-=======
-      <changelist id="14ee1a5d-451a-4d20-b029-655507f73395" name="Changes" comment="" />
-      <created>1710251840136</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1710251840136</updated>
-    </task>
-    <task id="LOCAL-00001" summary="adesso funziaaa">
-      <option name="closed" value="true" />
-      <created>1710251866633</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1710251866633</updated>
-    </task>
-    <task id="LOCAL-00002" summary="adesso funziaaa">
-      <option name="closed" value="true" />
-      <created>1710251898352</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1710251898352</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
-    <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adesso funziaaa" />
-    <option name="LAST_COMMIT_MESSAGE" value="adesso funziaaa" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/enums/Suit.java</url>
-          <line>2</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
->>>>>>> 57c4c6cadab61b35853077619eb3ef021cf5aad9
+    <MESSAGE value="new deckconstructor and card modifications" />
+    <MESSAGE value="changes of packages" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes of packages" />
   </component>
 </project>
