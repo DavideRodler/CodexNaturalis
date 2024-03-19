@@ -11,7 +11,7 @@ public class Corner {
         return covered;
     }
 
-    public Corner(boolean covered) {
-        this.covered = covered;
+    public Corner() {
+        this.covered = false;
     }
 }

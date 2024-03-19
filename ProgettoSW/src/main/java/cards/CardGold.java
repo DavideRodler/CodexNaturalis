@@ -22,12 +22,6 @@ public class CardGold extends CardResource {
         this.objective = objective;
     }
 
-    public Card[] generateListGoldCard () {
-        Card[] listCard;
-        Corner corner = new CornerGold();
-        Card gold = new CardGold();
-    }
-
     public int getCostAnimal() {
         return costAnimal;
     }

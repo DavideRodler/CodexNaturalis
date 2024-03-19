@@ -6,9 +6,9 @@ public class ObjectiveCountingGold extends Objective{
     private int countManuscript;
     private int countQuill;
 
-    public boolean checkObjective(Card[][] table){
+    //public boolean checkObjective(Card[][] table){
 
-    }
+    //}
 
     public int getCountInkwell() {
         return countInkwell;

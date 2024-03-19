@@ -2,10 +2,10 @@ package decktameplate;
 
 import cards.Card;
 import cards.CardResource;
+import cards.face.Face;
 import cards.face.corner.Corner;
 import cards.face.corner.CornerGold;
 import cards.face.corner.CornerResource;
-import enums.GoldSuit;
 import enums.Suit;
 
 import java.io.File;
@@ -17,22 +17,24 @@ public class deckconstructor {
     // creating the DeckResource Deck
     // each line in the text represent the card:
     // we have in order: suit of the card, the four corner(starting from upright) and the points
-    public static void DeckResource(){
+    public static <Int> void DeckResource(){
         System.out.println(new File(".").getAbsolutePath());
         File file = new File("src/main/java/decktameplate/DeckResource.txt");
         // try to create a scanner only if the file exists
         try {
             Scanner scanner = new Scanner(file);
-
+            Integer IDcont = 0;
             while (scanner.hasNext()) {
-                String Suit = scanner.next();
+                Suit suit = AssignSuit(scanner.next());
                 Corner upright = AssignCorner(scanner.next());
                 Corner upleft = AssignCorner(scanner.next());
                 Corner downright = AssignCorner(scanner.next());
                 Corner downleft = AssignCorner(scanner.next());
-
-
-
+                Face front = new Face(upright,upleft,downright,downright);
+                Face back = new Face(new Corner(),new Corner(),new Corner(), new Corner());
+                int cost = Integer.parseInt(scanner.next());
+                Card tmp = new CardResource(IDcont,front,back,suit,cost);
+                IDcont = IDcont ++ ;
 
             }
 
@@ -47,6 +49,8 @@ public class deckconstructor {
             case "null":
                 return null;
                 break;
+            case "empty":
+                return new Corner();
             case "fungi":
                 return new CornerResource(enums.Suit.FUNGI);
                 break;
@@ -60,13 +64,29 @@ public class deckconstructor {
                 return new CornerResource(enums.Suit.INSECT);
                 break;
             case "manuscript":
-                return new CornerGold(GoldSuit.MANUSCRIPT);
+                return new CornerGold(enums.GoldSuit.MANUSCRIPT);
                 break;
             case "inkwell":
-                return new CornerGold(GoldSuit.INKWELL);
+                return new CornerGold(enums.GoldSuit.INKWELL);
                 break;
             case "quill":
-                return new CornerGold(GoldSuit.QUILL);
+                return new CornerGold(enums.GoldSuit.QUILL);
+                break;
+        }
+    }
+    private static Suit AssignSuit(String s){
+        switch (s){
+            case "fungi":
+                return enums.Suit.FUNGI;
+                break;
+            case "plant":
+                return enums.Suit.PLANT;
+                break;
+            case "animal":
+                return enums.Suit.ANIMAL;
+                break;
+            case "insect":
+                return enums.Suit.INSECT;
                 break;
         }
     }

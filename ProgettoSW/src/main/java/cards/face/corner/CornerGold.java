@@ -5,8 +5,8 @@ import enums.GoldSuit;
 public class CornerGold extends Corner{
     private GoldSuit drawing;
 
-    public CornerGold(boolean covered, GoldSuit drawing) {
-        super(covered);
+    public CornerGold(GoldSuit drawing) {
+        super();
         this.drawing = drawing;
     }
 

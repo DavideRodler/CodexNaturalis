@@ -8,9 +8,9 @@ public class ObjectivePositioning extends Objective{
     public Suit colorTwoCards;
 public Direction horizontalDirection;
 public Position verticalDirection;
-    public boolean checkObjective(Card[][] table){
+    //public boolean checkObjective(Card[][] table){
 
-    }
+    //}
 
     public Suit getColorOneCard() {
         return colorOneCard;
