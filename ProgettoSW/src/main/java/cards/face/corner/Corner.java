@@ -10,4 +10,8 @@ public class Corner {
     public boolean isCovered() {
         return covered;
     }
+
+    public Corner(boolean covered) {
+        this.covered = covered;
+    }
 }

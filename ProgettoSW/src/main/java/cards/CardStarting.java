@@ -2,7 +2,7 @@ package cards;
 
 import enums.Suit;
 
-public class CardStarting {
+public class CardStarting extends CardPlaying {
     private Suit[] symbols;
 
     public CardStarting(Suit[] symbols) {

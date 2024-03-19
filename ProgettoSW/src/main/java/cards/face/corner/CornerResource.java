@@ -13,4 +13,10 @@ public class CornerResource extends Corner {
     public Suit getDrawing() {
         return drawing;
     }
+
+    public CornerResource(Suit drawing) {
+        super(false);
+        this.drawing = drawing;
+    }
+
 }

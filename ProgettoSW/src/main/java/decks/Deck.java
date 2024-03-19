@@ -15,17 +15,15 @@ public class Deck {
     public int getCounter() {
         return counter;
     }
-    public void setCounter(int counter) {
-        this.counter = counter;
-    }
-    public boolean isEmpty{
-    }
-
-    public  Card drawCard(){
-
-    }
-
-    public  Card addCardBottom(){
-    }
+    public void setCounter(int counter) {this.counter = counter;}
+//    public boolean isEmpty{
+//    }
+//
+//    public  Card drawCard(){
+//
+//    }
+//
+//    public  Card addCardBottom(){
+//    }
 
 }

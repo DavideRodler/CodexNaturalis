@@ -12,5 +12,5 @@ public class CornerGold extends Corner{
 
     public GoldSuit getDrawing() {
         return drawing;
-    }
+    } //getter
 }
