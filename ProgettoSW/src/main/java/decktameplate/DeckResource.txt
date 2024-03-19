@@ -1,3 +1,21 @@
 
-fungi fungi null empty inkwell 3
-insect insect plant manuscript null 0
+fungi fungi empty fungi null 0
+fungi fungi fungi null empty 0
+fungi empty null fungi fungi 0
+fungi null fungi empty fungi 0
+fungi null quill plant fungi 0
+fungi inkwell fungi null animal 0
+fungi fungi insect manuscript empty 0
+fungi empty fungi empty null 1
+fungi fungi null empty empty 1
+fungi null empty fungi empty 1
+plant plant empty plant null 0
+plant plant plant null empty 0
+plant empty null plant plant 0
+plant null plant empty plant 0
+plant null insect quill plant 0
+plant fungi plant null inkwell 0
+plant manuscript null plant animal 0
+plant empty empty plant null 1
+plant empty empty null plant 1
+plant null plant empty empty 1
