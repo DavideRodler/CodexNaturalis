@@ -6,13 +6,6 @@ public class Face {
     private Corner DownRight;
     private Corner DownLeft;
 
-    public Face(Corner upright, Corner upLeft, Corner downRight, Corner downLeft) {
-        Upright = upright;
-        UpLeft = upLeft;
-        DownRight = downRight;
-        DownLeft = downLeft;
-    }
-
     public Corner GetUpRight() {
         return DownLeft;
     }
