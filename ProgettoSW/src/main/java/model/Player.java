@@ -2,7 +2,6 @@ package model;
 
 
 import model.cards.CardResource;
-import decks.Deck;
 import model.enums.Color;
 import model.cards.CardObjective;
 
@@ -84,8 +83,8 @@ public class Player {
 
 
 
-    public void addCardFromDeck(Deck deck) throws DeckEmptyException { //Have to add model.exception classes
-        CardResource card = (CardResource) deck.drawCard();
+    public void addCardFromDeck(List<CardResource> cards) { //Have to add model.exception classes
+        CardResource card = (CardResource) cards.();
         if (card == null) {
             throw new DeckEmptyException("Il mazzo è vuoto.");
         } else {

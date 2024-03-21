@@ -125,12 +125,12 @@ public class PlayingBoard {
 
 
 
-    CardStarting[] drawCardStarting(){
+    //CardStarting[] drawCardStarting(){
 
-    }
+    //}
 
-    CardObjective[] pickTwoObjectives(){
+    //CardObjective[] pickTwoObjectives(){
 
-    }
+    //}
 
 }

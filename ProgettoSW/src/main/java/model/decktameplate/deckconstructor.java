@@ -48,47 +48,37 @@ public class deckconstructor {
         switch (s){
             case "null":
                 return null;
-                break;
             case "empty":
                 return new Corner();
             case "fungi":
                 return new CornerResource(model.enums.Suit.FUNGI);
-                break;
             case "plant":
                 return new CornerResource(model.enums.Suit.PLANT);
-                break;
             case "animal":
                 return new CornerResource(model.enums.Suit.ANIMAL);
-                break;
             case "insect":
                 return new CornerResource(model.enums.Suit.INSECT);
-                break;
             case "manuscript":
                 return new CornerGold(model.enums.GoldSuit.MANUSCRIPT);
-                break;
             case "inkwell":
                 return new CornerGold(model.enums.GoldSuit.INKWELL);
-                break;
             case "quill":
                 return new CornerGold(model.enums.GoldSuit.QUILL);
-                break;
         }
+        return null;
     }
     private static Suit AssignSuit(String s){
         switch (s){
             case "fungi":
                 return model.enums.Suit.FUNGI;
-                break;
             case "plant":
                 return model.enums.Suit.PLANT;
-                break;
             case "animal":
                 return model.enums.Suit.ANIMAL;
-                break;
             case "insect":
                 return model.enums.Suit.INSECT;
-                break;
         }
+        return null;
     }
 
     public static void main(String[] args) {
