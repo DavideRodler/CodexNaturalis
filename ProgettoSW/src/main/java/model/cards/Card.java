@@ -1,6 +1,6 @@
 package model.cards;
 
-public class Card {
+public abstract class Card {
     private Integer ID;
 
     public Integer getId() {
