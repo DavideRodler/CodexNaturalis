@@ -1,12 +1,16 @@
 package model.decktameplate;
 
 import model.cards.Card;
+import model.cards.CardGold;
 import model.cards.CardResource;
 import model.cards.face.Face;
 import model.cards.face.Corner;
 import model.cards.face.CornerGold;
 import model.cards.face.CornerResource;
 import model.enums.Suit;
+import model.objectives.Objective;
+import model.objectives.ObjectiveCountingGold;
+import model.objectives.ObjectiveGoldCorners;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,18 +27,18 @@ public class deckconstructor {
         // try to create a scanner only if the file exists
         try {
             Scanner scanner = new Scanner(file);
-            Integer IDcont = 0;
+            int IDcont = 0;
             while (scanner.hasNext()) {
                 Suit suit = AssignSuit(scanner.next());
                 Corner upright = AssignCorner(scanner.next());
                 Corner upleft = AssignCorner(scanner.next());
                 Corner downright = AssignCorner(scanner.next());
                 Corner downleft = AssignCorner(scanner.next());
-                Face front = new Face(upright,upleft,downright,downright);
+                Face front = new Face(upright,upleft,downright,downleft);
                 Face back = new Face(new Corner(),new Corner(),new Corner(), new Corner());
                 int cost = Integer.parseInt(scanner.next());
                 Card tmp = new CardResource(IDcont,front,back,suit,cost);
-                IDcont = IDcont ++ ;
+                IDcont++;
 
             }
 
@@ -45,45 +49,106 @@ public class deckconstructor {
         }
     }
     private static Corner AssignCorner(String s){
-        switch (s){
-            case "null":
-                return null;
-            case "empty":
-                return new Corner();
-            case "fungi":
-                return new CornerResource(model.enums.Suit.FUNGI);
-            case "plant":
-                return new CornerResource(model.enums.Suit.PLANT);
-            case "animal":
-                return new CornerResource(model.enums.Suit.ANIMAL);
-            case "insect":
-                return new CornerResource(model.enums.Suit.INSECT);
-            case "manuscript":
-                return new CornerGold(model.enums.GoldSuit.MANUSCRIPT);
-            case "inkwell":
-                return new CornerGold(model.enums.GoldSuit.INKWELL);
-            case "quill":
-                return new CornerGold(model.enums.GoldSuit.QUILL);
-        }
-        return null;
+        return switch (s) {
+            case "empty" -> new Corner();
+            case "fungi" -> new CornerResource(Suit.FUNGI);
+            case "plant" -> new CornerResource(Suit.PLANT);
+            case "animal" -> new CornerResource(Suit.ANIMAL);
+            case "insect" -> new CornerResource(Suit.INSECT);
+            case "manuscript" -> new CornerGold(model.enums.GoldSuit.MANUSCRIPT);
+            case "inkwell" -> new CornerGold(model.enums.GoldSuit.INKWELL);
+            case "quill" -> new CornerGold(model.enums.GoldSuit.QUILL);
+            default -> null;
+        };
     }
     private static Suit AssignSuit(String s){
-        switch (s){
-            case "fungi":
-                return model.enums.Suit.FUNGI;
-            case "plant":
-                return model.enums.Suit.PLANT;
-            case "animal":
-                return model.enums.Suit.ANIMAL;
-            case "insect":
-                return model.enums.Suit.INSECT;
-        }
-        return null;
+        return switch (s) {
+            case "fungi" -> Suit.FUNGI;
+            case "plant" -> Suit.PLANT;
+            case "animal" -> Suit.ANIMAL;
+            case "insect" -> Suit.INSECT;
+            default -> null;
+        };
     }
 
     public static void main(String[] args) {
         DeckResource();
     }
+
+    /* create the constructor of the gold deck using cards from GoldDeck.json, card are made with this field: suit symbol, the four corner(starting from upright), the the way he scores points (normal point written on the card, objectiveCountingResources or objectiveGoldCorners) and the cost of the card in the four resources */
+    public static void DeckGold(){
+        File file = new File("src/main/java/model.decktameplate/GoldDeck.txt");
+        // try to create a scanner only if the file exists
+        try {
+            Scanner scanner = new Scanner(file);
+            int IDcont = 0;
+            while (scanner.hasNext()) {
+                Suit suit = AssignSuit(scanner.next());
+                Corner upright = AssignCorner(scanner.next());
+                Corner upleft = AssignCorner(scanner.next());
+                Corner downright = AssignCorner(scanner.next());
+                Corner downleft = AssignCorner(scanner.next());
+                int points = Integer.parseInt(scanner.next());
+                int costAnimal = Integer.parseInt(scanner.next());
+                int costInsect = Integer.parseInt(scanner.next());
+                int costFungi = Integer.parseInt(scanner.next());
+                int costPlant = Integer.parseInt(scanner.next());
+                Face front = new Face(upright,upleft,downright,downright);
+                Face back = new Face(new Corner(),new Corner(),new Corner(), new Corner());
+                Objective objective = AssignObjective(scanner.next());
+                Card tmp = new CardGold(IDcont,front,back,suit,points,costAnimal,costInsect,costFungi,costPlant, objective);
+                IDcont++;
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("file not found " + e.getMessage());
+        }
+    }
+
+    //create a private method AssignOvbective that takes a string (null,corenrs or gold resource:manuscript,inkwell,quill) and create an object that is statically type Objective and dinamically type Objective, ObjectiveCountingResources or ObjectiveGoldCorners if the string is respectability null, corners or gold resource and return that objective
+    private static Objective AssignObjective(String s){
+        Objective obj;
+        return switch (s) {
+            case "null" -> {
+                obj = new Objective();
+                yield obj;
+            }
+            case "corners" -> {
+                obj = new ObjectiveGoldCorners();
+                yield obj;
+            }
+            case "manuscript", "inkwell", "quill" -> {
+                obj = new ObjectiveCountingGold();
+                yield obj;
+            }
+            default -> null;
+        };
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
