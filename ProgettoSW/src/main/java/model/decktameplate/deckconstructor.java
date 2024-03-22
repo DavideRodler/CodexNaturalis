@@ -128,7 +128,7 @@ public class deckconstructor {
     }
 
     //Create
-    public static <Objective> void StartingCardDeck(){
+    public static void StartingCardDeck(){
         File file = new File("src/main/java/model.decktameplate/StartingCardDeck.json");
         // try to create a scanner only if the file exists
         try {

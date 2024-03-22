@@ -1,6 +1,10 @@
 package model.objectives;
 
 
+import model.cards.Card;
+
+import java.lang.reflect.Array;
+
 public class ObjectiveCountingGold extends Objective{
 
    private int countInkwell;
