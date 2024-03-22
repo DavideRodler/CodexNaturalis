@@ -3,12 +3,16 @@ package model.objectives;
 import model.enums.Suit;
 import model.enums.Direction;
 import model.cards.Card;
+
+import java.util.ArrayList;
+
 public class ObjectiveDiagonal extends Objective{
 private Direction direction;
 private Suit color;
 
-//public boolean checkObjective(Card[][] table){
-//}
+public int checkObjective(HashMap<ArrayList<Integer>, Card> table, Card card ) {
+
+}
 
 public Direction getDirection() {
         return direction;

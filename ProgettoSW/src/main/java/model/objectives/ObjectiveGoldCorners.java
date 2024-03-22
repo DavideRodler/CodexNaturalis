@@ -1,10 +1,13 @@
 package model.objectives;
 
 import model.cards.Card;
-public class ObjectiveGoldCorners extends Objective{
-    //public boolean checkObjective(Card[][] table){
 
-    //}
+import java.util.ArrayList;
+
+public class ObjectiveGoldCorners extends Objective{
+    public int checkObjective(HashMap<ArrayList<Integer>, Card> table, Card card ) {
+
+    }
 
     //public int countCorners(){
 
