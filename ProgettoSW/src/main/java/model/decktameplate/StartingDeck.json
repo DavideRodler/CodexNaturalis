@@ -1,0 +1,44 @@
+[
+  {
+    "center": "insect",
+    "upright": "plant",
+    "upleft": "empty",
+    "downright": "empty",
+    "downleft": "insect"
+  },
+  {
+    "center": ["fungi"],
+    "upright": "empty",
+    "upleft": "animal",
+    "downright": "fungi",
+    "downleft": "empty"
+  },
+  {
+    "center": ["plant", "fungi"],
+    "upright": "empty",
+    "upleft": "empty",
+    "downright": "empty",
+    "downleft": "empty"
+  },
+  {
+    "center": ["animal", "insect"],
+    "upright": "empty",
+    "upleft": "empty",
+    "downright": "empty",
+    "downleft": "empty"
+  },
+  {
+    "center": ["animal","insect", "plant"],
+    "upright": "empty",
+    "upleft": "empty",
+    "downright": null,
+    "downleft": null
+  },
+  {
+    "center": ["plant","animal", "fungi"],
+    "upright": "empty",
+    "upleft": "empty",
+    "downright": null,
+    "downleft": null
+  }
+]
