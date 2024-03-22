@@ -1,4 +1,4 @@
-package main.java.model.objectives;
+package model.objectives;
 
 import model.cards.Card;
 public class ObjectiveGoldCorners extends Objective{

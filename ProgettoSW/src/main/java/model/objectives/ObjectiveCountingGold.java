@@ -1,4 +1,4 @@
-package main.java.model.objectives;
+package model.objectives;
 
 
 public class ObjectiveCountingGold extends Objective{

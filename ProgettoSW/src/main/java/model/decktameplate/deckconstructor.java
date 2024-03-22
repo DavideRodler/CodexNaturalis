@@ -13,6 +13,7 @@ import model.objectives.Objective;
 import model.objectives.ObjectiveCountingGold;
 import model.objectives.ObjectiveGoldCorners;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -127,7 +128,7 @@ public class deckconstructor {
     }
 
     //Create
-    public static void StartingCardDeck(){
+    public static <Objective> void StartingCardDeck(){
         File file = new File("src/main/java/model.decktameplate/StartingCardDeck.json");
         // try to create a scanner only if the file exists
         try {

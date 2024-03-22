@@ -1,4 +1,4 @@
-package main.java.model.objectives;
+package model.objectives;
 import model.enums.Suit;
 
 public class ObjectiveCountingResource extends Objective{
