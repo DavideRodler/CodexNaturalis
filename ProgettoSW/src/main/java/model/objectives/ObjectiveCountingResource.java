@@ -1,4 +1,4 @@
-package model.objectives;
+package main.java.model.objectives;
 import model.enums.Suit;
 
 public class ObjectiveCountingResource extends Objective{
@@ -10,5 +10,9 @@ public class ObjectiveCountingResource extends Objective{
 
     public Suit getSimbol() {
         return Simbol;
+    }
+
+    public ObjectiveCountingResource(Suit suit){
+        this.Simbol = suit;
     }
 }

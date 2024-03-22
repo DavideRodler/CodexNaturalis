@@ -1,4 +1,5 @@
-package model.objectives;
+package main.java.model.objectives;
+
 import model.enums.Suit;
 import model.enums.Direction;
 import model.enums.Position;
@@ -25,5 +26,12 @@ public Position verticalDirection;
 
     public Direction getHorizontalDirection() {
         return horizontalDirection;
+    }
+
+    public ObjectivePositioning(Suit colorOneCard, Suit colorTwoCards, Direction horizontalDirection, Position verticalDirection){
+        this.colorOneCard = colorOneCard;
+        this.colorTwoCards = colorTwoCards;
+        this.horizontalDirection = horizontalDirection;
+        this.verticalDirection = verticalDirection;
     }
 }

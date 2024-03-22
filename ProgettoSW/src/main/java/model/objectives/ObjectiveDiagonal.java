@@ -1,4 +1,5 @@
-package model.objectives;
+package main.java.model.objectives;
+
 import model.enums.Suit;
 import model.enums.Direction;
 import model.cards.Card;
@@ -14,5 +15,10 @@ public Direction getDirection() {
     }
     public Suit getColor() {
         return color;
+    }
+
+    public ObjectiveDiagonal(Direction direction, Suit color){
+    this.direction = direction;
+    this.color = color;
     }
 }

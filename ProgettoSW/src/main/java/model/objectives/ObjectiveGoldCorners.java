@@ -1,4 +1,5 @@
-package model.objectives;
+package main.java.model.objectives;
+
 import model.cards.Card;
 public class ObjectiveGoldCorners extends Objective{
     //public boolean checkObjective(Card[][] table){
