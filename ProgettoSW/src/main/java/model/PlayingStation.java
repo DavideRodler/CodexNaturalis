@@ -5,8 +5,47 @@ import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
 
+import java.lang.reflect.Array;
+import java.util.*;
+
 public class PlayingStation {
-    private Card[][] table;
+    private HashMap<ArrayList<Integer>, Card> table;
+
+
+    public ArrayList<Integer> getCoordinates(Card card) {
+        for (Map.Entry<ArrayList<Integer>, Card> entry : table.entrySet()) {
+            if (entry.getValue().equals(card)) {
+                return entry.getKey();
+            }
+        }
+        return null; // Return null if the card is not found
+    }
+
+    public Integer getXCoordinate(Card card) {
+        for (Map.Entry<ArrayList<Integer>, Card> entry : table.entrySet()) {
+            if (entry.getValue().equals(card)) {
+                return entry.getKey().get(0);
+            }
+        }
+        return null; // Return null if the card is not found
+    }
+
+    public Integer getYCoordinate(Card card) {
+        for (Map.Entry<ArrayList<Integer>, Card> entry : table.entrySet()) {
+            if (entry.getValue().equals(card)) {
+                return entry.getKey().get(1);
+            }
+        }
+        return null; // Return null if the card is not found
+    }
+
+    public Card ArraygetCard(int x, int y) {
+        ArrayList<Integer> coordinates = new ArrayList<>();
+        coordinates.add(0, x);
+        coordinates.add(1, y);
+        return table.get(coordinates);
+    }
+
     private Integer countInsect;
     private Integer countAnimal;
     private Integer countPlant;
@@ -18,11 +57,13 @@ public class PlayingStation {
 
     // Costruttore
     public PlayingStation() {
-        this.table = new Card[80][80];
-        for (int i = 0; i < 80; i++) {
-            for (int j = 0; j < 80; j++) {
-                table[i][j] = null;
-            }
+        this.table = new HashMap<>();
+        for (int i = 0; i < 40; i++) {
+            ArrayList<Integer> coordinates = new ArrayList<>();
+            coordinates.add(0, -1);
+            coordinates.add(1, -1);
+            table.put(coordinates, null);
+
         }
         this.countInsect = 0;
         this.countAnimal = 0;
@@ -35,11 +76,12 @@ public class PlayingStation {
 
 
 
-    public void addCard(CardResource card, int i, int j) {
-        if (i >= 0 && i < 80 && j >= 0 && j < 80) {
-            table[i][j] = card;
-            updateCounters(card);
-        }
+    public void addCard(CardResource card, Integer X, Integer Y) {
+        ArrayList<Integer> coordinates = new ArrayList<>();
+        coordinates.add(0, X);
+        coordinates.add(1, Y);
+        table.put(coordinates, card);
+        updateCounters(card);
     }
 
     public void addCardStarting(CardStarting card) {

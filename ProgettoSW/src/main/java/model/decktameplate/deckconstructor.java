@@ -3,6 +3,7 @@ package model.decktameplate;
 import model.cards.Card;
 import model.cards.CardGold;
 import model.cards.CardResource;
+import model.cards.CardStarting;
 import model.cards.face.Face;
 import model.cards.face.Corner;
 import model.cards.face.CornerGold;
@@ -93,7 +94,7 @@ public class deckconstructor {
                 int costInsect = Integer.parseInt(scanner.next());
                 int costFungi = Integer.parseInt(scanner.next());
                 int costPlant = Integer.parseInt(scanner.next());
-                Face front = new Face(upright,upleft,downright,downright);
+                Face front = new Face(upright,upleft,downright,downleft);
                 Face back = new Face(new Corner(),new Corner(),new Corner(), new Corner());
                 Objective objective = AssignObjective(scanner.next());
                 Card tmp = new CardGold(IDcont,front,back,suit,points,costAnimal,costInsect,costFungi,costPlant, objective);
@@ -125,11 +126,40 @@ public class deckconstructor {
         };
     }
 
+    //Create
+    public static void StartingCardDeck(){
+        File file = new File("src/main/java/model.decktameplate/StartingCardDeck.json");
+        // try to create a scanner only if the file exists
+        try {
+            Scanner scanner = new Scanner(file);
+            int IDcont = 0;
+            while (scanner.hasNext()) {
+                Suit suit = AssignSuit(scanner.next());
+                Corner upright = AssignCorner(scanner.next());
+                Corner upleft = AssignCorner(scanner.next());
+                Corner downright = AssignCorner(scanner.next());
+                Corner downleft = AssignCorner(scanner.next());
+                Face front = new Face(upright,upleft,downright,downleft);
+                Face back = new Face(InitialBackAssignCorner("plant"),InitialBackAssignCorner("fungi"),InitialBackAssignCorner("animal"), InitialBackAssignCorner("insect"));
+                Objective objective = AssignObjective(scanner.next());
+                Card tmp = new CardStarting(IDcont,front,back,suit);
+                IDcont++;
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("file not found " + e.getMessage());
+        }
+    }
 
-
-
-
-
+    private static Corner InitialBackAssignCorner( String s){
+        return switch (s) {
+            case "fungi" -> new CornerResource(Suit.FUNGI);
+            case "plant" -> new CornerResource(Suit.PLANT);
+            case "animal" -> new CornerResource(Suit.ANIMAL);
+            case "insect" -> new CornerResource(Suit.INSECT);
+            default -> null;
+        };
+    }
 
 
 
