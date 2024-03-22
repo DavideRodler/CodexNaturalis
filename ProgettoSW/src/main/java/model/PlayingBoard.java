@@ -6,17 +6,18 @@ import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 public class PlayingBoard {
 
-    private Map<String, CardGold> deckCardGold;
-    private Map<String, CardResource> deckCardResource;
-    private Map<String, CardObjective> deckCardObjective;
-    private Map<String, CardStarting> deckCardStarting;
-    private Map<Integer, Player> playerMap;
+    private ArrayList<CardGold> deckCardGold;
+    private ArrayList<CardResource> deckCardResource;
+    private ArrayList<CardObjective> deckCardObjective;
+    private ArrayList<CardStarting> deckCardStarting;
+    private ArrayList<Player> playerList;
     private CardResource CentralFirstCard;
     private CardResource CentralSecondCard;
     private CardResource CentralThirdCard;
@@ -27,11 +28,11 @@ public class PlayingBoard {
 
     //Constructor
     public PlayingBoard(CardResource centralFirstCard, CardResource centralSecondCard, CardResource centralThirdCard, CardResource centralFourthCard, CardObjective firstObjective, CardObjective secondObjective) {
-        deckCardGold = new HashMap<>();
-        deckCardResource = new HashMap<>();
-        deckCardObjective = new HashMap<>();
-        deckCardStarting = new HashMap<>();
-        playerMap = new HashMap<>();
+        deckCardGold = new ArrayList<>();
+        deckCardResource = new ArrayList<>();
+        deckCardObjective = new ArrayList<>();
+        deckCardStarting = new ArrayList<>();
+        playerList = new ArrayList<>();
         CentralFirstCard = centralFirstCard;
         CentralSecondCard = centralSecondCard;
         CentralThirdCard = centralThirdCard;
@@ -42,19 +43,19 @@ public class PlayingBoard {
 
 
     //-------------------GETTER-----------------------------
-    public Map<String, CardGold> getDeckCardGold() {
+    public ArrayList<CardGold> getDeckCardGold() {
         return deckCardGold;
     }
 
-    public Map<String, CardObjective> getDeckCardObjective() {
+    public ArrayList<CardObjective> getDeckCardObjective() {
         return deckCardObjective;
     }
 
-    public Map<String, CardResource> getDeckCardResource() {
+    public ArrayList<CardResource> getDeckCardResource() {
         return deckCardResource;
     }
 
-    public Map<String, CardStarting> getDeckCardStarting() {
+    public ArrayList<CardStarting> getDeckCardStarting() {
         return deckCardStarting;
     }
 
@@ -111,12 +112,12 @@ public class PlayingBoard {
 
         //Adding players starting from position N-1
         for (int i = N-1; i < size; i++) {
-            playerMap.put(i - N + 2, players[i]);
+            playerList.add(i - N + 2, players[i]);
         }
 
         //Adding players from position 0 to position N-2
         for (int i = 0; i < N-1; i++) {
-            playerMap.put(i + size - N + 1, players[i]);
+            playerList.add(i + size - N + 1, players[i]);
         }
     }
 
