@@ -1,6 +1,12 @@
 package model;
 
 import model.cards.*;
+import model.cards.face.Corner;
+import model.cards.face.CornerGold;
+import model.cards.face.CornerResource;
+import model.enums.Suit;
+import model.enums.GoldSuit;
+
 
 import java.lang.reflect.Array;
 import java.util.*;
@@ -74,13 +80,19 @@ public class PlayingStation {
     }
 
 
-
     public void addCard(CardResource card, Integer X, Integer Y) {
         ArrayList<Integer> coordinates = new ArrayList<>();
         coordinates.add(0, X);
         coordinates.add(1, Y);
         table.put(coordinates, card);
-        updateCounters(card);
+        //richiamo updateCounters passando come parametro il corner che viene coperto
+        setCountAnimal(card);
+        setCountFungi(card);
+        setCountInsect(card);
+        setCountPlant(card);
+        setCountInkwell(card);
+        setCountManuscript(card);
+        setCountQuill(card);
     }
 
     public void addCardStarting(CardStarting card) {
@@ -92,6 +104,7 @@ public class PlayingStation {
     public CardStarting getCardStarting() {
         return cardStarting;
     }
+
     public Integer getCountInsect() {
         return countInsect;
     }
@@ -121,36 +134,55 @@ public class PlayingStation {
     }
 
     public void setCountInsect(CardPlaying card) {
-        card.
+        countInsect += card.countResource(Suit.INSECT);
     }
 
-    public void setCountAnimal(Integer countAnimal) {
-        this.countAnimal = countAnimal;
+    public void setCountAnimal(CardPlaying card) {
+        countAnimal += card.countResource(Suit.ANIMAL);
     }
 
-    public void setCountPlant(Integer countPlant) {
-        this.countPlant = countPlant;
+    public void setCountPlant(CardPlaying card) {
+        countPlant += card.countResource(Suit.PLANT);
     }
 
-    public void setCountFungi(Integer countFungi) {
-        this.countFungi = countFungi;
+    public void setCountFungi(CardPlaying card) {
+        countFungi += card.countResource(Suit.FUNGI);
     }
 
-    public void setCountInkwell(Integer countInkwell) {
-        this.countInkwell = countInkwell;
+    public void setCountInkwell(CardResource card) {
+        countInkwell += card.countGoldResource(GoldSuit.INKWELL);
     }
 
-    public void setCountQuill(Integer countQuill) {
-        this.countQuill = countQuill;
+    public void setCountQuill(CardResource card) {
+        countQuill += card.countGoldResource(GoldSuit.QUILL);
     }
 
-    public void setCountManuscript(Integer countManuscript) {
-        this.countManuscript = countManuscript;
+    public void setCountManuscript(CardResource card) {
+        countManuscript += card.countGoldResource(GoldSuit.MANUSCRIPT);
     }
+
     public void setObjective(CardObjective objective) {
 
     }
 
-
-
+    public void updateCounters(Corner corner) {
+        if (corner instanceof CornerGold) {
+            CornerGold c = (CornerGold) corner;
+            switch (c.getDrawing()) {
+                case QUILL -> countQuill--;
+                case MANUSCRIPT -> countManuscript--;
+                case INKWELL -> countInkwell--;
+                //case EMPTY -> null;
+            }
+        }
+        if (corner instanceof CornerResource) {
+            CornerResource c = (CornerResource) corner;
+            switch (c.getDrawing()) {
+                case FUNGI -> countFungi--;
+                case PLANT -> countPlant--;
+                case ANIMAL -> countAnimal--;
+                case INSECT -> countInsect--;
+            }
+        }
+    }
 }

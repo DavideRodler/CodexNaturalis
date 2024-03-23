@@ -24,7 +24,7 @@ public class CardResource extends CardPlaying{
         return points;
     }
 
-    public int countResource(GoldSuit suit){
+    public int countGoldResource(GoldSuit suit){
         int count = 0;
         if (!getPlayingBack()){
             if(getFront().getDownLeft() instanceof CornerGold) {
