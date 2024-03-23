@@ -1,16 +1,20 @@
 package model.objectives;
 
+import model.cards.Card;
 import model.enums.Suit;
 import model.enums.Direction;
 import model.enums.Position;
+
+import java.util.ArrayList;
+
 public class ObjectivePositioning extends Objective{
     public Suit colorOneCard;
     public Suit colorTwoCards;
-public Direction horizontalDirection;
-public Position verticalDirection;
-    //public boolean checkObjective(Card[][] table){
+    public Direction horizontalDirection;
+    public Position verticalDirection;
+    public int checkObjective(HashMap<ArrayList<Integer>, Card> table, Card card ) {
 
-    //}
+    }
 
     public Suit getColorOneCard() {
         return colorOneCard;
