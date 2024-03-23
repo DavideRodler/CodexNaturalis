@@ -1,4 +1,32 @@
-[{
-  "type": "typeOfObjective",
-  "resource": "typeOfResource"
-}]
+[
+  {
+    "type": "diagonal",
+    "resource": "fungi",
+    "diagonal": "right"
+  },
+  {
+    "type": "diagonal",
+    "resource": "plant",
+    "diagonal": "left"
+  },
+  {
+    "type": "typeOfObjective",
+    "twoCards": "typeOfResource",
+    "oneCard": "cic",
+    "horizontal": "dd",
+    "vertical": ""
+  },
+  {
+    "type": "",
+    "resource": "",
+    "diagonal": ""
+  },
+  {
+    "type": "",
+    "resource": ""
+  },
+  {
+    "type": "",
+    "goldType": ""
+  }
+]
