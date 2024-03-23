@@ -152,21 +152,5 @@ public class PlayingStation {
 
     }
 
-    private void updateCounters(CardResource card) {
-        switch (card.getSymbol()) {
-            case INSECT:
-                countInsect++;
-                break;
-            case ANIMAL:
-                countAnimal++;
-                break;
-            case PLANT:
-                countPlant++;
-                break;
-            case FUNGI:
-                countFungi++;
-                break;
-        }
-    }
 
 }
