@@ -224,62 +224,6 @@ public class deckconstructor {
         };
     }
 
-    private static Objective AssignSymbol(String s){
-        Objective obj;
-        return switch (s) {
-            case "diagonal" -> {
-                obj = new ObjectiveDiagonal();
-                yield obj;
-            }
-            case "corners" -> {
-                obj = new ObjectiveGoldCorners();
-                yield obj;
-            }
-            case "manuscript" -> {
-                obj = new ObjectiveCountingGold(0,1,0);
-                yield obj;
-            }
-            case "inkwell" -> {
-                obj = new ObjectiveCountingGold(1,0,0);
-                yield obj;
-            }
-            case "quill" -> {
-                obj = new ObjectiveCountingGold(0,0,1);
-                yield obj;
-            }
-            default -> null;
-        };
-    }
-
-    private static Objective AssignSymbol(String s, Suit color, Direction direction){
-        Objective obj;
-        return switch (s) {
-            case "diagonal" -> {
-                obj = new ObjectiveDiagonal();
-                yield obj;
-            }
-            case "corners" -> {
-                obj = new ObjectiveGoldCorners();
-                yield obj;
-            }
-            case "manuscript" -> {
-                obj = new ObjectiveCountingGold(0,1,0);
-                yield obj;
-            }
-            case "inkwell" -> {
-                obj = new ObjectiveCountingGold(1,0,0);
-                yield obj;
-            }
-            case "quill" -> {
-                obj = new ObjectiveCountingGold(0,0,1);
-                yield obj;
-            }
-            default -> null;
-        };
-    }
-
-
-
 
 
 
