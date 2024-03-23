@@ -9,10 +9,9 @@ public class CardGold extends CardResource {
     private int costInsect;
     private int costFungi;
     private int costPlant;
-    private final String pointType;
     private Objective objective;
 
-    public CardGold(int ID, String pointType, Face front, Face back, Suit symbol, int points, int costAnimal, int costInsect, int costFungi, int costPlant, Objective objective) {
+    public CardGold(int ID, Face front, Face back, Suit symbol, int points, int costAnimal, int costInsect, int costFungi, int costPlant, Objective objective) {
         super(ID, front, back, symbol, points);
         this.costAnimal = costAnimal;
         this.costInsect = costInsect;

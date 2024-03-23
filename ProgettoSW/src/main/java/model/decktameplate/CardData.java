@@ -17,6 +17,60 @@ public class CardData {
     private Integer costPlant;
     private String type;
     private String Objective;
+    private String resource;
+    private String diagonal;
+    private String oneCard;
+    private String twoCards;
+    private String horizontal;
+    private String vertical;
+    private String goldType;
+
+    //create getter and setter for all the attributes that has not getter and setter
+    public String getGoldType() {
+        return goldType;
+    }
+    public String getDiagonal() {
+        return diagonal;
+    }
+    public String getResource() {
+        return resource;
+    }
+    public String getOneCard() {
+        return oneCard;
+    }
+    public String getTwoCards() {
+        return twoCards;
+    }
+    public String getHorizontal() {
+        return horizontal;
+    }
+    public String getVertical() {
+        return vertical;
+    }
+    public void setGoldType(String goldType) {
+        this.goldType = goldType;
+    }
+    public void setDiagonal(String diagonal) {
+        this.diagonal = diagonal;
+    }
+    public void setResource(String resource) {
+        this.resource = resource;
+    }
+    public void setOneCard(String oneCard) {
+        this.oneCard = oneCard;
+    }
+    public void setTwoCards(String twoCards) {
+        this.twoCards = twoCards;
+    }
+    public void setHorizontal(String horizontal) {
+        this.horizontal = horizontal;
+    }
+    public void setVertical(String vertical) {
+        this.vertical = vertical;
+    }
+    public void setObjective(String objective) {
+        Objective = objective;
+    }
 
 
     // getters and setters

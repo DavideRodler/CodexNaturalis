@@ -1,16 +1,16 @@
 [
   {
-    "type": "diagonal",
+    "type": "diagonal", 2
     "resource": "fungi",
     "diagonal": "right"
   },
   {
-    "type": "diagonal",
+    "type": "diagonal",2
     "resource": "plant",
     "diagonal": "left"
   },
   {
-    "type": "positioning",
+    "type": "positioning",3
     "twoCards": "fungi",
     "oneCard": "plant",
     "horizontal": "left",
@@ -22,11 +22,11 @@
     "diagonal": ""
   },
   {
-    "type": "resources",
+    "type": "resources",2
     "resource": "fungi"
   },
   {
-    "type": "gold",
+    "type": "gold",2/3
     "goldType": "inkwell"
   }
 ]

@@ -2,16 +2,17 @@ package model.decktameplate;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import model.cards.CardGold;
+import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
 import model.cards.face.Corner;
 import model.cards.face.CornerGold;
 import model.cards.face.CornerResource;
 import model.cards.face.Face;
+import model.enums.Direction;
+import model.enums.Position;
 import model.enums.Suit;
-import model.objectives.Objective;
-import model.objectives.ObjectiveCountingGold;
-import model.objectives.ObjectiveGoldCorners;
+import model.objectives.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
@@ -89,8 +90,7 @@ public class deckconstructor {
                 Corner upleft = AssignCorner(cardData.getUpleft());
                 Corner downright = AssignCorner(cardData.getDownright());
                 Corner downleft = AssignCorner(cardData.getDownleft());
-                String PointType = cardData.getObjective();
-                Objective objective = AssignObjective(PointType);
+                Objective objective = AssignObjective(cardData.getObjective());
                 int points = cardData.getPoints();
                 int costAnimal = cardData.getCostAnimal();
                 int costInsect = cardData.getCostInsect();
@@ -98,9 +98,71 @@ public class deckconstructor {
                 int costPlant = cardData.getCostPlant();
                 Face front = new Face(upright, upleft, downright, downleft);
                 Face back = new Face(new Corner(), new Corner(), new Corner(), new Corner());
-                CardGold tmp = new CardGold(CardId, PointType, front, back, suit, points, costAnimal, costInsect, costFungi, costPlant, objective);
+                CardGold tmp = new CardGold(CardId, front, back, suit, points, costAnimal, costInsect, costFungi, costPlant, objective);
                 deck.add(tmp);
                 CardId++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return deck;
+    }
+
+    public static List<Objective> deckObjective() {
+        List<Objective> deck = new ArrayList<>();
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<CardData> objectives = objectMapper.readValue(new File("src/main/java/model/decktameplate/ObjectiveCard.json"), new TypeReference<>() {});
+
+            for (CardData cardData : objectives) {
+                Objective tmp;
+                switch (cardData.getType()) {
+                    case "diagonal":
+                        Direction direction = Direction.valueOf(cardData.getDiagonal().toUpperCase());
+                        Suit color = Suit.valueOf(cardData.getResource().toUpperCase());
+                        tmp = new ObjectiveDiagonal(direction, color);
+                        tmp.setPoints(2);
+                        break;
+                    case "positioning":
+                        Suit colorOneCard = Suit.valueOf(cardData.getOneCard().toUpperCase());
+                        Suit colorTwoCards = Suit.valueOf(cardData.getTwoCards().toUpperCase());
+                        Direction horizontalDirection = Direction.valueOf(cardData.getHorizontal().toUpperCase());
+                        Position verticalDirection = Position.valueOf(cardData.getVertical().toUpperCase());
+                        tmp = new ObjectivePositioning(colorOneCard, colorTwoCards, horizontalDirection, verticalDirection);
+                        tmp.setPoints(3);
+                        break;
+                    case "resources":
+                        Suit symbol = Suit.valueOf(cardData.getResource().toUpperCase());
+                        tmp = new ObjectiveCountingResource(symbol);
+                        tmp.setPoints(2);
+                        break;
+                    case "gold":
+                        String goldType = cardData.getGoldType();
+                        switch (goldType) {
+                            case "inkwell":
+                                tmp = new ObjectiveCountingGold(2, 0, 0);
+                                tmp.setPoints(2);
+                                break;
+                            case "manuscript":
+                                tmp = new ObjectiveCountingGold(0, 2, 0);
+                                tmp.setPoints(2);
+                                break;
+                            case "quill":
+                                tmp = new ObjectiveCountingGold(0, 0, 2);
+                                tmp.setPoints(2);
+                                break;
+                            case "all":
+                                tmp = new ObjectiveCountingGold(1, 1, 1);
+                                tmp.setPoints(3);
+                                break;
+                            default:
+                                throw new IllegalArgumentException("Invalid gold type: " + goldType);
+                        }
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid objective type: " + cardData.getType());
+                }
+                deck.add(tmp);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -133,6 +195,8 @@ public class deckconstructor {
     }
 
     //create a private method AssignOvbective that takes a string (null,corenrs or gold resource:manuscript,inkwell,quill) and create an object that is statically type Objective and dinamically type Objective, ObjectiveCountingResources or ObjectiveGoldCorners if the string is respectability null, corners or gold resource and return that objective
+
+
     private static Objective AssignObjective(String s){
         Objective obj;
         return switch (s) {
@@ -144,14 +208,75 @@ public class deckconstructor {
                 obj = new ObjectiveGoldCorners();
                 yield obj;
             }
-            case "manuscript", "inkwell", "quill" -> {
-                obj = new ObjectiveCountingGold(0,0,0);
+            case "manuscript" -> {
+                obj = new ObjectiveCountingGold(0,1,0);
+                yield obj;
+            }
+            case "inkwell" -> {
+                obj = new ObjectiveCountingGold(1,0,0);
+                yield obj;
+            }
+            case "quill" -> {
+                obj = new ObjectiveCountingGold(0,0,1);
                 yield obj;
             }
             default -> null;
         };
     }
 
+    private static Objective AssignSymbol(String s){
+        Objective obj;
+        return switch (s) {
+            case "diagonal" -> {
+                obj = new ObjectiveDiagonal();
+                yield obj;
+            }
+            case "corners" -> {
+                obj = new ObjectiveGoldCorners();
+                yield obj;
+            }
+            case "manuscript" -> {
+                obj = new ObjectiveCountingGold(0,1,0);
+                yield obj;
+            }
+            case "inkwell" -> {
+                obj = new ObjectiveCountingGold(1,0,0);
+                yield obj;
+            }
+            case "quill" -> {
+                obj = new ObjectiveCountingGold(0,0,1);
+                yield obj;
+            }
+            default -> null;
+        };
+    }
+
+    private static Objective AssignSymbol(String s, Suit color, Direction direction){
+        Objective obj;
+        return switch (s) {
+            case "diagonal" -> {
+                obj = new ObjectiveDiagonal();
+                yield obj;
+            }
+            case "corners" -> {
+                obj = new ObjectiveGoldCorners();
+                yield obj;
+            }
+            case "manuscript" -> {
+                obj = new ObjectiveCountingGold(0,1,0);
+                yield obj;
+            }
+            case "inkwell" -> {
+                obj = new ObjectiveCountingGold(1,0,0);
+                yield obj;
+            }
+            case "quill" -> {
+                obj = new ObjectiveCountingGold(0,0,1);
+                yield obj;
+            }
+            default -> null;
+        };
+    }
 
 
 
