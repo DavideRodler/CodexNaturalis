@@ -10,11 +10,11 @@
     "diagonal": "left"
   },
   {
-    "type": "typeOfObjective",
-    "twoCards": "typeOfResource",
-    "oneCard": "cic",
-    "horizontal": "dd",
-    "vertical": ""
+    "type": "positioning",
+    "twoCards": "fungi",
+    "oneCard": "plant",
+    "horizontal": "left",
+    "vertical": "top"
   },
   {
     "type": "",
@@ -22,11 +22,11 @@
     "diagonal": ""
   },
   {
-    "type": "",
-    "resource": ""
+    "type": "resources",
+    "resource": "fungi"
   },
   {
-    "type": "",
-    "goldType": ""
+    "type": "gold",
+    "goldType": "inkwell"
   }
 ]
