@@ -6,7 +6,7 @@ import model.cards.Card;
 
 import java.util.ArrayList;
 
-public class ObjectiveDiagonal extends Objective{
+public class ObjectiveDiagonal extends Objective{ //direzione data dalla carta in alto
 private Direction direction;
 private Suit color;
 
@@ -22,7 +22,7 @@ public Direction getDirection() {
     }
 
     public ObjectiveDiagonal(Direction direction, Suit color){
-    this.direction = direction;
     this.color = color;
+    this.direction = direction;
     }
 }
