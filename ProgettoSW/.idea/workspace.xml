@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="put void instead of objective in method StartingCardDeck">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/ObjectiveCard.json" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Prova costruttoti file Json">
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/CardData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/GoldDeck.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/GoldDeck.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/StartingDeck.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/StartingDeck.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardStarting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardStarting.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/deckconstructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/deckconstructor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
@@ -17,6 +18,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -74,7 +82,7 @@
       <option name="presentableId" value="Default" />
       <updated>1710252116188</updated>
       <workItem from="1710252117190" duration="597000" />
-      <workItem from="1711112319386" duration="7484000" />
+      <workItem from="1711112319386" duration="11697000" />
     </task>
     <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
       <option name="closed" value="true" />
@@ -132,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711099931919</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Prova costruttoti file Json">
+      <option name="closed" value="true" />
+      <created>1711190691826</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1711190691826</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,6 +185,7 @@
     <MESSAGE value="Commit con aggiunte parziali dei deck starting card e objective card, modifica table come Mappa con key=ArrayList" />
     <MESSAGE value="fix objective" />
     <MESSAGE value="put void instead of objective in method StartingCardDeck" />
-    <option name="LAST_COMMIT_MESSAGE" value="put void instead of objective in method StartingCardDeck" />
+    <MESSAGE value="Prova costruttoti file Json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prova costruttoti file Json" />
   </component>
 </project>

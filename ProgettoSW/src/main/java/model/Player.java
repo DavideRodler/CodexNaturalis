@@ -18,7 +18,7 @@ public class Player {
     private PlayingStation station;
     private Integer pointsObjective;
     private List<CardResource> hand;
-    private final List<CardObjective> secretObjective;
+
 
     // Costruttore
     public Player(String nickname, Integer playerNumber) {

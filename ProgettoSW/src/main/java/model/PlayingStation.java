@@ -55,6 +55,8 @@ public class PlayingStation {
     private Integer countManuscript;
     private CardStarting cardStarting;
 
+    private final List<CardObjective> secretObjective;
+
     // Costruttore
     public PlayingStation() {
         this.table = new HashMap<>();

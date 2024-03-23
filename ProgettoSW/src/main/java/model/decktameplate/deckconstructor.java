@@ -1,6 +1,6 @@
 package model.decktameplate;
 
-import model.cards.Card;
+import com.fasterxml.jackson.core.type.TypeReference;
 import model.cards.CardGold;
 import model.cards.CardResource;
 import model.cards.CardStarting;
@@ -12,43 +12,102 @@ import model.enums.Suit;
 import model.objectives.Objective;
 import model.objectives.ObjectiveCountingGold;
 import model.objectives.ObjectiveGoldCorners;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 // create a static class that has for each deck a static method that returns the List of all model.cards that need to be in that deck
 public class deckconstructor {
     // creating the DeckResource Deck
     // each line in the text represent the card:
     // we have in order: suit of the card, the four corner(starting from upright) and the points
-    public static void DeckResource() {
-        String content;
+    private static int CardId;
+    public static List<CardResource> DeckResource() {
+        List<CardResource> deck = new ArrayList<>();
         try {
-            content = new String(Files.readAllBytes(Paths.get("src/main/java/model/decktameplate/DeckResource.json")));
-            JSONArray jsonArray = new JSONArray(content);
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/DeckResource.json"), new TypeReference<>() {
+            });
 
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Suit suit = AssignSuit(jsonObject.getString("suit"));
-                Corner upright = AssignCorner(jsonObject.getString("upright"));
-                Corner upleft = AssignCorner(jsonObject.getString("upleft"));
-                Corner downright = AssignCorner(jsonObject.getString("downright"));
-                Corner downleft = AssignCorner(jsonObject.getString("downleft"));
+            for (CardData cardData : cards) {
+                Suit suit = AssignSuit(cardData.getType());
+                Corner upright = AssignCorner(cardData.getUpright());
+                Corner upleft = AssignCorner(cardData.getUpleft());
+                Corner downright = AssignCorner(cardData.getDownright());
+                Corner downleft = AssignCorner(cardData.getDownleft());
                 Face front = new Face(upright, upleft, downright, downleft);
                 Face back = new Face(new Corner(), new Corner(), new Corner(), new Corner());
-                int point = jsonObject.getInt("points");
-                Card tmp = new CardResource(i, front, back, suit, point);
+                int point = cardData.getPoints();
+                CardResource tmp = new CardResource(CardId, front, back, suit, point);
+                deck.add(tmp);
+                CardId++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return deck;
     }
+
+    public static List<CardStarting> StartingCardDeck(){
+        List<CardStarting> deck = new ArrayList<>();
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/StartingDeck.json"), new TypeReference<>() {
+            });
+
+            for (CardData cardData : cards) {
+                List<Suit> suits = cardData.getSuite().stream().map(deckconstructor::AssignSuit).collect(Collectors.toList());
+                Corner upright = AssignCorner(cardData.getUpright());
+                Corner upleft = AssignCorner(cardData.getUpleft());
+                Corner downright = AssignCorner(cardData.getDownright());
+                Corner downleft = AssignCorner(cardData.getDownleft());
+                Face front = new Face(upright,upleft,downright,downleft);
+                Face back = new Face(AssignCorner(cardData.getUpright()),AssignCorner(cardData.getUpleft()),AssignCorner(cardData.getDownright()), AssignCorner(cardData.getDownleft()));
+                // Assuming the first suit in the list is the main suit for the card
+                CardStarting tmp = new CardStarting(CardId,front,back,suits);
+                deck.add(tmp);
+                CardId++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return deck;
+    }
+
+    public static List<CardGold> DeckGold() {
+        List<CardGold> deck = new ArrayList<>();
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/GoldDeck.json"), new TypeReference<>() {
+            });
+
+            for (CardData cardData : cards) {
+                Suit suit = AssignSuit(cardData.getType());
+                Corner upright = AssignCorner(cardData.getUpright());
+                Corner upleft = AssignCorner(cardData.getUpleft());
+                Corner downright = AssignCorner(cardData.getDownright());
+                Corner downleft = AssignCorner(cardData.getDownleft());
+                int points = cardData.getPoints();
+                int costAnimal = cardData.getCostAnimal();
+                int costInsect = cardData.getCostInsect();
+                int costFungi = cardData.getCostFungi();
+                int costPlant = cardData.getCostPlant();
+                Face front = new Face(upright, upleft, downright, downleft);
+                Face back = new Face(new Corner(), new Corner(), new Corner(), new Corner());
+                Objective objective = AssignObjective(cardData.getObjective());
+                CardGold tmp = new CardGold(CardId, front, back, suit, points, costAnimal, costInsect, costFungi, costPlant, objective);
+                deck.add(tmp);
+                CardId++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return deck;
+    }
+
     private static Corner AssignCorner(String s){
         return switch (s) {
             case "empty" -> new Corner();
@@ -62,6 +121,7 @@ public class deckconstructor {
             default -> null;
         };
     }
+
     private static Suit AssignSuit(String s){
         return switch (s) {
             case "fungi" -> Suit.FUNGI;
@@ -70,39 +130,6 @@ public class deckconstructor {
             case "insect" -> Suit.INSECT;
             default -> null;
         };
-    }
-
-    public static void main(String[] args) {
-        DeckResource();
-    }
-
-    /* create the constructor of the gold deck using cards from GoldDeck.json, card are made with this field: suit symbol, the four corner(starting from upright), the the way he scores points (normal point written on the card, objectiveCountingResources or objectiveGoldCorners) and the cost of the card in the four resources */
-    public static void DeckGold() {
-        String content;
-        try {
-            content = new String(Files.readAllBytes(Paths.get("src/main/java/model/decktameplate/GoldDeck.json")));
-            JSONArray jsonArray = new JSONArray(content);
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Suit suit = AssignSuit(jsonObject.getString("suit"));
-                Corner upright = AssignCorner(jsonObject.getString("upright"));
-                Corner upleft = AssignCorner(jsonObject.getString("upleft"));
-                Corner downright = AssignCorner(jsonObject.getString("downright"));
-                Corner downleft = AssignCorner(jsonObject.getString("downleft"));
-                int points = jsonObject.getInt("points");
-                int costAnimal = jsonObject.getInt("costAnimal");
-                int costInsect = jsonObject.getInt("costInsect");
-                int costFungi = jsonObject.getInt("costFungi");
-                int costPlant = jsonObject.getInt("costPlant");
-                Face front = new Face(upright, upleft, downright, downleft);
-                Face back = new Face(new Corner(), new Corner(), new Corner(), new Corner());
-                Objective objective = AssignObjective(jsonObject.getString("objective"));
-                Card tmp = new CardGold(i, front, back, suit, points, costAnimal, costInsect, costFungi, costPlant, objective);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     //create a private method AssignOvbective that takes a string (null,corenrs or gold resource:manuscript,inkwell,quill) and create an object that is statically type Objective and dinamically type Objective, ObjectiveCountingResources or ObjectiveGoldCorners if the string is respectability null, corners or gold resource and return that objective
@@ -125,40 +152,7 @@ public class deckconstructor {
         };
     }
 
-    //Create
-    public static List<Card> StartingCardDeck(){
-        List<Card> deck = new ArrayList<>();
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/StartingDeck.json"), new TypeReference<List<CardData>>(){});
 
-            for (CardData cardData : cards) {
-                List<Suit> suits = cardData.getSuite().stream().map(AssignSuit::new).collect(Collectors.toList());
-                Corner upright = AssignCorner(cardData.getUpright());
-                Corner upleft = AssignCorner(cardData.getUpleft());
-                Corner downright = AssignCorner(cardData.getDownright());
-                Corner downleft = AssignCorner(cardData.getDownleft());
-                Face front = new Face(upright,upleft,downright,downleft);
-                Face back = new Face(InitialBackAssignCorner("plant"),InitialBackAssignCorner("fungi"),InitialBackAssignCorner("animal"), InitialBackAssignCorner("insect"));
-                // Assuming the first suit in the list is the main suit for the card
-                Card tmp = new CardStarting(i,front,back,suits.get(0));
-                deck.add(tmp);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return deck;
-    }
-
-    private static Corner InitialBackAssignCorner( String s){
-        return switch (s) {
-            case "fungi" -> new CornerResource(Suit.FUNGI);
-            case "plant" -> new CornerResource(Suit.PLANT);
-            case "animal" -> new CornerResource(Suit.ANIMAL);
-            case "insect" -> new CornerResource(Suit.INSECT);
-            default -> null;
-        };
-    }
 
 
 

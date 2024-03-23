@@ -3,10 +3,13 @@ package model.cards;
 import model.cards.face.Face;
 import model.enums.Suit;
 
-public class CardStarting extends CardPlaying {
-    private Suit[] symbols;
+import java.util.ArrayList;
+import java.util.List;
 
-    public CardStarting(Integer ID, Face front, Face back, Suit[] symbols) {
+public class CardStarting extends CardPlaying {
+    private List<Suit> symbols;
+
+    public CardStarting(Integer ID, Face front, Face back, List<Suit> symbols) {
         super(ID, front, back);
         this.symbols = symbols;
     }

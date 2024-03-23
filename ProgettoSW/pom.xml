@@ -13,7 +13,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>5.10.0</junit.version>
 
-    <jackson.version>2.10.0</jackson.version>
+    <jackson.version>2.17.0</jackson.version>
 
   </properties>
 
@@ -23,6 +23,12 @@
       <artifactId>json</artifactId>
       <version>20210307</version>
     </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.17.0</version>
+    </dependency>
+
 
     <dependency>
       <groupId>org.openjfx</groupId>
