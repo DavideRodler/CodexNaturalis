@@ -29,8 +29,7 @@ public class deckconstructor {
         List<CardResource> deck = new ArrayList<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/DeckResource.json"), new TypeReference<>() {
-            });
+            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/DeckResource.json"), new TypeReference<>() {});
 
             for (CardData cardData : cards) {
                 Suit suit = AssignSuit(cardData.getType());
@@ -90,6 +89,8 @@ public class deckconstructor {
                 Corner upleft = AssignCorner(cardData.getUpleft());
                 Corner downright = AssignCorner(cardData.getDownright());
                 Corner downleft = AssignCorner(cardData.getDownleft());
+                String PointType = cardData.getObjective();
+                Objective objective = AssignObjective(PointType);
                 int points = cardData.getPoints();
                 int costAnimal = cardData.getCostAnimal();
                 int costInsect = cardData.getCostInsect();
@@ -97,8 +98,7 @@ public class deckconstructor {
                 int costPlant = cardData.getCostPlant();
                 Face front = new Face(upright, upleft, downright, downleft);
                 Face back = new Face(new Corner(), new Corner(), new Corner(), new Corner());
-                Objective objective = AssignObjective(cardData.getObjective());
-                CardGold tmp = new CardGold(CardId, front, back, suit, points, costAnimal, costInsect, costFungi, costPlant, objective);
+                CardGold tmp = new CardGold(CardId, PointType, front, back, suit, points, costAnimal, costInsect, costFungi, costPlant, objective);
                 deck.add(tmp);
                 CardId++;
             }
@@ -145,7 +145,7 @@ public class deckconstructor {
                 yield obj;
             }
             case "manuscript", "inkwell", "quill" -> {
-                obj = new ObjectiveCountingGold();
+                obj = new ObjectiveCountingGold(0,0,0);
                 yield obj;
             }
             default -> null;
