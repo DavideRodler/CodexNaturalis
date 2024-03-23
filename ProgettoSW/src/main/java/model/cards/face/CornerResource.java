@@ -4,7 +4,8 @@ import model.enums.Suit;
 
 public class CornerResource extends Corner {
     private Suit drawing;
-    public Suit getDrawing() {
+
+    public Suit getDrawing(){
         return drawing;
     }
 

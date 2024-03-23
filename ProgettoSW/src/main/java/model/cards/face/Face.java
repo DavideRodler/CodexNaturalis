@@ -13,7 +13,7 @@ public class Face {
         DownLeft = downLeft;
     }
 
-    public Corner GetUpRight() {
+    public Corner getUpRight() {
         return DownLeft;
     }
 
@@ -21,7 +21,7 @@ public class Face {
         return UpLeft;
     }
 
-    public Corner getDownRight(Corner downRight) {
+    public Corner getDownRight() {
         return DownRight;
     }
 

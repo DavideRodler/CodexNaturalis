@@ -1,9 +1,6 @@
 package model;
 
-import model.cards.Card;
-import model.cards.CardObjective;
-import model.cards.CardResource;
-import model.cards.CardStarting;
+import model.cards.*;
 
 import java.lang.reflect.Array;
 import java.util.*;
@@ -123,8 +120,8 @@ public class PlayingStation {
         return countManuscript;
     }
 
-    public void setCountInsect(Integer countInsect) {
-        this.countInsect = countInsect;
+    public void setCountInsect(CardPlaying card) {
+        card.
     }
 
     public void setCountAnimal(Integer countAnimal) {
@@ -153,6 +150,7 @@ public class PlayingStation {
     public void setObjective(CardObjective objective) {
 
     }
+
 
 
 }
