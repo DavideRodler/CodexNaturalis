@@ -1,13 +1,15 @@
 package model.objectives;
 import model.cards.Card;
+import model.cards.CardResource;
 import model.enums.Suit;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ObjectiveCountingResource extends Objective{
     public Suit symbol;
 
-    public int checkObjective(HashMap<ArrayList<Integer>, Card> table, Card card ) {
+    public int checkObjective(HashMap<ArrayList<Integer>, CardResource> table, Card card ) {
         int points = 0;
         return switch(symbol){
             case FUNGI: points = table.getCountFungi() / 3;

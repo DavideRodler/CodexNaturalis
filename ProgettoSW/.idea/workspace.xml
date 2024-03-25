@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="fixato deck gold e metodo assegna obiettivi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardGold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardGold.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/CardData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/CardData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/ObjectiveCard.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/ObjectiveCard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardObjective.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardObjective.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/deckconstructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/deckconstructor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/Objective.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/Objective.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingGold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingGold.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +24,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "tommypic"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="77d1be0f-1935-4da1-bed4-002b7d7b8169" />
+        <option name="url" value="https://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@github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
