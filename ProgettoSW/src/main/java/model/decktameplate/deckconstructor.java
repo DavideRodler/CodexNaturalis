@@ -10,6 +10,7 @@ import model.cards.face.CornerGold;
 import model.cards.face.CornerResource;
 import model.cards.face.Face;
 import model.enums.Direction;
+import model.enums.GoldSuit;
 import model.enums.Position;
 import model.enums.Suit;
 import model.objectives.*;
@@ -26,11 +27,11 @@ public class deckconstructor {
     // each line in the text represent the card:
     // we have in order: suit of the card, the four corner(starting from upright) and the points
     private static int CardId;
-    public static List<CardResource> DeckResource() {
-        List<CardResource> deck = new ArrayList<>();
+    public static ArrayList<CardResource> DeckResource() {
+        ArrayList<CardResource> deck = new ArrayList<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/DeckResource.json"), new TypeReference<>() {});
+            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/resourceDeck.json"), new TypeReference<>() {});
 
             for (CardData cardData : cards) {
                 Suit suit = AssignSuit(cardData.getType());
@@ -51,15 +52,15 @@ public class deckconstructor {
         return deck;
     }
 
-    public static List<CardStarting> StartingCardDeck(){
-        List<CardStarting> deck = new ArrayList<>();
+    public static ArrayList<CardStarting> StartingCardDeck(){
+        ArrayList<CardStarting> deck = new ArrayList<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/StartingDeck.json"), new TypeReference<>() {
+            ArrayList<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/StartingDeck.json"), new TypeReference<>() {
             });
 
             for (CardData cardData : cards) {
-                List<Suit> suits = cardData.getSuite().stream().map(deckconstructor::AssignSuit).collect(Collectors.toList());
+                ArrayList<Suit> suits = cardData.getSuite().stream().map(deckconstructor::AssignSuit).collect(Collectors.toCollection(ArrayList::new));
                 Corner upright = AssignCorner(cardData.getUpright());
                 Corner upleft = AssignCorner(cardData.getUpleft());
                 Corner downright = AssignCorner(cardData.getDownright());
@@ -108,61 +109,61 @@ public class deckconstructor {
         return deck;
     }
 
-    public static List<Objective> deckObjective() {
-        List<Objective> deck = new ArrayList<>();
+    public static List<CardObjective> deckObjective() {
+        List<CardObjective> deck = new ArrayList<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             List<CardData> objectives = objectMapper.readValue(new File("src/main/java/model/decktameplate/ObjectiveCard.json"), new TypeReference<>() {});
 
             for (CardData cardData : objectives) {
-                Objective tmp;
+                Objective objective_tmp;
+                CardObjective card_tmp;
                 switch (cardData.getType()) {
                     case "diagonal":
                         Direction direction = Direction.valueOf(cardData.getDiagonal().toUpperCase());
                         Suit color = Suit.valueOf(cardData.getResource().toUpperCase());
-                        tmp = new ObjectiveDiagonal(direction, color);
-                        tmp.setPoints(2);
+                        objective_tmp = new ObjectiveDiagonal(direction, color);
+                        card_tmp = new CardObjective(CardId,cardData.getPoints(), objective_tmp);
                         break;
                     case "positioning":
                         Suit colorOneCard = Suit.valueOf(cardData.getOneCard().toUpperCase());
                         Suit colorTwoCards = Suit.valueOf(cardData.getTwoCards().toUpperCase());
                         Direction horizontalDirection = Direction.valueOf(cardData.getHorizontal().toUpperCase());
                         Position verticalDirection = Position.valueOf(cardData.getVertical().toUpperCase());
-                        tmp = new ObjectivePositioning(colorOneCard, colorTwoCards, horizontalDirection, verticalDirection);
-                        tmp.setPoints(3);
+                        objective_tmp = new ObjectivePositioning(colorOneCard, colorTwoCards, horizontalDirection, verticalDirection);
+                        card_tmp = new CardObjective(CardId, cardData.getPoints(), objective_tmp);
                         break;
                     case "resources":
                         Suit symbol = Suit.valueOf(cardData.getResource().toUpperCase());
-                        tmp = new ObjectiveCountingResource(symbol);
-                        tmp.setPoints(2);
+                        objective_tmp = new ObjectiveCountingResource(symbol);
+                        card_tmp = new CardObjective(CardId, cardData.getPoints(), objective_tmp);
                         break;
                     case "gold":
                         String goldType = cardData.getGoldType();
-                        switch (goldType) {
-                            case "inkwell":
-                                tmp = new ObjectiveCountingGold(2, 0, 0);
-                                tmp.setPoints(2);
-                                break;
-                            case "manuscript":
-                                tmp = new ObjectiveCountingGold(0, 2, 0);
-                                tmp.setPoints(2);
-                                break;
-                            case "quill":
-                                tmp = new ObjectiveCountingGold(0, 0, 2);
-                                tmp.setPoints(2);
-                                break;
-                            case "all":
-                                tmp = new ObjectiveCountingGold(1, 1, 1);
-                                tmp.setPoints(3);
-                                break;
-                            default:
-                                throw new IllegalArgumentException("Invalid gold type: " + goldType);
-                        }
+                        card_tmp = switch (goldType) {
+                            case "inkwell" -> {
+                                objective_tmp = new ObjectiveCountingGold(2, 0, 0);
+                                yield new CardObjective(CardId, cardData.getPoints(), objective_tmp);
+                            }
+                            case "manuscript" -> {
+                                objective_tmp = new ObjectiveCountingGold(0, 2, 0);
+                                yield new CardObjective(CardId, cardData.getPoints(), objective_tmp);
+                            }
+                            case "quill" -> {
+                                objective_tmp = new ObjectiveCountingGold(0, 0, 2);
+                                yield new CardObjective(CardId, cardData.getPoints(), objective_tmp);
+                            }
+                            case "all" -> {
+                                objective_tmp = new ObjectiveCountingGold(1, 1, 1);
+                                yield new CardObjective(CardId, cardData.getPoints(), objective_tmp);
+                            }
+                            default -> throw new IllegalArgumentException("Invalid gold type: " + goldType);
+                        };
                         break;
                     default:
                         throw new IllegalArgumentException("Invalid objective type: " + cardData.getType());
                 }
-                deck.add(tmp);
+                deck.add(card_tmp);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -177,9 +178,9 @@ public class deckconstructor {
             case "plant" -> new CornerResource(Suit.PLANT);
             case "animal" -> new CornerResource(Suit.ANIMAL);
             case "insect" -> new CornerResource(Suit.INSECT);
-            case "manuscript" -> new CornerGold(model.enums.GoldSuit.MANUSCRIPT);
-            case "inkwell" -> new CornerGold(model.enums.GoldSuit.INKWELL);
-            case "quill" -> new CornerGold(model.enums.GoldSuit.QUILL);
+            case "manuscript" -> new CornerGold(GoldSuit.MANUSCRIPT);
+            case "inkwell" -> new CornerGold(GoldSuit.INKWELL);
+            case "quill" -> new CornerGold(GoldSuit.QUILL);
             default -> null;
         };
     }

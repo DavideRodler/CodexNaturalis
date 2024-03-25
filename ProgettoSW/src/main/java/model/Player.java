@@ -28,7 +28,6 @@ public class Player {
         this.points = 0;
         this.pointsObjective = 0;
         this.hand = new ArrayList<>(3);
-        this.secretObjective = new ArrayList<>(2);
     }
 
     //  Getter e Setter methods
@@ -84,9 +83,9 @@ public class Player {
 
 
     public void addCardFromDeck(List<CardResource> cards) { //Have to add model.exception classes
-        CardResource card = (CardResource) cards.();
+        CardResource card = cards.getFirst();
         if (card == null) {
-            throw new DeckEmptyException("Il mazzo è vuoto.");
+           //throw new DeckEmptyException("Il mazzo è vuoto.");
         } else {
             hand.add(card);
         }
@@ -116,9 +115,9 @@ public class Player {
         hand.add(card);
     }
 
-    public boolean checkForWin() {
-
-    }
+//    public boolean checkForWin() {
+//
+//    }
 
 
 }

@@ -1,5 +1,7 @@
 package model.cards.face;
 
+import java.util.ArrayList;
+
 public class Face {
     private Corner Upright;
     private Corner UpLeft;
@@ -11,6 +13,14 @@ public class Face {
         UpLeft = upLeft;
         DownRight = downRight;
         DownLeft = downLeft;
+    }
+    public ArrayList<Corner>getFaceList(){
+        ArrayList<Corner> tmp = new ArrayList<Corner>();
+        tmp.add(getUpLeft());
+        tmp.add(getUpRight());
+        tmp.add(getDownLeft());
+        tmp.add(getDownRight());
+        return tmp;
     }
 
     public Corner getUpRight() {
