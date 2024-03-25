@@ -1,32 +1,98 @@
 [
   {
-    "type": "diagonal", 2
+    "type": "diagonal",
     "resource": "fungi",
-    "diagonal": "right"
+    "diagonal": "right",
+    "points": 2
   },
   {
-    "type": "diagonal",2
+    "type": "diagonal",
     "resource": "plant",
-    "diagonal": "left"
+    "diagonal": "left",
+    "points": 2
   },
   {
-    "type": "positioning",3
+    "type": "diagonal",
+    "resource": "animal",
+    "diagonal": "right",
+    "points": 2
+  },
+  {
+    "type": "diagonal",
+    "resource": "insect",
+    "diagonal": "left",
+    "points": 2
+  },
+  {
+    "type": "positioning",
     "twoCards": "fungi",
     "oneCard": "plant",
     "horizontal": "left",
-    "vertical": "top"
+    "vertical": "top",
+    "points": 3
   },
   {
-    "type": "",
-    "resource": "",
-    "diagonal": ""
+    "type": "positioning",
+    "twoCards": "plant",
+    "oneCard": "insect",
+    "horizontal": "right",
+    "vertical": "top",
+    "points": 3
   },
   {
-    "type": "resources",2
-    "resource": "fungi"
+    "type": "positioning",
+    "twoCards": "animal",
+    "oneCard": "fungi",
+    "horizontal": "left",
+    "vertical": "bottom",
+    "points": 3
   },
   {
-    "type": "gold",2/3
-    "goldType": "inkwell"
+    "type": "positioning",
+    "twoCards": "insect",
+    "oneCard": "animal",
+    "horizontal": "right",
+    "vertical": "bottom",
+    "points": 3
+  },
+  {
+    "type": "resources",
+    "resource": "fungi",
+    "points": 2
+  },
+  {
+    "type": "resources",
+    "resource": "plant",
+    "points": 2
+  },
+  {
+    "type": "resources",
+    "resource": "animal",
+    "points": 2
+  },
+  {
+    "type": "resources",
+    "resource": "insect",
+    "points": 2
+  },
+  {
+    "type": "gold",
+    "goldType": "all",
+    "points": 3
+  },
+  {
+    "type": "gold",
+    "goldType": "manuscript",
+    "points": 2
+  },
+  {
+    "type": "gold",
+    "goldType": "inkwell",
+    "points": 2
+  },
+  {
+    "type": "gold",
+    "goldType": "quill",
+    "points": 2
   }
 ]
