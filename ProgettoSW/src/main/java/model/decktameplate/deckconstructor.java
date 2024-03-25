@@ -27,11 +27,11 @@ public class deckconstructor {
     // each line in the text represent the card:
     // we have in order: suit of the card, the four corner(starting from upright) and the points
     private static int CardId;
-    public static List<CardResource> DeckResource() {
-        List<CardResource> deck = new ArrayList<>();
+    public static ArrayList<CardResource> DeckResource() {
+        ArrayList<CardResource> deck = new ArrayList<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/DeckResource.json"), new TypeReference<>() {});
+            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/resourceDeck.json"), new TypeReference<>() {});
 
             for (CardData cardData : cards) {
                 Suit suit = AssignSuit(cardData.getType());
@@ -52,15 +52,15 @@ public class deckconstructor {
         return deck;
     }
 
-    public static List<CardStarting> StartingCardDeck(){
-        List<CardStarting> deck = new ArrayList<>();
+    public static ArrayList<CardStarting> StartingCardDeck(){
+        ArrayList<CardStarting> deck = new ArrayList<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/StartingDeck.json"), new TypeReference<>() {
+            ArrayList<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/StartingDeck.json"), new TypeReference<>() {
             });
 
             for (CardData cardData : cards) {
-                List<Suit> suits = cardData.getSuite().stream().map(deckconstructor::AssignSuit).collect(Collectors.toList());
+                ArrayList<Suit> suits = cardData.getSuite().stream().map(deckconstructor::AssignSuit).collect(Collectors.toCollection(ArrayList::new));
                 Corner upright = AssignCorner(cardData.getUpright());
                 Corner upleft = AssignCorner(cardData.getUpleft());
                 Corner downright = AssignCorner(cardData.getDownright());

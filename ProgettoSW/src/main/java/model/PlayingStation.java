@@ -58,7 +58,7 @@ public class PlayingStation {
     private Integer countManuscript;
     private CardStarting cardStarting;
 
-    private final List<CardObjective> secretObjective;
+    private List<CardObjective> secretObjective;
 
     // Costruttore
     public PlayingStation() {

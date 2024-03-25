@@ -18,7 +18,6 @@ public class CardGold extends CardResource {
         this.costFungi = costFungi;
         this.costPlant = costPlant;
         this.objective = objective;
-        this.pointType = pointType;
     }
 
     public int getCostAnimal() {

@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CardStarting extends CardPlaying {
-    private List<Suit> symbols;
+    private ArrayList<Suit> symbols;
 
-    public CardStarting(Integer ID, Face front, Face back, List<Suit> symbols) {
+    public CardStarting(Integer ID, Face front, Face back, ArrayList<Suit> symbols) {
         super(ID, front, back);
         this.symbols = symbols;
     }
 
-    public Suit[] getSymbols() {
+    public ArrayList<Suit> getSymbols() {
         return symbols;
     }
 }
