@@ -1,7 +1,6 @@
 package model.cards;
 
 import model.cards.face.Face;
-import model.enums.GoldSuit;
 import model.enums.Suit;
 
 public class CardResource extends CardPlaying{

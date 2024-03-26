@@ -10,7 +10,6 @@ import model.cards.face.CornerGold;
 import model.cards.face.CornerResource;
 import model.cards.face.Face;
 import model.enums.Direction;
-import model.enums.GoldSuit;
 import model.enums.Position;
 import model.enums.Suit;
 import model.objectives.*;
