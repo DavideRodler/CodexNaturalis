@@ -2,21 +2,18 @@ package model;
 
 import model.cards.*;
 import model.cards.face.Corner;
-import model.cards.face.CornerGold;
-import model.cards.face.CornerResource;
 import model.enums.Suit;
 import model.enums.GoldSuit;
 
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class PlayingStation {
-    private HashMap<ArrayList<Integer>, Card> table;
+    private HashMap<ArrayList<Integer>, CardPlaying> table;
 
 
     public ArrayList<Integer> getCoordinates(Card card) {
-        for (Map.Entry<ArrayList<Integer>, Card> entry : table.entrySet()) {
+        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : table.entrySet()) {
             if (entry.getValue().equals(card)) {
                 return entry.getKey();
             }
@@ -25,7 +22,7 @@ public class PlayingStation {
     }
 
     public Integer getXCoordinate(Card card) {
-        for (Map.Entry<ArrayList<Integer>, Card> entry : table.entrySet()) {
+        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : table.entrySet()) {
             if (entry.getValue().equals(card)) {
                 return entry.getKey().get(0);
             }
@@ -34,7 +31,7 @@ public class PlayingStation {
     }
 
     public Integer getYCoordinate(Card card) {
-        for (Map.Entry<ArrayList<Integer>, Card> entry : table.entrySet()) {
+        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : table.entrySet()) {
             if (entry.getValue().equals(card)) {
                 return entry.getKey().get(1);
             }
@@ -150,15 +147,15 @@ public class PlayingStation {
     }
 
     public void setCountInkwell(CardResource card) {
-        countInkwell += card.countGoldResource(GoldSuit.INKWELL);
+        countInkwell += card.countResource(Suit.INKWELL);
     }
 
     public void setCountQuill(CardResource card) {
-        countQuill += card.countGoldResource(GoldSuit.QUILL);
+        countQuill += card.countResource(Suit.QUILL);
     }
 
     public void setCountManuscript(CardResource card) {
-        countManuscript += card.countGoldResource(GoldSuit.MANUSCRIPT);
+        countManuscript += card.countResource(Suit.MANUSCRIPT);
     }
 
     public void setObjective(CardObjective objective) {
@@ -166,23 +163,19 @@ public class PlayingStation {
     }
 
     public void updateCounters(Corner corner) {
-        if (corner instanceof CornerGold) {
-            CornerGold c = (CornerGold) corner;
-            switch (c.getDrawing()) {
+            switch (corner.getDrawing()) {
                 case QUILL -> countQuill--;
                 case MANUSCRIPT -> countManuscript--;
                 case INKWELL -> countInkwell--;
-                //case EMPTY -> null;
-            }
-        }
-        if (corner instanceof CornerResource) {
-            CornerResource c = (CornerResource) corner;
-            switch (c.getDrawing()) {
                 case FUNGI -> countFungi--;
                 case PLANT -> countPlant--;
                 case ANIMAL -> countAnimal--;
                 case INSECT -> countInsect--;
+              //  case EMPTY -> null;
             }
         }
+
+    public HashMap<ArrayList<Integer>, CardPlaying> getTable(){
+        return table;
     }
 }

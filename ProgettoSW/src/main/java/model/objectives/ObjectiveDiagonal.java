@@ -10,7 +10,7 @@ public class ObjectiveDiagonal extends Objective{ //direzione data dalla carta i
 private Direction direction;
 private Suit color;
 
-//public int checkObjective(HashMap<ArrayList<Integer>, Card> table, Card card ) {
+//public int checkObjective(HashMap<ArrayList<Integer>, CardPlaying> table) {
 //
 //}
 

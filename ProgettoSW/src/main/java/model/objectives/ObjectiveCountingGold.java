@@ -17,7 +17,7 @@ public class ObjectiveCountingGold extends Objective {
     this.countQuill = countQuill;
   }
 
-//  public int checkObjective(HashMap<ArrayList<Integer>, CardResource> table, CardObjective card) {
+//  public int checkObjective(HashMap<ArrayList<Integer>, CardPlaying> table) {
 //    int points = 0;
 //    Boolean flag = true;
 //    if (!(card.getCountManuscript() == 0)) {

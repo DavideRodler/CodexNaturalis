@@ -12,7 +12,7 @@ public class ObjectivePositioning extends Objective{
     public Suit colorTwoCards;
     public Direction horizontalDirection;
     public Position verticalDirection;
-//    public int checkObjective(HashMap<ArrayList<Integer>, Card> table, Card card ) {
+//    public int checkObjective(HashMap<ArrayList<Integer>, CardPlaying> table) {
 //
 //    }
 

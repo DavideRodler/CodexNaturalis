@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class ObjectiveCountingResource extends Objective{
     public Suit symbol;
 
-//    public int checkObjective(HashMap<ArrayList<Integer>, CardResource> table, Card card ) {
+//    public int checkObjective(HashMap<ArrayList<Integer>, CardPlaying> table) {
 //        int points = 0;
 //        return switch(symbol){
 //            case FUNGI: points = table.getCountFungi() / 3;

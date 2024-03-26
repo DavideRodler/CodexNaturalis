@@ -16,17 +16,10 @@ import model.enums.Suit;
 import model.objectives.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.json.JSONObject;
-
 
 // create a static class that has for each deck a static method that returns the List of all model.cards that need to be in that deck
 public class deckconstructor {
@@ -35,7 +28,6 @@ public class deckconstructor {
     // we have in order: suit of the card, the four corner(starting from upright) and the points
     private static int CardId;
     public static ArrayList<CardResource> DeckResource() {
-
         ArrayList<CardResource> deck = new ArrayList<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
