@@ -6,8 +6,6 @@ import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
 import model.cards.face.Corner;
-import model.cards.face.CornerGold;
-import model.cards.face.CornerResource;
 import model.cards.face.Face;
 import model.enums.Direction;
 import model.enums.Position;
@@ -30,7 +28,7 @@ public class deckconstructor {
         ArrayList<CardResource> deck = new ArrayList<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            List<CardResource> cards = Arrays.asList(objectMapper.readValue(Paths.get("resourceDeck.json").toFile(), CardResource[].class));
+            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/resourceDeck.json"), CardD);
 
             for (CardData cardData : cards) {
                 Suit suit = AssignSuit(cardData.getType());
