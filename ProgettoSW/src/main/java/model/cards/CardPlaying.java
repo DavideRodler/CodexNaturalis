@@ -1,5 +1,4 @@
 package model.cards;
-import model.cards.face.CornerResource;
 import model.enums.Suit;
 import model.cards.face.Face;
 

@@ -4,5 +4,9 @@ public enum Suit {
     INSECT,
     FUNGI,
     ANIMAL,
-    PLANT
+    PLANT,
+    QUILL,
+    MANUSCRIPT,
+    INKWELL,
+    EMPTY
 }

@@ -6,8 +6,6 @@ import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
 import model.cards.face.Corner;
-import model.cards.face.CornerGold;
-import model.cards.face.CornerResource;
 import model.cards.face.Face;
 import model.enums.Direction;
 import model.enums.GoldSuit;

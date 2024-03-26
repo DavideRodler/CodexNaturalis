@@ -3,13 +3,13 @@ package model.cards.face;
 import java.util.ArrayList;
 
 public class Face {
-    private Corner Upright;
+    private Corner UpRight;
     private Corner UpLeft;
     private Corner DownRight;
     private Corner DownLeft;
 
-    public Face(Corner upright, Corner upLeft, Corner downRight, Corner downLeft) {
-        Upright = upright;
+    public Face(Corner upRight, Corner upLeft, Corner downRight, Corner downLeft) {
+        UpRight = upRight;
         UpLeft = upLeft;
         DownRight = downRight;
         DownLeft = downLeft;
@@ -24,7 +24,7 @@ public class Face {
     }
 
     public Corner getUpRight() {
-        return DownLeft;
+        return UpRight;
     }
 
     public Corner getUpLeft() {
