@@ -1,5 +1,6 @@
 package model.objectives;
 
+import model.PlayingStation;
 import model.cards.*;
 
 import java.util.ArrayList;
@@ -17,32 +18,22 @@ public class ObjectiveCountingGold extends Objective {
     this.countQuill = countQuill;
   }
 
-//  public int checkObjective(HashMap<ArrayList<Integer>, CardPlaying> table) {
-//    int points = 0;
-//    Boolean flag = true;
-//    if (!(card.getCountManuscript() == 0)) {
-//      if (table.getCountManuscript() >= card.getCountManuscript()) {
-//        points = points + (table.getCountManuscript() / card.getCountManuscript());
-//      } else {
-//        flag = false;
-//      }
-//    }
-//    if (!(card.getCountQuill() == 0)) {
-//      if (table.getCountQuill() >= card.getCountQuill()) {
-//        points = points + (table.getCountQuill() / card.getCountQuill());
-//      } else {
-//        flag = false;
-//      }
-//    }
-//    if (!(card.getCountInkwell() == 0)) {
-//      if (table.getCountInkwell() >= card.getCountInkwell()) {
-//        points = points + (table.getCountInkwell() / card.getCountInkwell());
-//      } else {
-//        flag = false;
-//      }
-//    }
-//    return points;
-//  }
+  public int checkObjective(PlayingStation station) {
+    int points = 0;
+    if((countInkwell == countManuscript)&&(countInkwell == countQuill)&&(countInkwell == 1)){
+      points = Math.min(Math.min(station.getCountInkwell(), station.getCountQuill()), station.getCountManuscript());
+    }
+    else if((countQuill != 0)&&(countInkwell == 0)&&(countManuscript==0)){
+      points = station.getCountQuill() / countQuill;
+    }
+    else if ((countQuill == 0)&&(countInkwell != 0)&&(countManuscript==0)) {
+      points = station.getCountInkwell() / countInkwell;
+    }
+    else if ((countQuill == 0)&&(countInkwell == 0)&&(countManuscript!=0)){
+      points = station.getCountManuscript() / countManuscript;
+    }
+    return points;
+  }
 
   public int getCountInkwell() {
     return countInkwell;
