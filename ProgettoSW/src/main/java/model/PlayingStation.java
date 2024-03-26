@@ -3,7 +3,6 @@ package model;
 import model.cards.*;
 import model.cards.face.Corner;
 import model.enums.Suit;
-import model.enums.GoldSuit;
 
 
 import java.util.*;

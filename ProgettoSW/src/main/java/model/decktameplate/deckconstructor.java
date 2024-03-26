@@ -8,7 +8,6 @@ import model.cards.CardStarting;
 import model.cards.face.Corner;
 import model.cards.face.Face;
 import model.enums.Direction;
-import model.enums.GoldSuit;
 import model.enums.Position;
 import model.enums.Suit;
 import model.objectives.*;
