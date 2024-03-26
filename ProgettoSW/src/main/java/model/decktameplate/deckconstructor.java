@@ -28,7 +28,7 @@ public class deckconstructor {
         ArrayList<CardResource> deck = new ArrayList<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/resourceDeck.json"), CardD);
+            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/resourceDeck.json"), );
 
             for (CardData cardData : cards) {
                 Suit suit = AssignSuit(cardData.getType());
@@ -37,7 +37,7 @@ public class deckconstructor {
                 Corner downright = AssignCorner(cardData.getDownright());
                 Corner downleft = AssignCorner(cardData.getDownleft());
                 Face front = new Face(upright, upleft, downright, downleft);
-                Face back = new Face(new Corner(), new Corner(), new Corner(), new Corner());
+                Face back = new Face(new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY));
                 int point = cardData.getPoints();
                 CardResource tmp = new CardResource(CardId, front, back, suit, point);
                 deck.add(tmp);
@@ -95,7 +95,7 @@ public class deckconstructor {
                 int costFungi = cardData.getCostFungi();
                 int costPlant = cardData.getCostPlant();
                 Face front = new Face(upright, upleft, downright, downleft);
-                Face back = new Face(new Corner(), new Corner(), new Corner(), new Corner());
+                Face back = new Face(new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY));
                 CardGold tmp = new CardGold(CardId, front, back, suit, points, costAnimal, costInsect, costFungi, costPlant, objective);
                 deck.add(tmp);
                 CardId++;
@@ -170,14 +170,14 @@ public class deckconstructor {
 
     private static Corner AssignCorner(String s){
         return switch (s) {
-            case "empty" -> new Corner();
-            case "fungi" -> new CornerResource(Suit.FUNGI);
-            case "plant" -> new CornerResource(Suit.PLANT);
-            case "animal" -> new CornerResource(Suit.ANIMAL);
-            case "insect" -> new CornerResource(Suit.INSECT);
-            case "manuscript" -> new CornerGold(GoldSuit.MANUSCRIPT);
-            case "inkwell" -> new CornerGold(GoldSuit.INKWELL);
-            case "quill" -> new CornerGold(GoldSuit.QUILL);
+            case "empty" -> new Corner(Suit.EMPTY);
+            case "fungi" -> new Corner(Suit.FUNGI);
+            case "plant" -> new Corner(Suit.PLANT);
+            case "animal" -> new Corner(Suit.ANIMAL);
+            case "insect" -> new Corner(Suit.INSECT);
+            case "manuscript" -> new Corner(Suit.MANUSCRIPT);
+            case "inkwell" -> new Corner(Suit.INKWELL);
+            case "quill" -> new Corner(Suit.QUILL);
             default -> null;
         };
     }
