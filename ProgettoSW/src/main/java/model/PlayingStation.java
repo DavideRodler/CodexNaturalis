@@ -12,11 +12,11 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class PlayingStation {
-    private HashMap<ArrayList<Integer>, Card> table;
+    private HashMap<ArrayList<Integer>, CardPlaying> table;
 
 
     public ArrayList<Integer> getCoordinates(Card card) {
-        for (Map.Entry<ArrayList<Integer>, Card> entry : table.entrySet()) {
+        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : table.entrySet()) {
             if (entry.getValue().equals(card)) {
                 return entry.getKey();
             }
@@ -25,7 +25,7 @@ public class PlayingStation {
     }
 
     public Integer getXCoordinate(Card card) {
-        for (Map.Entry<ArrayList<Integer>, Card> entry : table.entrySet()) {
+        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : table.entrySet()) {
             if (entry.getValue().equals(card)) {
                 return entry.getKey().get(0);
             }
@@ -34,7 +34,7 @@ public class PlayingStation {
     }
 
     public Integer getYCoordinate(Card card) {
-        for (Map.Entry<ArrayList<Integer>, Card> entry : table.entrySet()) {
+        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : table.entrySet()) {
             if (entry.getValue().equals(card)) {
                 return entry.getKey().get(1);
             }
@@ -185,4 +185,6 @@ public class PlayingStation {
             }
         }
     }
+
+    public HashMap<ArrayList<Integer>, CardPlaying> getTable()
 }
