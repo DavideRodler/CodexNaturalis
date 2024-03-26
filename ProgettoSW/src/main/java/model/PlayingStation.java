@@ -187,6 +187,6 @@ public class PlayingStation {
     }
 
     public HashMap<ArrayList<Integer>, CardPlaying> getTable(){
-        //ciao
+        return table;
     }
 }
