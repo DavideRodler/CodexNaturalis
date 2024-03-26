@@ -52,32 +52,44 @@ public class CardResource extends CardPlaying{
                 }
             }
         }
-        else{
-            if(getBack().getDownLeft() instanceof CornerGold) {
-                CornerGold corner = (CornerGold) getBack().getDownLeft();
+        //only front has gold resources
+        return count;
+    }
+
+    public int countResource(Suit suit){
+        int count = 0;
+        if (!getPlayingBack()){
+            if(getFront().getDownLeft() instanceof CornerResource) {
+                CornerResource corner = (CornerResource) getFront().getDownLeft();
+                if (corner.getDrawing().equals(suit)) {
+                    count++;
+                }
+            }
+            if(getFront().getDownRight() instanceof CornerResource) {
+                CornerResource corner = (CornerResource) getFront().getDownRight();
                 if(corner.getDrawing().equals(suit)){
                     count++;
                 }
             }
-            if(getBack().getDownRight() instanceof CornerGold) {
-                CornerGold corner = (CornerGold) getBack().getDownRight();
+            if(getFront().getUpLeft() instanceof CornerResource) {
+                CornerResource corner = (CornerResource) getFront().getUpLeft();
                 if(corner.getDrawing().equals(suit)){
                     count++;
                 }
             }
-            if(getBack().getUpLeft() instanceof CornerGold) {
-                CornerGold corner = (CornerGold) getBack().getUpLeft();
-                if(corner.getDrawing().equals(suit)){
-                    count++;
-                }
-            }
-            if(getBack().getUpRight() instanceof CornerGold) {
-                CornerGold corner = (CornerGold) getBack().getUpRight();
+            if(getFront().getUpRight() instanceof CornerResource) {
+                CornerResource corner = (CornerResource) getFront().getUpRight();
                 if(corner.getDrawing().equals(suit)){
                     count++;
                 }
             }
         }
+        else {
+            if(getSymbol().equals(suit)){ //in back there is only one symbol in the middle
+                count++;
+            }
+        }
+        //only front
         return count;
     }
 

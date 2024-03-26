@@ -40,10 +40,6 @@ public class Player {
         return token;
     }
 
-    public PlayingStation getStation() {
-        return station;
-    }
-
     public String getNickname() {
         return nickname;
     }
@@ -75,6 +71,7 @@ public class Player {
     public void setStation(PlayingStation station) {
         this.station = station;
     }
+    public PlayingStation getStation(){return station;}
 
     public void setPoints(Integer points) {
         this.points = points;
