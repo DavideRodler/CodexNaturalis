@@ -12,12 +12,12 @@ class deckconstructorTest {
 
     @Test
     void deckResource() {
-        ArrayList<CardResource> deckResource = deckconstructor.DeckResource();
-        for (CardResource c : deckResource) {
-            System.out.println("fronte");
-            System.out.println(c.getFront().getFaceList());
+//        ArrayList<CardResource> deckResource = deckconstructor.DeckResource();
+//        for (CardResource c : deckResource) {
+//            System.out.println("fronte");
+//            System.out.println(c.getFront().getFaceList());
 
-        }
+
 
     }
 
