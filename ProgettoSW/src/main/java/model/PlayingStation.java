@@ -186,5 +186,7 @@ public class PlayingStation {
         }
     }
 
-    public HashMap<ArrayList<Integer>, CardPlaying> getTable()
+    public HashMap<ArrayList<Integer>, CardPlaying> getTable(){
+        //ciao
+    }
 }
