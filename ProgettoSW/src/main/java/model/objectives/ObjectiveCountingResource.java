@@ -1,4 +1,5 @@
 package model.objectives;
+import model.PlayingStation;
 import model.cards.Card;
 import model.cards.CardResource;
 import model.enums.Suit;
@@ -9,17 +10,16 @@ import java.util.HashMap;
 public class ObjectiveCountingResource extends Objective{
     public Suit symbol;
 
-//    public int checkObjective(HashMap<ArrayList<Integer>, CardPlaying> table) {
-//        int points = 0;
-//        return switch(symbol){
-//            case FUNGI: points = table.getCountFungi() / 3;
-//            case PLANT: points = table.getCountPlant() / 3;
-//            case ANIMAL: points = table.getCountAnimal() / 3;
-//            default: points = table.getCountInsect() / 3;
-//        };
-//        return points;
-//
-//    }
+    public int checkObjective(PlayingStation station) {
+        return switch(symbol){
+            case FUNGI: yield station.getCountFungi() / 3;
+            case PLANT: yield station.getCountPlant() / 3;
+            case ANIMAL: yield station.getCountAnimal() / 3;
+            case INSECT: yield station.getCountInsect() / 3;
+            case QUILL, MANUSCRIPT, INKWELL, EMPTY:
+                yield -1; //errore
+        };
+    }
 
     public Suit getSymbol() {
         return symbol;
