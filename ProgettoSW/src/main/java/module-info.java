@@ -3,6 +3,7 @@ module com.example.progettosw {
     requires javafx.fxml;
     requires org.json;
     requires com.fasterxml.jackson.databind;
+    requires json.simple;
 
 
 }
