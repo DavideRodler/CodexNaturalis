@@ -31,7 +31,7 @@ public class deckconstructor {
         ArrayList<CardResource> deck = new ArrayList<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/resourceDeck.json"), new TypeReference<>() {});
+            List<CardData> cards = objectMapper.readValue(new File("src/main/java/model/decktameplate/resourceDeck.json"), CardD);
 
             for (CardData cardData : cards) {
                 Suit suit = AssignSuit(cardData.getType());
