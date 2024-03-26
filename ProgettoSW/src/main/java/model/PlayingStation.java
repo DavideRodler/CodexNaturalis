@@ -187,4 +187,8 @@ public class PlayingStation {
     }
 
     public HashMap<ArrayList<Integer>, CardPlaying> getTable()
+        ciaooo
+    ckajdkjaflka
+                jfkdaljdakljfdakl
+    jkfadljks
 }
