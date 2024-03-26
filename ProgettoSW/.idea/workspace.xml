@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="fixato deck gold e metodo assegna obiettivi">
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="commi davide local">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardGold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardGold.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/CardData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/CardData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/ObjectiveCard.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/ObjectiveCard.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/deckconstructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/deckconstructor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/Objective.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/Objective.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/decktameplate/deckconstructorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/decktameplate/DeckConstructorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +48,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.DeckConstructorTest.testDeckResource">
     <configuration name="deckconstructor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="model.decktameplate.deckconstructor" />
       <module name="ProgettoSW" />
@@ -65,8 +62,58 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DeckConstructorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.decktameplate.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.decktameplate" />
+      <option name="MAIN_CLASS_NAME" value="model.decktameplate.DeckConstructorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DeckConstructorTest.testDeckResource" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.decktameplate.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.decktameplate" />
+      <option name="MAIN_CLASS_NAME" value="model.decktameplate.DeckConstructorTest" />
+      <option name="METHOD_NAME" value="testDeckResource" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="deckconstructorTest.deckResource" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.decktameplate.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.decktameplate" />
+      <option name="MAIN_CLASS_NAME" value="model.decktameplate.deckconstructorTest" />
+      <option name="METHOD_NAME" value="deckResource" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DeckConstructorTest.testDeckResource" />
+        <item itemvalue="JUnit.DeckConstructorTest" />
+        <item itemvalue="JUnit.deckconstructorTest.deckResource" />
         <item itemvalue="Application.deckconstructor" />
       </list>
     </recent_temporary>
@@ -81,6 +128,7 @@
       <updated>1710252116188</updated>
       <workItem from="1710252117190" duration="597000" />
       <workItem from="1711112319386" duration="21377000" />
+      <workItem from="1711457414711" duration="1361000" />
     </task>
     <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
       <option name="closed" value="true" />
