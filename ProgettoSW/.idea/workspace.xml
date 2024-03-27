@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="AGGIUNTA BOZZA IDEA CONTROLLER">
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/decktameplate/DeckConstructorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/decktameplate/DeckConstructorTest.java" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station">
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/objectives/1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/Objective.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/Objective.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveDiagonal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveDiagonal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveGoldCorners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveGoldCorners.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectivePositioning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectivePositioning.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +23,7 @@
       <list>
         <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -51,28 +58,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.deckconstructor.executor&quot;: &quot;Run&quot;,
-    &quot;Application.decktameplatetom.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.deckconstructorTest.deckResource.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.deckconstructor.executor": "Run",
+    "Application.decktameplatetom.executor": "Run",
+    "Application.playngstationTameplate.executor": "Run",
+    "JUnit.DeckConstructorTest.testDeckGold.executor": "Run",
+    "JUnit.DeckConstructorTest.testDeckObjective.executor": "Run",
+    "JUnit.DeckConstructorTest.testDeckResource.executor": "Run",
+    "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
+    "JUnit.deckconstructorTest.deckResource.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -81,13 +93,13 @@
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PlayingBoard">
-    <configuration name="DeckconstructorController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="controller.DeckconstructorController" />
+  <component name="RunManager" selected="Application.playngstationTameplate">
+    <configuration name="playngstationTameplate" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="model.playngstationTameplate.playngstationTameplate" />
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controller.*" />
+          <option name="PATTERN" value="model.playngstationTameplate.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -95,56 +107,65 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayingBoard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="model.PlayingBoard" />
+    <configuration name="DeckConstructorTest.testDeckGold" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReadJSONExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="model.decktameplate.ReadJSONExample" />
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="decktameplatetom" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="model.decktameplate.decktameplatetom" />
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="deckconstructorTest.deckResource" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.*" />
+          <option name="PATTERN" value="model.decktameplate.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="model.decktameplate" />
-      <option name="MAIN_CLASS_NAME" value="model.decktameplate.deckconstructorTest" />
-      <option name="METHOD_NAME" value="deckResource" />
+      <option name="MAIN_CLASS_NAME" value="model.decktameplate.DeckConstructorTest" />
+      <option name="METHOD_NAME" value="testDeckGold" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DeckConstructorTest.testDeckObjective" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.decktameplate.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.decktameplate" />
+      <option name="MAIN_CLASS_NAME" value="model.decktameplate.DeckConstructorTest" />
+      <option name="METHOD_NAME" value="testDeckObjective" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DeckConstructorTest.testDeckResource" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.decktameplate.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.decktameplate" />
+      <option name="MAIN_CLASS_NAME" value="model.decktameplate.DeckConstructorTest" />
+      <option name="METHOD_NAME" value="testDeckResource" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DeckConstructorTest.testStartingCardDeck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.decktameplate.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.decktameplate" />
+      <option name="MAIN_CLASS_NAME" value="model.decktameplate.DeckConstructorTest" />
+      <option name="METHOD_NAME" value="testStartingCardDeck" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -152,11 +173,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PlayingBoard" />
-        <item itemvalue="Application.DeckconstructorController" />
-        <item itemvalue="Application.ReadJSONExample" />
-        <item itemvalue="Application.decktameplatetom" />
-        <item itemvalue="JUnit.deckconstructorTest.deckResource" />
+        <item itemvalue="Application.playngstationTameplate" />
+        <item itemvalue="JUnit.DeckConstructorTest.testDeckObjective" />
+        <item itemvalue="JUnit.DeckConstructorTest.testDeckGold" />
+        <item itemvalue="JUnit.DeckConstructorTest.testStartingCardDeck" />
+        <item itemvalue="JUnit.DeckConstructorTest.testDeckResource" />
       </list>
     </recent_temporary>
   </component>
@@ -170,7 +191,7 @@
       <updated>1710252116188</updated>
       <workItem from="1710252117190" duration="597000" />
       <workItem from="1711112319386" duration="21377000" />
-      <workItem from="1711529247498" duration="9321000" />
+      <workItem from="1711529247498" duration="8043000" />
     </task>
     <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
       <option name="closed" value="true" />
@@ -300,13 +321,13 @@
       <option name="project" value="LOCAL" />
       <updated>1711537929192</updated>
     </task>
-    <task id="LOCAL-00017" summary="AGGIUNTA BOZZA IDEA CONTROLLER">
+    <task id="LOCAL-00017" summary="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station">
       <option name="closed" value="true" />
-      <created>1711539346463</created>
+      <created>1711553758036</created>
       <option name="number" value="00017" />
       <option name="presentableId" value="LOCAL-00017" />
       <option name="project" value="LOCAL" />
-      <updated>1711539346463</updated>
+      <updated>1711553758036</updated>
     </task>
     <option name="localTasksCounter" value="18" />
     <servers />
@@ -322,12 +343,12 @@
             <list>
               <RecentGroup>
                 <option name="FILTER_VALUES">
-                  <option value="origin/main" />
+                  <option value="main" />
                 </option>
               </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
-                  <option value="main" />
+                  <option value="origin/main" />
                 </option>
               </RecentGroup>
               <RecentGroup>
@@ -379,8 +400,8 @@
     <MESSAGE value="aggiornamento path&#10; file lettura" />
     <MESSAGE value="Aggiunta di tutti i deck e dei deck alla playing board" />
     <MESSAGE value="TEST DELLA CREAZIONE DELLA PLAYINGBOARD, DA RIVEDERE L'UTILITA DI DECKCONSTRUCTOR" />
-    <MESSAGE value="AGGIUNTA BOZZA IDEA CONTROLLER" />
-    <option name="LAST_COMMIT_MESSAGE" value="AGGIUNTA BOZZA IDEA CONTROLLER" />
+    <MESSAGE value="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

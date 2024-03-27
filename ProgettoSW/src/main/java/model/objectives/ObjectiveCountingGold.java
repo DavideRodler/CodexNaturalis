@@ -6,7 +6,7 @@ import model.cards.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ObjectiveCountingGold extends Objective {
+public class ObjectiveCountingGold implements Objective {
 
   private int countInkwell;
   private int countManuscript;

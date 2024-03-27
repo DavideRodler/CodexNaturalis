@@ -1,5 +1,6 @@
 package model.objectives;
 
+import model.PlayingStation;
 import model.cards.Card;
 import model.enums.Suit;
 import model.enums.Direction;
@@ -7,7 +8,7 @@ import model.enums.Position;
 
 import java.util.ArrayList;
 
-public class ObjectivePositioning extends Objective{
+public class ObjectivePositioning implements Objective{
     public Suit colorOneCard;
     public Suit colorTwoCards;
     public Direction horizontalDirection;
@@ -37,5 +38,10 @@ public class ObjectivePositioning extends Objective{
         this.colorTwoCards = colorTwoCards;
         this.horizontalDirection = horizontalDirection;
         this.verticalDirection = verticalDirection;
+    }
+
+    @Override
+    public int checkObjective(PlayingStation station) {
+        return 0;
     }
 }

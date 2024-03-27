@@ -5,10 +5,11 @@ import model.cards.face.Face;
 public class CardPlaying extends Card {
     private Face front;
     private Face back;
-    private Boolean playingBack;
+    private Boolean playedBack;
 
     public CardPlaying(int ID, Face front, Face back) {
         super(ID);
+        this.playedBack = false;
         this.front = front;
         this.back = back;
     }
@@ -21,10 +22,10 @@ public class CardPlaying extends Card {
         return back;
     }
     public void setPlayingBack(boolean playingBack){
-        this.playingBack=playingBack;
+        this.playedBack=playingBack;
     }
     public boolean getPlayingBack(){
-        return playingBack;
+        return playedBack;
     }
 
     public int countResource(Suit suit){
