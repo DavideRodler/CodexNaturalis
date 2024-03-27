@@ -59,5 +59,8 @@ public class playngstationTameplate {
 
   public static void main(String[] args) {
     PlayingStation station = playngstationDiagonalConstructor();
+    int punti = station.getFirstSecretObjective().getObjective().checkObjective(station);
+    System.out.println("hai fatto " + punti + " diagonali");
+
   }
 }

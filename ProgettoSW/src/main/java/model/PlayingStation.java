@@ -22,6 +22,22 @@ public class PlayingStation {
     private CardObjective secondSecretObjective;
 
 
+    public void setFirstSecretObjective(CardObjective firstSecretObjective) {
+        this.firstSecretObjective = firstSecretObjective;
+    }
+
+    public void setSetSecondSecretObjective(CardObjective SecondSecretObjective) {
+        this.secondSecretObjective = SecondSecretObjective;
+    }
+
+    public CardObjective getFirstSecretObjective() {
+        return firstSecretObjective;
+    }
+
+    public CardObjective getSecondSecretObjective() {
+        return secondSecretObjective;
+    }
+
     public ArrayList<Integer> getCoordinates(Card card) {
         for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : table.entrySet()) {
             if (entry.getValue().equals(card)) {
