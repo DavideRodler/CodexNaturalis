@@ -9,7 +9,7 @@ import model.cards.Card;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ObjectiveDiagonal extends Objective{ //direzione data dalla carta in alto
+public class ObjectiveDiagonal implements Objective { //direzione data dalla carta in alto
 private Direction direction;
 private Suit color;
 

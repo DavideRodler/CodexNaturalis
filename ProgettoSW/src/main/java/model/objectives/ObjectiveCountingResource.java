@@ -7,7 +7,7 @@ import model.enums.Suit;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ObjectiveCountingResource extends Objective{
+public class ObjectiveCountingResource implements Objective {
     public Suit symbol;
 
     public int checkObjective(PlayingStation station) {
