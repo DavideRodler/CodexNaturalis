@@ -59,7 +59,7 @@ public class PlayingStation {
     // Costruttore
     public PlayingStation() {
         this.table = new HashMap<>();
-        for (int i = 0; i < 42; i++) {
+        for (int i = 0; i < 40; i++) {
             ArrayList<Integer> coordinates = new ArrayList<>();
             coordinates.add(0, -1);
             coordinates.add(1, -1);
