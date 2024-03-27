@@ -1,4 +1,4 @@
-package model.decktameplate;
+package controller;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -21,7 +21,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 // create a static class that has for each deck a static method that returns the List of all model.cards that need to be in that deck
-public class Deckconstructor {
+public class DeckconstructorController extends GameController {
     // creating the DeckResource Deck
     // each line in the text represent the card:
     // we have in order: suit of the card, the four corner(starting from upright) and the points

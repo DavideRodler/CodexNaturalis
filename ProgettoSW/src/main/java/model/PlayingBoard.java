@@ -4,7 +4,7 @@ import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
-import model.decktameplate.Deckconstructor;
+import controller.DeckconstructorController;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -24,15 +24,11 @@ public class PlayingBoard {
     private CardObjective FirstObjective;
     private CardObjective SecondObjective;
 
-    private static Deckconstructor deckconstructor;
+
 
 
     //Constructor
     public PlayingBoard(CardResource centralFirstCard, CardResource centralSecondCard, CardResource centralThirdCard, CardResource centralFourthCard, CardObjective firstObjective, CardObjective secondObjective) throws IOException, ParseException {
-        deckCardGold = deckconstructor.GoldCardDeck();
-        deckCardResource = deckconstructor.ResourceCardDeck();
-        deckCardObjective = deckconstructor.ObjectiveCardDeck();
-        deckCardStarting = deckconstructor.StartingCardDeck();
         playerList = new ArrayList<>();
         CentralFirstCard = centralFirstCard;
         CentralSecondCard = centralSecondCard;
