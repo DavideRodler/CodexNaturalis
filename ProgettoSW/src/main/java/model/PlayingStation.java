@@ -100,6 +100,7 @@ public class PlayingStation {
 
 
     public void addCard(CardResource card, Integer X, Integer Y) {
+        if(card istanceof CardGold)
         ArrayList<Integer> coordinates = new ArrayList<>();
         coordinates.add(0, X);
         coordinates.add(1, Y);
