@@ -16,7 +16,7 @@ public class ObjectiveCountingResource extends Objective{
             case PLANT: yield station.getCountPlant() / 3;
             case ANIMAL: yield station.getCountAnimal() / 3;
             case INSECT: yield station.getCountInsect() / 3;
-            case QUILL, MANUSCRIPT, INKWELL, EMPTY:
+            case QUILL, MANUSCRIPT, INKWELL, EMPTY, NULL:
                 yield -1; //errore
         };
     }

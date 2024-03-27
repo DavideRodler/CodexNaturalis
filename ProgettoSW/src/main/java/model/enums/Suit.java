@@ -8,5 +8,6 @@ public enum Suit {
     QUILL,
     MANUSCRIPT,
     INKWELL,
-    EMPTY
+    EMPTY,
+    NULL
 }

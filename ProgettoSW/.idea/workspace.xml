@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="aggiunta test e messo commenti su funzioni che non abbiamo implementato, cambiato anche List con Arraylist essendo List un'interfaccia">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/ReadJSONExample.java" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="prova JSONArray e JSONParser">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/face/Face.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/face/Face.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/GoldDeck.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/GoldDeck.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/StartingDeck.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/StartingDeck.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/deckconstructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/deckconstructor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/resourceDeck.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/resourceDeck.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/Suit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/Suit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/decktameplate/DeckConstructorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/decktameplate/DeckConstructorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,28 +59,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.deckconstructor.executor": "Run",
-    "Application.decktameplatetom.executor": "Run",
-    "JUnit.deckconstructorTest.deckResource.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.deckconstructor.executor&quot;: &quot;Run&quot;,
+    &quot;Application.decktameplatetom.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.deckconstructorTest.deckResource.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -85,7 +89,7 @@
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ReadJSONExample">
+  <component name="RunManager" selected="Application.deckconstructor">
     <configuration name="ReadJSONExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="model.decktameplate.ReadJSONExample" />
       <module name="ProgettoSW" />
@@ -143,10 +147,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.deckconstructor" />
         <item itemvalue="Application.ReadJSONExample" />
         <item itemvalue="Application.decktameplatetom" />
         <item itemvalue="JUnit.deckconstructorTest.deckResource" />
-        <item itemvalue="Application.deckconstructor" />
         <item itemvalue="JUnit.deckconstructorTest.deckResource" />
       </list>
     </recent_temporary>
@@ -250,7 +254,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711374352903</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="prova JSONArray e JSONParser">
+      <option name="closed" value="true" />
+      <created>1711470938933</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1711470938933</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,6 +328,17 @@
     <MESSAGE value="Costruttori dei deck FINITI, MANCA DA TESTARE E DA FARE QUELLO CHE COSTRUSICE GLI OBBIETTIVI" />
     <MESSAGE value="fixato deck gold e metodo assegna obiettivi" />
     <MESSAGE value="aggiunta dell'attributo objective in cardobjective&#10;in deckconstructor cambiato metodo per il mazzo di cardobjective&#10;cambiato costruttore objective counting gold&#10;cambiato metodo checkobjective" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiunta dell'attributo objective in cardobjective&#10;in deckconstructor cambiato metodo per il mazzo di cardobjective&#10;cambiato costruttore objective counting gold&#10;cambiato metodo checkobjective" />
+    <MESSAGE value="prova JSONArray e JSONParser" />
+    <option name="LAST_COMMIT_MESSAGE" value="prova JSONArray e JSONParser" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalStateException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
