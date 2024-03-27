@@ -1,23 +1,22 @@
 package model;
 
-import model.Player;
 import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
+import model.decktameplate.Deckconstructor;
+import org.json.simple.parser.ParseException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.io.IOException;
+import java.util.*;
 
 public class PlayingBoard {
 
-    private ArrayList<CardGold> deckCardGold;
-    private ArrayList<CardResource> deckCardResource;
-    private ArrayList<CardObjective> deckCardObjective;
-    private ArrayList<CardStarting> deckCardStarting;
-    private ArrayList<Player> playerList;
+    private final LinkedList<CardGold> deckCardGold;
+    private final LinkedList<CardResource> deckCardResource;
+    private final LinkedList<CardObjective> deckCardObjective;
+    private final LinkedList<CardStarting> deckCardStarting;
+    private final ArrayList<Player> playerList;
     private CardResource CentralFirstCard;
     private CardResource CentralSecondCard;
     private CardResource CentralThirdCard;
@@ -27,11 +26,11 @@ public class PlayingBoard {
 
 
     //Constructor
-    public PlayingBoard(CardResource centralFirstCard, CardResource centralSecondCard, CardResource centralThirdCard, CardResource centralFourthCard, CardObjective firstObjective, CardObjective secondObjective) {
-        deckCardGold = new ArrayList<>();
-        deckCardResource = new ArrayList<>();
-        deckCardObjective = new ArrayList<>();
-        deckCardStarting = new ArrayList<>();
+    public PlayingBoard(CardResource centralFirstCard, CardResource centralSecondCard, CardResource centralThirdCard, CardResource centralFourthCard, CardObjective firstObjective, CardObjective secondObjective) throws IOException, ParseException {
+        deckCardGold = Deckconstructor.GoldCardDeck();
+        deckCardResource = Deckconstructor.ResourceCardDeck();
+        deckCardObjective = Deckconstructor.ObjectiveCardDeck();
+        deckCardStarting = Deckconstructor.StartingCardDeck();
         playerList = new ArrayList<>();
         CentralFirstCard = centralFirstCard;
         CentralSecondCard = centralSecondCard;
@@ -43,19 +42,19 @@ public class PlayingBoard {
 
 
     //-------------------GETTER-----------------------------
-    public ArrayList<CardGold> getDeckCardGold() {
+    public LinkedList<CardGold> getDeckCardGold() {
         return deckCardGold;
     }
 
-    public ArrayList<CardObjective> getDeckCardObjective() {
+    public LinkedList<CardObjective> getDeckCardObjective() {
         return deckCardObjective;
     }
 
-    public ArrayList<CardResource> getDeckCardResource() {
+    public LinkedList<CardResource> getDeckCardResource() {
         return deckCardResource;
     }
 
-    public ArrayList<CardStarting> getDeckCardStarting() {
+    public LinkedList<CardStarting> getDeckCardStarting() {
         return deckCardStarting;
     }
 
