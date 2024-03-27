@@ -121,15 +121,30 @@ public class PlayingBoard {
     //--------------------SETTING FASE ENDED----------------------------
 
 
+    /**
+     * This method is used to draw two cards from the deck of starting cards
+     * @param deckCardStarting passing deck of starting cards
+     * @return the two cards drawn, then the player has to choose one of them
+     */
+
+    public void drawCardStarting(LinkedList<CardStarting> deckCardStarting, Player player){
+        CardStarting card = deckCardStarting.remove();
+        player.getStation().addCardStarting(card);
+    }
 
 
-    //CardStarting[] drawCardStarting(){
-
-    //}
-
-    //CardObjective[] pickTwoObjectives(){
-
-    //}
+    /**
+     * This method is used to draw two card from the deck of resource cards
+     * @param deckCardObjective passing deck of objective cards
+     * @return the two card drawn
+     */
+    public CardObjective[] pickTwoObjectives(LinkedList<CardObjective> deckCardObjective){
+        CardObjective[] objectives = new CardObjective[2];
+        for (int i = 0; i < 2; i++) {
+            objectives[i] = deckCardObjective.remove();
+        }
+        return objectives;
+    }
 
 
 

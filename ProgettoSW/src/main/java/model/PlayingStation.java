@@ -38,7 +38,7 @@ public class PlayingStation {
         return null; // Return null if the card is not found
     }
 
-    public Card ArraygetCard(int x, int y) {
+    public Card getCard(int x, int y) {
         ArrayList<Integer> coordinates = new ArrayList<>();
         coordinates.add(0, x);
         coordinates.add(1, y);
@@ -64,7 +64,6 @@ public class PlayingStation {
             coordinates.add(0, -1);
             coordinates.add(1, -1);
             table.put(coordinates, null);
-
         }
         this.countInsect = 0;
         this.countAnimal = 0;
