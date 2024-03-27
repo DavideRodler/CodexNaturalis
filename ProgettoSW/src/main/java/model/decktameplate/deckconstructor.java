@@ -31,7 +31,7 @@ public class deckconstructor {
     public static ArrayList<CardResource> ResourceCardDeck() throws IOException, ParseException {
         ArrayList<CardResource> deck = new ArrayList<>();
         JSONParser parser = new JSONParser();
-        JSONArray resourceCard = (JSONArray) parser.parse(new FileReader("C:\\Users\\david\\OneDrive - Politecnico di Milano\\Documenti\\GitHub\\ing-sw-2024-piccoli-ponzani-piotti-rodler\\ProgettoSW\\src\\main\\java\\model\\decktameplate\\resourceDeck.json"));
+        JSONArray resourceCard = (JSONArray) parser.parse(new FileReader("src/main/java/model/decktameplate/resourceDeck.json"));
         for(Object obj : resourceCard){
             JSONObject card = (JSONObject) obj;
             String suite = (String) card.get("type");
@@ -51,7 +51,7 @@ public class deckconstructor {
     public static ArrayList<CardGold> GoldCardDeck() throws IOException, ParseException {
         ArrayList<CardGold> deck = new ArrayList<>();
         JSONParser parser = new JSONParser();
-        JSONArray goldCard = (JSONArray) parser.parse(new FileReader("C:\\Users\\david\\OneDrive - Politecnico di Milano\\Documenti\\GitHub\\ing-sw-2024-piccoli-ponzani-piotti-rodler\\ProgettoSW\\src\\main\\java\\model\\decktameplate\\GoldDeck.json"));
+        JSONArray goldCard = (JSONArray) parser.parse(new FileReader("src/main/java/model/decktameplate/GoldDeck.json"));
         for(Object obj : goldCard){
             JSONObject card = (JSONObject) obj;
             String suite = (String) card.get("type");
@@ -76,7 +76,7 @@ public class deckconstructor {
     public static ArrayList<CardStarting> StartingCardDeck() throws IOException, ParseException {
         ArrayList<CardStarting> deck = new ArrayList<>();
         JSONParser parser = new JSONParser();
-        JSONArray startingCard = (JSONArray) parser.parse(new FileReader("C:\\Users\\david\\OneDrive - Politecnico di Milano\\Documenti\\GitHub\\ing-sw-2024-piccoli-ponzani-piotti-rodler\\ProgettoSW\\src\\main\\java\\model\\decktameplate\\StartingDeck.json"));
+        JSONArray startingCard = (JSONArray) parser.parse(new FileReader("src/main/java/model/decktameplate/StartingDeck.json"));
         for(Object obj : startingCard){
             ArrayList<Suit> symbols = new ArrayList<>();
             JSONObject card = (JSONObject) obj;
@@ -104,7 +104,7 @@ public class deckconstructor {
     public static ArrayList<CardObjective> ObjectiveCardDeck() throws IOException, ParseException {
         ArrayList<CardObjective> deck = new ArrayList<>();
         JSONParser parser = new JSONParser();
-        JSONArray objectiveCard = (JSONArray) parser.parse(new FileReader("C:\\Users\\david\\OneDrive - Politecnico di Milano\\Documenti\\GitHub\\ing-sw-2024-piccoli-ponzani-piotti-rodler\\ProgettoSW\\src\\main\\java\\model\\decktameplate\\ObjectiveDeck.json"));
+        JSONArray objectiveCard = (JSONArray) parser.parse(new FileReader("src/main/java/model/decktameplate/ObjectiveCard.json"));
         for(Object obj : objectiveCard){
             JSONObject card = (JSONObject) obj;
             String suite = (String) card.get("type");

@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="prova JSONArray e JSONParser">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/face/Face.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/face/Face.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/GoldDeck.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/GoldDeck.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/StartingDeck.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/StartingDeck.json" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Aggiunta dei costruttori dei deck + test nel main, da sistemare gli obbiettivi">
       <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/deckconstructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/deckconstructor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/resourceDeck.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/resourceDeck.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/Suit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/Suit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingResource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/model/decktameplate/DeckConstructorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/decktameplate/DeckConstructorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,6 +158,7 @@
       <updated>1710252116188</updated>
       <workItem from="1710252117190" duration="597000" />
       <workItem from="1711112319386" duration="21377000" />
+      <workItem from="1711529247498" duration="728000" />
     </task>
     <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
       <option name="closed" value="true" />
@@ -262,7 +256,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711470938933</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Aggiunta dei costruttori dei deck + test nel main, da sistemare gli obbiettivi">
+      <option name="closed" value="true" />
+      <created>1711529583318</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1711529583318</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,7 +306,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="CountResource" />
+                        <option value="origin/main" />
                       </list>
                     </value>
                   </entry>
@@ -329,7 +331,8 @@
     <MESSAGE value="fixato deck gold e metodo assegna obiettivi" />
     <MESSAGE value="aggiunta dell'attributo objective in cardobjective&#10;in deckconstructor cambiato metodo per il mazzo di cardobjective&#10;cambiato costruttore objective counting gold&#10;cambiato metodo checkobjective" />
     <MESSAGE value="prova JSONArray e JSONParser" />
-    <option name="LAST_COMMIT_MESSAGE" value="prova JSONArray e JSONParser" />
+    <MESSAGE value="Aggiunta dei costruttori dei deck + test nel main, da sistemare gli obbiettivi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta dei costruttori dei deck + test nel main, da sistemare gli obbiettivi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
