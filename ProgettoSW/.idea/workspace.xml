@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="aggiornamento path&#10; file lettura">
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Aggiunta di tutti i deck e dei deck alla playing board">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/decktameplate/deckconstructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/decktameplate/Deckconstructor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/model/decktameplate/DeckConstructorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/decktameplate/DeckConstructorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,13 +84,26 @@
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Deckconstructor">
+  <component name="RunManager" selected="Application.PlayingBoard">
     <configuration name="Deckconstructor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="model.decktameplate.Deckconstructor" />
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="model.decktameplate.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlayingBoard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="model.PlayingBoard" />
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -143,10 +155,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PlayingBoard" />
         <item itemvalue="Application.Deckconstructor" />
         <item itemvalue="Application.ReadJSONExample" />
         <item itemvalue="Application.decktameplatetom" />
-        <item itemvalue="JUnit.deckconstructorTest.deckResource" />
         <item itemvalue="JUnit.deckconstructorTest.deckResource" />
       </list>
     </recent_temporary>
@@ -161,7 +173,7 @@
       <updated>1710252116188</updated>
       <workItem from="1710252117190" duration="597000" />
       <workItem from="1711112319386" duration="21377000" />
-      <workItem from="1711529247498" duration="6410000" />
+      <workItem from="1711529247498" duration="7621000" />
     </task>
     <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
       <option name="closed" value="true" />
@@ -275,7 +287,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711530007480</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Aggiunta di tutti i deck e dei deck alla playing board">
+      <option name="closed" value="true" />
+      <created>1711536467666</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1711536467666</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,7 +364,8 @@
     <MESSAGE value="prova JSONArray e JSONParser" />
     <MESSAGE value="Aggiunta dei costruttori dei deck + test nel main, da sistemare gli obbiettivi" />
     <MESSAGE value="aggiornamento path&#10; file lettura" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiornamento path&#10; file lettura" />
+    <MESSAGE value="Aggiunta di tutti i deck e dei deck alla playing board" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta di tutti i deck e dei deck alla playing board" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

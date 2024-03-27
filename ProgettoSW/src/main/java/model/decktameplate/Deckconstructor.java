@@ -145,65 +145,6 @@ public class Deckconstructor {
         return deck;
     }
 
-    public static void main(String[] args) throws IOException, ParseException {
-        LinkedList<CardStarting> deck = StartingCardDeck();
-        for (CardStarting c : deck) {
-            System.out.println(c.getFront().getUpRight().getDrawing());
-            System.out.println(c.getFront().getUpLeft().getDrawing());
-            System.out.println(c.getFront().getDownRight().getDrawing());
-            System.out.println(c.getFront().getDownLeft().getDrawing());
-            System.out.println(c.getBack().getUpRight().getDrawing());
-            System.out.println(c.getBack().getUpLeft().getDrawing());
-            System.out.println(c.getBack().getDownRight().getDrawing());
-            System.out.println(c.getBack().getDownLeft().getDrawing());
-            System.out.println(c.getSymbols());
-            System.out.println("------------------------------------------------------");
-        }
-        System.out.println("*******************************************************");
-        LinkedList<CardResource> deck1 = ResourceCardDeck();
-        for (CardResource c : deck1) {
-            System.out.println(c.getFront().getUpRight().getDrawing());
-            System.out.println(c.getFront().getUpLeft().getDrawing());
-            System.out.println(c.getFront().getDownRight().getDrawing());
-            System.out.println(c.getFront().getDownLeft().getDrawing());
-            System.out.println(c.getBack().getUpRight().getDrawing());
-            System.out.println(c.getBack().getUpLeft().getDrawing());
-            System.out.println(c.getBack().getDownRight().getDrawing());
-            System.out.println(c.getBack().getDownLeft().getDrawing());
-            System.out.println(c.getSymbol());
-            System.out.println(c.getPoints());
-            System.out.println("------------------------------------------------------");
-        }
-        System.out.println("*******************************************************");
-        LinkedList<CardGold> deck2 = GoldCardDeck();
-        for (CardGold c : deck2) {
-            System.out.println(c.getFront().getUpRight().getDrawing());
-            System.out.println(c.getFront().getUpLeft().getDrawing());
-            System.out.println(c.getFront().getDownRight().getDrawing());
-            System.out.println(c.getFront().getDownLeft().getDrawing());
-            System.out.println(c.getBack().getUpRight().getDrawing());
-            System.out.println(c.getBack().getUpLeft().getDrawing());
-            System.out.println(c.getBack().getDownRight().getDrawing());
-            System.out.println(c.getBack().getDownLeft().getDrawing());
-            System.out.println(c.getSymbol());
-            System.out.println(c.getPoints());
-            System.out.println(c.getCostAnimal());
-            System.out.println(c.getCostFungi());
-            System.out.println(c.getCostInsect());
-            System.out.println(c.getCostPlant());
-            System.out.println("------------------------------------------------------");
-        }
-        System.out.println("*******************************************************");
-        LinkedList<CardObjective> deck3 = ObjectiveCardDeck();
-        for (CardObjective c : deck3) {
-            System.out.println(c.getPoints());
-            System.out.println(c.getObjective());
-            System.out.println("------------------------------------------------------");
-        }
-
-
-    }
-
     private static Corner AssignCorner(String s){
         return switch (s) {
             case "empty" -> new Corner(Suit.EMPTY);

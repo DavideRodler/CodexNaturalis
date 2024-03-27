@@ -12,11 +12,11 @@ import java.util.*;
 
 public class PlayingBoard {
 
-    private final LinkedList<CardGold> deckCardGold;
-    private final LinkedList<CardResource> deckCardResource;
-    private final LinkedList<CardObjective> deckCardObjective;
-    private final LinkedList<CardStarting> deckCardStarting;
-    private final ArrayList<Player> playerList;
+    private static LinkedList<CardGold> deckCardGold;
+    private static LinkedList<CardResource> deckCardResource;
+    private static LinkedList<CardObjective> deckCardObjective;
+    private static LinkedList<CardStarting> deckCardStarting;
+    private static ArrayList<Player> playerList;
     private CardResource CentralFirstCard;
     private CardResource CentralSecondCard;
     private CardResource CentralThirdCard;
@@ -24,13 +24,15 @@ public class PlayingBoard {
     private CardObjective FirstObjective;
     private CardObjective SecondObjective;
 
+    private static Deckconstructor deckconstructor;
+
 
     //Constructor
     public PlayingBoard(CardResource centralFirstCard, CardResource centralSecondCard, CardResource centralThirdCard, CardResource centralFourthCard, CardObjective firstObjective, CardObjective secondObjective) throws IOException, ParseException {
-        deckCardGold = Deckconstructor.GoldCardDeck();
-        deckCardResource = Deckconstructor.ResourceCardDeck();
-        deckCardObjective = Deckconstructor.ObjectiveCardDeck();
-        deckCardStarting = Deckconstructor.StartingCardDeck();
+        deckCardGold = deckconstructor.GoldCardDeck();
+        deckCardResource = deckconstructor.ResourceCardDeck();
+        deckCardObjective = deckconstructor.ObjectiveCardDeck();
+        deckCardStarting = deckconstructor.StartingCardDeck();
         playerList = new ArrayList<>();
         CentralFirstCard = centralFirstCard;
         CentralSecondCard = centralSecondCard;
@@ -132,5 +134,64 @@ public class PlayingBoard {
     //CardObjective[] pickTwoObjectives(){
 
     //}
+
+
+
+    //MAIN CHE FA DA 'CONTROLLER' E CREA LA PLAYINGBOARD ASSEGNANDOLI I DECK TRAMITE COSTRUTTORI
+    public static void main(String[] args) throws IOException, ParseException {
+        PlayingBoard board = new PlayingBoard(null, null, null, null, null, null);
+        for (CardStarting c : deckCardStarting) {
+            System.out.println(c.getFront().getUpRight().getDrawing());
+            System.out.println(c.getFront().getUpLeft().getDrawing());
+            System.out.println(c.getFront().getDownRight().getDrawing());
+            System.out.println(c.getFront().getDownLeft().getDrawing());
+            System.out.println(c.getBack().getUpRight().getDrawing());
+            System.out.println(c.getBack().getUpLeft().getDrawing());
+            System.out.println(c.getBack().getDownRight().getDrawing());
+            System.out.println(c.getBack().getDownLeft().getDrawing());
+            System.out.println(c.getSymbols());
+            System.out.println("------------------------------------------------------");
+        }
+        System.out.println("*******************************************************");
+        for (CardResource c : deckCardResource) {
+            System.out.println(c.getFront().getUpRight().getDrawing());
+            System.out.println(c.getFront().getUpLeft().getDrawing());
+            System.out.println(c.getFront().getDownRight().getDrawing());
+            System.out.println(c.getFront().getDownLeft().getDrawing());
+            System.out.println(c.getBack().getUpRight().getDrawing());
+            System.out.println(c.getBack().getUpLeft().getDrawing());
+            System.out.println(c.getBack().getDownRight().getDrawing());
+            System.out.println(c.getBack().getDownLeft().getDrawing());
+            System.out.println(c.getSymbol());
+            System.out.println(c.getPoints());
+            System.out.println("------------------------------------------------------");
+        }
+        System.out.println("*******************************************************");
+        for (CardGold c : deckCardGold) {
+            System.out.println(c.getFront().getUpRight().getDrawing());
+            System.out.println(c.getFront().getUpLeft().getDrawing());
+            System.out.println(c.getFront().getDownRight().getDrawing());
+            System.out.println(c.getFront().getDownLeft().getDrawing());
+            System.out.println(c.getBack().getUpRight().getDrawing());
+            System.out.println(c.getBack().getUpLeft().getDrawing());
+            System.out.println(c.getBack().getDownRight().getDrawing());
+            System.out.println(c.getBack().getDownLeft().getDrawing());
+            System.out.println(c.getSymbol());
+            System.out.println(c.getPoints());
+            System.out.println(c.getCostAnimal());
+            System.out.println(c.getCostFungi());
+            System.out.println(c.getCostInsect());
+            System.out.println(c.getCostPlant());
+            System.out.println("------------------------------------------------------");
+        }
+        System.out.println("*******************************************************");
+        for (CardObjective c : deckCardObjective){
+            System.out.println(c.getPoints());
+            System.out.println(c.getObjective());
+            System.out.println("------------------------------------------------------");
+        }
+
+
+    }
 
 }

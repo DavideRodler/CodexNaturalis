@@ -17,7 +17,7 @@ public class Player {
     private Color token;
     private PlayingStation station;
     private Integer pointsObjective;
-    private List<CardResource> hand;
+    private ArrayList<CardResource> hand;
 
 
     // Costruttore
@@ -32,7 +32,7 @@ public class Player {
 
     //  Getter e Setter methods
 
-    public List<CardResource> getHand() {
+    public ArrayList<CardResource> getHand() {
         return hand;
     }
 
