@@ -1,23 +1,22 @@
 package model;
 
-import model.Player;
 import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
+import controller.DeckconstructorController;
+import org.json.simple.parser.ParseException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.io.IOException;
+import java.util.*;
 
 public class PlayingBoard {
 
-    private ArrayList<CardGold> deckCardGold;
-    private ArrayList<CardResource> deckCardResource;
-    private ArrayList<CardObjective> deckCardObjective;
-    private ArrayList<CardStarting> deckCardStarting;
-    private ArrayList<Player> playerList;
+    private static LinkedList<CardGold> deckCardGold;
+    private static LinkedList<CardResource> deckCardResource;
+    private static LinkedList<CardObjective> deckCardObjective;
+    private static LinkedList<CardStarting> deckCardStarting;
+    private static ArrayList<Player> playerList;
     private CardResource CentralFirstCard;
     private CardResource CentralSecondCard;
     private CardResource CentralThirdCard;
@@ -26,12 +25,10 @@ public class PlayingBoard {
     private CardObjective SecondObjective;
 
 
+
+
     //Constructor
-    public PlayingBoard(CardResource centralFirstCard, CardResource centralSecondCard, CardResource centralThirdCard, CardResource centralFourthCard, CardObjective firstObjective, CardObjective secondObjective) {
-        deckCardGold = new ArrayList<>();
-        deckCardResource = new ArrayList<>();
-        deckCardObjective = new ArrayList<>();
-        deckCardStarting = new ArrayList<>();
+    public PlayingBoard(CardResource centralFirstCard, CardResource centralSecondCard, CardResource centralThirdCard, CardResource centralFourthCard, CardObjective firstObjective, CardObjective secondObjective) throws IOException, ParseException {
         playerList = new ArrayList<>();
         CentralFirstCard = centralFirstCard;
         CentralSecondCard = centralSecondCard;
@@ -43,19 +40,19 @@ public class PlayingBoard {
 
 
     //-------------------GETTER-----------------------------
-    public ArrayList<CardGold> getDeckCardGold() {
+    public LinkedList<CardGold> getDeckCardGold() {
         return deckCardGold;
     }
 
-    public ArrayList<CardObjective> getDeckCardObjective() {
+    public LinkedList<CardObjective> getDeckCardObjective() {
         return deckCardObjective;
     }
 
-    public ArrayList<CardResource> getDeckCardResource() {
+    public LinkedList<CardResource> getDeckCardResource() {
         return deckCardResource;
     }
 
-    public ArrayList<CardStarting> getDeckCardStarting() {
+    public LinkedList<CardStarting> getDeckCardStarting() {
         return deckCardStarting;
     }
 
@@ -133,5 +130,64 @@ public class PlayingBoard {
     //CardObjective[] pickTwoObjectives(){
 
     //}
+
+
+
+    //MAIN CHE FA DA 'CONTROLLER' E CREA LA PLAYINGBOARD ASSEGNANDOLI I DECK TRAMITE COSTRUTTORI
+    public static void main(String[] args) throws IOException, ParseException {
+        PlayingBoard board = new PlayingBoard(null, null, null, null, null, null);
+        for (CardStarting c : deckCardStarting) {
+            System.out.println(c.getFront().getUpRight().getDrawing());
+            System.out.println(c.getFront().getUpLeft().getDrawing());
+            System.out.println(c.getFront().getDownRight().getDrawing());
+            System.out.println(c.getFront().getDownLeft().getDrawing());
+            System.out.println(c.getBack().getUpRight().getDrawing());
+            System.out.println(c.getBack().getUpLeft().getDrawing());
+            System.out.println(c.getBack().getDownRight().getDrawing());
+            System.out.println(c.getBack().getDownLeft().getDrawing());
+            System.out.println(c.getSymbols());
+            System.out.println("------------------------------------------------------");
+        }
+        System.out.println("*******************************************************");
+        for (CardResource c : deckCardResource) {
+            System.out.println(c.getFront().getUpRight().getDrawing());
+            System.out.println(c.getFront().getUpLeft().getDrawing());
+            System.out.println(c.getFront().getDownRight().getDrawing());
+            System.out.println(c.getFront().getDownLeft().getDrawing());
+            System.out.println(c.getBack().getUpRight().getDrawing());
+            System.out.println(c.getBack().getUpLeft().getDrawing());
+            System.out.println(c.getBack().getDownRight().getDrawing());
+            System.out.println(c.getBack().getDownLeft().getDrawing());
+            System.out.println(c.getSymbol());
+            System.out.println(c.getPoints());
+            System.out.println("------------------------------------------------------");
+        }
+        System.out.println("*******************************************************");
+        for (CardGold c : deckCardGold) {
+            System.out.println(c.getFront().getUpRight().getDrawing());
+            System.out.println(c.getFront().getUpLeft().getDrawing());
+            System.out.println(c.getFront().getDownRight().getDrawing());
+            System.out.println(c.getFront().getDownLeft().getDrawing());
+            System.out.println(c.getBack().getUpRight().getDrawing());
+            System.out.println(c.getBack().getUpLeft().getDrawing());
+            System.out.println(c.getBack().getDownRight().getDrawing());
+            System.out.println(c.getBack().getDownLeft().getDrawing());
+            System.out.println(c.getSymbol());
+            System.out.println(c.getPoints());
+            System.out.println(c.getCostAnimal());
+            System.out.println(c.getCostFungi());
+            System.out.println(c.getCostInsect());
+            System.out.println(c.getCostPlant());
+            System.out.println("------------------------------------------------------");
+        }
+        System.out.println("*******************************************************");
+        for (CardObjective c : deckCardObjective){
+            System.out.println(c.getPoints());
+            System.out.println(c.getObjective());
+            System.out.println("------------------------------------------------------");
+        }
+
+
+    }
 
 }

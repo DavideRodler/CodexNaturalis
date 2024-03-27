@@ -9,6 +9,17 @@ import java.util.*;
 
 public class PlayingStation {
     private HashMap<ArrayList<Integer>, CardPlaying> table;
+    private Integer countInsect;
+    private Integer countAnimal;
+    private Integer countPlant;
+    private Integer countFungi;
+    private Integer countInkwell;
+    private Integer countQuill;
+    private Integer countManuscript;
+    private CardStarting cardStarting;
+
+    private CardObjective firstSecretObjective;
+    private CardObjective secondSecretObjective;
 
 
     public ArrayList<Integer> getCoordinates(Card card) {
@@ -45,27 +56,23 @@ public class PlayingStation {
         return table.get(coordinates);
     }
 
-    private Integer countInsect;
-    private Integer countAnimal;
-    private Integer countPlant;
-    private Integer countFungi;
-    private Integer countInkwell;
-    private Integer countQuill;
-    private Integer countManuscript;
-    private CardStarting cardStarting;
 
-    private List<CardObjective> secretObjective;
 
     // Costruttore
-    public PlayingStation() {
+    public PlayingStation(CardStarting startCart, CardObjective firstObjective, CardObjective secondObjective) {
         this.table = new HashMap<>();
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 41; i++) {
             ArrayList<Integer> coordinates = new ArrayList<>();
             coordinates.add(0, -1);
             coordinates.add(1, -1);
             table.put(coordinates, null);
-
         }
+        ArrayList<Integer> coordi = new ArrayList<Integer>();
+        coordi.add(40);
+        coordi.add(40);
+        this.table.put(coordi, startCart);
+        this.firstSecretObjective =  firstObjective;
+        this.secondSecretObjective =  secondObjective;
         this.countInsect = 0;
         this.countAnimal = 0;
         this.countPlant = 0;
