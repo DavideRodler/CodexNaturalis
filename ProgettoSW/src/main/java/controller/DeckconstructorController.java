@@ -191,7 +191,7 @@ public class DeckconstructorController extends GameController {
         Objective obj;
         switch (s) {
             case "points":
-                obj = new Objective();
+                obj = new ObjectiveAssign();
                 return obj;
             case "corners":
                 obj = new ObjectiveGoldCorners();
