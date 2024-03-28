@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Da classe a interfaccia">
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/testsTameplate/PlayngStationTameplate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveDiagonal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveDiagonal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectivePositioning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectivePositioning.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TestsPS_Constructor/test_2Cards_0Diagonal_c.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TestsPS_Constructor/test_5Cards_1Diagonal_c.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/decktameplate/DeckConstructorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/decktameplate/DeckConstructorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/playngstationTameplate/DiagonalObjectiveTest.java" beforeDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning">
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +68,8 @@
     "JUnit.DeckConstructorTest.testDeckResource.executor": "Run",
     "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
     "JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor": "Run",
+    "JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor": "Run",
+    "JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor": "Run",
     "JUnit.deckconstructorTest.deckResource.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -103,51 +97,7 @@
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal">
-    <configuration name="DiagonalObjectiveTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="model.playngstationTameplate.DiagonalObjectiveTest" />
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.playngstationTameplate.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DiagonalObjectiveTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.playngstationTameplate.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.playngstationTameplate" />
-      <option name="MAIN_CLASS_NAME" value="model.playngstationTameplate.DiagonalObjectiveTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DiagonalObjectiveTest.test_5Cards_1Diagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.playngstationTameplate.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.playngstationTameplate" />
-      <option name="MAIN_CLASS_NAME" value="model.playngstationTameplate.DiagonalObjectiveTest" />
-      <option name="METHOD_NAME" value="test_5Cards_1Diagonal" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ObjectivePositioningTest.test_Positioning2">
     <configuration name="ObjectiveDiagonalTest.test_2Cards_0Diagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
@@ -180,13 +130,61 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ObjectivePositioningTest.test3Cards_1Positioning" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.objectives.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
+      <option name="METHOD_NAME" value="test3Cards_1Positioning" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ObjectivePositioningTest.test_Positioning" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.objectives.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
+      <option name="METHOD_NAME" value="test_Positioning" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ObjectivePositioningTest.test_Positioning2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.objectives.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
+      <option name="METHOD_NAME" value="test_Positioning2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
         <item itemvalue="JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal" />
+        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
+        <item itemvalue="JUnit.ObjectivePositioningTest.test3Cards_1Positioning" />
         <item itemvalue="JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal" />
-        <item itemvalue="JUnit.DiagonalObjectiveTest" />
-        <item itemvalue="JUnit.DiagonalObjectiveTest.test_5Cards_1Diagonal" />
-        <item itemvalue="Application.DiagonalObjectiveTest" />
       </list>
     </recent_temporary>
   </component>
@@ -346,7 +344,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711554924633</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning">
+      <option name="closed" value="true" />
+      <created>1711664037867</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1711664037867</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -419,7 +425,8 @@
     <MESSAGE value="TEST DELLA CREAZIONE DELLA PLAYINGBOARD, DA RIVEDERE L'UTILITA DI DECKCONSTRUCTOR" />
     <MESSAGE value="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station" />
     <MESSAGE value="Da classe a interfaccia" />
-    <option name="LAST_COMMIT_MESSAGE" value="Da classe a interfaccia" />
+    <MESSAGE value="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
