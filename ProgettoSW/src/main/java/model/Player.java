@@ -85,7 +85,7 @@ public class Player {
      * @param chose the choice of the player about the deck (or if i place a gold card, have i to draw from deckCardGold?)
      */
     public void addCardFromDeck(LinkedList<CardResource> resourceCardDeck, LinkedList<CardGold> goldCardDeck, String chose) { //Have to add model.exception classes
-        //try {
+        try {
             if (chose.equals("resource")) {
                 hand.add(resourceCardDeck.pop());
             } else if (chose.equals("gold")) {
@@ -93,9 +93,9 @@ public class Player {
             } else {
                 throw new IllegalArgumentException("Scelta non valida.");
             }
-        //} catch (DeckEmptyException exception) {
-           // System.out.println("MAZZO VUOTO");
-       // }
+        } catch (DeckEmptyException exception) {
+            System.out.println("MAZZO VUOTO");
+        }
     }
 
 
