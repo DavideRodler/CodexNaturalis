@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ObjectivePositioningTest {
 
+    //test where the objective is satisfied one time
     @Test
     public void test_Positioning() {
         // Creating the PlayingStation
@@ -18,6 +19,8 @@ class ObjectivePositioningTest {
         assertEquals(1, punti, "Test failed. You scored " + punti + " points.");
     }
 
+
+    //test where the objective is satisfied two times
     @Test
     public void test_Positioning2() {
         // Creating the PlayingStation

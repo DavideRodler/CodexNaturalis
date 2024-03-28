@@ -103,6 +103,10 @@ public class PlayngStationTameplate {
 
         return station;
     }
+
+
+
+    // creates a tameplate for a Playngstation where the objectivepositioning is statisfied one time
     public static PlayingStation test_3Cards_1Positioning() {
 
         // i create two card resource with an EMPTY back and some Suits in the front,
@@ -146,6 +150,8 @@ public class PlayngStationTameplate {
         return station;
 
     }
+
+    // creates a tameplate for a Playngstation where the objectivepositioning is statisfied two times
     public static PlayingStation test_6Cards_2Positioning() {
 
         // i create two card resource with an EMPTY back and some Suits in the front,
