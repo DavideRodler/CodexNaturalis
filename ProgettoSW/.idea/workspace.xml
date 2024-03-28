@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Da classe a interfaccia">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Exception/DeckEmptyException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/TestsPS_Constructor/test_2Cards_0Diagonal_c.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/TestsPS_Constructor/test_5Cards_1Diagonal_c.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/DeckconstructorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/DeckconstructorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveAssign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveAssign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/decktameplate/DeckConstructorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/decktameplate/DeckConstructorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/playngstationTameplate/playngstationTameplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/playngstationTameplate/DiagonalObjectiveTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +25,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -54,33 +61,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.deckconstructor.executor": "Run",
-    "Application.decktameplatetom.executor": "Run",
-    "Application.playngstationTameplate.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckGold.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckObjective.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckResource.executor": "Run",
-    "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
-    "JUnit.deckconstructorTest.deckResource.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.deckconstructor.executor&quot;: &quot;Run&quot;,
+    &quot;Application.decktameplatetom.executor&quot;: &quot;Run&quot;,
+    &quot;Application.playngstationTameplate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testDeckGold.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testDeckObjective.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testDeckResource.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testStartingCardDeck.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.deckconstructorTest.deckResource.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -89,9 +96,9 @@
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.playngstationTameplate">
-    <configuration name="playngstationTameplate" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="model.playngstationTameplate.playngstationTameplate" />
+  <component name="RunManager" selected="JUnit.DiagonalObjectiveTest">
+    <configuration name="DiagonalObjectiveTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="model.playngstationTameplate.DiagonalObjectiveTest" />
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
@@ -135,33 +142,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DeckConstructorTest.testDeckResource" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DiagonalObjectiveTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.decktameplate.*" />
+          <option name="PATTERN" value="model.playngstationTameplate.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.decktameplate" />
-      <option name="MAIN_CLASS_NAME" value="model.decktameplate.DeckConstructorTest" />
-      <option name="METHOD_NAME" value="testDeckResource" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="model.playngstationTameplate" />
+      <option name="MAIN_CLASS_NAME" value="model.playngstationTameplate.DiagonalObjectiveTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DeckConstructorTest.testStartingCardDeck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DiagonalObjectiveTest.test_5Cards_1Diagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.decktameplate.*" />
+          <option name="PATTERN" value="model.playngstationTameplate.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.decktameplate" />
-      <option name="MAIN_CLASS_NAME" value="model.decktameplate.DeckConstructorTest" />
-      <option name="METHOD_NAME" value="testStartingCardDeck" />
+      <option name="PACKAGE_NAME" value="model.playngstationTameplate" />
+      <option name="MAIN_CLASS_NAME" value="model.playngstationTameplate.DiagonalObjectiveTest" />
+      <option name="METHOD_NAME" value="test_5Cards_1Diagonal" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -169,11 +175,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.playngstationTameplate" />
+        <item itemvalue="JUnit.DiagonalObjectiveTest" />
+        <item itemvalue="JUnit.DiagonalObjectiveTest.test_5Cards_1Diagonal" />
+        <item itemvalue="Application.DiagonalObjectiveTest" />
         <item itemvalue="JUnit.DeckConstructorTest.testDeckObjective" />
         <item itemvalue="JUnit.DeckConstructorTest.testDeckGold" />
-        <item itemvalue="JUnit.DeckConstructorTest.testStartingCardDeck" />
-        <item itemvalue="JUnit.DeckConstructorTest.testDeckResource" />
       </list>
     </recent_temporary>
   </component>

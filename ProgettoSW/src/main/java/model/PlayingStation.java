@@ -100,7 +100,9 @@ public class PlayingStation {
 
 
     public void addCard(CardResource card, Integer X, Integer Y) {
-        if(card istanceof CardGold)
+        if(card instanceof CardGold) {
+            //check if card is playable, if it is not throw exception or return null
+        }
         ArrayList<Integer> coordinates = new ArrayList<>();
         coordinates.add(0, X);
         coordinates.add(1, Y);
@@ -113,6 +115,7 @@ public class PlayingStation {
         setCountInkwell(card);
         setCountManuscript(card);
         setCountQuill(card);
+
     }
 
     public void addCardStarting(CardStarting card) {

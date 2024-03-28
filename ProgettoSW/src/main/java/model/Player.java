@@ -6,8 +6,9 @@ import model.enums.Color;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
+import Exception.DeckEmptyException;
+
 
 public class Player {
     private final String nickname;
@@ -84,24 +85,32 @@ public class Player {
      * @param goldCardDeck the deck from which the card is drawn
      * @param chose the choice of the player about the deck (or if i place a gold card, have i to draw from deckCardGold?)
      */
-    public void addCardFromDeck(LinkedList<CardResource> resourceCardDeck, LinkedList<CardGold> goldCardDeck, String chose) { //Have to add model.exception classes
+    public void addCardFromDeck(LinkedList<CardResource> resourceCardDeck, LinkedList<CardResource> goldCardDeck, String chose) {
+
         try {
-            if (chose.equals("resource")) {
+            if(resourceCardDeck.isEmpty() || goldCardDeck.isEmpty()) {
+                throw new DeckEmptyException("MAZZO VUOTO");
+            }
+            else if (chose.equals("resource")) {
                 hand.add(resourceCardDeck.pop());
             } else if (chose.equals("gold")) {
                 hand.add(goldCardDeck.pop());
             } else {
                 throw new IllegalArgumentException("Scelta non valida.");
             }
-        } catch (DeckEmptyException exception) {
-            System.out.println("MAZZO VUOTO");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        } catch (DeckEmptyException d) {
+            System.out.println(d.getMessage());
         }
+
     }
 
 
         /**
          * This method removes a card from the player's hand, given the card instance, using functional programming,
          * returning exception if not present
+         * @param cardToRemove the card to remove
          */
         public void removeCard(CardPlaying cardToRemove)throws Exception {
             CardPlaying cardPlay = hand.stream()
@@ -149,6 +158,3 @@ public class Player {
 
 
 }
-
-
-//!!!!!!!!!BISOGNA AGGIUNGERE IN OGNI METODO CHE MANIPOLA LA MANO EXCEPTION CHE CONTROLLANO CHE NON SI SUPERI MAI IL LIMITE DELLA MAX_LEN DELLA MANO (3)!!!!!

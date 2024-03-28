@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DeckConstructorTest {
+public class deckconstructorTest {
 
     @Test
     public void testDeckResource() throws IOException, ParseException {
@@ -29,7 +29,7 @@ public class DeckConstructorTest {
 
     @Test
     public void testDeckGold() throws IOException, ParseException {
-        List<CardGold> deck = DeckconstructorController.GoldCardDeck();
+        List<CardResource> deck = DeckconstructorController.GoldCardDeck();
         assertFalse(deck.isEmpty(), "DeckGold should not be empty");
     }
 

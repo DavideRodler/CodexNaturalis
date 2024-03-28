@@ -46,8 +46,8 @@ public class DeckconstructorController extends GameController {
         }
         return deck;
     }
-    public static LinkedList<CardGold> GoldCardDeck() throws IOException, ParseException {
-        LinkedList<CardGold> deck = new LinkedList<>();
+    public static LinkedList<CardResource> GoldCardDeck() throws IOException, ParseException {
+        LinkedList<CardResource> deck = new LinkedList<>();
         JSONParser parser = new JSONParser();
         JSONArray goldCard = (JSONArray) parser.parse(new FileReader("src/main/java/model/decktameplate/GoldDeck.json"));
         for(Object obj : goldCard){
@@ -65,7 +65,7 @@ public class DeckconstructorController extends GameController {
             int costPlant = ((Long) card.get("costPlant")).intValue();
             Face back= new Face(AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"));
             Face front= new Face(AssignCorner(upright), AssignCorner(upleft), AssignCorner(downright), AssignCorner(downleft));
-            CardGold tmp = new CardGold(0, front, back, AssignSuit(suite), points, costAnimal, costInsect, costFungi, costPlant, AssignObjective(center));
+            CardResource tmp = new CardGold(0, front, back, AssignSuit(suite), points, costAnimal, costInsect, costFungi, costPlant, AssignObjective(center));
             deck.add(tmp);
 
         }
@@ -166,21 +166,24 @@ public class DeckconstructorController extends GameController {
             case "animal" -> Suit.ANIMAL;
             case "insect" -> Suit.INSECT;
             case "empty" -> Suit.EMPTY;
-            default -> Suit.NULL;
+            case "null" -> Suit.NULL;
+            default -> throw new IllegalStateException("Unexpected value: " + s);
         };
     }
 
     private static Direction AssignDirection (String s){
         return switch (s) {
             case "left" -> Direction.LEFT;
-            default -> Direction.RIGHT;
+            case "right" -> Direction.RIGHT;
+            default -> throw new IllegalStateException("Unexpected value: " + s);
         };
     }
 
     private static Position AssignPosition(String s){
         return switch (s) {
             case "top" -> Position.TOP;
-            default -> Position.BOTTOM;
+            case "bottom" -> Position.BOTTOM;
+            default ->  throw new IllegalStateException("Unexpected value: " + s);
         };
     }
 
@@ -189,28 +192,33 @@ public class DeckconstructorController extends GameController {
 
     private static Objective AssignObjective(String s){
         Objective obj;
-        switch (s) {
-            case "points":
-                obj = new Objective();
-                return obj;
-            case "corners":
+        return switch (s) {
+            case "points" -> {
+                obj = new ObjectiveAssign();
+                yield obj;
+            }
+            case "corners" -> {
                 obj = new ObjectiveGoldCorners();
-                return obj;
-            case "manuscript":
+                yield obj;
+            }
+            case "manuscript" -> {
                 obj = new ObjectiveCountingGold(0, 1, 0);
-                return obj;
-            case "inkwell":
+                yield obj;
+            }
+            case "inkwell" -> {
                 obj = new ObjectiveCountingGold(1, 0, 0);
-                return obj;
-            case "quill":
+                yield obj;
+            }
+            case "quill" -> {
                 obj = new ObjectiveCountingGold(0, 0, 1);
-                return obj;
-            case "all":
+                yield obj;
+            }
+            case "all" -> {
                 obj = new ObjectiveCountingGold(1, 1, 1);
-                return obj;
-            default:
-                throw new IllegalStateException("Unexpected value: " + s);
-        }
+                yield obj;
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + s);
+        };
     }
 
 
