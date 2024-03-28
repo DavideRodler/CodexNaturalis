@@ -89,7 +89,7 @@ public int checkObjective(PlayingStation station){
     else{ //carta in alto a dx, carta in basso a sx
         for(int i = 80; i > 1; i--){ //coordinata x
             for(int j = 80; j > 1; j--){ //coordinata y
-                if(flags[i][j]) {
+                if(!flags[i][j]) {
                     if ((i != 41) && (j != 41)) {
                         ArrayList<Integer> key = new ArrayList<>();
                         key.add(i);
@@ -145,6 +145,7 @@ public int checkObjective(PlayingStation station){
                     } else {
                         flags[i][j] = true; //carta iniziale
                     }
+                    flags[i][j] = true;//posizione toccata, non piu' da valutare
                 }
             }//end for di j
         }//end for di i

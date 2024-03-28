@@ -43,7 +43,7 @@ public class playngstationTameplate {
     // central card, for this test i don't need them
     //
     // the objective is of type Diagonal and type ANIMAL
-    ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(Direction.LEFT, Suit.ANIMAL);
+    ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(Direction.RIGHT, Suit.ANIMAL);
     CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
 
     // for the second objective i set it to null
