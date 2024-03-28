@@ -29,24 +29,24 @@ public int checkObjective(PlayingStation station){
                 if(!flags[i][j]) {
                     if ((i != 41) && (j != 41)) {
                         ArrayList<Integer> key = new ArrayList<>();
-                        key.add(i);
-                        key.add(j);
+                        key.add(0, i);
+                        key.add(1, j);
                         if (station.getTable().containsKey(key)) { //guardo se esiste una carta posizionata in quell'indice
                             if (station.getTable().get(key) instanceof CardResource) {
                                 CardResource card1 = (CardResource) station.getTable().get(key);
                                 if (card1.getSymbol() == color) {
                                     int x = i + 1; //coordinate next card nella diagonale
                                     int y = j - 1;
-                                    key.add(x);
-                                    key.add(y);
+                                    key.add(0, x);
+                                    key.add(1, y);
                                     if (station.getTable().containsKey(key)) {
                                         if (station.getTable().get(key) instanceof CardResource) {
                                             CardResource card2 = (CardResource) station.getTable().get(key);
                                             if (card2.getSymbol() == color) {
                                                 int w = x + 1; //coordinate next card nella diagonale
                                                 int z = y - 1;
-                                                key.add(w);
-                                                key.add(z);
+                                                key.add(0, w);
+                                                key.add(1, z);
                                                 if (station.getTable().containsKey(key)) {
                                                     if (station.getTable().get(key) instanceof CardResource) {
                                                         CardResource card3 = (CardResource) station.getTable().get(key);
@@ -82,6 +82,7 @@ public int checkObjective(PlayingStation station){
                     } else {
                         flags[i][j] = true; //carta iniziale
                     }
+                    flags[i][j] = true;
                 }
             }//end for di j
         }//end for di i
@@ -92,29 +93,31 @@ public int checkObjective(PlayingStation station){
                 if(!flags[i][j]) {
                     if ((i != 41) && (j != 41)) {
                         ArrayList<Integer> key = new ArrayList<>();
-                        key.add(i);
-                        key.add(j);
+                        key.add(0, i);
+                        key.add(1, j);
                         if (station.getTable().containsKey(key)) { //guardo se esiste una carta posizionata in quell'indice
                             if (station.getTable().get(key) instanceof CardResource) {
                                 CardResource card1 = (CardResource) station.getTable().get(key);
                                 if (card1.getSymbol() == color) {
                                     int x = i - 1; //coordinate next card nella diagonale
                                     int y = j - 1;
-                                    key.add(x);
-                                    key.add(y);
-                                    if (station.getTable().containsKey(key)) {
-                                        if (station.getTable().get(key) instanceof CardResource) {
-                                            CardResource card2 = (CardResource) station.getTable().get(key);
+                                    ArrayList<Integer> key1 = new ArrayList<>();
+                                    key1.add(0, x);
+                                    key1.add(1, y);
+                                    if (station.getTable().containsKey(key1)) {
+                                        if (station.getTable().get(key1) instanceof CardResource) {
+                                            CardResource card2 = (CardResource) station.getTable().get(key1);
                                             if (card2.getSymbol() == color) {
                                                 int w = x - 1; //coordinate next card nella diagonale
                                                 int z = y - 1;
-                                                key.add(w);
-                                                key.add(z);
-                                                if (station.getTable().containsKey(key)) {
-                                                    if (station.getTable().get(key) instanceof CardResource) {
-                                                        CardResource card3 = (CardResource) station.getTable().get(key);
+                                                ArrayList<Integer> key2 = new ArrayList<>();
+                                                key2.add(0, w);
+                                                key2.add(1, z);
+                                                if (station.getTable().containsKey(key2)) {
+                                                    if (station.getTable().get(key2) instanceof CardResource) {
+                                                        CardResource card3 = (CardResource) station.getTable().get(key2);
                                                         if (card3.getSymbol() == color) {
-                                                            points++; //ho fatto una diagonale
+                                                            points = points + 1; //ho fatto una diagonale
                                                             flags[w][z] = true; //posizione toccata, non piu' da valutare -> diagonale fatta
                                                             flags[x][y] = true; //posizione toccata, non piu' da valutare -> diagonale fatta
                                                         }

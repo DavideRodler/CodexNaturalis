@@ -77,15 +77,15 @@ public class PlayingStation {
     // Costruttore
     public PlayingStation(CardStarting startCart, CardObjective firstObjective, CardObjective secondObjective) {
         this.table = new HashMap<>();
-        for (int i = 0; i < 41; i++) {
+        for (int i = 0; i < 42; i++) {
             ArrayList<Integer> coordinates = new ArrayList<>();
             coordinates.add(0, -1);
             coordinates.add(1, -1);
             table.put(coordinates, null);
         }
         ArrayList<Integer> coordi = new ArrayList<Integer>();
-        coordi.add(40);
-        coordi.add(40);
+        coordi.add(41);
+        coordi.add(41);
         this.table.put(coordi, startCart);
         this.firstSecretObjective =  firstObjective;
         this.secondSecretObjective =  secondObjective;

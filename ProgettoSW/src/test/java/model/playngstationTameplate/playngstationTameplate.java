@@ -50,6 +50,7 @@ public class playngstationTameplate {
     PlayingStation station = new PlayingStation(cardStarting, cardObjectiveTmp, null);
 
     // now i have to populate the table
+    station.addCardStarting(cardStarting);
     station.addCard(cardAnimal1, 39, 39);
     station.addCard(cardAnimal2, 38, 38);
     station.addCard(cardAnimal3, 37, 37);
