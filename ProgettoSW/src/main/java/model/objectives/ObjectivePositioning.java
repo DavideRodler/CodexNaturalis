@@ -1,12 +1,9 @@
 package model.objectives;
 
 import model.PlayingStation;
-import model.cards.Card;
 import model.enums.Suit;
 import model.enums.Direction;
 import model.enums.Position;
-
-import java.util.ArrayList;
 
 public class ObjectivePositioning implements Objective{
     public Suit colorOneCard;
