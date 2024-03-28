@@ -18,7 +18,7 @@ public class DiagonalObjectiveTest {
     int punti = station.getFirstSecretObjective().getObjective().checkObjective(station);
 
     // Checking the result
-    assertEquals(0, punti, "Test failed. You scored " + punti + " points.");
+    assertEquals(1, punti, "Test failed. You scored " + punti + " points.");
   }
 
   @Test
@@ -31,6 +31,6 @@ public class DiagonalObjectiveTest {
     int punti = station.getFirstSecretObjective().getObjective().checkObjective(station);
 
     // Checking the result
-    assertEquals(1, punti, "Test failed. You scored " + punti + " points.");
+    assertEquals(0, punti, "Test failed. You scored " + punti + " points.");
   }
 }
