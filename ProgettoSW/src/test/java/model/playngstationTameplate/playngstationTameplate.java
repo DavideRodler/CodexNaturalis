@@ -28,6 +28,9 @@ public class playngstationTameplate {
     CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0);
     CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, Suit.ANIMAL, 0);
     CardResource cardAnimal3 = new CardResource(2, frontTmp, backTmp, Suit.ANIMAL, 0);
+    CardResource cardAnimal4 = new CardResource(3, frontTmp, backTmp, Suit.ANIMAL, 0);
+    CardResource cardAnimal5 = new CardResource(4, frontTmp, backTmp, Suit.ANIMAL, 0);
+    CardResource cardAnimal6 = new CardResource(5, frontTmp, backTmp, Suit.ANIMAL, 0);
 
     // now i have to make the starting card, i use the same front and back as the
     // resoources
@@ -43,7 +46,7 @@ public class playngstationTameplate {
     // central card, for this test i don't need them
     //
     // the objective is of type Diagonal and type ANIMAL
-    ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(Direction.RIGHT, Suit.ANIMAL);
+    ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(Direction.LEFT, Suit.ANIMAL);
     CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
 
     // for the second objective i set it to null
@@ -54,6 +57,9 @@ public class playngstationTameplate {
     station.addCard(cardAnimal1, 39, 39);
     station.addCard(cardAnimal2, 38, 38);
     station.addCard(cardAnimal3, 37, 37);
+    station.addCard(cardAnimal4, 46, 46);
+    station.addCard(cardAnimal5, 47, 45);
+    station.addCard(cardAnimal6, 48, 44);
 
     return station;
   }
