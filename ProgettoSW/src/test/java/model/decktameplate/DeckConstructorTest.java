@@ -9,6 +9,7 @@ import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,7 +30,7 @@ public class DeckConstructorTest {
 
     @Test
     public void testDeckGold() throws IOException, ParseException {
-        List<CardGold> deck = DeckconstructorController.GoldCardDeck();
+        LinkedList<CardResource> deck = DeckconstructorController.GoldCardDeck();
         assertFalse(deck.isEmpty(), "DeckGold should not be empty");
     }
 

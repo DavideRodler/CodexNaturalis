@@ -18,7 +18,7 @@ import static java.util.Collections.shuffle;
 
 public class GameController {
     public void startGame() throws IOException, ParseException {
-        LinkedList<CardGold> deckCardGold = GoldCardDeck();
+        LinkedList<CardResource> deckCardGold = GoldCardDeck();
         LinkedList<CardResource> deckCardResource = ResourceCardDeck();
         LinkedList<CardObjective> deckCardObjective = ObjectiveCardDeck();
         LinkedList<CardStarting> deckCardStarting = StartingCardDeck();

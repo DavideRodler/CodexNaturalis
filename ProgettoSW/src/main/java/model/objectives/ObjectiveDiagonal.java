@@ -1,11 +1,7 @@
 package model.objectives;
 
 import model.PlayingStation;
-import model.cards.CardObjective;
 import model.cards.CardResource;
-import model.cards.CardStarting;
-import model.cards.face.Corner;
-import model.cards.face.Face;
 import model.enums.Suit;
 import model.enums.Direction;
 

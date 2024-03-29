@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Da classe a interfaccia">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/DeckconstructorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/DeckconstructorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveAssign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveAssign.java" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning">
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,11 +15,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="JUnit5 Test Class" />
         <option value="Class" />
-        <option value="Interface" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/main" />
+  </component>
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="origin/main" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -63,6 +67,9 @@
     "JUnit.DeckConstructorTest.testDeckObjective.executor": "Run",
     "JUnit.DeckConstructorTest.testDeckResource.executor": "Run",
     "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
+    "JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor": "Run",
+    "JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor": "Run",
+    "JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor": "Run",
     "JUnit.deckconstructorTest.deckResource.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -86,82 +93,86 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="model.objectives" />
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.playngstationTameplate">
-    <configuration name="playngstationTameplate" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="model.playngstationTameplate.playngstationTameplate" />
+  <component name="RunManager" selected="JUnit.ObjectivePositioningTest.test_Positioning2">
+    <configuration name="ObjectiveDiagonalTest.test_2Cards_0Diagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.playngstationTameplate.*" />
+          <option name="PATTERN" value="model.objectives.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DeckConstructorTest.testDeckGold" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.decktameplate.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.decktameplate" />
-      <option name="MAIN_CLASS_NAME" value="model.decktameplate.DeckConstructorTest" />
-      <option name="METHOD_NAME" value="testDeckGold" />
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonalTest" />
+      <option name="METHOD_NAME" value="test_2Cards_0Diagonal" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DeckConstructorTest.testDeckObjective" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ObjectiveDiagonalTest.test_5Cards_1Diagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.decktameplate.*" />
+          <option name="PATTERN" value="model.objectives.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.decktameplate" />
-      <option name="MAIN_CLASS_NAME" value="model.decktameplate.DeckConstructorTest" />
-      <option name="METHOD_NAME" value="testDeckObjective" />
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonalTest" />
+      <option name="METHOD_NAME" value="test_5Cards_1Diagonal" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DeckConstructorTest.testDeckResource" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ObjectivePositioningTest.test3Cards_1Positioning" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.decktameplate.*" />
+          <option name="PATTERN" value="model.objectives.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.decktameplate" />
-      <option name="MAIN_CLASS_NAME" value="model.decktameplate.DeckConstructorTest" />
-      <option name="METHOD_NAME" value="testDeckResource" />
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
+      <option name="METHOD_NAME" value="test3Cards_1Positioning" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DeckConstructorTest.testStartingCardDeck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ObjectivePositioningTest.test_Positioning" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.decktameplate.*" />
+          <option name="PATTERN" value="model.objectives.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.decktameplate" />
-      <option name="MAIN_CLASS_NAME" value="model.decktameplate.DeckConstructorTest" />
-      <option name="METHOD_NAME" value="testStartingCardDeck" />
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
+      <option name="METHOD_NAME" value="test_Positioning" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ObjectivePositioningTest.test_Positioning2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.objectives.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
+      <option name="METHOD_NAME" value="test_Positioning2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -169,11 +180,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.playngstationTameplate" />
-        <item itemvalue="JUnit.DeckConstructorTest.testDeckObjective" />
-        <item itemvalue="JUnit.DeckConstructorTest.testDeckGold" />
-        <item itemvalue="JUnit.DeckConstructorTest.testStartingCardDeck" />
-        <item itemvalue="JUnit.DeckConstructorTest.testDeckResource" />
+        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
+        <item itemvalue="JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal" />
+        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
+        <item itemvalue="JUnit.ObjectivePositioningTest.test3Cards_1Positioning" />
+        <item itemvalue="JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal" />
       </list>
     </recent_temporary>
   </component>
@@ -333,7 +344,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711554924633</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning">
+      <option name="closed" value="true" />
+      <created>1711664037867</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1711664037867</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,7 +425,8 @@
     <MESSAGE value="TEST DELLA CREAZIONE DELLA PLAYINGBOARD, DA RIVEDERE L'UTILITA DI DECKCONSTRUCTOR" />
     <MESSAGE value="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station" />
     <MESSAGE value="Da classe a interfaccia" />
-    <option name="LAST_COMMIT_MESSAGE" value="Da classe a interfaccia" />
+    <MESSAGE value="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
