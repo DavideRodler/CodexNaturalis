@@ -4,7 +4,6 @@ import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
-import controller.DeckconstructorController;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -124,13 +123,12 @@ public class PlayingBoard {
     /**
      * This method is used to draw two cards from the deck of starting cards
      * @param deckCardStarting passing deck of starting cards
-     * @return the two cards drawn, then the player has to choose one of them
      */
 
-    public void drawCardStarting(LinkedList<CardStarting> deckCardStarting, Player player){
+   /* public void drawCardStarting(LinkedList<CardStarting> deckCardStarting, Player player){
         CardStarting card = deckCardStarting.remove();
-        player.getStation().addCardStarting(card);
-    }
+        player.getStation().addCard(card, 39,39);
+    }*/
 
 
     /**
