@@ -275,6 +275,8 @@ public class PlayingStation {
                 }
 
 
+
+
                 //Check if the card is a goldCard and then use method enoughResources to check if it's playable
                 if (card instanceof CardGold)
                     if (!enoughResources((CardGold) card)&& !(card.getPlayingBack()))
@@ -312,50 +314,6 @@ public class PlayingStation {
         }
 
 
-        public static void main (String[]args){
-            Face back = new Face(new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                    new Corner(Suit.EMPTY));
-
-            Face front = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                    new Corner(Suit.FUNGI));
-
-            Face frontGold = new Face(new Corner(Suit.INKWELL), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                    new Corner(Suit.EMPTY));
-
-            Objective objectiveGold = new ObjectiveCountingGold(1,0,0);
-
-            // the card resource is of type ANIMAL
-            CardGold cardAnimal1 = new CardGold(0, frontGold, back, Suit.ANIMAL, 1, 2,1,0,0, objectiveGold);
-            CardGold cardAnimal2 = new CardGold(0, frontGold, back, Suit.ANIMAL, 1, 4,2,0,0, objectiveGold);
-            cardAnimal2.setPlayingBack(true);
-            // now i have to make the starting card, i use the same front and back as the
-            // resources
-            // first i make the ArrayList for the centralsuit
-            ArrayList<Suit> suitList = new ArrayList<Suit>();
-            suitList.add(Suit.ANIMAL);
-            suitList.add(Suit.PLANT);
-            suitList.add(Suit.INSECT);
-
-            CardStarting cardStarting = new CardStarting(3, front, back, suitList);
-
-            // i make a PlayingStation with a cardObjective of type diagonalLeft and no
-            // central card, for this test i don't need them
-            //
-            // the objective is of type Diagonal and type ANIMAL
-            ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(Direction.LEFT, Suit.ANIMAL);
-            CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
-
-            // for the second objective i set it to null
-            Player player = new Player("test", 1);
-            PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp, null);
-
-            // now i have to populate the table
-            station.addCard(cardAnimal1, 41, 41);
-            station.addCard(cardAnimal2, 39, 39);
-
-
-            System.out.println(player.getPoints());
-        }
 
 
         /**
