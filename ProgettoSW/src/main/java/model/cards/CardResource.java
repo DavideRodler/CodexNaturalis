@@ -2,15 +2,19 @@ package model.cards;
 
 import model.cards.face.Face;
 import model.enums.Suit;
+import model.objectives.Objective;
 
 public class CardResource extends CardPlaying{
-    private Suit symbol;
-    private Integer points;
+    private final Suit symbol;
+    private final Integer points;
+    private final Objective objective;  // Aggiunto l'attributo Objective
 
-    public CardResource(int ID, Face front, Face back, Suit symbol, Integer points) {
+
+    public CardResource(int ID, Face front, Face back, Suit symbol, Integer points, Objective objective) {
         super(ID, front, back);
         this.symbol = symbol;
         this.points = points;
+        this.objective = objective;  // Inizializzato l'attributo Objective
     }
 
     public Suit getSymbol() {
@@ -20,7 +24,9 @@ public class CardResource extends CardPlaying{
     public int getPoints() {
         return points;
     }
-
+    public Objective getObjective() {  // Aggiunto il metodo getter per Objective
+        return objective;
+    }
 
     public int countResource(Suit suit){
         int count = 0;

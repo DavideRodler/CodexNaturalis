@@ -156,14 +156,12 @@ public class PlayingStation {
         updateCounters(card);
 
         //adding points to the player
-        if (card instanceof CardGold && !(card.getPlayingBack())) {
-            int points=((CardGold) card).getObjective().checkObjective(this);
+        if (!(card.getPlayingBack())) {
+            int points = card.getObjective().checkObjective(this);
             player.setPoints(player.getPoints() + points);
         }
-        else if(!(card.getPlayingBack()))
-        {
-            player.setPoints(player.getPoints() + card.getPoints());
-        }
+
+
 
     }
 

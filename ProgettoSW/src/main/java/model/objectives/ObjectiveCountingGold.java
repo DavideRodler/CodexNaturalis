@@ -18,7 +18,7 @@ public class ObjectiveCountingGold implements Objective {
     this.countQuill = countQuill;
   }
 
-  public int checkObjective(PlayingStation station) {
+  public int checkObjective(PlayingStation station, CardRe) {
     int points = 0;
     if((countInkwell == countManuscript)&&(countInkwell == countQuill)&&(countInkwell == 1)){
       points = Math.min(Math.min(station.getCountInkwell(), station.getCountQuill()), station.getCountManuscript());

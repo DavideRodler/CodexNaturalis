@@ -247,8 +247,7 @@ public class PlayngStationTameplate {
         PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp, null);
 
         // now i have to populate the table
-        station.addCard(cardAnimal1, 39, 39);
-        station.addCard(cardAnimal2, 38, 38);
+
 
         return station;
     }

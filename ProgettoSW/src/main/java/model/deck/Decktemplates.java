@@ -45,7 +45,7 @@ public class Decktemplates {
       Face back = new Face(AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"));
       Face front = new Face(AssignCorner(upright), AssignCorner(upleft), AssignCorner(downright),
           AssignCorner(downleft));
-      CardResource tmp = new CardResource(0, front, back, AssignSuit(suite), points);
+      CardResource tmp = new CardResource(0, front, back, AssignSuit(suite), points, AssignObjective("points"));
       deck.add(tmp);
 
     }
@@ -218,6 +218,7 @@ public class Decktemplates {
   private static Objective AssignObjective(String s) {
     Objective obj;
     return switch (s) {
+
       case "points" -> {
         obj = new ObjectiveAssign();
         yield obj;

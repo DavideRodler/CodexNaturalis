@@ -7,7 +7,7 @@ public class ObjectiveAssign implements Objective {
     }
 
     public int checkObjective(PlayingStation station){
-        return 1;
+
     }
 
 }

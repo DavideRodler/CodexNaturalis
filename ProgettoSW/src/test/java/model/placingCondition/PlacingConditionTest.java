@@ -17,6 +17,7 @@ public class PlacingConditionTest {
     public void test_null_corner() {
         // Creating the PlayingStation
         PlayingStation station = PlayngStationTameplate.test_null_corner_c();
+
         int punti = station.getPlayer().getPoints();
         int animals = station.getCountAnimal();
         int plants = station.getCountPlant();
