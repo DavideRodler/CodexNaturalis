@@ -14,9 +14,7 @@ public class Corner {
         return covered;
     }
 
-    public void setCovered(boolean covered) {
-        this.covered = covered;
-    }
+
 
     public Suit getDrawing(){
         return drawing;

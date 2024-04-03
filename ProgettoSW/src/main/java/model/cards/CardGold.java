@@ -35,10 +35,6 @@ public class CardGold extends CardResource {
     public int getCostPlant() {
         return costPlant;
     }
-
-    public Objective getObjective() {
-        return objective;
-    }
     //public boolean checkPlayable(Card[][] table){
     //}
 }
