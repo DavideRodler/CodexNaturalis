@@ -11,10 +11,7 @@ import model.cards.face.Face;
 import model.enums.Direction;
 import model.enums.Position;
 import model.enums.Suit;
-import model.objectives.Objective;
-import model.objectives.ObjectiveCountingGold;
-import model.objectives.ObjectiveDiagonal;
-import model.objectives.ObjectivePositioning;
+import model.objectives.*;
 
 import java.util.ArrayList;
 
@@ -27,10 +24,10 @@ public class PlayngStationTameplate {
                 new Corner(Suit.EMPTY));
         Face frontTmp = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.PLANT), new Corner(Suit.EMPTY),
                 new Corner(Suit.FUNGI));
-
+        Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
-        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0);
-        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, Suit.ANIMAL, 0);
+        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
+        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
 
         // now i have to make the starting card, i use the same front and back as the
         // resources
@@ -67,14 +64,14 @@ public class PlayngStationTameplate {
                 new Corner(Suit.EMPTY));
         Face frontTmp = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.PLANT), new Corner(Suit.EMPTY),
                 new Corner(Suit.FUNGI));
-
+        Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
-        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0);
-        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, Suit.ANIMAL, 0);
-        CardResource cardAnimal3 = new CardResource(2, frontTmp, backTmp, Suit.ANIMAL, 0);
-        CardResource cardAnimal4 = new CardResource(3, frontTmp, backTmp, Suit.ANIMAL, 0);
-        CardResource cardAnimal5 = new CardResource(4, frontTmp, backTmp, Suit.ANIMAL, 0);
-        CardResource cardAnimal6 = new CardResource(5, frontTmp, backTmp, Suit.ANIMAL, 0);
+        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
+        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
+        CardResource cardAnimal3 = new CardResource(2, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
+        CardResource cardAnimal4 = new CardResource(3, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
+        CardResource cardAnimal5 = new CardResource(4, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
+        CardResource cardAnimal6 = new CardResource(5, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
 
         // now i have to make the starting card, i use the same front and back as the
         // resoources
@@ -119,11 +116,11 @@ public class PlayngStationTameplate {
                 new Corner(Suit.EMPTY));
         Face frontTmp = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.PLANT), new Corner(Suit.EMPTY),
                 new Corner(Suit.FUNGI));
-
+        Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
-        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0);
-        CardResource cardPlant1 = new CardResource(1, frontTmp, backTmp, Suit.PLANT, 0);
-        CardResource cardPlant2 = new CardResource(2, frontTmp, backTmp, Suit.PLANT, 0);
+        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
+        CardResource cardPlant1 = new CardResource(1, frontTmp, backTmp, Suit.PLANT, 0, obj);
+        CardResource cardPlant2 = new CardResource(2, frontTmp, backTmp, Suit.PLANT, 0, obj);
 
         // now i have to make the starting card, i use the same front and back as the
         // resources
@@ -164,14 +161,14 @@ public class PlayngStationTameplate {
                 new Corner(Suit.EMPTY));
         Face frontTmp = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.PLANT), new Corner(Suit.EMPTY),
                 new Corner(Suit.FUNGI));
-
+        Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
-        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0);
-        CardResource cardPlant1 = new CardResource(1, frontTmp, backTmp, Suit.PLANT, 0);
-        CardResource cardPlant2 = new CardResource(2, frontTmp, backTmp, Suit.PLANT, 0);
-        CardResource cardAnimal2 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0);
-        CardResource cardPlant3 = new CardResource(1, frontTmp, backTmp, Suit.PLANT, 0);
-        CardResource cardPlant4 = new CardResource(2, frontTmp, backTmp, Suit.PLANT, 0);
+        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
+        CardResource cardPlant1 = new CardResource(1, frontTmp, backTmp, Suit.PLANT, 0, obj);
+        CardResource cardPlant2 = new CardResource(2, frontTmp, backTmp, Suit.PLANT, 0, obj);
+        CardResource cardAnimal2 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
+        CardResource cardPlant3 = new CardResource(1, frontTmp, backTmp, Suit.PLANT, 0, obj);
+        CardResource cardPlant4 = new CardResource(2, frontTmp, backTmp, Suit.PLANT, 0, obj);
 
         // now i have to make the starting card, i use the same front and back as the
         // resources
@@ -220,10 +217,10 @@ public class PlayngStationTameplate {
 
         Face frontTmp2 = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.ANIMAL), new Corner(Suit.EMPTY),
                 new Corner(Suit.FUNGI));
-
+        Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
-        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 1);
-        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, Suit.ANIMAL, 1);
+        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 1, obj);
+        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, Suit.ANIMAL, 1, obj);
 
         // now i have to make the starting card, i use the same front and back as the
         // resources
@@ -247,7 +244,8 @@ public class PlayngStationTameplate {
         PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp, null);
 
         // now i have to populate the table
-
+        station.addCard(cardAnimal1, 39, 39);
+        station.addCard(cardAnimal2, 38, 38);
 
         return station;
     }
@@ -263,10 +261,10 @@ public class PlayngStationTameplate {
 
         Face frontTmp2 = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.ANIMAL), new Corner(Suit.EMPTY),
                 new Corner(Suit.FUNGI));
-
+        Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
-        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 1);
-        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, Suit.ANIMAL, 1);
+        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 1, obj);
+        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, Suit.ANIMAL, 1, obj);
 
         // now i have to make the starting card, i use the same front and back as the
         // resources
@@ -354,10 +352,10 @@ public class PlayngStationTameplate {
 
         Face frontTmp2 = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.ANIMAL), new Corner(Suit.EMPTY),
                 new Corner(Suit.FUNGI));
-
+        Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
-        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 1);
-        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, Suit.ANIMAL, 1);
+        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 1, obj);
+        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, Suit.ANIMAL, 1, obj);
 
         // now i have to make the starting card, i use the same front and back as the
         // resources
@@ -398,10 +396,10 @@ public class PlayngStationTameplate {
 
         Face frontTmp2 = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.ANIMAL), new Corner(Suit.EMPTY),
                 new Corner(Suit.FUNGI));
-
+        Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
-        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 1);
-        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, Suit.ANIMAL, 1);
+        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 1, obj);
+        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, Suit.ANIMAL, 1, obj);
 
         // now i have to make the starting card, i use the same front and back as the
         // resources

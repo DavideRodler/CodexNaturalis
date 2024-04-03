@@ -13,6 +13,7 @@ public class ObjectiveDiagonal implements Objective { //direzione data dalla car
 private Direction direction;
 private Suit color;
 
+@Override
 public int checkObjective(PlayingStation station){
     Boolean[][] flags = new Boolean[81][81];
     for(Boolean[] row: flags){
@@ -154,7 +155,7 @@ public int checkObjective(PlayingStation station){
     return points;
 }
 
-public Direction getDirection() {
+    public Direction getDirection() {
         return direction;
     }
     public Suit getColor() {

@@ -3,9 +3,6 @@ package model.objectives;
 import model.PlayingStation;
 import model.cards.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class ObjectiveCountingGold implements Objective {
 
   private int countInkwell;
@@ -18,7 +15,8 @@ public class ObjectiveCountingGold implements Objective {
     this.countQuill = countQuill;
   }
 
-  public int checkObjective(PlayingStation station, CardRe) {
+  @Override
+  public int checkObjective(PlayingStation station, CardResource card, Integer x, Integer y) {
     int points = 0;
     if((countInkwell == countManuscript)&&(countInkwell == countQuill)&&(countInkwell == 1)){
       points = Math.min(Math.min(station.getCountInkwell(), station.getCountQuill()), station.getCountManuscript());

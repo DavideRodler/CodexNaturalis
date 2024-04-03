@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="commit di appoggio di davide">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardGold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardGold.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/placingCondition/PlacingConditionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/placingCondition/PlacingConditionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/Objective.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/Objective.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveAssign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveAssign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingGold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingGold.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveDiagonal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveDiagonal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveGoldCorners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveGoldCorners.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/model/testsTameplate/PlayngStationTameplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testsTameplate/PlayngStationTameplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,6 +110,19 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.PlacingConditionTest (1)">
+    <configuration name="PlayingStation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="model.PlayingStation" />
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PlacingConditionTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
@@ -117,21 +133,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="model.placingCondition" />
       <option name="MAIN_CLASS_NAME" value="model.placingCondition.PlacingConditionTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PlacingConditionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="placingCondition.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="placingCondition" />
-      <option name="MAIN_CLASS_NAME" value="placingCondition.PlacingConditionTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -188,10 +189,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.PlacingConditionTest (1)" />
+        <item itemvalue="Application.PlayingStation" />
         <item itemvalue="JUnit.PlacingConditionTest.test_same_axes" />
         <item itemvalue="JUnit.PlacingConditionTest.test_out_of_bound" />
         <item itemvalue="JUnit.PlacingConditionTest.test_goldCard_cost" />
-        <item itemvalue="JUnit.PlacingConditionTest" />
       </list>
     </recent_temporary>
   </component>
@@ -368,7 +369,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711819687500</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="commit di appoggio di davide">
+      <option name="closed" value="true" />
+      <created>1712153022664</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1712153022664</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,7 +452,8 @@
     <MESSAGE value="Da classe a interfaccia" />
     <MESSAGE value="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning" />
     <MESSAGE value="Aggiunta metodi e test per piazzare nuove carte sulla board" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta metodi e test per piazzare nuove carte sulla board" />
+    <MESSAGE value="commit di appoggio di davide" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit di appoggio di davide" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -463,6 +473,7 @@
         <watch expression="countPlant" />
         <watch expression="countFungi" />
         <watch expression="corner" />
+        <watch expression="card.getObjective()" />
       </configuration>
     </watches-manager>
   </component>

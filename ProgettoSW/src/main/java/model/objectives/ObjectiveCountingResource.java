@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class ObjectiveCountingResource implements Objective {
     public Suit symbol;
 
+    @Override
     public int checkObjective(PlayingStation station) {
         return switch(symbol){
             case FUNGI: yield station.getCountFungi() / 3;
@@ -20,6 +21,8 @@ public class ObjectiveCountingResource implements Objective {
                 yield -1; //errore
         };
     }
+
+
 
     public Suit getSymbol() {
         return symbol;
