@@ -1,5 +1,6 @@
 package model.deck;
 
+import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
@@ -28,7 +29,7 @@ public class DeckConstructorTest {
 
   @Test
   public void testDeckGold() throws IOException, ParseException {
-    LinkedList<CardResource> deck = Decktemplates.GoldCardDeck();
+    LinkedList<CardGold> deck = Decktemplates.GoldCardDeck();
     assertFalse(deck.isEmpty(), "DeckGold should not be empty");
   }
 

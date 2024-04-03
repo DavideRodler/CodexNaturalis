@@ -4,7 +4,6 @@ import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
-import controller.DeckconstructorController;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -16,7 +15,7 @@ public class PlayingBoard {
     private static LinkedList<CardResource> deckCardResource;
     private static LinkedList<CardObjective> deckCardObjective;
     private static LinkedList<CardStarting> deckCardStarting;
-    private static ArrayList<Player> playerList;
+    private ArrayList<Player> playerList;
     private CardResource CentralFirstCard;
     private CardResource CentralSecondCard;
     private CardResource CentralThirdCard;
@@ -28,12 +27,7 @@ public class PlayingBoard {
 
 
     //Constructor
-    public PlayingBoard(CardResource centralFirstCard, CardResource centralSecondCard, CardResource centralThirdCard, CardResource centralFourthCard, CardObjective firstObjective, CardObjective secondObjective) throws IOException, ParseException {
-        playerList = new ArrayList<>();
-        CentralFirstCard = centralFirstCard;
-        CentralSecondCard = centralSecondCard;
-        CentralThirdCard = centralThirdCard;
-        CentralFourthCard = centralFourthCard;
+    public PlayingBoard( CardObjective firstObjective, CardObjective secondObjective) throws IOException, ParseException {
         FirstObjective = firstObjective;
         SecondObjective = secondObjective;
     }
@@ -117,6 +111,11 @@ public class PlayingBoard {
             playerList.add(i + size - N + 1, players[i]);
         }
     }
+    public void addPlayer(Player p){
+        this.playerList.add(p);
+    }
+
+
 
     //--------------------SETTING FASE ENDED----------------------------
 
@@ -124,13 +123,12 @@ public class PlayingBoard {
     /**
      * This method is used to draw two cards from the deck of starting cards
      * @param deckCardStarting passing deck of starting cards
-     * @return the two cards drawn, then the player has to choose one of them
      */
 
-    public void drawCardStarting(LinkedList<CardStarting> deckCardStarting, Player player){
+   /* public void drawCardStarting(LinkedList<CardStarting> deckCardStarting, Player player){
         CardStarting card = deckCardStarting.remove();
-        player.getStation().addCardStarting(card);
-    }
+        player.getStation().addCard(card, 39,39);
+    }*/
 
 
     /**
@@ -150,7 +148,7 @@ public class PlayingBoard {
 
     //MAIN CHE FA DA 'CONTROLLER' E CREA LA PLAYINGBOARD ASSEGNANDOLI I DECK TRAMITE COSTRUTTORI
     public static void main(String[] args) throws IOException, ParseException {
-        PlayingBoard board = new PlayingBoard(null, null, null, null, null, null);
+        PlayingBoard board = new PlayingBoard(null, null);
         for (CardStarting c : deckCardStarting) {
             System.out.println(c.getFront().getUpRight().getDrawing());
             System.out.println(c.getFront().getUpLeft().getDrawing());

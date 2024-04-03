@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 import Exception.DeckEmptyException;
+import Exception.InvalidPlacingCondition;
 
 
 public class Player {
