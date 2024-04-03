@@ -137,6 +137,7 @@ public class PlayingStation {
      * @param Y    the y coordinate
      */
     public void addCard(CardResource card, Integer X, Integer Y) {
+
         try {
             if (!isPlayable(card, X, Y)) {
                 // Check if the card can be placed

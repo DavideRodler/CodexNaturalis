@@ -36,5 +36,9 @@ public class Game {
     }
     public void setPlayerOrder(){
 
+
+    }
+    public void endGame(){
+        //se sono all'ultimo turno devo verificare che tutti abbiano fatto un numero di turni uguale'
     }
 }
