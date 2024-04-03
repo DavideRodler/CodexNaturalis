@@ -1,5 +1,6 @@
 package model.cards;
 
+import model.PlayingStation;
 import model.cards.face.Face;
 import model.enums.Suit;
 import model.objectives.Objective;
@@ -39,6 +40,8 @@ public class CardGold extends CardResource {
     public Objective getObjective() {
         return objective;
     }
-    //public boolean checkPlayable(Card[][] table){
-    //}
+
+    public boolean checkCost(PlayingStation station){
+        return (costPlant == station.getCountPlant()) && (costAnimal == station.getCountAnimal()) && (costFungi == station.getCountFungi()) && (costInsect == station.getCountInsect());
+    }
 }
