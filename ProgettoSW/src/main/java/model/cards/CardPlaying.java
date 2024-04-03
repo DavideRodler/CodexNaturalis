@@ -2,7 +2,7 @@ package model.cards;
 import model.enums.Suit;
 import model.cards.face.Face;
 
-public class CardPlaying extends Card {
+public abstract  class CardPlaying extends Card {
     private Face front;
     private Face back;
     private Boolean playedBack;

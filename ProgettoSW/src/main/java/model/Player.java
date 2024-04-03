@@ -13,7 +13,7 @@ import Exception.InvalidPlacingCondition;
 
 public class Player {
     private final String nickname;
-    private final Integer playerNumber;
+    private Integer playerNumber;
     private Integer numberTurns;
     private Integer points;
     private Color token;
@@ -23,9 +23,8 @@ public class Player {
 
 
     // Costruttore
-    public Player(String nickname, Integer playerNumber) {
+    public Player(String nickname) {
         this.nickname = nickname;
-        this.playerNumber = playerNumber;
         this.numberTurns = 0;
         this.points = 0;
         this.pointsObjective = 0;
@@ -158,4 +157,7 @@ public class Player {
     }
 
 
+    public void setPlayerNumber(Integer playerNumber) {
+        this.playerNumber = playerNumber;
+    }
 }

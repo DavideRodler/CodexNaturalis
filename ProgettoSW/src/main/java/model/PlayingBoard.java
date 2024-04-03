@@ -20,20 +20,22 @@ public class PlayingBoard {
     private CardResource CentralSecondCard;
     private CardResource CentralThirdCard;
     private CardResource CentralFourthCard;
-    private CardObjective FirstObjective;
-    private CardObjective SecondObjective;
+    private final CardObjective FirstObjective;
+    private final CardObjective SecondObjective;
 
 
 
 
     //Constructor
-    public PlayingBoard( CardObjective firstObjective, CardObjective secondObjective) throws IOException, ParseException {
+    public PlayingBoard( CardObjective firstObjective, CardObjective secondObjective) {
+        playerList = new  ArrayList<Player>();
         FirstObjective = firstObjective;
         SecondObjective = secondObjective;
     }
 
 
     //-------------------GETTER-----------------------------
+    public ArrayList<Player> getPlayers(){return playerList;}
     public LinkedList<CardGold> getDeckCardGold() {
         return deckCardGold;
     }
@@ -94,22 +96,9 @@ public class PlayingBoard {
         CentralFourthCard = centralFourthCard;
     }
 
-    //Setter that initializes the player map (randomly selects the first player and assigns turns to all other players clockwise)
-    public void setPlayer(Player[] players, int size) {
-
-        // Generating a random number between 0 and the length of the vector
-        Random random = new Random();
-        int N = random.nextInt(size);
-
-        //Adding players starting from position N-1
-        for (int i = N-1; i < size; i++) {
-            playerList.add(i - N + 2, players[i]);
-        }
-
-        //Adding players from position 0 to position N-2
-        for (int i = 0; i < N-1; i++) {
-            playerList.add(i + size - N + 1, players[i]);
-        }
+    // shuffle players
+    public void shufflePlayer(){
+        Collections.shuffle(playerList);
     }
     public void addPlayer(Player p){
         this.playerList.add(p);

@@ -29,12 +29,17 @@ public class Decktemplates {
   // we have in order: suit of the card, the four corner(starting from upright)
   // and the points
 
-  public static LinkedList<CardResource> ResourceCardDeck() throws IOException, ParseException {
+  public static LinkedList<CardResource> ResourceCardDeck() {
     LinkedList<CardResource> deck = new LinkedList<>();
     JSONParser parser = new JSONParser();
-    JSONArray resourceCard = (JSONArray) parser
-        .parse(new FileReader("src/main/java/model/decktameplate/resourceDeck.json"));
-    for (Object obj : resourceCard) {
+      JSONArray resourceCard = null;
+      try {
+          resourceCard = (JSONArray) parser
+              .parse(new FileReader("src/main/java/model/deck/resourceDeck.json"));
+      } catch (IOException | ParseException e) {
+          throw new RuntimeException(e);
+      }
+      for (Object obj : resourceCard) {
       JSONObject card = (JSONObject) obj;
       String suite = (String) card.get("type");
       String upright = (String) card.get("upright");
@@ -54,11 +59,16 @@ public class Decktemplates {
     return deck;
   }
 
-  public static LinkedList<CardGold> GoldCardDeck() throws IOException, ParseException {
+  public static LinkedList<CardGold> GoldCardDeck() {
     LinkedList<CardGold> deck = new LinkedList<>();
     JSONParser parser = new JSONParser();
-    JSONArray goldCard = (JSONArray) parser.parse(new FileReader("src/main/java/model/decktameplate/GoldDeck.json"));
-    for (Object obj : goldCard) {
+      JSONArray goldCard = null;
+      try {
+          goldCard = (JSONArray) parser.parse(new FileReader("src/main/java/model/deck/GoldDeck.json"));
+      } catch (IOException | ParseException e) {
+          throw new RuntimeException(e);
+      }
+      for (Object obj : goldCard) {
       JSONObject card = (JSONObject) obj;
       String suite = (String) card.get("type");
       String upright = (String) card.get("upright");
@@ -84,12 +94,17 @@ public class Decktemplates {
     return deck;
   }
 
-  public static LinkedList<CardStarting> StartingCardDeck() throws IOException, ParseException {
+  public static LinkedList<CardStarting> StartingCardDeck() {
     LinkedList<CardStarting> deck = new LinkedList<>();
     JSONParser parser = new JSONParser();
-    JSONArray startingCard = (JSONArray) parser
-        .parse(new FileReader("src/main/java/model/decktameplate/StartingDeck.json"));
-    for (Object obj : startingCard) {
+      JSONArray startingCard = null;
+      try {
+          startingCard = (JSONArray) parser
+              .parse(new FileReader("src/main/java/model/deck/StartingDeck.json"));
+      } catch (IOException | ParseException e) {
+          throw new RuntimeException(e);
+      }
+      for (Object obj : startingCard) {
       ArrayList<Suit> symbols = new ArrayList<>();
       JSONObject card = (JSONObject) obj;
       JSONArray suite = (JSONArray) card.get("suite");
@@ -117,12 +132,17 @@ public class Decktemplates {
     return deck;
   }
 
-  public static LinkedList<CardObjective> ObjectiveCardDeck() throws IOException, ParseException {
+  public static LinkedList<CardObjective> ObjectiveCardDeck() {
     LinkedList<CardObjective> deck = new LinkedList<>();
     JSONParser parser = new JSONParser();
-    JSONArray objectiveCard = (JSONArray) parser
-        .parse(new FileReader("src/main/java/model/decktameplate/ObjectiveCard.json"));
-    for (Object obj : objectiveCard) {
+      JSONArray objectiveCard = null;
+      try {
+          objectiveCard = (JSONArray) parser
+              .parse(new FileReader("src/main/java/model/deck/ObjectiveCard.json"));
+      } catch (IOException | ParseException e) {
+          throw new RuntimeException(e);
+      }
+      for (Object obj : objectiveCard) {
       JSONObject card = (JSONObject) obj;
       String suite = (String) card.get("type");
       switch (suite) {
