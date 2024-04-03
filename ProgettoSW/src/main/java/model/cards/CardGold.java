@@ -41,7 +41,4 @@ public class CardGold extends CardResource {
         return objective;
     }
 
-    public boolean checkCost(PlayingStation station){
-        return (costPlant == station.getCountPlant()) && (costAnimal == station.getCountAnimal()) && (costFungi == station.getCountFungi()) && (costInsect == station.getCountInsect());
-    }
 }
