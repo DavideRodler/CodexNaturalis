@@ -8,15 +8,22 @@ import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
 import model.deck.Decktemplates;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
 import java.util.LinkedList;
 
 public class Game {
     private PlayingBoard board;
 
-    public void startGame() throws IOException, ParseException {
+    //constructor
+    public Game() {
+    }
+
+    //getter
+    public PlayingBoard getBoard() {
+        return board;
+    }
+
+    public void startGame()  {
         // creating decks
         LinkedList<CardGold> deckGold = Decktemplates.GoldCardDeck();
         LinkedList<CardResource> deckResource = Decktemplates.ResourceCardDeck();
@@ -32,9 +39,19 @@ public class Game {
     }
 
     public void addPlayer(String nickname){
-        this.board.addPlayer(new Player(nickname,0));
+        this.board.addPlayer(new Player(nickname));
     }
-    public void setPlayerOrder(){
 
+    //Create the order for the player and set the first player
+    public void setPlayerOrder(){
+        //shuffleing the Playerlist
+        board.shufflePlayer();
+        //setting the PlayerNumber
+        for (int i = 0; i < board.getPlayers().size(); i++) {
+            board.getPlayers().get(i).setPlayerNumber(i+1);
+        }
+    }
+    public void endGame(){
+        //se sono all'ultimo turno devo verificare che tutti abbiano fatto un numero di turni uguale'
     }
 }

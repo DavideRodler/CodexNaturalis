@@ -2,14 +2,12 @@ package model.objectives;
 
 import model.PlayingStation;
 import model.cards.Card;
-import model.cards.CardResource;
 
 import java.util.ArrayList;
 
 public class ObjectiveGoldCorners implements Objective {
 
-    @Override
-    public int checkObjective(PlayingStation station, CardResource card, Integer x, Integer y) {
+    public int checkObjective(PlayingStation station, int x, int y) {
         int points = 0;
         //alto a dx
         int i = x+1;
