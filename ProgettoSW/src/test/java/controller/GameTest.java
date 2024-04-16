@@ -20,5 +20,16 @@ class GameTest {
         assertEquals(game.getBoard().getPlayers().size(),4,"test passato");
 
     }
+    @Test
+    public void testStations() {
+        Game game = new Game();
+        game.startGame();
+        game.addPlayer("tommy");
+        game.addPlayer("davide");
+        game.addPlayer("isa");
+        game.addPlayer("eric");
+        game.setPlayerOrder();
+        game.createSations();
+    }
 
 }

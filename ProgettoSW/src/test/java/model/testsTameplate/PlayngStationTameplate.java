@@ -48,7 +48,7 @@ public class PlayngStationTameplate {
 
         // for the second objective i set it to null
         Player player = new Player("test");
-        PlayingStation station = new PlayingStation(player,cardStarting, cardObjectiveTmp, null);
+        PlayingStation station = new PlayingStation(player,cardStarting, cardObjectiveTmp);
 
         // now i have to populate the table
         station.addCard(cardAnimal1, 39, 39);
@@ -92,7 +92,7 @@ public class PlayngStationTameplate {
 
         // for the second objective i set it to null
         Player player = new Player("test");
-        PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp, null);
+        PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp);
 
         // now i have to populate the table
         station.addCard(cardAnimal1, 39, 39);
@@ -141,7 +141,7 @@ public class PlayngStationTameplate {
 
         // for the second objective i set it to null
         Player player = new Player("test");
-        PlayingStation station = new PlayingStation(player,cardStarting, cardObjectiveTmp, null);
+        PlayingStation station = new PlayingStation(player,cardStarting, cardObjectiveTmp);
 
         // now i have to populate the table
         station.addCard(cardPlant1, 39, 39);
@@ -189,7 +189,7 @@ public class PlayngStationTameplate {
 
         // for the second objective i set it to null
         Player player = new Player("test");
-        PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp, null);
+        PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp);
 
         // now i have to populate the table
         //first time objective is satisfied
@@ -241,7 +241,7 @@ public class PlayngStationTameplate {
 
         // for the second objective i set it to null
         Player player = new Player("test");
-        PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp, null);
+        PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp);
 
         // now i have to populate the table
         station.addCard(cardAnimal1, 39, 39);
@@ -285,7 +285,7 @@ public class PlayngStationTameplate {
 
         // for the second objective i set it to null
         Player player = new Player("test");
-        PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp, null);
+        PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp);
 
         // now i have to populate the table
         station.addCard(cardAnimal1, 50, 50);
@@ -331,7 +331,7 @@ public class PlayngStationTameplate {
 
         // for the second objective i set it to null
         Player player = new Player("test");
-        PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp, null);
+        PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp);
 
         // now i have to populate the table
         station.addCard(cardAnimal1, 41, 41);
@@ -376,7 +376,7 @@ public class PlayngStationTameplate {
 
         // for the second objective i set it to null
         Player player = new Player("test");
-        PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp, null);
+        PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp);
 
         // now i have to populate the table
         station.addCard(cardAnimal1, 90, 90);
@@ -420,7 +420,7 @@ public class PlayngStationTameplate {
 
         // for the second objective i set it to null
         Player player = new Player("test");
-        PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp, null);
+        PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp);
 
         // now i have to populate the table
         station.addCard(cardAnimal1, 40, 39);

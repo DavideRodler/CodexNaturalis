@@ -2,20 +2,12 @@ package model;
 
 import model.cards.*;
 import model.cards.face.Corner;
-import model.cards.face.Face;
-import model.enums.Direction;
 import model.enums.Suit;
 import Exception.InvalidPlacingCondition;
-import model.objectives.Objective;
-import model.objectives.ObjectiveAssign;
-import model.objectives.ObjectiveCountingGold;
-import model.objectives.ObjectiveDiagonal;
 
 
-import java.lang.reflect.Array;
 import java.util.*;
 
-import static model.enums.Suit.ANIMAL;
 import static model.enums.Suit.QUILL;
 
 public class PlayingStation {
@@ -29,7 +21,7 @@ public class PlayingStation {
     private Integer countManuscript;
     private Player player;
     private CardObjective firstSecretObjective;
-    private CardObjective secondSecretObjective;
+    private CardObjective SecretObjective;
 
 
     public void setFirstSecretObjective(CardObjective firstSecretObjective) {
@@ -37,15 +29,15 @@ public class PlayingStation {
     }
 
     public void setSetSecondSecretObjective(CardObjective SecondSecretObjective) {
-        this.secondSecretObjective = SecondSecretObjective;
+        this.SecretObjective = SecondSecretObjective;
     }
 
     public CardObjective getFirstSecretObjective() {
         return firstSecretObjective;
     }
 
-    public CardObjective getSecondSecretObjective() {
-        return secondSecretObjective;
+    public CardObjective getSecretObjective() {
+        return SecretObjective;
     }
 
     public ArrayList<Integer> getCoordinates(CardPlaying card) {
@@ -110,15 +102,14 @@ public class PlayingStation {
 
 
     // Costruttore
-    public PlayingStation(Player player, CardStarting startCart, CardObjective firstObjective, CardObjective secondObjective) {
+    public PlayingStation(Player player, CardStarting startCart ,CardObjective secretObjective) {
         this.table = new HashMap<>();
         this.player = player;
         ArrayList<Integer> coordi = new ArrayList<Integer>();
         coordi.add(40);
         coordi.add(40);
         this.table.put(coordi, startCart);
-        this.firstSecretObjective = firstObjective;
-        this.secondSecretObjective = secondObjective;
+        this.SecretObjective = secretObjective;
         this.countInsect = 0;
         this.countAnimal = 0;
         this.countPlant = 0;
@@ -142,7 +133,7 @@ public class PlayingStation {
         try {
             if (!isPlayable(card, X, Y)) {
                 // Check if the card can be placed
-                throw new InvalidPlacingCondition("Non puoi piazzare la carta qua!");
+                throw new InvalidPlacingCondition("Dove cazzo la stai piazzando brutto idiota");
             }
         } catch (InvalidPlacingCondition e) {
             System.out.println(e.getMessage());
@@ -158,12 +149,14 @@ public class PlayingStation {
         updateCounters(card);
 
         //adding points to the player
-        if (!(card.getPlayingBack())) {
-            int points = card.getObjective().checkObjective(this, card, X, Y);
+        if (card instanceof CardGold && !(card.getPlayingBack())) {
+            int points=((CardGold) card).getObjective().checkObjective(this);
             player.setPoints(player.getPoints() + points);
         }
-
-
+        else if(!(card.getPlayingBack()))
+        {
+            player.setPoints(player.getPoints() + card.getPoints());
+        }
 
     }
 
@@ -476,51 +469,6 @@ public class PlayingStation {
                     case FUNGI -> countFungi++;
                 }
             }
-        }
-
-
-
-        public static void main(String[] args) {
-            Face back = new Face(new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                    new Corner(Suit.EMPTY));
-
-            Face front = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                    new Corner(Suit.FUNGI));
-
-            Face frontGold = new Face(new Corner(Suit.INKWELL), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                    new Corner(Suit.EMPTY));
-
-            ObjectiveCountingGold objectiveGold = new ObjectiveCountingGold(1,0,0);
-
-            // the card resource is of type ANIMAL
-            CardGold cardAnimal1 = new CardGold(0, frontGold, back, Suit.ANIMAL, 1, 2,1,0,0, objectiveGold);
-            CardGold cardAnimal2 = new CardGold(0, frontGold, back, Suit.ANIMAL, 1, 4,2,0,0, objectiveGold);
-            cardAnimal2.setPlayingBack(true);
-            // now i have to make the starting card, i use the same front and back as the
-            // resources
-            // first i make the ArrayList for the centralsuit
-            ArrayList<Suit> suitList = new ArrayList<Suit>();
-            suitList.add(Suit.ANIMAL);
-            suitList.add(Suit.PLANT);
-            suitList.add(Suit.INSECT);
-
-            CardStarting cardStarting = new CardStarting(3, front, back, suitList);
-
-            // i make a PlayingStation with a cardObjective of type diagonalLeft and no
-            // central card, for this test i don't need them
-            //
-            // the objective is of type Diagonal and type ANIMAL
-            ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(Direction.LEFT, Suit.ANIMAL);
-            CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
-
-            // for the second objective i set it to null
-            Player player = new Player("test");
-            PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp, null);
-
-            // now i have to populate the table
-            station.addCard(cardAnimal1, 41, 41);
-            station.addCard(cardAnimal2, 39, 39);
-            System.out.println(player.getPoints());
         }
     }
 
