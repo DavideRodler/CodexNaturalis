@@ -4,10 +4,16 @@ import model.cards.*;
 import model.cards.face.Corner;
 import model.enums.Suit;
 import Exception.InvalidPlacingCondition;
+import model.objectives.Objective;
+import model.objectives.ObjectiveAssign;
+import model.objectives.ObjectiveCountingGold;
+import model.objectives.ObjectiveDiagonal;
 
 
+import java.lang.reflect.Array;
 import java.util.*;
 
+import static model.enums.Suit.ANIMAL;
 import static model.enums.Suit.QUILL;
 
 public class PlayingStation {
@@ -20,25 +26,18 @@ public class PlayingStation {
     private Integer countQuill;
     private Integer countManuscript;
     private Player player;
-    private CardObjective firstSecretObjective;
     private CardObjective SecretObjective;
 
 
-    public void setFirstSecretObjective(CardObjective firstSecretObjective) {
-        this.firstSecretObjective = firstSecretObjective;
+    public void setSecretObjective(CardObjective SecretObjective) {
+        this.SecretObjective = SecretObjective;
     }
 
-    public void setSetSecondSecretObjective(CardObjective SecondSecretObjective) {
-        this.SecretObjective = SecondSecretObjective;
-    }
-
-    public CardObjective getFirstSecretObjective() {
-        return firstSecretObjective;
-    }
 
     public CardObjective getSecretObjective() {
         return SecretObjective;
     }
+
 
     public ArrayList<Integer> getCoordinates(CardPlaying card) {
         for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : table.entrySet()) {
@@ -102,14 +101,14 @@ public class PlayingStation {
 
 
     // Costruttore
-    public PlayingStation(Player player, CardStarting startCart ,CardObjective secretObjective) {
+    public PlayingStation(Player player, CardStarting startCart, CardObjective Objective) {
         this.table = new HashMap<>();
         this.player = player;
         ArrayList<Integer> coordi = new ArrayList<Integer>();
         coordi.add(40);
         coordi.add(40);
         this.table.put(coordi, startCart);
-        this.SecretObjective = secretObjective;
+        this.SecretObjective = Objective;
         this.countInsect = 0;
         this.countAnimal = 0;
         this.countPlant = 0;
@@ -133,7 +132,7 @@ public class PlayingStation {
         try {
             if (!isPlayable(card, X, Y)) {
                 // Check if the card can be placed
-                throw new InvalidPlacingCondition("Dove cazzo la stai piazzando brutto idiota");
+                throw new InvalidPlacingCondition("Non puoi piazzare la carta qua!");
             }
         } catch (InvalidPlacingCondition e) {
             System.out.println(e.getMessage());
@@ -149,14 +148,12 @@ public class PlayingStation {
         updateCounters(card);
 
         //adding points to the player
-        if (card instanceof CardGold && !(card.getPlayingBack())) {
-            int points=((CardGold) card).getObjective().checkObjective(this);
+        if (!(card.getPlayingBack())) {
+            int points = card.getObjective().checkObjective(this, card, X, Y);
             player.setPoints(player.getPoints() + points);
         }
-        else if(!(card.getPlayingBack()))
-        {
-            player.setPoints(player.getPoints() + card.getPoints());
-        }
+
+
 
     }
 
