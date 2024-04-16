@@ -142,7 +142,7 @@ public class PlayingStation {
         try {
             if (!isPlayable(card, X, Y)) {
                 // Check if the card can be placed
-                throw new InvalidPlacingCondition("Dove cazzo la stai piazzando brutto idiota");
+                throw new InvalidPlacingCondition("Non puoi piazzare la carta qua!");
             }
         } catch (InvalidPlacingCondition e) {
             System.out.println(e.getMessage());
