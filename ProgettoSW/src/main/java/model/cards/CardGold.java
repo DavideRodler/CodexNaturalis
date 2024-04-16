@@ -12,8 +12,8 @@ public class CardGold extends CardResource {
     private int costPlant;
     private Objective objective;
 
-    public CardGold(int ID, Face front, Face back, Suit symbol, int points, int costAnimal, int costInsect, int costFungi, int costPlant, Objective objective) {
-        super(ID, front, back, symbol, points);
+    public CardGold(int ID, Face front, Face back, Suit symbol, Integer points, int costAnimal, int costInsect, int costFungi, int costPlant, Objective objective) {
+        super(ID, front, back, symbol, points, objective);
         this.costAnimal = costAnimal;
         this.costInsect = costInsect;
         this.costFungi = costFungi;

@@ -514,7 +514,7 @@ public class PlayingStation {
             CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
 
             // for the second objective i set it to null
-            Player player = new Player("test", 1);
+            Player player = new Player("test");
             PlayingStation station = new PlayingStation(player, cardStarting, cardObjectiveTmp, null);
 
             // now i have to populate the table
