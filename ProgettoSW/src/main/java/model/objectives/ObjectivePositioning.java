@@ -51,7 +51,7 @@ public class ObjectivePositioning implements Objective{
             for(int i = 1; i < 81; i++){
                 for(int j = 77; j >=0; j--){
                     if (!flags[i][j]){
-                        if ((i != 41) && (j != 41)) {
+                        if ((i != 40) && (j != 40)) {
                             ArrayList<Integer> key1 = new ArrayList<>();
                             key1.add(0, i);
                             key1.add(1, j);
@@ -107,7 +107,7 @@ public class ObjectivePositioning implements Objective{
             for(int i = 0; i < 80; i++){
                 for(int j = 80; j > 2; j--){
                     if (!flags[i][j]){
-                        if ((i != 41) && (j != 41)) {
+                        if ((i != 40) && (j != 40)) {
                             ArrayList<Integer> key1 = new ArrayList<>();
                             key1.add(0, i);
                             key1.add(1, j);
@@ -164,7 +164,7 @@ public class ObjectivePositioning implements Objective{
             for(int i = 1; i < 81; i++){
                 for(int j = 80; j > 2; j--){
                     if (!flags[i][j]){
-                        if ((i != 41) && (j != 41)) {
+                        if ((i != 40) && (j != 40)) {
                             ArrayList<Integer> key1 = new ArrayList<>();
                             key1.add(0, i);
                             key1.add(1, j);
@@ -220,7 +220,7 @@ public class ObjectivePositioning implements Objective{
             for(int i = 0; i < 80; i++){
                 for(int j = 77; j >=0; j--){
                     if (!flags[i][j]){
-                        if ((i != 41) && (j != 41)) {
+                        if ((i != 40) && (j != 40)) {
                             ArrayList<Integer> key1 = new ArrayList<>();
                             key1.add(0, i);
                             key1.add(1, j);

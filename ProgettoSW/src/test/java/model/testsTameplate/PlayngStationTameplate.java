@@ -121,6 +121,7 @@ public class PlayngStationTameplate {
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
         CardResource cardPlant1 = new CardResource(1, frontTmp, backTmp, Suit.PLANT, 0, obj);
         CardResource cardPlant2 = new CardResource(2, frontTmp, backTmp, Suit.PLANT, 0, obj);
+        CardResource cardAnimal2 = new CardResource(4, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
 
         // now i have to make the starting card, i use the same front and back as the
         // resources
@@ -137,16 +138,18 @@ public class PlayngStationTameplate {
         //
         // the objective is of type Diagonal and type ANIMAL
         ObjectivePositioning objectivetmp = new ObjectivePositioning(Suit.ANIMAL, Suit.PLANT, Direction.LEFT, Position.TOP);
-        CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
+        CardObjective cardObjectiveTmp = new CardObjective(5, 3, objectivetmp);
 
         // for the second objective i set it to null
         Player player = new Player("test");
         PlayingStation station = new PlayingStation(player,cardStarting, cardObjectiveTmp);
 
         // now i have to populate the table
-        station.addCard(cardPlant1, 39, 39);
-        station.addCard(cardPlant2, 39, 37);
-        station.addCard(cardAnimal1, 40, 36);
+        station.addCard(cardAnimal1, 41, 41);
+        station.addCard(cardPlant2, 40, 42);
+        station.addCard(cardAnimal2, 41, 43);
+        station.addCard(cardPlant1, 40, 44);
+
 
         return station;
 
