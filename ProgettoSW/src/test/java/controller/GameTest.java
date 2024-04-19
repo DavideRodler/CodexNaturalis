@@ -10,7 +10,7 @@ class GameTest {
 
     @Test
     public void testPlayers(){
-        Game game = new Game();
+        GameController game = new GameController();
         game.initGameController();
         game.addPlayer("tommy");
         game.addPlayer("davide");
@@ -23,7 +23,7 @@ class GameTest {
     }
     @Test
     public void testStations() {
-        Game game = new Game();
+        GameController game = new GameController();
         game.initGameController();
         game.addPlayer("tommy");
         game.addPlayer("davide");

@@ -13,13 +13,13 @@ import model.enums.GameState;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Game {
+public class GameController {
     private PlayingBoard board;
 
     private GameState gameState;
 
     //constructor
-    public Game() {initGameController();}
+    public GameController() {initGameController();}
 
     //getter
     public PlayingBoard getBoard() {
@@ -84,7 +84,7 @@ public class Game {
         }
     }
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         Game game = new Game();
         game.initGameController();
         game.addPlayer("tommy");
@@ -94,5 +94,5 @@ public class Game {
         game.setPlayerOrder();
         game.getBoard().getPlayers().stream().map(x -> x.getNickname()).forEach(System.out::println);
         game.createSations();
-    }
+    }*/
 }

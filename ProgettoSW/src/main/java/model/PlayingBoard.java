@@ -4,12 +4,10 @@ import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
-import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
+import Observers.Observable;
 import java.util.*;
 
-public class PlayingBoard {
+public class PlayingBoard extends Observable{
 
     private LinkedList<CardGold> deckCardGold;
     private LinkedList<CardResource> deckCardResource;

@@ -1,5 +1,7 @@
 package Rmi;
 
+import View.VirtualView;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
