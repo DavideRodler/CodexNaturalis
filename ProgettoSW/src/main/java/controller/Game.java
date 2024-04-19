@@ -8,6 +8,7 @@ import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
 import model.deck.Decktemplates;
+import model.enums.GameState;
 
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -15,16 +16,17 @@ import java.util.Scanner;
 public class Game {
     private PlayingBoard board;
 
+    private GameState gameState;
+
     //constructor
-    public Game() {
-    }
+    public Game() {initGameController();}
 
     //getter
     public PlayingBoard getBoard() {
         return board;
     }
 
-    public void startGame() {
+    public void initGameController() {
         // creating decks
         LinkedList<CardGold> deckGold = Decktemplates.GoldCardDeck();
         LinkedList<CardResource> deckResource = Decktemplates.ResourceCardDeck();
@@ -37,8 +39,12 @@ public class Game {
 
         //creating the board
         this.board = new PlayingBoard(firstCardObj, secondCardObj,deckGold, deckObjective, deckResource, deckStarting);
+        setGameState(GameState.LOGIN);
     }
 
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
+    }
     public void addPlayer(String nickname) {
         this.board.addPlayer(new Player(nickname));
     }
@@ -76,5 +82,17 @@ public class Game {
                 givePlayerStation(board.getPlayers().get(i), secondObjective);
             }
         }
+    }
+
+    public static void main(String[] args) {
+        Game game = new Game();
+        game.initGameController();
+        game.addPlayer("tommy");
+        game.addPlayer("davide");
+        game.addPlayer("isa");
+        game.addPlayer("eric");
+        game.setPlayerOrder();
+        game.getBoard().getPlayers().stream().map(x -> x.getNickname()).forEach(System.out::println);
+        game.createSations();
     }
 }

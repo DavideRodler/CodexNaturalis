@@ -3,6 +3,7 @@ package controller;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.Scanner;
 
 
 class GameTest {
@@ -10,7 +11,7 @@ class GameTest {
     @Test
     public void testPlayers(){
         Game game = new Game();
-        game.startGame();
+        game.initGameController();
         game.addPlayer("tommy");
         game.addPlayer("davide");
         game.addPlayer("isa");
@@ -23,7 +24,7 @@ class GameTest {
     @Test
     public void testStations() {
         Game game = new Game();
-        game.startGame();
+        game.initGameController();
         game.addPlayer("tommy");
         game.addPlayer("davide");
         game.addPlayer("isa");
