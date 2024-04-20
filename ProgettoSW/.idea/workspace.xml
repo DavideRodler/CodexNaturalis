@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="modificato testo exception">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Observers/Observable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Observers/ViewObservable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/View/Cli.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/View/VirtualView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rmi/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rmi/RmiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rmi/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rmi/RmiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rmi/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rmi/VirtualServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rmi/VirtualView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/controller/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/GameTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/testsTameplate/PlayngStationTameplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testsTameplate/PlayngStationTameplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +106,7 @@
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ObjectivePositioningTest.test_Positioning">
+  <component name="RunManager" selected="JUnit.ObjectivePositioningTest.test_Positioning2">
     <configuration name="ObjectiveDiagonalTest.test_2Cards_0Diagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
@@ -205,10 +195,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
         <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
         <item itemvalue="JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal" />
         <item itemvalue="JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal" />
-        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
         <item itemvalue="JUnit.PlacingConditionTest (1)" />
       </list>
     </recent_temporary>
