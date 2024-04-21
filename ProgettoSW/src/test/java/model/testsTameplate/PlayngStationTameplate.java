@@ -137,7 +137,7 @@ public class PlayngStationTameplate {
         // central card, for this test i don't need them
         //
         // the objective is of type Diagonal and type ANIMAL
-        ObjectivePositioning objectivetmp = new ObjectivePositioning(Suit.ANIMAL, Suit.PLANT, Direction.LEFT, Position.TOP);
+        ObjectivePositioning objectivetmp = new ObjectivePositioning(Suit.ANIMAL, Suit.PLANT, Direction.RIGHT, Position.TOP);
         CardObjective cardObjectiveTmp = new CardObjective(5, 3, objectivetmp);
 
         // for the second objective i set it to null
@@ -146,9 +146,9 @@ public class PlayngStationTameplate {
 
         // now i have to populate the table
         station.addCard(cardAnimal1, 41, 41);
-        station.addCard(cardPlant2, 40, 42);
+        station.addCard(cardPlant1, 42, 42);
         station.addCard(cardAnimal2, 41, 43);
-        station.addCard(cardPlant1, 40, 44);
+        station.addCard(cardPlant2, 42, 44);
 
 
         return station;
@@ -187,7 +187,8 @@ public class PlayngStationTameplate {
         // central card, for this test i don't need them
         //
         // the objective is of type Diagonal and type ANIMAL
-        ObjectivePositioning objectivetmp = new ObjectivePositioning(Suit.ANIMAL, Suit.PLANT, Direction.LEFT, Position.TOP);
+        ObjectivePositioning objectivetmp = new ObjectivePositioning(Suit.ANIMAL, Suit.PLANT, Direction.RIGHT
+                , Position.TOP);
         CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
 
         // for the second objective i set it to null
@@ -196,14 +197,17 @@ public class PlayngStationTameplate {
 
         // now i have to populate the table
         //first time objective is satisfied
-        station.addCard(cardPlant1, 39, 39);
-        station.addCard(cardPlant2, 39, 37);
-        station.addCard(cardAnimal1, 40, 36);
+        station.addCard(cardAnimal1, 41, 41);
+        station.addCard(cardPlant1, 42, 42);
+        station.addCard(cardAnimal2, 41, 43);
+        station.addCard(cardPlant2, 42, 44);
+
 
         //second time objective is satisfied
-        station.addCard(cardPlant3, 27,27);
-        station.addCard(cardPlant4, 27, 25);
-        station.addCard(cardAnimal2, 28, 24);
+        station.addCard(cardAnimal1, 43, 45);
+        station.addCard(cardPlant1, 42, 46);
+        station.addCard(cardAnimal2, 43, 47);
+        station.addCard(cardPlant2, 42, 48);
 
         return station;
 
