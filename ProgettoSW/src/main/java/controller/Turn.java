@@ -5,7 +5,8 @@ import model.PlayingStation;
 
 public class Turn {
     private Player player;
-    public void starturn(){
+    public Turn(){
+        this.
 
     }
 
