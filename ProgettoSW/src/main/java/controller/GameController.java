@@ -135,7 +135,7 @@ public class GameController {
     }
 
     public void addStartingCard(String nickname) {
-            getBoard().getPlayers().get(nickname).setStartingCard(board.getDeckCardStarting().pop());
+//            getBoard().getPlayers().get(nickname).setStartingCard(board.getDeckCardStarting().pop());
     }
 
    /* public static void main(String[] args) {
