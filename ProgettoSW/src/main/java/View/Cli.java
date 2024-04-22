@@ -1,4 +1,4 @@
-package View;
+/*package View;
 
 import Observers.ViewObservable;
 import Rmi.RmiServer;
@@ -153,4 +153,4 @@ public class Cli extends ViewObservable{
         }
     }
 
-}
+}*/

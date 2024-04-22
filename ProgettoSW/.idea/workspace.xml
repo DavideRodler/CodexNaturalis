@@ -4,20 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Introduzione a CLI+Observer">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Network/Client/SocketClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/View/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Cantiere in corso RMI">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/SocketClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Observers/Observable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Observers/Observable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rmi/RmiClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rmi/RmiServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rmi/VirtualServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/ViewObservable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Observers/ViewObservable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/Cli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Cli.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/VirtualView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/InputReaderTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Turn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +82,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ClientApp.executor": "Run",
+    "Application.RmiClient.executor": "Run",
     "Application.ServerApp.executor": "Run",
     "Application.deckconstructor.executor": "Run",
     "Application.decktameplatetom.executor": "Run",
@@ -129,42 +136,36 @@
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerApp">
+  <component name="RunManager" selected="Application.ClientApp">
+    <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="StartApplication.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RmiClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Network.Client.RmiClient" />
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Network.Client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartApplication.ServerApp" />
       <module name="ProgettoSW" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ObjectiveDiagonalTest.test_2Cards_0Diagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonalTest" />
-      <option name="METHOD_NAME" value="test_2Cards_0Diagonal" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ObjectiveDiagonalTest.test_5Cards_1Diagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonalTest" />
-      <option name="METHOD_NAME" value="test_5Cards_1Diagonal" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -201,19 +202,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.ClientApp" />
+      <item itemvalue="Application.RmiClient" />
       <item itemvalue="Application.ServerApp" />
-      <item itemvalue="JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal" />
-      <item itemvalue="JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal" />
       <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
       <item itemvalue="JUnit.PlacingConditionTest (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.ServerApp" />
+        <item itemvalue="Application.RmiClient" />
         <item itemvalue="JUnit.PlacingConditionTest (1)" />
         <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
-        <item itemvalue="JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal" />
-        <item itemvalue="JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal" />
       </list>
     </recent_temporary>
   </component>
@@ -240,7 +241,7 @@
       <workItem from="1713537338424" duration="4776000" />
       <workItem from="1713634892299" duration="1477000" />
       <workItem from="1713702746015" duration="1730000" />
-      <workItem from="1713710108899" duration="3666000" />
+      <workItem from="1713710108899" duration="31381000" />
     </task>
     <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
       <option name="closed" value="true" />
@@ -410,7 +411,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713525117286</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Cantiere in corso RMI">
+      <option name="closed" value="true" />
+      <created>1713773004063</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1713773004063</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +496,8 @@
     <MESSAGE value="Aggiunta metodi e test per piazzare nuove carte sulla board" />
     <MESSAGE value="modificato testo exception" />
     <MESSAGE value="Introduzione a CLI+Observer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Introduzione a CLI+Observer" />
+    <MESSAGE value="Cantiere in corso RMI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cantiere in corso RMI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -496,6 +506,15 @@
           <properties class="java.lang.IllegalStateException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>
+          <line>75</line>
+          <properties class="controller.GameController" method="takenNickname">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -507,6 +526,7 @@
         <watch expression="countPlant" />
         <watch expression="countFungi" />
         <watch expression="corner" />
+        <watch expression="nickname" />
       </configuration>
     </watches-manager>
   </component>

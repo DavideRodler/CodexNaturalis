@@ -20,7 +20,7 @@ public class GameController {
     private GameState gameState;
 
     //constructor
-    public GameController() {initGameController();}
+    public GameController() {}
 
     //getter
     public PlayingBoard getBoard() {
@@ -73,6 +73,13 @@ public class GameController {
         p.setStation(station);
     }
 
+    public boolean takenNickname(String nickname) {
+        return board.getPlayers().containsKey(nickname);
+    }
+
+    public Integer numberOfPlayer() {
+        return board.getPlayers().size();
+    }
     //for each player i show the two possible objectives that he can choose
     public void createSations(){
         Scanner scanner = new Scanner(System.in);
@@ -104,6 +111,10 @@ public class GameController {
             }
 
         }
+    }
+
+    public void addStartingCard(String nickname) {
+            getBoard().getPlayers().get(nickname).setStartingCard(board.getDeckCardStarting().pop());
     }
 
    /* public static void main(String[] args) {
