@@ -1,7 +1,7 @@
 package model;
 
 import model.cards.*;
-import model.cards.face.Corner;
+//import model.cards.face.Corner;
 import model.enums.Suit;
 import Exception.InvalidPlacingCondition;
 import model.objectives.Objective;
@@ -101,13 +101,13 @@ public class PlayingStation {
 
 
     // Costruttore
-    public PlayingStation(Player player, CardStarting startCart, CardObjective Objective) {
+    public PlayingStation(Player player, CardStarting startCard, CardObjective Objective) {
         this.table = new HashMap<>();
         this.player = player;
         ArrayList<Integer> coordi = new ArrayList<Integer>();
         coordi.add(40);
         coordi.add(40);
-        this.table.put(coordi, startCart);
+        this.table.put(coordi, startCard);
         this.SecretObjective = Objective;
         this.countInsect = 0;
         this.countAnimal = 0;
@@ -116,7 +116,7 @@ public class PlayingStation {
         this.countInkwell = 0;
         this.countQuill = 0;
         this.countManuscript = 0;
-        updateCounters(startCart);
+        updateCounters(startCard);
     }
 
 
@@ -230,7 +230,7 @@ public class PlayingStation {
 
                 if (getCard(X - 1, Y - 1) != null) { //checking if existing the down-right card adjacent with the card I want to play
                     if (!table.get(coordinates1).getPlayingBack()) { //checking if the card is played by front
-                        if (table.get(coordinates1).getFront().getDownRight().getDrawing().equals(Suit.NULL)) { //checking if there is a corner available
+                        if (table.get(coordinates1).getFront().getDownRight().equals(Suit.NULL)) { //checking if there is a corner available
                             return false;
                         }
                     }
@@ -239,7 +239,7 @@ public class PlayingStation {
 
                 if (getCard(X + 1, Y - 1) != null) { //checking if existing the down-left card adjacent with the card I want to play
                     if (!table.get(coordinates2).getPlayingBack()) { //checking if the card is played by front
-                        if (table.get(coordinates2).getFront().getDownLeft().getDrawing().equals(Suit.NULL)) { //checking if there is a corner available
+                        if (table.get(coordinates2).getFront().getDownLeft().equals(Suit.NULL)) { //checking if there is a corner available
                             return false;
                         }
                     }
@@ -248,7 +248,7 @@ public class PlayingStation {
 
                 if (getCard(X - 1, Y + 1) != null) { //checking if existing the up-right card adjacent with the card I want to play
                     if (!table.get(coordinates3).getPlayingBack()) { //checking if the card is played by front
-                        if (table.get(coordinates3).getFront().getUpRight().getDrawing().equals(Suit.NULL)) { //checking if there is a corner available
+                        if (table.get(coordinates3).getFront().getUpRight().equals(Suit.NULL)) { //checking if there is a corner available
                             return false;
                         }
                     }
@@ -257,7 +257,7 @@ public class PlayingStation {
 
                 if (getCard(X + 1, Y + 1) != null) { //checking if existing the up-left card adjacent with the card I want to play
                     if (!table.get(coordinates4).getPlayingBack()) { //checking if the card is played by front
-                        if (table.get(coordinates4).getFront().getUpLeft().getDrawing().equals(Suit.NULL)) { //checking if there is a corner available
+                        if (table.get(coordinates4).getFront().getUpLeft().equals(Suit.NULL)) { //checking if there is a corner available
                             return false;
                         }
                     }
@@ -277,26 +277,26 @@ public class PlayingStation {
                 // and updating resource with updateCounters method
 
                 if (numCornerCovered.get(coordinates1)) {
-                    table.get(coordinates1).getFront().getDownRight().setCovered(true);
-                    updateCounters(table.get(coordinates1).getFront().getDownRight());
+                    //table.get(coordinates1).getFront().getDownRight().setCovered(true);
+                    updateCounters(table.get(coordinates1).getFront().getDownRight(), true);
                 }
 
 
                 if (numCornerCovered.get(coordinates2)) {
-                    table.get(coordinates2).getFront().getDownLeft().setCovered(true);
-                    updateCounters(table.get(coordinates2).getFront().getDownLeft());
+                    //table.get(coordinates2).getFront().getDownLeft().setCovered(true);
+                    updateCounters(table.get(coordinates2).getFront().getDownLeft(), true);
                 }
 
 
                 if (numCornerCovered.get(coordinates3)) {
-                    table.get(coordinates3).getFront().getUpRight().setCovered(true);
-                    updateCounters(table.get(coordinates3).getFront().getUpRight());
+                    //table.get(coordinates3).getFront().getUpRight().setCovered(true);
+                    updateCounters(table.get(coordinates3).getFront().getUpRight(), true);
                 }
 
 
                 if (numCornerCovered.get(coordinates4)) {
-                    table.get(coordinates4).getFront().getUpLeft().setCovered(true);
-                    updateCounters(table.get(coordinates4).getFront().getUpLeft());
+                   // table.get(coordinates4).getFront().getUpLeft().setCovered(true);
+                    updateCounters(table.get(coordinates4).getFront().getUpLeft(), true);
                 }
             }
 
@@ -398,9 +398,9 @@ public class PlayingStation {
          *
          * @param corner the corner that is covered by the card
          */
-        public void updateCounters (Corner corner){
-            if (corner.isCovered()) {
-                switch (corner.getDrawing()) {
+        public void updateCounters (Suit corner, boolean covered){
+            if (covered) {
+                switch (corner) {
                     case QUILL -> countQuill--;
                     case MANUSCRIPT -> countManuscript--;
                     case INKWELL -> countInkwell--;
@@ -408,10 +408,10 @@ public class PlayingStation {
                     case PLANT -> countPlant--;
                     case ANIMAL -> countAnimal--;
                     case INSECT -> countInsect--;
-                    //  case EMPTY -> null;
+                    // case EMPTY -> null;
                 }
             } else {
-                switch (corner.getDrawing()) {
+                switch (corner) {
                     case QUILL -> countQuill++;
                     case MANUSCRIPT -> countManuscript++;
                     case INKWELL -> countInkwell++;
@@ -426,15 +426,15 @@ public class PlayingStation {
 
         public void updateCounters (CardStarting card){
             if (card.getPlayingBack()) {
-                updateCounters(card.getBack().getUpRight());
-                updateCounters(card.getBack().getDownRight());
-                updateCounters(card.getBack().getUpLeft());
-                updateCounters(card.getBack().getDownLeft());
+                updateCounters(card.getBack().getUpRight(), false);
+                updateCounters(card.getBack().getDownRight(),false);
+                updateCounters(card.getBack().getUpLeft(),false);
+                updateCounters(card.getBack().getDownLeft(),false);
             } else {
-                updateCounters(card.getFront().getUpRight());
-                updateCounters(card.getFront().getDownRight());
-                updateCounters(card.getFront().getUpLeft());
-                updateCounters(card.getFront().getDownLeft());
+                updateCounters(card.getFront().getUpRight(),false);
+                updateCounters(card.getFront().getDownRight(),false);
+                updateCounters(card.getFront().getUpLeft(),false);
+                updateCounters(card.getFront().getDownLeft(),false);
                 ArrayList<Suit> symbols = card.getSymbols();
                 for (Suit symbol : symbols) {
                     switch (symbol) {
@@ -453,10 +453,10 @@ public class PlayingStation {
 
         public void updateCounters (CardResource card){
             if (!card.getPlayingBack()) {
-                updateCounters(card.getFront().getUpRight());
-                updateCounters(card.getFront().getDownRight());
-                updateCounters(card.getFront().getUpLeft());
-                updateCounters(card.getFront().getDownLeft());
+                updateCounters(card.getFront().getUpRight(),false);
+                updateCounters(card.getFront().getDownRight(),false);
+                updateCounters(card.getFront().getUpLeft(),false);
+                updateCounters(card.getFront().getDownLeft(),false);
             }
             else{
                 switch(card.getSymbol()){

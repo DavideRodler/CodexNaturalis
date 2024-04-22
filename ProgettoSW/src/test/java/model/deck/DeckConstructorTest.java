@@ -48,42 +48,42 @@ public class DeckConstructorTest {
     LinkedList<CardObjective> deckObjective = Decktemplates.ObjectiveCardDeck();
 
     for (CardStarting c : deckStarting) {
-      System.out.println(c.getFront().getUpRight().getDrawing());
-      System.out.println(c.getFront().getUpLeft().getDrawing());
-      System.out.println(c.getFront().getDownRight().getDrawing());
-      System.out.println(c.getFront().getDownLeft().getDrawing());
-      System.out.println(c.getBack().getUpRight().getDrawing());
-      System.out.println(c.getBack().getUpLeft().getDrawing());
-      System.out.println(c.getBack().getDownRight().getDrawing());
-      System.out.println(c.getBack().getDownLeft().getDrawing());
+      System.out.println(c.getFront().getUpRight());
+      System.out.println(c.getFront().getUpLeft());
+      System.out.println(c.getFront().getDownRight());
+      System.out.println(c.getFront().getDownLeft());
+      System.out.println(c.getBack().getUpRight());
+      System.out.println(c.getBack().getUpLeft());
+      System.out.println(c.getBack().getDownRight());
+      System.out.println(c.getBack().getDownLeft());
       System.out.println(c.getSymbols());
       System.out.println("------------------------------------------------------");
 
     }
     System.out.println("*******************************************************");
     for (CardResource c : deckResource) {
-      System.out.println(c.getFront().getUpRight().getDrawing());
-      System.out.println(c.getFront().getUpLeft().getDrawing());
-      System.out.println(c.getFront().getDownRight().getDrawing());
-      System.out.println(c.getFront().getDownLeft().getDrawing());
-      System.out.println(c.getBack().getUpRight().getDrawing());
-      System.out.println(c.getBack().getUpLeft().getDrawing());
-      System.out.println(c.getBack().getDownRight().getDrawing());
-      System.out.println(c.getBack().getDownLeft().getDrawing());
+      System.out.println(c.getFront().getUpRight());
+      System.out.println(c.getFront().getUpLeft());
+      System.out.println(c.getFront().getDownRight());
+      System.out.println(c.getFront().getDownLeft());
+      System.out.println(c.getBack().getUpRight());
+      System.out.println(c.getBack().getUpLeft());
+      System.out.println(c.getBack().getDownRight());
+      System.out.println(c.getBack().getDownLeft());
       System.out.println(c.getSymbol());
       System.out.println(c.getPoints());
       System.out.println("------------------------------------------------------");
     }
     System.out.println("*******************************************************");
     for (CardGold c : deckGold) {
-      System.out.println(c.getFront().getUpRight().getDrawing());
-      System.out.println(c.getFront().getUpLeft().getDrawing());
-      System.out.println(c.getFront().getDownRight().getDrawing());
-      System.out.println(c.getFront().getDownLeft().getDrawing());
-      System.out.println(c.getBack().getUpRight().getDrawing());
-      System.out.println(c.getBack().getUpLeft().getDrawing());
-      System.out.println(c.getBack().getDownRight().getDrawing());
-      System.out.println(c.getBack().getDownLeft().getDrawing());
+      System.out.println(c.getFront().getUpRight());
+      System.out.println(c.getFront().getUpLeft());
+      System.out.println(c.getFront().getDownRight());
+      System.out.println(c.getFront().getDownLeft());
+      System.out.println(c.getBack().getUpRight());
+      System.out.println(c.getBack().getUpLeft());
+      System.out.println(c.getBack().getDownRight());
+      System.out.println(c.getBack().getDownLeft());
       System.out.println(c.getSymbol());
       System.out.println(c.getPoints());
       System.out.println(c.getCostAnimal());

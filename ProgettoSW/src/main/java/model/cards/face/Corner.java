@@ -1,24 +1,24 @@
-package model.cards.face;
-import model.enums.Suit;
-public class Corner {
-    private boolean covered;
-    private Suit drawing;
+//package model.cards.face;
+//import model.enums.Suit;
+//public class Corner {
+//    private boolean covered;
+ //   private Suit drawing;
 
-    public Corner( Suit drawing) {
+//    public Corner( Suit drawing) {
 
-        this.covered = false;
-        this.drawing = drawing;
-    }
+ //       this.covered = false;
+  //      this.drawing = drawing;
+  //  }
 
-    public boolean isCovered() {
-        return covered;
-    }
+  //  public boolean isCovered() {
+  //      return covered;
+   // }
 
-    public void setCovered(boolean covered) {
-        this.covered = covered;
-    }
+  //  public void setCovered(boolean covered) {
+  //      this.covered = covered;
+   // }
 
-    public Suit getDrawing(){
-        return drawing;
-    }
-}
+  //  public Suit getDrawing(){
+    //   return drawing;
+   // }
+//}

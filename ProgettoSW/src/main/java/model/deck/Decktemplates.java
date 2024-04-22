@@ -9,7 +9,6 @@ import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
-import model.cards.face.Corner;
 import model.cards.face.Face;
 import model.enums.Direction;
 import model.enums.Position;
@@ -47,7 +46,7 @@ public class Decktemplates {
       String downright = (String) card.get("downright");
       String downleft = (String) card.get("downleft");
       int points = ((Long) card.get("points")).intValue();
-      Face back = new Face(AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"));
+      Face back = new Face(Suit.EMPTY, Suit.EMPTY,Suit.EMPTY, Suit.EMPTY);
       Face front = new Face(AssignCorner(upright), AssignCorner(upleft), AssignCorner(downright),
           AssignCorner(downleft));
       CardResource tmp = new CardResource(0, front, back, AssignSuit(suite), points, AssignObjective("points"));
@@ -81,7 +80,7 @@ public class Decktemplates {
       int costInsect = ((Long) card.get("costInsect")).intValue();
       int costFungi = ((Long) card.get("costFungi")).intValue();
       int costPlant = ((Long) card.get("costPlant")).intValue();
-      Face back = new Face(AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"));
+      Face back = new Face(Suit.EMPTY, Suit.EMPTY,Suit.EMPTY, Suit.EMPTY);
       Face front = new Face(AssignCorner(upright), AssignCorner(upleft), AssignCorner(downright),
           AssignCorner(downleft));
       CardGold tmp = new CardGold(0, front, back, AssignSuit(suite), points, costAnimal, costInsect, costFungi,
@@ -187,17 +186,17 @@ public class Decktemplates {
     return deck;
   }
 
-  private static Corner AssignCorner(String s) {
+  private static Suit AssignCorner(String s) {
     return switch (s) {
-      case "empty" -> new Corner(Suit.EMPTY);
-      case "fungi" -> new Corner(Suit.FUNGI);
-      case "plant" -> new Corner(Suit.PLANT);
-      case "animal" -> new Corner(Suit.ANIMAL);
-      case "insect" -> new Corner(Suit.INSECT);
-      case "manuscript" -> new Corner(Suit.MANUSCRIPT);
-      case "inkwell" -> new Corner(Suit.INKWELL);
-      case "quill" -> new Corner(Suit.QUILL);
-      default -> new Corner(Suit.NULL);
+      case "empty" -> Suit.EMPTY;
+      case "fungi" -> Suit.FUNGI;
+      case "plant" -> Suit.PLANT;
+      case "animal" -> Suit.ANIMAL;
+      case "insect" -> Suit.INSECT;
+      case "manuscript" -> Suit.MANUSCRIPT;
+      case "inkwell" -> Suit.INKWELL;
+      case "quill" -> Suit.QUILL;
+      default -> Suit.NULL;
     };
   }
 
