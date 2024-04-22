@@ -1,7 +1,6 @@
 package Observers;
 
 import View.VirtualView;
-import model.PlayingBoard;
 
 import java.util.ArrayList;
 import java.util.List;

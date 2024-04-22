@@ -1,7 +1,7 @@
 package View;
 
-import model.PlayingBoard;
+public class VirtualView implements View{
+    public void update(String message) {
 
-public interface VirtualView {
-    public void update(String message);
+    }
 }

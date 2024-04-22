@@ -1,4 +1,4 @@
-package View;
+/*package View;
 
 import Observers.ViewObservable;
 import Rmi.VirtualServer;
@@ -24,4 +24,4 @@ public class Cli extends ViewObservable{
         this.notifyObservers("start");
     }
 
-}
+}*/
