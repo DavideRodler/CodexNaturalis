@@ -11,7 +11,7 @@ class ObjectiveDiagonalTest {
     public void test_5Cards_1Diagonal() {
         // Creating the PlayingStation
         PlayingStation station = PlayngStationTameplate.test_5Cards_1Diagonal_c();
-        int punti = station.getSecretObjective().getObjective().checkObjective(station);
+        int punti = station.getSecretObjective().getObjective().countObjectivePoints(station);
 
         // Checking the result
         assertEquals(1, punti, "Test failed. You scored " + punti + " points.");
@@ -23,7 +23,7 @@ class ObjectiveDiagonalTest {
 
         // Creating the PlayingStation
         PlayingStation station = PlayngStationTameplate.test_2Cards_0Diagonal_c();
-        int punti = station.getSecretObjective().getObjective().checkObjective(station);
+        int punti = station.getSecretObjective().getObjective().countObjectivePoints(station);
 
         // Checking the result
         assertEquals(0, punti, "Test failed. You scored " + punti + " points.");

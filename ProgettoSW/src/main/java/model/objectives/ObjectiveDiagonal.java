@@ -14,7 +14,7 @@ private Direction direction;
 private Suit color;
 
 @Override
-public int checkObjective(PlayingStation station){
+public int countObjectivePoints(PlayingStation station){
     Boolean[][] flags = new Boolean[81][81];
     for(Boolean[] row: flags){
         Arrays.fill(row, false); //carte non ancora visualizzate

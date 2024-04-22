@@ -149,7 +149,7 @@ public class PlayingStation {
 
         //adding points to the player
         if (!(card.getPlayingBack())) {
-            int points = card.getObjective().checkObjective(this, card, X, Y);
+            int points = card.getObjective().countObjectivePoints(this, card, X, Y);
             player.setPoints(player.getPoints() + points);
         }
 

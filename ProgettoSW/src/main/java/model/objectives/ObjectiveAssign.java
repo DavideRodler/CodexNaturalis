@@ -6,7 +6,7 @@ import model.cards.CardResource;
 
 public class ObjectiveAssign implements Objective {
    @Override
-    public int checkObjective(PlayingStation station , CardResource card, Integer x, Integer y){
+    public int countObjectivePoints(PlayingStation station , CardResource card, Integer x, Integer y){
         return switch (card.getPoints()) {
             case 1 -> 1;
             case 2 -> 2;

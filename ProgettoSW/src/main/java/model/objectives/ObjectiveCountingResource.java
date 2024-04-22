@@ -11,7 +11,7 @@ public class ObjectiveCountingResource implements Objective {
     public Suit symbol;
 
     @Override
-    public int checkObjective(PlayingStation station) {
+    public int countObjectivePoints(PlayingStation station) {
         return switch(symbol){
             case FUNGI: yield station.getCountFungi() / 3;
             case PLANT: yield station.getCountPlant() / 3;
