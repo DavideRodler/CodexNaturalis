@@ -3,6 +3,8 @@ package controller;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 
 
@@ -23,6 +25,10 @@ class GameTest {
     }
     @Test
     public void testStations() {
+        //input of the players selecting the objectives
+        String data = "1 \n0 \n0 \n1 \n ";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+
         GameController game = new GameController();
         game.initGameController();
         game.addPlayer("tommy");

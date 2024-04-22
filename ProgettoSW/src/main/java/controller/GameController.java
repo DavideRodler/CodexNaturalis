@@ -10,6 +10,7 @@ import model.cards.CardStarting;
 import model.deck.Decktemplates;
 import model.enums.GameState;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -32,6 +33,12 @@ public class GameController {
         LinkedList<CardResource> deckResource = Decktemplates.ResourceCardDeck();
         LinkedList<CardStarting> deckStarting = Decktemplates.StartingCardDeck();
         LinkedList<CardObjective> deckObjective = Decktemplates.ObjectiveCardDeck();
+
+        //shuffleing the decks
+        Collections.shuffle(deckGold);
+        Collections.shuffle(deckResource);
+        Collections.shuffle(deckStarting);
+        Collections.shuffle(deckObjective);
 
         // popping objective
         CardObjective firstCardObj = deckObjective.pop();
@@ -63,24 +70,39 @@ public class GameController {
     private void givePlayerStation(Player p, CardObjective obj) {
         CardStarting startingCard = board.getDeckCardStarting().pop();
         PlayingStation station = new PlayingStation(p, startingCard, obj);
+        p.setStation(station);
     }
 
     //for each player i show the two possible objectives that he can choose
     public void createSations(){
+        Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < board.getPlayers().size(); i++) {
-            CardObjective firstObjective = board.getDeckCardObjective().pop();
-            CardObjective secondObjective = board.getDeckCardObjective().pop();
-            System.out.println(firstObjective.getObjective().toString());
-            System.out.println(secondObjective.getObjective().toString());
-            System.out.println(board.getPlayers().get(i).getNickname() + "seleziona obiettivo 0 o 1");
-            Scanner scanner = new Scanner(System.in);
+            // popping two cards from the deck
+            CardObjective firstObjectiveToChoose = board.getDeckCardObjective().pop();
+            CardObjective secondObjectiveToChoose = board.getDeckCardObjective().pop();
+            //selecting the cardobjective
+            System.out.println(firstObjectiveToChoose.getObjective().toString());
+            System.out.println(secondObjectiveToChoose.getObjective().toString());
+            System.out.println(board.getPlayers().get(i).getNickname() + " select the objective with 0 or 1");
             int selezione = scanner.nextInt();
-            if (selezione == 0){
-                givePlayerStation(board.getPlayers().get(i), firstObjective);
+            System.out.println(selezione);
+            //putting the cardobjective in the player attribute and then putting the other card at the bottom of the deck
+            switch (selezione){
+                case 0:
+                    System.out.println(board.getPlayers().get(i).getNickname() + " has selected the objective" + firstObjectiveToChoose.getObjective().toString());
+                    givePlayerStation(board.getPlayers().get(i), firstObjectiveToChoose);
+                    board.getDeckCardObjective().addLast(secondObjectiveToChoose);
+                    break;
+                case 1:
+                    System.out.println(board.getPlayers().get(i).getNickname() + " has selected the objective" + secondObjectiveToChoose.getObjective().toString());
+                    givePlayerStation(board.getPlayers().get(i), secondObjectiveToChoose);
+                    board.getDeckCardObjective().addLast(firstObjectiveToChoose);
+                    break;
+                default:
+                    System.out.println("number out of bound");
+
             }
-            else {
-                givePlayerStation(board.getPlayers().get(i), secondObjective);
-            }
+
         }
     }
 
