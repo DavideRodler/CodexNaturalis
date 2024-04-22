@@ -18,9 +18,14 @@ public class GameController {
     private PlayingBoard board;
 
     private GameState gameState;
+    private Player activeplayer;
 
     //constructor
     public GameController() {}
+    //setter
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
+    }
 
     //getter
     public PlayingBoard getBoard() {
@@ -46,23 +51,39 @@ public class GameController {
 
         //creating the board
         this.board = new PlayingBoard(firstCardObj, secondCardObj,deckGold, deckObjective, deckResource, deckStarting);
+
+        //putting the first card on the central board
+        CardResource firstCardRes = board.drawCardResource();
+        CardResource secondCardRes = board.drawCardResource();
+
+        CardGold firstCardGodl = board.drawCardGold();
+        CardGold secondtCardGold = board.drawCardGold();
+
+        board.setCentralFirsResourceCard(firstCardRes);
+        board.setCentralSecondResourceCard(secondCardRes);
+
+        board.setCentralFristGoldCard(firstCardGodl);
+        board.setCentralSecondGoldCard(secondtCardGold);
+
         setGameState(GameState.LOGIN);
     }
 
-    public void setGameState(GameState gameState) {
-        this.gameState = gameState;
-    }
     public void addPlayer(String nickname) {
         this.board.addPlayer(new Player(nickname));
     }
 
     //Create the order for the player and set the first player
     public void setPlayerOrder() {
-        //shuffleing the Playerlist
-        board.shufflePlayer();
-        //setting the PlayerNumber
-        for (int i = 0; i < board.getPlayers().size(); i++) {
-            board.getPlayers().get(i).setPlayerNumber(i + 1);
+        if (gameState.equals(GameState.INIT)) {
+            //shuffleing the Playerlist
+            board.shufflePlayer();
+            //setting the PlayerNumber
+            for (int i = 0; i < board.getPlayers().size(); i++) {
+                board.getPlayers().get(i).setPlayerNumber(i + 1);
+            }
+            //the first player to play is the first in the list
+            this.activeplayer = board.getPlayers().get(0);
+
         }
     }
 

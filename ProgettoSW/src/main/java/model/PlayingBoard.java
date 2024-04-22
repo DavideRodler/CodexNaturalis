@@ -15,11 +15,11 @@ public class PlayingBoard extends Observable{
 
 
     private LinkedList<CardStarting> deckCardStarting;
-    private Map<String,Player> playerMap;
-    private CardResource CentralFirstCard;
-    private CardResource CentralSecondCard;
-    private CardResource CentralThirdCard;
-    private CardResource CentralFourthCard;
+    private ArrayList<Player> playerList;
+    private CardResource CentralFirsResourceCard;
+    private CardResource CentralSecondResourceCard;
+    private CardGold CentralFristGoldCard;
+    private CardGold CentralSecondGoldCard;
     private final CardObjective FirstObjective;
     private final CardObjective SecondObjective;
 
@@ -31,7 +31,7 @@ public class PlayingBoard extends Observable{
         this.deckCardObjective = deckCardObjective;
         this.deckCardResource = deckCardResource;
         this.deckCardStarting = deckCardStarting;
-        this.playerMap = new HashMap<>();
+        this.playerList = new ArrayList<Player>();
     }
 
 
@@ -39,7 +39,7 @@ public class PlayingBoard extends Observable{
 
 
     //-------------------GETTER-----------------------------
-    public Map<String,Player> getPlayers(){return playerMap;}
+    public ArrayList<Player> getPlayers(){return playerList;}
     public LinkedList<CardGold> getDeckCardGold() {
         return deckCardGold;
     }
@@ -56,20 +56,20 @@ public class PlayingBoard extends Observable{
         return deckCardStarting;
     }
 
-    public CardResource getCentralSecondCard() {
-        return CentralSecondCard;
+    public CardGold getCentralFristGoldCard() {
+        return CentralFristGoldCard;
     }
 
-    public CardResource getCentralFourthCard() {
-        return CentralFourthCard;
+    public CardGold getCentralSecondGoldCard() {
+        return CentralSecondGoldCard;
     }
 
-    public CardResource getCentralFirstCard() {
-        return CentralFirstCard;
+    public CardResource getCentralFirsResourceCard() {
+        return CentralFirsResourceCard;
     }
 
-    public CardResource getCentralThirdCard() {
-        return CentralThirdCard;
+    public CardResource getCentralSecondResourceCard() {
+        return CentralSecondResourceCard;
     }
 
     public CardObjective getFirstObjective() {
@@ -84,34 +84,28 @@ public class PlayingBoard extends Observable{
 
 
     //--------------------SETTER----------------------------
-    public void setCentralFirstCard(CardResource centralFirstCard) {
-        CentralFirstCard = centralFirstCard;
+    public void setCentralFirsResourceCard(CardResource centralFirsResourceCard) {
+        CentralFirsResourceCard = centralFirsResourceCard;
     }
 
-    public void setCentralThirdCard(CardResource centralThirdCard) {
-        CentralThirdCard = centralThirdCard;
+    public void setCentralFristGoldCard(CardGold centralFristGoldCard) {
+        CentralFristGoldCard = centralFristGoldCard;
     }
 
-    public void setCentralSecondCard(CardResource centralSecondCard) {
-        CentralSecondCard = centralSecondCard;
+    public void setCentralSecondResourceCard(CardResource centralSecondResourceCard) {
+        CentralSecondResourceCard = centralSecondResourceCard;
     }
 
-    public void setCentralFourthCard(CardResource centralFourthCard) {
-        CentralFourthCard = centralFourthCard;
+    public void setCentralSecondGoldCard(CardGold centralSecondGoldCard) {
+        CentralSecondGoldCard = centralSecondGoldCard;
     }
 
     // shuffle players
     public void shufflePlayer(){
-        List<Player> players = new ArrayList<>(playerMap.values());
-        Collections.shuffle(players);
-        playerMap.clear();
-        for (Player player : players) {
-            playerMap.put(player.getNickname(), player);
-        }
+        Collections.shuffle(playerList);
     }
-
     public void addPlayer(Player p){
-        this.playerMap.put(p.getNickname(),p);
+        this.playerList.add(p);
     }
 
 
@@ -121,7 +115,6 @@ public class PlayingBoard extends Observable{
 
     /**
      * This method is used to draw two cards from the deck of starting cards
-     * @param deckCardStarting passing deck of starting cards
      */
 
    /* public void drawCardStarting(LinkedList<CardStarting> deckCardStarting, Player player){
@@ -130,22 +123,15 @@ public class PlayingBoard extends Observable{
     }*/
 
 
-    /**
-     * This method is used to draw two card from the deck of resource cards
-     * @param deckCardObjective passing deck of objective cards
-     * @return the two card drawn
-     */
-    public CardObjective[] pickTwoObjectives(LinkedList<CardObjective> deckCardObjective){
-        CardObjective[] objectives = new CardObjective[2];
-        for (int i = 0; i < 2; i++) {
-            objectives[i] = deckCardObjective.remove();
-        }
-        return objectives;
+//Drawing Cards from  the two decks
+
+    public CardGold drawCardGold(){
+        return deckCardGold.pop();
     }
 
-
-
-
+    public CardResource drawCardResource(){
+        return deckCardResource.pop();
+    }
 
 
 }
