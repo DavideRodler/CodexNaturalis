@@ -1,21 +1,23 @@
 package model.cards.face;
 
+import model.enums.Suit;
+
 import java.util.ArrayList;
 
 public class Face {
-    private Corner UpRight;
-    private Corner UpLeft;
-    private Corner DownRight;
-    private Corner DownLeft;
+    private Suit UpRight;
+    private Suit UpLeft;
+    private Suit DownRight;
+    private Suit DownLeft;
 
-    public Face(Corner upRight, Corner upLeft, Corner downRight, Corner downLeft) {
+    public Face(Suit upRight, Suit upLeft, Suit downRight, Suit downLeft) {
         UpRight = upRight;
         UpLeft = upLeft;
         DownRight = downRight;
         DownLeft = downLeft;
     }
-    public ArrayList<Corner>getFaceList(){
-        ArrayList<Corner> tmp = new ArrayList<Corner>();
+    public ArrayList<Suit>getFaceList(){
+        ArrayList<Suit> tmp = new ArrayList<Suit>();
         tmp.add(getUpLeft());
         tmp.add(getUpRight());
         tmp.add(getDownLeft());
@@ -23,19 +25,19 @@ public class Face {
         return tmp;
     }
 
-    public Corner getUpRight() {
+    public Suit getUpRight() {
         return UpRight;
     }
 
-    public Corner getUpLeft() {
+    public Suit getUpLeft() {
         return UpLeft;
     }
 
-    public Corner getDownRight() {
+    public Suit getDownRight() {
         return DownRight;
     }
 
-    public Corner getDownLeft() {
+    public Suit getDownLeft() {
         return DownLeft;
     }
 

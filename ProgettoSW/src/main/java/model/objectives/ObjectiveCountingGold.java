@@ -16,7 +16,7 @@ public class ObjectiveCountingGold implements Objective {
   }
 
   @Override
-  public int checkObjective(PlayingStation station, CardResource card, Integer x, Integer y) {
+  public int countObjectivePoints(PlayingStation station, CardResource card, Integer x, Integer y) {
     int points = 0;
     if((countInkwell == countManuscript)&&(countInkwell == countQuill)&&(countInkwell == 1)){
       points = Math.min(Math.min(station.getCountInkwell(), station.getCountQuill()), station.getCountManuscript());

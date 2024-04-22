@@ -31,16 +31,16 @@ public class CardResource extends CardPlaying{
     public int countResource(Suit suit){
         int count = 0;
         if (!getPlayingBack()){
-                if (getFront().getUpRight().getDrawing().equals(suit)) {
+                if (getFront().getUpRight().equals(suit)) {
                     count++;
                 }
-                if(getFront().getDownRight().getDrawing().equals(suit)){
+                if(getFront().getDownRight().equals(suit)){
                     count++;
                 }
-                if(getFront().getUpLeft().getDrawing().equals(suit)){
+                if(getFront().getUpLeft().equals(suit)){
                     count++;
                 }
-                if(getFront().getDownLeft().getDrawing().equals(suit)){
+                if(getFront().getDownLeft().equals(suit)){
                     count++;
                 }
         }

@@ -6,7 +6,6 @@ import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
-import model.cards.face.Corner;
 import model.cards.face.Face;
 import model.enums.Direction;
 import model.enums.Position;
@@ -20,10 +19,8 @@ public class PlayngStationTameplate {
 
         // i create two card resource with an EMPTY back and some Suits in the front,
         // with all corner that can be covered
-        Face backTmp = new Face(new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                new Corner(Suit.EMPTY));
-        Face frontTmp = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.PLANT), new Corner(Suit.EMPTY),
-                new Corner(Suit.FUNGI));
+        Face backTmp = new Face(Suit.EMPTY, Suit.EMPTY, Suit.EMPTY, Suit.EMPTY);
+        Face frontTmp = new Face(Suit.ANIMAL, Suit.PLANT, Suit.EMPTY, Suit.FUNGI);
         Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
@@ -60,10 +57,8 @@ public class PlayngStationTameplate {
 
         // i create three card resource with an EMPTY back and some Suits in the front,
         // with all corner that can be covered
-        Face backTmp = new Face(new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                new Corner(Suit.EMPTY));
-        Face frontTmp = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.PLANT), new Corner(Suit.EMPTY),
-                new Corner(Suit.FUNGI));
+        Face backTmp = new Face(Suit.EMPTY,Suit.EMPTY,Suit.EMPTY, Suit.EMPTY);
+        Face frontTmp = new Face(Suit.ANIMAL,Suit.PLANT,Suit.EMPTY, Suit.FUNGI);
         Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
@@ -112,10 +107,8 @@ public class PlayngStationTameplate {
 
         // i create two card resource with an EMPTY back and some Suits in the front,
         // with all corner that can be covered
-        Face backTmp = new Face(new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                new Corner(Suit.EMPTY));
-        Face frontTmp = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.PLANT), new Corner(Suit.EMPTY),
-                new Corner(Suit.FUNGI));
+        Face backTmp = new Face(Suit.EMPTY, Suit.EMPTY,Suit.EMPTY, Suit.EMPTY);
+        Face frontTmp = new Face(Suit.ANIMAL, Suit.PLANT, Suit.EMPTY, Suit.FUNGI);
         Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
@@ -160,10 +153,8 @@ public class PlayngStationTameplate {
 
         // i create two card resource with an EMPTY back and some Suits in the front,
         // with all corner that can be covered
-        Face backTmp = new Face(new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                new Corner(Suit.EMPTY));
-        Face frontTmp = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.PLANT), new Corner(Suit.EMPTY),
-                new Corner(Suit.FUNGI));
+        Face backTmp = new Face(Suit.EMPTY,Suit.EMPTY,Suit.EMPTY, Suit.EMPTY);
+        Face frontTmp = new Face(Suit.ANIMAL, Suit.PLANT, Suit.EMPTY, Suit.FUNGI);
         Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 0, obj);
@@ -216,14 +207,11 @@ public class PlayngStationTameplate {
     public static PlayingStation test_null_corner_c() { //2 animal, 1 plant, 2 fungi, 1 insect, 1 points
         // i create two card resource with an EMPTY back and some Suits in the front,
         // with all corner that can be covered
-        Face backTmp = new Face(new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                new Corner(Suit.EMPTY));
+        Face backTmp = new Face(Suit.EMPTY,Suit.EMPTY, Suit.EMPTY, Suit.EMPTY);
 
-        Face frontTmp = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.NULL), new Corner(Suit.EMPTY),
-                new Corner(Suit.FUNGI));
+        Face frontTmp = new Face(Suit.ANIMAL,Suit.NULL,Suit.EMPTY, Suit.FUNGI);
 
-        Face frontTmp2 = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.ANIMAL), new Corner(Suit.EMPTY),
-                new Corner(Suit.FUNGI));
+        Face frontTmp2 = new Face(Suit.ANIMAL, Suit.ANIMAL, Suit.EMPTY, Suit.FUNGI);
         Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 1, obj);
@@ -260,14 +248,11 @@ public class PlayngStationTameplate {
     public static PlayingStation test_alone_card_c() { //2 animal, 1 plant, 1 fungi, 1 insect, 0 points
         // i create two card resource with an EMPTY back and some Suits in the front,
         // with all corner that can be covered
-        Face backTmp = new Face(new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                new Corner(Suit.EMPTY));
+        Face backTmp = new Face(Suit.EMPTY, Suit.EMPTY, Suit.EMPTY, Suit.EMPTY);
 
-        Face frontTmp = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.NULL), new Corner(Suit.EMPTY),
-                new Corner(Suit.FUNGI));
+        Face frontTmp = new Face(Suit.ANIMAL, Suit.NULL, Suit.EMPTY, Suit.FUNGI);
 
-        Face frontTmp2 = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.ANIMAL), new Corner(Suit.EMPTY),
-                new Corner(Suit.FUNGI));
+        Face frontTmp2 = new Face(Suit.ANIMAL, Suit.ANIMAL, Suit.EMPTY, Suit.FUNGI);
         Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 1, obj);
@@ -304,14 +289,11 @@ public class PlayngStationTameplate {
     public static PlayingStation test_goldCard_cost_c() { //2 animal, 1 plant, 1 fungi, 1 insect, 0 points
         // i create two card resource with an EMPTY back and some Suits in the front,
         // with all corner that can be covered
-        Face back = new Face(new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                new Corner(Suit.EMPTY));
+        Face back = new Face(Suit.EMPTY, Suit.EMPTY, Suit.EMPTY, Suit.EMPTY);
 
-        Face front = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                new Corner(Suit.FUNGI));
+        Face front = new Face(Suit.ANIMAL, Suit.EMPTY, Suit.EMPTY, Suit.FUNGI);
 
-        Face frontGold = new Face(new Corner(Suit.INKWELL), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                new Corner(Suit.EMPTY));
+        Face frontGold = new Face(Suit.INKWELL, Suit.EMPTY, Suit.EMPTY, Suit.EMPTY);
 
         Objective objectiveGold = new ObjectiveCountingGold(1,0,0);
 
@@ -351,14 +333,11 @@ public class PlayngStationTameplate {
     public static PlayingStation test_out_of_bound_c() { //2 animal, 1 plant, 1 fungi, 1 insect, 0 points
         // i create two card resource with an EMPTY back and some Suits in the front,
         // with all corner that can be covered
-        Face backTmp = new Face(new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                new Corner(Suit.EMPTY));
+        Face backTmp = new Face(Suit.EMPTY,Suit.EMPTY, Suit.EMPTY, Suit.EMPTY);
 
-        Face frontTmp = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.NULL), new Corner(Suit.EMPTY),
-                new Corner(Suit.FUNGI));
+        Face frontTmp = new Face(Suit.ANIMAL, Suit.NULL, Suit.EMPTY, Suit.FUNGI);
 
-        Face frontTmp2 = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.ANIMAL), new Corner(Suit.EMPTY),
-                new Corner(Suit.FUNGI));
+        Face frontTmp2 = new Face(Suit.ANIMAL, Suit.ANIMAL, Suit.EMPTY, Suit.FUNGI);
         Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 1, obj);
@@ -395,14 +374,11 @@ public class PlayngStationTameplate {
     public static PlayingStation test_same_axes_c() { //2 animal, 1 plant, 1 fungi, 1 insect, 0 points
         // i create two card resource with an EMPTY back and some Suits in the front,
         // with all corner that can be covered
-        Face backTmp = new Face(new Corner(Suit.EMPTY), new Corner(Suit.EMPTY), new Corner(Suit.EMPTY),
-                new Corner(Suit.EMPTY));
+        Face backTmp = new Face(Suit.EMPTY, Suit.EMPTY, Suit.EMPTY, Suit.EMPTY);
 
-        Face frontTmp = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.NULL), new Corner(Suit.EMPTY),
-                new Corner(Suit.FUNGI));
+        Face frontTmp = new Face(Suit.ANIMAL,Suit.NULL,Suit.EMPTY, Suit.FUNGI);
 
-        Face frontTmp2 = new Face(new Corner(Suit.ANIMAL), new Corner(Suit.ANIMAL), new Corner(Suit.EMPTY),
-                new Corner(Suit.FUNGI));
+        Face frontTmp2 = new Face(Suit.ANIMAL, Suit.ANIMAL, Suit.EMPTY, Suit.FUNGI);
         Objective obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, Suit.ANIMAL, 1, obj);
