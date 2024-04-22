@@ -15,7 +15,7 @@ public class PlayingBoard extends Observable{
 
 
     private LinkedList<CardStarting> deckCardStarting;
-    private ArrayList<Player> playerList;
+    private Map<String,Player> playerMap;
     private CardResource CentralFirsResourceCard;
     private CardResource CentralSecondResourceCard;
     private CardGold CentralFristGoldCard;
@@ -31,7 +31,7 @@ public class PlayingBoard extends Observable{
         this.deckCardObjective = deckCardObjective;
         this.deckCardResource = deckCardResource;
         this.deckCardStarting = deckCardStarting;
-        this.playerList = new ArrayList<Player>();
+        this.playerMap = new HashMap<>();
     }
 
 
@@ -39,7 +39,7 @@ public class PlayingBoard extends Observable{
 
 
     //-------------------GETTER-----------------------------
-    public ArrayList<Player> getPlayers(){return playerList;}
+    public Map<String,Player> getPlayers(){return playerMap;}
     public LinkedList<CardGold> getDeckCardGold() {
         return deckCardGold;
     }
@@ -102,10 +102,16 @@ public class PlayingBoard extends Observable{
 
     // shuffle players
     public void shufflePlayer(){
-        Collections.shuffle(playerList);
+        List<Player> players = new ArrayList<>(playerMap.values());
+        Collections.shuffle(players);
+        playerMap.clear();
+        for (Player player : players) {
+            playerMap.put(player.getNickname(), player);
+        }
     }
+
     public void addPlayer(Player p){
-        this.playerList.add(p);
+        this.playerMap.put(p.getNickname(),p);
     }
 
 
