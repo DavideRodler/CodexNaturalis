@@ -23,8 +23,10 @@ public class RmiServer implements VirtualServer{
 
 
     @Override
-    public void connectClient(VirtualView client) {
+    public synchronized void connectClient(VirtualView client) {
+
             this.clients.add(client);
+            System.err.println("new client connected");
     }
 
     @Override
@@ -66,6 +68,7 @@ public class RmiServer implements VirtualServer{
                 clientsMap.put(name, clients.get(3));
                 break;
         }
+        System.err.println("New player added" + name);
     }
 
     @Override
