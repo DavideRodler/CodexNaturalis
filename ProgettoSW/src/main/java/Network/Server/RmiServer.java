@@ -3,6 +3,7 @@ package Network.Server;
 import Network.Client.RmiClient;
 import Network.Client.VirtualView;
 import controller.GameController;
+import model.PlayingBoard;
 import model.cards.CardStarting;
 
 import java.rmi.RemoteException;
@@ -103,13 +104,19 @@ public class RmiServer implements VirtualServer{
      */
 
     @Override
-    public void addStartingCard(String nickname) throws RemoteException {
-        CardStarting cardStarting = gameController.addStartingCard(nickname);
+    public CardStarting getStartingCard(String nickname) throws RemoteException {
+        CardStarting cardStarting = gameController.getStartingCard(nickname);
         clientsMap.get(nickname).showStartingCard(cardStarting);
+        return cardStarting;
     }
 
     @Override
-    public boolean startTurn() throws RemoteException {
+    public boolean allPlayerConnected() throws RemoteException {
         return Objects.equals(this.numberOfPlayer(), this.getPlayerNumber());
+    }
+
+    @Override
+    public PlayingBoard getServerModel() throws RemoteException {
+        return gameController.getBoard();
     }
 }

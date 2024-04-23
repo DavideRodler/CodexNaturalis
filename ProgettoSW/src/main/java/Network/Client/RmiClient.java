@@ -2,6 +2,9 @@ package Network.Client;
 
 import Network.Cli2;
 import Network.Server.VirtualServer;
+import View.UI;
+import model.PlayingBoard;
+import model.cards.CardPlaying;
 import model.cards.CardStarting;
 
 import java.io.InputStreamReader;
@@ -12,8 +15,10 @@ import java.util.Scanner;
 public class RmiClient extends UnicastRemoteObject implements VirtualView{
 
     final VirtualServer server;
-    private Cli2 cli;
+    private UI cli;
     private String nickname;
+    private ClientModel clientModel;
+
 
     public RmiClient(VirtualServer server) throws RemoteException {
         this.server = server;
@@ -25,8 +30,9 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView{
 
     public void run()  throws RemoteException {
         this.server.connectClient(this);
+
         cli = new Cli2(server, this);
-        cli.init();
+
         String nickname;
         do {
             nickname = cli.askNickname(); // ask for nickname
@@ -45,13 +51,18 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView{
             System.out.println("Lobby is full, starting game...");
         }
 
+        clientModel = new ClientModel();
+
+
         while(true)
         {
-            if(server.startTurn()) {
-                server.addStartingCard(this.nickname);
+            if(server.allPlayerConnected()) {
+                CardPlaying cardPlaying = server.getStartingCard(this.nickname);
                 break;
             }
         }
+
+
 
     }
 

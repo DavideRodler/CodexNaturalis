@@ -114,7 +114,7 @@ public class GameController implements Serializable {
         }
     }
 
-    public CardStarting addStartingCard(String nickname) {
+    public CardStarting getStartingCard(String nickname) {
            CardStarting firstCard = board.getDeckCardStarting().pop();
            return firstCard;
     }

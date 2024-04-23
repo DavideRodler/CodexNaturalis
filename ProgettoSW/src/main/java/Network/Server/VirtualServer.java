@@ -1,6 +1,8 @@
 package Network.Server;
 
 import Network.Client.VirtualView;
+import model.PlayingBoard;
+import model.cards.CardPlaying;
 import model.cards.CardStarting;
 
 import java.rmi.Remote;
@@ -27,7 +29,9 @@ public interface VirtualServer extends Remote {
 
     Integer getPlayerNumber() throws RemoteException;
 
-    void addStartingCard(String nickname) throws RemoteException;
+    CardPlaying getStartingCard(String nickname) throws RemoteException;
 
-    boolean startTurn() throws RemoteException;
+    PlayingBoard getServerModel() throws RemoteException;
+
+    boolean allPlayerConnected() throws RemoteException;
 }
