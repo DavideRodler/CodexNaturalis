@@ -1,10 +1,13 @@
 package controller;
 
+import model.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -19,7 +22,8 @@ class GameTest {
         game.addPlayer("isa");
         game.addPlayer("eric");
         game.setPlayerOrder();
-        game.getBoard().getPlayers().stream().map(x -> x.getNickname()).forEach(System.out::println);
+        List<Player> players = new ArrayList<>(game.getBoard().getPlayers().values());
+        players.stream().map(x -> x.getNickname()).forEach(System.out::println);
         assertEquals(game.getBoard().getPlayers().size(),4,"test passato");
 
     }

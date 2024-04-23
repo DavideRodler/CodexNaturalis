@@ -39,7 +39,9 @@ public class PlayingBoard extends Observable{
 
 
     //-------------------GETTER-----------------------------
-    public Map<String,Player> getPlayers(){return playerMap;}
+    public Map<String,Player> getPlayers(){
+        return playerMap;
+    }
     public LinkedList<CardGold> getDeckCardGold() {
         return deckCardGold;
     }
