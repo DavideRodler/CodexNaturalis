@@ -3,9 +3,10 @@ package Network;
 import Network.Client.RmiClient;
 import Network.Server.VirtualServer;
 import View.UI;
+import model.cards.CardStarting;
+import model.enums.Suit;
 
 import java.io.InputStreamReader;
-import java.rmi.RemoteException;
 import java.util.Scanner;
 
 public class Cli2 implements UI {
@@ -16,6 +17,36 @@ public class Cli2 implements UI {
     public Cli2(VirtualServer server, RmiClient client) {
         this.server = server;
         this.client = client;
+    }
+
+
+    private String cornerScanner(Suit suit){
+        return switch (suit) {
+            case ANIMAL -> "A";
+            case INSECT -> "I";
+            case PLANT -> "P";
+            case FUNGI -> "F";
+            case EMPTY -> "E";
+            default -> "N";
+        };
+    }
+
+
+    @Override
+    public void showStartingCard(CardStarting cardStarting) {
+        System.out.println("Your starting card is:" );
+        System.out.println("Front:");
+        System.out.println(
+                cornerScanner(cardStarting.getFront().getUpLeft())
+                +"  "+cornerScanner(cardStarting.getFront().getUpRight())
+                +"/n"+cornerScanner(cardStarting.getFront().getDownLeft())
+                +"  "+cornerScanner(cardStarting.getFront().getDownRight()));
+        System.out.println("Back:");
+        System.out.println(
+                cornerScanner(cardStarting.getBack().getUpLeft())
+                +"  "+cornerScanner(cardStarting.getBack().getUpRight())
+                +"/n"+cornerScanner(cardStarting.getBack().getDownLeft())
+                +"  "+cornerScanner(cardStarting.getBack().getDownRight()));
     }
 
     @Override

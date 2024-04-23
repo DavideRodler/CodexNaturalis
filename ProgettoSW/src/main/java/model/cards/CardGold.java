@@ -5,7 +5,9 @@ import model.cards.face.Face;
 import model.enums.Suit;
 import model.objectives.Objective;
 
-public class CardGold extends CardResource {
+import java.io.Serializable;
+
+public class CardGold extends CardResource implements Serializable {
     private int costAnimal;
     private int costInsect;
     private int costFungi;

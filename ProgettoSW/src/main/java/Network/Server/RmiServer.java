@@ -1,21 +1,24 @@
 package Network.Server;
 
+import Network.Client.RmiClient;
 import Network.Client.VirtualView;
 import controller.GameController;
+import model.cards.CardStarting;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class RmiServer implements VirtualServer{
 
     final GameController gameController;
     final List<VirtualView> clients;
+    final Map<String, VirtualView> clientsMap;
     private Integer playerNumber;
 
     public RmiServer(GameController gameController) {
         this.gameController = gameController;
         clients = new ArrayList<>();
+        clientsMap = new HashMap<>();
     }
 
 
@@ -39,9 +42,30 @@ public class RmiServer implements VirtualServer{
 
     }
 
+
+    /**
+     * Add a new player to the game
+     * @param name the nickname of the player
+     *Add new player to the model and also add clients with theirs nickname to server
+     */
     @Override
     public synchronized void addNewPlayer(String name) {
         gameController.addPlayer(name);
+        switch(this.clients.size())
+        {
+            case 1:
+                clientsMap.put(name, clients.get(0));
+                break;
+            case 2:
+                clientsMap.put(name, clients.get(1));
+                break;
+            case 3:
+                clientsMap.put(name, clients.get(2));
+                break;
+            case 4:
+                clientsMap.put(name, clients.get(3));
+                break;
+        }
     }
 
     @Override
@@ -68,12 +92,21 @@ public class RmiServer implements VirtualServer{
         return playerNumber;
     }
 
+
+    /**
+     * Add a starting card to the player
+     * @param nickname the nickname of the player
+     * @throws RemoteException
+     */
+
     @Override
     public void addStartingCard(String nickname) throws RemoteException {
-        gameController.addStartingCard(nickname);
-        for(var c : this.clients){
+        CardStarting cardStarting = gameController.addStartingCard(nickname);
+        clientsMap.get(nickname).showStartingCard(cardStarting);
+    }
 
-            c.showUpdatedHand();
-        }
+    @Override
+    public boolean startTurn() throws RemoteException {
+        return Objects.equals(this.numberOfPlayer(), this.getPlayerNumber());
     }
 }

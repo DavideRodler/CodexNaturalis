@@ -4,7 +4,9 @@ import model.cards.face.Face;
 import model.enums.Suit;
 import model.objectives.Objective;
 
-public class CardResource extends CardPlaying{
+import java.io.Serializable;
+
+public class CardResource extends CardPlaying implements Serializable {
     private final Suit symbol;
     private final Integer points;
     private final Objective objective;  // Aggiunto l'attributo Objective

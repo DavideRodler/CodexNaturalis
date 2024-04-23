@@ -2,7 +2,9 @@ package model.cards;
 import model.enums.Suit;
 import model.cards.face.Face;
 
-public abstract  class CardPlaying extends Card {
+import java.io.Serializable;
+
+public abstract  class CardPlaying extends Card implements Serializable {
     private Face front;
     private Face back;
     private Boolean playedBack;

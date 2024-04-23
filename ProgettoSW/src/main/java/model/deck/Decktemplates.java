@@ -27,6 +27,7 @@ public class Decktemplates {
   // each line in the text represent the card:
   // we have in order: suit of the card, the four corner(starting from upright)
   // and the points
+  private static Integer ID;
 
   public static LinkedList<CardResource> ResourceCardDeck() {
     LinkedList<CardResource> deck = new LinkedList<>();
@@ -49,8 +50,9 @@ public class Decktemplates {
       Face back = new Face(Suit.EMPTY, Suit.EMPTY,Suit.EMPTY, Suit.EMPTY);
       Face front = new Face(AssignCorner(upright), AssignCorner(upleft), AssignCorner(downright),
           AssignCorner(downleft));
-      CardResource tmp = new CardResource(0, front, back, AssignSuit(suite), points, AssignObjective("points"));
+      CardResource tmp = new CardResource(ID, front, back, AssignSuit(suite), points, AssignObjective("points"));
       deck.add(tmp);
+      ID++;
 
     }
     //i shuffle the deck before returning it
@@ -83,9 +85,10 @@ public class Decktemplates {
       Face back = new Face(Suit.EMPTY, Suit.EMPTY,Suit.EMPTY, Suit.EMPTY);
       Face front = new Face(AssignCorner(upright), AssignCorner(upleft), AssignCorner(downright),
           AssignCorner(downleft));
-      CardGold tmp = new CardGold(0, front, back, AssignSuit(suite), points, costAnimal, costInsect, costFungi,
+      CardGold tmp = new CardGold(ID, front, back, AssignSuit(suite), points, costAnimal, costInsect, costFungi,
           costPlant, AssignObjective(center));
       deck.add(tmp);
+      ID++;
 
     }
     //i shuffle the deck before returning it
@@ -94,6 +97,7 @@ public class Decktemplates {
   }
 
   public static LinkedList<CardStarting> StartingCardDeck() {
+    ID=0;
     LinkedList<CardStarting> deck = new LinkedList<>();
     JSONParser parser = new JSONParser();
       JSONArray startingCard = null;
@@ -124,6 +128,7 @@ public class Decktemplates {
           AssignCorner(downleftFront));
       CardStarting tmp = new CardStarting(0, front, back, symbols);
       deck.add(tmp);
+      ID++;
 
     }
     //i shuffle the deck before returning it
@@ -180,6 +185,7 @@ public class Decktemplates {
         }
         default -> throw new IllegalStateException("Unexpected value: " + suite);
       }
+      ID++;
     }
     //i shuffle the deck before returning it
     shuffle(deck);

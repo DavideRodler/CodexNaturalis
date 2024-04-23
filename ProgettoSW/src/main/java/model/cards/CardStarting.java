@@ -3,10 +3,12 @@ package model.cards;
 import model.cards.face.Face;
 import model.enums.Suit;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CardStarting extends CardPlaying {
+public class CardStarting extends CardPlaying implements Serializable{
     private ArrayList<Suit> symbols;
+
 
     public CardStarting(Integer ID, Face front, Face back, ArrayList<Suit> symbols) {
         super(ID, front, back);

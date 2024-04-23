@@ -2,9 +2,10 @@ package model.cards.face;
 
 import model.enums.Suit;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Face {
+public class Face implements Serializable {
     private Suit UpRight;
     private Suit UpLeft;
     private Suit DownRight;

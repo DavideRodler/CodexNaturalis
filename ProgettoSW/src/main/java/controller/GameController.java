@@ -10,11 +10,10 @@ import model.cards.CardStarting;
 import model.deck.Decktemplates;
 import model.enums.GameState;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.io.Serializable;
+import java.util.*;
 
-public class GameController {
+public class GameController implements Serializable {
     private PlayingBoard board;
 
     private GameState gameState;
@@ -29,10 +28,12 @@ public class GameController {
 
     public void initGameController() {
         // creating decks
-        LinkedList<CardGold> deckGold = Decktemplates.GoldCardDeck();
-        LinkedList<CardResource> deckResource = Decktemplates.ResourceCardDeck();
-        LinkedList<CardStarting> deckStarting = Decktemplates.StartingCardDeck();
-        LinkedList<CardObjective> deckObjective = Decktemplates.ObjectiveCardDeck();
+        LinkedList<CardStarting> deckStarting = Decktemplates.StartingCardDeck(); //ID : 0 -> 5
+        LinkedList<CardObjective> deckObjective = Decktemplates.ObjectiveCardDeck(); //ID : 6 -> 21
+        LinkedList<CardResource> deckResource = Decktemplates.ResourceCardDeck(); //ID : 22 -> 61
+        LinkedList<CardGold> deckGold = Decktemplates.GoldCardDeck(); //ID : 62 -> 101
+
+
 
         //shuffleing the decks
         Collections.shuffle(deckGold);
@@ -113,8 +114,9 @@ public class GameController {
         }
     }
 
-    public void addStartingCard(String nickname) {
-            getBoard().getPlayers().get(nickname).setStartingCard(board.getDeckCardStarting().pop());
+    public CardStarting addStartingCard(String nickname) {
+           CardStarting firstCard = board.getDeckCardStarting().pop();
+           return firstCard;
     }
 
    /* public static void main(String[] args) {

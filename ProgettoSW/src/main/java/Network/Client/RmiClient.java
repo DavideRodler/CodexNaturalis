@@ -2,6 +2,7 @@ package Network.Client;
 
 import Network.Cli2;
 import Network.Server.VirtualServer;
+import model.cards.CardStarting;
 
 import java.io.InputStreamReader;
 import java.rmi.RemoteException;
@@ -44,7 +45,14 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView{
             System.out.println("Lobby is full, starting game...");
         }
 
-        server.addStartingCard(this.nickname);
+        while(true)
+        {
+            if(server.startTurn()) {
+                server.addStartingCard(this.nickname);
+                break;
+            }
+        }
+
     }
 
     @Override
@@ -55,5 +63,10 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView{
     @Override
     public void showUpdatedHand() {
 
+    }
+
+    @Override
+    public void showStartingCard(CardStarting cardStarting) throws RemoteException {
+        cli.showStartingCard(cardStarting);
     }
 }

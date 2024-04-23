@@ -1,7 +1,11 @@
 package View;
 
+import model.cards.CardStarting;
+
 public interface UI {
-   String askNickname();
+    void showStartingCard(CardStarting cardStarting);
+
+    String askNickname();
 
     Integer askPlayerNumber();
 

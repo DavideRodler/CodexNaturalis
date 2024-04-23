@@ -4,24 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Cantiere in corso RMI">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Aggiunta di Client, Server Rmi, e della logica Rmi.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/SocketClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/Observable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Observers/Observable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/ViewObservable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Observers/ViewObservable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Cli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Cli.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/InputReaderTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Turn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardGold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardGold.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardObjective.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardObjective.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardPlaying.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardPlaying.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardStarting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardStarting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/face/Face.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/face/Face.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/deck/Decktemplates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/deck/Decktemplates.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,48 +80,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ClientApp.executor": "Run",
-    "Application.RmiClient.executor": "Run",
-    "Application.ServerApp.executor": "Run",
-    "Application.deckconstructor.executor": "Run",
-    "Application.decktameplatetom.executor": "Run",
-    "Application.playngstationTameplate.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckGold.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckObjective.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckResource.executor": "Run",
-    "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
-    "JUnit.GameTest.testPlayers.executor": "Run",
-    "JUnit.GameTest.testStations.executor": "Run",
-    "JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor": "Run",
-    "JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test_Positioning.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test_Positioning2.executor": "Run",
-    "JUnit.PlacingConditionTest (1).executor": "Run",
-    "JUnit.deckconstructorTest.deckResource.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.applicationServers",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ClientApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RmiClient.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ServerApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.deckconstructor.executor&quot;: &quot;Run&quot;,
+    &quot;Application.decktameplatetom.executor&quot;: &quot;Run&quot;,
+    &quot;Application.playngstationTameplate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testDeckGold.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testDeckObjective.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testDeckResource.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testStartingCardDeck.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameTest.testPlayers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameTest.testStations.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectivePositioningTest.test_Positioning.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectivePositioningTest.test_Positioning2.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlacingConditionTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.deckconstructorTest.deckResource.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.applicationServers&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -241,7 +241,8 @@
       <workItem from="1713537338424" duration="4776000" />
       <workItem from="1713634892299" duration="1477000" />
       <workItem from="1713702746015" duration="1730000" />
-      <workItem from="1713710108899" duration="31381000" />
+      <workItem from="1713710108899" duration="34383000" />
+      <workItem from="1713858148446" duration="6544000" />
     </task>
     <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
       <option name="closed" value="true" />
@@ -419,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713773004063</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Aggiunta di Client, Server Rmi, e della logica Rmi.">
+      <option name="closed" value="true" />
+      <created>1713808423438</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1713808423438</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,7 +506,8 @@
     <MESSAGE value="modificato testo exception" />
     <MESSAGE value="Introduzione a CLI+Observer" />
     <MESSAGE value="Cantiere in corso RMI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cantiere in corso RMI" />
+    <MESSAGE value="Aggiunta di Client, Server Rmi, e della logica Rmi." />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta di Client, Server Rmi, e della logica Rmi." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -506,15 +516,6 @@
           <properties class="java.lang.IllegalStateException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>
-          <line>75</line>
-          <properties class="controller.GameController" method="takenNickname">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>

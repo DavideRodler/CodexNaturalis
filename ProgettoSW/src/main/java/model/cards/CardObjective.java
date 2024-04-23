@@ -2,7 +2,9 @@ package model.cards;
 
 import model.objectives.Objective;
 
-public class CardObjective extends Card {
+import java.io.Serializable;
+
+public class CardObjective extends Card implements Serializable {
   private int points;
   private Objective objective;
 

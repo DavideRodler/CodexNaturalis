@@ -1,6 +1,8 @@
 package model.cards;
 
-public abstract class Card {
+import java.io.Serializable;
+
+public abstract class Card implements Serializable {
     private Integer ID;
 
     public Integer getId() {

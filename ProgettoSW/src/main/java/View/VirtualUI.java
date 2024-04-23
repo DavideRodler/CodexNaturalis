@@ -1,7 +1,14 @@
 package View;
 
+import model.cards.CardStarting;
+
 public class VirtualUI implements UI {
     public void update(String message) {
+
+    }
+
+    @Override
+    public void showStartingCard(CardStarting cardStarting) {
 
     }
 

@@ -6,4 +6,6 @@ module com.example.progettosw {
     exports Network.Server to java.rmi;
     exports Network.Client to java.rmi;
     exports controller to java.rmi;
+    exports model to java.rmi;
+    exports model.cards to java.rmi;
 }
