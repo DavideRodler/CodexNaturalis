@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="aggiunta colori" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="aggiunta colori">
+      <change afterPath="$PROJECT_DIR$/src/main/java/View/Cli2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,12 +49,12 @@
     &quot;assignee&quot;: &quot;tommypic&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler.git&quot;,
-    &quot;accountId&quot;: &quot;ad3a3da8-fb67-4a71-8fdd-a0d917853f52&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://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@github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler",
+    "accountId": "77d1be0f-1935-4da1-bed4-002b7d7b8169"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -120,6 +129,8 @@
   </component>
   <component name="RunManager" selected="Application.ClientApp">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-22" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
       <module name="ProgettoSW" />
       <extension name="coverage">
@@ -433,6 +444,11 @@
             <list>
               <RecentGroup>
                 <option name="FILTER_VALUES">
+                  <option value="detached2" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
                   <option value="main" />
                 </option>
               </RecentGroup>
@@ -461,7 +477,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="detached2" />
                       </list>
                     </value>
                   </entry>

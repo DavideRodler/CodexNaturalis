@@ -1,9 +1,10 @@
 package Network.Client;
 
-import Network.Cli2;
+import View.Cli2;
 import Network.Server.VirtualServer;
 import View.UI;
 import model.PlayingBoard;
+import model.cards.CardObjective;
 import model.cards.CardPlaying;
 import model.cards.CardStarting;
 
@@ -31,7 +32,7 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView{
     public void run()  throws RemoteException {
         this.server.connectClient(this);
 
-        cli = new Cli2(server, this);
+        cli = new Cli2( this);
 
         String nickname;
         do {
@@ -73,6 +74,11 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView{
 
     @Override
     public void showUpdatedHand() {
+
+    }
+
+    @Override
+    public void showObjectivetochoose(CardObjective firsrobj, CardObjective secondobj) throws RemoteException {
 
     }
 

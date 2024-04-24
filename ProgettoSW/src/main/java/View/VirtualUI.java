@@ -13,6 +13,11 @@ public class VirtualUI implements UI {
     }
 
     @Override
+    public void init() {
+
+    }
+
+    @Override
     public String askNickname() {
         return "";
     }
