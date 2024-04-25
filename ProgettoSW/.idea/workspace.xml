@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Settaggio gioco iniziale con observer in modo reattivo">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="cli 2 commentata">
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,7 +227,7 @@
       <workItem from="1713858148446" duration="6962000" />
       <workItem from="1713873686858" duration="4854000" />
       <workItem from="1713888131863" duration="8755000" />
-      <workItem from="1714033515681" duration="30551000" />
+      <workItem from="1714033515681" duration="31071000" />
     </task>
     <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
       <option name="closed" value="true" />
@@ -445,7 +445,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714081410217</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Settaggio gioco iniziale con observer in modo reattivo">
+      <option name="closed" value="true" />
+      <created>1714082495256</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1714082495256</updated>
+    </task>
+    <task id="LOCAL-00029" summary="cli 2 commentata">
+      <option name="closed" value="true" />
+      <created>1714082765430</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1714082765430</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +503,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="origin/main" />
                       </list>
                     </value>
                   </entry>
@@ -500,7 +516,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="COMMIT CON NUOVO DECK GOLD E PATTERN DI CREAZIONE FILE JSON" />
     <MESSAGE value="Commit con aggiunte parziali dei deck starting card e objective card, modifica table come Mappa con key=ArrayList" />
     <MESSAGE value="fix objective" />
     <MESSAGE value="put void instead of objective in method StartingCardDeck" />
@@ -525,7 +540,8 @@
     <MESSAGE value="aggiunta colori" />
     <MESSAGE value="aggiunta local clientController" />
     <MESSAGE value="Settaggio gioco iniziale con observer in modo reattivo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Settaggio gioco iniziale con observer in modo reattivo" />
+    <MESSAGE value="cli 2 commentata" />
+    <option name="LAST_COMMIT_MESSAGE" value="cli 2 commentata" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
