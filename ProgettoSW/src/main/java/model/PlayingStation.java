@@ -10,13 +10,14 @@ import model.objectives.ObjectiveCountingGold;
 import model.objectives.ObjectiveDiagonal;
 
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.*;
 
 import static model.enums.Suit.ANIMAL;
 import static model.enums.Suit.QUILL;
 
-public class PlayingStation {
+public class PlayingStation implements Serializable {
     private HashMap<ArrayList<Integer>, CardPlaying> table;
     private Integer countInsect;
     private Integer countAnimal;
@@ -101,7 +102,7 @@ public class PlayingStation {
 
 
     // Costruttore
-    public PlayingStation(Player player, CardStarting startCard, CardObjective Objective) {
+    public PlayingStation(Player player, CardPlaying startCard, CardObjective Objective) {
         this.table = new HashMap<>();
         this.player = player;
         ArrayList<Integer> coordi = new ArrayList<Integer>();
@@ -116,7 +117,7 @@ public class PlayingStation {
         this.countInkwell = 0;
         this.countQuill = 0;
         this.countManuscript = 0;
-        updateCounters(startCard);
+        updateCounters((CardStarting) startCard);
     }
 
 

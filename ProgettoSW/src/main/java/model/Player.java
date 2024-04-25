@@ -4,6 +4,7 @@ package model;
 import model.cards.*;
 import model.enums.Color;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
@@ -11,7 +12,7 @@ import Exception.DeckEmptyException;
 import Exception.InvalidPlacingCondition;
 
 
-public class Player {
+public class Player implements Serializable {
     private final String nickname;
     private Integer playerNumber;
     private Integer numberTurns;

@@ -3,10 +3,8 @@ package controller;
 import model.Player;
 import model.PlayingBoard;
 import model.PlayingStation;
-import model.cards.CardGold;
-import model.cards.CardObjective;
-import model.cards.CardResource;
-import model.cards.CardStarting;
+import model.ReducedBoard;
+import model.cards.*;
 import model.deck.Decktemplates;
 import model.enums.GameState;
 
@@ -119,6 +117,25 @@ public class GameController implements Serializable {
            return firstCard;
     }
 
+    public ReducedBoard getReducedBoard(String nickname) {
+        Player player = this.board.getPlayers().get(nickname);
+        if (player == null) {
+            throw new IllegalArgumentException("No player with the given nickname");
+        }
+        PlayingStation station = player.getStation();
+        return new ReducedBoard(player, station);
+    }
+
+
+    public void addCard(CardResource card, Integer X, Integer Y, Integer choice, String name) {
+        board.getPlayers().get(name).getStation().addCard(card,X,Y);
+    }
+
+    public CardObjective[] getObjectiveCards(String nickname) {
+        CardObjective first = board.getDeckCardObjective().pop();
+        CardObjective second = board.getDeckCardObjective().pop();
+        return new CardObjective[]{first, second};
+    }
    /* public static void main(String[] args) {
         Game game = new Game();
         game.initGameController();

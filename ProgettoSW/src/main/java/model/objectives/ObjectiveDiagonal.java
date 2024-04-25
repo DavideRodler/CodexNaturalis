@@ -6,10 +6,11 @@ import model.enums.Suit;
 import model.enums.Direction;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ObjectiveDiagonal implements Objective { //direzione data dalla carta in alto
+public class ObjectiveDiagonal implements Objective, Serializable { //direzione data dalla carta in alto
 private Direction direction;
 private Suit color;
 

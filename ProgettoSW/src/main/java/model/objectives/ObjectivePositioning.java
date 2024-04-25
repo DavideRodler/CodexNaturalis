@@ -7,10 +7,12 @@ import model.enums.Suit;
 import model.enums.Direction;
 import model.enums.Position;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ObjectivePositioning implements Objective{
+public class ObjectivePositioning implements Objective, Serializable {
     public Suit colorOneCard;
     public Suit colorTwoCards;
     public Direction horizontalDirection;
@@ -39,6 +41,7 @@ public class ObjectivePositioning implements Objective{
         this.horizontalDirection = horizontalDirection;
         this.verticalDirection = verticalDirection;
     }
+
 
     @Override
     public int countObjectivePoints(PlayingStation station) {

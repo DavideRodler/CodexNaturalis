@@ -4,10 +4,11 @@ import model.cards.Card;
 import model.cards.CardResource;
 import model.enums.Suit;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ObjectiveCountingResource implements Objective {
+public class ObjectiveCountingResource implements Objective, Serializable {
     public Suit symbol;
 
     @Override

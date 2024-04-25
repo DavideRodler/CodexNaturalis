@@ -2,33 +2,30 @@ package Network.Client;
 
 import Network.Cli2;
 import Network.Server.VirtualServer;
+
 import View.UI;
-import model.PlayingBoard;
+import model.ReducedBoard;
+import model.cards.CardObjective;
 import model.cards.CardPlaying;
 import model.cards.CardStarting;
 
-import java.io.InputStreamReader;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Scanner;
 
-public class RmiClient extends UnicastRemoteObject implements VirtualView{
+public class RmiClient extends UnicastRemoteObject implements VirtualView {
 
     final VirtualServer server;
     private UI cli;
-    private String nickname;
-    private ClientModel clientModel;
+    private ReducedBoard clientModel;
+    private final Object lock;
 
 
     public RmiClient(VirtualServer server) throws RemoteException {
         this.server = server;
+        lock = new Object();
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public void run()  throws RemoteException {
+    public void ClientSetup() throws RemoteException{
         this.server.connectClient(this);
 
         cli = new Cli2(server, this);
@@ -38,36 +35,55 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView{
             nickname = cli.askNickname(); // ask for nickname
         } while (server.nicknameCheck(nickname));
 
+
         server.addNewPlayer(nickname);
-        setNickname(nickname);
 
         if (server.numberOfPlayer() == 1) {
             Integer playerNumber = cli.askPlayerNumber();
             server.inizializeLobby(playerNumber);
-            System.out.println("Waiting for other players to join...");
-        } else if (server.numberOfPlayer() < server.getPlayerNumber()) {
-            System.out.println("Waiting for other players to join...");
-        }else{
-            System.out.println("Lobby is full, starting game...");
         }
+        System.out.println("Waiting for other players to connect...");
+    }
 
-        clientModel = new ClientModel();
-
-
-        while(true)
-        {
-            if(server.allPlayerConnected()) {
-                CardPlaying cardPlaying = server.getStartingCard(this.nickname);
-                break;
+    public void ClientGameSetup () throws RemoteException {
+        CardPlaying startingCard;
+        CardObjective[] cardObjective;
+        synchronized (this.server){
+            String name = server.getClientNickname(this);
+            startingCard = server.getStartingCard(name);
+            cardObjective = server.getObjectiveCards(name);
+        }
+        Integer choice = cli.askStartingCardFront();
+        synchronized (this.server){
+            if (choice == 2) {
+                startingCard.setPlayingBack(true);
             }
         }
 
+        Integer choiceObjective = cli.askObjectiveCard();
 
+        synchronized (this.server){
+            inizializePlayingStation(this, startingCard, choice, cardObjective[choiceObjective-1]);
+        }
 
     }
 
+    private void inizializePlayingStation(VirtualView rmiClient, CardPlaying startingCard, Integer choice, CardObjective cardObjective) throws RemoteException {
+        String name = server.getClientNickname(rmiClient);
+        server.inizializePlayingStation(name, startingCard, choice, cardObjective);
+        this.clientModel = server.getReducedBoard(rmiClient);
+    }
+
+
+
+
+
+
+
+
+
     @Override
-    public void showUpdatedBoard() {
+    public void showUpdatedBoard() throws RemoteException {
 
     }
 
@@ -77,7 +93,22 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView{
     }
 
     @Override
-    public void showStartingCard(CardStarting cardStarting) throws RemoteException {
+    public synchronized void showStartingCard(CardStarting cardStarting) throws RemoteException {
         cli.showStartingCard(cardStarting);
+    }
+
+    @Override
+    public void Loginupdate() {
+        System.out.println("Lobby is full, starting game...");
+        try {
+            this.ClientGameSetup();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public synchronized void showObjectiveCards(CardObjective[] cardObjective) {
+        cli.showObjectiveCards(cardObjective);
     }
 }

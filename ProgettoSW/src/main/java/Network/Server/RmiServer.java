@@ -1,25 +1,34 @@
 package Network.Server;
 
-import Network.Client.RmiClient;
 import Network.Client.VirtualView;
+import Observers.LoginObservable;
+
 import controller.GameController;
+import model.Player;
 import model.PlayingBoard;
+import model.PlayingStation;
+import model.ReducedBoard;
+import model.cards.CardObjective;
+import model.cards.CardPlaying;
+import model.cards.CardResource;
 import model.cards.CardStarting;
 
 import java.rmi.RemoteException;
 import java.util.*;
 
-public class RmiServer implements VirtualServer{
+public class RmiServer extends LoginObservable implements VirtualServer {
 
     final GameController gameController;
     final List<VirtualView> clients;
-    final Map<String, VirtualView> clientsMap;
+    final Map<String, VirtualView> clientsMapNicknamesKey;
+    final Map<VirtualView, String> clientsMapClientsKey;
     private Integer playerNumber;
 
     public RmiServer(GameController gameController) {
         this.gameController = gameController;
         clients = new ArrayList<>();
-        clientsMap = new HashMap<>();
+        clientsMapNicknamesKey = new HashMap<>();
+        clientsMapClientsKey = new HashMap<>();
     }
 
 
@@ -28,12 +37,18 @@ public class RmiServer implements VirtualServer{
 
             this.clients.add(client);
             System.err.println("new client connected");
+            try{
+                this.addObserver(client);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 
     @Override
-    public synchronized void addCard(Integer number, Integer X, Integer Y) {
+    public void addCard(CardResource card, Integer X, Integer Y) {
 
     }
+
 
     @Override
     public synchronized void passTurn() {
@@ -57,19 +72,30 @@ public class RmiServer implements VirtualServer{
         switch(this.clients.size())
         {
             case 1:
-                clientsMap.put(name, clients.get(0));
+                clientsMapNicknamesKey.put(name, clients.get(0));
+                clientsMapClientsKey.put(clients.get(0), name);
                 break;
             case 2:
-                clientsMap.put(name, clients.get(1));
+                clientsMapNicknamesKey.put(name, clients.get(1));
+                clientsMapClientsKey.put(clients.get(1), name);
                 break;
             case 3:
-                clientsMap.put(name, clients.get(2));
+                clientsMapNicknamesKey.put(name, clients.get(2));
+                clientsMapClientsKey.put(clients.get(2), name);
                 break;
             case 4:
-                clientsMap.put(name, clients.get(3));
+                clientsMapNicknamesKey.put(name, clients.get(3));
+                clientsMapClientsKey.put(clients.get(3), name);
                 break;
         }
         System.err.println("New player added" + name);
+        try{
+            if(this.allPlayerConnected()){
+                this.notifyObservers();
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -78,23 +104,27 @@ public class RmiServer implements VirtualServer{
     }
 
     @Override
-    public Integer numberOfPlayer() throws RemoteException {
+    public synchronized Integer numberOfPlayer() throws RemoteException {
         return gameController.numberOfPlayer();
     }
 
     @Override
-    public void initializeBoard() throws RemoteException {
+    public synchronized void initializeBoard() throws RemoteException {
         gameController.initGameController();
     }
 
     @Override
-    public void inizializeLobby(Integer playerNumber) throws RemoteException {
+    public synchronized void inizializeLobby(Integer playerNumber) throws RemoteException {
         this.playerNumber = playerNumber;
     }
 
-    public Integer getPlayerNumber() {
+    public synchronized Integer getPlayerNumber() {
         return playerNumber;
     }
+
+
+
+
 
 
     /**
@@ -104,19 +134,56 @@ public class RmiServer implements VirtualServer{
      */
 
     @Override
-    public CardStarting getStartingCard(String nickname) throws RemoteException {
+    public synchronized CardStarting getStartingCard(String nickname) throws RemoteException {
         CardStarting cardStarting = gameController.getStartingCard(nickname);
-        clientsMap.get(nickname).showStartingCard(cardStarting);
+        clientsMapNicknamesKey.get(nickname).showStartingCard(cardStarting);
         return cardStarting;
     }
 
     @Override
-    public boolean allPlayerConnected() throws RemoteException {
+    public synchronized boolean allPlayerConnected() throws RemoteException {
         return Objects.equals(this.numberOfPlayer(), this.getPlayerNumber());
     }
 
     @Override
-    public PlayingBoard getServerModel() throws RemoteException {
+    public synchronized PlayingBoard getServerModel() throws RemoteException {
         return gameController.getBoard();
     }
+
+    public synchronized void notifyObservers() {
+        super.notifyObservers();
+    }
+
+    @Override
+    public synchronized VirtualView getClientIstance(String nickname) {
+            return clientsMapNicknamesKey.get(nickname);
+    }
+
+    @Override
+    public synchronized ReducedBoard getReducedBoard(VirtualView rmiClient) {
+        return this.gameController.getReducedBoard(this.getClientNickname(rmiClient));
+    }
+
+    @Override
+    public synchronized CardObjective[] getObjectiveCards(String nickname) throws RemoteException {
+        CardObjective[] cardObjective = gameController.getObjectiveCards(nickname);
+        clientsMapNicknamesKey.get(nickname).showObjectiveCards(cardObjective);
+        return cardObjective;
+    }
+
+    @Override
+    public synchronized PlayingStation inizializePlayingStation(String clientNickname, CardPlaying startingCard, Integer choice, CardObjective cardObjective) {
+            Player player = gameController.getBoard().getPlayers().get(clientNickname);
+            PlayingStation station = new PlayingStation(player, startingCard, cardObjective);
+            player.setStation(station);
+            return station;
+    }
+
+    @Override
+    public synchronized String getClientNickname(VirtualView client) {
+            return clientsMapClientsKey.get(client);
+
+    }
+
+
 }

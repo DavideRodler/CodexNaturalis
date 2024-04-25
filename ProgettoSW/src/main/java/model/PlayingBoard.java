@@ -4,10 +4,10 @@ import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
-import Observers.Observable;
+import Observers.LoginObservable;
 import java.util.*;
 
-public class PlayingBoard extends Observable{
+public class PlayingBoard extends LoginObservable {
 
     private LinkedList<CardGold> deckCardGold;
     private LinkedList<CardResource> deckCardResource;

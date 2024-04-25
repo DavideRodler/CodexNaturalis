@@ -41,7 +41,7 @@ public class ClientApp implements Remote {
             Registry registry = LocateRegistry.getRegistry(input, 16000);
             server = (VirtualServer) registry.lookup("MyServer");
             RmiClient rmiClient= new RmiClient(server);
-            rmiClient.run();
+            rmiClient.ClientSetup();
         } catch (RemoteException r) {
             System.out.println("Error: " + r);
         } catch (NotBoundException e) {

@@ -3,7 +3,9 @@ package model.objectives;
 import model.PlayingStation;
 import model.cards.*;
 
-public class ObjectiveCountingGold implements Objective {
+import java.io.Serializable;
+
+public class ObjectiveCountingGold implements Objective, Serializable {
 
   private int countInkwell;
   private int countManuscript;
@@ -18,17 +20,16 @@ public class ObjectiveCountingGold implements Objective {
   @Override
   public int countObjectivePoints(PlayingStation station, CardResource card, Integer x, Integer y) {
     int points = 0;
-    if((countInkwell == countManuscript)&&(countInkwell == countQuill)&&(countInkwell == 1)){
-      points = Math.min(Math.min(station.getCountInkwell(), station.getCountQuill()), station.getCountManuscript());
-    }
-    else if((countQuill != 0)&&(countInkwell == 0)&&(countManuscript==0)){
-      points = station.getCountQuill() / countQuill;
-    }
-    else if ((countQuill == 0)&&(countInkwell != 0)&&(countManuscript==0)) {
-      points = station.getCountInkwell() / countInkwell;
-    }
-    else if ((countQuill == 0)&&(countInkwell == 0)&&(countManuscript!=0)){
-      points = station.getCountManuscript() / countManuscript;
+    synchronized (this) {
+      if ((countInkwell == countManuscript) && (countInkwell == countQuill) && (countInkwell == 1)) {
+        points = Math.min(Math.min(station.getCountInkwell(), station.getCountQuill()), station.getCountManuscript());
+      } else if ((countQuill != 0) && (countInkwell == 0) && (countManuscript == 0)) {
+        points = station.getCountQuill() / countQuill;
+      } else if ((countQuill == 0) && (countInkwell != 0) && (countManuscript == 0)) {
+        points = station.getCountInkwell() / countInkwell;
+      } else if ((countQuill == 0) && (countInkwell == 0) && (countManuscript != 0)) {
+        points = station.getCountManuscript() / countManuscript;
+      }
     }
     return points;
   }

@@ -1,5 +1,6 @@
 package View;
 
+import model.cards.CardObjective;
 import model.cards.CardStarting;
 
 public class VirtualUI implements UI {
@@ -19,6 +20,21 @@ public class VirtualUI implements UI {
 
     @Override
     public Integer askPlayerNumber() {
+        return 0;
+    }
+
+    @Override
+    public Integer askStartingCardFront() {
+        return 0;
+    }
+
+    @Override
+    public void showObjectiveCards(CardObjective[] cardObjective) {
+
+    }
+
+    @Override
+    public Integer askObjectiveCard() {
         return 0;
     }
 }
