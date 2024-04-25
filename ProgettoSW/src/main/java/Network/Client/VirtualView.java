@@ -12,6 +12,8 @@ public interface VirtualView extends Remote {
 
     void showUpdatedHand() throws RemoteException;
 
+    void showObjectivetochoose(CardObjective firsrobj, CardObjective secondobj) throws  RemoteException;
+
     void showStartingCard(CardStarting cardStarting) throws RemoteException;
 
     void Loginupdate() throws RemoteException ;
