@@ -1,6 +1,5 @@
 package Network.Server;
 
-import Network.Client.ClientModel;
 import Network.Client.RmiClient;
 import Network.Client.VirtualView;
 import model.PlayingBoard;
@@ -9,7 +8,6 @@ import model.ReducedBoard;
 import model.cards.CardObjective;
 import model.cards.CardPlaying;
 import model.cards.CardResource;
-import model.cards.CardStarting;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -51,4 +49,22 @@ public interface VirtualServer extends Remote {
     CardObjective[] getObjectiveCards(String clientNickname) throws RemoteException;
 
     PlayingStation inizializePlayingStation(String clientNickname, CardPlaying startingCard, Integer choice, CardObjective cardObjective) throws RemoteException;
+
+    boolean isGameFinished() throws RemoteException;
+
+    boolean isMyTurn(VirtualView rmiClient) throws RemoteException;
+
+    void loginThreadsStopper() throws RemoteException, InterruptedException;
+
+    void startTurnNotify() throws RemoteException;
+
+    void allPlayerReady() throws RemoteException, InterruptedException;
+
+    void showedBoardNotify() throws RemoteException;
+
+    void notifyMyUpdatedBoard(VirtualView rmiClient) throws RemoteException;
+
+    void showedMyBoardNotify() throws RemoteException;
+
+    void nextTurn() throws RemoteException;
 }

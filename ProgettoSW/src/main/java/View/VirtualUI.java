@@ -37,4 +37,26 @@ public class VirtualUI implements UI {
     public Integer askObjectiveCard() {
         return 0;
     }
+
+    @Override
+    public void showUpdatedBoard() {
+
+    }
+
+    @Override
+    public void showUpdatedStation(String name) {
+
+    }
+
+    @Override
+    public void showUpdatedHand(String name) {
+
+    }
+
+    @Override
+    public void showMyUpdatedBoard(String clientNickname) {
+
+    }
+
+
 }

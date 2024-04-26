@@ -4,10 +4,10 @@ import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
-import Observers.LoginObservable;
+import Observers.Observable;
 import java.util.*;
 
-public class PlayingBoard extends LoginObservable {
+public class PlayingBoard extends Observable {
 
     private LinkedList<CardGold> deckCardGold;
     private LinkedList<CardResource> deckCardResource;
@@ -142,5 +142,10 @@ public class PlayingBoard extends LoginObservable {
     }
 
 
+    public List<String> PlayerTurnOrder() {
+        shufflePlayer();
+        List<String> players = new ArrayList<>(playerMap.keySet().stream().toList());
+        return players;
+    }
 }
 

@@ -15,4 +15,12 @@ public interface UI {
     void showObjectiveCards(CardObjective[] cardObjective);
 
     Integer askObjectiveCard();
+    
+    void showUpdatedBoard();
+    
+    void showUpdatedStation(String name);
+
+    void showUpdatedHand(String name);
+
+    void showMyUpdatedBoard(String clientNickname);
 }

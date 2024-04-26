@@ -1,7 +1,8 @@
 package Network.Server;
 
+import Network.Client.RmiClient;
 import Network.Client.VirtualView;
-import Observers.LoginObservable;
+import Observers.Observable;
 
 import controller.GameController;
 import model.Player;
@@ -15,13 +16,19 @@ import model.cards.CardStarting;
 
 import java.rmi.RemoteException;
 import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.BlockingQueue;
 
-public class RmiServer extends LoginObservable implements VirtualServer {
+public class RmiServer extends Observable implements VirtualServer {
 
     final GameController gameController;
-    final List<VirtualView> clients;
-    final Map<String, VirtualView> clientsMapNicknamesKey;
-    final Map<VirtualView, String> clientsMapClientsKey;
+    final BlockingQueue<VirtualView> blockingQueue = new ArrayBlockingQueue<>(100);
+    private List<VirtualView> clients;
+    private Map<String, VirtualView> clientsMapNicknamesKey;
+    private Map<VirtualView, String> clientsMapClientsKey;
+    private Integer CurrentTurn;
+    private Integer playerReady;
     private Integer playerNumber;
 
     public RmiServer(GameController gameController) {
@@ -29,8 +36,17 @@ public class RmiServer extends LoginObservable implements VirtualServer {
         clients = new ArrayList<>();
         clientsMapNicknamesKey = new HashMap<>();
         clientsMapClientsKey = new HashMap<>();
+        this.CurrentTurn = 0;
+        this.playerReady = 0;
     }
 
+    private void broadcastUpdateThread() throws InterruptedException, RemoteException {
+        while(true)
+        {
+            VirtualView client = blockingQueue.take();
+            client.StartGameTurns();
+        }
+    }
 
     @Override
     public synchronized void connectClient(VirtualView client) {
@@ -38,7 +54,9 @@ public class RmiServer extends LoginObservable implements VirtualServer {
             this.clients.add(client);
             System.err.println("new client connected");
             try{
-                this.addObserver(client);
+                this.addLoginObserver(client);
+                this.addBoardObserver(client);
+                this.addMyBoardObserver(client);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -91,7 +109,25 @@ public class RmiServer extends LoginObservable implements VirtualServer {
         System.err.println("New player added" + name);
         try{
             if(this.allPlayerConnected()){
-                this.notifyObservers();
+                List<String> playersNickname = gameController.getBoard().PlayerTurnOrder();
+                // Crea nuove strutture dati
+                List<VirtualView> newClients = new ArrayList<>();
+                Map<String, VirtualView> newClientsMapNicknamesKey = new HashMap<>();
+                Map<VirtualView, String> newClientsMapClientsKey = new HashMap<>();
+
+                // Popola le nuove strutture dati nell'ordine corretto
+                for (String nickname : playersNickname) {
+                    VirtualView client = clientsMapNicknamesKey.get(nickname);
+                    newClients.add(client);
+                    newClientsMapNicknamesKey.put(nickname, client);
+                    newClientsMapClientsKey.put(client, nickname);
+                }
+
+                // Sostituisci le vecchie strutture dati con le nuove
+                clients = newClients;
+                clientsMapNicknamesKey = newClientsMapNicknamesKey;
+                clientsMapClientsKey = newClientsMapClientsKey;
+                this.notifyLoginObservers();
             }
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -122,10 +158,13 @@ public class RmiServer extends LoginObservable implements VirtualServer {
         return playerNumber;
     }
 
+    public synchronized Integer getCurrentTurn() {
+        return CurrentTurn;
+    }
 
-
-
-
+    public synchronized void setCurrentTurn(Integer currentTurn) {
+        CurrentTurn = currentTurn;
+    }
 
     /**
      * Add a starting card to the player
@@ -148,10 +187,6 @@ public class RmiServer extends LoginObservable implements VirtualServer {
     @Override
     public synchronized PlayingBoard getServerModel() throws RemoteException {
         return gameController.getBoard();
-    }
-
-    public synchronized void notifyObservers() {
-        super.notifyObservers();
     }
 
     @Override
@@ -180,10 +215,79 @@ public class RmiServer extends LoginObservable implements VirtualServer {
     }
 
     @Override
+    public synchronized boolean isGameFinished() throws RemoteException {
+        return false;
+    }
+
+    @Override
+    public synchronized boolean isMyTurn(VirtualView rmiClient) {
+        return getCurrentTurn() == clients.indexOf(rmiClient);
+    }
+
+    @Override
     public synchronized String getClientNickname(VirtualView client) {
             return clientsMapClientsKey.get(client);
 
     }
 
+    @Override
+    public synchronized void loginThreadsStopper() throws RemoteException, InterruptedException {
+        stopAllLoginThreads();
+        for(var c: clients){
+            blockingQueue.put(c);
+        }
+        new Thread(() -> {
+            try {
+                broadcastUpdateThread();
+            } catch (InterruptedException | RemoteException e) {
+                e.printStackTrace();
+            }
+        }).start();
 
+    }
+
+    @Override
+    public synchronized void startTurnNotify() throws RemoteException {
+        notifyBoardObservers();
+    }
+
+    @Override
+    public synchronized void allPlayerReady() throws RemoteException, InterruptedException {
+        addingPlayerReady();
+        if(getPlayerReady() == clients.size()){
+            this.loginThreadsStopper();
+        }
+    }
+
+    @Override
+    public synchronized void showedBoardNotify() throws RemoteException {
+        stopAllBoardThreads();
+    }
+
+    @Override
+    public synchronized void notifyMyUpdatedBoard(VirtualView rmiClient) {
+        System.out.println("FLAG1");
+        notifyMyBoardObservers(getClientNickname(rmiClient));
+    }
+
+    @Override
+    public synchronized void showedMyBoardNotify() throws RemoteException {
+        stopAllMyBoardThreads();
+    }
+
+    @Override
+    public synchronized void nextTurn() throws RemoteException {
+        if(getCurrentTurn()<clients.size()-1)
+            setCurrentTurn(getCurrentTurn()+1);
+        else
+            setCurrentTurn(0);
+    }
+
+    private synchronized void addingPlayerReady() {
+        this.playerReady ++;
+    }
+
+    public synchronized Integer getPlayerReady() {
+        return this.playerReady;
+    }
 }

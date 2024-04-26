@@ -52,6 +52,7 @@ public class Cli2 implements UI {
     }
 
 
+
     @Override
     public void showStartingCard(CardStarting cardStarting) {
             System.out.println("Your starting card is:");
@@ -147,6 +148,28 @@ public class Cli2 implements UI {
         }while( choice != 1 && choice != 2);
         return choice;
     }
+
+    @Override
+    public void showUpdatedBoard() {
+        System.out.println("Board");
+    }
+
+    @Override
+    public void showUpdatedStation(String name) {
+        System.out.println("Station" + name);
+    }
+
+    @Override
+    public void showUpdatedHand(String name) {
+        System.out.println("Here is your hand:");
+        System.out.println("Hand of " + name);
+    }
+
+    @Override
+    public void showMyUpdatedBoard(String clientNickname) {
+        System.out.println("Board of " + clientNickname);
+    }
+
 
     private void diagonalObjectivePrinter(ObjectiveDiagonal objectiveDiagonal){
         String color;

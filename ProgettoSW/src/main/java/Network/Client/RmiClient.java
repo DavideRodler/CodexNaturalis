@@ -25,6 +25,10 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
         lock = new Object();
     }
 
+    public ReducedBoard getClientModel() {
+        return clientModel;
+    }
+
     public void ClientSetup() throws RemoteException{
         this.server.connectClient(this);
 
@@ -35,7 +39,6 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
             nickname = cli.askNickname(); // ask for nickname
         } while (server.nicknameCheck(nickname));
 
-
         server.addNewPlayer(nickname);
 
         if (server.numberOfPlayer() == 1) {
@@ -45,7 +48,7 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
         System.out.println("Waiting for other players to connect...");
     }
 
-    public void ClientGameSetup () throws RemoteException {
+    public void ClientGameSetup () throws RemoteException, InterruptedException{
         CardPlaying startingCard;
         CardObjective[] cardObjective;
         synchronized (this.server){
@@ -66,6 +69,41 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
             inizializePlayingStation(this, startingCard, choice, cardObjective[choiceObjective-1]);
         }
 
+        System.out.println("\nGame is starting, please wait for your turn\n");
+        server.allPlayerReady();
+    }
+
+    @Override
+    public void StartGameTurns() throws RemoteException{
+        int i=0;
+        while(/*!server.isGameFinished()*/ i<1000){
+
+
+                if(server.isMyTurn(this))
+                {
+                    server.startTurnNotify();
+                    System.out.println("Is your turn");
+                    //parte di aggiunta delle carte
+                    server.notifyMyUpdatedBoard(this);
+                    server.nextTurn();
+                }
+            i++;
+
+        }
+    }
+
+    @Override
+    public void gameSituationUpdate() throws RemoteException {
+        cli.showUpdatedBoard();
+        cli.showUpdatedStation(server.getClientNickname(this));
+        cli.showUpdatedHand(server.getClientNickname(this));
+        server.showedBoardNotify();
+    }
+
+    @Override
+    public void showMyUpdatedBoard(String name) throws RemoteException {
+        cli.showMyUpdatedBoard(name);
+        server.showedMyBoardNotify();
     }
 
     private void inizializePlayingStation(VirtualView rmiClient, CardPlaying startingCard, Integer choice, CardObjective cardObjective) throws RemoteException {
@@ -104,6 +142,8 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
             this.ClientGameSetup();
         } catch (RemoteException e) {
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
