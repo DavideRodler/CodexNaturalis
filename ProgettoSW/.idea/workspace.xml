@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Implementazione RMI semi completa. Da fare aggiunta delle carte ( ho messo un commento dove va messa ) e della win condition. Da rivedere il metodo isMyTurn, dopo un giro di turni si bugga">
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Ennesimo Commit non capisco più nulla">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientModel.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/Observable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Observers/Observable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/LoginObservable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Observers/Observable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,9 +238,7 @@
       <workItem from="1713873686858" duration="4854000" />
       <workItem from="1713888131863" duration="8755000" />
       <workItem from="1714033515681" duration="32474000" />
-      <workItem from="1714117455854" duration="24297000" />
-      <workItem from="1714150966462" duration="5403000" />
-      <workItem from="1714214707887" duration="6544000" />
+      <workItem from="1714117455854" duration="23343000" />
     </task>
     <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
       <option name="closed" value="true" />
@@ -478,15 +480,7 @@
       <option name="project" value="LOCAL" />
       <updated>1714083080671</updated>
     </task>
-    <task id="LOCAL-00031" summary="Implementazione RMI semi completa. Da fare aggiunta delle carte ( ho messo un commento dove va messa ) e della win condition. Da rivedere il metodo isMyTurn, dopo un giro di turni si bugga">
-      <option name="closed" value="true" />
-      <created>1714142504751</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1714142504751</updated>
-    </task>
-    <option name="localTasksCounter" value="32" />
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,6 +535,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix objective" />
     <MESSAGE value="put void instead of objective in method StartingCardDeck" />
     <MESSAGE value="Prova costruttoti file Json" />
     <MESSAGE value="Costruttori dei deck FINITI, MANCA DA TESTARE E DA FARE QUELLO CHE COSTRUSICE GLI OBBIETTIVI" />
@@ -565,8 +560,7 @@
     <MESSAGE value="Settaggio gioco iniziale con observer in modo reattivo" />
     <MESSAGE value="cli 2 commentata" />
     <MESSAGE value="Ennesimo Commit non capisco più nulla" />
-    <MESSAGE value="Implementazione RMI semi completa. Da fare aggiunta delle carte ( ho messo un commento dove va messa ) e della win condition. Da rivedere il metodo isMyTurn, dopo un giro di turni si bugga" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementazione RMI semi completa. Da fare aggiunta delle carte ( ho messo un commento dove va messa ) e della win condition. Da rivedere il metodo isMyTurn, dopo un giro di turni si bugga" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ennesimo Commit non capisco più nulla" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -575,6 +569,16 @@
           <properties class="java.lang.IllegalStateException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java</url>
+          <line>280</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java</url>
+          <line>282</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -591,9 +595,6 @@
         <watch expression="observers" />
         <watch expression="observers" />
         <watch expression="clientsMapNicknamesKey" />
-        <watch expression="setCurrentTurn" />
-        <watch expression="getCurrentTurn()" />
-        <watch expression="clients.size()-1" />
       </configuration>
     </watches-manager>
   </component>
