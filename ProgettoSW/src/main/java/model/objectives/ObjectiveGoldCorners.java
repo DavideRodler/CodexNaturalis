@@ -3,9 +3,10 @@ package model.objectives;
 import model.PlayingStation;
 import model.cards.Card;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ObjectiveGoldCorners implements Objective {
+public class ObjectiveGoldCorners implements Objective, Serializable {
 
     public int countObjectivePoints(PlayingStation station, int x, int y) {
         int points = 0;

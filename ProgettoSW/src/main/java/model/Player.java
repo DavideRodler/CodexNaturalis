@@ -7,6 +7,7 @@ import model.enums.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 import Exception.DeckEmptyException;
 import Exception.InvalidPlacingCondition;
@@ -160,5 +161,9 @@ public class Player implements Serializable {
 
     public void setPlayerNumber(Integer playerNumber) {
         this.playerNumber = playerNumber;
+    }
+
+    public void setHand(ArrayList<CardPlaying> hand) {
+        this.hand = hand;
     }
 }

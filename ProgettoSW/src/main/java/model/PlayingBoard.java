@@ -1,13 +1,12 @@
 package model;
 
-import model.cards.CardGold;
-import model.cards.CardObjective;
-import model.cards.CardResource;
-import model.cards.CardStarting;
+import model.cards.*;
 import Observers.Observable;
+
+import java.io.Serializable;
 import java.util.*;
 
-public class PlayingBoard extends Observable {
+public class PlayingBoard extends Observable implements Serializable {
 
     private LinkedList<CardGold> deckCardGold;
     private LinkedList<CardResource> deckCardResource;
@@ -114,6 +113,11 @@ public class PlayingBoard extends Observable {
 
     public void addPlayer(Player p){
         this.playerMap.put(p.getNickname(),p);
+        ArrayList<CardPlaying> hand = new ArrayList<>();
+        hand.add(drawCardResource());
+        hand.add(drawCardResource());
+        hand.add(drawCardGold());
+        p.setHand(hand);
     }
 
 

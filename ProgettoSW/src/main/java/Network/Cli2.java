@@ -178,6 +178,10 @@ public class Cli2 implements UI {
     public void showUpdatedHand(String name) {
         System.out.println("Here is your hand:");
         System.out.println("Hand of " + name);
+        ArrayList<CardPlaying> hand= client.getClientModel().getPlayer().getHand();
+        for(CardPlaying card : hand){
+            printCard(card);
+        }
     }
 
     @Override

@@ -2,6 +2,7 @@ package model.deck;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -22,7 +23,7 @@ import org.json.simple.parser.ParseException;
 import static java.util.Collections.shuffle;
 
 // create a static class that has for each deck a static method that returns the List of all model.cards that need to be in that deck
-public class Decktemplates {
+public class Decktemplates implements Serializable {
   // creating the DeckResource Deck
   // each line in the text represent the card:
   // we have in order: suit of the card, the four corner(starting from upright)
