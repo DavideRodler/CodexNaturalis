@@ -9,8 +9,12 @@ import model.cards.CardObjective;
 import model.cards.CardPlaying;
 import model.cards.CardStarting;
 
+import java.io.InputStreamReader;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Scanner;
+import java.util.concurrent.CountDownLatch;
+
 
 public class RmiClient extends UnicastRemoteObject implements VirtualView {
 
@@ -18,7 +22,8 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     private UI cli;
     private ReducedBoard clientModel;
     private final Object lock;
-
+    int i=0;
+    CountDownLatch latch;
 
     public RmiClient(VirtualServer server) throws RemoteException {
         this.server = server;
@@ -74,21 +79,29 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     }
 
     @Override
-    public void StartGameTurns() throws RemoteException{
-        int i=0;
-        while(/*!server.isGameFinished()*/ i<1000){
+    public void StartGameTurns() throws RemoteException, InterruptedException {
+
+        System.out.println("\nIs Your Turn");
+
+        this.resetLatch();
+
+        server.startTurnNotify();
+
+        latch.await();
+
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        System.out.println("Do you want to place a card? (y/n)");
+        String choice = scanner.nextLine();
 
 
-                if(server.isMyTurn(this))
-                {
-                    server.startTurnNotify();
-                    System.out.println("Is your turn");
-                    //parte di aggiunta delle carte
-                    server.notifyMyUpdatedBoard(this);
-                    server.nextTurn();
-                }
+        //VA IMPLEMENTATA LA PARTE DI PIAZZAMENTO DELLA CARTA SULLA BOARD!
+
+
+        server.notifyMyUpdatedBoard(this);
+
+        if(i<20) { //MODO TEMPORANEO PER IMPOSTARE UN FINE TURNO, DA IMPLEMENTARE METODO PER FINE PARTITA
+            server.nextTurn();
             i++;
-
         }
     }
 
@@ -150,5 +163,14 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     @Override
     public synchronized void showObjectiveCards(CardObjective[] cardObjective) {
         cli.showObjectiveCards(cardObjective);
+    }
+
+    @Override
+    public void decrementLatch() {
+        latch.countDown();
+    }
+
+    public void resetLatch() {
+        latch = new CountDownLatch(1);
     }
 }

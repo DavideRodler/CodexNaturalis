@@ -3,6 +3,7 @@ package Network.Server;
 import Network.Client.RmiClient;
 import Network.Client.VirtualView;
 import Observers.Observable;
+import java.util.concurrent.CountDownLatch;
 
 import controller.GameController;
 import model.Player;
@@ -16,9 +17,7 @@ import model.cards.CardStarting;
 
 import java.rmi.RemoteException;
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingDeque;
-import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.*;
 
 public class RmiServer extends Observable implements VirtualServer {
 
@@ -30,6 +29,8 @@ public class RmiServer extends Observable implements VirtualServer {
     private Integer CurrentTurn;
     private Integer playerReady;
     private Integer playerNumber;
+    private Boolean showedBoard = false;
+
 
     public RmiServer(GameController gameController) {
         this.gameController = gameController;
@@ -41,11 +42,16 @@ public class RmiServer extends Observable implements VirtualServer {
     }
 
     private void broadcastUpdateThread() throws InterruptedException, RemoteException {
+
         while(true)
         {
             VirtualView client = blockingQueue.take();
             client.StartGameTurns();
         }
+    }
+
+    public void setShowedBoard(Boolean showedBoard) {
+        this.showedBoard = showedBoard;
     }
 
     @Override
@@ -57,6 +63,7 @@ public class RmiServer extends Observable implements VirtualServer {
                 this.addLoginObserver(client);
                 this.addBoardObserver(client);
                 this.addMyBoardObserver(client);
+                //this.addStartingTurnObserver(client);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -233,9 +240,7 @@ public class RmiServer extends Observable implements VirtualServer {
     @Override
     public synchronized void loginThreadsStopper() throws RemoteException, InterruptedException {
         stopAllLoginThreads();
-        for(var c: clients){
-            blockingQueue.put(c);
-        }
+        playerToNextTurn(0);
         new Thread(() -> {
             try {
                 broadcastUpdateThread();
@@ -243,7 +248,7 @@ public class RmiServer extends Observable implements VirtualServer {
                 e.printStackTrace();
             }
         }).start();
-
+        notifyStartingTurnObservers();
     }
 
     @Override
@@ -262,6 +267,7 @@ public class RmiServer extends Observable implements VirtualServer {
     @Override
     public synchronized void showedBoardNotify() throws RemoteException {
         stopAllBoardThreads();
+        getClientIstance(getClientNickname(clients.get(getCurrentTurn()))).decrementLatch();
     }
 
     @Override
@@ -273,14 +279,22 @@ public class RmiServer extends Observable implements VirtualServer {
     @Override
     public synchronized void showedMyBoardNotify() throws RemoteException {
         stopAllMyBoardThreads();
+        setShowedBoard(true);
     }
 
     @Override
-    public synchronized void nextTurn() throws RemoteException {
-        if(getCurrentTurn()<clients.size()-1)
+    public synchronized void nextTurn() throws RemoteException, InterruptedException {
+        if(getCurrentTurn()< (clients.size()-1))
             setCurrentTurn(getCurrentTurn()+1);
         else
             setCurrentTurn(0);
+        playerToNextTurn(getCurrentTurn());
+
+    }
+
+    @Override
+    public boolean getShowedBoardNotify() throws RemoteException {
+        return this.showedBoard;
     }
 
     private synchronized void addingPlayerReady() {
@@ -289,5 +303,9 @@ public class RmiServer extends Observable implements VirtualServer {
 
     public synchronized Integer getPlayerReady() {
         return this.playerReady;
+    }
+
+    public synchronized void playerToNextTurn(Integer index) throws InterruptedException {
+        blockingQueue.put(clients.get(index));
     }
 }

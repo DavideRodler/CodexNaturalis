@@ -10,9 +10,11 @@ public class Observable {
     private List<VirtualView> LoginObservers = new ArrayList<>();
     private List<VirtualView> BoardObservers = new ArrayList<>();
     private List<VirtualView> MyBoardObservers = new ArrayList<>();
+    private List<VirtualView> StartingTurnObservers = new ArrayList<>();
     private List<Thread> loginThreads = new ArrayList<>();
     private List<Thread> boardThreads = new ArrayList<>();
     private List<Thread> myBoardThreads = new ArrayList<>();
+    private List<Thread> startingTurnThreads = new ArrayList<>();
 
     public void addLoginObserver(VirtualView observer){
         this.LoginObservers.add(observer);
@@ -23,6 +25,10 @@ public class Observable {
 
     public void addMyBoardObserver(VirtualView observer){
         this.MyBoardObservers.add(observer);
+    }
+
+    public void addStartingTurnObserver(VirtualView observer){
+        this.StartingTurnObservers.add(observer);
     }
 
     public void notifyLoginObservers(){
@@ -68,6 +74,20 @@ public class Observable {
         }
     }
 
+    public void notifyStartingTurnObservers(){
+        for (VirtualView observer: StartingTurnObservers){
+            Thread startingTurnThread = new  Thread(() -> {
+                try{
+                    observer.StartGameTurns();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            startingTurnThreads.add(startingTurnThread); // Aggiungi questa linea
+            startingTurnThread.start();
+        }
+    }
+
     public void stopAllLoginThreads() {
         for (Thread loginThread :  loginThreads) {
             loginThread.interrupt();
@@ -87,5 +107,12 @@ public class Observable {
             myBoardThread.interrupt();
         }
         myBoardThreads.clear(); // Rimuovi i riferimenti ai thread interrotti
+    }
+
+    public void stopAllStartingTurnThreads() {
+        for (Thread startingTurnThread :  startingTurnThreads) {
+            startingTurnThread.interrupt();
+        }
+        startingTurnThreads.clear(); // Rimuovi i riferimenti ai thread interrotti
     }
 }

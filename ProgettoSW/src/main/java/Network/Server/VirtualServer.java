@@ -66,5 +66,7 @@ public interface VirtualServer extends Remote {
 
     void showedMyBoardNotify() throws RemoteException;
 
-    void nextTurn() throws RemoteException;
+    void nextTurn() throws RemoteException, InterruptedException;
+
+    boolean getShowedBoardNotify() throws RemoteException;
 }

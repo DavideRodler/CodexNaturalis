@@ -20,9 +20,11 @@ public interface VirtualView extends Remote {
 
     void showObjectiveCards(CardObjective[] cardObjective) throws RemoteException;
 
-    void StartGameTurns() throws RemoteException;
+    void StartGameTurns() throws RemoteException, InterruptedException;
 
     void gameSituationUpdate() throws RemoteException;
 
     void showMyUpdatedBoard(String name) throws RemoteException;
+
+    void decrementLatch() throws RemoteException;
 }

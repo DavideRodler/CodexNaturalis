@@ -167,7 +167,7 @@ public class Cli2 implements UI {
 
     @Override
     public void showMyUpdatedBoard(String clientNickname) {
-        System.out.println("Board of " + clientNickname);
+        System.out.println("\n Updated Station of " + clientNickname + "\n");
     }
 
 
