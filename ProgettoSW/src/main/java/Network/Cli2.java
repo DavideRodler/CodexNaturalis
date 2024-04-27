@@ -29,9 +29,8 @@ public class Cli2 implements UI {
     private final String lightBlue;
     private final String gold;
     private final String quill;
-    private final String inkwell;
     private final String manuscript;
-
+    private final String inkwell;
 
 
     public Cli2(VirtualServer server, RmiClient client) {
@@ -46,56 +45,55 @@ public class Cli2 implements UI {
         beige = "\u001B[38;2;245;245;220m";
         lightBlue = "\u001B[38;5;39m";
         gold = "\u001B[38;2;255;215;0m";
+        inkwell = gold + "W";
         manuscript = gold + "M";
         quill = gold + "Q";
-        inkwell = gold + "W";
     }
 
 
-    private String cornerScanner(Suit suit){
+    private String cornerScanner(Suit suit) {
         return switch (suit) {
             case ANIMAL -> lightBlue + "A" + reset;
             case INSECT -> purple + "I" + reset;
             case PLANT -> green + "P" + reset;
             case FUNGI -> red + "F" + reset;
-            case QUILL -> gold + reset;
-            case INKWELL -> inkwell + reset;
-            case MANUSCRIPT -> manuscript + reset;
+            case QUILL -> gold + "Q" + reset;
+            case INKWELL -> gold + "W" + reset;
+            case MANUSCRIPT -> gold + "M" + reset;
             case EMPTY -> "E";
             default -> "N";
         };
     }
 
 
-
     @Override
     public void showStartingCard(CardStarting cardStarting) {
-            printCard(cardStarting);
+        printCard(cardStarting);
             /*System.out.println(
                     cornerScanner(cardStarting.getFront().getUpLeft())
                             + "  " + cornerScanner(cardStarting.getFront().getUpRight())
                             + "\n" + cornerScanner(cardStarting.getFront().getDownLeft())
                             + "  " + cornerScanner(cardStarting.getFront().getDownRight()));*/
-            //System.out.println("Back:");
+        //System.out.println("Back:");
             /*System.out.println(
                     cornerScanner(cardStarting.getBack().getUpLeft())
                             + "  " + cornerScanner(cardStarting.getBack().getUpRight())
                             + "\n" + cornerScanner(cardStarting.getBack().getDownLeft())
-                            + "  " + cornerScanner(cardStarting.getBack().getDownRight()));*/
-            System.out.println("Symbols in the front middle:"); //non so quanto utile in quando si vede nella carta.
-            for (var c : cardStarting.getSymbols()) {
-                System.out.print(" " + cornerScanner(c));
-            }
+                            + "  " + cornerScanner(cardStarting.getBack().getDownRight()));
+        System.out.println("Symbols in the front middle:"); //non so quanto utile in quando si vede nella carta.
+        for (var c : cardStarting.getSymbols()) {
+            System.out.print(" " + cornerScanner(c));
+        }*/
 
     }
    @Override
     public void showGameTitle(){
 
-        System.out.println(""+ red +
-                "oooooooo8                  oooo                              oooo   oooo            o8                                     o888\n"+
-                "o888        ooooooo     ooooo888   ooooooooo8 oooo   oooo       8888o  88   ooooooo o888oo oooo  oooo  oo oooooo   ooooooo    888  oooo   oooooooo8\n"+
-                "888        888   888  888    888  888oooooo8    888o888         88 888o88   ooooo888 888    888   888   888        ooooo888   888   888  888ooooooo\n"+
-                "888o       888   888  888    888  888           o88 88o         88   8888 888    888 888    888   888   888      888    888   888   888          888\n"+
+        System.out.println("" + red +
+                "oooooooo8                  oooo                              oooo   oooo            o8                                     o888\n" +
+                "o888        ooooooo     ooooo888   ooooooooo8 oooo   oooo       8888o  88   ooooooo o888oo oooo  oooo  oo oooooo   ooooooo    888  oooo   oooooooo8\n" +
+                "888        888   888  888    888  888oooooo8    888o888         88 888o88   ooooo888 888    888   888   888        ooooo888   888   888  888ooooooo\n" +
+                "888o       888   888  888    888  888           o88 88o         88   8888 888    888 888    888   888   888      888    888   888   888          888\n" +
                 "888oooo88   88ooo88     88ooo888o  88oooo888 o88o   o88o      o88o    88  88ooo88 8o 888o   888o88 8o o888o      88ooo88 8o o888o o888o 88oooooo88\n\n" + reset);
 
     }
@@ -116,7 +114,7 @@ public class Cli2 implements UI {
         do {
             System.out.println("Insert number of players in your Lobby: ");
             input = in.nextInt();
-        }while(input < 2 || input > 4);
+        } while (input < 2 || input > 4);
         return input;
     }
 
@@ -125,17 +123,17 @@ public class Cli2 implements UI {
         System.out.println("Select the front of your starting card: ");
         Scanner in = new Scanner(new InputStreamReader(System.in));
         Integer choice;
-        do{
+        do {
             System.out.println("1 for front 1, 2 for back 2");
             choice = in.nextInt();
-        }while( choice != 1 && choice != 2);
+        } while (choice != 1 && choice != 2);
         return choice;
     }
 
     @Override
     public void showObjectiveCards(CardObjective[] cardObjective) {
-            System.out.println("Your first Objective Card is:");
-            printCard(cardObjective[0]);
+        //System.out.println("Your first Objective Card is:");
+        printCard(cardObjective[0]);
             /*switch (cardObjective[0].getObjective()) {
                 case ObjectiveDiagonal objectiveDiagonal -> diagonalObjectivePrinter(objectiveDiagonal);
                 case ObjectiveCountingGold objectiveCountingGold -> countingGoldPrinter(objectiveCountingGold);
@@ -143,8 +141,8 @@ public class Cli2 implements UI {
                 case null, default ->
                         countingResourcePrinter((ObjectiveCountingResource) cardObjective[0].getObjective());
             }*/
-            System.out.println("\nYour second Objective Card is:");
-            printCard(cardObjective[1]);
+        //System.out.println("\nYour second Objective Card is:");
+        printCard(cardObjective[1]);
             /*switch (cardObjective[1].getObjective()) {
                 case ObjectiveDiagonal objectiveDiagonal -> diagonalObjectivePrinter(objectiveDiagonal);
                 case ObjectiveCountingGold objectiveCountingGold -> countingGoldPrinter(objectiveCountingGold);
@@ -159,10 +157,10 @@ public class Cli2 implements UI {
         System.out.println("Select the Objective Card you want to keep:");
         Scanner in = new Scanner(new InputStreamReader(System.in));
         Integer choice;
-        do{
+        do {
             System.out.println("1 for first, 2 for second");
             choice = in.nextInt();
-        }while( choice != 1 && choice != 2);
+        } while (choice != 1 && choice != 2);
         return choice;
     }
 
@@ -188,9 +186,9 @@ public class Cli2 implements UI {
     }
 
 
-    private void diagonalObjectivePrinter(ObjectiveDiagonal objectiveDiagonal){
+    private void diagonalObjectivePrinter(ObjectiveDiagonal objectiveDiagonal) {
         String color;
-        switch(objectiveDiagonal.getColor()){
+        switch (objectiveDiagonal.getColor()) {
             case ANIMAL:
                 color = blue + "*" + reset;
                 break;
@@ -208,7 +206,7 @@ public class Cli2 implements UI {
                 break;
         }
 
-        if(objectiveDiagonal.getDirection() == Direction.LEFT){
+        if (objectiveDiagonal.getDirection() == Direction.LEFT) {
             System.out.println("  " + color + "  ");
             System.out.println(" " + color + " " + color + " ");
             System.out.println(color + " " + color + " " + color);
@@ -219,51 +217,50 @@ public class Cli2 implements UI {
         }
     }
 
-    private void countingGoldPrinter(ObjectiveCountingGold objectiveCountingGold){
-            String inkwell = "I";
-            String manuscript = "M";
-            String quill = "Q";
+    private void countingGoldPrinter(ObjectiveCountingGold objectiveCountingGold) {
+        String inkwell = "I";
+        String manuscript = "M";
+        String quill = "Q";
 
-            int inkwellCount = objectiveCountingGold.getCountInkwell();
-            int manuscriptCount = objectiveCountingGold.getCountManuscript();
-            int quillCount = objectiveCountingGold.getCountQuill();
+        int inkwellCount = objectiveCountingGold.getCountInkwell();
+        int manuscriptCount = objectiveCountingGold.getCountManuscript();
+        int quillCount = objectiveCountingGold.getCountQuill();
 
-            String[][] grid = new String[3][3];
+        String[][] grid = new String[3][3];
 
-            // Initialize the grid with empty strings
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    grid[i][j] = " ";
-                }
+        // Initialize the grid with empty strings
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                grid[i][j] = " ";
             }
+        }
 
-            // Set the gold resources count at (0,0)
-            grid[0][0] = String.valueOf(inkwellCount + manuscriptCount + quillCount);
+        // Set the gold resources count at (0,0)
+        grid[0][0] = String.valueOf(inkwellCount + manuscriptCount + quillCount);
 
-            // Set the gold resources types at (0,2), (2,0) and (2,2) if they are different
-            if (inkwellCount > 0) grid[0][2] = inkwell;
-            if (manuscriptCount > 0) grid[2][0] = manuscript;
-            if (quillCount > 0) grid[2][2] = quill;
+        // Set the gold resources types at (0,2), (2,0) and (2,2) if they are different
+        if (inkwellCount > 0) grid[0][2] = inkwell;
+        if (manuscriptCount > 0) grid[2][0] = manuscript;
+        if (quillCount > 0) grid[2][2] = quill;
 
-            // Set the points at the center
-            if(inkwellCount > 0 && manuscriptCount > 0 && quillCount > 0){
-                grid[1][1] = "3";
+        // Set the points at the center
+        if (inkwellCount > 0 && manuscriptCount > 0 && quillCount > 0) {
+            grid[1][1] = "3";
+        } else {
+            grid[1][1] = "2";
+        }
+
+        // Print the grid
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(grid[i][j]);
             }
-            else{
-                grid[1][1] = "2";
-            }
-
-            // Print the grid
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    System.out.print(grid[i][j]);
-                }
-                System.out.println();
-            }
+            System.out.println();
+        }
 
     }
 
-    private void positioningObjectivePrinter(ObjectivePositioning objectivePositioning){
+    private void positioningObjectivePrinter(ObjectivePositioning objectivePositioning) {
         String colorOneCard;
         String colorTwoCards;
         colorOneCard = switch (objectivePositioning.getColorOneCard()) {
@@ -330,9 +327,9 @@ public class Cli2 implements UI {
         }
     }
 
-    private void countingResourcePrinter(ObjectiveCountingResource objectiveCountingResource){
+    private void countingResourcePrinter(ObjectiveCountingResource objectiveCountingResource) {
         String suit;
-        switch(objectiveCountingResource.getSymbol()){
+        switch (objectiveCountingResource.getSymbol()) {
             case ANIMAL:
                 suit = "\033[0;34m*\033[0m"; // Blu
                 break;
