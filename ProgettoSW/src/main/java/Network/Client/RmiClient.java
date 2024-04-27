@@ -39,6 +39,13 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
 
         cli = new Cli2(server, this);
 
+        cli.showGameTitle();
+
+        if (server.numberOfPlayer() == 0) {
+            Integer playerNumber = cli.askPlayerNumber();
+            server.inizializeLobby(playerNumber);
+        }
+
         String nickname;
         do {
             nickname = cli.askNickname(); // ask for nickname
@@ -46,10 +53,6 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
 
         server.addNewPlayer(nickname);
 
-        if (server.numberOfPlayer() == 1) {
-            Integer playerNumber = cli.askPlayerNumber();
-            server.inizializeLobby(playerNumber);
-        }
         System.out.println("Waiting for other players to connect...");
     }
 

@@ -37,6 +37,7 @@ public class RmiServer extends Observable implements VirtualServer {
         clients = new ArrayList<>();
         clientsMapNicknamesKey = new HashMap<>();
         clientsMapClientsKey = new HashMap<>();
+        this.playerNumber = 0;
         this.CurrentTurn = 0;
         this.playerReady = 0;
     }

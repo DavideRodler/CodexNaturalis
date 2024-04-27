@@ -14,6 +14,11 @@ public class VirtualUI implements UI {
     }
 
     @Override
+    public void showGameTitle() {
+
+    }
+
+    @Override
     public String askNickname() {
         return "";
     }

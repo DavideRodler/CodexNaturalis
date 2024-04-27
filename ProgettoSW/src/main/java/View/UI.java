@@ -5,6 +5,9 @@ import model.cards.CardStarting;
 
 public interface UI {
     void showStartingCard(CardStarting cardStarting);
+
+    void showGameTitle();
+
     //void init();
     String askNickname();
 

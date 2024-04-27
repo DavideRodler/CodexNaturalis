@@ -74,9 +74,8 @@ public class Cli2 implements UI {
             }
 
     }
-
-    @Override
-    public String askNickname() {
+   @Override
+    public void showGameTitle(){
 
         System.out.println(""+ red +
                 "oooooooo8                  oooo                              oooo   oooo            o8                                     o888\n"+
@@ -85,6 +84,10 @@ public class Cli2 implements UI {
                 "888o       888   888  888    888  888           o88 88o         88   8888 888    888 888    888   888   888      888    888   888   888          888\n"+
                 "888oooo88   88ooo88     88ooo888o  88oooo888 o88o   o88o      o88o    88  88ooo88 8o 888o   888o88 8o o888o      88ooo88 8o o888o o888o 88oooooo88\n\n" + reset);
 
+    }
+
+    @Override
+    public String askNickname() {
         Scanner in = new Scanner(new InputStreamReader(System.in));
         String input;
         System.out.println("Insert your nickname: ");
