@@ -1,6 +1,6 @@
-package soket.client;
+package socket.client;
 
-import soket.Messages.Message;
+import socket.Messages.Message;
 
 import java.rmi.RemoteException;
 

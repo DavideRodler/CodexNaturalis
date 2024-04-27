@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Ennesimo Commit non capisco più nulla">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="cli 2 commentata">
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,8 +227,7 @@
       <workItem from="1713858148446" duration="6962000" />
       <workItem from="1713873686858" duration="4854000" />
       <workItem from="1713888131863" duration="8755000" />
-      <workItem from="1714033515681" duration="32474000" />
-      <workItem from="1714117455854" duration="23343000" />
+      <workItem from="1714033515681" duration="31071000" />
     </task>
     <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
       <option name="closed" value="true" />
@@ -462,15 +461,7 @@
       <option name="project" value="LOCAL" />
       <updated>1714082765430</updated>
     </task>
-    <task id="LOCAL-00030" summary="Ennesimo Commit non capisco più nulla">
-      <option name="closed" value="true" />
-      <created>1714083080671</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1714083080671</updated>
-    </task>
-    <option name="localTasksCounter" value="31" />
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -525,6 +516,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Commit con aggiunte parziali dei deck starting card e objective card, modifica table come Mappa con key=ArrayList" />
+    <MESSAGE value="fix objective" />
     <MESSAGE value="put void instead of objective in method StartingCardDeck" />
     <MESSAGE value="Prova costruttoti file Json" />
     <MESSAGE value="Costruttori dei deck FINITI, MANCA DA TESTARE E DA FARE QUELLO CHE COSTRUSICE GLI OBBIETTIVI" />
@@ -548,9 +541,7 @@
     <MESSAGE value="aggiunta local clientController" />
     <MESSAGE value="Settaggio gioco iniziale con observer in modo reattivo" />
     <MESSAGE value="cli 2 commentata" />
-    <MESSAGE value="Ennesimo Commit non capisco più nulla" />
-    <MESSAGE value="Print delle carte in Cli2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Print delle carte in Cli2" />
+    <option name="LAST_COMMIT_MESSAGE" value="cli 2 commentata" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -561,13 +552,8 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java</url>
-          <line>288</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java</url>
-          <line>290</line>
-          <option name="timeStamp" value="35" />
+          <line>90</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

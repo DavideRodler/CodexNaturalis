@@ -1,6 +1,6 @@
-package soket.server;
+package socket.server;
 
-import soket.Messages.Message;
+import socket.Messages.Message;
 
 public interface VirtualServerSocket {
     void manageAnswer(Message m);

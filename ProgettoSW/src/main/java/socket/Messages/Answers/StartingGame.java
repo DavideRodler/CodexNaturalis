@@ -1,6 +1,6 @@
-package soket.Messages.Answers;
+package socket.Messages.Answers;
 
-import soket.Messages.Message;
+import socket.Messages.Message;
 
 public class StartingGame extends Message {
     public StartingGame() {
