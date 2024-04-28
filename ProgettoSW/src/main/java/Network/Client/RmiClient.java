@@ -8,12 +8,10 @@ import model.ReducedBoard;
 import model.cards.CardObjective;
 import model.cards.CardPlaying;
 import model.cards.CardStarting;
-
-import java.io.InputStreamReader;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Scanner;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Semaphore;
 
 
 public class RmiClient extends UnicastRemoteObject implements VirtualView {
@@ -23,7 +21,6 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     private ReducedBoard clientModel;
     private final Object lock;
     int i=0;
-    CountDownLatch latch;
 
     public RmiClient(VirtualServer server) throws RemoteException {
         this.server = server;
@@ -83,37 +80,17 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
 
     @Override
     public void StartGameTurns() throws RemoteException, InterruptedException {
-
-        System.out.println("\nIs Your Turn");
-
-        this.resetLatch();
-
         server.startTurnNotify();
-
-        latch.await();
-
-        Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        System.out.println("Do you want to place a card? (y/n)");
-        String choice = scanner.nextLine();
-
-
-        //VA IMPLEMENTATA LA PARTE DI PIAZZAMENTO DELLA CARTA SULLA BOARD!
-
-
-        server.notifyMyUpdatedBoard(this);
-
-        if(i<20) { //MODO TEMPORANEO PER IMPOSTARE UN FINE TURNO, DA IMPLEMENTARE METODO PER FINE PARTITA
-            server.nextTurn();
-            i++;
-        }
     }
 
     @Override
     public void gameSituationUpdate() throws RemoteException {
+        synchronized (this){
+        String nickName = server.getClientNickname(this);
         cli.showUpdatedBoard();
-        cli.showUpdatedStation(server.getClientNickname(this));
-        cli.showUpdatedHand(server.getClientNickname(this));
-        server.showedBoardNotify();
+        cli.showUpdatedStation( nickName );
+        cli.showUpdatedHand( nickName );
+        }
     }
 
     @Override
@@ -122,28 +99,10 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
         server.showedMyBoardNotify();
     }
 
-    private void inizializePlayingStation(VirtualView rmiClient, CardPlaying startingCard, Integer choice, CardObjective cardObjective) throws RemoteException {
+    private  void inizializePlayingStation(VirtualView rmiClient, CardPlaying startingCard, Integer choice, CardObjective cardObjective) throws RemoteException {
         String name = server.getClientNickname(rmiClient);
         server.inizializePlayingStation(name, startingCard, choice, cardObjective);
         this.clientModel = server.getReducedBoard(rmiClient);
-    }
-
-
-
-
-
-
-
-
-
-    @Override
-    public void showUpdatedBoard() throws RemoteException {
-
-    }
-
-    @Override
-    public void showUpdatedHand() {
-
     }
 
     @Override
@@ -169,11 +128,13 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     }
 
     @Override
-    public void decrementLatch() {
-        latch.countDown();
-    }
-
-    public void resetLatch() {
-        latch = new CountDownLatch(1);
+    public void playerTurn() throws RemoteException, InterruptedException {
+        synchronized (this)
+        {
+        System.out.println("It's your turn!");
+        cli.askCoordinatesOfCards();
+        }
+        server.notifyMyUpdatedBoard(this);
+        server.nextTurn();
     }
 }

@@ -1,6 +1,7 @@
 package model;
 
 
+import Observers.ModelObserver;
 import model.cards.*;
 import model.enums.Color;
 
@@ -13,7 +14,7 @@ import Exception.DeckEmptyException;
 import Exception.InvalidPlacingCondition;
 
 
-public class Player implements Serializable {
+public class Player extends ModelObserver implements Serializable {
     private final String nickname;
     private Integer playerNumber;
     private Integer numberTurns;

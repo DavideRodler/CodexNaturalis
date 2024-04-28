@@ -1,12 +1,13 @@
 package model;
 
+import Observers.ModelObserver;
 import model.cards.*;
 import Observers.Observable;
 
 import java.io.Serializable;
 import java.util.*;
 
-public class PlayingBoard extends Observable implements Serializable {
+public class PlayingBoard extends ModelObserver implements Serializable {
 
     private LinkedList<CardGold> deckCardGold;
     private LinkedList<CardResource> deckCardResource;

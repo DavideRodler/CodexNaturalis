@@ -26,4 +26,6 @@ public interface UI {
     void showUpdatedHand(String name);
 
     void showMyUpdatedBoard(String clientNickname);
+
+    void askCoordinatesOfCards();
 }

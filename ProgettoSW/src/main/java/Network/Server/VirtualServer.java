@@ -17,8 +17,6 @@ public interface VirtualServer extends Remote {
 
     void addCard(CardResource card, Integer X, Integer Y) throws RemoteException;
 
-    void passTurn() throws RemoteException;
-
     void drawCard(Integer number) throws RemoteException;
 
     void addNewPlayer(String name) throws RemoteException;
@@ -52,15 +50,12 @@ public interface VirtualServer extends Remote {
 
     boolean isGameFinished() throws RemoteException;
 
-    boolean isMyTurn(VirtualView rmiClient) throws RemoteException;
-
     void loginThreadsStopper() throws RemoteException, InterruptedException;
 
-    void startTurnNotify() throws RemoteException;
+    void startTurnNotify() throws RemoteException, InterruptedException;
 
     void allPlayerReady() throws RemoteException, InterruptedException;
 
-    void showedBoardNotify() throws RemoteException;
 
     void notifyMyUpdatedBoard(VirtualView rmiClient) throws RemoteException;
 
@@ -68,5 +63,4 @@ public interface VirtualServer extends Remote {
 
     void nextTurn() throws RemoteException, InterruptedException;
 
-    boolean getShowedBoardNotify() throws RemoteException;
 }

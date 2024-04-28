@@ -1,34 +1,24 @@
 package Observers;
 
-import Network.Client.RmiClient;
-import Network.Client.VirtualView;
 
+import Network.Client.VirtualView;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Observable {
     private List<VirtualView> LoginObservers = new ArrayList<>();
-    private List<VirtualView> BoardObservers = new ArrayList<>();
     private List<VirtualView> MyBoardObservers = new ArrayList<>();
-    private List<VirtualView> StartingTurnObservers = new ArrayList<>();
+
     private List<Thread> loginThreads = new ArrayList<>();
-    private List<Thread> boardThreads = new ArrayList<>();
     private List<Thread> myBoardThreads = new ArrayList<>();
-    private List<Thread> startingTurnThreads = new ArrayList<>();
+
 
     public void addLoginObserver(VirtualView observer){
         this.LoginObservers.add(observer);
     }
-    public void addBoardObserver(VirtualView observer){
-        this.BoardObservers.add(observer);
-    }
 
     public void addMyBoardObserver(VirtualView observer){
         this.MyBoardObservers.add(observer);
-    }
-
-    public void addStartingTurnObserver(VirtualView observer){
-        this.StartingTurnObservers.add(observer);
     }
 
     public void notifyLoginObservers(){
@@ -42,20 +32,6 @@ public class Observable {
             });
             loginThreads.add(loginThread); // Aggiungi questa linea
             loginThread.start();
-        }
-    }
-
-    public void notifyBoardObservers(){
-        for (VirtualView observer: BoardObservers){
-            Thread boardThread = new  Thread(() -> {
-                try{
-                    observer.gameSituationUpdate();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-            boardThreads.add(boardThread); // Aggiungi questa linea
-            boardThread.start();
         }
     }
 
@@ -74,32 +50,11 @@ public class Observable {
         }
     }
 
-    public void notifyStartingTurnObservers(){
-        for (VirtualView observer: StartingTurnObservers){
-            Thread startingTurnThread = new  Thread(() -> {
-                try{
-                    observer.StartGameTurns();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-            startingTurnThreads.add(startingTurnThread); // Aggiungi questa linea
-            startingTurnThread.start();
-        }
-    }
-
     public void stopAllLoginThreads() {
         for (Thread loginThread :  loginThreads) {
             loginThread.interrupt();
         }
         loginThreads.clear(); // Rimuovi i riferimenti ai thread interrotti
-    }
-
-    public void stopAllBoardThreads() {
-        for (Thread boardThread :  boardThreads) {
-            boardThread.interrupt();
-        }
-        boardThreads.clear(); // Rimuovi i riferimenti ai thread interrotti
     }
 
     public void stopAllMyBoardThreads() {
@@ -109,10 +64,4 @@ public class Observable {
         myBoardThreads.clear(); // Rimuovi i riferimenti ai thread interrotti
     }
 
-    public void stopAllStartingTurnThreads() {
-        for (Thread startingTurnThread :  startingTurnThreads) {
-            startingTurnThread.interrupt();
-        }
-        startingTurnThreads.clear(); // Rimuovi i riferimenti ai thread interrotti
-    }
 }

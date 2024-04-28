@@ -63,5 +63,10 @@ public class VirtualUI implements UI {
 
     }
 
+    @Override
+    public void askCoordinatesOfCards() {
+
+    }
+
 
 }

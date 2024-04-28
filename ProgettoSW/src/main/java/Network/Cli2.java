@@ -176,17 +176,25 @@ public class Cli2 implements UI {
 
     @Override
     public void showUpdatedHand(String name) {
-        System.out.println("Here is your hand:");
+        System.out.println("Here is your hand:");/*
         System.out.println("Hand of " + name);
         ArrayList<CardPlaying> hand= client.getClientModel().getPlayer().getHand();
         for(CardPlaying card : hand){
             printCard(card);
-        }
+        }*/
     }
 
     @Override
     public void showMyUpdatedBoard(String clientNickname) {
         System.out.println("\n Updated Station of " + clientNickname + "\n");
+    }
+
+    @Override
+    public void askCoordinatesOfCards() {
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        System.out.println("Do you want to place a card? (y/n)");
+        String choice = scanner.nextLine();
+
     }
 
     private void printMatrix(String[][] mat){
