@@ -176,12 +176,12 @@ public class Cli2 implements UI {
 
     @Override
     public void showUpdatedHand(String name) {
-        System.out.println("Here is your hand:");/*
+        System.out.println("Here is your hand:");
         System.out.println("Hand of " + name);
         ArrayList<CardPlaying> hand= client.getClientModel().getPlayer().getHand();
         for(CardPlaying card : hand){
             printCard(card);
-        }*/
+        }
     }
 
     @Override
@@ -489,7 +489,7 @@ public class Cli2 implements UI {
         int points = ((CardResource) card).getPoints();
         if(points != 0) {
             mat[0][5] = Integer.toString(points);
-            if(((CardGold) card).getObjective() instanceof ObjectivePositioning){
+            if(card instanceof CardGold && ((CardGold) card).getObjective() instanceof ObjectivePositioning){
                 mat[0][6] = "P";
             } else {
                 mat[0][6] = "p";

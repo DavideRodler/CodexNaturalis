@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Aggiunta delle carte alla mano dei Players">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Observers/ModelObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Fixati bug che c'erano con le stampe dei thread e codice semplificato">
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/Observable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Observers/Observable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,7 +231,7 @@
       <workItem from="1714033515681" duration="31071000" />
       <workItem from="1714236302614" duration="1485000" />
       <workItem from="1714249020629" duration="771000" />
-      <workItem from="1714317124791" duration="15695000" />
+      <workItem from="1714317124791" duration="16243000" />
     </task>
     <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
       <option name="closed" value="true" />
@@ -492,7 +481,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714237739149</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Fixati bug che c'erano con le stampe dei thread e codice semplificato">
+      <option name="closed" value="true" />
+      <created>1714335675462</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1714335675462</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -547,7 +544,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="put void instead of objective in method StartingCardDeck" />
     <MESSAGE value="Prova costruttoti file Json" />
     <MESSAGE value="Costruttori dei deck FINITI, MANCA DA TESTARE E DA FARE QUELLO CHE COSTRUSICE GLI OBBIETTIVI" />
     <MESSAGE value="fixato deck gold e metodo assegna obiettivi" />
@@ -572,7 +568,8 @@
     <MESSAGE value="cli 2 commentata" />
     <MESSAGE value="esempio Socket per capire il funzionamento e per poter fare un pull" />
     <MESSAGE value="Aggiunta delle carte alla mano dei Players" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta delle carte alla mano dei Players" />
+    <MESSAGE value="Fixati bug che c'erano con le stampe dei thread e codice semplificato" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixati bug che c'erano con le stampe dei thread e codice semplificato" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
