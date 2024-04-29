@@ -4,6 +4,7 @@ import Network.Cli2;
 import Network.Server.VirtualServer;
 
 import View.UI;
+import model.PlayingBoard;
 import model.ReducedBoard;
 import model.cards.CardObjective;
 import model.cards.CardPlaying;
@@ -87,9 +88,10 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     public void gameSituationUpdate() throws RemoteException {
         synchronized (this){
         String nickName = server.getClientNickname(this);
-        cli.showUpdatedBoard();
-        cli.showUpdatedStation( nickName );
-        cli.showUpdatedHand( nickName );
+        PlayingBoard board = server.getServerModel();
+        cli.showUpdatedBoard ( board );
+        cli.showUpdatedStation( this.clientModel.getPlayingStation() );
+        cli.showUpdatedHand( this.clientModel.getHand() );
         }
     }
 

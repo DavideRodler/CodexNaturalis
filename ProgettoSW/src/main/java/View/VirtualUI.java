@@ -1,5 +1,6 @@
 package View;
 
+import model.PlayingBoard;
 import model.cards.CardObjective;
 import model.cards.CardPlaying;
 import model.cards.CardStarting;
@@ -48,17 +49,17 @@ public class VirtualUI implements UI {
     }
 
     @Override
-    public void showUpdatedBoard() {
+    public void showUpdatedBoard(PlayingBoard playingBoard) {
 
     }
 
     @Override
-    public void showUpdatedStation(String name) {
+    public void showUpdatedStation(Map<ArrayList<Integer>, CardPlaying> playingStation) {
 
     }
 
     @Override
-    public void showUpdatedHand(String name) {
+    public void showUpdatedHand(ArrayList<CardPlaying> hand) {
 
     }
 

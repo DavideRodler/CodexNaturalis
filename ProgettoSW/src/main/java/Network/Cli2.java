@@ -3,6 +3,7 @@ package Network;
 import Network.Client.RmiClient;
 import Network.Server.VirtualServer;
 import View.UI;
+import model.PlayingBoard;
 import model.cards.*;
 import model.enums.Direction;
 import model.enums.Suit;
@@ -166,20 +167,18 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public void showUpdatedBoard() {
+    public void showUpdatedBoard(PlayingBoard board) {
         System.out.println("Board");
     }
 
     @Override
-    public void showUpdatedStation(String name) {
-        System.out.println("Station" + name);
+    public void showUpdatedStation(Map<ArrayList<Integer>, CardPlaying> playingStation) {
+        System.out.println("Station:");
     }
 
     @Override
-    public void showUpdatedHand(String name) {
+    public void showUpdatedHand(ArrayList<CardPlaying> hand) {
         System.out.println("Here is your hand:");
-        System.out.println("Hand of " + name);
-        ArrayList<CardPlaying> hand= client.getClientModel().getHand();
         for(CardPlaying card : hand){
             printCard(card);
         }

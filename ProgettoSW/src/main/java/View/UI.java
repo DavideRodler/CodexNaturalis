@@ -1,5 +1,6 @@
 package View;
 
+import model.PlayingBoard;
 import model.cards.CardObjective;
 import model.cards.CardPlaying;
 import model.cards.CardStarting;
@@ -23,11 +24,11 @@ public interface UI {
 
     Integer askObjectiveCard();
     
-    void showUpdatedBoard();
+    void showUpdatedBoard(PlayingBoard playingBoard);
     
-    void showUpdatedStation(String name);
+    void showUpdatedStation(Map<ArrayList<Integer>, CardPlaying> playingStation);
 
-    void showUpdatedHand(String name);
+    void showUpdatedHand(ArrayList<CardPlaying> hand);
 
     void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String name);
 
