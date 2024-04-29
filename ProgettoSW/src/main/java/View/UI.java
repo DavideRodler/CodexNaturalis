@@ -27,5 +27,7 @@ public interface UI {
 
     void showMyUpdatedBoard(String clientNickname);
 
-    void askCoordinatesOfCards();
+    Integer[] askCoordinatesOfCards();
+
+    Integer askDrawingCard();
 }

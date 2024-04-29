@@ -15,9 +15,10 @@ import java.rmi.RemoteException;
 public interface VirtualServer extends Remote {
     void connectClient(VirtualView client) throws RemoteException;
 
-    void addCard(CardResource card, Integer X, Integer Y) throws RemoteException;
 
-    void drawCard(Integer number) throws RemoteException;
+    boolean addCard(CardPlaying card, Integer side, Integer X, Integer Y) throws RemoteException;
+
+    CardPlaying drawCard(Integer number) throws RemoteException;
 
     void addNewPlayer(String name) throws RemoteException;
 

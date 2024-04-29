@@ -7,12 +7,10 @@ import View.UI;
 import model.ReducedBoard;
 import model.cards.CardObjective;
 import model.cards.CardPlaying;
+import model.cards.CardResource;
 import model.cards.CardStarting;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Semaphore;
-
 
 public class RmiClient extends UnicastRemoteObject implements VirtualView {
 
@@ -129,10 +127,23 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
 
     @Override
     public void playerTurn() throws RemoteException, InterruptedException {
-        synchronized (this)
-        {
-        System.out.println("It's your turn!");
-        cli.askCoordinatesOfCards();
+        synchronized (this) {
+            System.out.println("It's your turn!");
+            CardPlaying card;
+            Integer[] cardInformation;
+            do {
+                cli.askCoordinatesOfCards();
+                cardInformation = cli.askCoordinatesOfCards();
+                card = this.clientModel.getHand().get(cardInformation[0]);
+            } while (!server.addCard(card, cardInformation[1], cardInformation[2], cardInformation[3]));
+
+            this.clientModel.getHand().remove(card);
+            this.clientModel.addCardToPlayingStation(card, cardInformation[2], cardInformation[3]);
+
+            Integer drawignChoice = cli.askDrawingCard();
+
+            this.clientModel.addCardToHand(server.drawCard(drawignChoice));
+
         }
         server.notifyMyUpdatedBoard(this);
         server.nextTurn();

@@ -64,8 +64,14 @@ public class VirtualUI implements UI {
     }
 
     @Override
-    public void askCoordinatesOfCards() {
+    public Integer[] askCoordinatesOfCards() {
 
+        return new Integer[0];
+    }
+
+    @Override
+    public Integer askDrawingCard() {
+        return 0;
     }
 
 

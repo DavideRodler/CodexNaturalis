@@ -9,7 +9,6 @@ import model.PlayingStation;
 import model.ReducedBoard;
 import model.cards.CardObjective;
 import model.cards.CardPlaying;
-import model.cards.CardResource;
 import model.cards.CardStarting;
 
 import java.rmi.RemoteException;
@@ -62,13 +61,13 @@ public class RmiServer extends Observable implements VirtualServer {
     }
 
     @Override
-    public void addCard(CardResource card, Integer X, Integer Y) {
-
+    public boolean addCard(CardPlaying card, Integer side, Integer X, Integer Y) {
+        return gameController.addCard(card, side, X, Y, this.getClientNickname(clients.get(CurrentTurn)));
     }
 
     @Override
-    public synchronized void drawCard(Integer number) {
-
+    public synchronized CardPlaying drawCard(Integer number) {
+        return gameController.drawCard(number, this.getClientNickname(clients.get(CurrentTurn)));
     }
 
 

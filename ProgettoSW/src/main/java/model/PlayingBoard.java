@@ -16,21 +16,22 @@ public class PlayingBoard extends ModelObserver implements Serializable {
 
     private LinkedList<CardStarting> deckCardStarting;
     private Map<String,Player> playerMap;
-    private CardResource CentralFirsResourceCard;
-    private CardResource CentralSecondResourceCard;
-    private CardGold CentralFristGoldCard;
-    private CardGold CentralSecondGoldCard;
+    private CardResource[] centralCards = new CardResource[4];
     private final CardObjective FirstObjective;
     private final CardObjective SecondObjective;
 
 
     public PlayingBoard(CardObjective firstObjective, CardObjective secondObjective, LinkedList<CardGold> deckCardGold, LinkedList<CardObjective> deckCardObjective, LinkedList<CardResource> deckCardResource, LinkedList<CardStarting> deckCardStarting) {
-        FirstObjective = firstObjective;
-        SecondObjective = secondObjective;
-        this.deckCardGold = deckCardGold;
-        this.deckCardObjective = deckCardObjective;
+        this.FirstObjective = firstObjective;
+        this.SecondObjective = secondObjective;
         this.deckCardResource = deckCardResource;
+        this.deckCardObjective = deckCardObjective;
+        this.deckCardGold = deckCardGold;
         this.deckCardStarting = deckCardStarting;
+        this.centralCards[0] = (deckCardResource.pop());
+        this.centralCards[1] = (deckCardResource.pop());
+        this.centralCards[2] = (deckCardGold.pop());
+        this.centralCards[3] = (deckCardGold.pop());
         this.playerMap = new HashMap<>();
     }
 
@@ -46,6 +47,10 @@ public class PlayingBoard extends ModelObserver implements Serializable {
         return deckCardGold;
     }
 
+    public CardResource[] getCentralCards() {
+        return centralCards;
+    }
+
     public LinkedList<CardObjective> getDeckCardObjective() {
         return deckCardObjective;
     }
@@ -56,22 +61,6 @@ public class PlayingBoard extends ModelObserver implements Serializable {
 
     public LinkedList<CardStarting> getDeckCardStarting() {
         return deckCardStarting;
-    }
-
-    public CardGold getCentralFristGoldCard() {
-        return CentralFristGoldCard;
-    }
-
-    public CardGold getCentralSecondGoldCard() {
-        return CentralSecondGoldCard;
-    }
-
-    public CardResource getCentralFirsResourceCard() {
-        return CentralFirsResourceCard;
-    }
-
-    public CardResource getCentralSecondResourceCard() {
-        return CentralSecondResourceCard;
     }
 
     public CardObjective getFirstObjective() {
@@ -86,21 +75,6 @@ public class PlayingBoard extends ModelObserver implements Serializable {
 
 
     //--------------------SETTER----------------------------
-    public void setCentralFirsResourceCard(CardResource centralFirsResourceCard) {
-        CentralFirsResourceCard = centralFirsResourceCard;
-    }
-
-    public void setCentralFristGoldCard(CardGold centralFristGoldCard) {
-        CentralFristGoldCard = centralFristGoldCard;
-    }
-
-    public void setCentralSecondResourceCard(CardResource centralSecondResourceCard) {
-        CentralSecondResourceCard = centralSecondResourceCard;
-    }
-
-    public void setCentralSecondGoldCard(CardGold centralSecondGoldCard) {
-        CentralSecondGoldCard = centralSecondGoldCard;
-    }
 
     // shuffle players
     public void shufflePlayer(){

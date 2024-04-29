@@ -6,6 +6,7 @@ import model.cards.*;
 import model.enums.Color;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -88,16 +89,20 @@ public class Player extends ModelObserver implements Serializable {
      * @param goldCardDeck the deck from which the card is drawn
      * @param chose the choice of the player about the deck (or if i place a gold card, have i to draw from deckCardGold?)
      */
-    public void addCardFromDeck(LinkedList<CardResource> resourceCardDeck, LinkedList<CardResource> goldCardDeck, String chose) {
+    public CardPlaying addCardFromDeck(LinkedList<CardResource> resourceCardDeck, LinkedList<CardGold> goldCardDeck, String chose) {
 
         try {
             if(resourceCardDeck.isEmpty() || goldCardDeck.isEmpty()) {
                 throw new DeckEmptyException("MAZZO VUOTO");
             }
             else if (chose.equals("resource")) {
-                hand.add(resourceCardDeck.pop());
+                CardPlaying card = resourceCardDeck.pop();
+                hand.add(card);
+                return card;
             } else if (chose.equals("gold")) {
-                hand.add(goldCardDeck.pop());
+                CardPlaying card1 = goldCardDeck.pop();
+                hand.add(card1);
+                return card1;
             } else {
                 throw new IllegalArgumentException("Scelta non valida.");
             }
@@ -106,6 +111,7 @@ public class Player extends ModelObserver implements Serializable {
         } catch (DeckEmptyException d) {
             System.out.println(d.getMessage());
         }
+        return goldCardDeck.pop();
 
     }
 
@@ -142,10 +148,30 @@ public class Player extends ModelObserver implements Serializable {
 
     /**
      * This method is used to add a card to the player's hand from the central deck
-     * @param card the card drawn
      */
-    public void addCardFromCentral(CardPlaying card) {
-        hand.add(card);
+    public CardPlaying addCardFromCentral(CardResource[] centralCards, LinkedList<CardResource> resourceCardDeck, LinkedList<CardGold> goldCardDeck, String chose) {
+        switch (chose) {
+            case "upleft":
+                hand.add(centralCards[0]);
+                CardPlaying card = centralCards[0];
+                centralCards[0] = resourceCardDeck.pop();
+                return card;
+            case "upright":
+                hand.add(centralCards[1]);
+                CardPlaying card1 = centralCards[1];
+                centralCards[1] = resourceCardDeck.pop();
+                return card1;
+            case "downleft":
+                hand.add(centralCards[2]);
+                CardPlaying card2 = centralCards[2];
+                centralCards[2] = goldCardDeck.pop();
+                return card2;
+            default:
+                hand.add(centralCards[3]);
+                CardPlaying card3 = centralCards[3];
+                centralCards[3] = goldCardDeck.pop();
+                return card3;
+        }
     }
 
 

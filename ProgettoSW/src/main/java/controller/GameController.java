@@ -122,19 +122,38 @@ public class GameController implements Serializable {
         if (player == null) {
             throw new IllegalArgumentException("No player with the given nickname");
         }
-        PlayingStation station = player.getStation();
-        return new ReducedBoard(player, station);
+        return new ReducedBoard(nickname, player.getHand(), player.getStation().getTable() , player.getStation().getSecretObjective());
     }
 
 
-    public void addCard(CardResource card, Integer X, Integer Y, Integer choice, String name) {
-        board.getPlayers().get(name).getStation().addCard(card,X,Y);
+    public boolean addCard(CardPlaying card,Integer choice, Integer X, Integer Y, String name) {
+        return board.getPlayers().get(name).getStation().addCard((CardResource) card,X,Y);
     }
 
     public CardObjective[] getObjectiveCards(String nickname) {
         CardObjective first = board.getDeckCardObjective().pop();
         CardObjective second = board.getDeckCardObjective().pop();
         return new CardObjective[]{first, second};
+    }
+
+    public CardPlaying drawCard(Integer number, String clientNickname) {
+        switch(number) {
+                case 5:
+                    return board.getPlayers().get(clientNickname).addCardFromDeck(board.getDeckCardResource(), board.getDeckCardGold(), "resource");
+                case 6:
+                    return board.getPlayers().get(clientNickname).addCardFromDeck(board.getDeckCardResource(), board.getDeckCardGold(), "gold");
+                case 1:
+                    return board.getPlayers().get(clientNickname).addCardFromCentral(board.getCentralCards(), board.getDeckCardResource(), board.getDeckCardGold(), "upleft");
+                case 2:
+                    return board.getPlayers().get(clientNickname).addCardFromCentral(board.getCentralCards(), board.getDeckCardResource(), board.getDeckCardGold(), "upright");
+                case 3:
+                    return board.getPlayers().get(clientNickname).addCardFromCentral(board.getCentralCards(), board.getDeckCardResource(), board.getDeckCardGold(), "downleft");
+                case 4:
+                    return board.getPlayers().get(clientNickname).addCardFromCentral(board.getCentralCards(), board.getDeckCardResource(), board.getDeckCardGold(), "downright");
+            default:
+                throw new IllegalArgumentException("Invalid choice");
+        }
+
     }
    /* public static void main(String[] args) {
         Game game = new Game();

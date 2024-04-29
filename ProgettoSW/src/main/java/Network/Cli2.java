@@ -178,7 +178,7 @@ public class Cli2 implements UI {
     public void showUpdatedHand(String name) {
         System.out.println("Here is your hand:");
         System.out.println("Hand of " + name);
-        ArrayList<CardPlaying> hand= client.getClientModel().getPlayer().getHand();
+        ArrayList<CardPlaying> hand= client.getClientModel().getHand();
         for(CardPlaying card : hand){
             printCard(card);
         }
@@ -190,11 +190,26 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public void askCoordinatesOfCards() {
+    public Integer[] askCoordinatesOfCards() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        System.out.println("Do you want to place a card? (y/n)");
-        String choice = scanner.nextLine();
+        System.out.println("Which card do you want to place? Insert the number of the card (1-3)");
+        Integer cardChoice = scanner.nextInt();
+        System.out.println("front (1) or back (2)");
+        Integer cardSide = scanner.nextInt();
+        System.out.println("Choose x coordinates");
+        Integer x = scanner.nextInt();
+        System.out.println("Choose y coordinates");
+        Integer y = scanner.nextInt();
+        Integer[] Choice = {cardChoice, cardSide, x, y};
+        return Choice;
+    }
 
+    @Override
+    public Integer askDrawingCard() {
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        System.out.println("Which card do you want to draw? Insert 1 for up left card, 2 for up right card, 3 for down left card, 4 for down right card, 5 for resource Deck, 6 for gold Deck");
+        Integer choice = scanner.nextInt();
+        return choice;
     }
 
     private void printMatrix(String[][] mat){

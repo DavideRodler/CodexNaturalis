@@ -128,7 +128,7 @@ public class PlayingStation implements Serializable {
      * @param X    the x coordinate
      * @param Y    the y coordinate
      */
-    public void addCard(CardResource card, Integer X, Integer Y) {
+    public boolean addCard(CardResource card, Integer X, Integer Y) {
 
         try {
             if (!isPlayable(card, X, Y)) {
@@ -137,7 +137,7 @@ public class PlayingStation implements Serializable {
             }
         } catch (InvalidPlacingCondition e) {
             System.out.println(e.getMessage());
-            return;
+            return false;
         }
 
         ArrayList<Integer> coordinates = new ArrayList<>();
@@ -154,8 +154,7 @@ public class PlayingStation implements Serializable {
             player.setPoints(player.getPoints() + points);
         }
 
-
-
+        return true;
     }
 
         /**
