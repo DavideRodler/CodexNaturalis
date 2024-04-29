@@ -21,6 +21,7 @@ public class Cli2 implements UI {
 
     private final VirtualServer server;
     private final RmiClient client;
+    private final String black;
     private final String red;
     private final String green;
     private final String yellow;
@@ -38,6 +39,7 @@ public class Cli2 implements UI {
     public Cli2(VirtualServer server, RmiClient client) {
         this.server = server;
         this.client = client;
+        black = "\033[0;30m";
         blue = "\033[0;34m";
         green = "\033[0;32m";
         yellow = "\033[0;33m";
@@ -168,16 +170,22 @@ public class Cli2 implements UI {
 
     @Override
     public void showUpdatedBoard(PlayingBoard board) {
-        System.out.println("Board");
+        System.out.println("Common objectives: ");
+        printCard(board.getFirstObjective());
+        printCard(board.getSecondObjective());
+        System.out.println("The central cards are: ");
+        for(int i = 0; i < board.getCentralCards().length; i++) {
+            printCard(board.getCentralCards()[i]);
+        }
     }
 
     @Override
-    public void showUpdatedStation(Map<ArrayList<Integer>, CardPlaying> playingStation) {
-        System.out.println("Station:");
+    public void showUpdatedStation(String name) {
+        System.out.println("Station" + name);
     }
 
     @Override
-    public void showUpdatedHand(ArrayList<CardPlaying> hand) {
+    public void showUpdatedHand(String name) {
         System.out.println("Here is your hand:");
         for(CardPlaying card : hand){
             printCard(card);
@@ -213,8 +221,8 @@ public class Cli2 implements UI {
     }
 
     private void printMatrix(String[][] mat){
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 11; j++) {
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat[0].length; j++) {
                 System.out.print(mat[i][j]);
             }
             System.out.println();
@@ -284,7 +292,84 @@ public class Cli2 implements UI {
         }
     }
     private void printStartingFront(Card card) {
+        String[][] startingCard = createFrontStarting(card);
         //Stampo la carta iniziale. Deve avere il colore beige. Il front ha le risorse in mezzo!
+//        String[][] startingCard = new String[3][11];
+//        int rows = 3;
+//        int cols = 11;
+//        //setto i corner
+//        for(int i = 0; i < rows; i++){
+//            for(int j = 0; j < cols; j++){
+//                if (isUpLeftCorner(i, j, rows, cols)) {
+//                    startingCard[i][j] = cornerScanner(((CardStarting) card).getFront().getUpLeft());
+//                    startingCard[i][j+1] = " ";
+//                    j = j+1;
+//                } else if (isDownLeftCorner(i, j, rows, cols)) {
+//                    startingCard[i][j] = cornerScanner(((CardStarting) card).getFront().getDownLeft());
+//                    startingCard[i][j+1] = " ";
+//                    j = j+1;
+//                } else if (isUpRightCorner(i, j, rows, cols)) {
+//                    startingCard[i][j] = cornerScanner(((CardStarting) card).getFront().getUpRight());
+//                    startingCard[i][j-1] = " ";
+//                } else if (isDownRightCorner(i, j, rows, cols)) {
+//                    startingCard[i][j] = cornerScanner(((CardStarting) card).getFront().getDownRight()) + reset;
+//                    startingCard[i][j-1] = " ";
+//                } else {
+//                    startingCard[i][j] = beige + "█" + "\u001B[0m";
+//                }
+//            }
+//        }
+//        //setto le risorse in mezzo alla carta.
+//        int numOfCentralResources = ((CardStarting) card).getSymbols().size();
+//        //startingCard [1][0] = "";
+////        startingCard [1][10] = "";
+//        if(numOfCentralResources == 1){
+//            startingCard[1][5] = cornerScanner(((CardStarting) card).getSymbols().getFirst());
+//        } else if (numOfCentralResources == 2) {
+//            startingCard[0][5] = cornerScanner(((CardStarting) card).getSymbols().getFirst());
+//            startingCard[1][5] = cornerScanner(((CardStarting) card).getSymbols().get(1));
+//        } else if (numOfCentralResources == 3) {
+//            //startingCard[1][0] = " ";
+//            startingCard[0][5] = cornerScanner(((CardStarting) card).getSymbols().getFirst());
+//            startingCard[1][6] = cornerScanner(((CardStarting) card).getSymbols().get(1)) + beige + "█";
+//            startingCard[2][5] = cornerScanner(((CardStarting) card).getSymbols().get(2));
+//        }
+        printMatrix(startingCard);
+    }
+    private void printStartingBack(Card card) {
+        //Stampo la carta iniziale. Deve avere il colore beige.
+        String[][] startingCard = createBackStarting(card);
+//        int rows = 3;
+//        int cols = 11;
+//        for(int i = 0; i < rows; i++){
+//            for(int j = 0; j < cols; j++){
+//                startingCard[i][j] = beige + "█";
+//            }
+//        }
+//        for(int i = 0; i < rows; i++){
+//            for(int j = 0; j < cols; j++){
+//                if (isUpLeftCorner(i, j, rows, cols)) {
+//                    startingCard[i][j] = cornerScanner(((CardStarting) card).getBack().getUpLeft());
+//                    startingCard[i][j+1] = " ";
+//                    j = j+1;
+//                } else if (isDownLeftCorner(i, j, rows, cols)) {
+//                    startingCard[i][j] = cornerScanner(((CardStarting) card).getBack().getDownLeft());
+//                    startingCard[i][j+1] = " ";
+//                    j = j+1;
+//                } else if (isUpRightCorner(i, j, rows, cols)) {
+//                    startingCard[i][j] = cornerScanner(((CardStarting) card).getBack().getUpRight());
+//                    startingCard[i][j-1] = " ";
+//                } else if (isDownRightCorner(i, j, rows, cols)) {
+//                    startingCard[i][j] = cornerScanner(((CardStarting) card).getBack().getDownRight()) + reset;
+//                    startingCard[i][j-1] = " ";
+//                } else {
+//                    startingCard[i][j] = beige + "█" + "\u001B[0m";
+//                }
+//            }
+//        }
+        printMatrix(startingCard);
+    }
+    private String[][] createFrontStarting(Card card){
         String[][] startingCard = new String[3][11];
         int rows = 3;
         int cols = 11;
@@ -325,10 +410,9 @@ public class Cli2 implements UI {
             startingCard[1][6] = cornerScanner(((CardStarting) card).getSymbols().get(1)) + beige + "█";
             startingCard[2][5] = cornerScanner(((CardStarting) card).getSymbols().get(2));
         }
-        printMatrix(startingCard);
+        return startingCard;
     }
-    private void printStartingBack(Card card) {
-        //Stampo la carta iniziale. Deve avere il colore beige.
+    private String[][] createBackStarting(Card card){
         String[][] startingCard = new String[3][11];
         int rows = 3;
         int cols = 11;
@@ -358,7 +442,7 @@ public class Cli2 implements UI {
                 }
             }
         }
-        printMatrix(startingCard);
+        return startingCard;
     }
     private void printGoldFront(Card card) {
         String[][] goldCard = createFrontResCard(card);
