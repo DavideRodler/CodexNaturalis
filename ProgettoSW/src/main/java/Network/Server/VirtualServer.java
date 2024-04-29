@@ -11,6 +11,8 @@ import model.cards.CardResource;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Map;
 
 public interface VirtualServer extends Remote {
     void connectClient(VirtualView client) throws RemoteException;
@@ -58,7 +60,7 @@ public interface VirtualServer extends Remote {
     void allPlayerReady() throws RemoteException, InterruptedException;
 
 
-    void notifyMyUpdatedBoard(VirtualView rmiClient) throws RemoteException;
+    void notifyMyUpdatedBoard(VirtualView rmiClient, Map<ArrayList<Integer>, CardPlaying> playingStation) throws RemoteException;
 
     void showedMyBoardNotify() throws RemoteException;
 

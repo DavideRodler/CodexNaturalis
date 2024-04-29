@@ -253,9 +253,9 @@ public class RmiServer extends Observable implements VirtualServer {
     }
 
     @Override
-    public void notifyMyUpdatedBoard(VirtualView rmiClient) {
+    public void notifyMyUpdatedBoard(VirtualView rmiClient, Map<ArrayList<Integer>, CardPlaying> playingStation) {
         synchronized (this){
-            notifyMyBoardObservers(getClientNickname(rmiClient));
+            notifyMyBoardObservers(playingStation, getClientNickname(rmiClient));
         }
     }
 

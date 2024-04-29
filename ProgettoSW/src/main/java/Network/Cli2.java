@@ -13,6 +13,7 @@ import model.objectives.ObjectivePositioning;
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Cli2 implements UI {
@@ -185,7 +186,7 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public void showMyUpdatedBoard(String clientNickname) {
+    public void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String clientNickname) {
         System.out.println("\n Updated Station of " + clientNickname + "\n");
     }
 

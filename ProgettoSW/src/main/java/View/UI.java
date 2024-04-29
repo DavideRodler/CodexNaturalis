@@ -1,7 +1,11 @@
 package View;
 
 import model.cards.CardObjective;
+import model.cards.CardPlaying;
 import model.cards.CardStarting;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 public interface UI {
     void showStartingCard(CardStarting cardStarting);
@@ -25,7 +29,7 @@ public interface UI {
 
     void showUpdatedHand(String name);
 
-    void showMyUpdatedBoard(String clientNickname);
+    void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String name);
 
     Integer[] askCoordinatesOfCards();
 

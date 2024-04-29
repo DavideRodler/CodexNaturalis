@@ -1,7 +1,11 @@
 package View;
 
 import model.cards.CardObjective;
+import model.cards.CardPlaying;
 import model.cards.CardStarting;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 public class VirtualUI implements UI {
     public void update(String message) {
@@ -59,7 +63,7 @@ public class VirtualUI implements UI {
     }
 
     @Override
-    public void showMyUpdatedBoard(String clientNickname) {
+    public void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String name) {
 
     }
 

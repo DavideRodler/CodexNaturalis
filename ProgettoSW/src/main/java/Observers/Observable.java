@@ -2,8 +2,11 @@ package Observers;
 
 
 import Network.Client.VirtualView;
+import model.cards.CardPlaying;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Observable {
     private List<VirtualView> LoginObservers = new ArrayList<>();
@@ -35,11 +38,11 @@ public class Observable {
         }
     }
 
-    public void notifyMyBoardObservers(String name){
+    public void notifyMyBoardObservers(Map<ArrayList<Integer>, CardPlaying> playingStation, String name){
         for (VirtualView observer: MyBoardObservers){
             Thread myBoardThread = new  Thread(() -> {
                 try{
-                    observer.showMyUpdatedBoard(name);
+                    observer.showMyUpdatedBoard(playingStation, name);
                     System.out.println("FLAG-OBS");
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -11,6 +11,8 @@ import model.cards.CardResource;
 import model.cards.CardStarting;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class RmiClient extends UnicastRemoteObject implements VirtualView {
 
@@ -92,8 +94,8 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     }
 
     @Override
-    public void showMyUpdatedBoard(String name) throws RemoteException {
-        cli.showMyUpdatedBoard(name);
+    public void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String name) throws RemoteException {
+        cli.showMyUpdatedBoard(playingStation, name);
         server.showedMyBoardNotify();
     }
 
@@ -145,7 +147,7 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
             this.clientModel.addCardToHand(server.drawCard(drawignChoice));
 
         }
-        server.notifyMyUpdatedBoard(this);
+        server.notifyMyUpdatedBoard(this, this.clientModel.getPlayingStation());
         server.nextTurn();
     }
 }
