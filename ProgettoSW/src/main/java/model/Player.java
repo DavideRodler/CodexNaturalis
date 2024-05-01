@@ -17,27 +17,22 @@ import Exception.InvalidPlacingCondition;
 
 public class Player extends ModelObserver implements Serializable {
     private final String nickname;
-    private Integer playerNumber;
-    private Integer numberTurns;
     private Integer points;
     private Color token;
     private PlayingStation station;
-    private Integer pointsObjective;
     private ArrayList<CardPlaying> hand;
 
 
     // Costruttore
     public Player(String nickname) {
         this.nickname = nickname;
-        this.numberTurns = 0;
         this.points = 0;
-        this.pointsObjective = 0;
         this.hand = new ArrayList<>(3);
     }
 
-    //  Getter e Setter methods
+    //setter
 
-
+    //getter
     public ArrayList<CardPlaying> getHand() {
         return hand;
     }
@@ -50,30 +45,10 @@ public class Player extends ModelObserver implements Serializable {
         return nickname;
     }
 
-    public Integer getPointsObjective() {
-        return pointsObjective;
-    }
-
-    public Integer getPlayerNumber() {
-        return playerNumber;
-    }
 
     public Integer getPoints() {
         return points;
     }
-
-    public Integer getNumberTurns() {
-        return numberTurns;
-    }
-
-    public void setNumberTurns(Integer numberTurns) {
-        this.numberTurns = numberTurns;
-    }
-
-    public void setPointsObjective(Integer pointsObjective) {
-        this.pointsObjective = pointsObjective;
-    }
-
     public void setStation(PlayingStation station) {
         this.station = station;
     }

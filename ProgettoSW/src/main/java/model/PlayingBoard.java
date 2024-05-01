@@ -12,119 +12,121 @@ public class PlayingBoard extends ModelObserver implements Serializable {
     private LinkedList<CardGold> deckCardGold;
     private LinkedList<CardResource> deckCardResource;
     private LinkedList<CardObjective> deckCardObjective;
-
-
     private LinkedList<CardStarting> deckCardStarting;
-    private Map<String,Player> playerMap;
-    private CardResource[] centralCards = new CardResource[4];
-    private final CardObjective FirstObjective;
-    private final CardObjective SecondObjective;
+    private ArrayList<CardGold> centralCardsGold;
+    private ArrayList<CardResource> centralCardsResource;
+    private final CardObjective firstObjective;
+    private final CardObjective secondObjective;
 
 
-    public PlayingBoard(CardObjective firstObjective, CardObjective secondObjective, LinkedList<CardGold> deckCardGold, LinkedList<CardObjective> deckCardObjective, LinkedList<CardResource> deckCardResource, LinkedList<CardStarting> deckCardStarting) {
-        this.FirstObjective = firstObjective;
-        this.SecondObjective = secondObjective;
-        this.deckCardResource = deckCardResource;
-        this.deckCardObjective = deckCardObjective;
+    // the list with the name of the player in the order that they are playing
+    private ArrayList<String> turnList;
+    //the current player playing
+    private String currentPlayer;
+    //saving the number of player
+    private int playernumber;
+    //the player map that for each nickname has a player
+    private ArrayList<Player> playerList;
+
+    public PlayingBoard(LinkedList<CardGold> deckCardGold, LinkedList<CardObjective> deckCardObjective, LinkedList<CardResource> deckCardResource, LinkedList<CardStarting> deckCardStarting, CardObjective firstObjective, CardObjective secondObjective) {
         this.deckCardGold = deckCardGold;
+        this.deckCardObjective = deckCardObjective;
+        this.deckCardResource = deckCardResource;
         this.deckCardStarting = deckCardStarting;
-        this.centralCards[0] = (deckCardResource.pop());
-        this.centralCards[1] = (deckCardResource.pop());
-        this.centralCards[2] = (deckCardGold.pop());
-        this.centralCards[3] = (deckCardGold.pop());
-        this.playerMap = new HashMap<>();
+        this.firstObjective = firstObjective;
+        this.secondObjective = secondObjective;
+        this.playerList = new ArrayList<Player>();
+        this.centralCardsResource = new ArrayList<CardResource>();
+        this.centralCardsGold = new ArrayList<CardGold>();
+
     }
-
-
-
 
 
     //-------------------GETTER-----------------------------
-    public Map<String,Player> getPlayers(){
-        return playerMap;
-    }
     public LinkedList<CardGold> getDeckCardGold() {
         return deckCardGold;
     }
 
-    public CardResource[] getCentralCards() {
-        return centralCards;
-    }
-
-    public LinkedList<CardObjective> getDeckCardObjective() {
-        return deckCardObjective;
-    }
-
-    public LinkedList<CardResource> getDeckCardResource() {
-        return deckCardResource;
-    }
-
-    public LinkedList<CardStarting> getDeckCardStarting() {
-        return deckCardStarting;
-    }
-
     public CardObjective getFirstObjective() {
-        return FirstObjective;
+        return firstObjective;
     }
 
     public CardObjective getSecondObjective() {
-        return SecondObjective;
+        return secondObjective;
     }
-    //--------------------GETTING FASE ENDED----------------------------
 
+    //getting a card from decks
+    public CardResource getCardResourceFromDeck(){
+        return deckCardResource.pop();
+    }
+    public CardGold getCardGoldFromDeck(){
+        return deckCardGold.pop();
+    }
+
+    public CardObjective getCardObjectiveFromDeck(){
+        return deckCardObjective.pop();
+    }
+
+    public CardStarting getCardStartingFromDeck(){
+        return deckCardStarting.pop();
+    }   public int getPlayernumber() {
+        return playernumber;
+    }
 
 
     //--------------------SETTER----------------------------
 
-    // shuffle players
-    public void shufflePlayer(){
-        List<Player> players = new ArrayList<>(playerMap.values());
-        Collections.shuffle(players);
-        playerMap.clear();
-        for (Player player : players) {
-            playerMap.put(player.getNickname(), player);
-        }
-    }
 
     public void addPlayer(Player p){
-        this.playerMap.put(p.getNickname(),p);
-        ArrayList<CardPlaying> hand = new ArrayList<>();
-        hand.add(drawCardResource());
-        hand.add(drawCardResource());
-        hand.add(drawCardGold());
-        p.setHand(hand);
+        playerList.add(p);
+        turnList.add(p.getNickname());
     }
 
+    public void setPlayernumber(int playernumber) {
+        this.playernumber = playernumber;
+    }
 
 
     //--------------------SETTING FASE ENDED----------------------------
 
-
-    /**
-     * This method is used to draw two cards from the deck of starting cards
-     */
-
-   /* public void drawCardStarting(LinkedList<CardStarting> deckCardStarting, Player player){
-        CardStarting card = deckCardStarting.remove();
-        player.getStation().addCard(card, 39,39);
-    }*/
-
-
-//Drawing Cards from  the two decks
-
-    public CardGold drawCardGold(){
-        return deckCardGold.pop();
+    public boolean nicknameChecker(String nickname) {
+        for (String name : turnList){
+            if (nickname.equals(name))return false;
+        }
+        return true;
     }
 
-    public CardResource drawCardResource(){
-        return deckCardResource.pop();
+    public CardResource getCentralCardResource(int pos){
+        CardResource tmp = centralCardsResource.get(pos);
+        centralCardsResource.remove(pos);
+        centralCardsResource.add(pos, deckCardResource.pop());
+        return tmp;
+
+    }
+
+    public CardGold getCentralCardGold(int pos){
+        CardGold tmp = centralCardsGold.get(pos);
+        centralCardsResource.remove(pos);
+        centralCardsGold.add(pos, deckCardGold.pop());
+        return tmp;
     }
 
 
-    public List<String> PlayerTurnOrder() {
-        shufflePlayer();
-        List<String> players = new ArrayList<>(playerMap.keySet().stream().toList());
-        return players;
+
+    //da aggiungere la exception per player non trovato
+    public Player getPlayer(String nickname) throws InterruptedException{
+        for(Player player : playerList){
+            if (player.getNickname().equals(nickname)){
+                return player;
+            }
+        }
+        throw  new InterruptedException();
     }
+
+    // shuffle players
+    public void shufflePlayer(){
+        Collections.shuffle(turnList);
+    }
+
 }
 

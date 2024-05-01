@@ -49,7 +49,7 @@ public interface VirtualServer extends Remote {
 
     CardObjective[] getObjectiveCards(String clientNickname) throws RemoteException;
 
-    PlayingStation inizializePlayingStation(String clientNickname, CardPlaying startingCard, Integer choice, CardObjective cardObjective) throws RemoteException;
+    void inizializePlayingStation(String clientNickname, CardPlaying startingCard, Integer choice, CardObjective cardObjective) throws RemoteException;
 
     boolean isGameFinished() throws RemoteException;
 

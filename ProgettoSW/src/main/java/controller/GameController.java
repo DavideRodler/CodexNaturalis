@@ -1,5 +1,6 @@
 package controller;
 
+import Network.Client.ClientController;
 import model.Player;
 import model.PlayingBoard;
 import model.PlayingStation;
@@ -11,7 +12,7 @@ import model.enums.GameState;
 import java.io.Serializable;
 import java.util.*;
 
-public class GameController implements Serializable {
+public class GameController extends ClientController implements Serializable {
     private PlayingBoard board;
 
     private GameState gameState;
@@ -44,74 +45,35 @@ public class GameController implements Serializable {
         CardObjective secondCardObj = deckObjective.pop();
 
         //creating the board
-        this.board = new PlayingBoard(firstCardObj, secondCardObj,deckGold, deckObjective, deckResource, deckStarting);
+        this.board = new PlayingBoard(deckGold, deckObjective, deckResource, deckStarting,firstCardObj, secondCardObj);
         setGameState(GameState.LOGIN);
     }
 
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
     }
+
     public void addPlayer(String nickname) {
         this.board.addPlayer(new Player(nickname));
     }
 
     //Create the order for the player and set the first player
     public void setPlayerOrder() {
-        //shuffleing the Playerlist
         board.shufflePlayer();
-        //setting the PlayerNumber
-        for (int i = 0; i < board.getPlayers().size(); i++) {
-            board.getPlayers().get(i).setPlayerNumber(i + 1);
-        }
     }
 
     //gives the player a playingstation after he selects the playingstation
     private void givePlayerStation(Player p, CardObjective obj) {
-        CardStarting startingCard = board.getDeckCardStarting().pop();
+        CardStarting startingCard = board.getCardStartingFromDeck();
         PlayingStation station = new PlayingStation(p, startingCard, obj);
         p.setStation(station);
     }
 
     public boolean takenNickname(String nickname) {
-        return board.getPlayers().containsKey(nickname);
+        return board.nicknameChecker(nickname);
     }
 
-    public Integer numberOfPlayer() {
-        return board.getPlayers().size();
-    }
     //for each player i show the two possible objectives that he can choose
-    public void createSations(){
-        Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < board.getPlayers().size(); i++) {
-            // popping two cards from the deck
-            CardObjective firstObjectiveToChoose = board.getDeckCardObjective().pop();
-            CardObjective secondObjectiveToChoose = board.getDeckCardObjective().pop();
-            //selecting the cardobjective
-            System.out.println(firstObjectiveToChoose.getObjective().toString());
-            System.out.println(secondObjectiveToChoose.getObjective().toString());
-            System.out.println(board.getPlayers().get(i).getNickname() + " select the objective with 0 or 1");
-            int selezione = scanner.nextInt();
-            System.out.println(selezione);
-            //putting the cardobjective in the player attribute and then putting the other card at the bottom of the deck
-            switch (selezione){
-                case 0:
-                    System.out.println(board.getPlayers().get(i).getNickname() + " has selected the objective" + firstObjectiveToChoose.getObjective().toString());
-                    givePlayerStation(board.getPlayers().get(i), firstObjectiveToChoose);
-                    board.getDeckCardObjective().addLast(secondObjectiveToChoose);
-                    break;
-                case 1:
-                    System.out.println(board.getPlayers().get(i).getNickname() + " has selected the objective" + secondObjectiveToChoose.getObjective().toString());
-                    givePlayerStation(board.getPlayers().get(i), secondObjectiveToChoose);
-                    board.getDeckCardObjective().addLast(firstObjectiveToChoose);
-                    break;
-                default:
-                    System.out.println("number out of bound");
-
-            }
-
-        }
-    }
-
     public CardStarting getStartingCard(String nickname) {
            CardStarting firstCard = board.getDeckCardStarting().pop();
            return firstCard;
@@ -136,6 +98,7 @@ public class GameController implements Serializable {
         return new CardObjective[]{first, second};
     }
 
+
     public CardPlaying drawCard(Integer number, String clientNickname) {
         switch(number) {
                 case 5:
@@ -155,6 +118,41 @@ public class GameController implements Serializable {
         }
 
     }
+    public void inizializePlayingStation(String clientNickname, CardPlaying startingCard, Integer choice, CardObjective cardObjective) {
+        Player player = getBoard().getPlayers().get(clientNickname);
+        PlayingStation station = new PlayingStation(player, startingCard, cardObjective);
+        player.setStation(station);
+    }
+
+    public boolean isGamefinished(){
+        for (Player player : board.getPlayers().values()){
+            if (player.getPoints() > 20){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String winner(){
+       int maxpoint = 0;
+       String maxpointHolder = "";
+        for (Player player : board.getPlayers().values()){
+            if (maxpoint < player.getPoints()){
+                maxpoint = player.getPoints();
+                maxpointHolder = player.getNickname();
+            }
+        }
+        return maxpointHolder;
+    }
+
+    public void setPlayerNumber(int playernumber){
+        board.setPlayernumber(playernumber);
+    }
+    public int  getPlayerNumber(){
+        return board.getPlayernumber();
+    }
+
+
    /* public static void main(String[] args) {
         Game game = new Game();
         game.initGameController();

@@ -26,19 +26,13 @@ public class PlayingStation implements Serializable {
     private Integer countInkwell;
     private Integer countQuill;
     private Integer countManuscript;
-    private Player player;
     private CardObjective SecretObjective;
 
 
-    public void setSecretObjective(CardObjective SecretObjective) {
-        this.SecretObjective = SecretObjective;
-    }
-
-
+    //-------------------GETTER-----------------------------
     public CardObjective getSecretObjective() {
         return SecretObjective;
     }
-
 
     public ArrayList<Integer> getCoordinates(CardPlaying card) {
         for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : table.entrySet()) {
@@ -104,7 +98,6 @@ public class PlayingStation implements Serializable {
     // Costruttore
     public PlayingStation(Player player, CardPlaying startCard, CardObjective Objective) {
         this.table = new HashMap<>();
-        this.player = player;
         ArrayList<Integer> coordi = new ArrayList<Integer>();
         coordi.add(40);
         coordi.add(40);
@@ -123,12 +116,13 @@ public class PlayingStation implements Serializable {
 
     /**
      * This method adds a card to the playing station
+     * and retrurns the points that generates that card
      *
      * @param card the card to add
      * @param X    the x coordinate
      * @param Y    the y coordinate
      */
-    public boolean addCard(CardResource card, Integer X, Integer Y) {
+    public int addCard(CardResource card, Integer X, Integer Y) throws InvalidPlacingCondition{
 
         try {
             if (!isPlayable(card, X, Y)) {
@@ -137,7 +131,7 @@ public class PlayingStation implements Serializable {
             }
         } catch (InvalidPlacingCondition e) {
             System.out.println(e.getMessage());
-            return false;
+            throw new InvalidPlacingCondition("the card cant't be blaced at the coordinates" + X + "");
         }
 
         ArrayList<Integer> coordinates = new ArrayList<>();
@@ -148,13 +142,11 @@ public class PlayingStation implements Serializable {
         // Update the counters
         updateCounters(card);
 
-        //adding points to the player
+        //calculating the points that the card generates
         if (!(card.getPlayingBack())) {
-            int points = card.getObjective().countObjectivePoints(this, card, X, Y);
-            player.setPoints(player.getPoints() + points);
+            return card.getObjective().countObjectivePoints(this, card, X, Y);
         }
-
-        return true;
+        else return 0;
     }
 
         /**
@@ -333,10 +325,6 @@ public class PlayingStation implements Serializable {
 
         public Integer getCountPlant () {
             return countPlant;
-        }
-
-        public Player getPlayer() {
-            return player;
         }
 
         public Integer getCountFungi () {

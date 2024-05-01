@@ -24,7 +24,6 @@ public class RmiServer extends Observable implements VirtualServer {
     private Map<VirtualView, String> clientsMapClientsKey;
     private Integer CurrentTurn;
     private Integer playerReady;
-    private Integer playerNumber;
     private Boolean showedBoard = false;
 
 
@@ -33,7 +32,6 @@ public class RmiServer extends Observable implements VirtualServer {
         clients = new ArrayList<>();
         clientsMapNicknamesKey = new HashMap<>();
         clientsMapClientsKey = new HashMap<>();
-        this.playerNumber = 0;
         this.CurrentTurn = 0;
         this.playerReady = 0;
     }
@@ -143,11 +141,11 @@ public class RmiServer extends Observable implements VirtualServer {
 
     @Override
     public synchronized void inizializeLobby(Integer playerNumber) throws RemoteException {
-        this.playerNumber = playerNumber;
+        gameController.setPlayerNumber(playerNumber);
     }
 
     public synchronized Integer getPlayerNumber() {
-        return playerNumber;
+        return gameController.getPlayerNumber();
     }
 
     public synchronized Integer getCurrentTurn() {
@@ -199,11 +197,8 @@ public class RmiServer extends Observable implements VirtualServer {
     }
 
     @Override
-    public synchronized PlayingStation inizializePlayingStation(String clientNickname, CardPlaying startingCard, Integer choice, CardObjective cardObjective) {
-            Player player = gameController.getBoard().getPlayers().get(clientNickname);
-            PlayingStation station = new PlayingStation(player, startingCard, cardObjective);
-            player.setStation(station);
-            return station;
+    public synchronized void inizializePlayingStation(String clientNickname, CardPlaying startingCard, Integer choice, CardObjective cardObjective) {
+        gameController.inizializePlayingStation(clientNickname,startingCard,choice,cardObjective);
     }
 
     @Override
@@ -220,7 +215,6 @@ public class RmiServer extends Observable implements VirtualServer {
     @Override
     public synchronized void loginThreadsStopper() throws RemoteException, InterruptedException {
         stopAllLoginThreads();
-
         playerToNextTurn(0);
 
         new Thread(() -> {
