@@ -1,6 +1,6 @@
 package model.enums;
 
-public enum Direction {
+public enum DirectionEnum {
     LEFT,
     RIGHT
 }

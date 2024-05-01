@@ -2,7 +2,6 @@ package model;
 
 import Observers.ModelObserver;
 import model.cards.*;
-import Observers.Observable;
 
 import java.io.Serializable;
 import java.util.*;
@@ -19,28 +18,26 @@ public class PlayingBoard extends ModelObserver implements Serializable {
     private final CardObjective secondObjective;
 
 
-    // the list with the name of the player in the order that they are playing
-    private ArrayList<String> turnList;
     //the current player playing
     private String currentPlayer;
     //saving the number of player
     private int playernumber;
     //the player map that for each nickname has a player
-    private ArrayList<Player> playerList;
+    private ArrayList<Player> players;
 
-    public PlayingBoard(LinkedList<CardGold> deckCardGold, LinkedList<CardObjective> deckCardObjective, LinkedList<CardResource> deckCardResource, LinkedList<CardStarting> deckCardStarting, CardObjective firstObjective, CardObjective secondObjective) {
-        this.deckCardGold = deckCardGold;
-        this.deckCardObjective = deckCardObjective;
-        this.deckCardResource = deckCardResource;
-        this.deckCardStarting = deckCardStarting;
+    public PlayingBoard(CardObjective firstObjective, CardObjective secondObjective, int playernumber, ArrayList<Player> playerList, LinkedList<CardStarting> deckCardStarting, LinkedList<CardResource> deckCardResource, LinkedList<CardObjective> deckCardObjective, LinkedList<CardGold> deckCardGold, String currentPlayer, ArrayList<CardResource> centralCardsResource, ArrayList<CardGold> centralCardsGold) {
         this.firstObjective = firstObjective;
         this.secondObjective = secondObjective;
-        this.playerList = new ArrayList<Player>();
-        this.centralCardsResource = new ArrayList<CardResource>();
-        this.centralCardsGold = new ArrayList<CardGold>();
-
+        this.playernumber = playernumber;
+        this.players = playerList;
+        this.deckCardStarting = deckCardStarting;
+        this.deckCardResource = deckCardResource;
+        this.deckCardObjective = deckCardObjective;
+        this.deckCardGold = deckCardGold;
+        this.currentPlayer = currentPlayer;
+        this.centralCardsResource = centralCardsResource;
+        this.centralCardsGold = centralCardsGold;
     }
-
 
     //-------------------GETTER-----------------------------
     public LinkedList<CardGold> getDeckCardGold() {
@@ -73,59 +70,104 @@ public class PlayingBoard extends ModelObserver implements Serializable {
         return playernumber;
     }
 
+    public ArrayList<CardGold> getCentralCardsGold() {
+        return centralCardsGold;
+    }
 
-    //--------------------SETTER----------------------------
+    public ArrayList<CardResource> getCentralCardsResource() {
+        return centralCardsResource;
+    }
+
+    public String getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public LinkedList<CardObjective> getDeckCardObjective() {
+        return deckCardObjective;
+    }
+
+    public LinkedList<CardResource> getDeckCardResource() {
+        return deckCardResource;
+    }
+
+    public LinkedList<CardStarting> getDeckCardStarting() {
+        return deckCardStarting;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+//--------------------SETTER----------------------------
 
 
     public void addPlayer(Player p){
-        playerList.add(p);
-        turnList.add(p.getNickname());
+        players.add(p);
     }
 
     public void setPlayernumber(int playernumber) {
         this.playernumber = playernumber;
     }
 
-
-    //--------------------SETTING FASE ENDED----------------------------
-
-    public boolean nicknameChecker(String nickname) {
-        for (String name : turnList){
-            if (nickname.equals(name))return false;
-        }
-        return true;
+    public void setCentralCardsGold(ArrayList<CardGold> centralCardsGold) {
+        this.centralCardsGold = centralCardsGold;
     }
 
-    public CardResource getCentralCardResource(int pos){
-        CardResource tmp = centralCardsResource.get(pos);
-        centralCardsResource.remove(pos);
-        centralCardsResource.add(pos, deckCardResource.pop());
-        return tmp;
-
+    public void setCentralCardsResource(ArrayList<CardResource> centralCardsResource) {
+        this.centralCardsResource = centralCardsResource;
     }
 
-    public CardGold getCentralCardGold(int pos){
-        CardGold tmp = centralCardsGold.get(pos);
-        centralCardsResource.remove(pos);
-        centralCardsGold.add(pos, deckCardGold.pop());
-        return tmp;
+    public void setCurrentPlayer(String currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 
-
-
-    //da aggiungere la exception per player non trovato
-    public Player getPlayer(String nickname) throws InterruptedException{
-        for(Player player : playerList){
-            if (player.getNickname().equals(nickname)){
-                return player;
-            }
-        }
-        throw  new InterruptedException();
+    public void setDeckCardGold(LinkedList<CardGold> deckCardGold) {
+        this.deckCardGold = deckCardGold;
     }
 
+    public void setDeckCardObjective(LinkedList<CardObjective> deckCardObjective) {
+        this.deckCardObjective = deckCardObjective;
+    }
+
+    public void setDeckCardResource(LinkedList<CardResource> deckCardResource) {
+        this.deckCardResource = deckCardResource;
+    }
+
+    public void setDeckCardStarting(LinkedList<CardStarting> deckCardStarting) {
+        this.deckCardStarting = deckCardStarting;
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
+    }
+
+//--------------------SETTING FASE ENDED----------------------------
+
+
+
+    public Player getPlayer(String nickname) throws  IllegalStateException{
+        return players.stream()
+                .filter(p -> p.getNickname().equals(nickname))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("Player " + nickname + " not found"));
+    }
+
+    public Optional<CardResource> getCardResource(int id){
+        return centralCardsResource
+                .stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst();
+    }
+
+    public Optional<CardGold> getCardGold(int id){
+        return centralCardsGold
+                .stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst();
+    }
     // shuffle players
     public void shufflePlayer(){
-        Collections.shuffle(turnList);
+        Collections.shuffle(players);
     }
 
 }

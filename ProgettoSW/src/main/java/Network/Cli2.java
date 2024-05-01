@@ -5,8 +5,7 @@ import Network.Server.VirtualServer;
 import View.UI;
 import model.PlayingBoard;
 import model.cards.*;
-import model.enums.Direction;
-import model.enums.Suit;
+import model.enums.SuitEnum;
 import model.objectives.ObjectiveCountingGold;
 import model.objectives.ObjectiveCountingResource;
 import model.objectives.ObjectiveDiagonal;
@@ -53,7 +52,7 @@ public class Cli2 implements UI {
     }
 
 
-    private String cornerScanner(Suit suit) {
+    private String cornerScanner(SuitEnum suit) {
         return switch (suit) {
             case ANIMAL -> lightBlue + "A" + reset;
             case INSECT -> purple + "I" + reset;
@@ -246,13 +245,13 @@ public class Cli2 implements UI {
             System.out.println("This is the your objective card: \n");
             if(((CardObjective) card).getObjective() instanceof ObjectivePositioning){
                 System.out.println("Your type of objective is: positioning");
-                if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.FUNGI){
+                if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == SuitEnum.FUNGI){
                     printFungiPositioning();
-                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.PLANT) {
+                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == SuitEnum.PLANT) {
                     printPlantPositioning();
-                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.ANIMAL){
+                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == SuitEnum.ANIMAL){
                     printAnimalPositioning();
-                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.INSECT){
+                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == SuitEnum.INSECT){
                     printInsectPositioning();
                 }
             } else if (((CardObjective) card).getObjective() instanceof ObjectiveCountingGold) {
@@ -264,21 +263,21 @@ public class Cli2 implements UI {
                     printCountAll();
                 }
                 else if((countQuill != 0)&&(countInkwell == 0)&&(countManuscript==0)){
-                    printCountGold(Suit.QUILL);
+                    printCountGold(SuitEnum.QUILL);
                 }
                 else if ((countQuill == 0)&&(countInkwell != 0)&&(countManuscript==0)) {
-                    printCountGold(Suit.INKWELL);
+                    printCountGold(SuitEnum.INKWELL);
                 }
                 else if ((countQuill == 0)&&(countInkwell == 0)&&(countManuscript!=0)){
-                    printCountGold(Suit.MANUSCRIPT);
+                    printCountGold(SuitEnum.MANUSCRIPT);
                 }
             } else if (((CardObjective) card).getObjective() instanceof ObjectiveCountingResource) {
                 System.out.println("Your type of objective is: counting resourses");
-                Suit suit = ((ObjectiveCountingResource) ((CardObjective) card).getObjective()).getSymbol();
+                SuitEnum suit = ((ObjectiveCountingResource) ((CardObjective) card).getObjective()).getSymbol();
                 printCountRes(suit);
             } else if (((CardObjective) card).getObjective() instanceof ObjectiveDiagonal) {
                 System.out.println("Your type of objective is: ");
-                Suit suit = ((ObjectiveDiagonal) ((CardObjective) card).getObjective()).getColor();
+                SuitEnum suit = ((ObjectiveDiagonal) ((CardObjective) card).getObjective()).getColor();
                 printDiagonal(suit);
             }
         }
@@ -460,21 +459,21 @@ public class Cli2 implements UI {
         int costAnimal = ((CardGold) card).getCostAnimal();
         int costPlant = ((CardGold) card).getCostPlant();
         int costInsect = ((CardGold) card).getCostInsect();
-        ArrayList<Suit> costList = new ArrayList<Suit>();
+        ArrayList<SuitEnum> costList = new ArrayList<SuitEnum>();
         while(costFungi > 0){
-            costList.add(Suit.FUNGI);
+            costList.add(SuitEnum.FUNGI);
             costFungi--;
         }
         while(costAnimal > 0){
-            costList.add(Suit.ANIMAL);
+            costList.add(SuitEnum.ANIMAL);
             costAnimal--;
         }
         while(costPlant > 0){
-            costList.add(Suit.PLANT);
+            costList.add(SuitEnum.PLANT);
             costPlant--;
         }
         while(costInsect > 0){
-            costList.add(Suit.INSECT);
+            costList.add(SuitEnum.INSECT);
             costInsect--;
         }
         if(costList.size() == 3){
@@ -584,7 +583,7 @@ public class Cli2 implements UI {
         insPos[0][5] = lightBlue + "█" + reset;
         printMatrix(insPos);
     }
-    private void printCountGold(Suit suit){
+    private void printCountGold(SuitEnum suit){
         String[][] countGold = new String[3][11];
         int rows = 3;
         int cols = 11;
@@ -613,7 +612,7 @@ public class Cli2 implements UI {
         countGold[1][8] = manuscript;
         printMatrix(countGold);
     }
-    private void printCountRes(Suit suit){
+    private void printCountRes(SuitEnum suitEnum){
         String[][] countRes = new String[3][11];
         int rows = 3;
         int cols = 11;
@@ -623,12 +622,12 @@ public class Cli2 implements UI {
             }
         }
         countRes[0][5] = "2";
-        countRes[1][5] = cornerScanner(suit); //rivedere ciclo for così non va bene devo farnre due
-        countRes[2][4] = cornerScanner(suit);
-        countRes[2][6] = cornerScanner(suit);
+        countRes[1][5] = cornerScanner(suitEnum); //rivedere ciclo for così non va bene devo farnre due
+        countRes[2][4] = cornerScanner(suitEnum);
+        countRes[2][6] = cornerScanner(suitEnum);
         printMatrix(countRes);
     }
-    private void printDiagonal(Suit suit){
+    private void printDiagonal(SuitEnum suitEnum){
         String[][] diag = new String[3][11];
         int rows = 3;
         int cols = 11;
@@ -638,8 +637,8 @@ public class Cli2 implements UI {
             }
         }
         diag[0][5] = "2";
-        if(suit == Suit.FUNGI || suit == Suit.ANIMAL){
-            if(suit == Suit.FUNGI){
+        if(suitEnum == SuitEnum.FUNGI || suitEnum == SuitEnum.ANIMAL){
+            if(suitEnum == SuitEnum.FUNGI){
                 diag[2][3] = red + "█";
                 diag[2][4] = red + "█";
                 diag[1][5] = red + "█";
@@ -654,8 +653,8 @@ public class Cli2 implements UI {
                 diag[0][7] = lightBlue + "█";
                 diag[0][8] = lightBlue + "█" + reset;
             }
-        } else if (suit == Suit.PLANT || suit == Suit.INSECT) {
-            if(suit == Suit.PLANT){
+        } else if (suitEnum == SuitEnum.PLANT || suitEnum == SuitEnum.INSECT) {
+            if(suitEnum == SuitEnum.PLANT){
                 diag[0][3] = green + "█";
                 diag[0][4] = green + "█";
                 diag[1][5] = green + "█";

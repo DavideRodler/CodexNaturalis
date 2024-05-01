@@ -2,40 +2,48 @@ package model;
 
 import model.cards.*;
 //import model.cards.face.Corner;
-import model.enums.Suit;
-import Exception.InvalidPlacingCondition;
-import model.objectives.Objective;
-import model.objectives.ObjectiveAssign;
-import model.objectives.ObjectiveCountingGold;
-import model.objectives.ObjectiveDiagonal;
+import model.enums.SuitEnum;
 
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.*;
 
-import static model.enums.Suit.ANIMAL;
-import static model.enums.Suit.QUILL;
-
 public class PlayingStation implements Serializable {
-    private HashMap<ArrayList<Integer>, CardPlaying> table;
-    private Integer countInsect;
-    private Integer countAnimal;
-    private Integer countPlant;
-    private Integer countFungi;
-    private Integer countInkwell;
-    private Integer countQuill;
-    private Integer countManuscript;
+    private HashMap<ArrayList<Integer>, CardPlaying> map;
     private CardObjective SecretObjective;
 
+
+    //constructor
+    public PlayingStation(CardObjective secretObjective, HashMap<ArrayList<Integer>, CardPlaying> map) {
+        SecretObjective = secretObjective;
+        this.map = map;
+    }
 
     //-------------------GETTER-----------------------------
     public CardObjective getSecretObjective() {
         return SecretObjective;
     }
+    public HashMap<ArrayList<Integer>,CardPlaying> getMap() {return map;}
 
+
+    //TODO: creare i le funzioni che calcolano le risorse
+    public int getCountSuit(SuitEnum suit){
+        return 0;
+    }
+
+
+    //------------------SETTER-------------------
+    public void setSecretObjective(CardObjective secretObjective) {
+        SecretObjective = secretObjective;
+    }
+
+    public void setMap(HashMap<ArrayList<Integer>, CardPlaying> map) {
+        this.map = map;
+    }
+
+//    TODO: passare id della carta e non la carta, mettere exception se la carta non c'e'
     public ArrayList<Integer> getCoordinates(CardPlaying card) {
-        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : table.entrySet()) {
+        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : map.entrySet()) {
             if (entry.getValue().equals(card)) {
                 return entry.getKey();
             }
@@ -43,15 +51,16 @@ public class PlayingStation implements Serializable {
         return null; // Return null if the card is not found
     }
 
-
     /**
      * This method returns the x coordinate of the given card
      *
      * @param card the card
      * @return the x coordinate of the given card or null if the card is not found
      */
+
+//    TODO: passare id della carta e non la carta
     public Integer getXCoordinate(CardPlaying card) {
-        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : table.entrySet()) {
+        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : map.entrySet()) {
             if (entry.getValue().equals(card)) {
                 return entry.getKey().get(0);
             }
@@ -66,8 +75,9 @@ public class PlayingStation implements Serializable {
      * @param card the card
      * @return the y coordinate of the given card or null if the card is not found
      */
+//    TODO: passare id della carta e non la carta
     public Integer getYCoordinate(CardPlaying card) {
-        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : table.entrySet()) {
+        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : map.entrySet()) {
             if (entry.getValue().equals(card)) {
                 return entry.getKey().get(1);
             }
@@ -87,67 +97,16 @@ public class PlayingStation implements Serializable {
         ArrayList<Integer> coordinates = new ArrayList<>();
         coordinates.add(0, x);
         coordinates.add(1, y);
-        if (table.get(coordinates) == null) {
+        if (map.get(coordinates) == null) {
             return null;
         } else {
-            return table.get(coordinates);
+            return map.get(coordinates);
         }
     }
 
 
-    // Costruttore
-    public PlayingStation(Player player, CardPlaying startCard, CardObjective Objective) {
-        this.table = new HashMap<>();
-        ArrayList<Integer> coordi = new ArrayList<Integer>();
-        coordi.add(40);
-        coordi.add(40);
-        this.table.put(coordi, startCard);
-        this.SecretObjective = Objective;
-        this.countInsect = 0;
-        this.countAnimal = 0;
-        this.countPlant = 0;
-        this.countFungi = 0;
-        this.countInkwell = 0;
-        this.countQuill = 0;
-        this.countManuscript = 0;
-        updateCounters((CardStarting) startCard);
-    }
 
 
-    /**
-     * This method adds a card to the playing station
-     * and retrurns the points that generates that card
-     *
-     * @param card the card to add
-     * @param X    the x coordinate
-     * @param Y    the y coordinate
-     */
-    public int addCard(CardResource card, Integer X, Integer Y) throws InvalidPlacingCondition{
-
-        try {
-            if (!isPlayable(card, X, Y)) {
-                // Check if the card can be placed
-                throw new InvalidPlacingCondition("Non puoi piazzare la carta qua!");
-            }
-        } catch (InvalidPlacingCondition e) {
-            System.out.println(e.getMessage());
-            throw new InvalidPlacingCondition("the card cant't be blaced at the coordinates" + X + "");
-        }
-
-        ArrayList<Integer> coordinates = new ArrayList<>();
-        coordinates.add(0, X);
-        coordinates.add(1, Y);
-        table.put(coordinates, card);
-
-        // Update the counters
-        updateCounters(card);
-
-        //calculating the points that the card generates
-        if (!(card.getPlayingBack())) {
-            return card.getObjective().countObjectivePoints(this, card, X, Y);
-        }
-        else return 0;
-    }
 
         /**
          * This method checks if a card can be placed at the given coordinates, Checks if the
@@ -221,8 +180,8 @@ public class PlayingStation implements Serializable {
                     return false;
 
                 if (getCard(X - 1, Y - 1) != null) { //checking if existing the down-right card adjacent with the card I want to play
-                    if (!table.get(coordinates1).getPlayingBack()) { //checking if the card is played by front
-                        if (table.get(coordinates1).getFront().getDownRight().equals(Suit.NULL)) { //checking if there is a corner available
+                    if (!map.get(coordinates1).getPlayingBack()) { //checking if the card is played by front
+                        if (map.get(coordinates1).getFront().getDownRight().equals(SuitEnum.NULL)) { //checking if there is a corner available
                             return false;
                         }
                     }
@@ -230,8 +189,8 @@ public class PlayingStation implements Serializable {
                 }
 
                 if (getCard(X + 1, Y - 1) != null) { //checking if existing the down-left card adjacent with the card I want to play
-                    if (!table.get(coordinates2).getPlayingBack()) { //checking if the card is played by front
-                        if (table.get(coordinates2).getFront().getDownLeft().equals(Suit.NULL)) { //checking if there is a corner available
+                    if (!map.get(coordinates2).getPlayingBack()) { //checking if the card is played by front
+                        if (map.get(coordinates2).getFront().getDownLeft().equals(SuitEnum.NULL)) { //checking if there is a corner available
                             return false;
                         }
                     }
@@ -239,8 +198,8 @@ public class PlayingStation implements Serializable {
                 }
 
                 if (getCard(X - 1, Y + 1) != null) { //checking if existing the up-right card adjacent with the card I want to play
-                    if (!table.get(coordinates3).getPlayingBack()) { //checking if the card is played by front
-                        if (table.get(coordinates3).getFront().getUpRight().equals(Suit.NULL)) { //checking if there is a corner available
+                    if (!map.get(coordinates3).getPlayingBack()) { //checking if the card is played by front
+                        if (map.get(coordinates3).getFront().getUpRight().equals(SuitEnum.NULL)) { //checking if there is a corner available
                             return false;
                         }
                     }
@@ -248,8 +207,8 @@ public class PlayingStation implements Serializable {
                 }
 
                 if (getCard(X + 1, Y + 1) != null) { //checking if existing the up-left card adjacent with the card I want to play
-                    if (!table.get(coordinates4).getPlayingBack()) { //checking if the card is played by front
-                        if (table.get(coordinates4).getFront().getUpLeft().equals(Suit.NULL)) { //checking if there is a corner available
+                    if (!map.get(coordinates4).getPlayingBack()) { //checking if the card is played by front
+                        if (map.get(coordinates4).getFront().getUpLeft().equals(SuitEnum.NULL)) { //checking if there is a corner available
                             return false;
                         }
                     }
@@ -270,25 +229,25 @@ public class PlayingStation implements Serializable {
 
                 if (numCornerCovered.get(coordinates1)) {
                     //table.get(coordinates1).getFront().getDownRight().setCovered(true);
-                    updateCounters(table.get(coordinates1).getFront().getDownRight(), true);
+//                    updateCounters(station.get(coordinates1).getFront().getDownRight(), true);
                 }
 
 
                 if (numCornerCovered.get(coordinates2)) {
                     //table.get(coordinates2).getFront().getDownLeft().setCovered(true);
-                    updateCounters(table.get(coordinates2).getFront().getDownLeft(), true);
+//                    updateCounters(station.get(coordinates2).getFront().getDownLeft(), true);
                 }
 
 
                 if (numCornerCovered.get(coordinates3)) {
                     //table.get(coordinates3).getFront().getUpRight().setCovered(true);
-                    updateCounters(table.get(coordinates3).getFront().getUpRight(), true);
+//                    updateCounters(station.get(coordinates3).getFront().getUpRight(), true);
                 }
 
 
                 if (numCornerCovered.get(coordinates4)) {
                    // table.get(coordinates4).getFront().getUpLeft().setCovered(true);
-                    updateCounters(table.get(coordinates4).getFront().getUpLeft(), true);
+//                    updateCounters(station.get(coordinates4).getFront().getUpLeft(), true);
                 }
             }
 
@@ -305,155 +264,16 @@ public class PlayingStation implements Serializable {
          * @return true if the player has enough resources, false otherwise
          */
         public boolean enoughResources (CardGold goldCard){
-            if (countAnimal < goldCard.getCostAnimal() || countFungi < goldCard.getCostFungi() ||
-                    countInsect < goldCard.getCostInsect() || countPlant < goldCard.getCostPlant()) {
-                return false;
-            }
+//            if (countAnimal < goldCard.getCostAnimal() || countFungi < goldCard.getCostFungi() ||
+//                    countInsect < goldCard.getCostInsect() || countPlant < goldCard.getCostPlant()) {
+//                return false;
+//            }
             return true;
         }
 
 
-        //--------------GETTER AND SETTER----------------
-
-        public Integer getCountInsect () {
-            return countInsect;
-        }
-
-        public Integer getCountAnimal () {
-            return countAnimal;
-        }
-
-        public Integer getCountPlant () {
-            return countPlant;
-        }
-
-        public Integer getCountFungi () {
-            return countFungi;
-        }
-
-        public Integer getCountInkwell () {
-            return countInkwell;
-        }
-
-        public Integer getCountQuill () {
-            return countQuill;
-        }
-
-        public Integer getCountManuscript () {
-            return countManuscript;
-        }
-
-        public void setCountInsect (CardPlaying card){
-            countInsect += card.countResource(Suit.INSECT);
-        }
-
-        public void setCountAnimal (CardPlaying card){
-            countAnimal += card.countResource(Suit.ANIMAL);
-        }
-
-        public void setCountPlant (CardPlaying card){
-            countPlant += card.countResource(Suit.PLANT);
-        }
-
-        public void setCountFungi (CardPlaying card){
-            countFungi += card.countResource(Suit.FUNGI);
-        }
-
-        public void setCountInkwell (CardResource card){
-            countInkwell += card.countResource(Suit.INKWELL);
-        }
-
-        public void setCountQuill (CardResource card){
-            countQuill += card.countResource(QUILL);
-        }
-
-        public void setCountManuscript (CardResource card){
-            countManuscript += card.countResource(Suit.MANUSCRIPT);
-        }
-
-        public void setObjective (CardObjective objective){
-
-        }
-
-        public HashMap<ArrayList<Integer>, CardPlaying> getTable () {
-            return table;
-        }
-//--------------GETTER AND SETTER ENDED----------------
 
 
-        /**
-         * This method updates the counters of the playing station
-         *
-         * @param corner the corner that is covered by the card
-         */
-        public void updateCounters (Suit corner, boolean covered){
-            if (covered) {
-                switch (corner) {
-                    case QUILL -> countQuill--;
-                    case MANUSCRIPT -> countManuscript--;
-                    case INKWELL -> countInkwell--;
-                    case FUNGI -> countFungi--;
-                    case PLANT -> countPlant--;
-                    case ANIMAL -> countAnimal--;
-                    case INSECT -> countInsect--;
-                    // case EMPTY -> null;
-                }
-            } else {
-                switch (corner) {
-                    case QUILL -> countQuill++;
-                    case MANUSCRIPT -> countManuscript++;
-                    case INKWELL -> countInkwell++;
-                    case FUNGI -> countFungi++;
-                    case PLANT -> countPlant++;
-                    case ANIMAL -> countAnimal++;
-                    case INSECT -> countInsect++;
-                    //  case EMPTY -> null;
-                }
-            }
-        }
 
-        public void updateCounters (CardStarting card){
-            if (card.getPlayingBack()) {
-                updateCounters(card.getBack().getUpRight(), false);
-                updateCounters(card.getBack().getDownRight(),false);
-                updateCounters(card.getBack().getUpLeft(),false);
-                updateCounters(card.getBack().getDownLeft(),false);
-            } else {
-                updateCounters(card.getFront().getUpRight(),false);
-                updateCounters(card.getFront().getDownRight(),false);
-                updateCounters(card.getFront().getUpLeft(),false);
-                updateCounters(card.getFront().getDownLeft(),false);
-                ArrayList<Suit> symbols = card.getSymbols();
-                for (Suit symbol : symbols) {
-                    switch (symbol) {
-                        case QUILL -> countQuill++;
-                        case MANUSCRIPT -> countManuscript++;
-                        case INKWELL -> countInkwell++;
-                        case FUNGI -> countFungi++;
-                        case PLANT -> countPlant++;
-                        case ANIMAL -> countAnimal++;
-                        case INSECT -> countInsect++;
-                        //  case EMPTY -> null;
-                    }
-                }
-            }
-        }
-
-        public void updateCounters (CardResource card){
-            if (!card.getPlayingBack()) {
-                updateCounters(card.getFront().getUpRight(),false);
-                updateCounters(card.getFront().getDownRight(),false);
-                updateCounters(card.getFront().getUpLeft(),false);
-                updateCounters(card.getFront().getDownLeft(),false);
-            }
-            else{
-                switch(card.getSymbol()){
-                    case ANIMAL -> countAnimal++;
-                    case PLANT -> countPlant++;
-                    case INSECT -> countInsect++;
-                    case FUNGI -> countFungi++;
-                }
-            }
-        }
     }
 

@@ -1,8 +1,8 @@
 package model.enums;
 
 public enum GameState {
-    LOGIN,
-    INIT,
+    WAITING_FOR_PLAYERS_TO_CONNECT,
+    SELECTSTARTINGCARD,
     IN_GAME,
     END
 }

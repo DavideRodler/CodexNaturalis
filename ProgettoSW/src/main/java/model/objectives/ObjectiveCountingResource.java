@@ -1,23 +1,19 @@
 package model.objectives;
 import model.PlayingStation;
-import model.cards.Card;
-import model.cards.CardResource;
-import model.enums.Suit;
+import model.enums.SuitEnum;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ObjectiveCountingResource implements Objective, Serializable {
-    public Suit symbol;
+    public SuitEnum symbol;
 
     @Override
     public int countObjectivePoints(PlayingStation station) {
         return switch(symbol){
-            case FUNGI: yield station.getCountFungi() / 3;
-            case PLANT: yield station.getCountPlant() / 3;
-            case ANIMAL: yield station.getCountAnimal() / 3;
-            case INSECT: yield station.getCountInsect() / 3;
+            case FUNGI: yield station.getCountSuit(SuitEnum.FUNGI) / 3;
+            case PLANT: yield station.getCountSuit(SuitEnum.PLANT) / 3;
+            case ANIMAL: yield station.getCountSuit(SuitEnum.ANIMAL) / 3;
+            case INSECT: yield station.getCountSuit(SuitEnum.INSECT) / 3;
             case QUILL, MANUSCRIPT, INKWELL, EMPTY, NULL:
                 yield -1; //errore
         };
@@ -25,11 +21,11 @@ public class ObjectiveCountingResource implements Objective, Serializable {
 
 
 
-    public Suit getSymbol() {
+    public SuitEnum getSymbol() {
         return symbol;
     }
 
-    public ObjectiveCountingResource(Suit suit){
+    public ObjectiveCountingResource(SuitEnum suit){
         this.symbol = suit;
     }
 }

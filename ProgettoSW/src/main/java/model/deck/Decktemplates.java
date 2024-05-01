@@ -11,9 +11,9 @@ import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
 import model.cards.face.Face;
-import model.enums.Direction;
-import model.enums.Position;
-import model.enums.Suit;
+import model.enums.DirectionEnum;
+import model.enums.PositionEnum;
+import model.enums.SuitEnum;
 import model.objectives.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -48,7 +48,7 @@ public class Decktemplates implements Serializable {
       String downright = (String) card.get("downright");
       String downleft = (String) card.get("downleft");
       int points = ((Long) card.get("points")).intValue();
-      Face back = new Face(Suit.EMPTY, Suit.EMPTY,Suit.EMPTY, Suit.EMPTY);
+      Face back = new Face(SuitEnum.EMPTY, SuitEnum.EMPTY, SuitEnum.EMPTY, SuitEnum.EMPTY);
       Face front = new Face(AssignCorner(upright), AssignCorner(upleft), AssignCorner(downright),
           AssignCorner(downleft));
       CardResource tmp = new CardResource(ID, front, back, AssignSuit(suite), points, AssignObjective("points"));
@@ -83,7 +83,7 @@ public class Decktemplates implements Serializable {
       int costInsect = ((Long) card.get("costInsect")).intValue();
       int costFungi = ((Long) card.get("costFungi")).intValue();
       int costPlant = ((Long) card.get("costPlant")).intValue();
-      Face back = new Face(Suit.EMPTY, Suit.EMPTY,Suit.EMPTY, Suit.EMPTY);
+      Face back = new Face(SuitEnum.EMPTY, SuitEnum.EMPTY, SuitEnum.EMPTY, SuitEnum.EMPTY);
       Face front = new Face(AssignCorner(upright), AssignCorner(upleft), AssignCorner(downright),
           AssignCorner(downleft));
       CardGold tmp = new CardGold(ID, front, back, AssignSuit(suite), points, costAnimal, costInsect, costFungi,
@@ -109,7 +109,7 @@ public class Decktemplates implements Serializable {
           throw new RuntimeException(e);
       }
       for (Object obj : startingCard) {
-      ArrayList<Suit> symbols = new ArrayList<>();
+      ArrayList<SuitEnum> symbols = new ArrayList<>();
       JSONObject card = (JSONObject) obj;
       JSONArray suite = (JSONArray) card.get("suite");
       for (Object vecObject : suite) {
@@ -193,44 +193,44 @@ public class Decktemplates implements Serializable {
     return deck;
   }
 
-  private static Suit AssignCorner(String s) {
+  private static SuitEnum AssignCorner(String s) {
     return switch (s) {
-      case "empty" -> Suit.EMPTY;
-      case "fungi" -> Suit.FUNGI;
-      case "plant" -> Suit.PLANT;
-      case "animal" -> Suit.ANIMAL;
-      case "insect" -> Suit.INSECT;
-      case "manuscript" -> Suit.MANUSCRIPT;
-      case "inkwell" -> Suit.INKWELL;
-      case "quill" -> Suit.QUILL;
-      default -> Suit.NULL;
+      case "empty" -> SuitEnum.EMPTY;
+      case "fungi" -> SuitEnum.FUNGI;
+      case "plant" -> SuitEnum.PLANT;
+      case "animal" -> SuitEnum.ANIMAL;
+      case "insect" -> SuitEnum.INSECT;
+      case "manuscript" -> SuitEnum.MANUSCRIPT;
+      case "inkwell" -> SuitEnum.INKWELL;
+      case "quill" -> SuitEnum.QUILL;
+      default -> SuitEnum.NULL;
     };
   }
 
-  private static Suit AssignSuit(String s) {
+  private static SuitEnum AssignSuit(String s) {
     return switch (s) {
-      case "fungi" -> Suit.FUNGI;
-      case "plant" -> Suit.PLANT;
-      case "animal" -> Suit.ANIMAL;
-      case "insect" -> Suit.INSECT;
-      case "empty" -> Suit.EMPTY;
-      case "null" -> Suit.NULL;
+      case "fungi" -> SuitEnum.FUNGI;
+      case "plant" -> SuitEnum.PLANT;
+      case "animal" -> SuitEnum.ANIMAL;
+      case "insect" -> SuitEnum.INSECT;
+      case "empty" -> SuitEnum.EMPTY;
+      case "null" -> SuitEnum.NULL;
       default -> throw new IllegalStateException("Unexpected value: " + s);
     };
   }
 
-  private static Direction AssignDirection(String s) {
+  private static DirectionEnum AssignDirection(String s) {
     return switch (s) {
-      case "left" -> Direction.LEFT;
-      case "right" -> Direction.RIGHT;
+      case "left" -> DirectionEnum.LEFT;
+      case "right" -> DirectionEnum.RIGHT;
       default -> throw new IllegalStateException("Unexpected value: " + s);
     };
   }
 
-  private static Position AssignPosition(String s) {
+  private static PositionEnum AssignPosition(String s) {
     return switch (s) {
-      case "top" -> Position.TOP;
-      case "bottom" -> Position.BOTTOM;
+      case "top" -> PositionEnum.TOP;
+      case "bottom" -> PositionEnum.BOTTOM;
       default -> throw new IllegalStateException("Unexpected value: " + s);
     };
   }

@@ -60,12 +60,14 @@ public class RmiServer extends Observable implements VirtualServer {
 
     @Override
     public boolean addCard(CardPlaying card, Integer side, Integer X, Integer Y) {
-        return gameController.addCard(card, side, X, Y, this.getClientNickname(clients.get(CurrentTurn)));
+//        return gameController.addCard(card, side, X, Y, this.getClientNickname(clients.get(CurrentTurn)));
+        return true;
     }
 
     @Override
     public synchronized CardPlaying drawCard(Integer number) {
-        return gameController.drawCard(number, this.getClientNickname(clients.get(CurrentTurn)));
+//        return gameController.drawCard(number, this.getClientNickname(clients.get(CurrentTurn)));
+        return null;
     }
 
 
@@ -75,63 +77,66 @@ public class RmiServer extends Observable implements VirtualServer {
      *Add new player to the model and also add clients with theirs nickname to server
      */
     @Override
-    public synchronized void addNewPlayer(String name) {
-        gameController.addPlayer(name);
-        switch(this.clients.size())
-        {
-            case 1:
-                clientsMapNicknamesKey.put(name, clients.get(0));
-                clientsMapClientsKey.put(clients.get(0), name);
-                break;
-            case 2:
-                clientsMapNicknamesKey.put(name, clients.get(1));
-                clientsMapClientsKey.put(clients.get(1), name);
-                break;
-            case 3:
-                clientsMapNicknamesKey.put(name, clients.get(2));
-                clientsMapClientsKey.put(clients.get(2), name);
-                break;
-            case 4:
-                clientsMapNicknamesKey.put(name, clients.get(3));
-                clientsMapClientsKey.put(clients.get(3), name);
-                break;
-        }
-        System.err.println("New player added" + name);
-        try{
-            if(this.allPlayerConnected()){
-                List<String> playersNickname = gameController.getBoard().PlayerTurnOrder();
-                // Crea nuove strutture dati
-                List<VirtualView> newClients = new ArrayList<>();
-                Map<String, VirtualView> newClientsMapNicknamesKey = new HashMap<>();
-                Map<VirtualView, String> newClientsMapClientsKey = new HashMap<>();
-
-                // Popola le nuove strutture dati nell'ordine corretto
-                for (String nickname : playersNickname) {
-                    VirtualView client = clientsMapNicknamesKey.get(nickname);
-                    newClients.add(client);
-                    newClientsMapNicknamesKey.put(nickname, client);
-                    newClientsMapClientsKey.put(client, nickname);
-                }
-
-                // Sostituisci le vecchie strutture dati con le nuove
-                clients = newClients;
-                clientsMapNicknamesKey = newClientsMapNicknamesKey;
-                clientsMapClientsKey = newClientsMapClientsKey;
-                this.notifyLoginObservers();
-            }
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
+   public synchronized void addNewPlayer(String name) {
+//        gameController.addPlayer(name);
+//        switch(this.clients.size())
+//        {
+//            case 1:
+//                clientsMapNicknamesKey.put(name, clients.get(0));
+//                clientsMapClientsKey.put(clients.get(0), name);
+//                break;
+//            case 2:
+//                clientsMapNicknamesKey.put(name, clients.get(1));
+//                clientsMapClientsKey.put(clients.get(1), name);
+//                break;
+//            case 3:
+//                clientsMapNicknamesKey.put(name, clients.get(2));
+//                clientsMapClientsKey.put(clients.get(2), name);
+//                break;
+//            case 4:
+//                clientsMapNicknamesKey.put(name, clients.get(3));
+//                clientsMapClientsKey.put(clients.get(3), name);
+//                break;
+//        }
+//        System.err.println("New player added" + name);
+//        try{
+//            if(this.allPlayerConnected()){
+////                List<String> playersNickname = gameController.getBoard().PlayerTurnOrder();
+//                // Crea nuove strutture dati
+//                List<VirtualView> newClients = new ArrayList<>();
+//                Map<String, VirtualView> newClientsMapNicknamesKey = new HashMap<>();
+//                Map<VirtualView, String> newClientsMapClientsKey = new HashMap<>();
+//
+//                // Popola le nuove strutture dati nell'ordine corretto
+//                for (String nickname : playersNickname) {
+//                    VirtualView client = clientsMapNicknamesKey.get(nickname);
+//                    newClients.add(client);
+//                    newClientsMapNicknamesKey.put(nickname, client);
+//                    newClientsMapClientsKey.put(client, nickname);
+//                }
+//
+//                // Sostituisci le vecchie strutture dati con le nuove
+//                clients = newClients;
+//                clientsMapNicknamesKey = newClientsMapNicknamesKey;
+//                clientsMapClientsKey = newClientsMapClientsKey;
+//                this.notifyLoginObservers();
+//            }
+//        } catch (RemoteException e) {
+//            e.printStackTrace();
+//        }
+   }
 
     @Override
     public synchronized boolean nicknameCheck(String name) {
-        return gameController.takenNickname(name);
+
+//        return gameController.takenNickname(name);
+        return true;
     }
 
     @Override
     public synchronized Integer numberOfPlayer() throws RemoteException {
-        return gameController.numberOfPlayer();
+//        return gameController.numberOfPlayer();
+        return null;
     }
 
     @Override
@@ -176,7 +181,8 @@ public class RmiServer extends Observable implements VirtualServer {
 
     @Override
     public synchronized PlayingBoard getServerModel() throws RemoteException {
-        return gameController.getBoard();
+//        return gameController.getBoard();
+        return null;
     }
 
     @Override
@@ -186,7 +192,8 @@ public class RmiServer extends Observable implements VirtualServer {
 
     @Override
     public synchronized ReducedBoard getReducedBoard(VirtualView rmiClient) {
-        return this.gameController.getReducedBoard(this.getClientNickname(rmiClient));
+//        return this.gameController.getReducedBoard(this.getClientNickname(rmiClient));
+        return null;
     }
 
     @Override
@@ -198,7 +205,7 @@ public class RmiServer extends Observable implements VirtualServer {
 
     @Override
     public synchronized void inizializePlayingStation(String clientNickname, CardPlaying startingCard, Integer choice, CardObjective cardObjective) {
-        gameController.inizializePlayingStation(clientNickname,startingCard,choice,cardObjective);
+//        gameController.inizializePlayingStation(clientNickname,startingCard,choice,cardObjective);
     }
 
     @Override

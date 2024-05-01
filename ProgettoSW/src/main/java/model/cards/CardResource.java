@@ -1,25 +1,25 @@
 package model.cards;
 
 import model.cards.face.Face;
-import model.enums.Suit;
+import model.enums.SuitEnum;
 import model.objectives.Objective;
 
 import java.io.Serializable;
 
 public class CardResource extends CardPlaying implements Serializable {
-    private final Suit symbol;
+    private final SuitEnum symbol;
     private final Integer points;
     private final Objective objective;  // Aggiunto l'attributo Objective
 
 
-    public CardResource(int ID, Face front, Face back, Suit symbol, Integer points, Objective objective) {
+    public CardResource(int ID, Face front, Face back, SuitEnum symbol, Integer points, Objective objective) {
         super(ID, front, back);
         this.symbol = symbol;
         this.points = points;
         this.objective = objective;  // Inizializzato l'attributo Objective
     }
 
-    public Suit getSymbol() {
+    public SuitEnum getSymbol() {
         return symbol;
     }
 
@@ -30,7 +30,7 @@ public class CardResource extends CardPlaying implements Serializable {
         return objective;
     }
 
-    public int countResource(Suit suit){
+    public int countResource(SuitEnum suit){
         int count = 0;
         if (!getPlayingBack()){
                 if (getFront().getUpRight().equals(suit)) {

@@ -1,6 +1,6 @@
 package model.enums;
 
-public enum Color {
+public enum TokenEnum {
    BLUE,
     RED,
     GREEN,

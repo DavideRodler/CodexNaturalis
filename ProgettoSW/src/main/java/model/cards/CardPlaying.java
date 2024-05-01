@@ -1,5 +1,5 @@
 package model.cards;
-import model.enums.Suit;
+import model.enums.SuitEnum;
 import model.cards.face.Face;
 
 import java.io.Serializable;
@@ -30,7 +30,7 @@ public abstract  class CardPlaying extends Card implements Serializable {
         return playedBack;
     }
 
-    public int countResource(Suit suit){
+    public int countResource(SuitEnum suit){
         int count = 0;
         return count;
     }

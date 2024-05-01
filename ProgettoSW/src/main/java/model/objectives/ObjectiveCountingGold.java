@@ -2,6 +2,7 @@ package model.objectives;
 
 import model.PlayingStation;
 import model.cards.*;
+import model.enums.SuitEnum;
 
 import java.io.Serializable;
 
@@ -22,13 +23,13 @@ public class ObjectiveCountingGold implements Objective, Serializable {
     int points = 0;
     synchronized (this) {
       if ((countInkwell == countManuscript) && (countInkwell == countQuill) && (countInkwell == 1)) {
-        points = Math.min(Math.min(station.getCountInkwell(), station.getCountQuill()), station.getCountManuscript());
+        points = Math.min(Math.min(station.getCountSuit(SuitEnum.INKWELL),station.getCountSuit(SuitEnum.QUILL)),station.getCountSuit(SuitEnum.MANUSCRIPT) );
       } else if ((countQuill != 0) && (countInkwell == 0) && (countManuscript == 0)) {
-        points = station.getCountQuill() / countQuill;
+        points = station.getCountSuit(SuitEnum.QUILL) / countQuill;
       } else if ((countQuill == 0) && (countInkwell != 0) && (countManuscript == 0)) {
-        points = station.getCountInkwell() / countInkwell;
+        points = station.getCountSuit(SuitEnum.QUILL) / countInkwell;
       } else if ((countQuill == 0) && (countInkwell == 0) && (countManuscript != 0)) {
-        points = station.getCountManuscript() / countManuscript;
+        points = station.getCountSuit(SuitEnum.MANUSCRIPT) / countManuscript;
       }
     }
     return points;
