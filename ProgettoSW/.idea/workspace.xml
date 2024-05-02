@@ -5,37 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Inizio creazione del nuovo model e controller">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Exception/NotValidMove.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exception/NotMyTurnException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/PlayingBoardTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Exception/DeckEmptyException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/exception/DeckEmptyException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Exception/InvalidPlacingCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/exception/InvalidPlacingCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Exception/NotValidMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/exception/NotValidMoveException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardGold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardGold.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardPlaying.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardPlaying.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardResource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardStarting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardStarting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/face/Face.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/face/Face.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/deck/Decktemplates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/deck/Decktemplates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/TokenEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/DirectionEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/GameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/PositionEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/Suit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/SuitEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingGold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingGold.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveDiagonal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveDiagonal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveGoldCorners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveGoldCorners.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectivePositioning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectivePositioning.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/controller/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/GameTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/placingCondition/PlacingConditionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/placingCondition/PlacingConditionTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/testsTameplate/PlayngStationTameplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testsTameplate/PlayngStationTameplate.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/GameTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,8 +33,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Interface" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -107,6 +95,9 @@
     "JUnit.DeckConstructorTest.testDeckObjective.executor": "Run",
     "JUnit.DeckConstructorTest.testDeckResource.executor": "Run",
     "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
+    "JUnit.GameControllerTest.setCentralCardPlayedBack.executor": "Run",
+    "JUnit.GameControllerTest.setStartingCardForPlayers.executor": "Run",
+    "JUnit.GameTest.testChecknickname.executor": "Run",
     "JUnit.GameTest.testPlayers.executor": "Run",
     "JUnit.GameTest.testStations.executor": "Run",
     "JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor": "Run",
@@ -154,23 +145,35 @@
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GameTest.testTokenAvailability">
-    <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
+  <component name="RunManager" selected="JUnit.GameControllerTest.setCentralCardPlayedBack">
+    <configuration name="GameControllerTest.setCentralCardPlayedBack" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="StartApplication.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
+      <option name="METHOD_NAME" value="setCentralCardPlayedBack" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="StartApplication.ServerApp" />
+    <configuration name="GameControllerTest.setStartingCardForPlayers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
+      <option name="METHOD_NAME" value="setStartingCardForPlayers" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -224,19 +227,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.ClientApp" />
-      <item itemvalue="Application.ServerApp" />
+      <item itemvalue="JUnit.GameControllerTest.setCentralCardPlayedBack" />
+      <item itemvalue="JUnit.GameControllerTest.setStartingCardForPlayers" />
       <item itemvalue="JUnit.GameTest.testChecknickname" />
       <item itemvalue="JUnit.GameTest.testPlayers" />
       <item itemvalue="JUnit.GameTest.testTokenAvailability" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.GameTest.testTokenAvailability" />
+        <item itemvalue="JUnit.GameControllerTest.setCentralCardPlayedBack" />
+        <item itemvalue="JUnit.GameControllerTest.setStartingCardForPlayers" />
         <item itemvalue="JUnit.GameTest.testChecknickname" />
+        <item itemvalue="JUnit.GameTest.testTokenAvailability" />
         <item itemvalue="JUnit.GameTest.testPlayers" />
-        <item itemvalue="Application.ClientApp" />
-        <item itemvalue="Application.ServerApp" />
       </list>
     </recent_temporary>
   </component>
@@ -659,81 +662,86 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>134</line>
+          <line>138</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>136</line>
+          <line>140</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>139</line>
+          <line>143</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>170</line>
+          <line>174</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>173</line>
+          <line>177</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>176</line>
+          <line>180</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>179</line>
+          <line>183</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>184</line>
+          <line>188</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>193</line>
+          <line>197</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>202</line>
+          <line>206</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>211</line>
+          <line>215</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>223</line>
+          <line>227</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>253</line>
+          <line>257</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/controller/GameTest.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="18" />
+          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/controller/GameTest.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="19" />
+          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="controller.GameController" memberName="board" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="X - 1" />

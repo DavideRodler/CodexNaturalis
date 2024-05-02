@@ -15,6 +15,7 @@ public class CardStarting extends CardPlaying implements Serializable{
         this.symbols = symbols;
     }
 
+
     public ArrayList<SuitEnum> getSymbols() {
         return symbols;
     }

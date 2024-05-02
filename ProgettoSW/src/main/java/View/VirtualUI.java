@@ -39,9 +39,11 @@ public class VirtualUI implements UI {
     }
 
     @Override
-    public void showObjectiveCards(CardObjective[] cardObjective) {
+    public void showObjectiveCards(ArrayList<CardObjective> cardObjectives) {
 
     }
+
+
 
     @Override
     public Integer askObjectiveCard() {

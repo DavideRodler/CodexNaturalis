@@ -8,10 +8,9 @@ import model.cards.*;
 import model.deck.Decktemplates;
 import model.enums.TokenEnum;
 import model.enums.GameState;
-import Exception.*;
+import exception.*;
 
 
-import java.awt.*;
 import java.io.Serializable;
 import java.util.*;
 import java.util.List;
@@ -26,17 +25,10 @@ public class GameController extends ClientController implements Serializable {
         this.gameState = gameState;
     }
 
-    //constructor
-    public void addCardToPlayerHand(String nickname, int cardId) throws InterruptedException {
-        CardResource card = board.getCardResource(cardId)
-                .orElse(board.getCardGold(cardId)
-                        .orElseThrow(() -> new IllegalStateException("Central card " + cardId + " not found")));
 
-        Player player = board.getPlayer(nickname);
-
-    }
-
-
+    /**
+     * this method is used to generate the board of a game after that we can add players to the board
+     */
     public void initGameController() {
         // creating decks
         LinkedList<CardStarting> deckStarting = Decktemplates.StartingCardDeck(); //ID : 0 -> 5
@@ -64,11 +56,25 @@ public class GameController extends ClientController implements Serializable {
         board.getCentralCardsResource().add(board.getDeckCardResource().pop());
         board.getCentralCardsResource().add(board.getDeckCardResource().pop());
 
-        gameState = GameState.WAITING_FOR_PLAYERS_TO_CONNECT;
+        gameState = GameState.SET_PLAYER_NUMBER;
     }
 
+    public void setPlayerNumber(int playernumber) throws NotValidMoveException {
+        assertGameState(GameState.SET_PLAYER_NUMBER);
+        board.setPlayernumber(playernumber);
+    }
 
-    public List<TokenEnum> getAvailableToken() {
+    public int getPlayerNumber() throws NotValidMoveException {
+        assertGameState(GameState.SET_PLAYER_NUMBER);
+        return board.getPlayernumber();
+    }
+
+    /**
+     * @return the list of token that are not already been choosen
+     * @throws NotValidMoveException if i am in another state of the game
+     */
+    public List<TokenEnum> getAvailableToken() throws NotValidMoveException {
+        assertGameState(GameState.SET_NAME_AND_TOKEN);
         return Arrays.stream(TokenEnum.values())
                 .filter(t -> board.getPlayers()
                         .stream()
@@ -76,8 +82,19 @@ public class GameController extends ClientController implements Serializable {
                 .toList();
     }
 
+    public boolean checkTokenAvailability(TokenEnum token) throws NotValidMoveException {
+        assertGameState(GameState.SET_NAME_AND_TOKEN);
+        return getAvailableToken().contains(token);
+    }
 
-    public boolean checkNicknameAvailability(String nickname) {
+
+    /**
+     * @param nickname that i want to set
+     * @return if the name has already been choosen
+     * @throws NotValidMoveException if i am in another state of the game
+     */
+    public boolean checkNicknameAvailability(String nickname) throws NotValidMoveException {
+        assertGameState(GameState.SET_NAME_AND_TOKEN);
         return board.getPlayers()
                 .stream()
                 .filter(p -> p.getNickname().equals(nickname))
@@ -86,16 +103,173 @@ public class GameController extends ClientController implements Serializable {
     }
 
     /**
+     * it add a player to the game and its token
+     *
+     * @param nickname
+     * @param token
+     * @throws NotValidMoveException if i am in another state of the game
+     */
+    public void addPlayer(String nickname, TokenEnum token) throws NotValidMoveException {
+        assertGameState(GameState.SET_NAME_AND_TOKEN);
+        this.board.addPlayer(new Player(nickname, token, new PlayingStation(null, new HashMap<>()), 0, new ArrayList<>()));
+    }
+
+    /**
+     * it shuffle the player and set the game state to the selection of the Starting card face and the Objectives
+     *
+     * @throws NotValidMoveException
+     */
+    public void shufflePlayer() throws NotValidMoveException {
+        assertGameState(GameState.SET_NAME_AND_TOKEN);
+        board.shufflePlayer();
+        gameState = GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE;
+    }
+
+    /**
+     * It takes for each player a Starting card from the deck and set it in the central position of the board
+     *
+     * @throws NotValidMoveException
+     */
+    public void setStartingCardForPlayers() throws NotValidMoveException {
+    }
+
+
+    /**
+     * It is used after setStartingCardForPlayers() for selecting the face of the StartingCard
+     *
+     * @param playedback
+     * @param nickname
+     * @throws NotValidMoveException
+     */
+    public void setCentralCardPlayedBack(boolean playedback, String nickname) throws NotValidMoveException {
+        assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
+        Player player = board.getPlayers().stream()
+                .filter(x -> x.getNickname().equals(nickname))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("player " + nickname + " not found"));
+    }
+
+
+    /**
+     * The getter for displaying the starting card
+     *
+     * @param nickname
+     * @return
+     */
+    public CardStarting getStartingCard(String nickname) throws NotValidMoveException {
+        assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
+        return (CardStarting) board.getPlayer(nickname).getStation().getMap().get(creatingCordinatesArray(40,40));
+    }
+
+    /**
+     * @return The Arraylist of two Objective that needs to be choosen
+     * @throws NotValidMoveException
+     */
+    public void setupOfStartingCardAndPersonalObjectives() throws NotValidMoveException {
+        //giving each player his two personal objectives
+        assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
+        ArrayList<CardObjective> cardObjectives = new ArrayList<>();
+        board.getPlayers().forEach(p -> {
+            ArrayList<CardObjective> secretObjectivesToChoose = new ArrayList<CardObjective>();
+            secretObjectivesToChoose.add(board.getDeckCardObjective().pop());
+            secretObjectivesToChoose.add(board.getDeckCardObjective().pop());
+            p.setSelectibleObjectives(secretObjectivesToChoose);
+        });
+        //now i give for each player its Starting card
+        for (Player player: board.getPlayers()){
+            player.getStation().setCardStarting(board.getDeckCardStarting().pop());
+        };
+    }
+
+    /**
+     * Sets the PlayerObjective
+     * @param nickname
+     * @param cardObjective
+     * @throws NotValidMoveException
+     */
+    public void setObjectiveOfPlayer(String nickname,CardObjective cardObjective) throws NotValidMoveException {
+        assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
+        Player p = board.getPlayer(nickname);
+        p.getStation().setSecretObjective(cardObjective);
+    }
+
+    /**
+     * We check if all the selection has been made so we can start the game,
+     * this methods checks if we are in the right state of the game and it set the current Player as the
+     * first player in the player list
+     * then it adds to heach hand of each player 2 card resource and a cardGold
+     *
+     * @throws NotValidMoveException
+     */
+    public void startGame() throws NotValidMoveException {
+        assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
+        for (Player player : board.getPlayers()){
+            if (player.getStation().getSecretObjective().equals(null)) throw new NotValidMoveException("player has not selected the objective");
+        }
+        gameState = GameState.IN_GAME;
+        board.setCurrentPlayer(board.getPlayers().getFirst().getNickname());
+        board.getPlayers().forEach(player -> {
+            player.addCardToHand(board.getDeckCardResource().pop());
+            player.addCardToHand(board.getDeckCardResource().pop());
+            player.addCardToHand(board.getDeckCardGold().pop());
+        });
+    }
+
+    /**
+     * this method returns the hand of a player
+     * @param nickname of the player we want to see the hand
+     * @return
+     * @throws NotValidMoveException
+     */
+    public ArrayList<CardResource> getPlayerHand(String nickname) throws NotValidMoveException {
+        return board.getPlayer(nickname).getHand();
+    }
+
+    public void addCardToPlayerHand(String nickname, int cardId) throws NotValidMoveException, NotMyTurnException {
+        assertIsMyTurn(nickname);
+        assertGameState(GameState.IN_GAME);
+        CardResource card = board.getCardResource(cardId)
+                .orElse(board.getCardGold(cardId)
+                        .orElseThrow(() -> new IllegalStateException("Central card " + cardId + " not found")));
+        Player player = board.getPlayer(nickname);
+        if(player.getNumberOfCardInHand() == 2) {
+            player.addCardToHand(card);
+        }
+        else throw new NotValidMoveException("you can't have another card");
+    }
+
+
+    public void getCurrentPlayerTurn() throws NotValidMoveException {
+        assertGameState(GameState.IN_GAME);
+        board.getCurrentPlayer();
+    }
+
+
+    public void changeTurn() throws NotValidMoveException {
+        assertGameState(GameState.IN_GAME);
+        if (!isGamefinished()){
+            board.setCurrentPlayer(board.getnextPlayer());
+        }
+        else {
+            gameState = GameState.FINISHED;
+            return;
+        }
+    }
+
+
+
+    /**
      * This method adds a card to the playing station
-     * and retrurns the points that generates that card
      *
      * @param card the card to add
      * @param X    the x coordinate
      * @param Y    the y coordinate
      */
-    public int addCard(String nickname, CardResource card, Integer X, Integer Y) throws InvalidPlacingCondition {
-
+    public void addCardToPlayingStation(String nickname, int id, Integer X, Integer Y) throws Exception {
+        int points = 0;
         Player player = board.getPlayer(nickname);
+        CardResource card = player.removeCardFromHand(id);
+
         try {
             if (player.getStation().isPlayable(card, X, Y)) {
                 // Check if the card can be placed
@@ -111,82 +285,14 @@ public class GameController extends ClientController implements Serializable {
         coordinates.add(1, Y);
         player.getStation().getMap().put(coordinates, card);
 
-        // Update the counters
-//        updateCounters(card);
 
         //calculating the points that the card generates
         if (!(card.getPlayingBack())) {
-            return card.getObjective().countObjectivePoints(player.getStation(), card, X, Y);
-        } else return 0;
+            points = card.getObjective().countObjectivePoints(player.getStation(), card, X, Y);
+        } else points = 0;
+
+        player.setPoints(player.getPoints() + points);
     }
-
-    public void setCentralCardForPlayers() {
-        ArrayList<Integer> coordinates = new ArrayList<Integer>();
-        coordinates.add(40);
-        coordinates.add(40);
-        board.getPlayers().stream()
-                .map(p -> p.getStation().getMap().put(coordinates, board.getDeckCardStarting().pop()));
-    }
-
-    public void setCentralCardPlayedBack(boolean playedback, String nickname) {
-        Player player = board.getPlayers().stream()
-                .filter(x -> x.getNickname().equals(nickname))
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException("player " + nickname + " not found"));
-    }
-
-
-    public void addPlayer(String nickname, TokenEnum token) {
-        this.board.addPlayer(new Player(nickname, token, new PlayingStation(null, new HashMap<ArrayList<Integer>, CardPlaying>()), 0, new ArrayList<CardResource>()));
-    }
-
-    //Create the order for the player and set the first player
-    public void setPlayerOrder() {
-        board.shufflePlayer();
-    }
-
-    //for each player i show the two possible objectives that he can choose
-    public CardStarting getStartingCard(String nickname) {
-        CardStarting firstCard = board.getDeckCardStarting().pop();
-        return firstCard;
-    }
-
-//public ReducedBoard getReducedBoard(String nickname) {
-//    Player player = this.board.getPlayers().get(nickname);
-//    if (player == null) {
-//        throw new IllegalArgumentException("No player with the given nickname");
-//    }
-//    return new ReducedBoard(nickname, player.getHand(), player.getStation().getMap(), player.getStation().getSecretObjective());
-//}
-
-
-    public CardObjective[] getObjectiveCards(String nickname) {
-        CardObjective first = board.getDeckCardObjective().pop();
-        CardObjective second = board.getDeckCardObjective().pop();
-        return new CardObjective[]{first, second};
-    }
-
-
-//public CardPlaying drawCard(Integer number, String clientNickname) {
-//    switch (number) {
-//        case 5:
-//            return board.getPlayers().get(clientNickname).addCardFromDeck(board.getDeckCardResource(), board.getDeckCardGold(), "resource");
-//        case 6:
-//            return board.getPlayers().get(clientNickname).addCardFromDeck(board.getDeckCardResource(), board.getDeckCardGold(), "gold");
-//        case 1:
-//            return board.getPlayers().get(clientNickname).addCardFromCentral(board.getCentralCards(), board.getDeckCardResource(), board.getDeckCardGold(), "upleft");
-//        case 2:
-//            return board.getPlayers().get(clientNickname).addCardFromCentral(board.getCentralCards(), board.getDeckCardResource(), board.getDeckCardGold(), "upright");
-//        case 3:
-//            return board.getPlayers().get(clientNickname).addCardFromCentral(board.getCentralCards(), board.getDeckCardResource(), board.getDeckCardGold(), "downleft");
-//        case 4:
-//            return board.getPlayers().get(clientNickname).addCardFromCentral(board.getCentralCards(), board.getDeckCardResource(), board.getDeckCardGold(), "downright");
-//        default:
-//            throw new IllegalArgumentException("Invalid choice");
-//    }
-//
-//}
-
 
     public boolean isGamefinished() {
         for (Player player : board.getPlayers()) {
@@ -209,33 +315,24 @@ public class GameController extends ClientController implements Serializable {
         return maxpointHolder;
     }
 
-    public void setPlayerNumber(int playernumber) {
-        board.setPlayernumber(playernumber);
-    }
 
-    public int getPlayerNumber() {
-        return board.getPlayernumber();
-    }
-
-    public void assertGameState(GameState gameState) throws NotValidMove {
+    public void assertGameState(GameState gameState) throws NotValidMoveException {
         if (this.gameState != gameState) {
-            throw new NotValidMove();
+            throw new NotValidMoveException();
         }
     }
 
+    public void assertIsMyTurn(String nickname) throws NotMyTurnException{
+        if (!board.getCurrentPlayer().equals(nickname)) throw new NotMyTurnException();
+    }
 
 
-   /* public static void main(String[] args) {
-        Game game = new Game();
-        game.initGameController();
-        game.addPlayer("tommy");
-        game.addPlayer("davide");
-        game.addPlayer("isa");
-        game.addPlayer("eric");
-        game.setPlayerOrder();
-        game.getBoard().getPlayers().stream().map(x -> x.getNickname()).forEach(System.out::println);
-        game.createSations();
-    }*/
+    private ArrayList<Integer> creatingCordinatesArray(int x, int y) {
+        ArrayList<Integer> coordinates = new ArrayList<Integer>();
+        coordinates.add(x);
+        coordinates.add(y);
+        return coordinates;
+    }
 
 }
 

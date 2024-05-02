@@ -3,9 +3,8 @@ package Network.Server;
 import Network.Client.VirtualView;
 import Observers.Observable;
 import controller.GameController;
-import model.Player;
+import exception.NotValidMoveException;
 import model.PlayingBoard;
-import model.PlayingStation;
 import model.ReducedBoard;
 import model.cards.CardObjective;
 import model.cards.CardPlaying;
@@ -169,7 +168,12 @@ public class RmiServer extends Observable implements VirtualServer {
 
     @Override
     public synchronized CardStarting getStartingCard(String nickname) throws RemoteException {
-        CardStarting cardStarting = gameController.getStartingCard(nickname);
+        CardStarting cardStarting = null;
+        try {
+            cardStarting = gameController.getStartingCard(nickname);
+        } catch (NotValidMoveException e) {
+            throw new RuntimeException(e);
+        }
         clientsMapNicknamesKey.get(nickname).showStartingCard(cardStarting);
         return cardStarting;
     }
@@ -198,9 +202,10 @@ public class RmiServer extends Observable implements VirtualServer {
 
     @Override
     public synchronized CardObjective[] getObjectiveCards(String nickname) throws RemoteException {
-        CardObjective[] cardObjective = gameController.getObjectiveCards(nickname);
-        clientsMapNicknamesKey.get(nickname).showObjectiveCards(cardObjective);
-        return cardObjective;
+//        CardObjective[] cardObjective = gameController.getObjectiveCards(nickname);
+//        clientsMapNicknamesKey.get(nickname).showObjectiveCards(cardObjective);
+//        return cardObjective;
+        return null;
     }
 
     @Override

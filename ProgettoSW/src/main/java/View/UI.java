@@ -20,7 +20,7 @@ public interface UI {
 
     Integer askStartingCardFront();
 
-    void showObjectiveCards(CardObjective[] cardObjective);
+    void showObjectiveCards(ArrayList<CardObjective> cardObjectives);
 
     Integer askObjectiveCard();
     

@@ -126,7 +126,7 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
 
     @Override
     public synchronized void showObjectiveCards(CardObjective[] cardObjective) {
-        cli.showObjectiveCards(cardObjective);
+//        cli.showObjectiveCards(cardObjective);
     }
 
     @Override

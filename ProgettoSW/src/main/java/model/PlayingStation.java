@@ -24,9 +24,6 @@ public class PlayingStation implements Serializable {
         return SecretObjective;
     }
     public HashMap<ArrayList<Integer>,CardPlaying> getMap() {return map;}
-
-
-    //TODO: creare i le funzioni che calcolano le risorse
     public int getCountSuit(SuitEnum suit){
         return 0;
     }
@@ -36,10 +33,17 @@ public class PlayingStation implements Serializable {
     public void setSecretObjective(CardObjective secretObjective) {
         SecretObjective = secretObjective;
     }
-
     public void setMap(HashMap<ArrayList<Integer>, CardPlaying> map) {
         this.map = map;
     }
+
+    public void setCardStarting(CardStarting card){
+        ArrayList<Integer> coordinates = new ArrayList<>();
+        coordinates.add(40);
+        coordinates.add(40);
+        map.put(coordinates, card);
+    }
+
 
 //    TODO: passare id della carta e non la carta, mettere exception se la carta non c'e'
     public ArrayList<Integer> getCoordinates(CardPlaying card) {
@@ -263,6 +267,7 @@ public class PlayingStation implements Serializable {
          * @param goldCard the gold card
          * @return true if the player has enough resources, false otherwise
          */
+        //TODO: mettere i metodi che contano le risorse delle carte al posto dei contatori
         public boolean enoughResources (CardGold goldCard){
 //            if (countAnimal < goldCard.getCostAnimal() || countFungi < goldCard.getCostFungi() ||
 //                    countInsect < goldCard.getCostInsect() || countPlant < goldCard.getCostPlant()) {
@@ -271,9 +276,14 @@ public class PlayingStation implements Serializable {
             return true;
         }
 
-
-
-
-
+    /**
+     * this method calculate the number of resource of Playingstation
+     * @param suit
+     * @return the number of suit of int the playingstation
+     */
+        //TODO: implemetare questo metodo
+    public int countintgResource(SuitEnum suit){
+        return 0;
+    }
     }
 

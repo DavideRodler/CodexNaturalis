@@ -132,9 +132,9 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public void showObjectiveCards(CardObjective[] cardObjective) {
+    public void showObjectiveCards(ArrayList<CardObjective> cardObjectives) {
         //System.out.println("Your first Objective Card is:");
-        printCard(cardObjective[0]);
+        printCard(cardObjectives.get(0));
             /*switch (cardObjective[0].getObjective()) {
                 case ObjectiveDiagonal objectiveDiagonal -> diagonalObjectivePrinter(objectiveDiagonal);
                 case ObjectiveCountingGold objectiveCountingGold -> countingGoldPrinter(objectiveCountingGold);
@@ -143,7 +143,7 @@ public class Cli2 implements UI {
                         countingResourcePrinter((ObjectiveCountingResource) cardObjective[0].getObjective());
             }*/
         //System.out.println("\nYour second Objective Card is:");
-        printCard(cardObjective[1]);
+        printCard(cardObjectives.get(1));
             /*switch (cardObjective[1].getObjective()) {
                 case ObjectiveDiagonal objectiveDiagonal -> diagonalObjectivePrinter(objectiveDiagonal);
                 case ObjectiveCountingGold objectiveCountingGold -> countingGoldPrinter(objectiveCountingGold);

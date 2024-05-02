@@ -39,6 +39,12 @@ public class PlayingBoard extends ModelObserver implements Serializable {
         this.centralCardsGold = centralCardsGold;
     }
 
+    public PlayingBoard(CardObjective firstObjective, CardObjective secondObjective) {
+        this.firstObjective = firstObjective;
+        this.secondObjective = secondObjective;
+    }
+
+
     //-------------------GETTER-----------------------------
     public LinkedList<CardGold> getDeckCardGold() {
         return deckCardGold;
@@ -52,21 +58,7 @@ public class PlayingBoard extends ModelObserver implements Serializable {
         return secondObjective;
     }
 
-    //getting a card from decks
-    public CardResource getCardResourceFromDeck(){
-        return deckCardResource.pop();
-    }
-    public CardGold getCardGoldFromDeck(){
-        return deckCardGold.pop();
-    }
-
-    public CardObjective getCardObjectiveFromDeck(){
-        return deckCardObjective.pop();
-    }
-
-    public CardStarting getCardStartingFromDeck(){
-        return deckCardStarting.pop();
-    }   public int getPlayernumber() {
+    public int getPlayernumber() {
         return playernumber;
     }
 
@@ -101,7 +93,7 @@ public class PlayingBoard extends ModelObserver implements Serializable {
 //--------------------SETTER----------------------------
 
 
-    public void addPlayer(Player p){
+    public void addPlayer(Player p) {
         players.add(p);
     }
 
@@ -141,34 +133,45 @@ public class PlayingBoard extends ModelObserver implements Serializable {
         this.players = players;
     }
 
+
 //--------------------SETTING FASE ENDED----------------------------
 
 
-
-    public Player getPlayer(String nickname) throws  IllegalStateException{
+    public Player getPlayer(String nickname) throws IllegalStateException {
         return players.stream()
                 .filter(p -> p.getNickname().equals(nickname))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("Player " + nickname + " not found"));
     }
+    private int getPlayerPositon(String nickname){
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getNickname().equals(nickname)){
+                return i;
+            }
+        }
+        return -1;
+    }
 
-    public Optional<CardResource> getCardResource(int id){
+
+    public Optional<CardResource> getCardResource(int id) {
         return centralCardsResource
                 .stream()
                 .filter(c -> c.getId().equals(id))
                 .findFirst();
     }
 
-    public Optional<CardGold> getCardGold(int id){
+    public Optional<CardGold> getCardGold(int id) {
         return centralCardsGold
                 .stream()
                 .filter(c -> c.getId().equals(id))
                 .findFirst();
     }
+
     // shuffle players
-    public void shufflePlayer(){
+    public void shufflePlayer() {
         Collections.shuffle(players);
     }
-
+    public String getnextPlayer(){
+        return players.get(players.indexOf(getPlayer(currentPlayer))).getNickname();
+    }
 }
-

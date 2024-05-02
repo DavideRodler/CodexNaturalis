@@ -7,9 +7,6 @@ import model.enums.TokenEnum;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Random;
-import Exception.DeckEmptyException;
 
 
 public class Player extends ModelObserver implements Serializable {
@@ -18,6 +15,7 @@ public class Player extends ModelObserver implements Serializable {
     private final TokenEnum token;
     private PlayingStation station;
     private ArrayList<CardResource> hand;
+    private ArrayList<CardObjective> selectibleObjectives;
 
 
     // Costruttore
@@ -38,6 +36,9 @@ public class Player extends ModelObserver implements Serializable {
     public void setStation(PlayingStation station) {
         this.station = station;
     }
+    public void setSelectibleObjectives(ArrayList<CardObjective> selectibleObjectives) {
+        this.selectibleObjectives = selectibleObjectives;
+    }
 
     //getter
     public ArrayList<CardResource> getHand() {
@@ -52,19 +53,32 @@ public class Player extends ModelObserver implements Serializable {
     public Integer getPoints() {
         return points;
     }
+    public ArrayList<CardObjective> getSelectibleObjectives() {
+        return selectibleObjectives;
+    }
     public PlayingStation getStation(){return station;}
+
 
     /**
      * This method removes a card from the player's hand, given the card instance, using functional programming,
      * returning exception if not present
+     *
      * @param cardToRemove the card to remove
+     * @return
      */
-    public void removeCard(int cardId)throws Exception {
-        CardPlaying cardPlay = hand.stream()
+    public CardResource removeCardFromHand(int cardId)throws Exception {
+        return hand.stream()
                 .filter(card -> card.getId().equals(cardId))
                 .findFirst()
                 .orElseThrow(() -> new Exception("Card not found in hand"));
-
-        hand.remove(cardPlay);
     }
+    public int getNumberOfCardInHand(){
+        return hand.size();
+    }
+    public void addCardToHand(CardResource card){
+        hand.add(card);
+    }
+
+
+
 }
