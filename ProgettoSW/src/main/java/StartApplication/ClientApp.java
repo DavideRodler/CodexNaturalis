@@ -5,6 +5,7 @@ import Network.Client.VirtualView;
 import Network.Server.RmiServer;
 import Network.Server.VirtualServer;
 import controller.GameController;
+import exception.NotValidMoveException;
 
 import java.io.InputStreamReader;
 import java.rmi.NotBoundException;
@@ -45,6 +46,8 @@ public class ClientApp implements Remote {
         } catch (RemoteException r) {
             System.out.println("Error: " + r);
         } catch (NotBoundException e) {
+            throw new RuntimeException(e);
+        } catch (NotValidMoveException e) {
             throw new RuntimeException(e);
         }
 

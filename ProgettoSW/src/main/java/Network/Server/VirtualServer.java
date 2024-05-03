@@ -2,6 +2,7 @@ package Network.Server;
 
 import Network.Client.RmiClient;
 import Network.Client.VirtualView;
+import exception.NotValidMoveException;
 import model.PlayingBoard;
 import model.PlayingStation;
 import model.ReducedBoard;
@@ -30,15 +31,15 @@ public interface VirtualServer extends Remote {
 
     void initializeBoard() throws RemoteException;
     
-    void inizializeLobby(Integer playernumber) throws RemoteException;
+    void inizializeLobby(Integer playernumber) throws RemoteException, NotValidMoveException;
 
-    Integer getPlayerNumber() throws RemoteException;
+    Integer getPlayerNumber() throws RemoteException, NotValidMoveException;
 
     CardPlaying getStartingCard(String nickname) throws RemoteException;
 
     PlayingBoard getServerModel() throws RemoteException;
 
-    boolean allPlayerConnected() throws RemoteException;
+    boolean allPlayerConnected() throws RemoteException, NotValidMoveException;
 
 
     String getClientNickname(VirtualView client) throws RemoteException;

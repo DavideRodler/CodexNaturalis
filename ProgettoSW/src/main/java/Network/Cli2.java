@@ -176,7 +176,7 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public void showUpdatedHand(ArrayList<CardPlaying> hand) {
+    public void showUpdatedHand(ArrayList<CardResource> hand) {
         System.out.println("Here is your hand:");
         for(CardPlaying card : hand){
             printCard(card);

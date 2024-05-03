@@ -3,6 +3,7 @@ package View;
 import model.PlayingBoard;
 import model.cards.CardObjective;
 import model.cards.CardPlaying;
+import model.cards.CardResource;
 import model.cards.CardStarting;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public interface UI {
     
     void showUpdatedStation(Map<ArrayList<Integer>, CardPlaying> playingStation);
 
-    void showUpdatedHand(ArrayList<CardPlaying> hand);
+    void showUpdatedHand(ArrayList<CardResource> hand);
 
     void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String name);
 

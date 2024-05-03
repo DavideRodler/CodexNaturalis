@@ -4,6 +4,7 @@ import Network.Cli2;
 import Network.Server.VirtualServer;
 
 import View.UI;
+import exception.NotValidMoveException;
 import model.PlayingBoard;
 import model.ReducedBoard;
 import model.cards.CardObjective;
@@ -32,7 +33,7 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
         return clientModel;
     }
 
-    public void ClientSetup() throws RemoteException{
+    public void ClientSetup() throws RemoteException, NotValidMoveException {
         this.server.connectClient(this);
 
         cli = new Cli2(server, this);
@@ -91,7 +92,7 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
         PlayingBoard board = server.getServerModel();
         cli.showUpdatedBoard ( board );
         cli.showUpdatedStation( this.clientModel.getPlayingStation() );
-        cli.showUpdatedHand( this.clientModel.getHand() );
+//        cli.showUpdatedHand( this.clientModel.getHand() );
         }
     }
 

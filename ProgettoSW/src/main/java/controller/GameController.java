@@ -60,12 +60,15 @@ public class GameController extends ClientController implements Serializable {
     }
 
     public void setPlayerNumber(int playernumber) throws NotValidMoveException {
+        //check right time of the game
+        if(playernumber<1) throw new NotValidMoveException("player must be at least two");
+        if(playernumber>4) throw new NotValidMoveException("player must be at least four");
         assertGameState(GameState.SET_PLAYER_NUMBER);
         board.setPlayernumber(playernumber);
+        gameState = GameState.SET_NAME_AND_TOKEN;
     }
 
     public int getPlayerNumber() throws NotValidMoveException {
-        assertGameState(GameState.SET_PLAYER_NUMBER);
         return board.getPlayernumber();
     }
 
@@ -74,7 +77,6 @@ public class GameController extends ClientController implements Serializable {
      * @throws NotValidMoveException if i am in another state of the game
      */
     public List<TokenEnum> getAvailableToken() throws NotValidMoveException {
-        assertGameState(GameState.SET_NAME_AND_TOKEN);
         return Arrays.stream(TokenEnum.values())
                 .filter(t -> board.getPlayers()
                         .stream()
@@ -83,7 +85,6 @@ public class GameController extends ClientController implements Serializable {
     }
 
     public boolean checkTokenAvailability(TokenEnum token) throws NotValidMoveException {
-        assertGameState(GameState.SET_NAME_AND_TOKEN);
         return getAvailableToken().contains(token);
     }
 
@@ -94,7 +95,6 @@ public class GameController extends ClientController implements Serializable {
      * @throws NotValidMoveException if i am in another state of the game
      */
     public boolean checkNicknameAvailability(String nickname) throws NotValidMoveException {
-        assertGameState(GameState.SET_NAME_AND_TOKEN);
         return board.getPlayers()
                 .stream()
                 .filter(p -> p.getNickname().equals(nickname))
@@ -111,7 +111,13 @@ public class GameController extends ClientController implements Serializable {
      */
     public void addPlayer(String nickname, TokenEnum token) throws NotValidMoveException {
         assertGameState(GameState.SET_NAME_AND_TOKEN);
+        if(board.getPlayernumber() < board.getPlayers().size()) throw new NotValidMoveException("numero di player massimo raggiunto");
+        if(!checkNicknameAvailability(nickname)) throw new NotValidMoveException("nickname already been choosen");
+        if(!checkTokenAvailability(token)) throw new NotValidMoveException("token already been choosen");
         this.board.addPlayer(new Player(nickname, token, new PlayingStation(null, new HashMap<>()), 0, new ArrayList<>()));
+        if(board.getPlayers().size() == board.getPlayernumber()){
+            shufflePlayerAndPopulateHands();
+        }
     }
 
     /**
@@ -119,18 +125,16 @@ public class GameController extends ClientController implements Serializable {
      *
      * @throws NotValidMoveException
      */
-    public void shufflePlayer() throws NotValidMoveException {
+    public void shufflePlayerAndPopulateHands() throws NotValidMoveException {
         assertGameState(GameState.SET_NAME_AND_TOKEN);
         board.shufflePlayer();
+        board.getPlayers().stream().forEach(player -> {
+            player.getHand().add(board.getDeckCardResource().pop());
+            player.getHand().add(board.getDeckCardResource().pop());
+            player.getHand().add(board.getDeckCardGold().pop());
+        });
         gameState = GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE;
-    }
-
-    /**
-     * It takes for each player a Starting card from the deck and set it in the central position of the board
-     *
-     * @throws NotValidMoveException
-     */
-    public void setStartingCardForPlayers() throws NotValidMoveException {
+        setupOfStartingCardAndPersonalObjectives();
     }
 
 
@@ -162,7 +166,7 @@ public class GameController extends ClientController implements Serializable {
     }
 
     /**
-     * @return The Arraylist of two Objective that needs to be choosen
+     * Set the personal objectives and the starting card for each player
      * @throws NotValidMoveException
      */
     public void setupOfStartingCardAndPersonalObjectives() throws NotValidMoveException {
@@ -180,17 +184,40 @@ public class GameController extends ClientController implements Serializable {
             player.getStation().setCardStarting(board.getDeckCardStarting().pop());
         };
     }
+    public ArrayList<CardObjective> getObjectiveToChoose(String nickname) {
+        return board.getPlayer(nickname).getSelectibleObjectives();
+    }
 
     /**
      * Sets the PlayerObjective
      * @param nickname
-     * @param cardObjective
      * @throws NotValidMoveException
      */
-    public void setObjectiveOfPlayer(String nickname,CardObjective cardObjective) throws NotValidMoveException {
+    public void setObjectiveOfPlayer(String nickname,int id) throws NotValidMoveException {
+
+        //check if i am in the right state
         assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
         Player p = board.getPlayer(nickname);
-        p.getStation().setSecretObjective(cardObjective);
+
+        //i check if the objective is selectible
+        if (p.getSelectibleObjectives().stream()
+                .map(card -> card.getId())
+                .filter(idcardobjectivetochoose -> idcardobjectivetochoose.equals(id))
+                .findFirst()
+                .isEmpty()) throw  new NotValidMoveException("the objective is not selectible");
+        ArrayList<CardObjective> selectibleObjectives = p.getSelectibleObjectives();
+        p.getStation().setSecretObjective(selectibleObjectives.stream()
+                .filter(card -> card.getId().equals(id))
+                .findFirst()
+                .orElseThrow());
+
+        //if all player has setted the objective i can start the game
+        if( board.getPlayers().stream()
+                .map(player -> player.getStation())
+                .filter(station -> station.getSecretObjective() == null)
+                .findFirst()
+                .isEmpty())
+         startGame();
     }
 
     /**
@@ -209,9 +236,6 @@ public class GameController extends ClientController implements Serializable {
         gameState = GameState.IN_GAME;
         board.setCurrentPlayer(board.getPlayers().getFirst().getNickname());
         board.getPlayers().forEach(player -> {
-            player.addCardToHand(board.getDeckCardResource().pop());
-            player.addCardToHand(board.getDeckCardResource().pop());
-            player.addCardToHand(board.getDeckCardGold().pop());
         });
     }
 

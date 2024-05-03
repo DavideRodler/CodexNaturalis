@@ -144,11 +144,11 @@ public class RmiServer extends Observable implements VirtualServer {
     }
 
     @Override
-    public synchronized void inizializeLobby(Integer playerNumber) throws RemoteException {
+    public synchronized void inizializeLobby(Integer playerNumber) throws RemoteException, NotValidMoveException {
         gameController.setPlayerNumber(playerNumber);
     }
 
-    public synchronized Integer getPlayerNumber() {
+    public synchronized Integer getPlayerNumber() throws NotValidMoveException {
         return gameController.getPlayerNumber();
     }
 
@@ -179,7 +179,7 @@ public class RmiServer extends Observable implements VirtualServer {
     }
 
     @Override
-    public synchronized boolean allPlayerConnected() throws RemoteException {
+    public synchronized boolean allPlayerConnected() throws RemoteException, NotValidMoveException {
         return Objects.equals(this.numberOfPlayer(), this.getPlayerNumber());
     }
 

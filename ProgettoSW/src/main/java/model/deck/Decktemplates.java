@@ -156,7 +156,7 @@ public class Decktemplates implements Serializable {
           String diagonal = (String) card.get("diagonal");
           int points = ((Long) card.get("points")).intValue();
           Objective objectiveDiagonal = new ObjectiveDiagonal(AssignDirection(diagonal), AssignSuit(resource));
-          CardObjective tmp = new CardObjective(0, points, objectiveDiagonal);
+          CardObjective tmp = new CardObjective(ID, points, objectiveDiagonal);
           deck.add(tmp);
         }
         case "positioning" -> {
@@ -167,21 +167,21 @@ public class Decktemplates implements Serializable {
           int points = ((Long) card.get("points")).intValue();
           Objective objectivePositioning = new ObjectivePositioning(AssignSuit(oneCard), AssignSuit(twoCards),
               AssignDirection(Horizontal), AssignPosition(Vertical));
-          CardObjective tmp = new CardObjective(0, points, objectivePositioning);
+          CardObjective tmp = new CardObjective(ID, points, objectivePositioning);
           deck.add(tmp);
         }
         case "resources" -> {
           String resource = (String) card.get("resource");
           int points = ((Long) card.get("points")).intValue();
           Objective objectiveCountingResource = new ObjectiveCountingResource(AssignSuit(resource));
-          CardObjective tmp = new CardObjective(0, points, objectiveCountingResource);
+          CardObjective tmp = new CardObjective(ID, points, objectiveCountingResource);
           deck.add(tmp);
         }
         case "gold" -> {
           String goldType = (String) card.get("goldType");
           int points = ((Long) card.get("points")).intValue();
           Objective objectiveCountingGold = AssignObjective(goldType);
-          CardObjective tmp = new CardObjective(0, points, objectiveCountingGold);
+          CardObjective tmp = new CardObjective(ID, points, objectiveCountingGold);
           deck.add(tmp);
         }
         default -> throw new IllegalStateException("Unexpected value: " + suite);

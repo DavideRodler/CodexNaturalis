@@ -3,6 +3,7 @@ package View;
 import model.PlayingBoard;
 import model.cards.CardObjective;
 import model.cards.CardPlaying;
+import model.cards.CardResource;
 import model.cards.CardStarting;
 
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class VirtualUI implements UI {
     }
 
     @Override
-    public void showUpdatedHand(ArrayList<CardPlaying> hand) {
+    public void showUpdatedHand(ArrayList<CardResource> hand) {
 
     }
 

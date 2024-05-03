@@ -14,14 +14,13 @@ class GameControllerTest {
     public void testChecknickname() throws NotValidMoveException {
         GameController game = new GameController(null, null);
         game.initGameController();
+        game.setPlayerNumber(4);
         game.addPlayer("tommy", TokenEnum.BLACK);
         game.addPlayer("davide", TokenEnum.BLUE);
         assertEquals(true ,game.checkNicknameAvailability("isa"));
         game.addPlayer("isa", TokenEnum.YELLOW);
-        game.addPlayer("eric", TokenEnum.BLACK);
         assertEquals(true ,game.checkNicknameAvailability("giorgio"));
         assertEquals(false ,game.checkNicknameAvailability("isa"));
-        game.shufflePlayer();
 
     }
     @Test
@@ -29,6 +28,7 @@ class GameControllerTest {
         GameController game = new GameController(null, null);
         game.initGameController();
         System.out.println(game.getAvailableToken());
+        game.setPlayerNumber(4);
         game.addPlayer("eric", TokenEnum.BLACK);
         System.out.println(game.getAvailableToken());
     }
@@ -37,6 +37,7 @@ class GameControllerTest {
     void setStartingCardForPlayers() throws NotValidMoveException {
         GameController game = new GameController(null, null);
         game.initGameController();
+        game.setPlayerNumber(2);
 
         assertEquals(true, game.checkNicknameAvailability("tommy"));
         System.out.println(game.getAvailableToken());
@@ -47,10 +48,6 @@ class GameControllerTest {
         System.out.println(game.getAvailableToken());
         assertEquals(true, game.checkTokenAvailability(TokenEnum.YELLOW));
         game.addPlayer("isa", TokenEnum.YELLOW);
-
-        game.shufflePlayer();
-
-        game.setStartingCardForPlayers();
 
         Cli2 cli = new Cli2(null, null);
         cli.showStartingCard(game.getStartingCard("tommy"));
@@ -61,6 +58,7 @@ class GameControllerTest {
     void setCentralCardPlayedBack() throws NotValidMoveException {
         GameController game = new GameController(null, null);
         game.initGameController();
+        game.setPlayerNumber(2);
 
         assertEquals(true, game.checkNicknameAvailability("tommy"));
         System.out.println(game.getAvailableToken());
@@ -72,18 +70,21 @@ class GameControllerTest {
         assertEquals(true, game.checkTokenAvailability(TokenEnum.YELLOW));
         game.addPlayer("isa", TokenEnum.YELLOW);
 
-        game.shufflePlayer();
 
-        game.setStartingCardForPlayers();
+        game.setupOfStartingCardAndPersonalObjectives();
 
         Cli2 cli = new Cli2(null, null);
+
+        cli.showUpdatedHand(game.getPlayerHand("tommy"));
         cli.showStartingCard(game.getStartingCard("tommy"));
+        game.setObjectiveOfPlayer("tommy",game.getObjectiveToChoose("tommy").get(1).getId());
+        cli.showObjectiveCards(game.getObjectiveToChoose("tommy"));
+
         cli.showStartingCard(game.getStartingCard("isa"));
+        cli.showStartingCard(game.getStartingCard("isa"));
+        game.setObjectiveOfPlayer("isa",game.getObjectiveToChoose("isa").get(1).getId());
+        cli.showObjectiveCards(game.getObjectiveToChoose("isa"));
 
-        game.setCentralCardPlayedBack(true,"tommy");
-        game.setCentralCardPlayedBack(false,"isa");
-
-        cli.showObjectiveCards(game.getCardObjectiveToChoose());
     }
 
     @Test
