@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Print board + start printing playerStation">
-      <change afterPath="$PROJECT_DIR$/src/main/java/View/BoardMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/View/CardMatrixCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/View/HandMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/View/StationMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" afterDir="false" />
-    </list>
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Implementato RmiCompleto tranne controllo fine partita. Da controllare se il piazzamento delle carte è corretto." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,53 +63,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ClientApp.executor": "Run",
-    "Application.PrintStation.executor": "Debug",
-    "Application.RmiClient.executor": "Run",
-    "Application.ServerApp.executor": "Run",
-    "Application.deckconstructor.executor": "Run",
-    "Application.decktameplatetom.executor": "Run",
-    "Application.playngstationTameplate.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckGold.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckObjective.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckResource.executor": "Run",
-    "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
-    "JUnit.GameTest.testPlayers.executor": "Run",
-    "JUnit.GameTest.testStations.executor": "Run",
-    "JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor": "Run",
-    "JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test_Positioning.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test_Positioning2.executor": "Run",
-    "JUnit.PlacingConditionTest (1).executor": "Run",
-    "JUnit.PlacingConditionTest.test_null_corner.executor": "Run",
-    "JUnit.PrintStation.CliPrintStation.executor": "Run",
-    "JUnit.deckconstructorTest.deckResource.executor": "Run",
-    "JUnit.java in ProgettoSW.executor": "Debug",
-    "Maven.ProgettoSW [clean].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.editor",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ClientApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RmiClient.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ServerApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.deckconstructor.executor&quot;: &quot;Run&quot;,
+    &quot;Application.decktameplatetom.executor&quot;: &quot;Run&quot;,
+    &quot;Application.playngstationTameplate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testDeckGold.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testDeckObjective.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testDeckResource.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testStartingCardDeck.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameTest.testPlayers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameTest.testStations.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectivePositioningTest.test_Positioning.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectivePositioningTest.test_Positioning2.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlacingConditionTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlacingConditionTest.test_null_corner.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.deckconstructorTest.deckResource.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in ProgettoSW.executor&quot;: &quot;Debug&quot;,
+    &quot;Maven.ProgettoSW [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.applicationServers&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -132,7 +122,7 @@
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PrintStation.CliPrintStation">
+  <component name="RunManager" selected="Application.ClientApp">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
       <module name="ProgettoSW" />
@@ -146,22 +136,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PrintStation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="View.PrintStation" />
+    <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="StartApplication.ServerApp" />
       <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="View.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="StartApplication.ServerApp" />
+    <configuration name="PlacingConditionTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.placingCondition.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.placingCondition" />
+      <option name="MAIN_CLASS_NAME" value="model.placingCondition.PlacingConditionTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -182,36 +174,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PrintStation.CliPrintStation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="java in ProgettoSW" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="View.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="View" />
-      <option name="MAIN_CLASS_NAME" value="View.PrintStation" />
-      <option name="METHOD_NAME" value="CliPrintStation" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.PrintStation" />
       <item itemvalue="Application.ClientApp" />
       <item itemvalue="Application.ServerApp" />
-      <item itemvalue="JUnit.PrintStation.CliPrintStation" />
       <item itemvalue="JUnit.PlacingConditionTest.test_null_corner" />
+      <item itemvalue="JUnit.java in ProgettoSW" />
+      <item itemvalue="JUnit.PlacingConditionTest (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PrintStation.CliPrintStation" />
         <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.ServerApp" />
-        <item itemvalue="Application.PrintStation" />
         <item itemvalue="JUnit.PlacingConditionTest.test_null_corner" />
+        <item itemvalue="JUnit.PlacingConditionTest (1)" />
+        <item itemvalue="JUnit.java in ProgettoSW" />
       </list>
     </recent_temporary>
   </component>
@@ -520,15 +504,7 @@
       <option name="project" value="LOCAL" />
       <updated>1714391488988</updated>
     </task>
-    <task id="LOCAL-00035" summary="Print board + start printing playerStation">
-      <option name="closed" value="true" />
-      <created>1714418915587</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1714418915587</updated>
-    </task>
-    <option name="localTasksCounter" value="36" />
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -583,6 +559,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixato deck gold e metodo assegna obiettivi" />
     <MESSAGE value="aggiunta dell'attributo objective in cardobjective&#10;in deckconstructor cambiato metodo per il mazzo di cardobjective&#10;cambiato costruttore objective counting gold&#10;cambiato metodo checkobjective" />
     <MESSAGE value="prova JSONArray e JSONParser" />
     <MESSAGE value="Aggiunta dei costruttori dei deck + test nel main, da sistemare gli obbiettivi" />
@@ -607,8 +584,7 @@
     <MESSAGE value="Fixati bug che c'erano con le stampe dei thread e codice semplificato" />
     <MESSAGE value="Fixato bug nel metodo di Cli2 che lanciava CastException sulla stampa delle carte oro" />
     <MESSAGE value="Implementato RmiCompleto tranne controllo fine partita. Da controllare se il piazzamento delle carte è corretto." />
-    <MESSAGE value="Print board + start printing playerStation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Print board + start printing playerStation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementato RmiCompleto tranne controllo fine partita. Da controllare se il piazzamento delle carte è corretto." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -633,75 +609,58 @@
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Network/Cli2.java</url>
-          <line>234</line>
-          <option name="timeStamp" value="115" />
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>219</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/BoardMatrix.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="139" />
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>222</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/BoardMatrix.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="140" />
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>225</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/BoardMatrix.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="141" />
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>228</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/BoardMatrix.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="142" />
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>233</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/CardMatrixCreator.java</url>
-          <line>146</line>
-          <option name="timeStamp" value="149" />
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>242</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/BoardMatrix.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="150" />
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>251</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/BoardMatrix.java</url>
-          <line>78</line>
-          <option name="timeStamp" value="151" />
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>260</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/BoardMatrix.java</url>
-          <line>81</line>
-          <option name="timeStamp" value="152" />
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>272</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/HandMatrix.java</url>
-          <line>101</line>
-          <option name="timeStamp" value="154" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/View/PrintStation.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="172" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/View/HandMatrix.java</url>
-          <line>96</line>
-          <properties class="View.HandMatrix" method="addCardsToHand">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="153" />
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>302</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
-      <configuration name="JUnit">
-        <watch expression="station[i][j] != null" />
-      </configuration>
       <configuration name="Application">
         <watch expression="X - 1" />
         <watch expression="table" />
@@ -716,16 +675,6 @@
         <watch expression="observers" />
         <watch expression="clientsMapNicknamesKey" />
         <watch expression="semaphore" />
-        <watch expression="station[i][j] != null" />
-        <watch expression="stationPrint" />
-        <watch expression="station[i][j].getPlayingBack()" />
-        <watch expression="obj" />
-        <watch expression="obj instanceof ObjectiveDiagonal" />
-        <watch expression="obj instanceof ObjectiveCountingGold" />
-        <watch expression="playingBoard.getCentralCards()[i]" />
-        <watch expression="station[i][j] != null)" />
-        <watch expression="stationCard" />
-        <watch expression="station" />
       </configuration>
     </watches-manager>
   </component>
