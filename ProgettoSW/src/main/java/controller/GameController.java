@@ -128,6 +128,7 @@ public class GameController extends ClientController implements Serializable {
     public void shufflePlayerAndPopulateHands() throws NotValidMoveException {
         assertGameState(GameState.SET_NAME_AND_TOKEN);
         board.shufflePlayer();
+        board.setCurrentPlayer(board.getPlayers().getFirst().getNickname());
         board.getPlayers().stream().forEach(player -> {
             player.getHand().add(board.getDeckCardResource().pop());
             player.getHand().add(board.getDeckCardResource().pop());
@@ -216,27 +217,9 @@ public class GameController extends ClientController implements Serializable {
                 .map(player -> player.getStation())
                 .filter(station -> station.getSecretObjective() == null)
                 .findFirst()
-                .isEmpty())
-         startGame();
-    }
-
-    /**
-     * We check if all the selection has been made so we can start the game,
-     * this methods checks if we are in the right state of the game and it set the current Player as the
-     * first player in the player list
-     * then it adds to heach hand of each player 2 card resource and a cardGold
-     *
-     * @throws NotValidMoveException
-     */
-    public void startGame() throws NotValidMoveException {
-        assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
-        for (Player player : board.getPlayers()){
-            if (player.getStation().getSecretObjective().equals(null)) throw new NotValidMoveException("player has not selected the objective");
+                .isEmpty()){
+            gameState = GameState.PLACING_CARD;
         }
-        gameState = GameState.IN_GAME;
-        board.setCurrentPlayer(board.getPlayers().getFirst().getNickname());
-        board.getPlayers().forEach(player -> {
-        });
     }
 
     /**
@@ -250,8 +233,8 @@ public class GameController extends ClientController implements Serializable {
     }
 
     public void addCardToPlayerHand(String nickname, int cardId) throws NotValidMoveException, NotMyTurnException {
+        assertGameState(GameState.ADDING_CARD_TO_HAND);
         assertIsMyTurn(nickname);
-        assertGameState(GameState.IN_GAME);
         CardResource card = board.getCardResource(cardId)
                 .orElse(board.getCardGold(cardId)
                         .orElseThrow(() -> new IllegalStateException("Central card " + cardId + " not found")));
@@ -263,14 +246,13 @@ public class GameController extends ClientController implements Serializable {
     }
 
 
-    public void getCurrentPlayerTurn() throws NotValidMoveException {
-        assertGameState(GameState.IN_GAME);
-        board.getCurrentPlayer();
+    public String getCurrentPlayer() throws NotValidMoveException {
+        return board.getCurrentPlayer();
     }
 
 
     public void changeTurn() throws NotValidMoveException {
-        assertGameState(GameState.IN_GAME);
+        assertGameState(GameState.CHANGING_TURN);
         if (!isGamefinished()){
             board.setCurrentPlayer(board.getnextPlayer());
         }
@@ -290,6 +272,8 @@ public class GameController extends ClientController implements Serializable {
      * @param Y    the y coordinate
      */
     public void addCardToPlayingStation(String nickname, int id, Integer X, Integer Y) throws Exception {
+        assertGameState(GameState.PLACING_CARD);
+        assertIsMyTurn(nickname);
         int points = 0;
         Player player = board.getPlayer(nickname);
         CardResource card = player.removeCardFromHand(id);
@@ -316,6 +300,7 @@ public class GameController extends ClientController implements Serializable {
         } else points = 0;
 
         player.setPoints(player.getPoints() + points);
+        gameState = GameState.ADDING_CARD_TO_HAND;
     }
 
     public boolean isGamefinished() {
