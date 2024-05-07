@@ -10,12 +10,12 @@ public class ObjectiveCountingResource implements Objective, Serializable {
     @Override
     public int countObjectivePoints(PlayingStation station) {
         return switch(symbol){
-            case FUNGI: yield station.getCountSuit(SuitEnum.FUNGI) / 3;
-            case PLANT: yield station.getCountSuit(SuitEnum.PLANT) / 3;
-            case ANIMAL: yield station.getCountSuit(SuitEnum.ANIMAL) / 3;
-            case INSECT: yield station.getCountSuit(SuitEnum.INSECT) / 3;
-            case QUILL, MANUSCRIPT, INKWELL, EMPTY, NULL:
-                yield -1; //errore
+            case FUNGI: yield station.getCountFungi() / 3;
+            case PLANT: yield station.getCountPlant() / 3;
+            case ANIMAL: yield station.getCountAnimal() / 3;
+            case INSECT: yield station.getCountInsect() / 3;
+            case QUILL, MANUSCRIPT, INKWELL, EMPTY, NULL,COVERED:
+                throw new RuntimeException("not a possible Objective");
         };
     }
 

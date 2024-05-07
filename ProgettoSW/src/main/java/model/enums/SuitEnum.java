@@ -9,5 +9,6 @@ public enum SuitEnum {
     MANUSCRIPT,
     INKWELL,
     EMPTY,
-    NULL
+    NULL,
+    COVERED
 }

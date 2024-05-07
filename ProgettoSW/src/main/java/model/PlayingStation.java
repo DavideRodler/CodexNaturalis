@@ -10,6 +10,13 @@ import java.util.*;
 
 public class PlayingStation implements Serializable {
     private HashMap<ArrayList<Integer>, CardPlaying> map;
+    private Integer countInsect;
+    private Integer countAnimal;
+    private Integer countPlant;
+    private Integer countFungi;
+    private Integer countInkwell;
+    private Integer countQuill;
+    private Integer countManuscript;
     private CardObjective SecretObjective;
 
 
@@ -17,6 +24,13 @@ public class PlayingStation implements Serializable {
     public PlayingStation(CardObjective secretObjective, HashMap<ArrayList<Integer>, CardPlaying> map) {
         SecretObjective = secretObjective;
         this.map = map;
+        countAnimal = 0;
+        countFungi = 0;
+        countInsect = 0;
+        countPlant = 0;
+        countInkwell = 0;
+        countManuscript = 0;
+        countQuill = 0;
     }
 
     //-------------------GETTER-----------------------------
@@ -24,12 +38,37 @@ public class PlayingStation implements Serializable {
         return SecretObjective;
     }
     public HashMap<ArrayList<Integer>,CardPlaying> getMap() {return map;}
-    public int getCountSuit(SuitEnum suit){
-        return 0;
+    public Integer getCountInsect () {
+        return countInsect;
+    }
+
+    public Integer getCountAnimal () {
+        return countAnimal;
+    }
+
+    public Integer getCountPlant () {
+        return countPlant;
+    }
+
+    public Integer getCountFungi () {
+        return countFungi;
+    }
+
+    public Integer getCountInkwell () {
+        return countInkwell;
+    }
+
+    public Integer getCountQuill () {
+        return countQuill;
+    }
+
+    public Integer getCountManuscript () {
+        return countManuscript;
     }
 
 
-    //------------------SETTER-------------------
+
+        //------------------SETTER-------------------
     public void setSecretObjective(CardObjective secretObjective) {
         SecretObjective = secretObjective;
     }
@@ -42,6 +81,7 @@ public class PlayingStation implements Serializable {
         coordinates.add(40);
         coordinates.add(40);
         map.put(coordinates, card);
+        updateCounters(card);
     }
 
 
@@ -232,26 +272,26 @@ public class PlayingStation implements Serializable {
                 // and updating resource with updateCounters method
 
                 if (numCornerCovered.get(coordinates1)) {
-                    //table.get(coordinates1).getFront().getDownRight().setCovered(true);
-//                    updateCounters(station.get(coordinates1).getFront().getDownRight(), true);
+                    map.get(coordinates1).getFront().getDownRight().equals(SuitEnum.COVERED);
+                    updateCounters(map.get(coordinates1).getFront().getDownRight(), true);
                 }
 
 
                 if (numCornerCovered.get(coordinates2)) {
-                    //table.get(coordinates2).getFront().getDownLeft().setCovered(true);
-//                    updateCounters(station.get(coordinates2).getFront().getDownLeft(), true);
+                    map.get(coordinates2).getFront().getDownLeft().equals(SuitEnum.COVERED);
+                    updateCounters(map.get(coordinates2).getFront().getDownLeft(), true);
                 }
 
 
                 if (numCornerCovered.get(coordinates3)) {
-                    //table.get(coordinates3).getFront().getUpRight().setCovered(true);
-//                    updateCounters(station.get(coordinates3).getFront().getUpRight(), true);
+                    map.get(coordinates3).getFront().getUpRight().equals(SuitEnum.COVERED);
+                    updateCounters(map.get(coordinates3).getFront().getUpRight(), true);
                 }
 
 
                 if (numCornerCovered.get(coordinates4)) {
-                   // table.get(coordinates4).getFront().getUpLeft().setCovered(true);
-//                    updateCounters(station.get(coordinates4).getFront().getUpLeft(), true);
+                    map.get(coordinates4).getFront().getUpLeft().equals(SuitEnum.COVERED);
+                    updateCounters(map.get(coordinates4).getFront().getUpLeft(), true);
                 }
             }
 
@@ -269,21 +309,93 @@ public class PlayingStation implements Serializable {
          */
         //TODO: mettere i metodi che contano le risorse delle carte al posto dei contatori
         public boolean enoughResources (CardGold goldCard){
-//            if (countAnimal < goldCard.getCostAnimal() || countFungi < goldCard.getCostFungi() ||
-//                    countInsect < goldCard.getCostInsect() || countPlant < goldCard.getCostPlant()) {
-//                return false;
-//            }
+            if (countAnimal < goldCard.getCostAnimal() || countFungi < goldCard.getCostFungi() ||
+                    countInsect < goldCard.getCostInsect() || countPlant < goldCard.getCostPlant()) {
+                return false;
+            }
             return true;
         }
 
-    /**
-     * this method calculate the number of resource of Playingstation
-     * @param suit
-     * @return the number of suit of int the playingstation
-     */
-        //TODO: implemetare questo metodo
-    public int countintgResource(SuitEnum suit){
-        return 0;
-    }
+
+
+
+
+
+
+
+        /**
+         * This method updates the counters of the playing station
+         *
+         * @param corner the corner that is covered by the card
+         */
+        public void updateCounters (SuitEnum corner, boolean covered){
+            if (covered) {
+                switch (corner) {
+                    case QUILL -> countQuill--;
+                    case MANUSCRIPT -> countManuscript--;
+                    case INKWELL -> countInkwell--;
+                    case FUNGI -> countFungi--;
+                    case PLANT -> countPlant--;
+                    case ANIMAL -> countAnimal--;
+                    case INSECT -> countInsect--;
+                    // case EMPTY -> null;
+                }
+            } else {
+                switch (corner) {
+                    case QUILL -> countQuill++;
+                    case MANUSCRIPT -> countManuscript++;
+                    case INKWELL -> countInkwell++;
+                    case FUNGI -> countFungi++;
+                    case PLANT -> countPlant++;
+                    case ANIMAL -> countAnimal++;
+                    case INSECT -> countInsect++;
+                    //  case EMPTY -> null;
+                }
+            }
+        }
+
+        public void updateCounters (CardStarting card){
+            if (card.getPlayingBack()) {
+                updateCounters(card.getBack().getUpRight(), false);
+                updateCounters(card.getBack().getDownRight(),false);
+                updateCounters(card.getBack().getUpLeft(),false);
+                updateCounters(card.getBack().getDownLeft(),false);
+            } else {
+                updateCounters(card.getFront().getUpRight(),false);
+                updateCounters(card.getFront().getDownRight(),false);
+                updateCounters(card.getFront().getUpLeft(),false);
+                updateCounters(card.getFront().getDownLeft(),false);
+                ArrayList<SuitEnum> symbols = card.getSymbols();
+                for (SuitEnum symbol : symbols) {
+                    switch (symbol) {
+                        case QUILL -> countQuill++;
+                        case MANUSCRIPT -> countManuscript++;
+                        case INKWELL -> countInkwell++;
+                        case FUNGI -> countFungi++;
+                        case PLANT -> countPlant++;
+                        case ANIMAL -> countAnimal++;
+                        case INSECT -> countInsect++;
+                        //  case EMPTY -> null;
+                    }
+                }
+            }
+        }
+
+        public void updateCounters (CardResource card){
+            if (!card.getPlayingBack()) {
+                updateCounters(card.getFront().getUpRight(),false);
+                updateCounters(card.getFront().getDownRight(),false);
+                updateCounters(card.getFront().getUpLeft(),false);
+                updateCounters(card.getFront().getDownLeft(),false);
+            }
+            else{
+                switch(card.getSymbol()){
+                    case ANIMAL -> countAnimal++;
+                    case PLANT -> countPlant++;
+                    case INSECT -> countInsect++;
+                    case FUNGI -> countFungi++;
+                }
+            }
+        }
     }
 

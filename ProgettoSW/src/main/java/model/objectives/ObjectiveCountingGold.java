@@ -23,13 +23,13 @@ public class ObjectiveCountingGold implements Objective, Serializable {
     int points = 0;
     synchronized (this) {
       if ((countInkwell == countManuscript) && (countInkwell == countQuill) && (countInkwell == 1)) {
-        points = Math.min(Math.min(station.getCountSuit(SuitEnum.INKWELL),station.getCountSuit(SuitEnum.QUILL)),station.getCountSuit(SuitEnum.MANUSCRIPT) );
+        points = Math.min(Math.min(station.getCountInkwell(), station.getCountQuill()), station.getCountManuscript());
       } else if ((countQuill != 0) && (countInkwell == 0) && (countManuscript == 0)) {
-        points = station.getCountSuit(SuitEnum.QUILL) / countQuill;
+        points = station.getCountQuill() / countQuill;
       } else if ((countQuill == 0) && (countInkwell != 0) && (countManuscript == 0)) {
-        points = station.getCountSuit(SuitEnum.QUILL) / countInkwell;
+        points = station.getCountInkwell() / countInkwell;
       } else if ((countQuill == 0) && (countInkwell == 0) && (countManuscript != 0)) {
-        points = station.getCountSuit(SuitEnum.MANUSCRIPT) / countManuscript;
+        points = station.getCountManuscript() / countManuscript;
       }
     }
     return points;

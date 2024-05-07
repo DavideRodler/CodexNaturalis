@@ -6,6 +6,7 @@ import model.PlayingBoard;
 import model.PlayingStation;
 import model.cards.*;
 import model.deck.Decktemplates;
+import model.enums.DeckEnum;
 import model.enums.TokenEnum;
 import model.enums.GameState;
 import exception.*;
@@ -232,7 +233,7 @@ public class GameController extends ClientController implements Serializable {
         return board.getPlayer(nickname).getHand();
     }
 
-    public void addCardToPlayerHand(String nickname, int cardId) throws NotValidMoveException, NotMyTurnException {
+    public void addCardFromCentralCardsToPlayerHand(String nickname, int cardId) throws NotValidMoveException, NotMyTurnException {
         assertGameState(GameState.ADDING_CARD_TO_HAND);
         assertIsMyTurn(nickname);
         CardResource card = board.getCardResource(cardId)
@@ -243,6 +244,22 @@ public class GameController extends ClientController implements Serializable {
             player.addCardToHand(card);
         }
         else throw new NotValidMoveException("you can't have another card");
+        gameState = gameState.CHANGING_TURN;
+        changeTurn();
+    }
+    public void addCardFromDeckToPlayerHand(String nickname, DeckEnum deck)throws NotValidMoveException, NotMyTurnException{
+        assertGameState(GameState.ADDING_CARD_TO_HAND);
+        assertIsMyTurn(nickname);
+        Player p = board.getPlayer(nickname);
+        if(p.getNumberOfCardInHand() == 2) {
+            if(deck.equals(DeckEnum.DECK_GOLD)){
+                p.addCardToHand(board.getDeckCardGold().pop());
+            }
+            else p.addCardToHand(board.getDeckCardResource().pop());
+        }
+        else throw new NotValidMoveException("you can't have another card");
+        gameState = gameState.CHANGING_TURN;
+        changeTurn();
     }
 
 
@@ -258,7 +275,6 @@ public class GameController extends ClientController implements Serializable {
         }
         else {
             gameState = GameState.FINISHED;
-            return;
         }
     }
 
@@ -276,7 +292,10 @@ public class GameController extends ClientController implements Serializable {
         assertIsMyTurn(nickname);
         int points = 0;
         Player player = board.getPlayer(nickname);
-        CardResource card = player.removeCardFromHand(id);
+        CardResource card = player.getHand().stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst()
+                .orElseThrow(()-> new NotValidMoveException("card not in your hand"));
 
         try {
             if (player.getStation().isPlayable(card, X, Y)) {
@@ -288,10 +307,14 @@ public class GameController extends ClientController implements Serializable {
             throw new InvalidPlacingCondition("the card cant't be blaced at the coordinates " + X + " " + Y);
         }
 
+        player.removeCardFromHand(id);
+
         ArrayList<Integer> coordinates = new ArrayList<>();
         coordinates.add(0, X);
         coordinates.add(1, Y);
         player.getStation().getMap().put(coordinates, card);
+
+        player.getStation().updateCounters(card);
 
 
         //calculating the points that the card generates
@@ -300,13 +323,19 @@ public class GameController extends ClientController implements Serializable {
         } else points = 0;
 
         player.setPoints(player.getPoints() + points);
+
+        repopulatePlayingBoard();
         gameState = GameState.ADDING_CARD_TO_HAND;
     }
 
     public boolean isGamefinished() {
-        for (Player player : board.getPlayers()) {
-            if (player.getPoints() > 20) {
-                return true;
+        //controllo che sia il turno dell'ultimo player ad aver giocato
+        if (board.getPlayers().get(board.getPlayernumber()-1).getNickname().equals(board.getCurrentPlayer())) {
+            //controllo ci sia almeno un player che ha fatto piu' di 20 punti
+            for (Player player : board.getPlayers()) {
+                if (board.getPlayers().get(1).equals(player) && player.getPoints() > 20) {
+                    return true;
+                }
             }
         }
         return false;
@@ -341,6 +370,19 @@ public class GameController extends ClientController implements Serializable {
         coordinates.add(x);
         coordinates.add(y);
         return coordinates;
+    }
+
+    private void repopulatePlayingBoard(){
+        for (int i = 0; i < 2; i++) {
+            if (board.getCentralCardsResource().get(i) == null){
+                board.getCentralCardsResource().add(i, board.getDeckCardResource().pop());
+            }
+        }
+        for (int i = 0; i < 2; i++) {
+            if (board.getCentralCardsGold().get(i) == null){
+                board.getCentralCardsGold().add(i, board.getDeckCardGold().pop());
+            }
+        }
     }
 
 }
