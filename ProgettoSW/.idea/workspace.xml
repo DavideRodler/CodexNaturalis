@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Controller quasi terminato">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/enums/DeckEnum.java" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Aggiunta contatori e nuovi metodi controller(manca il controllo del vincitore)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/deck/Decktemplates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/deck/Decktemplates.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/SuitEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/SuitEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingGold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingGold.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/placingCondition/PlacingConditionTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/placingCondition/PlacingConditionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/testsTameplate/PlayngStationTameplate.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testsTameplate/PlayngStationTameplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="New-Model" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -80,11 +82,12 @@
     "Application.deckconstructor.executor": "Run",
     "Application.decktameplatetom.executor": "Run",
     "Application.playngstationTameplate.executor": "Run",
+    "JUnit.DeckConstructorTest.printcards.executor": "Run",
     "JUnit.DeckConstructorTest.testDeckGold.executor": "Run",
     "JUnit.DeckConstructorTest.testDeckObjective.executor": "Run",
     "JUnit.DeckConstructorTest.testDeckResource.executor": "Run",
     "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
-    "JUnit.GameControllerTest.GivingCardToPlayersTest.executor": "Debug",
+    "JUnit.GameControllerTest.GivingCardToPlayersTest.executor": "Run",
     "JUnit.GameControllerTest.setCentralCardPlayedBack.executor": "Run",
     "JUnit.GameControllerTest.setStartingCardForPlayers.executor": "Run",
     "JUnit.GameControllerTest.testChecknickname.executor": "Run",
@@ -94,6 +97,7 @@
     "JUnit.GameTest.testStations.executor": "Run",
     "JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor": "Run",
     "JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor": "Run",
+    "JUnit.ObjectivePositioningTest.executor": "Run",
     "JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor": "Run",
     "JUnit.ObjectivePositioningTest.test_Positioning.executor": "Run",
     "JUnit.ObjectivePositioningTest.test_Positioning2.executor": "Run",
@@ -107,7 +111,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "New-Model",
+    "git-widget-placeholder": "Con-Contatori",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW",
@@ -137,7 +141,55 @@
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GameControllerTest.GivingCardToPlayersTest">
+  <component name="RunManager" selected="JUnit.ObjectivePositioningTest.test_Positioning2">
+    <configuration name="DeckConstructorTest.printcards" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.deck.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.deck" />
+      <option name="MAIN_CLASS_NAME" value="model.deck.DeckConstructorTest" />
+      <option name="METHOD_NAME" value="printcards" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DeckConstructorTest.testDeckGold" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.deck.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.deck" />
+      <option name="MAIN_CLASS_NAME" value="model.deck.DeckConstructorTest" />
+      <option name="METHOD_NAME" value="testDeckGold" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DeckConstructorTest.testDeckObjective" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.deck.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.deck" />
+      <option name="MAIN_CLASS_NAME" value="model.deck.DeckConstructorTest" />
+      <option name="METHOD_NAME" value="testDeckObjective" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GameControllerTest.GivingCardToPlayersTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
@@ -154,84 +206,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameControllerTest.setCentralCardPlayedBack" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ObjectivePositioningTest.test_Positioning2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controller.*" />
+          <option name="PATTERN" value="model.objectives.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="controller" />
-      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
-      <option name="METHOD_NAME" value="setCentralCardPlayedBack" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameControllerTest.setStartingCardForPlayers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="controller" />
-      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
-      <option name="METHOD_NAME" value="setStartingCardForPlayers" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameControllerTest.testChecknickname" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="controller" />
-      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
-      <option name="METHOD_NAME" value="testChecknickname" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameControllerTest.testTokenAvailability" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="controller" />
-      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
-      <option name="METHOD_NAME" value="testTokenAvailability" />
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
+      <option name="METHOD_NAME" value="test_Positioning2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.DeckConstructorTest.printcards" />
+      <item itemvalue="JUnit.DeckConstructorTest.testDeckGold" />
+      <item itemvalue="JUnit.DeckConstructorTest.testDeckObjective" />
+      <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
       <item itemvalue="JUnit.GameControllerTest.GivingCardToPlayersTest" />
-      <item itemvalue="JUnit.GameControllerTest.testChecknickname" />
-      <item itemvalue="JUnit.GameControllerTest.testTokenAvailability" />
-      <item itemvalue="JUnit.GameControllerTest.setCentralCardPlayedBack" />
-      <item itemvalue="JUnit.GameControllerTest.setStartingCardForPlayers" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
         <item itemvalue="JUnit.GameControllerTest.GivingCardToPlayersTest" />
-        <item itemvalue="JUnit.GameControllerTest.setCentralCardPlayedBack" />
-        <item itemvalue="JUnit.GameControllerTest.setStartingCardForPlayers" />
-        <item itemvalue="JUnit.GameControllerTest.testTokenAvailability" />
-        <item itemvalue="JUnit.GameControllerTest.testChecknickname" />
+        <item itemvalue="JUnit.DeckConstructorTest.printcards" />
+        <item itemvalue="JUnit.DeckConstructorTest.testDeckObjective" />
+        <item itemvalue="JUnit.DeckConstructorTest.testDeckGold" />
       </list>
     </recent_temporary>
   </component>
@@ -556,7 +560,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714683948258</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Aggiunta contatori e nuovi metodi controller(manca il controllo del vincitore)">
+      <option name="closed" value="true" />
+      <created>1715103260041</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1715103260041</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -568,6 +580,11 @@
         <entry key="Branch">
           <value>
             <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/Con-Contatori" />
+                </option>
+              </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
                   <option value="origin/New-Model" />
@@ -626,7 +643,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="prova JSONArray e JSONParser" />
     <MESSAGE value="Aggiunta dei costruttori dei deck + test nel main, da sistemare gli obbiettivi" />
     <MESSAGE value="aggiornamento path&#10; file lettura" />
     <MESSAGE value="Aggiunta di tutti i deck e dei deck alla playing board" />
@@ -651,7 +667,8 @@
     <MESSAGE value="Implementato RmiCompleto tranne controllo fine partita. Da controllare se il piazzamento delle carte è corretto." />
     <MESSAGE value="Inizio creazione del nuovo model e controller" />
     <MESSAGE value="Controller quasi terminato" />
-    <option name="LAST_COMMIT_MESSAGE" value="Controller quasi terminato" />
+    <MESSAGE value="Aggiunta contatori e nuovi metodi controller(manca il controllo del vincitore)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta contatori e nuovi metodi controller(manca il controllo del vincitore)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -662,68 +679,38 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>171</line>
+          <line>178</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>173</line>
+          <line>180</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>176</line>
+          <line>183</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>207</line>
+          <line>214</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>210</line>
+          <line>217</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>213</line>
+          <line>220</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>216</line>
+          <line>223</line>
           <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>221</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>230</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>239</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>248</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>260</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>290</line>
-          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>

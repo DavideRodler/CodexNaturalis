@@ -10,5 +10,4 @@ public enum SuitEnum {
     INKWELL,
     EMPTY,
     NULL,
-    COVERED
 }

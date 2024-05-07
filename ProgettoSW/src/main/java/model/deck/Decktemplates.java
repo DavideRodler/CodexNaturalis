@@ -28,7 +28,7 @@ public class Decktemplates implements Serializable {
   // each line in the text represent the card:
   // we have in order: suit of the card, the four corner(starting from upright)
   // and the points
-  private static Integer ID;
+  private static Integer ID = 0;
 
   public static LinkedList<CardResource> ResourceCardDeck() {
     LinkedList<CardResource> deck = new LinkedList<>();
@@ -127,7 +127,7 @@ public class Decktemplates implements Serializable {
           AssignCorner(downleftBack));
       Face front = new Face(AssignCorner(uprightFront), AssignCorner(upleftFront), AssignCorner(downrightFront),
           AssignCorner(downleftFront));
-      CardStarting tmp = new CardStarting(0, front, back, symbols);
+      CardStarting tmp = new CardStarting(ID, front, back, symbols);
       deck.add(tmp);
       ID++;
 

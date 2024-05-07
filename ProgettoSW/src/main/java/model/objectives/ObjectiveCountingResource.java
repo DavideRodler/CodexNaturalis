@@ -14,7 +14,7 @@ public class ObjectiveCountingResource implements Objective, Serializable {
             case PLANT: yield station.getCountPlant() / 3;
             case ANIMAL: yield station.getCountAnimal() / 3;
             case INSECT: yield station.getCountInsect() / 3;
-            case QUILL, MANUSCRIPT, INKWELL, EMPTY, NULL,COVERED:
+            case QUILL, MANUSCRIPT, INKWELL, EMPTY, NULL:
                 throw new RuntimeException("not a possible Objective");
         };
     }

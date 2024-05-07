@@ -272,25 +272,25 @@ public class PlayingStation implements Serializable {
                 // and updating resource with updateCounters method
 
                 if (numCornerCovered.get(coordinates1)) {
-                    map.get(coordinates1).getFront().getDownRight().equals(SuitEnum.COVERED);
+                    //table.get(coordinates1).getFront().getDownRight().setCovered(true);
                     updateCounters(map.get(coordinates1).getFront().getDownRight(), true);
                 }
 
 
                 if (numCornerCovered.get(coordinates2)) {
-                    map.get(coordinates2).getFront().getDownLeft().equals(SuitEnum.COVERED);
+                    //table.get(coordinates2).getFront().getDownLeft().setCovered(true);
                     updateCounters(map.get(coordinates2).getFront().getDownLeft(), true);
                 }
 
 
                 if (numCornerCovered.get(coordinates3)) {
-                    map.get(coordinates3).getFront().getUpRight().equals(SuitEnum.COVERED);
+                    //table.get(coordinates3).getFront().getUpRight().setCovered(true);
                     updateCounters(map.get(coordinates3).getFront().getUpRight(), true);
                 }
 
 
                 if (numCornerCovered.get(coordinates4)) {
-                    map.get(coordinates4).getFront().getUpLeft().equals(SuitEnum.COVERED);
+                   // table.get(coordinates4).getFront().getUpLeft().setCovered(true);
                     updateCounters(map.get(coordinates4).getFront().getUpLeft(), true);
                 }
             }
