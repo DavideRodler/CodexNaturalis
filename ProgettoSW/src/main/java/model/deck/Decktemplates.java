@@ -11,6 +11,7 @@ import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
 import model.cards.face.Face;
+import model.cards.face.Corner;
 import model.enums.DirectionEnum;
 import model.enums.PositionEnum;
 import model.enums.SuitEnum;
@@ -48,10 +49,10 @@ public class Decktemplates implements Serializable {
       String downright = (String) card.get("downright");
       String downleft = (String) card.get("downleft");
       int points = ((Long) card.get("points")).intValue();
-      Face back = new Face(SuitEnum.EMPTY, SuitEnum.EMPTY, SuitEnum.EMPTY, SuitEnum.EMPTY);
+      Face back = new Face(AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"));
       Face front = new Face(AssignCorner(upright), AssignCorner(upleft), AssignCorner(downright),
           AssignCorner(downleft));
-      CardResource tmp = new CardResource(ID, front, back, AssignSuit(suite), points, AssignObjective("points"));
+      CardResource tmp = new CardResource(0, front, back, AssignSuit(suite), points, AssignObjective("points"));
       deck.add(tmp);
       ID++;
 
@@ -83,10 +84,10 @@ public class Decktemplates implements Serializable {
       int costInsect = ((Long) card.get("costInsect")).intValue();
       int costFungi = ((Long) card.get("costFungi")).intValue();
       int costPlant = ((Long) card.get("costPlant")).intValue();
-      Face back = new Face(SuitEnum.EMPTY, SuitEnum.EMPTY, SuitEnum.EMPTY, SuitEnum.EMPTY);
+      Face back = new Face(AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"));
       Face front = new Face(AssignCorner(upright), AssignCorner(upleft), AssignCorner(downright),
           AssignCorner(downleft));
-      CardGold tmp = new CardGold(ID, front, back, AssignSuit(suite), points, costAnimal, costInsect, costFungi,
+      CardGold tmp = new CardGold(0, front, back, AssignSuit(suite), points, costAnimal, costInsect, costFungi,
           costPlant, AssignObjective(center));
       deck.add(tmp);
       ID++;
@@ -193,17 +194,17 @@ public class Decktemplates implements Serializable {
     return deck;
   }
 
-  private static SuitEnum AssignCorner(String s) {
+  private static Corner AssignCorner(String s) {
     return switch (s) {
-      case "empty" -> SuitEnum.EMPTY;
-      case "fungi" -> SuitEnum.FUNGI;
-      case "plant" -> SuitEnum.PLANT;
-      case "animal" -> SuitEnum.ANIMAL;
-      case "insect" -> SuitEnum.INSECT;
-      case "manuscript" -> SuitEnum.MANUSCRIPT;
-      case "inkwell" -> SuitEnum.INKWELL;
-      case "quill" -> SuitEnum.QUILL;
-      default -> SuitEnum.NULL;
+      case "empty" -> new Corner(SuitEnum.EMPTY);
+      case "fungi" -> new Corner(SuitEnum.FUNGI);
+      case "plant" -> new Corner(SuitEnum.PLANT);
+      case "animal" -> new Corner(SuitEnum.ANIMAL);
+      case "insect" -> new Corner(SuitEnum.INSECT);
+      case "manuscript" -> new Corner(SuitEnum.MANUSCRIPT);
+      case "inkwell" -> new Corner(SuitEnum.INKWELL);
+      case "quill" -> new Corner(SuitEnum.QUILL);
+      default -> new Corner(SuitEnum.NULL);
     };
   }
 
@@ -229,7 +230,7 @@ public class Decktemplates implements Serializable {
 
   private static PositionEnum AssignPosition(String s) {
     return switch (s) {
-      case "top" -> PositionEnum.TOP;
+      case "top" -> PositionEnum.TOP.TOP;
       case "bottom" -> PositionEnum.BOTTOM;
       default -> throw new IllegalStateException("Unexpected value: " + s);
     };

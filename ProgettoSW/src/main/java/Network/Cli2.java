@@ -291,18 +291,18 @@ public class Cli2 implements UI {
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 if (isUpLeftCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(((CardStarting) card).getFront().getUpLeft());
+                    startingCard[i][j] = cornerScanner(((CardStarting) card).getFront().getUpLeft().getDrawing());
                     startingCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isDownLeftCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(((CardStarting) card).getFront().getDownLeft());
+                    startingCard[i][j] = cornerScanner(((CardStarting) card).getFront().getDownLeft().getDrawing());
                     startingCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isUpRightCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(((CardStarting) card).getFront().getUpRight());
+                    startingCard[i][j] = cornerScanner(((CardStarting) card).getFront().getUpRight().getDrawing());
                     startingCard[i][j-1] = " ";
                 } else if (isDownRightCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(((CardStarting) card).getFront().getDownRight()) + reset;
+                    startingCard[i][j] = cornerScanner(((CardStarting) card).getFront().getDownRight().getDrawing()) + reset;
                     startingCard[i][j-1] = " ";
                 } else {
                     startingCard[i][j] = beige + "█" + "\u001B[0m";
@@ -339,18 +339,18 @@ public class Cli2 implements UI {
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 if (isUpLeftCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(((CardStarting) card).getBack().getUpLeft());
+                    startingCard[i][j] = cornerScanner(((CardStarting) card).getBack().getUpLeft().getDrawing());
                     startingCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isDownLeftCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(((CardStarting) card).getBack().getDownLeft());
+                    startingCard[i][j] = cornerScanner(((CardStarting) card).getBack().getDownLeft().getDrawing());
                     startingCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isUpRightCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(((CardStarting) card).getBack().getUpRight());
+                    startingCard[i][j] = cornerScanner(((CardStarting) card).getBack().getUpRight().getDrawing());
                     startingCard[i][j-1] = " ";
                 } else if (isDownRightCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(((CardStarting) card).getBack().getDownRight()) + reset;
+                    startingCard[i][j] = cornerScanner(((CardStarting) card).getBack().getDownRight().getDrawing()) + reset;
                     startingCard[i][j-1] = " ";
                 } else {
                     startingCard[i][j] = beige + "█" + "\u001B[0m";
@@ -387,18 +387,18 @@ public class Cli2 implements UI {
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 if (isUpLeftCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(((CardResource) card).getFront().getUpLeft());
+                    resCard[i][j] = cornerScanner(((CardResource) card).getFront().getUpLeft().getDrawing());
                     resCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isDownLeftCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(((CardResource) card).getFront().getDownLeft());
+                    resCard[i][j] = cornerScanner(((CardResource) card).getFront().getDownLeft().getDrawing());
                     resCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isUpRightCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(((CardResource) card).getFront().getUpRight());
+                    resCard[i][j] = cornerScanner(((CardResource) card).getFront().getUpRight().getDrawing());
                     resCard[i][j-1] = " ";
                 } else if (isDownRightCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(((CardResource) card).getFront().getDownRight()) + reset;
+                    resCard[i][j] = cornerScanner(((CardResource) card).getFront().getDownRight().getDrawing()) + reset;
                     resCard[i][j-1] = " ";
                 } else {
                     resCard[i][j] = color + "█" + "\u001B[0m";
@@ -421,18 +421,18 @@ public class Cli2 implements UI {
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 if (isUpLeftCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(((CardResource) card).getBack().getUpLeft());
+                    resCard[i][j] = cornerScanner(((CardResource) card).getBack().getUpLeft().getDrawing());
                     resCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isDownLeftCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(((CardResource) card).getBack().getDownLeft());
+                    resCard[i][j] = cornerScanner(((CardResource) card).getBack().getDownLeft().getDrawing());
                     resCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isUpRightCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(((CardResource) card).getBack().getUpRight());
+                    resCard[i][j] = cornerScanner(((CardResource) card).getBack().getUpRight().getDrawing());
                     resCard[i][j-1] = " ";
                 } else if (isDownRightCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(((CardResource) card).getBack().getDownRight()) + reset;
+                    resCard[i][j] = cornerScanner(((CardResource) card).getBack().getDownRight().getDrawing()) + reset;
                     resCard[i][j-1] = " ";
                 } else {
                     resCard[i][j] = color + "█" + "\u001B[0m";

@@ -5,20 +5,20 @@ import model.enums.SuitEnum;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Face implements Serializable {
-    private SuitEnum UpRight;
-    private SuitEnum UpLeft;
-    private SuitEnum DownRight;
-    private SuitEnum DownLeft;
+public class Face {
+    private Corner UpRight;
+    private Corner UpLeft;
+    private Corner DownRight;
+    private Corner DownLeft;
 
-    public Face(SuitEnum upRight, SuitEnum upLeft, SuitEnum downRight, SuitEnum downLeft) {
+    public Face(Corner upRight, Corner upLeft, Corner downRight, Corner downLeft) {
         UpRight = upRight;
         UpLeft = upLeft;
         DownRight = downRight;
         DownLeft = downLeft;
     }
-    public ArrayList<SuitEnum>getFaceList(){
-        ArrayList<SuitEnum> tmp = new ArrayList<SuitEnum>();
+    public ArrayList<Corner>getFaceList(){
+        ArrayList<Corner> tmp = new ArrayList<Corner>();
         tmp.add(getUpLeft());
         tmp.add(getUpRight());
         tmp.add(getDownLeft());
@@ -26,19 +26,19 @@ public class Face implements Serializable {
         return tmp;
     }
 
-    public SuitEnum getUpRight() {
+    public Corner getUpRight() {
         return UpRight;
     }
 
-    public SuitEnum getUpLeft() {
+    public Corner getUpLeft() {
         return UpLeft;
     }
 
-    public SuitEnum getDownRight() {
+    public Corner getDownRight() {
         return DownRight;
     }
 
-    public SuitEnum getDownLeft() {
+    public Corner getDownLeft() {
         return DownLeft;
     }
 

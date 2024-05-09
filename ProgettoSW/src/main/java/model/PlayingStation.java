@@ -2,11 +2,14 @@ package model;
 
 import model.cards.*;
 //import model.cards.face.Corner;
+import model.cards.face.Corner;
 import model.enums.SuitEnum;
 
 
 import java.io.Serializable;
 import java.util.*;
+
+import static model.enums.SuitEnum.*;
 
 public class PlayingStation implements Serializable {
     private HashMap<ArrayList<Integer>, CardPlaying> map;
@@ -272,26 +275,26 @@ public class PlayingStation implements Serializable {
                 // and updating resource with updateCounters method
 
                 if (numCornerCovered.get(coordinates1)) {
-                    //table.get(coordinates1).getFront().getDownRight().setCovered(true);
-                    updateCounters(map.get(coordinates1).getFront().getDownRight(), true);
+                    map.get(coordinates1).getFront().getDownRight().setCovered(true);
+                    updateCounters(map.get(coordinates1).getFront().getDownRight());
                 }
 
 
                 if (numCornerCovered.get(coordinates2)) {
-                    //table.get(coordinates2).getFront().getDownLeft().setCovered(true);
-                    updateCounters(map.get(coordinates2).getFront().getDownLeft(), true);
+                    map.get(coordinates2).getFront().getDownLeft().setCovered(true);
+                    updateCounters(map.get(coordinates2).getFront().getDownLeft());
                 }
 
 
                 if (numCornerCovered.get(coordinates3)) {
-                    //table.get(coordinates3).getFront().getUpRight().setCovered(true);
-                    updateCounters(map.get(coordinates3).getFront().getUpRight(), true);
+                    map.get(coordinates3).getFront().getUpRight().setCovered(true);
+                    updateCounters(map.get(coordinates3).getFront().getUpRight());
                 }
 
 
                 if (numCornerCovered.get(coordinates4)) {
-                   // table.get(coordinates4).getFront().getUpLeft().setCovered(true);
-                    updateCounters(map.get(coordinates4).getFront().getUpLeft(), true);
+                    map.get(coordinates4).getFront().getUpLeft().setCovered(true);
+                    updateCounters(map.get(coordinates4).getFront().getUpLeft());
                 }
             }
 
@@ -328,9 +331,9 @@ public class PlayingStation implements Serializable {
          *
          * @param corner the corner that is covered by the card
          */
-        public void updateCounters (SuitEnum corner, boolean covered){
-            if (covered) {
-                switch (corner) {
+        public void updateCounters (Corner corner){
+            if (corner.isCovered()) {
+                switch (corner.getDrawing()) {
                     case QUILL -> countQuill--;
                     case MANUSCRIPT -> countManuscript--;
                     case INKWELL -> countInkwell--;
@@ -341,7 +344,7 @@ public class PlayingStation implements Serializable {
                     // case EMPTY -> null;
                 }
             } else {
-                switch (corner) {
+                switch (corner.getDrawing()) {
                     case QUILL -> countQuill++;
                     case MANUSCRIPT -> countManuscript++;
                     case INKWELL -> countInkwell++;
@@ -356,15 +359,15 @@ public class PlayingStation implements Serializable {
 
         public void updateCounters (CardStarting card){
             if (card.getPlayingBack()) {
-                updateCounters(card.getBack().getUpRight(), false);
-                updateCounters(card.getBack().getDownRight(),false);
-                updateCounters(card.getBack().getUpLeft(),false);
-                updateCounters(card.getBack().getDownLeft(),false);
+                updateCounters(card.getBack().getUpRight());
+                updateCounters(card.getBack().getDownRight());
+                updateCounters(card.getBack().getUpLeft());
+                updateCounters(card.getBack().getDownLeft());
             } else {
-                updateCounters(card.getFront().getUpRight(),false);
-                updateCounters(card.getFront().getDownRight(),false);
-                updateCounters(card.getFront().getUpLeft(),false);
-                updateCounters(card.getFront().getDownLeft(),false);
+                updateCounters(card.getFront().getUpRight());
+                updateCounters(card.getFront().getDownRight());
+                updateCounters(card.getFront().getUpLeft());
+                updateCounters(card.getFront().getDownLeft());
                 ArrayList<SuitEnum> symbols = card.getSymbols();
                 for (SuitEnum symbol : symbols) {
                     switch (symbol) {
@@ -383,10 +386,10 @@ public class PlayingStation implements Serializable {
 
         public void updateCounters (CardResource card){
             if (!card.getPlayingBack()) {
-                updateCounters(card.getFront().getUpRight(),false);
-                updateCounters(card.getFront().getDownRight(),false);
-                updateCounters(card.getFront().getUpLeft(),false);
-                updateCounters(card.getFront().getDownLeft(),false);
+                updateCounters(card.getFront().getUpRight());
+                updateCounters(card.getFront().getDownRight());
+                updateCounters(card.getFront().getUpLeft());
+                updateCounters(card.getFront().getDownLeft());
             }
             else{
                 switch(card.getSymbol()){
