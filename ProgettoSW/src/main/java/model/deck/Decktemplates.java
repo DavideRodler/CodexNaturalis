@@ -29,9 +29,11 @@ public class Decktemplates implements Serializable {
   // each line in the text represent the card:
   // we have in order: suit of the card, the four corner(starting from upright)
   // and the points
-  private static Integer ID = 0;
 
+//  there are 40 cards in the deck
+//  the id starts from 1 and goes to 40
   public static LinkedList<CardResource> ResourceCardDeck() {
+    int id =1;
     LinkedList<CardResource> deck = new LinkedList<>();
     JSONParser parser = new JSONParser();
       JSONArray resourceCard = null;
@@ -52,9 +54,9 @@ public class Decktemplates implements Serializable {
       Face back = new Face(AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"));
       Face front = new Face(AssignCorner(upright), AssignCorner(upleft), AssignCorner(downright),
           AssignCorner(downleft));
-      CardResource tmp = new CardResource(0, front, back, AssignSuit(suite), points, AssignObjective("points"));
+      CardResource tmp = new CardResource(id, front, back, AssignSuit(suite), points, AssignObjective("points"));
       deck.add(tmp);
-      ID++;
+      id++;
 
     }
     //i shuffle the deck before returning it
@@ -62,7 +64,10 @@ public class Decktemplates implements Serializable {
     return deck;
   }
 
+//  there are 40 cards in the deck
+//  the id starts from 41 and goes to 80
   public static LinkedList<CardGold> GoldCardDeck() {
+    int id = 41;
     LinkedList<CardGold> deck = new LinkedList<>();
     JSONParser parser = new JSONParser();
       JSONArray goldCard = null;
@@ -87,19 +92,20 @@ public class Decktemplates implements Serializable {
       Face back = new Face(AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"), AssignCorner("empty"));
       Face front = new Face(AssignCorner(upright), AssignCorner(upleft), AssignCorner(downright),
           AssignCorner(downleft));
-      CardGold tmp = new CardGold(0, front, back, AssignSuit(suite), points, costAnimal, costInsect, costFungi,
+      CardGold tmp = new CardGold(id, front, back, AssignSuit(suite), points, costAnimal, costInsect, costFungi,
           costPlant, AssignObjective(center));
       deck.add(tmp);
-      ID++;
+      id++;
 
     }
     //i shuffle the deck before returning it
     shuffle(deck);
     return deck;
   }
-
+// there are 6 cards in the deck
+//  the ID starts from 81 and goes to 86
   public static LinkedList<CardStarting> StartingCardDeck() {
-    ID=0;
+    int id =81;
     LinkedList<CardStarting> deck = new LinkedList<>();
     JSONParser parser = new JSONParser();
       JSONArray startingCard = null;
@@ -128,9 +134,9 @@ public class Decktemplates implements Serializable {
           AssignCorner(downleftBack));
       Face front = new Face(AssignCorner(uprightFront), AssignCorner(upleftFront), AssignCorner(downrightFront),
           AssignCorner(downleftFront));
-      CardStarting tmp = new CardStarting(ID, front, back, symbols);
+      CardStarting tmp = new CardStarting(id, front, back, symbols);
       deck.add(tmp);
-      ID++;
+      id++;
 
     }
     //i shuffle the deck before returning it
@@ -138,7 +144,10 @@ public class Decktemplates implements Serializable {
     return deck;
   }
 
+//  there are 16 cards in the deck
+//  the ID starts from 87 and goes to 102;
   public static LinkedList<CardObjective> ObjectiveCardDeck() {
+    int id =87;
     LinkedList<CardObjective> deck = new LinkedList<>();
     JSONParser parser = new JSONParser();
       JSONArray objectiveCard = null;
@@ -149,46 +158,46 @@ public class Decktemplates implements Serializable {
           throw new RuntimeException(e);
       }
       for (Object obj : objectiveCard) {
-      JSONObject card = (JSONObject) obj;
-      String suite = (String) card.get("type");
-      switch (suite) {
-        case "diagonal" -> {
-          String resource = (String) card.get("resource");
-          String diagonal = (String) card.get("diagonal");
-          int points = ((Long) card.get("points")).intValue();
-          Objective objectiveDiagonal = new ObjectiveDiagonal(AssignDirection(diagonal), AssignSuit(resource));
-          CardObjective tmp = new CardObjective(ID, points, objectiveDiagonal);
-          deck.add(tmp);
+        JSONObject card = (JSONObject) obj;
+        String suite = (String) card.get("type");
+        switch (suite) {
+          case "diagonal" -> {
+            String resource = (String) card.get("resource");
+            String diagonal = (String) card.get("diagonal");
+            int points = ((Long) card.get("points")).intValue();
+            Objective objectiveDiagonal = new ObjectiveDiagonal(AssignDirection(diagonal), AssignSuit(resource));
+            CardObjective tmp = new CardObjective(id, points, objectiveDiagonal);
+            deck.add(tmp);
+          }
+          case "positioning" -> {
+            String twoCards = (String) card.get("twoCards");
+            String oneCard = (String) card.get("oneCard");
+            String Horizontal = (String) card.get("horizontal");
+            String Vertical = (String) card.get("vertical");
+            int points = ((Long) card.get("points")).intValue();
+            Objective objectivePositioning = new ObjectivePositioning(AssignSuit(oneCard), AssignSuit(twoCards),
+                    AssignDirection(Horizontal), AssignPosition(Vertical));
+            CardObjective tmp = new CardObjective(id, points, objectivePositioning);
+            deck.add(tmp);
+          }
+          case "resources" -> {
+            String resource = (String) card.get("resource");
+            int points = ((Long) card.get("points")).intValue();
+            Objective objectiveCountingResource = new ObjectiveCountingResource(AssignSuit(resource));
+            CardObjective tmp = new CardObjective(id, points, objectiveCountingResource);
+            deck.add(tmp);
+          }
+          case "gold" -> {
+            String goldType = (String) card.get("goldType");
+            int points = ((Long) card.get("points")).intValue();
+            Objective objectiveCountingGold = AssignObjective(goldType);
+            CardObjective tmp = new CardObjective(id, points, objectiveCountingGold);
+            deck.add(tmp);
+          }
+          default -> throw new IllegalStateException("Unexpected value: " + suite);
         }
-        case "positioning" -> {
-          String twoCards = (String) card.get("twoCards");
-          String oneCard = (String) card.get("oneCard");
-          String Horizontal = (String) card.get("horizontal");
-          String Vertical = (String) card.get("vertical");
-          int points = ((Long) card.get("points")).intValue();
-          Objective objectivePositioning = new ObjectivePositioning(AssignSuit(oneCard), AssignSuit(twoCards),
-              AssignDirection(Horizontal), AssignPosition(Vertical));
-          CardObjective tmp = new CardObjective(ID, points, objectivePositioning);
-          deck.add(tmp);
-        }
-        case "resources" -> {
-          String resource = (String) card.get("resource");
-          int points = ((Long) card.get("points")).intValue();
-          Objective objectiveCountingResource = new ObjectiveCountingResource(AssignSuit(resource));
-          CardObjective tmp = new CardObjective(ID, points, objectiveCountingResource);
-          deck.add(tmp);
-        }
-        case "gold" -> {
-          String goldType = (String) card.get("goldType");
-          int points = ((Long) card.get("points")).intValue();
-          Objective objectiveCountingGold = AssignObjective(goldType);
-          CardObjective tmp = new CardObjective(ID, points, objectiveCountingGold);
-          deck.add(tmp);
-        }
-        default -> throw new IllegalStateException("Unexpected value: " + suite);
+        id++;
       }
-      ID++;
-    }
     //i shuffle the deck before returning it
     shuffle(deck);
     return deck;
