@@ -1,5 +1,6 @@
 package model;
 
+import exception.InvalidPlacingCondition;
 import model.cards.*;
 //import model.cards.face.Corner;
 import model.cards.face.Corner;
@@ -168,7 +169,7 @@ public class PlayingStation implements Serializable {
          * @param Y    the y coordinate
          * @return true if the card can be placed, false otherwise
          */
-        public boolean isPlayable (CardResource card, Integer X, Integer Y){
+        public boolean isPlayable (CardResource card, Integer X, Integer Y) throws InvalidPlacingCondition {
 
             // Check if the coordinates are free
             Map<ArrayList<Integer>, Boolean> numCornerCovered;
@@ -179,12 +180,12 @@ public class PlayingStation implements Serializable {
 
 
             if(X<0 || Y<0 || X>80 || Y>80)
-                return false;
+                throw new InvalidPlacingCondition("Invalid coordinates");
             else if (getCard(X, Y) != null) {
-                return false;
+                throw new InvalidPlacingCondition("There is already a card in the given coordinates");
                 //Check if there is already a card in the given coordinates
             } else if (getCard(X - 1, Y - 1) == null && getCard(X + 1, Y - 1) == null && getCard(X - 1, Y + 1) == null && getCard(X + 1, Y + 1) == null) {
-                return false;
+                throw new InvalidPlacingCondition("The card is surrounded by empty spaces");
                 // Check if the card is surrounded by empty spaces
             } else {
 
@@ -215,21 +216,21 @@ public class PlayingStation implements Serializable {
 
                 //checking that I can't place a card above 2 corners of the same card
                 if(getCard(X,Y-1) != null)
-                    return false;
+                    throw new InvalidPlacingCondition("You can't place a card above 2 corners of the same card");
 
                 if(getCard(X,Y+1) != null)
-                    return false;
+                    throw new InvalidPlacingCondition("You can't place a card above 2 corners of the same card");
 
                 if(getCard(X-1,Y) != null)
-                    return false;
+                    throw new InvalidPlacingCondition("You can't place a card above 2 corners of the same card");
 
                 if(getCard(X+1,Y) != null)
-                    return false;
+                    throw new InvalidPlacingCondition("You can't place a card above 2 corners of the same card");
 
                 if (getCard(X - 1, Y - 1) != null) { //checking if existing the down-right card adjacent with the card I want to play
                     if (!map.get(coordinates1).getPlayingBack()) { //checking if the card is played by front
                         if (map.get(coordinates1).getFront().getDownRight().equals(SuitEnum.NULL)) { //checking if there is a corner available
-                            return false;
+                            throw new InvalidPlacingCondition("The down-right corner is NULL");
                         }
                     }
                     numCornerCovered.put(coordinates1, true); //flagging that this corner is available
@@ -238,7 +239,7 @@ public class PlayingStation implements Serializable {
                 if (getCard(X + 1, Y - 1) != null) { //checking if existing the down-left card adjacent with the card I want to play
                     if (!map.get(coordinates2).getPlayingBack()) { //checking if the card is played by front
                         if (map.get(coordinates2).getFront().getDownLeft().equals(SuitEnum.NULL)) { //checking if there is a corner available
-                            return false;
+                            throw new InvalidPlacingCondition("Can't place a card over a NULL corner");
                         }
                     }
                     numCornerCovered.put(coordinates2, true); //flagging that this corner is available
@@ -247,7 +248,7 @@ public class PlayingStation implements Serializable {
                 if (getCard(X - 1, Y + 1) != null) { //checking if existing the up-right card adjacent with the card I want to play
                     if (!map.get(coordinates3).getPlayingBack()) { //checking if the card is played by front
                         if (map.get(coordinates3).getFront().getUpRight().equals(SuitEnum.NULL)) { //checking if there is a corner available
-                            return false;
+                            throw new InvalidPlacingCondition("Can't place a card over a NULL corner");
                         }
                     }
                     numCornerCovered.put(coordinates3, true); //flagging that this corner is available
@@ -256,7 +257,7 @@ public class PlayingStation implements Serializable {
                 if (getCard(X + 1, Y + 1) != null) { //checking if existing the up-left card adjacent with the card I want to play
                     if (!map.get(coordinates4).getPlayingBack()) { //checking if the card is played by front
                         if (map.get(coordinates4).getFront().getUpLeft().equals(SuitEnum.NULL)) { //checking if there is a corner available
-                            return false;
+                            throw new InvalidPlacingCondition("Can't place a card over a NULL corner");
                         }
                     }
                     numCornerCovered.put(coordinates4, true); //flagging that this corner is available
@@ -268,9 +269,9 @@ public class PlayingStation implements Serializable {
                 //Check if the card is a goldCard and then use method enoughResources to check if it's playable
                 if (card instanceof CardGold)
                     if (!enoughResources((CardGold) card)&& !(card.getPlayingBack()))
-                        return false;
+                        throw new InvalidPlacingCondition("Not enough resources to play the card");
 
-
+//TODO: questa roba va messa nella addcard
                 //Flagging the corners that are covered with method setCovered
                 // and updating resource with updateCounters method
 

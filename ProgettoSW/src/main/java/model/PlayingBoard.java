@@ -172,6 +172,12 @@ public class PlayingBoard extends ModelObserver implements Serializable {
         Collections.shuffle(players);
     }
     public String getnextPlayer(){
-        return players.get(players.indexOf(getPlayer(currentPlayer))).getNickname();
+        int indexOfCurrentPlayer = players.indexOf(getPlayer(currentPlayer));
+        if (indexOfCurrentPlayer == players.size()-1){
+            return players.get(0).getNickname();
+        }
+        else {
+            return players.get(indexOfCurrentPlayer+1).getNickname();
+        }
     }
 }

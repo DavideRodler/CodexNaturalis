@@ -20,6 +20,12 @@ public class GameController extends ClientController implements Serializable {
     private PlayingBoard board;
     private GameState gameState;
 
+    //getter
+    public PlayingBoard getBoard() {
+        return board;
+    }
+
+
     //costructor
     public GameController(PlayingBoard board, GameState gameState) {
         this.board = board;
@@ -233,7 +239,7 @@ public class GameController extends ClientController implements Serializable {
         return board.getPlayer(nickname).getHand();
     }
 
-    public void addCardFromCentralCardsToPlayerHand(String nickname, int cardId) throws NotValidMoveException, NotMyTurnException {
+    public synchronized void addCardFromCentralCardsToPlayerHand(String nickname, int cardId) throws NotValidMoveException, NotMyTurnException {
         assertGameState(GameState.ADDING_CARD_TO_HAND);
         assertIsMyTurn(nickname);
         CardResource card = board.getCardResource(cardId)
@@ -247,7 +253,7 @@ public class GameController extends ClientController implements Serializable {
         gameState = gameState.CHANGING_TURN;
         changeTurn();
     }
-    public void addCardFromDeckToPlayerHand(String nickname, DeckEnum deck)throws NotValidMoveException, NotMyTurnException{
+    public synchronized void addCardFromDeckToPlayerHand(String nickname, DeckEnum deck)throws NotValidMoveException, NotMyTurnException{
         assertGameState(GameState.ADDING_CARD_TO_HAND);
         assertIsMyTurn(nickname);
         Player p = board.getPlayer(nickname);
@@ -268,10 +274,11 @@ public class GameController extends ClientController implements Serializable {
     }
 
 
-    public void changeTurn() throws NotValidMoveException {
+    public synchronized void changeTurn() throws NotValidMoveException {
         assertGameState(GameState.CHANGING_TURN);
         if (!isGamefinished()){
             board.setCurrentPlayer(board.getnextPlayer());
+            gameState = GameState.PLACING_CARD;
         }
         else {
             gameState = GameState.FINISHED;
@@ -287,33 +294,31 @@ public class GameController extends ClientController implements Serializable {
      * @param X    the x coordinate
      * @param Y    the y coordinate
      */
-    public void addCardToPlayingStation(String nickname, int id, Integer X, Integer Y) throws Exception {
+    public synchronized void addCardToPlayingStation(String nickname, int id, Integer X, Integer Y) throws Exception {
         assertGameState(GameState.PLACING_CARD);
         assertIsMyTurn(nickname);
         int points = 0;
         Player player = board.getPlayer(nickname);
+
+        //check if the card is in your hand
         CardResource card = player.getHand().stream()
                 .filter(c -> c.getId().equals(id))
                 .findFirst()
                 .orElseThrow(()-> new NotValidMoveException("card not in your hand"));
+        //check if the card is Playable
+        player.getStation().isPlayable(card, X, Y);
 
-        try {
-            if (player.getStation().isPlayable(card, X, Y)) {
-                // Check if the card can be placed
-                throw new InvalidPlacingCondition("Non puoi piazzare la carta qua!");
-            }
-        } catch (InvalidPlacingCondition e) {
-            System.out.println(e.getMessage());
-            throw new InvalidPlacingCondition("the card cant't be blaced at the coordinates " + X + " " + Y);
-        }
-
+        // Check if the card can be placed
         player.removeCardFromHand(id);
 
+        //putting the card in the map
         ArrayList<Integer> coordinates = new ArrayList<>();
         coordinates.add(0, X);
         coordinates.add(1, Y);
         player.getStation().getMap().put(coordinates, card);
 
+        //updating the counters
+        //TODO: non va fatto cosi' devo cambiare metodo
         player.getStation().updateCounters(card);
 
 
@@ -323,7 +328,6 @@ public class GameController extends ClientController implements Serializable {
         } else points = 0;
 
         player.setPoints(player.getPoints() + points);
-
         repopulatePlayingBoard();
         gameState = GameState.ADDING_CARD_TO_HAND;
     }
@@ -356,7 +360,7 @@ public class GameController extends ClientController implements Serializable {
 
     public void assertGameState(GameState gameState) throws NotValidMoveException {
         if (this.gameState != gameState) {
-            throw new NotValidMoveException();
+            throw new NotValidMoveException("not valid move, game state is " + this.gameState + " but expected " + gameState );
         }
     }
 

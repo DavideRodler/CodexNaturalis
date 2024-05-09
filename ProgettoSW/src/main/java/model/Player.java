@@ -66,11 +66,12 @@ public class Player extends ModelObserver implements Serializable {
      * @param cardToRemove the card to remove
      * @return
      */
-    public CardResource removeCardFromHand(int cardId)throws Exception {
-        return hand.stream()
+    public void removeCardFromHand(int cardId)throws Exception {
+         hand.remove(hand.stream()
                 .filter(card -> card.getId().equals(cardId))
                 .findFirst()
-                .orElseThrow(() -> new Exception("Card not found in hand"));
+                .orElseThrow(() -> new Exception("Card not found in hand")));
+
     }
     public int getNumberOfCardInHand(){
         return hand.size();
