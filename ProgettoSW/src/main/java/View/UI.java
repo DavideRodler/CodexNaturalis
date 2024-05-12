@@ -17,7 +17,7 @@ public interface UI {
     //void init();
     String askNickname();
 
-    Integer askPlayerNumber();
+    void askPlayerNumber();
 
     Integer askStartingCardFront();
 
@@ -36,4 +36,6 @@ public interface UI {
     Integer[] askCoordinatesOfCards();
 
     Integer askDrawingCard();
+
+    void askToken();
 }

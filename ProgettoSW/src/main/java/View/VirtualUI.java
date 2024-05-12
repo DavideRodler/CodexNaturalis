@@ -30,8 +30,7 @@ public class VirtualUI implements UI {
     }
 
     @Override
-    public Integer askPlayerNumber() {
-        return 0;
+    public void askPlayerNumber() {
     }
 
     @Override
@@ -80,6 +79,11 @@ public class VirtualUI implements UI {
     @Override
     public Integer askDrawingCard() {
         return 0;
+    }
+
+    @Override
+    public void askToken() {
+
     }
 
 

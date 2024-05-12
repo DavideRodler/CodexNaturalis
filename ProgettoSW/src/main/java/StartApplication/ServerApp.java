@@ -47,7 +47,6 @@ public class ServerApp implements Remote {
             }catch( RemoteException e ){
                 System.out.println("Error: " + e);
             }
-            server.initializeBoard();
             System.out.println("➖Server is booting....");
             System.out.println("➖Server created");
         } catch (Exception e) {

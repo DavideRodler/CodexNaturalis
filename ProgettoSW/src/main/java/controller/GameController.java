@@ -1,6 +1,5 @@
 package controller;
 
-import Network.Client.ClientController;
 import model.Player;
 import model.PlayingBoard;
 import model.PlayingStation;
@@ -16,7 +15,7 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.List;
 
-public class GameController extends ClientController implements Serializable {
+public class GameController implements Serializable {
     private PlayingBoard board;
 
     //getter
@@ -55,9 +54,9 @@ public class GameController extends ClientController implements Serializable {
         board.setGameState(GameState.SET_PLAYER_NUMBER);
     }
 
-    public void setPlayerNumber(int playernumber) throws NotValidMoveException {
+    public void setPlayerNumber(int playernumber) throws NotValidMoveException, ChangedStateException {
         //check right time of the game
-        if(playernumber<1) throw new NotValidMoveException("player must be at least two");
+        if(playernumber<2) throw new NotValidMoveException("player must be at least two");
         if(playernumber>4) throw new NotValidMoveException("player must be at least four");
         assertGameState(GameState.SET_PLAYER_NUMBER);
         board.setPlayernumber(playernumber);
@@ -105,7 +104,7 @@ public class GameController extends ClientController implements Serializable {
      * @param token
      * @throws NotValidMoveException if i am in another state of the game
      */
-    public void addPlayer(String nickname, TokenEnum token) throws NotValidMoveException {
+    public void addPlayer(String nickname, TokenEnum token) throws NotValidMoveException, ChangedStateException {
         assertGameState(GameState.SET_NAME_AND_TOKEN);
         if(board.getPlayernumber() < board.getPlayers().size()) throw new NotValidMoveException("numero di player massimo raggiunto");
         if(!checkNicknameAvailability(nickname)) throw new NotValidMoveException("nickname already been choosen");
@@ -122,7 +121,7 @@ public class GameController extends ClientController implements Serializable {
      *
      * @throws NotValidMoveException
      */
-    public void InitializeGame() throws NotValidMoveException {
+    public void InitializeGame() throws NotValidMoveException, ChangedStateException {
         assertGameState(GameState.INITIALIZE_GAME);
 
         //shuffle the player
@@ -174,7 +173,7 @@ public class GameController extends ClientController implements Serializable {
      * @param nickname
      * @throws NotValidMoveException
      */
-    public void setCentralCardPlayedBack(boolean playedback, String nickname) throws NotValidMoveException {
+    public void setCentralCardPlayedBack(boolean playedback, String nickname) throws NotValidMoveException, ChangedStateException {
         assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
         Player player = board.getPlayers().stream()
                 .filter(x -> x.getNickname().equals(nickname))
@@ -189,7 +188,7 @@ public class GameController extends ClientController implements Serializable {
      * @param nickname
      * @return
      */
-    public CardStarting getStartingCard(String nickname) throws NotValidMoveException {
+    public CardStarting getStartingCard(String nickname) throws NotValidMoveException, ChangedStateException {
         assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
         return (CardStarting) board.getPlayer(nickname).getStation().getMap().get(creatingCordinatesArray(40,40));
     }
@@ -204,7 +203,7 @@ public class GameController extends ClientController implements Serializable {
      * @param nickname
      * @throws NotValidMoveException
      */
-    public void setObjectiveOfPlayer(String nickname,int id) throws NotValidMoveException {
+    public void setObjectiveOfPlayer(String nickname,int id) throws NotValidMoveException, ChangedStateException {
 
         //check if i am in the right state
         assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
@@ -242,7 +241,7 @@ public class GameController extends ClientController implements Serializable {
         return board.getPlayer(nickname).getHand();
     }
 
-    public synchronized void addCardFromCentralCardsToPlayerHand(String nickname, int cardId) throws NotValidMoveException, NotMyTurnException {
+    public synchronized void addCardFromCentralCardsToPlayerHand(String nickname, int cardId) throws NotValidMoveException, NotMyTurnException, ChangedStateException {
         assertGameState(GameState.ADDING_CARD_TO_HAND);
         assertIsMyTurn(nickname);
         CardResource card = board.getCardResource(cardId)
@@ -256,7 +255,7 @@ public class GameController extends ClientController implements Serializable {
         board.setGameState(GameState.CHANGING_TURN);
         changeTurn();
     }
-    public synchronized void addCardFromDeckToPlayerHand(String nickname, DeckEnum deck)throws NotValidMoveException, NotMyTurnException{
+    public synchronized void addCardFromDeckToPlayerHand(String nickname, DeckEnum deck) throws NotValidMoveException, NotMyTurnException, ChangedStateException {
         assertGameState(GameState.ADDING_CARD_TO_HAND);
         assertIsMyTurn(nickname);
         Player p = board.getPlayer(nickname);
@@ -277,7 +276,7 @@ public class GameController extends ClientController implements Serializable {
     }
 
 
-    public synchronized void changeTurn() throws NotValidMoveException {
+    public synchronized void changeTurn() throws NotValidMoveException, ChangedStateException {
         assertGameState(GameState.CHANGING_TURN);
         if (!isGamefinished()){
             board.setCurrentPlayer(board.getnextPlayer());
@@ -360,9 +359,9 @@ public class GameController extends ClientController implements Serializable {
     }
 
 
-    public void assertGameState(GameState gameState) throws NotValidMoveException {
+    public void assertGameState(GameState gameState) throws NotValidMoveException, ChangedStateException {
         if (board.getGameState() != gameState) {
-            throw new NotValidMoveException("not valid move, game state is " + board.getGameState() + " but expected " + gameState );
+            throw new ChangedStateException("not valid move, game state is " + board.getGameState() + " but expected " + gameState );
         }
     }
 

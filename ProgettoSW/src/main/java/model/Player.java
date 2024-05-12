@@ -1,7 +1,6 @@
 package model;
 
 
-import Observers.ModelObserver;
 import model.cards.*;
 import model.enums.TokenEnum;
 
@@ -9,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Player extends ModelObserver implements Serializable {
+public class Player implements Serializable {
     private final String nickname;
     private int points;
     private final TokenEnum token;

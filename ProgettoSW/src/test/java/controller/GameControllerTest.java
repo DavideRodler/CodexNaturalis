@@ -1,6 +1,7 @@
 package controller;
 
 import Network.Cli2;
+import exception.ChangedStateException;
 import model.cards.CardResource;
 import model.enums.DeckEnum;
 import model.enums.TokenEnum;
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class GameControllerTest {
 
     @Test
-    public void testChecknickname() throws NotValidMoveException {
+    public void testChecknickname() throws NotValidMoveException, ChangedStateException {
         GameController game = new GameController();
         game.setPlayerNumber(4);
         game.addPlayer("tommy", TokenEnum.BLACK);
@@ -27,7 +28,7 @@ class GameControllerTest {
 
     }
     @Test
-    public void testTokenAvailability() throws NotValidMoveException {
+    public void testTokenAvailability() throws NotValidMoveException, ChangedStateException {
         GameController game = new GameController();
         System.out.println(game.getAvailableToken());
         game.setPlayerNumber(4);
@@ -36,7 +37,7 @@ class GameControllerTest {
     }
 
     @Test
-    void setStartingCardForPlayers() throws NotValidMoveException {
+    void setStartingCardForPlayers() throws NotValidMoveException, ChangedStateException {
         GameController game = new GameController();
         game.setPlayerNumber(2);
 
@@ -56,7 +57,7 @@ class GameControllerTest {
     }
 
     @Test
-    void setupOfTheGameTest() throws NotValidMoveException {
+    void setupOfTheGameTest() throws NotValidMoveException, ChangedStateException {
         GameController game = new GameController();
         game.setPlayerNumber(2);
 

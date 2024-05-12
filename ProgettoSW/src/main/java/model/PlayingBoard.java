@@ -1,13 +1,14 @@
 package model;
 
-import Observers.ModelObserver;
 import model.cards.*;
 import model.enums.GameState;
+import observers.ObservableModel;
+import socket.Messages.ChangeStateMessage;
 
-import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.*;
 
-public class PlayingBoard extends ModelObserver implements Serializable {
+public class PlayingBoard extends ObservableModel {
 
     private LinkedList<CardGold> deckCardGold;
     private LinkedList<CardResource> deckCardResource;
@@ -148,6 +149,11 @@ public class PlayingBoard extends ModelObserver implements Serializable {
     }
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
+        try {
+            notifyObservers(new ChangeStateMessage("ChangeState", gameState));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setFirstObjective(CardObjective firstObjective) {

@@ -9,4 +9,6 @@ module com.example.progettosw {
     exports controller to java.rmi;
     exports model to java.rmi;
     exports model.cards to java.rmi;
+    exports model.client to java.rmi;
+    exports observers to java.rmi;
 }

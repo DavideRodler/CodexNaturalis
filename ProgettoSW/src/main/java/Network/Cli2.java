@@ -3,6 +3,8 @@ package Network;
 import Network.Client.RmiClient;
 import Network.Server.VirtualServer;
 import View.UI;
+import exception.ChangedStateException;
+import exception.NotValidMoveException;
 import model.PlayingBoard;
 import model.cards.*;
 import model.enums.SuitEnum;
@@ -12,6 +14,7 @@ import model.objectives.ObjectiveDiagonal;
 import model.objectives.ObjectivePositioning;
 
 import java.io.InputStreamReader;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
@@ -109,14 +112,21 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public Integer askPlayerNumber() {
+    public void askPlayerNumber() {
         Scanner in = new Scanner(new InputStreamReader(System.in));
         Integer input;
-        do {
-            System.out.println("Insert number of players in your Lobby: ");
-            input = in.nextInt();
-        } while (input < 2 || input > 4);
-        return input;
+        System.out.println("Insert number of players in your Lobby: ");
+            try {server.setPlayerNumber(input = in.nextInt());
+            }
+            catch (RemoteException e) {
+                e.printStackTrace();
+            } catch (NotValidMoveException e) {
+                System.out.println(e.getMessage());
+                askPlayerNumber();
+            }
+            catch (ChangedStateException e ){
+                System.out.println("another player has already set the player number");
+            }
     }
 
     @Override
@@ -209,6 +219,11 @@ public class Cli2 implements UI {
         System.out.println("Which card do you want to draw? Insert 1 for up left card, 2 for up right card, 3 for down left card, 4 for down right card, 5 for resource Deck, 6 for gold Deck");
         Integer choice = scanner.nextInt();
         return choice;
+    }
+
+    @Override
+    public void askToken() {
+
     }
 
     private void printMatrix(String[][] mat){

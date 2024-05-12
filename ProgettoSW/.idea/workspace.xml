@@ -4,9 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Test di gioco funzionante">
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Cambio del Controller:(ora iniziallizzazione della board avviene dopo che i giocatori sono tutti entrati)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/exception/ChangedStateException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/client/ReductPlayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/observers/Observer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/socket/Messages/ChangeStateMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/deck/Decktemplates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/deck/Decktemplates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/ModelObserver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/Observable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/ViewObservable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/observers/ObservableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/ReducedBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +40,8 @@
       <list>
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -82,6 +104,7 @@
     "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
     "JUnit.GameControllerTest.GivingCardToPlayersTest.executor": "Run",
     "JUnit.GameControllerTest.TestOfFourTurns.executor": "Debug",
+    "JUnit.GameControllerTest.executor": "Run",
     "JUnit.GameControllerTest.setCentralCardPlayedBack.executor": "Run",
     "JUnit.GameControllerTest.setStartingCardForPlayers.executor": "Run",
     "JUnit.GameControllerTest.testChecknickname.executor": "Run",
@@ -135,7 +158,33 @@
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GameControllerTest.TestOfFourTurns">
+  <component name="RunManager" selected="Application.ClientApp">
+    <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="StartApplication.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="StartApplication.ServerApp" />
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="StartApplication.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DeckConstructorTest.testDeckResource" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
@@ -152,7 +201,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameControllerTest.GivingCardToPlayersTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
@@ -162,8 +211,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="controller" />
       <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
-      <option name="METHOD_NAME" value="GivingCardToPlayersTest" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -184,52 +232,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameControllerTest.testTokenAvailability" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="controller" />
-      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
-      <option name="METHOD_NAME" value="testTokenAvailability" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ObjectivePositioningTest.test_Positioning2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
-      <option name="METHOD_NAME" value="test_Positioning2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
+      <item itemvalue="Application.ClientApp" />
+      <item itemvalue="Application.ServerApp" />
+      <item itemvalue="JUnit.GameControllerTest" />
       <item itemvalue="JUnit.DeckConstructorTest.testDeckResource" />
       <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
-      <item itemvalue="JUnit.GameControllerTest.testTokenAvailability" />
-      <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
-      <item itemvalue="JUnit.GameControllerTest.GivingCardToPlayersTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ClientApp" />
+        <item itemvalue="Application.ServerApp" />
+        <item itemvalue="JUnit.GameControllerTest" />
         <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
         <item itemvalue="JUnit.DeckConstructorTest.testDeckResource" />
-        <item itemvalue="JUnit.GameControllerTest.GivingCardToPlayersTest" />
-        <item itemvalue="JUnit.GameControllerTest.testTokenAvailability" />
-        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
       </list>
     </recent_temporary>
   </component>
@@ -689,17 +705,17 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
-          <line>86</line>
+          <line>87</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
-          <line>137</line>
+          <line>138</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
-          <line>132</line>
+          <line>133</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -714,7 +730,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
-          <line>95</line>
+          <line>96</line>
           <properties class="controller.GameControllerTest">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
