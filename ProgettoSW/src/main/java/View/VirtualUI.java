@@ -30,7 +30,13 @@ public class VirtualUI implements UI {
     }
 
     @Override
-    public void askPlayerNumber() {
+    public int askPlayerNumber() {
+        return 0;
+    }
+
+    @Override
+    public void alreadySettedPlayerNumber() {
+
     }
 
     @Override

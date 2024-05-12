@@ -1,7 +1,7 @@
 /*package View;
 
-import Network.Client.RmiClient;
-import Network.Client.VirtualView;
+import Network.Client.RMI.RmiClient;
+import Network.Client.RMI.VirtualView;
 import Network.Server.VirtualServer;
 import model.cards.*;
 import model.cards.CardStarting;

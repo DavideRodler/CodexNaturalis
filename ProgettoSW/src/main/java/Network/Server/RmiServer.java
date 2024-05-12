@@ -1,6 +1,6 @@
 package Network.Server;
 
-import Network.Client.VirtualView;
+import Network.Client.RMI.VirtualView;
 import controller.GameController;
 import exception.ChangedStateException;
 import exception.NotValidMoveException;

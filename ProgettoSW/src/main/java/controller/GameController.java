@@ -57,7 +57,7 @@ public class GameController implements Serializable {
     public void setPlayerNumber(int playernumber) throws NotValidMoveException, ChangedStateException {
         //check right time of the game
         if(playernumber<2) throw new NotValidMoveException("player must be at least two");
-        if(playernumber>4) throw new NotValidMoveException("player must be at least four");
+        if(playernumber>4) throw new NotValidMoveException("player must less than four");
         assertGameState(GameState.SET_PLAYER_NUMBER);
         board.setPlayernumber(playernumber);
         board.setGameState(GameState.SET_NAME_AND_TOKEN);
@@ -71,7 +71,7 @@ public class GameController implements Serializable {
      * @return the list of token that are not already been choosen
      * @throws NotValidMoveException if i am in another state of the game
      */
-    public List<TokenEnum> getAvailableToken() throws NotValidMoveException {
+    public List<TokenEnum> getAvailableToken() {
         return Arrays.stream(TokenEnum.values())
                 .filter(t -> board.getPlayers()
                         .stream()
@@ -79,7 +79,7 @@ public class GameController implements Serializable {
                 .toList();
     }
 
-    public boolean checkTokenAvailability(TokenEnum token) throws NotValidMoveException {
+    public boolean checkTokenAvailability(TokenEnum token) {
         return getAvailableToken().contains(token);
     }
 
@@ -89,7 +89,7 @@ public class GameController implements Serializable {
      * @return if the name has already been choosen
      * @throws NotValidMoveException if i am in another state of the game
      */
-    public boolean checkNicknameAvailability(String nickname) throws NotValidMoveException {
+    public boolean checkNicknameAvailability(String nickname) {
         return board.getPlayers()
                 .stream()
                 .filter(p -> p.getNickname().equals(nickname))

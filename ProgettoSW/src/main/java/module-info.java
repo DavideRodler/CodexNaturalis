@@ -11,4 +11,5 @@ module com.example.progettosw {
     exports model.cards to java.rmi;
     exports model.client to java.rmi;
     exports observers to java.rmi;
+    exports Network.Client.RMI to java.rmi;
 }

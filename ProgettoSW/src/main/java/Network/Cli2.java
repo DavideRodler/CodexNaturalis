@@ -1,10 +1,6 @@
 package Network;
 
-import Network.Client.RmiClient;
-import Network.Server.VirtualServer;
 import View.UI;
-import exception.ChangedStateException;
-import exception.NotValidMoveException;
 import model.PlayingBoard;
 import model.cards.*;
 import model.enums.SuitEnum;
@@ -14,15 +10,12 @@ import model.objectives.ObjectiveDiagonal;
 import model.objectives.ObjectivePositioning;
 
 import java.io.InputStreamReader;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Cli2 implements UI {
 
-    private final VirtualServer server;
-    private final RmiClient client;
     private final String red;
     private final String green;
     private final String yellow;
@@ -37,9 +30,7 @@ public class Cli2 implements UI {
     private final String inkwell;
 
 
-    public Cli2(VirtualServer server, RmiClient client) {
-        this.server = server;
-        this.client = client;
+    public Cli2() {
         blue = "\033[0;34m";
         green = "\033[0;32m";
         yellow = "\033[0;33m";
@@ -112,21 +103,16 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public void askPlayerNumber() {
+    public int askPlayerNumber() {
         Scanner in = new Scanner(new InputStreamReader(System.in));
         Integer input;
         System.out.println("Insert number of players in your Lobby: ");
-            try {server.setPlayerNumber(input = in.nextInt());
-            }
-            catch (RemoteException e) {
-                e.printStackTrace();
-            } catch (NotValidMoveException e) {
-                System.out.println(e.getMessage());
-                askPlayerNumber();
-            }
-            catch (ChangedStateException e ){
-                System.out.println("another player has already set the player number");
-            }
+         return in.nextInt();
+    }
+
+    @Override
+    public void alreadySettedPlayerNumber(){
+        System.out.println("another player has already set the player number");
     }
 
     @Override

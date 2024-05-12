@@ -17,7 +17,9 @@ public interface UI {
     //void init();
     String askNickname();
 
-    void askPlayerNumber();
+    int askPlayerNumber();
+
+    void alreadySettedPlayerNumber();
 
     Integer askStartingCardFront();
 

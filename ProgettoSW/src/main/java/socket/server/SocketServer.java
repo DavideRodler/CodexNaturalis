@@ -1,19 +1,15 @@
 package socket.server;
 
-import Network.Client.VirtualView;
 import controller.GameController;
 import socket.Messages.Message;
-import socket.client.SocketClient;
 import socket.client.VirtualViewSocket;
 
-import java.io.FileFilter;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
-import java.net.*;
 
 public class SocketServer implements VirtualServerSocket {
     private GameController controller;

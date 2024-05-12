@@ -1,10 +1,7 @@
 package StartApplication;
 
-import Network.Client.RmiClient;
-import Network.Client.VirtualView;
-import Network.Server.RmiServer;
+import Network.Client.RMI.RmiClient;
 import Network.Server.VirtualServer;
-import controller.GameController;
 import exception.NotValidMoveException;
 
 import java.io.InputStreamReader;
@@ -13,7 +10,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 public class ClientApp implements Remote {
@@ -41,13 +37,11 @@ public class ClientApp implements Remote {
         try {
             Registry registry = LocateRegistry.getRegistry(input, 16000);
             server = (VirtualServer) registry.lookup("MyServer");
-            RmiClient rmiClient= new RmiClient(server);
-            rmiClient.ClientSetup();
+            RmiClient client = new RmiClient(server);
+            client.connectToServer();
         } catch (RemoteException r) {
             System.out.println("Error: " + r);
         } catch (NotBoundException e) {
-            throw new RuntimeException(e);
-        } catch (NotValidMoveException e) {
             throw new RuntimeException(e);
         }
 

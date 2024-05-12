@@ -51,7 +51,7 @@ class GameControllerTest {
         assertEquals(true, game.checkTokenAvailability(TokenEnum.YELLOW));
         game.addPlayer("isa", TokenEnum.YELLOW);
 
-        Cli2 cli = new Cli2(null, null);
+        Cli2 cli = new Cli2();
         cli.showStartingCard(game.getStartingCard("tommy"));
         cli.showStartingCard(game.getStartingCard("isa"));
     }
@@ -75,7 +75,7 @@ class GameControllerTest {
 
         //tutti i giocatori sono salvati, gli obiettivi e le carte Starting sono distribuite in automatico
 
-        Cli2 cli = new Cli2(null, null);
+        Cli2 cli = new Cli2();
 
         cli.showUpdatedHand(game.getPlayerHand("tommy"));
         cli.showStartingCard(game.getStartingCard("tommy"));
@@ -111,7 +111,7 @@ class GameControllerTest {
 
         //tutti i giocatori sono salvati, gli obiettivi e le carte Starting sono distribuite in automatico
 
-        Cli2 cli = new Cli2(null, null);
+        Cli2 cli = new Cli2();
 
         cli.showUpdatedHand(game.getPlayerHand("tommy"));
         cli.showStartingCard(game.getStartingCard("tommy"));
