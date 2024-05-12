@@ -2,6 +2,7 @@ package model;
 
 import Observers.ModelObserver;
 import model.cards.*;
+import model.enums.GameState;
 
 import java.io.Serializable;
 import java.util.*;
@@ -24,8 +25,10 @@ public class PlayingBoard extends ModelObserver implements Serializable {
     private int playernumber;
     //the player map that for each nickname has a player
     private ArrayList<Player> players;
+    //gameState
+    private GameState gameState;
 
-    public PlayingBoard(CardObjective firstObjective, CardObjective secondObjective, int playernumber, ArrayList<Player> playerList, LinkedList<CardStarting> deckCardStarting, LinkedList<CardResource> deckCardResource, LinkedList<CardObjective> deckCardObjective, LinkedList<CardGold> deckCardGold, String currentPlayer, ArrayList<CardResource> centralCardsResource, ArrayList<CardGold> centralCardsGold) {
+    public PlayingBoard(CardObjective firstObjective, CardObjective secondObjective, int playernumber, ArrayList<Player> playerList, LinkedList<CardStarting> deckCardStarting, LinkedList<CardResource> deckCardResource, LinkedList<CardObjective> deckCardObjective, LinkedList<CardGold> deckCardGold, String currentPlayer, ArrayList<CardResource> centralCardsResource, ArrayList<CardGold> centralCardsGold, GameState gameState){
         this.firstObjective = firstObjective;
         this.secondObjective = secondObjective;
         this.playernumber = playernumber;
@@ -37,6 +40,7 @@ public class PlayingBoard extends ModelObserver implements Serializable {
         this.currentPlayer = currentPlayer;
         this.centralCardsResource = centralCardsResource;
         this.centralCardsGold = centralCardsGold;
+        this.gameState = gameState;
     }
 
     public PlayingBoard(CardObjective firstObjective, CardObjective secondObjective) {
@@ -90,7 +94,10 @@ public class PlayingBoard extends ModelObserver implements Serializable {
         return players;
     }
 
-//--------------------SETTER----------------------------
+    public GameState getGameState() {
+        return gameState;
+    }
+    //--------------------SETTER----------------------------
 
 
     public void addPlayer(Player p) {
@@ -132,6 +139,10 @@ public class PlayingBoard extends ModelObserver implements Serializable {
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
+    }
+
 
 
 //--------------------SETTING FASE ENDED----------------------------

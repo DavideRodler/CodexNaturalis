@@ -18,7 +18,6 @@ import java.util.List;
 
 public class GameController extends ClientController implements Serializable {
     private PlayingBoard board;
-    private GameState gameState;
 
     //getter
     public PlayingBoard getBoard() {
@@ -29,7 +28,6 @@ public class GameController extends ClientController implements Serializable {
     //costructor
     public GameController(PlayingBoard board, GameState gameState) {
         this.board = board;
-        this.gameState = gameState;
     }
 
 
@@ -55,7 +53,7 @@ public class GameController extends ClientController implements Serializable {
         CardObjective secondCardObj = deckObjective.pop();
 
         //creating the board
-        this.board = new PlayingBoard(firstCardObj, secondCardObj, 0, new ArrayList<Player>(), deckStarting, deckResource, deckObjective, deckGold, null, new ArrayList<CardResource>(), new ArrayList<CardGold>());
+        this.board = new PlayingBoard(firstCardObj, secondCardObj, 0, new ArrayList<Player>(), deckStarting, deckResource, deckObjective, deckGold, null, new ArrayList<CardResource>(), new ArrayList<CardGold>(),null);
 
         board.getCentralCardsGold().add(board.getDeckCardGold().pop());
         board.getCentralCardsGold().add(board.getDeckCardGold().pop());
@@ -63,7 +61,7 @@ public class GameController extends ClientController implements Serializable {
         board.getCentralCardsResource().add(board.getDeckCardResource().pop());
         board.getCentralCardsResource().add(board.getDeckCardResource().pop());
 
-        gameState = GameState.SET_PLAYER_NUMBER;
+        board.setGameState(GameState.SET_PLAYER_NUMBER);
     }
 
     public void setPlayerNumber(int playernumber) throws NotValidMoveException {
@@ -72,7 +70,7 @@ public class GameController extends ClientController implements Serializable {
         if(playernumber>4) throw new NotValidMoveException("player must be at least four");
         assertGameState(GameState.SET_PLAYER_NUMBER);
         board.setPlayernumber(playernumber);
-        gameState = GameState.SET_NAME_AND_TOKEN;
+        board.setGameState(GameState.SET_NAME_AND_TOKEN);
     }
 
     public int getPlayerNumber() throws NotValidMoveException {
@@ -141,7 +139,7 @@ public class GameController extends ClientController implements Serializable {
             player.getHand().add(board.getDeckCardResource().pop());
             player.getHand().add(board.getDeckCardGold().pop());
         });
-        gameState = GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE;
+        board.setGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
         setupOfStartingCardAndPersonalObjectives();
     }
 
@@ -225,7 +223,7 @@ public class GameController extends ClientController implements Serializable {
                 .filter(station -> station.getSecretObjective() == null)
                 .findFirst()
                 .isEmpty()){
-            gameState = GameState.PLACING_CARD;
+            board.setGameState(GameState.PLACING_CARD);
         }
     }
 
@@ -250,7 +248,7 @@ public class GameController extends ClientController implements Serializable {
             player.addCardToHand(card);
         }
         else throw new NotValidMoveException("you can't have another card");
-        gameState = gameState.CHANGING_TURN;
+        board.setGameState(GameState.CHANGING_TURN);
         changeTurn();
     }
     public synchronized void addCardFromDeckToPlayerHand(String nickname, DeckEnum deck)throws NotValidMoveException, NotMyTurnException{
@@ -264,7 +262,7 @@ public class GameController extends ClientController implements Serializable {
             else p.addCardToHand(board.getDeckCardResource().pop());
         }
         else throw new NotValidMoveException("you can't have another card");
-        gameState = gameState.CHANGING_TURN;
+        board.setGameState(GameState.CHANGING_TURN);
         changeTurn();
     }
 
@@ -278,10 +276,10 @@ public class GameController extends ClientController implements Serializable {
         assertGameState(GameState.CHANGING_TURN);
         if (!isGamefinished()){
             board.setCurrentPlayer(board.getnextPlayer());
-            gameState = GameState.PLACING_CARD;
+            board.setGameState(GameState.PLACING_CARD);
         }
         else {
-            gameState = GameState.FINISHED;
+            board.setGameState(GameState.FINISHED);
         }
     }
 
@@ -329,7 +327,7 @@ public class GameController extends ClientController implements Serializable {
 
         player.setPoints(player.getPoints() + points);
         repopulatePlayingBoard();
-        gameState = GameState.ADDING_CARD_TO_HAND;
+        board.setGameState(GameState.ADDING_CARD_TO_HAND);
     }
 
     public boolean isGamefinished() {
@@ -359,8 +357,8 @@ public class GameController extends ClientController implements Serializable {
 
 
     public void assertGameState(GameState gameState) throws NotValidMoveException {
-        if (this.gameState != gameState) {
-            throw new NotValidMoveException("not valid move, game state is " + this.gameState + " but expected " + gameState );
+        if (board.getGameState() != gameState) {
+            throw new NotValidMoveException("not valid move, game state is " + board.getGameState() + " but expected " + gameState );
         }
     }
 
