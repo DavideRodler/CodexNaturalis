@@ -26,8 +26,8 @@ public class GameController extends ClientController implements Serializable {
 
 
     //costructor
-    public GameController(PlayingBoard board, GameState gameState) {
-        this.board = board;
+    public GameController() {
+        initGameController();
     }
 
 
@@ -48,18 +48,9 @@ public class GameController extends ClientController implements Serializable {
         Collections.shuffle(deckStarting);
         Collections.shuffle(deckObjective);
 
-        // popping objective
-        CardObjective firstCardObj = deckObjective.pop();
-        CardObjective secondCardObj = deckObjective.pop();
 
         //creating the board
-        this.board = new PlayingBoard(firstCardObj, secondCardObj, 0, new ArrayList<Player>(), deckStarting, deckResource, deckObjective, deckGold, null, new ArrayList<CardResource>(), new ArrayList<CardGold>(),null);
-
-        board.getCentralCardsGold().add(board.getDeckCardGold().pop());
-        board.getCentralCardsGold().add(board.getDeckCardGold().pop());
-
-        board.getCentralCardsResource().add(board.getDeckCardResource().pop());
-        board.getCentralCardsResource().add(board.getDeckCardResource().pop());
+        this.board = new PlayingBoard(null, null, 0, new ArrayList<Player>(), deckStarting, deckResource, deckObjective, deckGold, null, new ArrayList<CardResource>(), new ArrayList<CardGold>(),null);
 
         board.setGameState(GameState.SET_PLAYER_NUMBER);
     }
@@ -121,7 +112,8 @@ public class GameController extends ClientController implements Serializable {
         if(!checkTokenAvailability(token)) throw new NotValidMoveException("token already been choosen");
         this.board.addPlayer(new Player(nickname, token, new PlayingStation(null, new HashMap<>()), 0, new ArrayList<>()));
         if(board.getPlayers().size() == board.getPlayernumber()){
-            shufflePlayerAndPopulateHands();
+            board.setGameState(GameState.INITIALIZE_GAME);
+            InitializeGame();
         }
     }
 
@@ -130,17 +122,48 @@ public class GameController extends ClientController implements Serializable {
      *
      * @throws NotValidMoveException
      */
-    public void shufflePlayerAndPopulateHands() throws NotValidMoveException {
-        assertGameState(GameState.SET_NAME_AND_TOKEN);
+    public void InitializeGame() throws NotValidMoveException {
+        assertGameState(GameState.INITIALIZE_GAME);
+
+        //shuffle the player
         board.shufflePlayer();
+
+        // generate common objectives objective
+        board.setFirstObjective(board.getDeckCardObjective().pop());
+        board.setFirstObjective(board.getDeckCardObjective().pop());
+
+        //set the first player
         board.setCurrentPlayer(board.getPlayers().getFirst().getNickname());
+
+        //populating hands
         board.getPlayers().stream().forEach(player -> {
             player.getHand().add(board.getDeckCardResource().pop());
             player.getHand().add(board.getDeckCardResource().pop());
             player.getHand().add(board.getDeckCardGold().pop());
         });
+
+        //populating the central board
+        board.getCentralCardsGold().add(board.getDeckCardGold().pop());
+        board.getCentralCardsGold().add(board.getDeckCardGold().pop());
+
+        board.getCentralCardsResource().add(board.getDeckCardResource().pop());
+        board.getCentralCardsResource().add(board.getDeckCardResource().pop());
+
+        //giving each player his two personal objectives
+        ArrayList<CardObjective> cardObjectives = new ArrayList<>();
+        board.getPlayers().forEach(p -> {
+            ArrayList<CardObjective> secretObjectivesToChoose = new ArrayList<CardObjective>();
+            secretObjectivesToChoose.add(board.getDeckCardObjective().pop());
+            secretObjectivesToChoose.add(board.getDeckCardObjective().pop());
+            p.setSelectibleObjectives(secretObjectivesToChoose);
+        });
+
+        //now i give for each player its Starting card
+        for (Player player: board.getPlayers()){
+            player.getStation().setCardStarting(board.getDeckCardStarting().pop());
+        };
+
         board.setGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
-        setupOfStartingCardAndPersonalObjectives();
     }
 
 
@@ -171,25 +194,7 @@ public class GameController extends ClientController implements Serializable {
         return (CardStarting) board.getPlayer(nickname).getStation().getMap().get(creatingCordinatesArray(40,40));
     }
 
-    /**
-     * Set the personal objectives and the starting card for each player
-     * @throws NotValidMoveException
-     */
-    public void setupOfStartingCardAndPersonalObjectives() throws NotValidMoveException {
-        //giving each player his two personal objectives
-        assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
-        ArrayList<CardObjective> cardObjectives = new ArrayList<>();
-        board.getPlayers().forEach(p -> {
-            ArrayList<CardObjective> secretObjectivesToChoose = new ArrayList<CardObjective>();
-            secretObjectivesToChoose.add(board.getDeckCardObjective().pop());
-            secretObjectivesToChoose.add(board.getDeckCardObjective().pop());
-            p.setSelectibleObjectives(secretObjectivesToChoose);
-        });
-        //now i give for each player its Starting card
-        for (Player player: board.getPlayers()){
-            player.getStation().setCardStarting(board.getDeckCardStarting().pop());
-        };
-    }
+
     public ArrayList<CardObjective> getObjectiveToChoose(String nickname) {
         return board.getPlayer(nickname).getSelectibleObjectives();
     }
@@ -288,7 +293,6 @@ public class GameController extends ClientController implements Serializable {
     /**
      * This method adds a card to the playing station
      *
-     * @param card the card to add
      * @param X    the x coordinate
      * @param Y    the y coordinate
      */

@@ -15,8 +15,8 @@ public class PlayingBoard extends ModelObserver implements Serializable {
     private LinkedList<CardStarting> deckCardStarting;
     private ArrayList<CardGold> centralCardsGold;
     private ArrayList<CardResource> centralCardsResource;
-    private final CardObjective firstObjective;
-    private final CardObjective secondObjective;
+    private CardObjective firstObjective;
+    private CardObjective secondObjective;
 
 
     //the current player playing
@@ -43,9 +43,15 @@ public class PlayingBoard extends ModelObserver implements Serializable {
         this.gameState = gameState;
     }
 
-    public PlayingBoard(CardObjective firstObjective, CardObjective secondObjective) {
-        this.firstObjective = firstObjective;
-        this.secondObjective = secondObjective;
+    public PlayingBoard() {
+        this.playernumber = 0;
+        this.players = new ArrayList<>();
+        this.deckCardStarting = new LinkedList<>();
+        this.deckCardResource = new LinkedList<>();
+        this.deckCardObjective = new LinkedList<>();
+        this.deckCardGold = new LinkedList<>();
+        this.centralCardsResource = new ArrayList<>();
+        this.centralCardsGold = new ArrayList<>();
     }
 
 
@@ -97,6 +103,7 @@ public class PlayingBoard extends ModelObserver implements Serializable {
     public GameState getGameState() {
         return gameState;
     }
+
     //--------------------SETTER----------------------------
 
 
@@ -143,8 +150,13 @@ public class PlayingBoard extends ModelObserver implements Serializable {
         this.gameState = gameState;
     }
 
+    public void setFirstObjective(CardObjective firstObjective) {
+        this.firstObjective = firstObjective;
+    }
 
-
+    public void setSecondObjective(CardObjective secondObjective) {
+        this.secondObjective = secondObjective;
+    }
 //--------------------SETTING FASE ENDED----------------------------
 
 

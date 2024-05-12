@@ -16,8 +16,7 @@ class GameControllerTest {
 
     @Test
     public void testChecknickname() throws NotValidMoveException {
-        GameController game = new GameController(null, null);
-        game.initGameController();
+        GameController game = new GameController();
         game.setPlayerNumber(4);
         game.addPlayer("tommy", TokenEnum.BLACK);
         game.addPlayer("davide", TokenEnum.BLUE);
@@ -29,8 +28,7 @@ class GameControllerTest {
     }
     @Test
     public void testTokenAvailability() throws NotValidMoveException {
-        GameController game = new GameController(null, null);
-        game.initGameController();
+        GameController game = new GameController();
         System.out.println(game.getAvailableToken());
         game.setPlayerNumber(4);
         game.addPlayer("eric", TokenEnum.BLACK);
@@ -39,8 +37,7 @@ class GameControllerTest {
 
     @Test
     void setStartingCardForPlayers() throws NotValidMoveException {
-        GameController game = new GameController(null, null);
-        game.initGameController();
+        GameController game = new GameController();
         game.setPlayerNumber(2);
 
         assertEquals(true, game.checkNicknameAvailability("tommy"));
@@ -60,8 +57,7 @@ class GameControllerTest {
 
     @Test
     void setupOfTheGameTest() throws NotValidMoveException {
-        GameController game = new GameController(null, null);
-        game.initGameController();
+        GameController game = new GameController();
         game.setPlayerNumber(2);
 
         //numero di player settato, si mescolano in automatico e posso aggiungere nickname e token
@@ -97,8 +93,7 @@ class GameControllerTest {
 
     @Test
     void TestOfFourTurns() throws Exception {
-        GameController game = new GameController(null, null);
-        game.initGameController();
+        GameController game = new GameController();
         game.setPlayerNumber(2);
 
         //numero di player settato, si mescolano in automatico e posso aggiungere nickname e token
