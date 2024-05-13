@@ -64,8 +64,6 @@ public class ClientApp implements Remote {
                 Socket clientSocket = new Socket(input, 1234); // Indirizzo e porta del server
                 System.out.println("Connessione al server riuscita");
                 // Creazione di buffer per la comunicazione con il server
-                BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
 
 
             } catch (IOException e) {

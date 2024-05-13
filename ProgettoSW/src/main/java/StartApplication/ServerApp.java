@@ -67,9 +67,7 @@ public class ServerApp implements Remote {
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Connessione accettata da " + clientSocket.getInetAddress());
 
-                // Gestisci la comunicazione con il client
-                BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
