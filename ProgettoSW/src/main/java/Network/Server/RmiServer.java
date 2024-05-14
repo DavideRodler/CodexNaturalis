@@ -81,6 +81,7 @@ public class RmiServer implements VirtualServer {
         for (VirtualView client : clients) {
             client.setupOfnicknameAndToken();
         }
+        startSetupOfStartingCard();
     }
  
 
@@ -107,6 +108,12 @@ public class RmiServer implements VirtualServer {
         for (int i = 0; i < clients.size(); i++) {
             clients.remove(clients.get(i));
             System.err.println("client disconnected");
+        }
+    }
+
+    public void startSetupOfStartingCard() throws RemoteException {
+        for (VirtualView client : clients) {
+            client.setupOfStartingCard();
         }
     }
 

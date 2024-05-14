@@ -37,4 +37,10 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     public void setupOfnicknameAndToken() {
         clientController.setupOfnicknameAndToken();
     }
+
+    @Override
+    public void setupOfStartingCard() throws RemoteException {
+        clientController.setupOfStartingCard();
+
+    }
 }

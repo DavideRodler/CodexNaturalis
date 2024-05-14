@@ -22,12 +22,10 @@ public class PlayingStation extends ObservableModel implements Serializable {
     private Integer countInkwell;
     private Integer countQuill;
     private Integer countManuscript;
-    private CardObjective SecretObjective;
 
 
     //constructor
-    public PlayingStation(CardObjective secretObjective, HashMap<ArrayList<Integer>, CardPlaying> map) {
-        SecretObjective = secretObjective;
+    public PlayingStation(HashMap<ArrayList<Integer>, CardPlaying> map) {
         this.map = map;
         countAnimal = 0;
         countFungi = 0;
@@ -39,9 +37,6 @@ public class PlayingStation extends ObservableModel implements Serializable {
     }
 
     //-------------------GETTER-----------------------------
-    public CardObjective getSecretObjective() {
-        return SecretObjective;
-    }
     public HashMap<ArrayList<Integer>,CardPlaying> getMap() {return map;}
     public Integer getCountInsect () {
         return countInsect;
@@ -74,9 +69,6 @@ public class PlayingStation extends ObservableModel implements Serializable {
 
 
         //------------------SETTER-------------------
-    public void setSecretObjective(CardObjective secretObjective) {
-        SecretObjective = secretObjective;
-    }
     public void setMap(HashMap<ArrayList<Integer>, CardPlaying> map) {
         this.map = map;
     }

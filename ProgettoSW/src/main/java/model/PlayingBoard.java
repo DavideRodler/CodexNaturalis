@@ -5,6 +5,7 @@ import model.enums.GameState;
 import model.enums.TokenEnum;
 import observers.ObservableModel;
 import socket.Messages.ChangeStateMessage;
+import socket.Messages.CommonObjectivesMessage;
 import socket.Messages.PlayersInfoMessage;
 
 import java.rmi.RemoteException;
@@ -158,12 +159,15 @@ public class PlayingBoard extends ObservableModel {
         }
     }
 
-    public void setFirstObjective(CardObjective firstObjective) {
-        this.firstObjective = firstObjective;
-    }
 
-    public void setSecondObjective(CardObjective secondObjective) {
+    public void setCommonObjectives( CardObjective firstObjective, CardObjective secondObjective) {
+        this.firstObjective = firstObjective;
         this.secondObjective = secondObjective;
+        try {
+            notifyObservers(new CommonObjectivesMessage(firstObjective,secondObjective));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 //--------------------SETTING FASE ENDED----------------------------
 

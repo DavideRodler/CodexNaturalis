@@ -8,10 +8,12 @@ import exception.ChangedStateException;
 import exception.NotValidMoveException;
 import model.Player;
 import model.PlayingStation;
+import model.cards.CardObjective;
 import model.client.ClientBoard;
 import model.client.ReductPlayer;
 import model.enums.TokenEnum;
 import socket.Messages.ChangeStateMessage;
+import socket.Messages.CommonObjectivesMessage;
 import socket.Messages.Message;
 import socket.Messages.PlayersInfoMessage;
 //import socket.Messages.PlayersInfoMessage;
@@ -63,28 +65,34 @@ public class ClientController {
     }
 
     public void setupOfnicknameAndToken() {
-            try {
-                    String nickname;
-                    TokenEnum token;
-                    do {
-                        nickname = ui.askNickname();
-                        token = ui.askToken(server.getAvailableTokens());
-                    } while (!server.checkNicknameAvailability(nickname) || !server.checkTokenAvailability(token));
+        try {
+            String nickname;
+            TokenEnum token;
+            do {
+                nickname = ui.askNickname();
+                token = ui.askToken(server.getAvailableTokens());
+            } while (!server.checkNicknameAvailability(nickname) || !server.checkTokenAvailability(token));
 
-                    //adding player to client model
-                    Player myplayer = new Player(nickname, token, new PlayingStation(null, new HashMap<>()), 0, null);
-                    clientModel.setMyplayer(myplayer);
+            //adding player to client model
+            Player myplayer = new Player(nickname, token, new PlayingStation(new HashMap<>()), 0, null);
+            clientModel.setMyplayer(myplayer);
 
-                    //adding player to server
-                    server.addPlayer(nickname, token);
+            //adding player to server
+            server.addPlayer(nickname, token);
 
-                    } catch (NotValidMoveException e) {
-                        e.printStackTrace();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+        } catch (NotValidMoveException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-                }
+    public void setupOfStartingCard() {
+        ArrayList<CardObjective> cardObjectiveList = new ArrayList<>();
+        cardObjectiveList.add(clientModel.getFirstObjective());
+        cardObjectiveList.add(clientModel.getSecondObjective());
+        ui.showObjectiveCards(cardObjectiveList);
+    }
 
     public void updateModel(Message message) throws RemoteException {
         switch (message.getType()) {
@@ -100,6 +108,11 @@ public class ClientController {
                         clientModel.getOtherplayers().add(new ReductPlayer(nickname, playersMap.get(nickname)));
                     }
                 }
+                break;
+            case "CommonObjectives":
+                CommonObjectivesMessage commonObjectivesMessage = (CommonObjectivesMessage) message;
+                clientModel.setFirstObjective(commonObjectivesMessage.getFirstobjective());
+                clientModel.setSecondObjective(commonObjectivesMessage.getSecondobjective());
                 break;
         }
     }

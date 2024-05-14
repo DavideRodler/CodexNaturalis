@@ -110,7 +110,7 @@ public class GameController implements Serializable {
         if(board.getPlayernumber() < board.getPlayers().size()) throw new NotValidMoveException("numero di player massimo raggiunto");
         if(!checkNicknameAvailability(nickname)) throw new NotValidMoveException("nickname already been choosen");
         if(!checkTokenAvailability(token)) throw new NotValidMoveException("token already been choosen");
-        this.board.addPlayer(new Player(nickname, token, new PlayingStation(null, new HashMap<>()), 0, new ArrayList<>()));
+        this.board.addPlayer(new Player(nickname, token, new PlayingStation( new HashMap<>()), 0, new ArrayList<>()));
         if(board.getPlayers().size() == board.getPlayernumber()){
             board.setGameState(GameState.INITIALIZE_GAME);
             InitializeGame();
@@ -129,8 +129,7 @@ public class GameController implements Serializable {
         board.shufflePlayer();
 
         // generate common objectives objective
-        board.setFirstObjective(board.getDeckCardObjective().pop());
-        board.setFirstObjective(board.getDeckCardObjective().pop());
+        board.setCommonObjectives(board.getDeckCardObjective().pop(),board.getDeckCardObjective().pop());
 
         //set the first player
         board.setCurrentPlayer(board.getPlayers().getFirst().getNickname());
@@ -217,15 +216,14 @@ public class GameController implements Serializable {
                 .findFirst()
                 .isEmpty()) throw  new NotValidMoveException("the objective is not selectible");
         ArrayList<CardObjective> selectibleObjectives = p.getSelectibleObjectives();
-        p.getStation().setSecretObjective(selectibleObjectives.stream()
+        p.setSecretObjective(selectibleObjectives.stream()
                 .filter(card -> card.getId().equals(id))
                 .findFirst()
                 .orElseThrow());
 
         //if all player has setted the objective i can start the game
         if( board.getPlayers().stream()
-                .map(player -> player.getStation())
-                .filter(station -> station.getSecretObjective() == null)
+                .filter(player -> player.getSecretObjective() == null)
                 .findFirst()
                 .isEmpty()){
             board.setGameState(GameState.PLACING_CARD);
