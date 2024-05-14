@@ -5,6 +5,7 @@ import model.cards.CardObjective;
 import model.cards.CardPlaying;
 import model.cards.CardResource;
 import model.cards.CardStarting;
+import model.enums.TokenEnum;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -19,8 +20,8 @@ public interface UI {
 
     int askPlayerNumber();
 
-    void alreadySettedPlayerNumber();
 
+    void printErrorMessage(Exception e);
     Integer askStartingCardFront();
 
     void showObjectiveCards(ArrayList<CardObjective> cardObjectives);
@@ -39,5 +40,13 @@ public interface UI {
 
     Integer askDrawingCard();
 
-    void askToken();
+    TokenEnum askToken(ArrayList<TokenEnum> availableTokens);
+
+    void waitingForOtherPlayers();
+
+    void showErrorMessage(String message);
+
+    void printWaitingForPlayerToSetPlayerNumber();
+
+    void printAvailableTokens(ArrayList<TokenEnum> availableTokens);
 }

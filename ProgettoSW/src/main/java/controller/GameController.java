@@ -14,6 +14,7 @@ import exception.*;
 import java.io.Serializable;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameController implements Serializable {
     private PlayingBoard board;
@@ -71,12 +72,12 @@ public class GameController implements Serializable {
      * @return the list of token that are not already been choosen
      * @throws NotValidMoveException if i am in another state of the game
      */
-    public List<TokenEnum> getAvailableToken() {
+    public ArrayList<TokenEnum> getAvailableToken() {
         return Arrays.stream(TokenEnum.values())
                 .filter(t -> board.getPlayers()
                         .stream()
                         .noneMatch(p -> p.getToken().equals(t)))
-                .toList();
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public boolean checkTokenAvailability(TokenEnum token) {

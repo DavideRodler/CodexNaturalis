@@ -3,15 +3,19 @@ package model;
 
 import model.cards.*;
 import model.enums.TokenEnum;
+import observers.ObservableModel;
+import socket.Messages.CardToHandMessage;
+import socket.Messages.Message;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 
-public class Player implements Serializable {
+public class Player extends ObservableModel implements Serializable{
     private final String nickname;
     private int points;
-    private final TokenEnum token;
+    private TokenEnum token;
     private PlayingStation station;
     private ArrayList<CardResource> hand;
     private ArrayList<CardObjective> selectibleObjectives;
@@ -38,6 +42,9 @@ public class Player implements Serializable {
     public void setSelectibleObjectives(ArrayList<CardObjective> selectibleObjectives) {
         this.selectibleObjectives = selectibleObjectives;
     }
+    public void setToken(TokenEnum token) {
+        this.token = token;
+    }
 
     //getter
     public ArrayList<CardResource> getHand() {
@@ -62,7 +69,6 @@ public class Player implements Serializable {
      * This method removes a card from the player's hand, given the card instance, using functional programming,
      * returning exception if not present
      *
-     * @param cardToRemove the card to remove
      * @return
      */
     public void removeCardFromHand(int cardId)throws Exception {
@@ -77,7 +83,14 @@ public class Player implements Serializable {
     }
     public void addCardToHand(CardResource card){
         hand.add(card);
+//        try {
+////            notifySpecificObserver(nickname, new CardToHandMessage(card));
+//        } catch (RemoteException e) {
+//            throw new RuntimeException(e);
+//        }
     }
+
+
 
 
 

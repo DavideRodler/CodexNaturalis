@@ -5,6 +5,7 @@ import model.cards.*;
 //import model.cards.face.Corner;
 import model.cards.face.Corner;
 import model.enums.SuitEnum;
+import observers.ObservableModel;
 
 
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import java.util.*;
 
 import static model.enums.SuitEnum.*;
 
-public class PlayingStation implements Serializable {
+public class PlayingStation extends ObservableModel implements Serializable {
     private HashMap<ArrayList<Integer>, CardPlaying> map;
     private Integer countInsect;
     private Integer countAnimal;

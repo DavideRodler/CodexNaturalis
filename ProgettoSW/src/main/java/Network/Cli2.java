@@ -4,6 +4,7 @@ import View.UI;
 import model.PlayingBoard;
 import model.cards.*;
 import model.enums.SuitEnum;
+import model.enums.TokenEnum;
 import model.objectives.ObjectiveCountingGold;
 import model.objectives.ObjectiveCountingResource;
 import model.objectives.ObjectiveDiagonal;
@@ -104,16 +105,21 @@ public class Cli2 implements UI {
 
     @Override
     public int askPlayerNumber() {
-        Scanner in = new Scanner(new InputStreamReader(System.in));
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
         Integer input;
-        System.out.println("Insert number of players in your Lobby: ");
-         return in.nextInt();
+        do {
+            System.out.println("Insert number of players in your Lobby: ");
+            input = scanner.nextInt();
+        }while (input < 2 || input > 4);
+        return input;
     }
 
     @Override
-    public void alreadySettedPlayerNumber(){
-        System.out.println("another player has already set the player number");
+    public void printErrorMessage(Exception e) {
+        System.out.println("Error: " + e.getMessage());
+
     }
+
 
     @Override
     public Integer askStartingCardFront() {
@@ -208,7 +214,39 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public void askToken() {
+    public TokenEnum askToken(ArrayList<TokenEnum> availableTokens) {
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        System.out.println("Use number to select one of the available tokens: " + availableTokens);
+        while (true) {
+            Integer choice = scanner.nextInt();
+            if (choice > 0 && choice <= availableTokens.size()) {
+                return availableTokens.get(choice - 1);
+            }
+        }
+    }
+
+    @Override
+    public void waitingForOtherPlayers() {
+
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
+
+    }
+
+    @Override
+    public void printWaitingForPlayerToSetPlayerNumber() {
+        System.out.println("Waiting for other player to set the number of players in the lobby");
+
+    }
+
+    @Override
+    public void printAvailableTokens(ArrayList<TokenEnum> availableTokens) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Available tokens are: " + availableTokens);
+        System.out.println("Choose one of the available tokens");
+
 
     }
 

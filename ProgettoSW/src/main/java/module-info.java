@@ -12,4 +12,5 @@ module com.example.progettosw {
     exports model.client to java.rmi;
     exports observers to java.rmi;
     exports Network.Client.RMI to java.rmi;
+    exports model.enums to java.rmi;
 }

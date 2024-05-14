@@ -32,4 +32,9 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     public void update(Message message) throws RemoteException {
         clientController.updateModel(message);
         }
+
+    @Override
+    public void setupOfnicknameAndToken() {
+        clientController.setupOfnicknameAndToken();
+    }
 }

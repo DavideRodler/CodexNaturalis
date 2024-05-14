@@ -3,6 +3,7 @@ package model;
 import model.cards.*;
 import model.enums.GameState;
 import observers.ObservableModel;
+import socket.Messages.AddedPlayerMessage;
 import socket.Messages.ChangeStateMessage;
 
 import java.rmi.RemoteException;
@@ -29,7 +30,7 @@ public class PlayingBoard extends ObservableModel {
     //gameState
     private GameState gameState;
 
-    public PlayingBoard(CardObjective firstObjective, CardObjective secondObjective, int playernumber, ArrayList<Player> playerList, LinkedList<CardStarting> deckCardStarting, LinkedList<CardResource> deckCardResource, LinkedList<CardObjective> deckCardObjective, LinkedList<CardGold> deckCardGold, String currentPlayer, ArrayList<CardResource> centralCardsResource, ArrayList<CardGold> centralCardsGold, GameState gameState){
+    public PlayingBoard(CardObjective firstObjective, CardObjective secondObjective, int playernumber, ArrayList<Player> playerList, LinkedList<CardStarting> deckCardStarting, LinkedList<CardResource> deckCardResource, LinkedList<CardObjective> deckCardObjective, LinkedList<CardGold> deckCardGold, String currentPlayer, ArrayList<CardResource> centralCardsResource, ArrayList<CardGold> centralCardsGold, GameState gameState) {
         this.firstObjective = firstObjective;
         this.secondObjective = secondObjective;
         this.playernumber = playernumber;
@@ -110,6 +111,11 @@ public class PlayingBoard extends ObservableModel {
 
     public void addPlayer(Player p) {
         players.add(p);
+        try {
+            notifyObservers(new AddedPlayerMessage(p.getNickname(), p.getToken()));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setPlayernumber(int playernumber) {
@@ -199,7 +205,11 @@ public class PlayingBoard extends ObservableModel {
     // shuffle players
     public void shufflePlayer() {
         Collections.shuffle(players);
+//        newOrderObserver(players.stream()
+//                .map(Player::getNickname)
+//                .toList());
     }
+
     public String getnextPlayer(){
         int indexOfCurrentPlayer = players.indexOf(getPlayer(currentPlayer));
         if (indexOfCurrentPlayer == players.size()-1){
