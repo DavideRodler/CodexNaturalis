@@ -5,9 +5,10 @@ import controller.GameController;
 import exception.ChangedStateException;
 import exception.NotValidMoveException;
 import model.Player;
+import model.enums.GameState;
 import model.enums.TokenEnum;
 import socket.Messages.Message;
-import socket.Messages.PlayersInfoMessage;
+//import socket.Messages.PlayersInfoMessage;
 
 import java.rmi.RemoteException;
 import java.util.*;
@@ -16,20 +17,22 @@ public class RmiServer implements VirtualServer {
 
     final GameController gameController;
     private List<VirtualView> clients;
+    private HashMap<String, VirtualView> clientsMap;
 
 
     public RmiServer(GameController gameController) {
         this.gameController = gameController;
         gameController.initGameController();
         clients = new ArrayList<>();
+        clientsMap = new HashMap<>();
 
     }
 
     @Override
     public synchronized void connectClient(VirtualView client) {
             this.clients.add(client);
+        gameController.getBoard().addObserver(client);
             System.err.println("new client connected");
-            this.gameController.getBoard().addObserver(client);
     }
 
     @Override
@@ -76,12 +79,35 @@ public class RmiServer implements VirtualServer {
     @Override
     public void startSetupOfNicknameAndToken() throws RemoteException {
         for (VirtualView client : clients) {
-            //check if there are more clients connected than the number of players
-            if(clients.indexOf(client) < gameController.getBoard().getPlayernumber()) {
-                client.setupOfnicknameAndToken();
-            }
+            client.setupOfnicknameAndToken();
         }
-//        notifyAllClientsOfPlayersAdded();
+    }
+ 
+
+    @Override
+    public boolean morePlayersNeeded() throws RemoteException {
+        if (clients.size() <= gameController.getBoard().getPlayernumber() || gameController.getBoard().getGameState().equals(GameState.SET_PLAYER_NUMBER)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    @Override
+    public void checkAllPlayersConnected() throws RemoteException {
+        if(clients.size() == (gameController.getBoard().getPlayernumber())){
+            startSetupOfNicknameAndToken();
+        }
+    }
+
+    @Override
+    public void disconnectClient(VirtualView client) throws RemoteException{
+        for (int i = 0; i < clients.size(); i++) {
+            clients.remove(clients.get(i));
+            System.err.println("client disconnected");
+        }
     }
 
 }
