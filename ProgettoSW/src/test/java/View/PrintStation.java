@@ -21,7 +21,7 @@ public class PrintStation {
 
     @Test
     public void CliPrintStation() throws RemoteException {
-        PlayingStation station = PlayngStationTameplate.test_6Cards_2Positioning();
+        PlayingStation station = PlayngStationTameplate.test_3Cards_1Positioning();
         HashMap<ArrayList<Integer>, CardPlaying> table = station.getTable();
         showUpdatedStation(table);
     }
@@ -48,7 +48,8 @@ public class PrintStation {
             }
         }
         StationMatrix stationMatrix = new StationMatrix();
-        stationMatrix.addCardsToSmallStation(stationCard, max);
-        stationMatrix.printSmallStation(max);
+        stationMatrix.initializeStationPrint();
+        stationMatrix.addCardsToStation(stationCard, max);
+        stationMatrix.printStation(max);
     }
 }

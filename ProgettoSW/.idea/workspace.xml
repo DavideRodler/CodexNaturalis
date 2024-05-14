@@ -4,23 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Test_positioning2">
-      <change afterPath="$PROJECT_DIR$/src/main/java/socket/ClientProxy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/socket/Queue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/socket/ServerProxy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/socket/SocketClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/socket/SocketClientHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/socket/SocketServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/socket/VirtualServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/socket/VirtualView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="print board + print station (sia grande che piccolo)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socket/client/SocketClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socket/client/VirtualClientSocket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socket/server/SocketServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socket/server/VirtualServerSocket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/StationMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/StationMatrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +20,7 @@
         <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -45,11 +33,13 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="6b819484b350a14b20f8f1901f16a10071251932" />
+        <entry key="$PROJECT_DIR$/.." value="gui" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RESET_MODE" value="MIXED" />
     <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -59,8 +49,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://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@github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler&quot;,
-    &quot;accountId&quot;: &quot;77d1be0f-1935-4da1-bed4-002b7d7b8169&quot;
+    &quot;url&quot;: &quot;https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler.git&quot;,
+    &quot;accountId&quot;: &quot;4557c571-f714-49c9-a328-43d1fd17bd55&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -74,6 +64,9 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2dahV6rdOfQ8JesgSo6bQBB1S9B" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -81,6 +74,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.ClientApp.executor": "Run",
+    "Application.Gui.executor": "Run",
     "Application.RmiClient.executor": "Run",
     "Application.ServerApp.executor": "Run",
     "Application.deckconstructor.executor": "Run",
@@ -101,15 +95,17 @@
     "JUnit.PlacingConditionTest.test_null_corner.executor": "Run",
     "JUnit.deckconstructorTest.deckResource.executor": "Run",
     "JUnit.java in ProgettoSW.executor": "Debug",
+    "Maven.ProgettoSW [clean].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "main",
+    "ignore.preview.features.used": "true",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW",
+    "last_opened_file_path": "/Users/eric/Desktop/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/Senza nome/ProgettoSW/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -118,13 +114,24 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "settings.editor.selected.configurable": "preferences.JavaFX",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/PointsBoard" />
+      <recent name="$PROJECT_DIR$/src/main/resources/Cards/CardObjective/Back" />
+      <recent name="$PROJECT_DIR$/src/main/resources/Cards/CardStarting/Back" />
+      <recent name="$PROJECT_DIR$/src/main/resources/Cards/CardResource/Back/Insect" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/fxml" />
+      <recent name="$PROJECT_DIR$/src/main/resources/Cards/CardGold/Front/Fungi" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="controller" />
@@ -136,15 +143,13 @@
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientApp">
-    <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-22" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
+  <component name="RunManager" selected="Application.Gui">
+    <configuration name="Gui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="View.Gui" />
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="StartApplication.*" />
+          <option name="PATTERN" value="View.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -159,34 +164,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjectivePositioningTest.test_Positioning" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlacingConditionTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
+          <option name="PATTERN" value="model.placingCondition.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
-      <option name="METHOD_NAME" value="test_Positioning" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ObjectivePositioningTest.test_Positioning2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
-      <option name="METHOD_NAME" value="test_Positioning2" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="model.placingCondition" />
+      <option name="MAIN_CLASS_NAME" value="model.placingCondition.PlacingConditionTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -207,27 +195,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="java in ProgettoSW" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.ClientApp" />
+      <item itemvalue="Application.Gui" />
       <item itemvalue="Application.ServerApp" />
-      <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
-      <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
       <item itemvalue="JUnit.PlacingConditionTest.test_null_corner" />
+      <item itemvalue="JUnit.java in ProgettoSW" />
+      <item itemvalue="JUnit.PlacingConditionTest (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ClientApp" />
-        <item itemvalue="Application.ServerApp" />
-        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
-        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
+        <item itemvalue="Application.Gui" />
+        <item itemvalue="JUnit.PlacingConditionTest (1)" />
+        <item itemvalue="JUnit.java in ProgettoSW" />
         <item itemvalue="JUnit.PlacingConditionTest.test_null_corner" />
+        <item itemvalue="Application.ServerApp" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
       </set>
     </attachedChunks>
   </component>
@@ -249,6 +246,17 @@
       <workItem from="1713710108899" duration="34383000" />
       <workItem from="1713858148446" duration="6962000" />
       <workItem from="1713873686858" duration="4854000" />
+      <workItem from="1713888131863" duration="8755000" />
+      <workItem from="1714033515681" duration="31071000" />
+      <workItem from="1714236302614" duration="1485000" />
+      <workItem from="1714249020629" duration="771000" />
+      <workItem from="1714317124791" duration="17270000" />
+      <workItem from="1714383026397" duration="8112000" />
+      <workItem from="1715463750095" duration="23000" />
+      <workItem from="1715463789927" duration="1112000" />
+      <workItem from="1715499184052" duration="4435000" />
+      <workItem from="1715528046209" duration="80000" />
+      <workItem from="1715528262169" duration="11858000" />
     </task>
     <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
       <option name="closed" value="true" />
@@ -450,15 +458,79 @@
       <option name="project" value="LOCAL" />
       <updated>1713878558958</updated>
     </task>
-    <task id="LOCAL-00026" summary="countingResource - TEST DA CORREGGERE">
+    <task id="LOCAL-00026" summary="aggiunta local clientController">
       <option name="closed" value="true" />
-      <created>1714838748462</created>
+      <created>1713894085806</created>
       <option name="number" value="00026" />
       <option name="presentableId" value="LOCAL-00026" />
       <option name="project" value="LOCAL" />
-      <updated>1714838748462</updated>
+      <updated>1713894085806</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Settaggio gioco iniziale con observer in modo reattivo">
+      <option name="closed" value="true" />
+      <created>1714081410216</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1714081410217</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Settaggio gioco iniziale con observer in modo reattivo">
+      <option name="closed" value="true" />
+      <created>1714082495256</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1714082495256</updated>
+    </task>
+    <task id="LOCAL-00029" summary="cli 2 commentata">
+      <option name="closed" value="true" />
+      <created>1714082765430</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1714082765430</updated>
+    </task>
+    <task id="LOCAL-00030" summary="esempio Socket per capire il funzionamento e per poter fare un pull">
+      <option name="closed" value="true" />
+      <created>1714226826749</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1714226826749</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Aggiunta delle carte alla mano dei Players">
+      <option name="closed" value="true" />
+      <created>1714237739149</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1714237739149</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Fixati bug che c'erano con le stampe dei thread e codice semplificato">
+      <option name="closed" value="true" />
+      <created>1714335675462</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1714335675462</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Fixato bug nel metodo di Cli2 che lanciava CastException sulla stampa delle carte oro">
+      <option name="closed" value="true" />
+      <created>1714336222819</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1714336222819</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Implementato RmiCompleto tranne controllo fine partita. Da controllare se il piazzamento delle carte è corretto.">
+      <option name="closed" value="true" />
+      <created>1714391488988</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1714391488988</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,11 +542,6 @@
         <entry key="Branch">
           <value>
             <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="detached2" />
-                </option>
-              </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
                   <option value="main" />
@@ -505,7 +572,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="detached2" />
+                        <option value="origin/main" />
                       </list>
                     </value>
                   </entry>
@@ -518,13 +585,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="aggiunta robe eliminate da eric" />
-    <MESSAGE value="COMMIT CON NUOVO DECK GOLD E PATTERN DI CREAZIONE FILE JSON" />
-    <MESSAGE value="Commit con aggiunte parziali dei deck starting card e objective card, modifica table come Mappa con key=ArrayList" />
-    <MESSAGE value="fix objective" />
-    <MESSAGE value="put void instead of objective in method StartingCardDeck" />
-    <MESSAGE value="Prova costruttoti file Json" />
-    <MESSAGE value="Costruttori dei deck FINITI, MANCA DA TESTARE E DA FARE QUELLO CHE COSTRUSICE GLI OBBIETTIVI" />
     <MESSAGE value="fixato deck gold e metodo assegna obiettivi" />
     <MESSAGE value="aggiunta dell'attributo objective in cardobjective&#10;in deckconstructor cambiato metodo per il mazzo di cardobjective&#10;cambiato costruttore objective counting gold&#10;cambiato metodo checkobjective" />
     <MESSAGE value="prova JSONArray e JSONParser" />
@@ -542,8 +602,15 @@
     <MESSAGE value="Aggiunta di Client, Server Rmi, e della logica Rmi." />
     <MESSAGE value="Aggiunto display cardStarting" />
     <MESSAGE value="aggiunta colori" />
-    <MESSAGE value="countingResource - TEST DA CORREGGERE" />
-    <option name="LAST_COMMIT_MESSAGE" value="countingResource - TEST DA CORREGGERE" />
+    <MESSAGE value="aggiunta local clientController" />
+    <MESSAGE value="Settaggio gioco iniziale con observer in modo reattivo" />
+    <MESSAGE value="cli 2 commentata" />
+    <MESSAGE value="esempio Socket per capire il funzionamento e per poter fare un pull" />
+    <MESSAGE value="Aggiunta delle carte alla mano dei Players" />
+    <MESSAGE value="Fixati bug che c'erano con le stampe dei thread e codice semplificato" />
+    <MESSAGE value="Fixato bug nel metodo di Cli2 che lanciava CastException sulla stampa delle carte oro" />
+    <MESSAGE value="Implementato RmiCompleto tranne controllo fine partita. Da controllare se il piazzamento delle carte è corretto." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementato RmiCompleto tranne controllo fine partita. Da controllare se il piazzamento delle carte è corretto." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -552,8 +619,82 @@
           <properties class="java.lang.IllegalStateException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.reflect.InvocationTargetException" package="java.lang.reflect" />
+          <option name="timeStamp" value="184" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>183</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>185</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>188</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>219</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>222</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>225</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>228</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>233</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>242</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>251</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>260</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>272</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
+          <line>302</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="controller.GameController" memberName="board" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="X - 1" />
@@ -564,12 +705,25 @@
         <watch expression="countFungi" />
         <watch expression="corner" />
         <watch expression="nickname" />
+        <watch expression="clientsMap" />
+        <watch expression="observers" />
+        <watch expression="observers" />
+        <watch expression="clientsMapNicknamesKey" />
+        <watch expression="semaphore" />
       </configuration>
     </watches-manager>
   </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ProgettoSW$java_in_ProgettoSW.ic" NAME="java in ProgettoSW Coverage Results" MODIFIED="1713876265206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/ProgettoSW$ObjectivePositioningTest_test_Positioning.ic" NAME="ObjectivePositioningTest.test_Positioning Coverage Results" MODIFIED="1713276818760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ClientApp.ic" NAME="ClientApp Coverage Results" MODIFIED="1714141966006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>StartApplication.*</FILTER>
     </SUITE>
   </component>
 </project>

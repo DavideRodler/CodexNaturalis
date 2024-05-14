@@ -2,24 +2,38 @@ package View;
 
 import model.cards.*;
 
+import java.util.Arrays;
+
 import static View.CardMatrixCreator.*;
 import static View.CardMatrixCreator.createFrontPlayingCard;
 
 public class StationMatrix {
     String[][] stationPrint = new String[240][560];
     String[][] SmallStationPrint = new String[160][240];
+    int distanceXFromStarting;
+    int distanceYFromStarting;
+    String black = "\033[0;30m";
+    String reset = "\033[0m";
+
+    public void initializeStationPrint(){
+        for (String[] strings : stationPrint) {
+            Arrays.fill(strings, black + "█" + reset);
+        }
+    }
     //metodo addCardToBoard e addCardsToBoard e infine una stampa
     public void addCardToStation(CardResource card, int i, int j) {
         int m = 0;
         int l = 0;
+        distanceXFromStarting = 40 - i;
+        distanceYFromStarting = 40 - j;
         String[][] tmp;
         if(card.getPlayingBack()){
             tmp = createBackPlayingCard(card);
         } else{
             tmp = createFrontPlayingCard(card);
         }
-        for(int k = 3*i; k < 3*i+3; k++){
-            for(int s = 7*j; s < 7*j+7; s++){
+        for(int k = 3*i + distanceXFromStarting; k < 3*i+3+distanceXFromStarting; k++){
+            for(int s = 7*j+distanceYFromStarting; s < 7*j+7+distanceYFromStarting; s++){
                 stationPrint[k][s] = tmp[m][l];
                 l++;
             }
@@ -54,8 +68,10 @@ public class StationMatrix {
             String[][] tmp = createFrontPlayingCard(card);
             int m = 0;
             int l = 0;
-            for(int k = 3*i; k < 3*i+3; k++){
-                for(int s = 7*j; s < 7*j+7; s++){
+            distanceXFromStarting = 40 - i;
+            distanceYFromStarting = 40 - j;
+            for(int k = 3*i + distanceXFromStarting; k < 3*i+3+distanceXFromStarting; k++){
+                for(int s = 7*j+distanceYFromStarting; s < 7*j+7+distanceYFromStarting; s++){
                     stationPrint[k][s] = tmp[m][l];
                     l++;
                 }
@@ -179,35 +195,34 @@ public class StationMatrix {
     public void addCardsToStation(CardPlaying[][] station, int max){
         for(int i = 40-max; i < 41+max; i++){
             for(int j = 40-max; j < 41+max; j++){
-                if(station[i][j] != null){
-                    if(station[i][j].getPlayingBack()){
-                        if(i == 40 && j == 40){ //controllo se è la carta iniziale
+                if(station[i][j] != null) {
+                    if (station[i][j].getPlayingBack()) {
+                        if (i == 40 && j == 40) { //controllo se è la carta iniziale
                             addCardToStation((CardStarting) station[i][j], i, j);
 
                         } else { // carta risorsa o gold
                             //chiamo addCardToStation(CardRes)
                             addCardToStation((CardResource) station[i][j], i, j);
                         }
-                    } else{
-                        if(i == 40 && j == 40){ // controllo se è la carta iniziale
+                    } else {
+                        if (i == 40 && j == 40) { // controllo se è la carta iniziale
                             addCardToStation((CardStarting) station[i][j], i, j);
-                        } else{
-                            if(station[i][j] instanceof CardGold){
+                        } else {
+                            if (station[i][j] instanceof CardGold) {
                                 addCardToStation((CardGold) station[i][j], i, j);
-                            } else{
+                            } else {
                                 addCardToStation((CardResource) station[i][j], i, j);
                             }
                         }
                     }
-                } else{
-                    String black = "\033[0;30m";
-                    String reset = "\033[0m";
-                    for(int k = 3*i; k < 3*i+3; k++){
-                        for(int s = 7*j; s < 7*j+7; s++){
-                            stationPrint[k][s] = black + "█" + reset;
-                        }
-                    }
                 }
+//                } else{
+//                    for(int k = 3*i; k < 3*i+3; k++){
+//                        for(int s = 7*j; s < 7*j+7; s++){
+//                            stationPrint[k][s] = black + "█" + reset;
+//                        }
+//                    }
+//                }
             }
         }
     }
