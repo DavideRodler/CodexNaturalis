@@ -1,7 +1,7 @@
 package model.objectives;
 
 import model.PlayingStation;
-import model.testsTameplate.PlayngStationTameplate;
+import model.testsTemplate.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +12,7 @@ class ObjectivePositioningTest {
     @Test
     public void test_Positioning() {
         // Creating the PlayingStation
-        PlayingStation station = PlayngStationTameplate.test_3Cards_1Positioning();
+        PlayingStation station = PlayingStationTemplate.test_3Cards_1Positioning();
         int punti = station.getSecretObjective().getObjective().countObjectivePoints(station);
 
         // Checking the result
@@ -24,7 +24,7 @@ class ObjectivePositioningTest {
     @Test
     public void test_Positioning2() {
         // Creating the PlayingStation
-        PlayingStation station = PlayngStationTameplate.test_6Cards_2Positioning();
+        PlayingStation station = PlayingStationTemplate.test_6Cards_2Positioning();
         int punti = station.getSecretObjective().getObjective().countObjectivePoints(station);
 
         // Checking the result

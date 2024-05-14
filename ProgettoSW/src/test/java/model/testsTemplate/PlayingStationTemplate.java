@@ -1,6 +1,5 @@
-package model.testsTameplate;
+package model.testsTemplate;
 
-import model.Player;
 import model.PlayingStation;
 import model.cards.*;
 import model.cards.face.Face;
@@ -8,14 +7,12 @@ import model.cards.face.Corner;
 import model.enums.DirectionEnum;
 import model.enums.PositionEnum;
 import model.enums.SuitEnum;
-import model.enums.TokenEnum;
 import model.objectives.*;
-import org.junit.runners.Suite;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PlayngStationTameplate {
+public class PlayingStationTemplate {
     public static PlayingStation test_2Cards_0Diagonal_c() {
 
         // i create two card resource with an EMPTY back and some Suits in the front,
@@ -50,6 +47,7 @@ public class PlayngStationTameplate {
         PlayingStation station = new PlayingStation(cardObjectiveTmp,new HashMap<ArrayList<Integer>, CardPlaying>());
 
         // now i have to populate the table
+        station.getMap().put(creatingCordinatesArray(40,40), cardStarting);
         station.getMap().put(creatingCordinatesArray(39,39), cardAnimal1);
         station.getMap().put(creatingCordinatesArray(38,38), cardAnimal2);
 
@@ -190,6 +188,7 @@ public class PlayngStationTameplate {
         PlayingStation station = new PlayingStation(cardObjectiveTmp, new HashMap<>());
 
         // now i have to populate the table
+        station.getMap().put(creatingCordinatesArray(40,40),cardStarting);
         station.getMap().put(creatingCordinatesArray(41,41),cardAnimal1);
         station.getMap().put(creatingCordinatesArray(42,42),cardPlant1);
         station.getMap().put(creatingCordinatesArray(41,43),cardAnimal2);

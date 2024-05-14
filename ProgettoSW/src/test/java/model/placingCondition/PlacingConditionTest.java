@@ -1,11 +1,5 @@
 package model.placingCondition;
 
-import model.PlayingStation;
-import model.testsTameplate.PlayngStationTameplate;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 public class PlacingConditionTest {
 
 //

@@ -2,9 +2,18 @@ package controller;
 
 import Network.Cli2;
 import exception.ChangedStateException;
+import model.PlayingStation;
+import model.cards.CardObjective;
 import model.cards.CardResource;
+import model.cards.CardStarting;
+import model.cards.face.Corner;
+import model.cards.face.Face;
 import model.enums.DeckEnum;
+import model.enums.DirectionEnum;
+import model.enums.SuitEnum;
 import model.enums.TokenEnum;
+import model.objectives.ObjectiveDiagonal;
+import model.testsTemplate.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
 import exception.NotValidMoveException;
 
@@ -139,5 +148,88 @@ class GameControllerTest {
 
         game.addCardToPlayingStation(Player2, Player2Hand.get(0).getId(),38,38);
         game.addCardFromDeckToPlayerHand(Player2, DeckEnum.DECK_GOLD);
+    }
+
+
+    @Test
+    void getPlayerNumber() throws ChangedStateException, NotValidMoveException {
+        GameController game = new GameController();
+        game.setPlayerNumber(2);
+        assertEquals(2, game.getPlayerNumber());
+
+    }
+
+    @Test
+    void getAvailableToken() throws ChangedStateException, NotValidMoveException {
+        GameController game = new GameController();
+        game.setPlayerNumber(3);
+        game.addPlayer("tommy", TokenEnum.BLACK);
+        game.addPlayer("isa", TokenEnum.YELLOW);
+        game.addPlayer("eric", TokenEnum.BLUE);
+        System.out.println(game.getAvailableToken());
+    }
+
+
+    @Test
+    void getStartingCard() throws ChangedStateException, NotValidMoveException {
+        GameController game = new GameController();
+        game.setPlayerNumber(2);
+        game.addPlayer("isa", TokenEnum.YELLOW);
+        game.addPlayer("dave", TokenEnum.BLUE);
+        PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
+        game.getBoard().getPlayer("isa").setStation(station);
+        assertEquals(3,game.getStartingCard("isa").getId());
+
+    }
+
+    @Test
+    void getObjectiveToChoose() throws ChangedStateException, NotValidMoveException {
+        GameController game = new GameController();
+        game.setPlayerNumber(2);
+        game.addPlayer("isa", TokenEnum.YELLOW);
+        game.addPlayer("dave", TokenEnum.BLUE);
+        Cli2 cli = new Cli2();
+        System.out.println(game.getObjectiveToChoose("isa"));
+        cli.showObjectiveCards(game.getObjectiveToChoose("isa"));
+    }
+
+    @Test
+    void getPlayerHand() throws ChangedStateException, NotValidMoveException {
+        GameController game = new GameController();
+        game.setPlayerNumber(2);
+        game.addPlayer("tommy", TokenEnum.BLACK);
+        game.addPlayer("isa", TokenEnum.YELLOW);
+        Cli2 cli = new Cli2();
+        System.out.println(game.getPlayerHand("isa"));
+        cli.showUpdatedHand(game.getPlayerHand("isa"));
+
+    }
+
+    @Test
+    void getCurrentPlayer() throws ChangedStateException, NotValidMoveException {
+        GameController game = new GameController();
+        game.setPlayerNumber(2);
+        game.addPlayer("tommy", TokenEnum.BLACK);
+        game.addPlayer("isa", TokenEnum.YELLOW);
+        game.getBoard().setCurrentPlayer("isa");
+        assertEquals("isa", game.getCurrentPlayer());
+
+    }
+
+    @Test
+    void isGamefinished() throws ChangedStateException, NotValidMoveException {
+        GameController game = new GameController();
+        game.setPlayerNumber(2);
+        game.addPlayer("tommy", TokenEnum.BLACK);
+        game.addPlayer("isa", TokenEnum.YELLOW);
+        game.getBoard().getPlayer("isa").setPoints(12);
+        game.getBoard().getPlayer("isa").setPoints(21);
+        game.getBoard().setCurrentPlayer("isa");
+        assertTrue(game.isGamefinished());
+    }
+
+    @Test
+    void winner() {
+
     }
 }

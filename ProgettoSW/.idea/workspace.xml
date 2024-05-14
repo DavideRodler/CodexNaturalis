@@ -5,24 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Aggiunta del client controller">
-      <change afterPath="$PROJECT_DIR$/src/main/java/socket/Messages/AddedPlayerMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/socket/Messages/CardToHandMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/socket/Messages/PlayersInfoMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/observers/ObservableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/observers/ObservableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/placingCondition/PlacingConditionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/placingCondition/PlacingConditionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/testsTameplate/PlayngStationTameplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testsTemplate/PlayingStationTemplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +69,9 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2dahV6rdOfQ8JesgSo6bQBB1S9B" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -97,10 +90,18 @@
     "JUnit.DeckConstructorTest.testDeckResource.executor": "Debug",
     "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
     "JUnit.GameControllerTest.GivingCardToPlayersTest.executor": "Run",
-    "JUnit.GameControllerTest.TestOfFourTurns.executor": "Debug",
+    "JUnit.GameControllerTest.TestOfFourTurns.executor": "Run",
     "JUnit.GameControllerTest.executor": "Run",
+    "JUnit.GameControllerTest.getAvailableToken.executor": "Coverage",
+    "JUnit.GameControllerTest.getCurrentPlayer.executor": "Coverage",
+    "JUnit.GameControllerTest.getObjectiveToChoose.executor": "Coverage",
+    "JUnit.GameControllerTest.getPlayerHand.executor": "Coverage",
+    "JUnit.GameControllerTest.getPlayerNumber.executor": "Run",
+    "JUnit.GameControllerTest.getStartingCard.executor": "Coverage",
+    "JUnit.GameControllerTest.isGamefinished.executor": "Run",
     "JUnit.GameControllerTest.setCentralCardPlayedBack.executor": "Run",
     "JUnit.GameControllerTest.setStartingCardForPlayers.executor": "Run",
+    "JUnit.GameControllerTest.setupOfTheGameTest.executor": "Run",
     "JUnit.GameControllerTest.testChecknickname.executor": "Run",
     "JUnit.GameControllerTest.testTokenAvailability.executor": "Run",
     "JUnit.GameTest.testChecknickname.executor": "Run",
@@ -146,54 +147,13 @@
       <recent name="controller" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="model" />
       <recent name="controller" />
+      <recent name="model" />
       <recent name="model.objectives" />
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientApp">
-    <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="StartApplication.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="StartApplication.ServerApp" />
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="StartApplication.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="controller" />
-      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.GameControllerTest.isGamefinished">
     <configuration name="GameControllerTest.TestOfFourTurns" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
@@ -210,7 +170,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameControllerTest.testChecknickname" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest.getCurrentPlayer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
@@ -220,25 +180,73 @@
       </extension>
       <option name="PACKAGE_NAME" value="controller" />
       <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
-      <option name="METHOD_NAME" value="testChecknickname" />
+      <option name="METHOD_NAME" value="getCurrentPlayer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameControllerTest.getObjectiveToChoose" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
+      <option name="METHOD_NAME" value="getObjectiveToChoose" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameControllerTest.getPlayerHand" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
+      <option name="METHOD_NAME" value="getPlayerHand" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameControllerTest.isGamefinished" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
+      <option name="METHOD_NAME" value="isGamefinished" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.ClientApp" />
-      <item itemvalue="Application.ServerApp" />
-      <item itemvalue="JUnit.GameControllerTest.testChecknickname" />
-      <item itemvalue="JUnit.GameControllerTest" />
+      <item itemvalue="JUnit.GameControllerTest.getCurrentPlayer" />
+      <item itemvalue="JUnit.GameControllerTest.getObjectiveToChoose" />
+      <item itemvalue="JUnit.GameControllerTest.getPlayerHand" />
+      <item itemvalue="JUnit.GameControllerTest.isGamefinished" />
       <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ClientApp" />
-        <item itemvalue="Application.ServerApp" />
-        <item itemvalue="JUnit.GameControllerTest" />
-        <item itemvalue="JUnit.GameControllerTest.testChecknickname" />
+        <item itemvalue="JUnit.GameControllerTest.isGamefinished" />
+        <item itemvalue="JUnit.GameControllerTest.getCurrentPlayer" />
+        <item itemvalue="JUnit.GameControllerTest.getPlayerHand" />
+        <item itemvalue="JUnit.GameControllerTest.getObjectiveToChoose" />
         <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
       </list>
     </recent_temporary>
@@ -246,8 +254,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
       </set>
     </attachedChunks>
   </component>
@@ -706,38 +713,14 @@
           <option name="timeStamp" value="42" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
-          <line>138</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
-          <line>133</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>
-          <line>280</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/model/deck/DeckConstructorTest.java</url>
           <line>19</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
-          <line>96</line>
-          <properties class="controller.GameControllerTest">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="27" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>
+          <line>338</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -765,12 +748,27 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getStartingCard.ic" NAME="GameControllerTest.getStartingCard Coverage Results" MODIFIED="1715697139842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$java_in_ProgettoSW.ic" NAME="java in ProgettoSW Coverage Results" MODIFIED="1713876265206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getAvailableToken.ic" NAME="GameControllerTest.getAvailableToken Coverage Results" MODIFIED="1715692588758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$ObjectivePositioningTest_test_Positioning.ic" NAME="ObjectivePositioningTest.test_Positioning Coverage Results" MODIFIED="1713276818760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getPlayerHand.ic" NAME="GameControllerTest.getPlayerHand Coverage Results" MODIFIED="1715698739662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getObjectiveToChoose.ic" NAME="GameControllerTest.getObjectiveToChoose Coverage Results" MODIFIED="1715698653686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$ClientApp.ic" NAME="ClientApp Coverage Results" MODIFIED="1714141966006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>StartApplication.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getCurrentPlayer.ic" NAME="GameControllerTest.getCurrentPlayer Coverage Results" MODIFIED="1715699049521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
     </SUITE>
   </component>
 </project>

@@ -339,7 +339,7 @@ public class GameController implements Serializable {
         if (board.getPlayers().get(board.getPlayernumber()-1).getNickname().equals(board.getCurrentPlayer())) {
             //controllo ci sia almeno un player che ha fatto piu' di 20 punti
             for (Player player : board.getPlayers()) {
-                if (board.getPlayers().get(1).equals(player) && player.getPoints() > 20) {
+                if (player.getPoints() > 20) {
                     return true;
                 }
             }
