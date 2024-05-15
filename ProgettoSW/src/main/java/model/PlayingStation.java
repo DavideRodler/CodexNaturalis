@@ -6,9 +6,11 @@ import model.cards.*;
 import model.cards.face.Corner;
 import model.enums.SuitEnum;
 import observers.ObservableModel;
+import socket.Messages.CardStartingMessage;
 
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.*;
 
 import static model.enums.SuitEnum.*;
@@ -73,12 +75,17 @@ public class PlayingStation extends ObservableModel implements Serializable {
         this.map = map;
     }
 
-    public void setCardStarting(CardStarting card){
+    public void setCardStarting(CardStarting card,String nickname){
         ArrayList<Integer> coordinates = new ArrayList<>();
         coordinates.add(40);
         coordinates.add(40);
         map.put(coordinates, card);
         updateCounters(card);
+        try {
+            notifyObservers(new CardStartingMessage(nickname,card));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -134,7 +141,7 @@ public class PlayingStation extends ObservableModel implements Serializable {
      * @param y the y coordinate
      * @return the card at the given coordinates
      */
-    public Card getCard(int x, int y) {
+    public CardPlaying getCard(int x, int y) {
         ArrayList<Integer> coordinates = new ArrayList<>();
         coordinates.add(0, x);
         coordinates.add(1, y);

@@ -113,7 +113,6 @@ public class GameController implements Serializable {
         this.board.addPlayer(new Player(nickname, token, new PlayingStation( new HashMap<>()), 0, new ArrayList<>()));
         if(board.getPlayers().size() == board.getPlayernumber()){
             board.setGameState(GameState.INITIALIZE_GAME);
-            InitializeGame();
         }
     }
 
@@ -159,7 +158,7 @@ public class GameController implements Serializable {
 
         //now i give for each player its Starting card
         for (Player player: board.getPlayers()){
-            player.getStation().setCardStarting(board.getDeckCardStarting().pop());
+            player.getStation().setCardStarting(board.getDeckCardStarting().pop(),player.getNickname());
         };
 
         board.setGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);

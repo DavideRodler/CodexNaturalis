@@ -112,6 +112,13 @@ public class RmiServer implements VirtualServer {
     }
 
     public void startSetupOfStartingCard() throws RemoteException {
+        try {
+            gameController.InitializeGame();
+        } catch (NotValidMoveException e) {
+            throw new RuntimeException(e);
+        } catch (ChangedStateException e) {
+            throw new RuntimeException(e);
+        }
         for (VirtualView client : clients) {
             client.setupOfStartingCard();
         }

@@ -9,13 +9,11 @@ import exception.NotValidMoveException;
 import model.Player;
 import model.PlayingStation;
 import model.cards.CardObjective;
+import model.cards.CardStarting;
 import model.client.ClientBoard;
 import model.client.ReductPlayer;
 import model.enums.TokenEnum;
-import socket.Messages.ChangeStateMessage;
-import socket.Messages.CommonObjectivesMessage;
-import socket.Messages.Message;
-import socket.Messages.PlayersInfoMessage;
+import socket.Messages.*;
 //import socket.Messages.PlayersInfoMessage;
 
 import java.rmi.RemoteException;
@@ -92,6 +90,11 @@ public class ClientController {
         cardObjectiveList.add(clientModel.getFirstObjective());
         cardObjectiveList.add(clientModel.getSecondObjective());
         ui.showObjectiveCards(cardObjectiveList);
+
+        ui.showStartingCard((CardStarting) clientModel.getMyplayer().getStation().getCard(40,40));
+        for(ReductPlayer p : clientModel.getOtherplayers()) {
+            ui.showStartingCard((CardStarting) p.getStation().getCard(40,40));
+        }
     }
 
     public void updateModel(Message message) throws RemoteException {
@@ -114,6 +117,18 @@ public class ClientController {
                 clientModel.setFirstObjective(commonObjectivesMessage.getFirstobjective());
                 clientModel.setSecondObjective(commonObjectivesMessage.getSecondobjective());
                 break;
+            case "CardStarting":
+                CardStartingMessage cardStartingMessage = (CardStartingMessage) message;
+                if(clientModel.getMyplayer().getNickname().equals(cardStartingMessage.getNickname())) {
+                    clientModel.getMyplayer().getStation().setCardStarting(cardStartingMessage.getCardStarting(),null);
+                }
+                else {
+                    for(ReductPlayer player : clientModel.getOtherplayers()) {
+                        if(player.getNickname().equals(cardStartingMessage.getNickname())) {
+                            player.getStation().setCardStarting(cardStartingMessage.getCardStarting(),null);
+                        }
+                    }
+                }
         }
     }
 }

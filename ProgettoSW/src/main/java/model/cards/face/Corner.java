@@ -1,7 +1,9 @@
 package model.cards.face;
 import model.enums.SuitEnum;
 
-public class Corner {
+import java.io.Serializable;
+
+public class Corner implements Serializable {
     private boolean covered;
     private SuitEnum drawing;
 
