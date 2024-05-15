@@ -4,10 +4,8 @@ import Network.Client.RMI.VirtualView;
 import controller.GameController;
 import exception.ChangedStateException;
 import exception.NotValidMoveException;
-import model.Player;
 import model.enums.GameState;
 import model.enums.TokenEnum;
-import socket.Messages.Message;
 //import socket.Messages.PlayersInfoMessage;
 
 import java.rmi.RemoteException;
@@ -109,6 +107,12 @@ public class RmiServer implements VirtualServer {
             clients.remove(clients.get(i));
             System.err.println("client disconnected");
         }
+    }
+
+    @Override
+    public void setStartingCardPlayedBack(boolean playedback, String nickname, int Id) throws ChangedStateException, NotValidMoveException, RemoteException{
+        gameController.setCentralCardPlayedBack(playedback, nickname, Id);
+
     }
 
     public void startSetupOfStartingCard() throws RemoteException {

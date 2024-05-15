@@ -172,30 +172,21 @@ public class GameController implements Serializable {
      * @param nickname
      * @throws NotValidMoveException
      */
-    public void setCentralCardPlayedBack(boolean playedback, String nickname) throws NotValidMoveException, ChangedStateException {
+    public void setCentralCardPlayedBack(boolean playedback,String nickname, int ID) throws NotValidMoveException, ChangedStateException {
         assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
         Player player = board.getPlayers().stream()
                 .filter(x -> x.getNickname().equals(nickname))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("player " + nickname + " not found"));
+        try {
+            if(player.getStation().getCard(40,40).getId() != ID) throw new NotValidMoveException("the card is not the one you have set");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        player.getStation().setCardStartingPlayedBack(nickname,playedback);
+
     }
 
-
-    /**
-     * The getter for displaying the starting card
-     *
-     * @param nickname
-     * @return
-     */
-    public CardStarting getStartingCard(String nickname) throws NotValidMoveException, ChangedStateException {
-        assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
-        return (CardStarting) board.getPlayer(nickname).getStation().getMap().get(creatingCordinatesArray(40,40));
-    }
-
-
-    public ArrayList<CardObjective> getObjectiveToChoose(String nickname) {
-        return board.getPlayer(nickname).getSelectibleObjectives();
-    }
 
     /**
      * Sets the PlayerObjective
@@ -305,7 +296,7 @@ public class GameController implements Serializable {
                 .findFirst()
                 .orElseThrow(()-> new NotValidMoveException("card not in your hand"));
         //check if the card is Playable
-        player.getStation().isPlayable(card, X, Y);
+//        player.getStation().isPlayable(card, X, Y);
 
         // Check if the card can be placed
         player.removeCardFromHand(id);

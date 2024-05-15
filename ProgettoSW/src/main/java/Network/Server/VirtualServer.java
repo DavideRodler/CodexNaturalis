@@ -30,4 +30,6 @@ public interface VirtualServer extends Remote {
     void checkAllPlayersConnected() throws RemoteException;
 
     void disconnectClient(VirtualView client) throws RemoteException;
+
+    void setStartingCardPlayedBack(boolean playedback, String nickname, int ID) throws ChangedStateException, NotValidMoveException, RemoteException;
 }

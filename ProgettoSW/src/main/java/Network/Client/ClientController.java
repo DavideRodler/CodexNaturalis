@@ -87,15 +87,36 @@ public class ClientController {
 
     public void setupOfStartingCard() {
         ArrayList<CardObjective> cardObjectiveList = new ArrayList<>();
-        cardObjectiveList.add(clientModel.getFirstObjective());
-        cardObjectiveList.add(clientModel.getSecondObjective());
-        ui.showObjectiveCards(cardObjectiveList);
+        CardStarting cardStarting = null;
 
-        ui.showStartingCard((CardStarting) clientModel.getMyplayer().getStation().getCard(40,40));
-        for(ReductPlayer p : clientModel.getOtherplayers()) {
-            ui.showStartingCard((CardStarting) p.getStation().getCard(40,40));
+        try {
+            cardStarting = (CardStarting) clientModel.getMyplayer().getStation().getCard(40,40);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+        //asking starting card face
+        ui.showStartingCard(cardStarting);
+        boolean answer = ui.askStartingCardPlayedBack();
+
+        //setting starting card face in local model
+        clientModel.getMyplayer().getStation().setCardStartingPlayedBack(null,answer);
+
+        //Printing the board
+        System.out.println("ciao");
+
+        //notify the server
+        try {
+            server.setStartingCardPlayedBack(answer, clientModel.getMyplayer().getNickname(),cardStarting.getId());
+        } catch (ChangedStateException e) {
+            throw new RuntimeException(e);
+        } catch (NotValidMoveException e) {
+            throw new RuntimeException(e);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
     }
+
 
     public void updateModel(Message message) throws RemoteException {
         switch (message.getType()) {
@@ -127,6 +148,14 @@ public class ClientController {
                         if(player.getNickname().equals(cardStartingMessage.getNickname())) {
                             player.getStation().setCardStarting(cardStartingMessage.getCardStarting(),null);
                         }
+                    }
+                }
+                break;
+            case "CardStartingPlayedBack":
+                CardStartingPlayedBackMessage cardStartingPlayedBackMessage = (CardStartingPlayedBackMessage) message;
+                for(ReductPlayer player : clientModel.getOtherplayers()) {
+                    if(player.getNickname().equals(cardStartingPlayedBackMessage.getNickname())) {
+                        player.getStation().setCardStartingPlayedBack(null,cardStartingPlayedBackMessage.isPlayedBack());
                     }
                 }
         }
