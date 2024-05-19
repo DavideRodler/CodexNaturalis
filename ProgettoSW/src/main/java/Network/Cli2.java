@@ -1,6 +1,6 @@
 package Network;
 
-import Network.Client.RmiClient;
+import Network.Client.RMI.RmiClient;
 import Network.Server.VirtualServer;
 import View.BoardMatrix;
 import View.HandMatrix;
@@ -8,14 +8,14 @@ import View.StationMatrix;
 import View.UI;
 import model.PlayingBoard;
 import model.cards.*;
+import model.client.ClientBoard;
+import model.client.ReductPlayer;
 import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 import model.objectives.ObjectiveCountingGold;
 import model.objectives.ObjectiveCountingResource;
 import model.objectives.ObjectiveDiagonal;
 import model.objectives.ObjectivePositioning;
-import model.objectives.*;
-import model.enums.Suit;
 import model.objectives.*;
 
 import java.io.InputStreamReader;
@@ -27,9 +27,9 @@ import static View.CardMatrixCreator.*;
 
 public class Cli2 implements UI {
 
-    private final VirtualServer server;
-    private final RmiClient client;
-    private final String black;
+//    private final VirtualServer server;
+//    private final RmiClient client;
+//    private final String black;
     private final String red;
     private final String green;
     private final String yellow;
@@ -42,6 +42,9 @@ public class Cli2 implements UI {
     private final String quill;
     private final String manuscript;
     private final String inkwell;
+    private StationMatrix stationMatrix;
+    private ClientBoard clientBoard;
+    private ReductPlayer reductPlayer;
 
 
     public Cli2() {
@@ -57,23 +60,9 @@ public class Cli2 implements UI {
         inkwell = gold + "W";
         manuscript = gold + "M";
         quill = gold + "Q";
+        stationMatrix = new StationMatrix();
+        stationMatrix.initializeStationPrint();
     }
-
-
-    private String cornerScanner(SuitEnum suit) {
-        return switch (suit) {
-            case ANIMAL -> lightBlue + "A" + reset;
-            case INSECT -> purple + "I" + reset;
-            case PLANT -> green + "P" + reset;
-            case FUNGI -> red + "F" + reset;
-            case QUILL -> gold + "Q" + reset;
-            case INKWELL -> gold + "W" + reset;
-            case MANUSCRIPT -> gold + "M" + reset;
-            case EMPTY -> "E";
-            default -> "N";
-        };
-    }
-
 
     @Override
     public void showStartingCard(CardStarting cardStarting) {
@@ -131,11 +120,11 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public void showObjectiveCards(CardObjective[] cardObjective) {
+    public void showObjectiveCards() {
         System.out.println();
-        printCard(cardObjective[0]);
+        printCard(clientBoard.getFirstObjective());
         System.out.println();
-        printCard(cardObjective[1]);
+        printCard(clientBoard.getSecondObjective());
     }
 
     @Override
@@ -152,12 +141,18 @@ public class Cli2 implements UI {
 
     @Override
     public void showUpdatedBoard(PlayingBoard playingBoard) {
+        int pos = 0;
         BoardMatrix board = new BoardMatrix();
         System.out.println("Common objectives: ");
         board.printCommonObjectives(playingBoard.getFirstObjective(), playingBoard.getSecondObjective());
         System.out.println("Central cards are: ");
-        for(int i = 0; i < playingBoard.getCentralCards().length; i++) { //fare in modo che non stampi il back.
-            board.printCentralCard(playingBoard.getCentralCards()[i], i);
+        for(int i = 0; i < clientBoard.getCentralCardsGold().size(); i++){
+            board.printCentralCard(clientBoard.getCentralCardsGold().get(i), pos);
+            pos++;
+        }
+        for(int i = 0; i < clientBoard.getCentralCardsResource().size(); i++){
+            board.printCentralCard(clientBoard.getCentralCardsResource().get(i), pos);
+            pos++;
         }
         board.printCentral();
     }
@@ -168,7 +163,7 @@ public class Cli2 implements UI {
         maxX = 0;
         maxY = 0;
         max = 0;
-        System.out.println("Station ");//name);
+        System.out.println(reductPlayer.getNickname() + "'s station: ");//name);
         CardPlaying[][] station = new CardPlaying[80][80];
         for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : playingStation.entrySet()) {
             ArrayList<Integer> coordinates = entry.getKey();
@@ -185,16 +180,15 @@ public class Cli2 implements UI {
             }
         }
         //ho popolato le carte della station, la passo come argomento alla boardmatrix
-        StationMatrix stationMatrix = new StationMatrix();
         stationMatrix.addCardsToStation(station, max);
         stationMatrix.printStation(max);
     }
 
     @Override
-    public void showUpdatedHand(ArrayList<CardPlaying> hand) { //TODO: cambaire cardPlaying in resource
+    public void showUpdatedHand(ArrayList<CardResource> hand) { //TODO: cambaire cardPlaying in resource
         System.out.println("Here is your hand:");
         HandMatrix playerHand = new HandMatrix();
-        playerHand.addCardsToHand(hand);
+        playerHand.addCardsToHand(clientBoard.getMyplayer().getHand());
         playerHand.printHandMatrix();
     }
 
@@ -206,12 +200,21 @@ public class Cli2 implements UI {
     @Override
     public Integer[] askCoordinatesOfCards() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        System.out.println("Which card do you want to place? Insert the number of the card (1-3)");
-        Integer cardChoice = scanner.nextInt();
-        System.out.println("front (1) or back (2)");
-        Integer cardSide = scanner.nextInt();
+        Integer cardChoice;
+        do {
+            System.out.println("Which card do you want to place? Insert the number of the card (1-3)");
+            cardChoice = scanner.nextInt();
+        } while (cardChoice < 1 || cardChoice > 3);
+
+        Integer cardSide;
+        do {
+            System.out.println("front (1) or back (2)");
+            cardSide = scanner.nextInt();
+        } while(cardSide < 1 || cardSide > 2);
+
+        //qua il controllo viene fatto da isPlayable.
         System.out.println("Choose x coordinates");
-        Integer x = scanner.nextInt();
+        int x = scanner.nextInt();
         System.out.println("Choose y coordinates");
         Integer y = scanner.nextInt();
         Integer[] Choice = {cardChoice, cardSide, x, y};
@@ -221,8 +224,11 @@ public class Cli2 implements UI {
     @Override
     public Integer askDrawingCard() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        System.out.println("Which card do you want to draw? Insert 1 for up left card, 2 for up right card, 3 for down left card, 4 for down right card, 5 for resource Deck, 6 for gold Deck");
-        Integer choice = scanner.nextInt();
+        Integer choice;
+        do {
+            System.out.println("Which card do you want to draw? Insert 1 for up left card, 2 for up right card, 3 for down left card, 4 for down right card, 5 for resource Deck, 6 for gold Deck");
+            choice = scanner.nextInt();
+        } while (choice < 1 || choice > 6);
         return choice;
     }
 

@@ -1,15 +1,10 @@
 package View;
 
-import Network.Cli2;
-import Network.Client.RmiClient;
-import Network.Server.VirtualServer;
-import model.cards.Card;
 import model.cards.CardGold;
 import model.cards.CardPlaying;
 import model.cards.CardResource;
 
 import java.util.ArrayList;
-import View.CardMatrixCreator;
 
 import static View.CardMatrixCreator.*;
 
@@ -94,7 +89,7 @@ public class HandMatrix {
 //            }
 //        }
 //    }
-    public void addCardsToHand(ArrayList<CardPlaying> cards) { //cambiare anche hand in Player --> deve essere CardRes non playing
+    public void addCardsToHand(ArrayList<CardResource> cards) { //cambiare anche hand in Player --> deve essere CardRes non playing
         //itero per ogni carta dentro l'arraylist chiamando la funzione sopra
         //devo fare in modo che restituisca una matrice
         for(int i = 0; i < 3; i++) {
