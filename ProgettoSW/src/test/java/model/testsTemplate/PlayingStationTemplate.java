@@ -40,11 +40,11 @@ public class PlayingStationTemplate {
         // central card, for this test i don't need them
         //
         // the objective is of type Diagonal and type ANIMAL
-        ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.ANIMAL);
-        CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
+    //    ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.ANIMAL);
+     //   CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
 
         // for the second objective i set it to null
-        PlayingStation station = new PlayingStation(cardObjectiveTmp,new HashMap<ArrayList<Integer>, CardPlaying>());
+        PlayingStation station = new PlayingStation(new HashMap<ArrayList<Integer>, CardPlaying>());
 
         // now i have to populate the table
         station.getMap().put(creatingCordinatesArray(40,40), cardStarting);
@@ -83,11 +83,11 @@ public class PlayingStationTemplate {
         // central card, for this test i don't need them
         //
         // the objective is of type Diagonal and type ANIMAL
-        ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(DirectionEnum.RIGHT, SuitEnum.ANIMAL);
-        CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
+       // ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(DirectionEnum.RIGHT, SuitEnum.ANIMAL);
+       // CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
 
         // for the second objective i set it to null
-        PlayingStation station = new PlayingStation(cardObjectiveTmp, new HashMap<>());
+        PlayingStation station = new PlayingStation(new HashMap<ArrayList<Integer>, CardPlaying>() );
 
         // now i have to populate the table
         station.getMap().put(creatingCordinatesArray(39,39),cardAnimal1);
@@ -135,7 +135,7 @@ public class PlayingStationTemplate {
         CardObjective cardObjectiveTmp = new CardObjective(5, 3, objectivetmp);
 
         // for the second objective i set it to null
-        PlayingStation station = new PlayingStation(cardObjectiveTmp, new HashMap<>());
+        PlayingStation station = new PlayingStation(new HashMap<ArrayList<Integer>, CardPlaying>());
 
         // now i have to populate the table
         station.getMap().put(creatingCordinatesArray(41,41),cardAnimal1);
@@ -185,7 +185,7 @@ public class PlayingStationTemplate {
         CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
 
         // for the second objective i set it to null
-        PlayingStation station = new PlayingStation(cardObjectiveTmp, new HashMap<>());
+        PlayingStation station = new PlayingStation(new HashMap<ArrayList<Integer>, CardPlaying>());
 
         // now i have to populate the table
         station.getMap().put(creatingCordinatesArray(40,40),cardStarting);
@@ -194,7 +194,10 @@ public class PlayingStationTemplate {
         station.getMap().put(creatingCordinatesArray(41,43),cardAnimal2);
         station.getMap().put(creatingCordinatesArray(42,44),cardPlant2);
 
-
+        station.getMap().put(creatingCordinatesArray(43,45),cardAnimal1);
+        station.getMap().put(creatingCordinatesArray(44,46),cardPlant1);
+        station.getMap().put(creatingCordinatesArray(43,47),cardAnimal2);
+        station.getMap().put(creatingCordinatesArray(44,48),cardPlant2);
 
         //second time objective is satisfied
         station.getMap().put(creatingCordinatesArray(43,45),cardAnimal1);
