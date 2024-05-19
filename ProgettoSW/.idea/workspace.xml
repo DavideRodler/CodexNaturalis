@@ -4,10 +4,70 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="print board + print station (sia grande che piccolo)">
+    <list default="true" id="ffa08bc6-ca90-4e99-9c7f-808b0b6f3e2f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exception/ChangedStateException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exception/DeckEmptyException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exception/InvalidPlacingCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exception/NotMyTurnException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exception/NotValidMoveException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/client/ReductPlayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/enums/DeckEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/observers/ObservableModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/observers/Observer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/socket/Messages/AddedPlayerMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/socket/Messages/CardToHandMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/socket/Messages/ChangeStateMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/socket/Messages/PlayersInfoMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/socket/server/SocketServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/PlayingBoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/StationMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/StationMatrix.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Exception/DeckEmptyException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Exception/InvalidPlacingCondition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/ModelObserver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/Observable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/ViewObservable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Cli2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/ReducedBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardGold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardGold.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardPlaying.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardPlaying.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardStarting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardStarting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/face/Corner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/face/Corner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/face/Face.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/face/Face.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/deck/Decktemplates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/deck/Decktemplates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/TokenEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/DirectionEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/PositionEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/Suit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/SuitEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingGold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingGold.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveDiagonal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveDiagonal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveGoldCorners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveGoldCorners.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectivePositioning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectivePositioning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/GameTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/placingCondition/PlacingConditionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/placingCondition/PlacingConditionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/testsTameplate/PlayngStationTameplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testsTameplate/PlayngStationTameplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +78,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
         <option value="FxmlFile" />
@@ -33,6 +94,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
+        <entry key="$PROJECT_DIR$/.." value="Con-Contatori" />
         <entry key="$PROJECT_DIR$/.." value="gui" />
       </map>
     </option>
@@ -49,6 +111,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://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@github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler&quot;,
+    &quot;accountId&quot;: &quot;77d1be0f-1935-4da1-bed4-002b7d7b8169&quot;
     &quot;url&quot;: &quot;https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler.git&quot;,
     &quot;accountId&quot;: &quot;4557c571-f714-49c9-a328-43d1fd17bd55&quot;
   }
@@ -64,57 +128,20 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2dahV6rdOfQ8JesgSo6bQBB1S9B" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.ClientApp.executor": "Run",
-    "Application.Gui.executor": "Run",
-    "Application.RmiClient.executor": "Run",
-    "Application.ServerApp.executor": "Run",
-    "Application.deckconstructor.executor": "Run",
-    "Application.decktameplatetom.executor": "Run",
-    "Application.playngstationTameplate.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckGold.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckObjective.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckResource.executor": "Run",
-    "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
-    "JUnit.GameTest.testPlayers.executor": "Run",
-    "JUnit.GameTest.testStations.executor": "Run",
-    "JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor": "Run",
-    "JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test_Positioning.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test_Positioning2.executor": "Run",
-    "JUnit.PlacingConditionTest (1).executor": "Run",
-    "JUnit.PlacingConditionTest.test_null_corner.executor": "Run",
-    "JUnit.deckconstructorTest.deckResource.executor": "Run",
-    "JUnit.java in ProgettoSW.executor": "Debug",
-    "Maven.ProgettoSW [clean].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "ignore.preview.features.used": "true",
-    "ignore.virus.scanning.warn.message": "true",
+    "git-widget-placeholder": "Merging main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/eric/Desktop/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/Senza nome/ProgettoSW/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.JavaFX",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -160,45 +187,59 @@
     <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartApplication.ServerApp" />
       <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="StartApplication.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlacingConditionTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.placingCondition.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.placingCondition" />
-      <option name="MAIN_CLASS_NAME" value="model.placingCondition.PlacingConditionTest" />
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlacingConditionTest.test_null_corner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest.TestOfFourTurns" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.placingCondition.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.placingCondition" />
-      <option name="MAIN_CLASS_NAME" value="model.placingCondition.PlacingConditionTest" />
-      <option name="METHOD_NAME" value="test_null_corner" />
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
+      <option name="METHOD_NAME" value="TestOfFourTurns" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="java in ProgettoSW" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest.testChecknickname" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/src/test/java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
+      <option name="METHOD_NAME" value="testChecknickname" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -206,17 +247,18 @@
     <list>
       <item itemvalue="Application.Gui" />
       <item itemvalue="Application.ServerApp" />
-      <item itemvalue="JUnit.PlacingConditionTest.test_null_corner" />
-      <item itemvalue="JUnit.java in ProgettoSW" />
-      <item itemvalue="JUnit.PlacingConditionTest (1)" />
+      <item itemvalue="JUnit.GameControllerTest.testChecknickname" />
+      <item itemvalue="JUnit.GameControllerTest" />
+      <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Gui" />
-        <item itemvalue="JUnit.PlacingConditionTest (1)" />
-        <item itemvalue="JUnit.java in ProgettoSW" />
-        <item itemvalue="JUnit.PlacingConditionTest.test_null_corner" />
         <item itemvalue="Application.ServerApp" />
+        <item itemvalue="Application.ServerApp" />
+        <item itemvalue="JUnit.GameControllerTest" />
+        <item itemvalue="JUnit.GameControllerTest.testChecknickname" />
+        <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
       </list>
     </recent_temporary>
   </component>
@@ -530,7 +572,63 @@
       <option name="project" value="LOCAL" />
       <updated>1714391488988</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Inizio creazione del nuovo model e controller">
+      <option name="closed" value="true" />
+      <created>1714566178720</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1714566178720</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Controller quasi terminato">
+      <option name="closed" value="true" />
+      <created>1714683948258</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1714683948258</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Aggiunta contatori e nuovi metodi controller(manca il controllo del vincitore)">
+      <option name="closed" value="true" />
+      <created>1715103260041</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1715103260041</updated>
+    </task>
+    <task id="LOCAL-00038" summary="rimesso corner">
+      <option name="closed" value="true" />
+      <created>1715263688477</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1715263688477</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Test di gioco funzionante">
+      <option name="closed" value="true" />
+      <created>1715281182049</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1715281182049</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Inizio del nuovo RMI con controller">
+      <option name="closed" value="true" />
+      <created>1715525809443</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1715525809443</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Aggiunta del client controller">
+      <option name="closed" value="true" />
+      <created>1715551560194</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1715551560194</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -542,6 +640,26 @@
         <entry key="Branch">
           <value>
             <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/Con-Contatori" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/New-Model" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="prova-RMI" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/prova-RMI" />
+                </option>
+              </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
                   <option value="main" />
@@ -566,32 +684,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/main" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixato deck gold e metodo assegna obiettivi" />
-    <MESSAGE value="aggiunta dell'attributo objective in cardobjective&#10;in deckconstructor cambiato metodo per il mazzo di cardobjective&#10;cambiato costruttore objective counting gold&#10;cambiato metodo checkobjective" />
-    <MESSAGE value="prova JSONArray e JSONParser" />
-    <MESSAGE value="Aggiunta dei costruttori dei deck + test nel main, da sistemare gli obbiettivi" />
-    <MESSAGE value="aggiornamento path&#10; file lettura" />
-    <MESSAGE value="Aggiunta di tutti i deck e dei deck alla playing board" />
-    <MESSAGE value="TEST DELLA CREAZIONE DELLA PLAYINGBOARD, DA RIVEDERE L'UTILITA DI DECKCONSTRUCTOR" />
     <MESSAGE value="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station" />
     <MESSAGE value="Da classe a interfaccia" />
     <MESSAGE value="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning" />
@@ -610,7 +709,14 @@
     <MESSAGE value="Fixati bug che c'erano con le stampe dei thread e codice semplificato" />
     <MESSAGE value="Fixato bug nel metodo di Cli2 che lanciava CastException sulla stampa delle carte oro" />
     <MESSAGE value="Implementato RmiCompleto tranne controllo fine partita. Da controllare se il piazzamento delle carte è corretto." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementato RmiCompleto tranne controllo fine partita. Da controllare se il piazzamento delle carte è corretto." />
+    <MESSAGE value="Inizio creazione del nuovo model e controller" />
+    <MESSAGE value="Controller quasi terminato" />
+    <MESSAGE value="Aggiunta contatori e nuovi metodi controller(manca il controllo del vincitore)" />
+    <MESSAGE value="rimesso corner" />
+    <MESSAGE value="Test di gioco funzionante" />
+    <MESSAGE value="Inizio del nuovo RMI con controller" />
+    <MESSAGE value="Aggiunta del client controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta del client controller" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -623,70 +729,43 @@
           <properties class="java.lang.reflect.InvocationTargetException" package="java.lang.reflect" />
           <option name="timeStamp" value="184" />
         </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="42" />
+        </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>183</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
+          <line>87</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>185</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
+          <line>138</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>188</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
+          <line>133</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>219</line>
-          <option name="timeStamp" value="7" />
+          <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>
+          <line>280</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>222</line>
-          <option name="timeStamp" value="8" />
+          <url>file://$PROJECT_DIR$/src/test/java/model/deck/DeckConstructorTest.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>225</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>228</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>233</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>242</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>251</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>260</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>272</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>302</line>
-          <option name="timeStamp" value="16" />
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
+          <line>96</line>
+          <properties class="controller.GameControllerTest">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

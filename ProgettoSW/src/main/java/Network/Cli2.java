@@ -8,6 +8,12 @@ import View.StationMatrix;
 import View.UI;
 import model.PlayingBoard;
 import model.cards.*;
+import model.enums.SuitEnum;
+import model.enums.TokenEnum;
+import model.objectives.ObjectiveCountingGold;
+import model.objectives.ObjectiveCountingResource;
+import model.objectives.ObjectiveDiagonal;
+import model.objectives.ObjectivePositioning;
 import model.objectives.*;
 import model.enums.Suit;
 import model.objectives.*;
@@ -38,10 +44,7 @@ public class Cli2 implements UI {
     private final String inkwell;
 
 
-    public Cli2(VirtualServer server, RmiClient client) {
-        this.server = server;
-        this.client = client;
-        black = "\033[0;30m";
+    public Cli2() {
         blue = "\033[0;34m";
         green = "\033[0;32m";
         yellow = "\033[0;33m";
@@ -54,6 +57,21 @@ public class Cli2 implements UI {
         inkwell = gold + "W";
         manuscript = gold + "M";
         quill = gold + "Q";
+    }
+
+
+    private String cornerScanner(SuitEnum suit) {
+        return switch (suit) {
+            case ANIMAL -> lightBlue + "A" + reset;
+            case INSECT -> purple + "I" + reset;
+            case PLANT -> green + "P" + reset;
+            case FUNGI -> red + "F" + reset;
+            case QUILL -> gold + "Q" + reset;
+            case INKWELL -> gold + "W" + reset;
+            case MANUSCRIPT -> gold + "M" + reset;
+            case EMPTY -> "E";
+            default -> "N";
+        };
     }
 
 
@@ -83,15 +101,22 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public Integer askPlayerNumber() {
-        Scanner in = new Scanner(new InputStreamReader(System.in));
+    public int askPlayerNumber() {
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
         Integer input;
         do {
             System.out.println("Insert number of players in your Lobby: ");
-            input = in.nextInt();
-        } while (input < 2 || input > 4);
+            input = scanner.nextInt();
+        }while (input < 2 || input > 4);
         return input;
     }
+
+    @Override
+    public void printErrorMessage(Exception e) {
+        System.out.println("Error: " + e.getMessage());
+
+    }
+
 
     @Override
     public Integer askStartingCardFront() {
@@ -176,37 +201,6 @@ public class Cli2 implements UI {
     @Override
     public void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String clientNickname) {
         System.out.println("\n Updated Station of " + clientNickname + "\n");
-//        CardPlaying[][] station = new CardPlaying[80][80];
-//        Map<ArrayList<Integer>, CardPlaying> table = playingStation;
-//        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : table.entrySet()) {
-//            ArrayList<Integer> coordinates = entry.getKey();
-//            CardPlaying card = entry.getValue();
-//
-//            // Controlla se la carta è diversa da null e se le coordinate sono valide
-//            if (card != null && coordinates.size() == 2) {
-//                int x = coordinates.get(0);
-//                int y = coordinates.get(1);
-//
-//                // Assicurati che le coordinate siano all'interno dei limiti della matrice
-//                if (x >= 0 && x < 80 && y >= 0 && y < 80) {
-//                    station[x][y] = card;
-//                }
-//            }
-//        }
-//        for(int i = 0; i < 80; i++){
-//            for(int j = 0; j < 80; j++){
-//                if(station[i][j] != null){
-//                    if(i == 40 && j == 40){
-//                        if(station[i][j].getPlayingBack()){
-//                            printStartingBack(station[i][j]);
-//                        } else{
-//                            printStartingFront(station[i][j]);
-//                        }
-//                    }
-//                    printCard(station[i][j]);
-//                }
-//            }
-//        }
     }
 
     @Override
@@ -294,6 +288,51 @@ public class Cli2 implements UI {
 //            }
 //        }
 //    }
+    @Override
+    public TokenEnum askToken(ArrayList<TokenEnum> availableTokens) {
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        System.out.println("Use number to select one of the available tokens: " + availableTokens);
+        while (true) {
+            Integer choice = scanner.nextInt();
+            if (choice > 0 && choice <= availableTokens.size()) {
+                return availableTokens.get(choice - 1);
+            }
+        }
+    }
+
+    @Override
+    public void waitingForOtherPlayers() {
+
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
+
+    }
+
+    @Override
+    public void printWaitingForPlayerToSetPlayerNumber() {
+        System.out.println("Waiting for other player to set the number of players in the lobby");
+
+    }
+
+    @Override
+    public void printAvailableTokens(ArrayList<TokenEnum> availableTokens) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Available tokens are: " + availableTokens);
+        System.out.println("Choose one of the available tokens");
+
+
+    }
+
+    private void printMatrix(String[][] mat){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 11; j++) {
+                System.out.print(mat[i][j]);
+            }
+            System.out.println();
+        }
+    }
 
     private void printCard(Card card){
     }

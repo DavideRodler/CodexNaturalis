@@ -1,10 +1,8 @@
 package StartApplication;
 
-import Network.Client.RmiClient;
-import Network.Client.VirtualView;
-import Network.Server.RmiServer;
+import Network.Client.RMI.RmiClient;
 import Network.Server.VirtualServer;
-import controller.GameController;
+import exception.NotValidMoveException;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -64,6 +62,17 @@ public class ClientApp implements Remote {
                 Socket clientSocket = new Socket(input, 1234); // Indirizzo e porta del server
                 System.out.println("Connessione al server riuscita");
                 // Creazione di buffer per la comunicazione con il server
+        VirtualServer server;
+        try {
+            Registry registry = LocateRegistry.getRegistry(input, 16000);
+            server = (VirtualServer) registry.lookup("MyServer");
+            RmiClient client = new RmiClient(server);
+            client.connectToServer();
+        } catch (RemoteException r) {
+            System.out.println("Error: " + r);
+        } catch (NotBoundException e) {
+            throw new RuntimeException(e);
+        }
 
 
             } catch (IOException e) {

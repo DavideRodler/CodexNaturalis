@@ -1,6 +1,6 @@
 package model.enums;
 
-public enum Position {
+public enum PositionEnum {
     TOP,
     BOTTOM
 }

@@ -1,24 +1,24 @@
 package model.cards.face;
 
-import model.enums.Suit;
+import model.enums.SuitEnum;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Face implements Serializable {
-    private Suit UpRight;
-    private Suit UpLeft;
-    private Suit DownRight;
-    private Suit DownLeft;
+public class Face {
+    private Corner UpRight;
+    private Corner UpLeft;
+    private Corner DownRight;
+    private Corner DownLeft;
 
-    public Face(Suit upRight, Suit upLeft, Suit downRight, Suit downLeft) {
+    public Face(Corner upRight, Corner upLeft, Corner downRight, Corner downLeft) {
         UpRight = upRight;
         UpLeft = upLeft;
         DownRight = downRight;
         DownLeft = downLeft;
     }
-    public ArrayList<Suit>getFaceList(){
-        ArrayList<Suit> tmp = new ArrayList<Suit>();
+    public ArrayList<Corner>getFaceList(){
+        ArrayList<Corner> tmp = new ArrayList<Corner>();
         tmp.add(getUpLeft());
         tmp.add(getUpRight());
         tmp.add(getDownLeft());
@@ -26,19 +26,19 @@ public class Face implements Serializable {
         return tmp;
     }
 
-    public Suit getUpRight() {
+    public Corner getUpRight() {
         return UpRight;
     }
 
-    public Suit getUpLeft() {
+    public Corner getUpLeft() {
         return UpLeft;
     }
 
-    public Suit getDownRight() {
+    public Corner getDownRight() {
         return DownRight;
     }
 
-    public Suit getDownLeft() {
+    public Corner getDownLeft() {
         return DownLeft;
     }
 

@@ -2,6 +2,7 @@ package model.objectives;
 
 import model.PlayingStation;
 import model.cards.*;
+import model.enums.SuitEnum;
 
 import java.io.Serializable;
 

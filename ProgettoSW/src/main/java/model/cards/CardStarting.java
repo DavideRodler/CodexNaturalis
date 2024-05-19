@@ -1,25 +1,26 @@
 package model.cards;
 
 import model.cards.face.Face;
-import model.enums.Suit;
+import model.enums.SuitEnum;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class CardStarting extends CardPlaying implements Serializable{
-    private ArrayList<Suit> symbols;
+    private ArrayList<SuitEnum> symbols;
 
 
-    public CardStarting(Integer ID, Face front, Face back, ArrayList<Suit> symbols) {
+    public CardStarting(Integer ID, Face front, Face back, ArrayList<SuitEnum> symbols) {
         super(ID, front, back);
         this.symbols = symbols;
     }
 
-    public ArrayList<Suit> getSymbols() {
+
+    public ArrayList<SuitEnum> getSymbols() {
         return symbols;
     }
 
-    public int countResource(Suit suit){
+    public int countResource(SuitEnum suit){
         int count = 0;
         if (!getPlayingBack()){
             if (getFront().getUpRight().equals(suit)) {

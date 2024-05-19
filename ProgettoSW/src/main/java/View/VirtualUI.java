@@ -3,7 +3,9 @@ package View;
 import model.PlayingBoard;
 import model.cards.CardObjective;
 import model.cards.CardPlaying;
+import model.cards.CardResource;
 import model.cards.CardStarting;
+import model.enums.TokenEnum;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -29,9 +31,15 @@ public class VirtualUI implements UI {
     }
 
     @Override
-    public Integer askPlayerNumber() {
+    public int askPlayerNumber() {
         return 0;
     }
+
+    @Override
+    public void printErrorMessage(Exception e) {
+
+    }
+
 
     @Override
     public Integer askStartingCardFront() {
@@ -39,9 +47,11 @@ public class VirtualUI implements UI {
     }
 
     @Override
-    public void showObjectiveCards(CardObjective[] cardObjective) {
+    public void showObjectiveCards(ArrayList<CardObjective> cardObjectives) {
 
     }
+
+
 
     @Override
     public Integer askObjectiveCard() {
@@ -59,7 +69,7 @@ public class VirtualUI implements UI {
     }
 
     @Override
-    public void showUpdatedHand(ArrayList<CardPlaying> hand) {
+    public void showUpdatedHand(ArrayList<CardResource> hand) {
 
     }
 
@@ -77,6 +87,32 @@ public class VirtualUI implements UI {
     @Override
     public Integer askDrawingCard() {
         return 0;
+    }
+
+    @Override
+    public TokenEnum askToken(ArrayList<TokenEnum> availableTokens) {
+
+        return null;
+    }
+
+    @Override
+    public void waitingForOtherPlayers() {
+
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
+
+    }
+
+    @Override
+    public void printWaitingForPlayerToSetPlayerNumber() {
+
+    }
+
+    @Override
+    public void printAvailableTokens(ArrayList<TokenEnum> availableTokens) {
+
     }
 
 

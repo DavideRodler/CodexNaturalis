@@ -1,69 +1,27 @@
 package Network.Server;
 
-import Network.Client.RmiClient;
-import Network.Client.VirtualView;
-import model.PlayingBoard;
-import model.PlayingStation;
-import model.ReducedBoard;
-import model.cards.CardObjective;
-import model.cards.CardPlaying;
-import model.cards.CardResource;
+import Network.Client.RMI.VirtualView;
+import exception.ChangedStateException;
+import exception.NotValidMoveException;
+import model.enums.TokenEnum;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Map;
 
 public interface VirtualServer extends Remote {
     void connectClient(VirtualView client) throws RemoteException;
 
+    boolean askFirstPlayertoConnect()  throws RemoteException;
+    void setPlayerNumber(int playerNumber) throws RemoteException, NotValidMoveException, ChangedStateException;
 
-    boolean addCard(CardPlaying card, Integer side, Integer X, Integer Y) throws RemoteException;
+    ArrayList<TokenEnum> getAvailableTokens() throws RemoteException;
 
-    CardPlaying drawCard(Integer number) throws RemoteException;
+    boolean checkNicknameAvailability(String nickname) throws RemoteException;
 
-    void addNewPlayer(String name) throws RemoteException;
+    boolean checkTokenAvailability(TokenEnum token)throws RemoteException;
 
-    boolean nicknameCheck(String name) throws RemoteException;
+    void addPlayer(String nickname, TokenEnum token) throws RemoteException, ChangedStateException, NotValidMoveException;
 
-    Integer numberOfPlayer() throws RemoteException;
-
-    void initializeBoard() throws RemoteException;
-    
-    void inizializeLobby(Integer playernumber) throws RemoteException;
-
-    Integer getPlayerNumber() throws RemoteException;
-
-    CardPlaying getStartingCard(String nickname) throws RemoteException;
-
-    PlayingBoard getServerModel() throws RemoteException;
-
-    boolean allPlayerConnected() throws RemoteException;
-
-
-    String getClientNickname(VirtualView client) throws RemoteException;
-
-    VirtualView getClientIstance(String nickname) throws RemoteException;
-
-    ReducedBoard getReducedBoard(VirtualView rmiClient) throws RemoteException;
-
-    CardObjective[] getObjectiveCards(String clientNickname) throws RemoteException;
-
-    PlayingStation inizializePlayingStation(String clientNickname, CardPlaying startingCard, Integer choice, CardObjective cardObjective) throws RemoteException;
-
-    boolean isGameFinished() throws RemoteException;
-
-    void loginThreadsStopper() throws RemoteException, InterruptedException;
-
-    void startTurnNotify() throws RemoteException, InterruptedException;
-
-    void allPlayerReady() throws RemoteException, InterruptedException;
-
-
-    void notifyMyUpdatedBoard(VirtualView rmiClient, Map<ArrayList<Integer>, CardPlaying> playingStation) throws RemoteException;
-
-    void showedMyBoardNotify() throws RemoteException;
-
-    void nextTurn() throws RemoteException, InterruptedException;
-
+    void startSetupOfNicknameAndToken() throws RemoteException;
 }

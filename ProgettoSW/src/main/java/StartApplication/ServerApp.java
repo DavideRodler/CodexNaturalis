@@ -44,6 +44,18 @@ public class ServerApp implements Remote {
                     }
                 } while (true);
 
+            VirtualServer server = new RmiServer(new GameController());
+            try{
+                VirtualServer stub = (VirtualServer) UnicastRemoteObject.exportObject(server, 0);
+                Registry registry = LocateRegistry.createRegistry(16000);
+                registry.rebind("MyServer", stub);
+            }catch( RemoteException e ){
+                System.out.println("Error: " + e);
+            }
+            System.out.println("➖Server is booting....");
+            System.out.println("➖Server created");
+        } catch (Exception e) {
+            System.out.println("Something went wrong :( " + e);
                 VirtualServer server = new RmiServer(new GameController());
                 try {
                     VirtualServer stub = (VirtualServer) UnicastRemoteObject.exportObject(server, 0);

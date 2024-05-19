@@ -1,54 +1,89 @@
 package model;
 
-import Observers.ModelObserver;
 import model.cards.*;
-import Observers.Observable;
+import model.enums.GameState;
+import observers.ObservableModel;
+import socket.Messages.AddedPlayerMessage;
+import socket.Messages.ChangeStateMessage;
 
-import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.*;
 
-public class PlayingBoard extends ModelObserver implements Serializable {
+public class PlayingBoard extends ObservableModel {
 
     private LinkedList<CardGold> deckCardGold;
     private LinkedList<CardResource> deckCardResource;
     private LinkedList<CardObjective> deckCardObjective;
-
-
     private LinkedList<CardStarting> deckCardStarting;
-    private Map<String,Player> playerMap;
-    private CardResource[] centralCards = new CardResource[4];
-    private final CardObjective FirstObjective;
-    private final CardObjective SecondObjective;
+    private ArrayList<CardGold> centralCardsGold;
+    private ArrayList<CardResource> centralCardsResource;
+    private CardObjective firstObjective;
+    private CardObjective secondObjective;
 
 
-    public PlayingBoard(CardObjective firstObjective, CardObjective secondObjective, LinkedList<CardGold> deckCardGold, LinkedList<CardObjective> deckCardObjective, LinkedList<CardResource> deckCardResource, LinkedList<CardStarting> deckCardStarting) {
-        this.FirstObjective = firstObjective;
-        this.SecondObjective = secondObjective;
+    //the current player playing
+    private String currentPlayer;
+    //saving the number of player
+    private int playernumber;
+    //the player map that for each nickname has a player
+    private ArrayList<Player> players;
+    //gameState
+    private GameState gameState;
+
+    public PlayingBoard(CardObjective firstObjective, CardObjective secondObjective, int playernumber, ArrayList<Player> playerList, LinkedList<CardStarting> deckCardStarting, LinkedList<CardResource> deckCardResource, LinkedList<CardObjective> deckCardObjective, LinkedList<CardGold> deckCardGold, String currentPlayer, ArrayList<CardResource> centralCardsResource, ArrayList<CardGold> centralCardsGold, GameState gameState) {
+        this.firstObjective = firstObjective;
+        this.secondObjective = secondObjective;
+        this.playernumber = playernumber;
+        this.players = playerList;
+        this.deckCardStarting = deckCardStarting;
         this.deckCardResource = deckCardResource;
         this.deckCardObjective = deckCardObjective;
         this.deckCardGold = deckCardGold;
-        this.deckCardStarting = deckCardStarting;
-        this.centralCards[0] = (deckCardResource.pop());
-        this.centralCards[1] = (deckCardResource.pop());
-        this.centralCards[2] = (deckCardGold.pop());
-        this.centralCards[3] = (deckCardGold.pop());
-        this.playerMap = new HashMap<>();
+        this.currentPlayer = currentPlayer;
+        this.centralCardsResource = centralCardsResource;
+        this.centralCardsGold = centralCardsGold;
+        this.gameState = gameState;
     }
 
-
-
+    public PlayingBoard() {
+        this.playernumber = 0;
+        this.players = new ArrayList<>();
+        this.deckCardStarting = new LinkedList<>();
+        this.deckCardResource = new LinkedList<>();
+        this.deckCardObjective = new LinkedList<>();
+        this.deckCardGold = new LinkedList<>();
+        this.centralCardsResource = new ArrayList<>();
+        this.centralCardsGold = new ArrayList<>();
+    }
 
 
     //-------------------GETTER-----------------------------
-    public Map<String,Player> getPlayers(){
-        return playerMap;
-    }
     public LinkedList<CardGold> getDeckCardGold() {
         return deckCardGold;
     }
 
-    public CardResource[] getCentralCards() {
-        return centralCards;
+    public CardObjective getFirstObjective() {
+        return firstObjective;
+    }
+
+    public CardObjective getSecondObjective() {
+        return secondObjective;
+    }
+
+    public int getPlayernumber() {
+        return playernumber;
+    }
+
+    public ArrayList<CardGold> getCentralCardsGold() {
+        return centralCardsGold;
+    }
+
+    public ArrayList<CardResource> getCentralCardsResource() {
+        return centralCardsResource;
+    }
+
+    public String getCurrentPlayer() {
+        return currentPlayer;
     }
 
     public LinkedList<CardObjective> getDeckCardObjective() {
@@ -63,68 +98,125 @@ public class PlayingBoard extends ModelObserver implements Serializable {
         return deckCardStarting;
     }
 
-    public CardObjective getFirstObjective() {
-        return FirstObjective;
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
 
-    public CardObjective getSecondObjective() {
-        return SecondObjective;
+    public GameState getGameState() {
+        return gameState;
     }
-    //--------------------GETTING FASE ENDED----------------------------
-
-
 
     //--------------------SETTER----------------------------
 
-    // shuffle players
-    public void shufflePlayer(){
-        List<Player> players = new ArrayList<>(playerMap.values());
-        Collections.shuffle(players);
-        playerMap.clear();
-        for (Player player : players) {
-            playerMap.put(player.getNickname(), player);
+
+    public void addPlayer(Player p) {
+        players.add(p);
+        try {
+            notifyObservers(new AddedPlayerMessage(p.getNickname(), p.getToken()));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public void addPlayer(Player p){
-        this.playerMap.put(p.getNickname(),p);
-        ArrayList<CardPlaying> hand = new ArrayList<>();
-        hand.add(drawCardResource());
-        hand.add(drawCardResource());
-        hand.add(drawCardGold());
-        p.setHand(hand);
+    public void setPlayernumber(int playernumber) {
+        this.playernumber = playernumber;
+    }
+
+    public void setCentralCardsGold(ArrayList<CardGold> centralCardsGold) {
+        this.centralCardsGold = centralCardsGold;
+    }
+
+    public void setCentralCardsResource(ArrayList<CardResource> centralCardsResource) {
+        this.centralCardsResource = centralCardsResource;
+    }
+
+    public void setCurrentPlayer(String currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    public void setDeckCardGold(LinkedList<CardGold> deckCardGold) {
+        this.deckCardGold = deckCardGold;
+    }
+
+    public void setDeckCardObjective(LinkedList<CardObjective> deckCardObjective) {
+        this.deckCardObjective = deckCardObjective;
+    }
+
+    public void setDeckCardResource(LinkedList<CardResource> deckCardResource) {
+        this.deckCardResource = deckCardResource;
+    }
+
+    public void setDeckCardStarting(LinkedList<CardStarting> deckCardStarting) {
+        this.deckCardStarting = deckCardStarting;
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
+    }
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
+        try {
+            notifyObservers(new ChangeStateMessage("ChangeState", gameState));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setFirstObjective(CardObjective firstObjective) {
+        this.firstObjective = firstObjective;
+    }
+
+    public void setSecondObjective(CardObjective secondObjective) {
+        this.secondObjective = secondObjective;
+    }
+//--------------------SETTING FASE ENDED----------------------------
+
+
+    public Player getPlayer(String nickname) throws IllegalStateException {
+        return players.stream()
+                .filter(p -> p.getNickname().equals(nickname))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("Player " + nickname + " not found"));
+    }
+    private int getPlayerPositon(String nickname){
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getNickname().equals(nickname)){
+                return i;
+            }
+        }
+        return -1;
     }
 
 
-
-    //--------------------SETTING FASE ENDED----------------------------
-
-
-    /**
-     * This method is used to draw two cards from the deck of starting cards
-     */
-
-   /* public void drawCardStarting(LinkedList<CardStarting> deckCardStarting, Player player){
-        CardStarting card = deckCardStarting.remove();
-        player.getStation().addCard(card, 39,39);
-    }*/
-
-
-//Drawing Cards from  the two decks
-
-    public CardGold drawCardGold(){
-        return deckCardGold.pop();
+    public Optional<CardResource> getCardResource(int id) {
+        return centralCardsResource
+                .stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst();
     }
 
-    public CardResource drawCardResource(){
-        return deckCardResource.pop();
+    public Optional<CardGold> getCardGold(int id) {
+        return centralCardsGold
+                .stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst();
     }
 
+    // shuffle players
+    public void shufflePlayer() {
+        Collections.shuffle(players);
+//        newOrderObserver(players.stream()
+//                .map(Player::getNickname)
+//                .toList());
+    }
 
-    public List<String> PlayerTurnOrder() {
-        shufflePlayer();
-        List<String> players = new ArrayList<>(playerMap.keySet().stream().toList());
-        return players;
+    public String getnextPlayer(){
+        int indexOfCurrentPlayer = players.indexOf(getPlayer(currentPlayer));
+        if (indexOfCurrentPlayer == players.size()-1){
+            return players.get(0).getNickname();
+        }
+        else {
+            return players.get(indexOfCurrentPlayer+1).getNickname();
+        }
     }
 }
-

@@ -2,8 +2,8 @@ package model.objectives;
 
 import model.PlayingStation;
 import model.cards.CardResource;
-import model.enums.Suit;
-import model.enums.Direction;
+import model.enums.SuitEnum;
+import model.enums.DirectionEnum;
 
 
 import java.io.Serializable;
@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ObjectiveDiagonal implements Objective, Serializable { //direzione data dalla carta in alto
-private Direction direction;
-private Suit color;
+private DirectionEnum directionEnum;
+private SuitEnum color;
 
 @Override
 public int countObjectivePoints(PlayingStation station){
@@ -21,7 +21,7 @@ public int countObjectivePoints(PlayingStation station){
         Arrays.fill(row, false); //carte non ancora visualizzate
     }
     int points = 0;
-    if(direction.equals(Direction.LEFT)){ //carta in alto a sx, carta in basso a dx
+    if(directionEnum.equals(DirectionEnum.LEFT)){ //carta in alto a sx, carta in basso a dx
         for(int i = 0; i < 79; i++){ //coordinata x
             for(int j = 80; j > 1; j--){ //coordinata y
                 if(!flags[i][j]) {
@@ -29,27 +29,27 @@ public int countObjectivePoints(PlayingStation station){
                         ArrayList<Integer> key = new ArrayList<>();
                         key.add(0, i);
                         key.add(1, j);
-                        if (station.getTable().containsKey(key)) { //guardo se esiste una carta posizionata in quell'indice
-                            if (station.getTable().get(key) instanceof CardResource) {
-                                CardResource card1 = (CardResource) station.getTable().get(key);
+                        if (station.getMap().containsKey(key)) { //guardo se esiste una carta posizionata in quell'indice
+                            if (station.getMap().get(key) instanceof CardResource) {
+                                CardResource card1 = (CardResource) station.getMap().get(key);
                                 if (card1.getSymbol() == color) {
                                     int x = i + 1; //coordinate next card nella diagonale
                                     int y = j - 1;
                                     ArrayList<Integer> key1 = new ArrayList<>();
                                     key1.add(0, x);
                                     key1.add(1, y);
-                                    if (station.getTable().containsKey(key1)) {
-                                        if (station.getTable().get(key1) instanceof CardResource) {
-                                            CardResource card2 = (CardResource) station.getTable().get(key1);
+                                    if (station.getMap().containsKey(key1)) {
+                                        if (station.getMap().get(key1) instanceof CardResource) {
+                                            CardResource card2 = (CardResource) station.getMap().get(key1);
                                             if (card2.getSymbol() == color) {
                                                 int w = x + 1; //coordinate next card nella diagonale
                                                 int z = y - 1;
                                                 ArrayList<Integer> key2 = new ArrayList<>();
                                                 key2.add(0, w);
                                                 key2.add(1, z);
-                                                if (station.getTable().containsKey(key2)) {
-                                                    if (station.getTable().get(key2) instanceof CardResource) {
-                                                        CardResource card3 = (CardResource) station.getTable().get(key2);
+                                                if (station.getMap().containsKey(key2)) {
+                                                    if (station.getMap().get(key2) instanceof CardResource) {
+                                                        CardResource card3 = (CardResource) station.getMap().get(key2);
                                                         if (card3.getSymbol() == color) {
                                                             points = points + 1; //ho fatto una diagonale
                                                             flags[w][z] = true; //posizione toccata, non piu' da valutare -> diagonale fatta
@@ -95,27 +95,27 @@ public int countObjectivePoints(PlayingStation station){
                         ArrayList<Integer> key = new ArrayList<>();
                         key.add(0, i);
                         key.add(1, j);
-                        if (station.getTable().containsKey(key)) { //guardo se esiste una carta posizionata in quell'indice
-                            if (station.getTable().get(key) instanceof CardResource) {
-                                CardResource card1 = (CardResource) station.getTable().get(key);
+                        if (station.getMap().containsKey(key)) { //guardo se esiste una carta posizionata in quell'indice
+                            if (station.getMap().get(key) instanceof CardResource) {
+                                CardResource card1 = (CardResource) station.getMap().get(key);
                                 if (card1.getSymbol() == color) {
                                     int x = i - 1; //coordinate next card nella diagonale
                                     int y = j - 1;
                                     ArrayList<Integer> key1 = new ArrayList<>();
                                     key1.add(0, x);
                                     key1.add(1, y);
-                                    if (station.getTable().containsKey(key1)) {
-                                        if (station.getTable().get(key1) instanceof CardResource) {
-                                            CardResource card2 = (CardResource) station.getTable().get(key1);
+                                    if (station.getMap().containsKey(key1)) {
+                                        if (station.getMap().get(key1) instanceof CardResource) {
+                                            CardResource card2 = (CardResource) station.getMap().get(key1);
                                             if (card2.getSymbol() == color) {
                                                 int w = x - 1; //coordinate next card nella diagonale
                                                 int z = y - 1;
                                                 ArrayList<Integer> key2 = new ArrayList<>();
                                                 key2.add(0, w);
                                                 key2.add(1, z);
-                                                if (station.getTable().containsKey(key2)) {
-                                                    if (station.getTable().get(key2) instanceof CardResource) {
-                                                        CardResource card3 = (CardResource) station.getTable().get(key2);
+                                                if (station.getMap().containsKey(key2)) {
+                                                    if (station.getMap().get(key2) instanceof CardResource) {
+                                                        CardResource card3 = (CardResource) station.getMap().get(key2);
                                                         if (card3.getSymbol() == color) {
                                                             points = points + 1; //ho fatto una diagonale
                                                             flags[w][z] = true; //posizione toccata, non piu' da valutare -> diagonale fatta
@@ -156,16 +156,16 @@ public int countObjectivePoints(PlayingStation station){
     return points;
 }
 
-    public Direction getDirection() {
-        return direction;
+    public DirectionEnum getDirection() {
+        return directionEnum;
     }
-    public Suit getColor() {
+    public SuitEnum getColor() {
         return color;
     }
 
-    public ObjectiveDiagonal(Direction direction, Suit color){
+    public ObjectiveDiagonal(DirectionEnum directionEnum, SuitEnum color){
     this.color = color;
-    this.direction = direction;
+    this.directionEnum = directionEnum;
     }
 
 }

@@ -1,15 +1,11 @@
 package model.objectives;
 import model.PlayingStation;
-import model.cards.Card;
-import model.cards.CardResource;
-import model.enums.Suit;
+import model.enums.SuitEnum;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ObjectiveCountingResource implements Objective, Serializable {
-    public Suit symbol;
+    public SuitEnum symbol;
 
     @Override
     public int countObjectivePoints(PlayingStation station) {
@@ -19,17 +15,17 @@ public class ObjectiveCountingResource implements Objective, Serializable {
             case ANIMAL: yield station.getCountAnimal() / 3;
             case INSECT: yield station.getCountInsect() / 3;
             case QUILL, MANUSCRIPT, INKWELL, EMPTY, NULL:
-                yield -1; //errore
+                throw new RuntimeException("not a possible Objective");
         };
     }
 
 
 
-    public Suit getSymbol() {
+    public SuitEnum getSymbol() {
         return symbol;
     }
 
-    public ObjectiveCountingResource(Suit suit){
+    public ObjectiveCountingResource(SuitEnum suit){
         this.symbol = suit;
     }
 }

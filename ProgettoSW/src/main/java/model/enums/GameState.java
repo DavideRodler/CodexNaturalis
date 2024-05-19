@@ -1,8 +1,13 @@
 package model.enums;
 
+
 public enum GameState {
-    LOGIN,
-    INIT,
-    IN_GAME,
-    END
+    SET_PLAYER_NUMBER,
+    SET_NAME_AND_TOKEN,
+    INITIALIZE_GAME,
+    SELECT_STARTINGCARDFACE_AND_OBJECTIVE,
+    PLACING_CARD,
+    ADDING_CARD_TO_HAND,
+    CHANGING_TURN,
+    FINISHED
 }

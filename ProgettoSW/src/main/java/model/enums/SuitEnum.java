@@ -1,6 +1,6 @@
 package model.enums;
 
-public enum Suit {
+public enum SuitEnum {
     INSECT,
     FUNGI,
     ANIMAL,
@@ -9,5 +9,5 @@ public enum Suit {
     MANUSCRIPT,
     INKWELL,
     EMPTY,
-    NULL
+    NULL,
 }
