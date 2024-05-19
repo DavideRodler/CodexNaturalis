@@ -16,8 +16,8 @@ public class ClientBoard implements Serializable {
 
     private ArrayList<CardGold> centralCardsGold;
     private ArrayList<CardResource> centralCardsResource;
-    private final CardObjective firstObjective;
-    private final CardObjective secondObjective;
+    private CardObjective firstObjective;
+    private CardObjective secondObjective;
     private GameState gameState;
     private Player myplayer;
     private ArrayList<ReductPlayer> otherplayers;
@@ -82,6 +82,14 @@ public class ClientBoard implements Serializable {
 
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
+    }
+
+    public void setFirstObjective(CardObjective firstObjective) {
+        this.firstObjective = firstObjective;
+    }
+
+    public void setSecondObjective(CardObjective secondObjective) {
+        this.secondObjective = secondObjective;
     }
 
     public void update(Message message) {

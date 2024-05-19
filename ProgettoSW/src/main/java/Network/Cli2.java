@@ -108,7 +108,7 @@ public class Cli2 implements UI {
 
 
     @Override
-    public Integer askStartingCardFront() {
+    public boolean askStartingCardPlayedBack() {
         System.out.println("Select the front of your starting card: ");
         Scanner in = new Scanner(new InputStreamReader(System.in));
         Integer choice;
@@ -116,7 +116,7 @@ public class Cli2 implements UI {
             System.out.println("1 for front 1, 2 for back 2");
             choice = in.nextInt();
         } while (choice != 1 && choice != 2);
-        return choice;
+        return choice == 2;
     }
 
     @Override

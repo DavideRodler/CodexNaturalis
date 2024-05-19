@@ -2,9 +2,11 @@ package model;
 
 import model.cards.*;
 import model.enums.GameState;
+import model.enums.TokenEnum;
 import observers.ObservableModel;
-import socket.Messages.AddedPlayerMessage;
 import socket.Messages.ChangeStateMessage;
+import socket.Messages.CommonObjectivesMessage;
+import socket.Messages.PlayersInfoMessage;
 
 import java.rmi.RemoteException;
 import java.util.*;
@@ -111,11 +113,6 @@ public class PlayingBoard extends ObservableModel {
 
     public void addPlayer(Player p) {
         players.add(p);
-        try {
-            notifyObservers(new AddedPlayerMessage(p.getNickname(), p.getToken()));
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public void setPlayernumber(int playernumber) {
@@ -162,12 +159,15 @@ public class PlayingBoard extends ObservableModel {
         }
     }
 
-    public void setFirstObjective(CardObjective firstObjective) {
-        this.firstObjective = firstObjective;
-    }
 
-    public void setSecondObjective(CardObjective secondObjective) {
+    public void setCommonObjectives( CardObjective firstObjective, CardObjective secondObjective) {
+        this.firstObjective = firstObjective;
         this.secondObjective = secondObjective;
+        try {
+            notifyObservers(new CommonObjectivesMessage(firstObjective,secondObjective));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 //--------------------SETTING FASE ENDED----------------------------
 
@@ -205,9 +205,17 @@ public class PlayingBoard extends ObservableModel {
     // shuffle players
     public void shufflePlayer() {
         Collections.shuffle(players);
-//        newOrderObserver(players.stream()
-//                .map(Player::getNickname)
-//                .toList());
+        HashMap<String,TokenEnum> playerslist = new HashMap<String, TokenEnum>();
+        for (Player p : players) {
+            playerslist.put(p.getNickname(),p.getToken());
+
+        }
+
+        try {
+            notifyObservers(new PlayersInfoMessage(playerslist));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String getnextPlayer(){

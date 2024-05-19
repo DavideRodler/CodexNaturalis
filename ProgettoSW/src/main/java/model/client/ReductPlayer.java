@@ -5,6 +5,7 @@ import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ReductPlayer {
     private final String nickname;
@@ -25,6 +26,9 @@ public class ReductPlayer {
     public ReductPlayer(String nickname, TokenEnum token) {
         this.nickname = nickname;
         this.token = token;
+        this.hand = new ArrayList<>();
+        this.station = new PlayingStation(new HashMap<>());
+        this.points = 0;
     }
 
     public ArrayList<SuitEnum> getHand() {

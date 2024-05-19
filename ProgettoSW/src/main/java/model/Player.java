@@ -4,11 +4,8 @@ package model;
 import model.cards.*;
 import model.enums.TokenEnum;
 import observers.ObservableModel;
-import socket.Messages.CardToHandMessage;
-import socket.Messages.Message;
 
 import java.io.Serializable;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 
@@ -19,6 +16,7 @@ public class Player extends ObservableModel implements Serializable{
     private PlayingStation station;
     private ArrayList<CardResource> hand;
     private ArrayList<CardObjective> selectibleObjectives;
+    private CardObjective secretObjective;
 
 
     // Costruttore
@@ -29,7 +27,10 @@ public class Player extends ObservableModel implements Serializable{
         this.station = station;
         this.points = points;
         this.hand = hand;
+        this.selectibleObjectives = new ArrayList<>();
+        this.secretObjective = null;
     }
+
 
 
     //setter
@@ -44,6 +45,9 @@ public class Player extends ObservableModel implements Serializable{
     }
     public void setToken(TokenEnum token) {
         this.token = token;
+    }
+    public void setSecretObjective(CardObjective secretObjective) {
+        this.secretObjective = secretObjective;
     }
 
     //getter
@@ -64,6 +68,9 @@ public class Player extends ObservableModel implements Serializable{
     }
     public PlayingStation getStation(){return station;}
 
+    public CardObjective getSecretObjective() {
+        return secretObjective;
+    }
 
     /**
      * This method removes a card from the player's hand, given the card instance, using functional programming,

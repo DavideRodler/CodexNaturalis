@@ -42,8 +42,8 @@ public class VirtualUI implements UI {
 
 
     @Override
-    public Integer askStartingCardFront() {
-        return 0;
+    public boolean askStartingCardPlayedBack() {
+        return false;
     }
 
     @Override

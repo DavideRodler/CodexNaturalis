@@ -8,4 +8,6 @@ import java.rmi.RemoteException;
 public interface VirtualView extends Remote, Observer {
 
     void setupOfnicknameAndToken() throws RemoteException;
+
+    void setupOfStartingCard() throws RemoteException;
 }

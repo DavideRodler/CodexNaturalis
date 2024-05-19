@@ -5,7 +5,7 @@ import model.enums.SuitEnum;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Face {
+public class Face implements Serializable{
     private Corner UpRight;
     private Corner UpLeft;
     private Corner DownRight;

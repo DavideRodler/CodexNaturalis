@@ -20,7 +20,7 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
 
     public RmiClient(VirtualServer server) throws RemoteException{
         this.server = server;
-        this.clientController = new ClientController(server);
+        this.clientController = new ClientController(server,this);
     }
 
     public void connectToServer() throws RemoteException{
@@ -36,5 +36,11 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     @Override
     public void setupOfnicknameAndToken() {
         clientController.setupOfnicknameAndToken();
+    }
+
+    @Override
+    public void setupOfStartingCard() throws RemoteException {
+        clientController.setupOfStartingCard();
+
     }
 }

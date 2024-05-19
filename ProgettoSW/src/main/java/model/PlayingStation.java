@@ -6,9 +6,12 @@ import model.cards.*;
 import model.cards.face.Corner;
 import model.enums.SuitEnum;
 import observers.ObservableModel;
+import socket.Messages.CardStartingMessage;
+import socket.Messages.CardStartingPlayedBackMessage;
 
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.*;
 
 import static model.enums.SuitEnum.*;
@@ -22,12 +25,10 @@ public class PlayingStation extends ObservableModel implements Serializable {
     private Integer countInkwell;
     private Integer countQuill;
     private Integer countManuscript;
-    private CardObjective SecretObjective;
 
 
     //constructor
-    public PlayingStation(CardObjective secretObjective, HashMap<ArrayList<Integer>, CardPlaying> map) {
-        SecretObjective = secretObjective;
+    public PlayingStation(HashMap<ArrayList<Integer>, CardPlaying> map) {
         this.map = map;
         countAnimal = 0;
         countFungi = 0;
@@ -39,9 +40,6 @@ public class PlayingStation extends ObservableModel implements Serializable {
     }
 
     //-------------------GETTER-----------------------------
-    public CardObjective getSecretObjective() {
-        return SecretObjective;
-    }
     public HashMap<ArrayList<Integer>,CardPlaying> getMap() {return map;}
     public Integer getCountInsect () {
         return countInsect;
@@ -74,19 +72,32 @@ public class PlayingStation extends ObservableModel implements Serializable {
 
 
         //------------------SETTER-------------------
-    public void setSecretObjective(CardObjective secretObjective) {
-        SecretObjective = secretObjective;
-    }
     public void setMap(HashMap<ArrayList<Integer>, CardPlaying> map) {
         this.map = map;
     }
 
-    public void setCardStarting(CardStarting card){
+    public void setCardStarting(CardStarting card,String nickname){
         ArrayList<Integer> coordinates = new ArrayList<>();
         coordinates.add(40);
         coordinates.add(40);
         map.put(coordinates, card);
         updateCounters(card);
+        try {
+            notifyObservers(new CardStartingMessage(nickname,card));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void setCardStartingPlayedBack(String nickname, boolean playedback){
+        ArrayList<Integer> coordinates = new ArrayList<>();
+        coordinates.add(40);
+        coordinates.add(40);
+        map.get(coordinates).setPlayingBack(playedback);
+        try {
+            notifyObservers(new CardStartingPlayedBackMessage(nickname,playedback));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -142,12 +153,12 @@ public class PlayingStation extends ObservableModel implements Serializable {
      * @param y the y coordinate
      * @return the card at the given coordinates
      */
-    public Card getCard(int x, int y) {
+    public CardPlaying getCard(int x, int y) throws Exception{
         ArrayList<Integer> coordinates = new ArrayList<>();
         coordinates.add(0, x);
         coordinates.add(1, y);
         if (map.get(coordinates) == null) {
-            return null;
+            throw new Exception("There is no card in the given coordinates");
         } else {
             return map.get(coordinates);
         }
@@ -170,138 +181,138 @@ public class PlayingStation extends ObservableModel implements Serializable {
          * @param Y    the y coordinate
          * @return true if the card can be placed, false otherwise
          */
-        public boolean isPlayable (CardResource card, Integer X, Integer Y) throws InvalidPlacingCondition {
-
-            // Check if the coordinates are free
-            Map<ArrayList<Integer>, Boolean> numCornerCovered;
-            ArrayList<Integer> coordinates1;
-            ArrayList<Integer> coordinates2;
-            ArrayList<Integer> coordinates3;
-            ArrayList<Integer> coordinates4;
-
-
-            if(X<0 || Y<0 || X>80 || Y>80)
-                throw new InvalidPlacingCondition("Invalid coordinates");
-            else if (getCard(X, Y) != null) {
-                throw new InvalidPlacingCondition("There is already a card in the given coordinates");
-                //Check if there is already a card in the given coordinates
-            } else if (getCard(X - 1, Y - 1) == null && getCard(X + 1, Y - 1) == null && getCard(X - 1, Y + 1) == null && getCard(X + 1, Y + 1) == null) {
-                throw new InvalidPlacingCondition("The card is surrounded by empty spaces");
-                // Check if the card is surrounded by empty spaces
-            } else {
-
-
-                //creating record map for keeping track of the corners that potentially could be covered
-                numCornerCovered = new HashMap<>();
-                coordinates1 = new ArrayList<>();
-                coordinates2 = new ArrayList<>();
-                coordinates3 = new ArrayList<>();
-                coordinates4 = new ArrayList<>();
-
-                coordinates1.add(0, X - 1);
-                coordinates1.add(1, Y - 1);
-                numCornerCovered.put(coordinates1, false);
-
-                coordinates2.add(0, X + 1);
-                coordinates2.add(1, Y - 1);
-                numCornerCovered.put(coordinates2, false);
-
-                coordinates3.add(0, X - 1);
-                coordinates3.add(1, Y + 1);
-                numCornerCovered.put(coordinates3, false);
-
-                coordinates4.add(0, X + 1);
-                coordinates4.add(1, Y + 1);
-                numCornerCovered.put(coordinates4, false);
-
-
-                //checking that I can't place a card above 2 corners of the same card
-                if(getCard(X,Y-1) != null)
-                    throw new InvalidPlacingCondition("You can't place a card above 2 corners of the same card");
-
-                if(getCard(X,Y+1) != null)
-                    throw new InvalidPlacingCondition("You can't place a card above 2 corners of the same card");
-
-                if(getCard(X-1,Y) != null)
-                    throw new InvalidPlacingCondition("You can't place a card above 2 corners of the same card");
-
-                if(getCard(X+1,Y) != null)
-                    throw new InvalidPlacingCondition("You can't place a card above 2 corners of the same card");
-
-                if (getCard(X - 1, Y - 1) != null) { //checking if existing the down-right card adjacent with the card I want to play
-                    if (!map.get(coordinates1).getPlayingBack()) { //checking if the card is played by front
-                        if (map.get(coordinates1).getFront().getDownRight().equals(SuitEnum.NULL)) { //checking if there is a corner available
-                            throw new InvalidPlacingCondition("The down-right corner is NULL");
-                        }
-                    }
-                    numCornerCovered.put(coordinates1, true); //flagging that this corner is available
-                }
-
-                if (getCard(X + 1, Y - 1) != null) { //checking if existing the down-left card adjacent with the card I want to play
-                    if (!map.get(coordinates2).getPlayingBack()) { //checking if the card is played by front
-                        if (map.get(coordinates2).getFront().getDownLeft().equals(SuitEnum.NULL)) { //checking if there is a corner available
-                            throw new InvalidPlacingCondition("Can't place a card over a NULL corner");
-                        }
-                    }
-                    numCornerCovered.put(coordinates2, true); //flagging that this corner is available
-                }
-
-                if (getCard(X - 1, Y + 1) != null) { //checking if existing the up-right card adjacent with the card I want to play
-                    if (!map.get(coordinates3).getPlayingBack()) { //checking if the card is played by front
-                        if (map.get(coordinates3).getFront().getUpRight().equals(SuitEnum.NULL)) { //checking if there is a corner available
-                            throw new InvalidPlacingCondition("Can't place a card over a NULL corner");
-                        }
-                    }
-                    numCornerCovered.put(coordinates3, true); //flagging that this corner is available
-                }
-
-                if (getCard(X + 1, Y + 1) != null) { //checking if existing the up-left card adjacent with the card I want to play
-                    if (!map.get(coordinates4).getPlayingBack()) { //checking if the card is played by front
-                        if (map.get(coordinates4).getFront().getUpLeft().equals(SuitEnum.NULL)) { //checking if there is a corner available
-                            throw new InvalidPlacingCondition("Can't place a card over a NULL corner");
-                        }
-                    }
-                    numCornerCovered.put(coordinates4, true); //flagging that this corner is available
-                }
-
-
-
-
-                //Check if the card is a goldCard and then use method enoughResources to check if it's playable
-                if (card instanceof CardGold)
-                    if (!enoughResources((CardGold) card)&& !(card.getPlayingBack()))
-                        throw new InvalidPlacingCondition("Not enough resources to play the card");
-
-//TODO: questa roba va messa nella addcard
-                //Flagging the corners that are covered with method setCovered
-                // and updating resource with updateCounters method
-
-                if (numCornerCovered.get(coordinates1)) {
-                    map.get(coordinates1).getFront().getDownRight().setCovered(true);
-                    updateCounters(map.get(coordinates1).getFront().getDownRight());
-                }
-
-
-                if (numCornerCovered.get(coordinates2)) {
-                    map.get(coordinates2).getFront().getDownLeft().setCovered(true);
-                    updateCounters(map.get(coordinates2).getFront().getDownLeft());
-                }
-
-
-                if (numCornerCovered.get(coordinates3)) {
-                    map.get(coordinates3).getFront().getUpRight().setCovered(true);
-                    updateCounters(map.get(coordinates3).getFront().getUpRight());
-                }
-
-
-                if (numCornerCovered.get(coordinates4)) {
-                    map.get(coordinates4).getFront().getUpLeft().setCovered(true);
-                    updateCounters(map.get(coordinates4).getFront().getUpLeft());
-                }
-            }
-
-            return true;
-        }
+//        public boolean isPlayable (CardResource card, Integer X, Integer Y) throws InvalidPlacingCondition {
+//
+//            // Check if the coordinates are free
+//            Map<ArrayList<Integer>, Boolean> numCornerCovered;
+//            ArrayList<Integer> coordinates1;
+//            ArrayList<Integer> coordinates2;
+//            ArrayList<Integer> coordinates3;
+//            ArrayList<Integer> coordinates4;
+//
+//
+//            if(X<0 || Y<0 || X>80 || Y>80)
+//                throw new InvalidPlacingCondition("Invalid coordinates");
+//            else if (getCard(X, Y) != null) {
+//                throw new InvalidPlacingCondition("There is already a card in the given coordinates");
+//                //Check if there is already a card in the given coordinates
+//            } else if (getCard(X - 1, Y - 1) == null && getCard(X + 1, Y - 1) == null && getCard(X - 1, Y + 1) == null && getCard(X + 1, Y + 1) == null) {
+//                throw new InvalidPlacingCondition("The card is surrounded by empty spaces");
+//                // Check if the card is surrounded by empty spaces
+//            } else {
+//
+//
+//                //creating record map for keeping track of the corners that potentially could be covered
+//                numCornerCovered = new HashMap<>();
+//                coordinates1 = new ArrayList<>();
+//                coordinates2 = new ArrayList<>();
+//                coordinates3 = new ArrayList<>();
+//                coordinates4 = new ArrayList<>();
+//
+//                coordinates1.add(0, X - 1);
+//                coordinates1.add(1, Y - 1);
+//                numCornerCovered.put(coordinates1, false);
+//
+//                coordinates2.add(0, X + 1);
+//                coordinates2.add(1, Y - 1);
+//                numCornerCovered.put(coordinates2, false);
+//
+//                coordinates3.add(0, X - 1);
+//                coordinates3.add(1, Y + 1);
+//                numCornerCovered.put(coordinates3, false);
+//
+//                coordinates4.add(0, X + 1);
+//                coordinates4.add(1, Y + 1);
+//                numCornerCovered.put(coordinates4, false);
+//
+//
+//                //checking that I can't place a card above 2 corners of the same card
+//                if(getCard(X,Y-1) != null)
+//                    throw new InvalidPlacingCondition("You can't place a card above 2 corners of the same card");
+//
+//                if(getCard(X,Y+1) != null)
+//                    throw new InvalidPlacingCondition("You can't place a card above 2 corners of the same card");
+//
+//                if(getCard(X-1,Y) != null)
+//                    throw new InvalidPlacingCondition("You can't place a card above 2 corners of the same card");
+//
+//                if(getCard(X+1,Y) != null)
+//                    throw new InvalidPlacingCondition("You can't place a card above 2 corners of the same card");
+//
+//                if (getCard(X - 1, Y - 1) != null) { //checking if existing the down-right card adjacent with the card I want to play
+//                    if (!map.get(coordinates1).getPlayingBack()) { //checking if the card is played by front
+//                        if (map.get(coordinates1).getFront().getDownRight().equals(SuitEnum.NULL)) { //checking if there is a corner available
+//                            throw new InvalidPlacingCondition("The down-right corner is NULL");
+//                        }
+//                    }
+//                    numCornerCovered.put(coordinates1, true); //flagging that this corner is available
+//                }
+//
+//                if (getCard(X + 1, Y - 1) != null) { //checking if existing the down-left card adjacent with the card I want to play
+//                    if (!map.get(coordinates2).getPlayingBack()) { //checking if the card is played by front
+//                        if (map.get(coordinates2).getFront().getDownLeft().equals(SuitEnum.NULL)) { //checking if there is a corner available
+//                            throw new InvalidPlacingCondition("Can't place a card over a NULL corner");
+//                        }
+//                    }
+//                    numCornerCovered.put(coordinates2, true); //flagging that this corner is available
+//                }
+//
+//                if (getCard(X - 1, Y + 1) != null) { //checking if existing the up-right card adjacent with the card I want to play
+//                    if (!map.get(coordinates3).getPlayingBack()) { //checking if the card is played by front
+//                        if (map.get(coordinates3).getFront().getUpRight().equals(SuitEnum.NULL)) { //checking if there is a corner available
+//                            throw new InvalidPlacingCondition("Can't place a card over a NULL corner");
+//                        }
+//                    }
+//                    numCornerCovered.put(coordinates3, true); //flagging that this corner is available
+//                }
+//
+//                if (getCard(X + 1, Y + 1) != null) { //checking if existing the up-left card adjacent with the card I want to play
+//                    if (!map.get(coordinates4).getPlayingBack()) { //checking if the card is played by front
+//                        if (map.get(coordinates4).getFront().getUpLeft().equals(SuitEnum.NULL)) { //checking if there is a corner available
+//                            throw new InvalidPlacingCondition("Can't place a card over a NULL corner");
+//                        }
+//                    }
+//                    numCornerCovered.put(coordinates4, true); //flagging that this corner is available
+//                }
+//
+//
+//
+//
+//                //Check if the card is a goldCard and then use method enoughResources to check if it's playable
+//                if (card instanceof CardGold)
+//                    if (!enoughResources((CardGold) card)&& !(card.getPlayingBack()))
+//                        throw new InvalidPlacingCondition("Not enough resources to play the card");
+//
+////TODO: questa roba va messa nella addcard
+//                //Flagging the corners that are covered with method setCovered
+//                // and updating resource with updateCounters method
+//
+//                if (numCornerCovered.get(coordinates1)) {
+//                    map.get(coordinates1).getFront().getDownRight().setCovered(true);
+//                    updateCounters(map.get(coordinates1).getFront().getDownRight());
+//                }
+//
+//
+//                if (numCornerCovered.get(coordinates2)) {
+//                    map.get(coordinates2).getFront().getDownLeft().setCovered(true);
+//                    updateCounters(map.get(coordinates2).getFront().getDownLeft());
+//                }
+//
+//
+//                if (numCornerCovered.get(coordinates3)) {
+//                    map.get(coordinates3).getFront().getUpRight().setCovered(true);
+//                    updateCounters(map.get(coordinates3).getFront().getUpRight());
+//                }
+//
+//
+//                if (numCornerCovered.get(coordinates4)) {
+//                    map.get(coordinates4).getFront().getUpLeft().setCovered(true);
+//                    updateCounters(map.get(coordinates4).getFront().getUpLeft());
+//                }
+//            }
+//
+//            return true;
+//        }
 
 
 

@@ -2,18 +2,17 @@ package socket.Messages;
 
 import model.enums.TokenEnum;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PlayersInfoMessage extends Message{
-    private HashMap<String,TokenEnum> playersinfo;
+    private HashMap<String, TokenEnum> players;
 
-    public PlayersInfoMessage(HashMap<String,TokenEnum> playersinfo){
+    public PlayersInfoMessage(HashMap<String,TokenEnum> players){
         super("PlayersInfo");
-        this.playersinfo = playersinfo;
+        this.players = players;
     }
 
-    public HashMap<String, TokenEnum> getPlayersinfo() {
-        return playersinfo;
+    public HashMap<String,TokenEnum> getPlayers(){
+        return players;
     }
 }

@@ -22,7 +22,7 @@ public interface UI {
 
 
     void printErrorMessage(Exception e);
-    Integer askStartingCardFront();
+    boolean askStartingCardPlayedBack();
 
     void showObjectiveCards(ArrayList<CardObjective> cardObjectives);
 
