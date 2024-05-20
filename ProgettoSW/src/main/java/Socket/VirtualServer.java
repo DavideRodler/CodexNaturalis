@@ -1,4 +1,4 @@
-package socket;
+package Socket;
 
 public interface VirtualServer {
     public void connect(VirtualView client);

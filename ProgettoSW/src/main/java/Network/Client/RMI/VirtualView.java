@@ -10,4 +10,6 @@ public interface VirtualView extends Remote, Observer {
     void setupOfnicknameAndToken() throws RemoteException;
 
     void setupOfStartingCard() throws RemoteException;
+
+    void showFourCentralCards()throws RemoteException;
 }

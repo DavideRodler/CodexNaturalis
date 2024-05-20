@@ -1,9 +1,6 @@
 package Socket.Messages;
 
-import model.cards.CardObjective;
 import model.cards.CardStarting;
-import socket.Messages.Message;
-import java.util.HashMap;
 
 public class CardStartingMessage extends Message{
     private CardStarting cardStarting;

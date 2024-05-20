@@ -1,4 +1,4 @@
-package socket;
+package Socket;
 
 import java.io.BufferedWriter;
 import java.io.PrintWriter;

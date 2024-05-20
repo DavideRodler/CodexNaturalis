@@ -15,7 +15,6 @@ public interface UI {
 
     void showGameTitle();
 
-    //void init();
     String askNickname();
 
     int askPlayerNumber();

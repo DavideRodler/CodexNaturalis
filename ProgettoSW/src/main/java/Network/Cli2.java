@@ -42,8 +42,27 @@ public class Cli2 implements UI {
     private final String inkwell;
     private StationMatrix stationMatrix;
     private ClientBoard clientBoard;
-    private ReductPlayer reductPlayer;
 
+
+    //constructor with clientboard
+    public Cli2(ClientBoard clientBoard) {
+        blue = "\033[0;34m";
+        green = "\033[0;32m";
+        yellow = "\033[0;33m";
+        reset = "\033[0m";
+        purple = "\033[0;35m";
+        red = "\033[0;31m";
+        beige = "\u001B[38;2;245;245;220m";
+        lightBlue = "\u001B[38;5;39m";
+        gold = "\u001B[38;2;255;215;0m";
+        inkwell = gold + "W";
+        manuscript = gold + "M";
+        quill = gold + "Q";
+
+        this.clientBoard = clientBoard;
+        stationMatrix = new StationMatrix();
+        stationMatrix.initializeStationPrint();
+    }
 
     public Cli2() {
         blue = "\033[0;34m";
@@ -58,10 +77,10 @@ public class Cli2 implements UI {
         inkwell = gold + "W";
         manuscript = gold + "M";
         quill = gold + "Q";
+
         stationMatrix = new StationMatrix();
         stationMatrix.initializeStationPrint();
     }
-
     @Override
     public void showStartingCard(CardStarting cardStarting) {
         cardStartingPrinter(cardStarting);
@@ -171,7 +190,7 @@ public class Cli2 implements UI {
         maxX = 0;
         maxY = 0;
         max = 0;
-        System.out.println(reductPlayer.getNickname() + "'s station: ");//name);
+//        System.out.println(reductPlayer.getNickname() + "'s station: ");//name);
         CardPlaying[][] station = new CardPlaying[80][80];
         HashMap<ArrayList<Integer>, CardPlaying> playingStationMap = clientBoard.getMyplayer().getStation().getMap();
         for (HashMap.Entry<ArrayList<Integer>, CardPlaying> entry : playingStationMap.entrySet()) {

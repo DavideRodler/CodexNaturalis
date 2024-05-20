@@ -1,4 +1,4 @@
-package socket.Messages;
+package Socket.Messages;
 
 import model.cards.CardObjective;
 

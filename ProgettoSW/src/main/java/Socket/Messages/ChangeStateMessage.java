@@ -1,7 +1,7 @@
 package Socket.Messages;
 
 import model.enums.GameState;
-import socket.Messages.Message;
+
 import java.io.Serializable;
 
 public class ChangeStateMessage extends Message implements Serializable {

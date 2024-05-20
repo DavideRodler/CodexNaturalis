@@ -1,4 +1,4 @@
-package socket;
+package Socket;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,12 +1,10 @@
-package socket;
+package Socket;
 
 import controller.GameController;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 
 public class SocketClientHandler implements VirtualView {
     final GameController controller;

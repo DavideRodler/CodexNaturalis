@@ -3,7 +3,7 @@ package Network.Client.RMI;
 import Network.Client.ClientController;
 import Network.Server.VirtualServer;
 
-import socket.Messages.Message;
+import Socket.Messages.Message;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -36,6 +36,12 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     @Override
     public void setupOfStartingCard() throws RemoteException {
         clientController.setupOfStartingCard();
+
+    }
+
+    @Override
+    public void showFourCentralCards() throws RemoteException {
+        clientController.showFourCentralCards();
 
     }
 }

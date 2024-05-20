@@ -79,7 +79,7 @@ public class RmiServer implements VirtualServer {
         for (VirtualView client : clients) {
             client.setupOfnicknameAndToken();
         }
-        startSetupOfStartingCard();
+        showFourCentralCardsToPlayers();
     }
  
 
@@ -114,8 +114,7 @@ public class RmiServer implements VirtualServer {
         gameController.setCentralCardPlayedBack(playedback, nickname, Id);
 
     }
-
-    public void startSetupOfStartingCard() throws RemoteException {
+    public void showFourCentralCardsToPlayers() throws RemoteException {
         try {
             gameController.InitializeGame();
         } catch (NotValidMoveException e) {
@@ -123,6 +122,15 @@ public class RmiServer implements VirtualServer {
         } catch (ChangedStateException e) {
             throw new RuntimeException(e);
         }
+
+        for (VirtualView client : clients) {
+            client.showFourCentralCards();
+        }
+
+        startSetupOfStartingCard();
+    }
+
+    public void startSetupOfStartingCard() throws RemoteException {
         for (VirtualView client : clients) {
             client.setupOfStartingCard();
         }

@@ -1,4 +1,4 @@
-package socket;
+package Socket;
 
 import controller.GameController;
 

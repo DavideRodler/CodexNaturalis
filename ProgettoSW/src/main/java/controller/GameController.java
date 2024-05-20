@@ -141,11 +141,11 @@ public class GameController implements Serializable {
         });
 
         //populating the central board
-        board.getCentralCardsGold().add(board.getDeckCardGold().pop());
-        board.getCentralCardsGold().add(board.getDeckCardGold().pop());
+        board.addCardResource(board.getDeckCardResource().pop());
+        board.addCardResource(board.getDeckCardResource().pop());
 
-        board.getCentralCardsResource().add(board.getDeckCardResource().pop());
-        board.getCentralCardsResource().add(board.getDeckCardResource().pop());
+        board.addCardGold(board.getDeckCardGold().pop());
+        board.addCardGold(board.getDeckCardGold().pop());
 
         //giving each player his two personal objectives
         ArrayList<CardObjective> cardObjectives = new ArrayList<>();

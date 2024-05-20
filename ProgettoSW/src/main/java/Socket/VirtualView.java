@@ -1,4 +1,4 @@
-package socket;
+package Socket;
 
 public interface VirtualView {
         public void showUpdate(Integer number);

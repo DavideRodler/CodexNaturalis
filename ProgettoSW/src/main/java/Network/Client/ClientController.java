@@ -13,7 +13,7 @@ import model.cards.CardStarting;
 import model.client.ClientBoard;
 import model.client.ReductPlayer;
 import model.enums.TokenEnum;
-import socket.Messages.Message;
+import Socket.Messages.Message;
 import Socket.Messages.*;
 
 import java.rmi.RemoteException;
@@ -30,7 +30,7 @@ public class ClientController {
         this.clientModel = new ClientBoard(null, null, new ArrayList<>(), null, new ArrayList<>(), new ArrayList<>(), null);
         this.server = server;
         this.rmiClient = rmiClient;
-        ui = new Cli2();
+        ui = new Cli2(clientModel);
     }
 
     public ClientBoard getClientModel() {
@@ -83,6 +83,10 @@ public class ClientController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void showFourCentralCards() {
+        ui.showUpdatedBoard();
     }
 
     public void setupOfStartingCard() {
@@ -158,6 +162,17 @@ public class ClientController {
                         player.getStation().setCardStartingPlayedBack(null,cardStartingPlayedBackMessage.isPlayedBack());
                     }
                 }
+                break;
+            case "CentralCardResource":
+                CentralCardResourceMessage centralCardResourceMessage = (CentralCardResourceMessage) message;
+                clientModel.getCentralCardsResource().add(centralCardResourceMessage.getCardResource());
+                break;
+
+            case "CentralCardGold":
+                CentralCardGoldMessage centralCardGoldMessage = (CentralCardGoldMessage) message;
+                clientModel.getCentralCardsGold().add(centralCardGoldMessage.getCardGold());
+                break;
         }
     }
+
 }

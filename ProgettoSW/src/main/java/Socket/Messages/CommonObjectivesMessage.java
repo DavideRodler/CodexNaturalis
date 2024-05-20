@@ -1,7 +1,7 @@
 package Socket.Messages;
 
 import model.cards.CardObjective;
-import socket.Messages.Message;
+
 public class CommonObjectivesMessage extends Message{
     private CardObjective firstobjective;
 private CardObjective secondobjective;

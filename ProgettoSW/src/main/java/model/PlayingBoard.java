@@ -202,6 +202,24 @@ public class PlayingBoard extends ObservableModel {
                 .findFirst();
     }
 
+    public void addCardResource(CardResource card) {
+        centralCardsResource.add(card);
+        try {
+            notifyObservers(new CentralCardResourceMessage(card));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void addCardGold(CardGold card) {
+        centralCardsGold.add(card);
+        try {
+            notifyObservers(new CentralCardGoldMessage(card));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     // shuffle players
     public void shufflePlayer() {
         Collections.shuffle(players);
@@ -227,4 +245,6 @@ public class PlayingBoard extends ObservableModel {
             return players.get(indexOfCurrentPlayer+1).getNickname();
         }
     }
+
+
 }

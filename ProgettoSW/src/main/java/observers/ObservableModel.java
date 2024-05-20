@@ -1,6 +1,6 @@
 package observers;
 
-import socket.Messages.Message;
+import Socket.Messages.Message;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;

@@ -5,11 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="tentativo">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/CentralCardGoldMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/CentralCardResourceMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CardMatrixCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CardMatrixCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/socket/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socket/SocketClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/observers/ObservableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/observers/ObservableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/observers/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/observers/Observer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/ClientProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/ClientProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/Messages/Answers/ObjectChoosen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/Answers/ObjectChoosen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/Messages/Answers/StartingGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/Answers/StartingGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/Messages/CardStartingMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/CardStartingMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/Messages/CardStartingPlayedBackMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/CardStartingPlayedBackMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/Messages/CardToHandMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/CardToHandMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/Messages/ChangeStateMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ChangeStateMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/Messages/ChooseObjectives.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ChooseObjectives.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/Messages/CommonObjectivesMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/CommonObjectivesMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/Messages/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/Messages/PlayersInfoMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/PlayersInfoMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/Queue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Queue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/ServerProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/ServerProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/SocketClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/SocketClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/SocketClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/SocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/SocketServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/VirtualServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/VirtualView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/server/SocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/server/SocketServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +107,7 @@
   "keyToString": {
     "Application.ClientApp.executor": "Run",
     "Application.RmiClient.executor": "Run",
-    "Application.ServerApp.executor": "Debug",
+    "Application.ServerApp.executor": "Run",
     "Application.deckconstructor.executor": "Run",
     "Application.decktameplatetom.executor": "Run",
     "Application.playngstationTameplate.executor": "Run",
@@ -761,6 +789,26 @@
           <url>file://$PROJECT_DIR$/src/test/java/View/PrintStation.java</url>
           <line>64</line>
           <option name="timeStamp" value="214" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="215" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="216" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java</url>
+          <line>139</line>
+          <option name="timeStamp" value="217" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java</url>
+          <line>140</line>
+          <option name="timeStamp" value="218" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/View/CardMatrixCreator.java</url>

@@ -4,10 +4,9 @@ import model.Player;
 import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
-import model.client.ReductPlayer;
 import model.enums.GameState;
 import Socket.Messages.ChangeStateMessage;
-import socket.Messages.Message;
+import Socket.Messages.Message;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -90,15 +89,5 @@ public class ClientBoard implements Serializable {
 
     public void setSecondObjective(CardObjective secondObjective) {
         this.secondObjective = secondObjective;
-    }
-
-    public void update(Message message) {
-        switch (message.getType()){
-            case "ChangeState":
-                gameState = ((ChangeStateMessage) message).getGameState();
-                break;
-            default:
-                break;
-        }
     }
 }

@@ -1,6 +1,6 @@
-package socket.Messages.Answers;
+package Socket.Messages.Answers;
 
-import socket.Messages.Message;
+import Socket.Messages.Message;
 
 public class ObjectChoosen extends Message {
     private int num;
