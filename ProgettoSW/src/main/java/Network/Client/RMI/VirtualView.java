@@ -12,4 +12,8 @@ public interface VirtualView extends Remote, Observer {
     void setupOfStartingCard() throws RemoteException;
 
     void showFourCentralCards()throws RemoteException;
+
+    void reciveMyFirstHand() throws RemoteException;
+
+    void setupOfSecretObjective() throws RemoteException;
 }

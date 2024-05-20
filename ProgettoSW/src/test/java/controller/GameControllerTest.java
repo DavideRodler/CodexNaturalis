@@ -2,22 +2,24 @@ package controller;
 
 import Network.Cli2;
 import exception.ChangedStateException;
+import model.Player;
+import model.PlayingBoard;
 import model.PlayingStation;
+import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
 import model.cards.face.Corner;
 import model.cards.face.Face;
-import model.enums.DeckEnum;
-import model.enums.DirectionEnum;
-import model.enums.SuitEnum;
-import model.enums.TokenEnum;
+import model.enums.*;
 import model.objectives.ObjectiveDiagonal;
 import model.testsTemplate.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
 import exception.NotValidMoveException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -220,16 +222,32 @@ class GameControllerTest {
     void isGamefinished() throws ChangedStateException, NotValidMoveException {
         GameController game = new GameController();
         game.setPlayerNumber(2);
-        game.addPlayer("tommy", TokenEnum.BLACK);
-        game.addPlayer("isa", TokenEnum.YELLOW);
+        game.addPlayer("isa", TokenEnum.BLACK);
+        game.addPlayer("tommy", TokenEnum.YELLOW);
         game.getBoard().getPlayer("isa").setPoints(12);
         game.getBoard().getPlayer("isa").setPoints(21);
-        game.getBoard().setCurrentPlayer("isa");
+        game.getBoard().setCurrentPlayer("tommy");
+//        ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.ANIMAL);
+//        CardObjective cardObjectiveTmp1 = new CardObjective(4, 3, objectivetmp);
+//        CardObjective cardObjectiveTmp2 = new CardObjective(4, 3, objectivetmp);
+//        ArrayList<Player> players = new ArrayList<>();
+//        Player isa = new Player("isa", TokenEnum.BLUE, new PlayingStation(new HashMap<>()), 21, new ArrayList<>());
+//        Player tommy = new Player("tommy", TokenEnum.YELLOW, new PlayingStation(new HashMap<>()), 12, new ArrayList<>());
+//        players.add(0, tommy);
+//        players.add(1, isa);
+//       LinkedList<CardStarting> deckCardStarting = new LinkedList<CardStarting>();
+//        LinkedList<CardObjective> deckCardObjective = new LinkedList<CardObjective>();
+//        LinkedList<CardResource> deckCardResource = new LinkedList<CardResource>();
+//        LinkedList<CardGold> deckCardGold = new LinkedList<CardGold>();
+//        ArrayList<CardResource> deckCardResource1 = new ArrayList<CardResource>();
+//        ArrayList<CardGold> deckCardGold1 = new ArrayList<CardGold>();
+//        GameState stato = GameState.FINISHED;
+//        PlayingBoard board = new PlayingBoard(cardObjectiveTmp1, cardObjectiveTmp2, 2, players, deckCardStarting, deckCardResource, deckCardObjective, deckCardGold, "isa", deckCardResource1, deckCardGold1, stato);
         assertTrue(game.isGamefinished());
     }
 
     @Test
-    void winner() {
+    void win() {
 
     }
 }

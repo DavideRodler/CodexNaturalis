@@ -76,7 +76,7 @@ public class ClientController {
             clientModel.setMyplayer(myplayer);
 
             //adding player to server
-            server.addPlayer(nickname, token);
+            server.addPlayer(nickname, token, rmiClient);
 
         } catch (NotValidMoveException e) {
             e.printStackTrace();
@@ -86,7 +86,7 @@ public class ClientController {
     }
 
     public void showFourCentralCards() {
-        ui.showUpdatedBoard();
+        ui.print4CentralCards();
     }
 
     public void setupOfStartingCard() {
@@ -106,7 +106,7 @@ public class ClientController {
         clientModel.getMyplayer().getStation().setCardStartingPlayedBack(null,answer);
 
         //Printing the board
-        System.out.println("ciao");
+        ui.showUpdatedStation();
 
         //notify the server
         try {
@@ -121,6 +121,41 @@ public class ClientController {
 
     }
 
+    public void reciveMyFirstHand() {
+
+        //setting My Hand in the client model
+        try {
+            clientModel.getMyplayer().setHand(server.getMyHand(clientModel.getMyplayer().getNickname()));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
+        //Printing My hand
+        ui.printMyHand();
+
+    }
+
+    public  void setupOfSecretObjective(){
+        ui.showObjectiveCards();
+        int answer = ui.askObjectiveCard();
+
+        //setting secret objective in local model
+        clientModel.getMyplayer().setSecretObjective(clientModel.getMyplayer().getSelectibleObjectives().get(answer));
+
+        //sending secret objective to server
+        try {
+            server.setSecretObjective(clientModel.getMyplayer().getNickname(),clientModel.getMyplayer().getSecretObjective().getId());
+        } catch (ChangedStateException e) {
+            throw new RuntimeException(e);
+        } catch (NotValidMoveException e) {
+            throw new RuntimeException(e);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        System.out.println("ciao");
+    }
 
     public void updateModel(Message message) throws RemoteException {
         switch (message.getType()) {

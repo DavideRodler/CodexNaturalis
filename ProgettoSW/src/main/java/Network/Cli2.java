@@ -1,13 +1,8 @@
 package Network;
 
-import Network.Client.RMI.RmiClient;
-import Network.Server.VirtualServer;
 import View.*;
-import model.PlayingBoard;
 import model.cards.*;
 import model.client.ClientBoard;
-import model.client.ReductPlayer;
-import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 import model.objectives.ObjectiveCountingGold;
 import model.objectives.ObjectiveCountingResource;
@@ -158,7 +153,7 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public void showUpdatedBoard() {
+    public void print4CentralCards() {
         int pos = 0;
         BoardMatrix board = new BoardMatrix();
         CentralCardsCreator centralCards = new CentralCardsCreator();
@@ -216,7 +211,7 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public void showUpdatedHand() { //TODO: cambiare i test.
+    public void printMyHand() { //TODO: cambiare i test.
         System.out.println("Here is your hand:");
         HandMatrix playerHand = new HandMatrix();
         playerHand.addCardsToHand(clientBoard.getMyplayer().getHand());
@@ -233,9 +228,9 @@ public class Cli2 implements UI {
     @Override
     public void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String clientNickname) { //TODO: metodi in clientapp e serverapp!
         System.out.println("\n Updated Station of " + clientNickname + "\n");
-        showUpdatedBoard(); //stampa delle carte centrali e obiettivi comuni
+        print4CentralCards(); //stampa delle carte centrali e obiettivi comuni
         showUpdatedStation(); // stampa della station del giocatore con counter risorse e punti di tutti i giocatori
-        showUpdatedHand(); // stampa della mano com obiettivo segreto
+        printMyHand(); // stampa della mano com obiettivo segreto
     }
 
     @Override
@@ -273,7 +268,12 @@ public class Cli2 implements UI {
         return choice;
     }
 
-//    private void printCard(Card card) {
+    @Override
+    public void printMyboard() {
+
+    }
+
+    //    private void printCard(Card card) {
 //        if (card instanceof CardStarting) {
 //            System.out.println("This is the front of your starting card: \n");
 //            printStartingFront(card);

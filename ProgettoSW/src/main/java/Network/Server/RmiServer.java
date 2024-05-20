@@ -4,6 +4,7 @@ import Network.Client.RMI.VirtualView;
 import controller.GameController;
 import exception.ChangedStateException;
 import exception.NotValidMoveException;
+import model.cards.CardResource;
 import model.enums.GameState;
 import model.enums.TokenEnum;
 //import socket.Messages.PlayersInfoMessage;
@@ -64,12 +65,13 @@ public class RmiServer implements VirtualServer {
     }
 
     @Override
-    public void addPlayer(String nickname, TokenEnum token) throws ChangedStateException, NotValidMoveException {
+    public void addPlayer(String nickname, TokenEnum token, VirtualView Myclient) throws ChangedStateException, NotValidMoveException {
         gameController.addPlayer(nickname,token);
         for(VirtualView client : clients) {
             gameController.getBoard().getPlayer(nickname).addObserver(client);
             gameController.getBoard().getPlayer(nickname).getStation().addObserver(client);
         }
+        clientsMap.put(nickname, Myclient);
     }
 
 
@@ -79,7 +81,7 @@ public class RmiServer implements VirtualServer {
         for (VirtualView client : clients) {
             client.setupOfnicknameAndToken();
         }
-        showFourCentralCardsToPlayers();
+        initializeGame();
     }
  
 
@@ -114,7 +116,19 @@ public class RmiServer implements VirtualServer {
         gameController.setCentralCardPlayedBack(playedback, nickname, Id);
 
     }
-    public void showFourCentralCardsToPlayers() throws RemoteException {
+
+    @Override
+    public ArrayList<CardResource> getMyHand(String nickname) throws RemoteException {
+        return gameController.getBoard().getPlayer(nickname).getHand();
+    }
+
+    @Override
+    public void setSecretObjective(String nickname, Integer id) throws RemoteException, ChangedStateException, NotValidMoveException {
+        gameController.setObjectiveOfPlayer(nickname, id);
+
+    }
+
+    public  void initializeGame() throws RemoteException {
         try {
             gameController.InitializeGame();
         } catch (NotValidMoveException e) {
@@ -122,7 +136,9 @@ public class RmiServer implements VirtualServer {
         } catch (ChangedStateException e) {
             throw new RuntimeException(e);
         }
-
+        showFourCentralCardsToPlayers();
+    }
+    public void showFourCentralCardsToPlayers() throws RemoteException {
         for (VirtualView client : clients) {
             client.showFourCentralCards();
         }
@@ -133,6 +149,20 @@ public class RmiServer implements VirtualServer {
     public void startSetupOfStartingCard() throws RemoteException {
         for (VirtualView client : clients) {
             client.setupOfStartingCard();
+        }
+        firstHandSetup();
+    }
+
+    public void firstHandSetup() throws RemoteException {
+        for (VirtualView client : clients) {
+            client.reciveMyFirstHand();
+        }
+        setupOfSecretObjective();
+    }
+
+    public void setupOfSecretObjective() throws RemoteException {
+        for (VirtualView client : clients) {
+            client.setupOfSecretObjective();
         }
     }
 

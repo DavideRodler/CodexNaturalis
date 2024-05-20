@@ -1,9 +1,6 @@
 package View;
 
-import model.PlayingBoard;
-import model.cards.CardObjective;
 import model.cards.CardPlaying;
-import model.cards.CardResource;
 import model.cards.CardStarting;
 import model.enums.TokenEnum;
 
@@ -26,18 +23,26 @@ public interface UI {
     void showObjectiveCards();
 
     Integer askObjectiveCard();
-    
-    void showUpdatedBoard();
+
+    //this method only shows the 4 Central cards at the beginning of the game
+    void print4CentralCards();
     
     void showUpdatedStation();
 
-    void showUpdatedHand();
+    //this mehtod only print the hand and is used at the beginning of the game
+    void printMyHand();
 
     void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String name);
 
     Integer[] askCoordinatesOfCards();
 
     Integer askDrawingCard();
+
+    //ToDo
+
+    // this method print the 4 central cards, the hand , the playingstation, the common and private objectives
+    // and the other players name and points;
+   void printMyboard();
 
     TokenEnum askToken(ArrayList<TokenEnum> availableTokens);
 

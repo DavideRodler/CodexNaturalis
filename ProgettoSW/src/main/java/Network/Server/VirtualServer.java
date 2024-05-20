@@ -3,6 +3,7 @@ package Network.Server;
 import Network.Client.RMI.VirtualView;
 import exception.ChangedStateException;
 import exception.NotValidMoveException;
+import model.cards.CardResource;
 import model.enums.TokenEnum;
 
 import java.rmi.Remote;
@@ -21,7 +22,7 @@ public interface VirtualServer extends Remote {
 
     boolean checkTokenAvailability(TokenEnum token)throws RemoteException;
 
-    void addPlayer(String nickname, TokenEnum token) throws RemoteException, ChangedStateException, NotValidMoveException;
+    void addPlayer(String nickname, TokenEnum token, VirtualView Myclient) throws RemoteException, ChangedStateException, NotValidMoveException;
 
     void startSetupOfNicknameAndToken() throws RemoteException;
 
@@ -32,4 +33,8 @@ public interface VirtualServer extends Remote {
     void disconnectClient(VirtualView client) throws RemoteException;
 
     void setStartingCardPlayedBack(boolean playedback, String nickname, int ID) throws ChangedStateException, NotValidMoveException, RemoteException;
+
+    ArrayList<CardResource> getMyHand(String nickname) throws RemoteException;
+
+    void setSecretObjective(String nickname, Integer id) throws RemoteException, ChangedStateException, NotValidMoveException;
 }

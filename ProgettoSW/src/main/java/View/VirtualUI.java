@@ -59,7 +59,7 @@ public class VirtualUI implements UI {
     }
 
     @Override
-    public void showUpdatedBoard() {
+    public void print4CentralCards() {
 
     }
 
@@ -69,7 +69,7 @@ public class VirtualUI implements UI {
     }
 
     @Override
-    public void showUpdatedHand() {
+    public void printMyHand() {
 
     }
 
@@ -87,6 +87,11 @@ public class VirtualUI implements UI {
     @Override
     public Integer askDrawingCard() {
         return 0;
+    }
+
+    @Override
+    public void printMyboard() {
+
     }
 
     @Override

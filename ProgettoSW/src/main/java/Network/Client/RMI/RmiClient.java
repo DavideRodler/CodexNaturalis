@@ -44,4 +44,16 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
         clientController.showFourCentralCards();
 
     }
+
+    @Override
+    public void reciveMyFirstHand() throws RemoteException {
+        clientController.reciveMyFirstHand();
+
+    }
+
+    @Override
+    public void setupOfSecretObjective() throws RemoteException {
+        clientController.setupOfSecretObjective();
+
+    }
 }
