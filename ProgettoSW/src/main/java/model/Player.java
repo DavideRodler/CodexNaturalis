@@ -49,6 +49,9 @@ public class Player extends ObservableModel implements Serializable{
     public void setSecretObjective(CardObjective secretObjective) {
         this.secretObjective = secretObjective;
     }
+    public void setHand(ArrayList<CardResource> hand) {
+        this.hand = hand;
+    }
 
     //getter
     public ArrayList<CardResource> getHand() {
@@ -88,13 +91,8 @@ public class Player extends ObservableModel implements Serializable{
     public int getNumberOfCardInHand(){
         return hand.size();
     }
-    public void addCardToHand(CardResource card){
+    public void addCardToHand(CardResource card) {
         hand.add(card);
-//        try {
-////            notifySpecificObserver(nickname, new CardToHandMessage(card));
-//        } catch (RemoteException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 
 
