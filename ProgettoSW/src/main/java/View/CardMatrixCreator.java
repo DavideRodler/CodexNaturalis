@@ -649,7 +649,7 @@ public class CardMatrixCreator {
      * this method prints the starting card's front and back
       * @param cardStarting
      */
-    public static void showStartingCard(CardStarting cardStarting){
+    public static void cardStartingPrinter(CardStarting cardStarting){
         String[][] cardFrontAndaAck = new String[3][16];
         String[][] front = createFrontPlayingCard(cardStarting);
         String[][] back = createBackPlayingCard(cardStarting);

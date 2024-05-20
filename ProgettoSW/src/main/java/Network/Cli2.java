@@ -64,7 +64,8 @@ public class Cli2 implements UI {
 
     @Override
     public void showStartingCard(CardStarting cardStarting) {
-        printCard(cardStarting);
+        cardStartingPrinter(cardStarting);
+        //printCard(cardStarting);
     }
    @Override
     public void showGameTitle(){

@@ -64,4 +64,8 @@ public class PrintStation {
         stationMatrix.addCardsToStation(stationCard, max);
         stationMatrix.printStation(max);
     }
+    @Test
+    public void printStartingcard(){
+//        ArrayList<CardPlaying> cardPlayings = pla
+   }
 }
