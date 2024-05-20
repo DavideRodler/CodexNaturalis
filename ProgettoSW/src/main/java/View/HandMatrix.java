@@ -1,6 +1,7 @@
 package View;
 
 import model.cards.CardGold;
+import model.cards.CardObjective;
 import model.cards.CardPlaying;
 import model.cards.CardResource;
 
@@ -8,8 +9,11 @@ import java.util.ArrayList;
 
 import static View.CardMatrixCreator.*;
 
+/**
+ * Oltre alla mano c'è anche l'obiettivo segreto.
+ */
 public class HandMatrix {
-    private String[][] handMatrix = new String[3][27];
+    private String[][] handMatrix = new String[3][36];
 
     public String[][] getHandMatrix() {
         return handMatrix;
@@ -95,6 +99,14 @@ public class HandMatrix {
         for(int i = 0; i < 3; i++) {
             if(cards.get(i) != null){
                 addCardToHand(cards.get(i), i);
+            }
+        }
+    }
+
+    public void addObjectiveToHand(CardObjective cardObj){
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 7; j++) {
+                handMatrix[i][j+27] = " ";
             }
         }
     }

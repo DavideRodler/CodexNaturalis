@@ -1,13 +1,8 @@
 package Network.Client.RMI;
 
-import Network.Cli2;
 import Network.Client.ClientController;
 import Network.Server.VirtualServer;
 
-import exception.NotValidMoveException;
-import model.client.ClientBoard;
-import observers.Observer;
-import socket.Messages.ChangeStateMessage;
 import socket.Messages.Message;
 
 import java.rmi.RemoteException;

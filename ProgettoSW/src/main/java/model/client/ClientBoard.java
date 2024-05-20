@@ -6,7 +6,7 @@ import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.client.ReductPlayer;
 import model.enums.GameState;
-import socket.Messages.ChangeStateMessage;
+import Socket.Messages.ChangeStateMessage;
 import socket.Messages.Message;
 
 import java.io.Serializable;

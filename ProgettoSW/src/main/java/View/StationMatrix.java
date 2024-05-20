@@ -1,7 +1,10 @@
 package View;
 
 import model.cards.*;
+import model.client.ClientBoard;
+import model.client.ReductPlayer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static View.CardMatrixCreator.*;
@@ -17,24 +20,38 @@ public class StationMatrix {
 
     public void initializeStationPrint(){
         for (String[] strings : stationPrint) {
-            Arrays.fill(strings, black + "█" + reset);
+            Arrays.fill(strings, black + " " + reset);
         }
     }
+
     //metodo addCardToBoard e addCardsToBoard e infine una stampa
     public void addCardToStation(CardResource card, int i, int j) {
         int m = 0;
         int l = 0;
+        boolean[] cornerCovered;
         distanceXFromStarting = 40 - i;
         distanceYFromStarting = 40 - j;
         String[][] tmp;
         if(card.getPlayingBack()){
             tmp = createBackPlayingCard(card);
+            cornerCovered = checkCornerCoveredPlayedBack(card);
         } else{
             tmp = createFrontPlayingCard(card);
+            cornerCovered = checkCornerCovered(card);
         }
         for(int k = 3*i + distanceXFromStarting; k < 3*i+3+distanceXFromStarting; k++){
             for(int s = 7*j+distanceYFromStarting; s < 7*j+7+distanceYFromStarting; s++){
-                stationPrint[k][s] = tmp[m][l];
+                if(m == 0 && l == 0 && cornerCovered[0]) { //controllo se angolo in alto a sx è coperto
+                    stationPrint[k][s] = stationPrint[k][s];
+                } else if(m == 0 && l == 6 && cornerCovered[1]) {
+                    stationPrint[k][s] = stationPrint[k][s];
+                } else if(m == 2 && l == 0 && cornerCovered[2]){
+                    stationPrint[k][s] = stationPrint[k][s];
+                } else if(m == 2 && l == 6 && cornerCovered[3]) {
+                    stationPrint[k][s] = stationPrint[k][s];
+                } else{
+                    stationPrint[k][s] = tmp[m][l];
+                }
                 l++;
             }
             l=0;
@@ -66,13 +83,24 @@ public class StationMatrix {
             addCardToStation((CardResource) card, i, j);
         } else{
             String[][] tmp = createFrontPlayingCard(card);
+            boolean[] cornerCovered = checkCornerCovered(card);
             int m = 0;
             int l = 0;
             distanceXFromStarting = 40 - i;
             distanceYFromStarting = 40 - j;
             for(int k = 3*i + distanceXFromStarting; k < 3*i+3+distanceXFromStarting; k++){
                 for(int s = 7*j+distanceYFromStarting; s < 7*j+7+distanceYFromStarting; s++){
-                    stationPrint[k][s] = tmp[m][l];
+                    if(m == 0 && l == 0 && cornerCovered[0]) { //controllo se angolo in alto a sx è coperto
+                        stationPrint[k][s] = stationPrint[k][s];
+                    } else if(m == 0 && l == 6 && cornerCovered[1]) {
+                        stationPrint[k][s] = stationPrint[k][s];
+                    } else if(m == 2 && l == 0 && cornerCovered[2]){
+                        stationPrint[k][s] = stationPrint[k][s];
+                    } else if(m == 2 && l == 6 && cornerCovered[3]) {
+                        stationPrint[k][s] = stationPrint[k][s];
+                    } else{
+                        stationPrint[k][s] = tmp[m][l];
+                    }
                     l++;
                 }
                 l = 0;
@@ -174,10 +202,33 @@ public class StationMatrix {
 //            }
 //        }
 //    }
-    public void printStation(int max){//120, 280 sono le coordinate della carta iniziale in stationPrint
+    public void printStation(int max){//121, 283 sono le coordinate della carta iniziale in stationPrint
+        int x;
+        int y;
+        int coordMax;
         for(int i = 120-3*max; i < 123+3*max; i++){
             for(int j = 280-7*max; j < 287+7*max; j++){
-                System.out.print(stationPrint[i][j]);
+                if(i == 120-3*max && j == 280-7*max){ // per stampare coordinate non in ogni posizione ma solo a ogni carta
+                    //prima metto coordinate sulle righe
+                    coordMax = max; //questo perhcè voglio mettere un numero in più per la carta che verrà piazzata nel turno successivo
+                    x = 40 - coordMax;
+                    y = 40 - coordMax;
+                    for(int k = 121-2*coordMax; k <= 121+2*max; k+=2){
+                        stationPrint[k][j] = String.valueOf(x);
+                        stationPrint[k+1][j] = "  ";
+                        x++;
+                    }
+                    for(int k = 283-7*coordMax; k <= 290+7*max; k+= 7){
+                        stationPrint[i][k] = String.valueOf(y/10);
+                        stationPrint[i+1][k-1] = String.valueOf(y%10);
+                        //stationPrint[i][k+1] = "";
+                        y++;
+                    }
+                    stationPrint[i][j] = " ";
+                } else{
+                    System.out.print(stationPrint[i][j]);
+                }
+
             }
             System.out.println();
         }
@@ -260,6 +311,52 @@ public class StationMatrix {
                     }
                 }
             }
+        }
+    }
+
+    private boolean[] checkCornerCovered(CardResource card){
+        boolean[] cornerCovered = new boolean[4];
+        if(card.getFront().getUpLeft().isCovered()){
+            cornerCovered[0] = true;
+        }
+        if(card.getFront().getUpRight().isCovered()){
+            cornerCovered[1] = true;
+        }
+        if(card.getFront().getDownLeft().isCovered()){
+            cornerCovered[2] = true;
+        }
+        if(card.getFront().getDownRight().isCovered()){
+            cornerCovered[3] = true;
+        }
+        return cornerCovered;
+    }
+
+    private boolean[] checkCornerCoveredPlayedBack(CardResource card) {
+        boolean[] cornerCovered = new boolean[4];
+        if(card.getBack().getUpLeft().isCovered()){
+            cornerCovered[0] = true;
+        }
+        if(card.getBack().getUpRight().isCovered()){
+            cornerCovered[1] = true;
+        }
+        if(card.getBack().getDownLeft().isCovered()){
+            cornerCovered[2] = true;
+        }
+        if(card.getBack().getDownRight().isCovered()){
+            cornerCovered[3] = true;
+        }
+        return cornerCovered;
+    }
+
+    public void printResources (int fungi, int plant, int animal, int insect, int quill, int manuscript, int inkwell) {
+        System.out.println("You have: "+fungi+"of fungi, "+plant+"of plant, "+animal+"of animal, "+insect+"of insect, "+quill+"of quill, "+manuscript+"of manuscript, "+inkwell+"of inkwell");
+    }
+
+    public void printPoints(ClientBoard clientBoard){
+        int clientPoints = clientBoard.getMyplayer().getPoints();
+        System.out.println("You have: " + clientPoints + " points");
+        for(ReductPlayer reductPlayer : clientBoard.getOtherplayers()){
+            System.out.println(reductPlayer.getNickname() + "has " + reductPlayer.getPoints() + " points");
         }
     }
 }

@@ -4,9 +4,9 @@ import model.cards.*;
 import model.enums.GameState;
 import model.enums.TokenEnum;
 import observers.ObservableModel;
-import socket.Messages.ChangeStateMessage;
-import socket.Messages.CommonObjectivesMessage;
-import socket.Messages.PlayersInfoMessage;
+import Socket.Messages.*;
+//import socket.Messages.CommonObjectivesMessage;
+//import socket.Messages.PlayersInfoMessage;
 
 import java.rmi.RemoteException;
 import java.util.*;

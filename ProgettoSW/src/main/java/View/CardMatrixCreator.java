@@ -1,7 +1,7 @@
 package View;
 
 import model.cards.*;
-import model.enums.Suit;
+import model.enums.SuitEnum;
 import model.objectives.*;
 
 import java.util.ArrayList;
@@ -41,18 +41,18 @@ public class CardMatrixCreator {
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 if (isUpLeftCorner(i, j, rows, cols)) {
-                    smallResCard[i][j] = cornerScanner(card.getFront().getUpLeft());
+                    smallResCard[i][j] = cornerScanner(card.getFront().getUpLeft().getDrawing());
 //                    smallResCard[i][j+1] = " ";
 //                    j = j+1;
                 } else if (isDownLeftCorner(i, j, rows, cols)) {
-                    smallResCard[i][j] = cornerScanner(card.getFront().getDownLeft());
+                    smallResCard[i][j] = cornerScanner(card.getFront().getDownLeft().getDrawing());
 //                    smallResCard[i][j+1] = " ";
 //                    j = j+1;
                 } else if (isUpRightCorner(i, j, rows, cols)) {
-                    smallResCard[i][j] = cornerScanner(card.getFront().getUpRight());
+                    smallResCard[i][j] = cornerScanner(card.getFront().getUpRight().getDrawing());
 //                    smallResCard[i][j-1] = " ";
                 } else if (isDownRightCorner(i, j, rows, cols)) {
-                    smallResCard[i][j] = cornerScanner(card.getFront().getDownRight()) + reset;
+                    smallResCard[i][j] = cornerScanner(card.getFront().getDownRight().getDrawing()) + reset;
 //                    smallResCard[i][j-1] = " ";
                 } else {
                     smallResCard[i][j] = color + "█" + "\u001B[0m";
@@ -77,18 +77,18 @@ public class CardMatrixCreator {
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 if (isUpLeftCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getFront().getUpLeft());
+                    startingCard[i][j] = cornerScanner(card.getFront().getUpLeft().getDrawing());
 //                    startingCard[i][j+1] = " ";
 //                    j = j+1;
                 } else if (isDownLeftCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getFront().getDownLeft());
+                    startingCard[i][j] = cornerScanner(card.getFront().getDownLeft().getDrawing());
 //                    startingCard[i][j+1] = " ";
 //                    j = j+1;
                 } else if (isUpRightCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getFront().getUpRight());
+                    startingCard[i][j] = cornerScanner(card.getFront().getUpRight().getDrawing());
 //                    startingCard[i][j-1] = " ";
                 } else if (isDownRightCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getFront().getDownRight()) + reset;
+                    startingCard[i][j] = cornerScanner(card.getFront().getDownRight().getDrawing()) + reset;
 //                    startingCard[i][j-1] = " ";
                 } else {
                     startingCard[i][j] = beige + "█" + "\u001B[0m";
@@ -126,18 +126,18 @@ public class CardMatrixCreator {
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 if (isUpLeftCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(card.getFront().getUpLeft());
+                    resCard[i][j] = cornerScanner(card.getFront().getUpLeft().getDrawing());
                     resCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isDownLeftCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(card.getFront().getDownLeft());
+                    resCard[i][j] = cornerScanner(card.getFront().getDownLeft().getDrawing());
                     resCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isUpRightCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(card.getFront().getUpRight());
+                    resCard[i][j] = cornerScanner(card.getFront().getUpRight().getDrawing());
                     resCard[i][j-1] = " ";
                 } else if (isDownRightCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(card.getFront().getDownRight()) + reset;
+                    resCard[i][j] = cornerScanner(card.getFront().getDownRight().getDrawing()) + reset;
                     resCard[i][j-1] = " ";
                 } else {
                     resCard[i][j] = color + "█" + "\u001B[0m";
@@ -162,18 +162,18 @@ public class CardMatrixCreator {
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 if (isUpLeftCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getFront().getUpLeft());
+                    startingCard[i][j] = cornerScanner(card.getFront().getUpLeft().getDrawing());
                     startingCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isDownLeftCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getFront().getDownLeft());
+                    startingCard[i][j] = cornerScanner(card.getFront().getDownLeft().getDrawing());
                     startingCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isUpRightCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getFront().getUpRight());
+                    startingCard[i][j] = cornerScanner(card.getFront().getUpRight().getDrawing());
                     startingCard[i][j-1] = " ";
                 } else if (isDownRightCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getFront().getDownRight()) + reset;
+                    startingCard[i][j] = cornerScanner(card.getFront().getDownRight().getDrawing()) + reset;
                     startingCard[i][j-1] = " ";
                 } else {
                     startingCard[i][j] = beige + "█" + "\u001B[0m";
@@ -211,18 +211,18 @@ public class CardMatrixCreator {
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 if (isUpLeftCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(card.getBack().getUpLeft());
+                    resCard[i][j] = cornerScanner(card.getBack().getUpLeft().getDrawing());
                     resCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isDownLeftCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(card.getBack().getDownLeft());
+                    resCard[i][j] = cornerScanner(card.getBack().getDownLeft().getDrawing());
                     resCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isUpRightCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(card.getBack().getUpRight());
+                    resCard[i][j] = cornerScanner(card.getBack().getUpRight().getDrawing());
                     resCard[i][j-1] = " ";
                 } else if (isDownRightCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(card.getBack().getDownRight()) + reset;
+                    resCard[i][j] = cornerScanner(card.getBack().getDownRight().getDrawing()) + reset;
                     resCard[i][j-1] = " ";
                 } else {
                     resCard[i][j] = color + "█" + "\u001B[0m";
@@ -244,18 +244,18 @@ public class CardMatrixCreator {
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 if (isUpLeftCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getBack().getUpLeft());
+                    startingCard[i][j] = cornerScanner(card.getBack().getUpLeft().getDrawing());
                     startingCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isDownLeftCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getBack().getDownLeft());
+                    startingCard[i][j] = cornerScanner(card.getBack().getDownLeft().getDrawing());
                     startingCard[i][j+1] = " ";
                     j = j+1;
                 } else if (isUpRightCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getBack().getUpRight());
+                    startingCard[i][j] = cornerScanner(card.getBack().getUpRight().getDrawing());
                     startingCard[i][j-1] = " ";
                 } else if (isDownRightCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getBack().getDownRight()) + reset;
+                    startingCard[i][j] = cornerScanner(card.getBack().getDownRight().getDrawing()) + reset;
                     startingCard[i][j-1] = " ";
                 } else {
                     startingCard[i][j] = beige + "█" + "\u001B[0m";
@@ -278,18 +278,18 @@ public class CardMatrixCreator {
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 if (isUpLeftCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(card.getBack().getUpLeft());
+                    resCard[i][j] = cornerScanner(card.getBack().getUpLeft().getDrawing());
 //                    resCard[i][j+1] = " ";
 //                    j = j+1;
                 } else if (isDownLeftCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(card.getBack().getDownLeft());
+                    resCard[i][j] = cornerScanner(card.getBack().getDownLeft().getDrawing());
 //                    resCard[i][j+1] = " ";
 //                    j = j+1;
                 } else if (isUpRightCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(card.getBack().getUpRight());
+                    resCard[i][j] = cornerScanner(card.getBack().getUpRight().getDrawing());
 //                    resCard[i][j-1] = " ";
                 } else if (isDownRightCorner(i, j, rows, cols)) {
-                    resCard[i][j] = cornerScanner(card.getBack().getDownRight()) + reset;
+                    resCard[i][j] = cornerScanner(card.getBack().getDownRight().getDrawing()) + reset;
 //                    resCard[i][j-1] = " ";
                 } else {
                     resCard[i][j] = color + "█" + "\u001B[0m";
@@ -311,18 +311,18 @@ public class CardMatrixCreator {
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 if (isUpLeftCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getBack().getUpLeft());
+                    startingCard[i][j] = cornerScanner(card.getBack().getUpLeft().getDrawing());
 //                    startingCard[i][j+1] = " ";
 //                    j = j+1;
                 } else if (isDownLeftCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getBack().getDownLeft());
+                    startingCard[i][j] = cornerScanner(card.getBack().getDownLeft().getDrawing());
 //                    startingCard[i][j+1] = " ";
 //                    j = j+1;
                 } else if (isUpRightCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getBack().getUpRight());
+                    startingCard[i][j] = cornerScanner(card.getBack().getUpRight().getDrawing());
 //                    startingCard[i][j-1] = " ";
                 } else if (isDownRightCorner(i, j, rows, cols)) {
-                    startingCard[i][j] = cornerScanner(card.getBack().getDownRight()) + reset;
+                    startingCard[i][j] = cornerScanner(card.getBack().getDownRight().getDrawing()) + reset;
 //                    startingCard[i][j-1] = " ";
                 } else {
                     startingCard[i][j] = beige + "█" + "\u001B[0m";
@@ -368,7 +368,7 @@ public class CardMatrixCreator {
         }
     }
     
-    public static String cornerScanner(Suit suit) {
+    public static String cornerScanner(SuitEnum suit) {
         return switch (suit) {
             case ANIMAL -> lightBlue + "A" + reset;
             case INSECT -> purple + "I" + reset;
@@ -388,21 +388,21 @@ public class CardMatrixCreator {
         int costAnimal = ((CardGold) card).getCostAnimal();
         int costPlant = ((CardGold) card).getCostPlant();
         int costInsect = ((CardGold) card).getCostInsect();
-        ArrayList<Suit> costList = new ArrayList<Suit>();
+        ArrayList<SuitEnum> costList = new ArrayList<SuitEnum>();
         while(costFungi > 0){
-            costList.add(Suit.FUNGI);
+            costList.add(SuitEnum.FUNGI);
             costFungi--;
         }
         while(costAnimal > 0){
-            costList.add(Suit.ANIMAL);
+            costList.add(SuitEnum.ANIMAL);
             costAnimal--;
         }
         while(costPlant > 0){
-            costList.add(Suit.PLANT);
+            costList.add(SuitEnum.PLANT);
             costPlant--;
         }
         while(costInsect > 0){
-            costList.add(Suit.INSECT);
+            costList.add(SuitEnum.INSECT);
             costInsect--;
         }
         if(costList.size() == 3){
@@ -516,7 +516,7 @@ public class CardMatrixCreator {
         return insPos;
     }
     
-    public static String[][] createCountGold(Suit suit){
+    public static String[][] createCountGold(SuitEnum suit){
         String[][] countGold = new String[3][7];
         int rows = countGold.length;
         int cols = countGold[0].length;
@@ -547,7 +547,7 @@ public class CardMatrixCreator {
         return countGold;
     }
     
-    public static String[][] createDiagonal(Suit suit){
+    public static String[][] createDiagonal(SuitEnum suit){
         String[][] diag = new String[3][7];
         int rows = diag.length;
         int cols = diag[0].length;
@@ -557,8 +557,8 @@ public class CardMatrixCreator {
             }
         }
         diag[0][3] = "2";
-        if(suit == Suit.FUNGI || suit == Suit.ANIMAL){
-            if(suit == Suit.FUNGI){
+        if(suit == SuitEnum.FUNGI || suit == SuitEnum.ANIMAL){
+            if(suit == SuitEnum.FUNGI){
                 diag[2][2] = red + "█";
                 diag[1][3] = red + "█";
                 diag[0][4] = red + "█" + reset;
@@ -567,8 +567,8 @@ public class CardMatrixCreator {
                 diag[1][3] = lightBlue + "█";
                 diag[0][4] = lightBlue + "█" + reset;
             }
-        } else if (suit == Suit.PLANT || suit == Suit.INSECT) {
-            if(suit == Suit.PLANT){
+        } else if (suit == SuitEnum.PLANT || suit == SuitEnum.INSECT) {
+            if(suit == SuitEnum.PLANT){
                 diag[0][2] = green + "█";
                 diag[1][3] = green + "█";
                 diag[2][4] = green + "█" + reset;
@@ -581,7 +581,7 @@ public class CardMatrixCreator {
         return diag;
     }
     
-    public static String[][] createCountRes(Suit suit){
+    public static String[][] createCountRes(SuitEnum suit){
         String[][] countRes = new String[3][7];
         int rows = countRes.length;
         int cols = countRes[0].length;
@@ -602,13 +602,13 @@ public class CardMatrixCreator {
     }
 
     public static String[][] createObjective(ObjectivePositioning objective){
-        if(objective.getColorTwoCards() == Suit.FUNGI){
+        if(objective.getColorTwoCards() == SuitEnum.FUNGI){
             return createFungiPositioning();
-        } else if(objective.getColorTwoCards() == Suit.PLANT) {
+        } else if(objective.getColorTwoCards() == SuitEnum.PLANT) {
             return createPlantPositioning();
-        } else if(objective.getColorTwoCards() == Suit.ANIMAL){
+        } else if(objective.getColorTwoCards() == SuitEnum.ANIMAL){
             return createAnimalPositioning();
-        } else if(objective.getColorTwoCards() == Suit.INSECT){
+        } else if(objective.getColorTwoCards() == SuitEnum.INSECT){
             return createInsectPositioning();
         }else{
             return null;
@@ -623,25 +623,55 @@ public class CardMatrixCreator {
             return createCountAll();
         }
         else if((countQuill != 0)&&(countInkwell == 0)&&(countManuscript==0)){
-            return createCountGold(Suit.QUILL);
+            return createCountGold(SuitEnum.QUILL);
         }
         else if ((countQuill == 0)&&(countInkwell != 0)&&(countManuscript==0)) {
-            return createCountGold(Suit.INKWELL);
+            return createCountGold(SuitEnum.INKWELL);
         }
         else if ((countQuill == 0)&&(countInkwell == 0)&&(countManuscript!=0)){
-            return createCountGold(Suit.MANUSCRIPT);
+            return createCountGold(SuitEnum.MANUSCRIPT);
         } else{
             return null;
         }
     }
 
     public static String[][] createObjective(ObjectiveDiagonal objective){
-        Suit suit = objective.getColor();
+        SuitEnum suit = objective.getColor();
         return createDiagonal(suit);
     }
 
     public static String[][] createObjective(ObjectiveCountingResource objective){
-        Suit suit = objective.getSymbol();
+        SuitEnum suit = objective.getSymbol();
         return createCountRes(suit);
+    }
+
+    /**
+     * this method prints the starting card's front and back
+      * @param cardStarting
+     */
+    public static void showStartingCard(CardStarting cardStarting){
+        String[][] cardFrontAndaAck = new String[3][16];
+        String[][] front = createFrontPlayingCard(cardStarting);
+        String[][] back = createBackPlayingCard(cardStarting);
+        int m = 0;
+        int l = 0;
+
+        for(int i = 0; i < cardFrontAndaAck.length; i++) { //copio front a sx.
+            System.arraycopy(front[i], 0, cardFrontAndaAck[i], 0, front[i].length);
+        }
+        for(int i = 0; i < cardFrontAndaAck.length; i++) { //inserisco spazi tra le due carte
+            for(int j = 7; j < 9; j++) {
+                cardFrontAndaAck[i][j] =  black + "█" + reset;;
+            }
+        }
+        for(int i = 0; i < cardFrontAndaAck.length; i++) { //copio back a dx
+            for(int j = 9; j < 16; j++) {
+                cardFrontAndaAck[i][j] = back[m][l];
+                l++;
+            }
+            l = 0;
+            m++;
+        }
+        printMatrix(cardFrontAndaAck);
     }
 }

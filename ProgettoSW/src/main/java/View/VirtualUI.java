@@ -47,7 +47,7 @@ public class VirtualUI implements UI {
     }
 
     @Override
-    public void showObjectiveCards(ArrayList<CardObjective> cardObjectives) {
+    public void showObjectiveCards() {
 
     }
 
@@ -59,17 +59,17 @@ public class VirtualUI implements UI {
     }
 
     @Override
-    public void showUpdatedBoard(PlayingBoard playingBoard) {
+    public void showUpdatedBoard() {
 
     }
 
     @Override
-    public void showUpdatedStation(Map<ArrayList<Integer>, CardPlaying> playingStation) {
+    public void showUpdatedStation() {
 
     }
 
     @Override
-    public void showUpdatedHand(ArrayList<CardResource> hand) {
+    public void showUpdatedHand() {
 
     }
 

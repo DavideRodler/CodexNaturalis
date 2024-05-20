@@ -86,7 +86,7 @@ class GameControllerTest {
 
         Cli2 cli = new Cli2();
 
-        cli.showUpdatedHand(game.getPlayerHand("tommy"));
+        //cli.showUpdatedHand(game.getPlayerHand("tommy"));
     //    cli.showStartingCard(game.getStartingCard("tommy"));
      //   game.setObjectiveOfPlayer("tommy",game.getObjectiveToChoose("tommy").get(1).getId());
     //    cli.showObjectiveCards(game.getObjectiveToChoose("tommy"));
@@ -122,7 +122,7 @@ class GameControllerTest {
 
         Cli2 cli = new Cli2();
 
-        cli.showUpdatedHand(game.getPlayerHand("tommy"));
+        //cli.showUpdatedHand(game.getPlayerHand("tommy"));
     //    cli.showStartingCard(game.getStartingCard("tommy"));
     //    game.setObjectiveOfPlayer("tommy",game.getObjectiveToChoose("tommy").get(1).getId());
     //    cli.showObjectiveCards(game.getObjectiveToChoose("tommy"));
@@ -201,7 +201,7 @@ class GameControllerTest {
         game.addPlayer("isa", TokenEnum.YELLOW);
         Cli2 cli = new Cli2();
         System.out.println(game.getPlayerHand("isa"));
-        cli.showUpdatedHand(game.getPlayerHand("isa"));
+        //cli.showUpdatedHand(game.getPlayerHand("isa"));
 
     }
 

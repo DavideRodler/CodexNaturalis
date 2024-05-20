@@ -2,10 +2,7 @@ package Network;
 
 import Network.Client.RMI.RmiClient;
 import Network.Server.VirtualServer;
-import View.BoardMatrix;
-import View.HandMatrix;
-import View.StationMatrix;
-import View.UI;
+import View.*;
 import model.PlayingBoard;
 import model.cards.*;
 import model.client.ClientBoard;
@@ -20,6 +17,7 @@ import model.objectives.*;
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -140,39 +138,50 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public void showUpdatedBoard(PlayingBoard playingBoard) {
+    public void showUpdatedBoard() {
         int pos = 0;
         BoardMatrix board = new BoardMatrix();
+        CentralCardsCreator centralCards = new CentralCardsCreator();
         System.out.println("Common objectives: ");
-        board.printCommonObjectives(playingBoard.getFirstObjective(), playingBoard.getSecondObjective());
+        board.printCommonObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
         System.out.println("Central cards are: ");
         for(int i = 0; i < clientBoard.getCentralCardsGold().size(); i++){
-            board.printCentralCard(clientBoard.getCentralCardsGold().get(i), pos);
+            centralCards.addCentralCard(clientBoard.getCentralCardsGold().get(i), pos);
             pos++;
         }
         for(int i = 0; i < clientBoard.getCentralCardsResource().size(); i++){
-            board.printCentralCard(clientBoard.getCentralCardsResource().get(i), pos);
+            centralCards.addCentralCard(clientBoard.getCentralCardsResource().get(i), pos);
             pos++;
         }
-        board.printCentral();
+        centralCards.printCentral();
     }
 
     @Override
-    public void showUpdatedStation(Map<ArrayList<Integer>, CardPlaying> playingStation) {
+    public void showUpdatedStation() {
+        int fungi = clientBoard.getMyplayer().getStation().getCountFungi();
+        int plant = clientBoard.getMyplayer().getStation().getCountPlant();
+        int animal = clientBoard.getMyplayer().getStation().getCountAnimal();
+        int insect = clientBoard.getMyplayer().getStation().getCountInsect();
+        int quill = clientBoard.getMyplayer().getStation().getCountQuill();
+        int manuscript = clientBoard.getMyplayer().getStation().getCountManuscript();
+        int inkwell = clientBoard.getMyplayer().getStation().getCountInkwell();
         int x, y, maxX, maxY, distanceX, distanceY, max;
+        int maxXPos, maxXNeg, maxYPos, maxYNeg;
         maxX = 0;
         maxY = 0;
         max = 0;
         System.out.println(reductPlayer.getNickname() + "'s station: ");//name);
         CardPlaying[][] station = new CardPlaying[80][80];
-        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : playingStation.entrySet()) {
+        HashMap<ArrayList<Integer>, CardPlaying> playingStationMap = clientBoard.getMyplayer().getStation().getMap();
+        for (HashMap.Entry<ArrayList<Integer>, CardPlaying> entry : playingStationMap.entrySet()) {
             ArrayList<Integer> coordinates = entry.getKey();
             CardPlaying card = entry.getValue();
             x = coordinates.get(0);
             y = coordinates.get(1);
             station[x][y] = card;
-            distanceX = Math.abs(x - 40);
-            distanceY = Math.abs(y - 40);
+            distanceX = x - 40;
+            distanceY = y - 40;
+
             if(distanceX > maxX || distanceY > maxY){
                 maxX = distanceX;
                 maxY = distanceY;
@@ -182,19 +191,31 @@ public class Cli2 implements UI {
         //ho popolato le carte della station, la passo come argomento alla boardmatrix
         stationMatrix.addCardsToStation(station, max);
         stationMatrix.printStation(max);
+        stationMatrix.printResources(fungi, plant, animal, insect, quill, manuscript, inkwell);
+        stationMatrix.printPoints(clientBoard);
     }
 
     @Override
-    public void showUpdatedHand(ArrayList<CardResource> hand) { //TODO: cambaire cardPlaying in resource
+    public void showUpdatedHand() { //TODO: cambiare i test.
         System.out.println("Here is your hand:");
         HandMatrix playerHand = new HandMatrix();
         playerHand.addCardsToHand(clientBoard.getMyplayer().getHand());
+        playerHand.addObjectiveToHand(clientBoard.getMyplayer().getSecretObjective());
         playerHand.printHandMatrix();
     }
 
+    /**
+     * this is the method that prints everything needed for a player's turn.
+     *
+     * @param playingStation
+     * @param clientNickname
+     */
     @Override
-    public void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String clientNickname) {
+    public void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String clientNickname) { //TODO: metodi in clientapp e serverapp!
         System.out.println("\n Updated Station of " + clientNickname + "\n");
+        showUpdatedBoard(); //stampa delle carte centrali e obiettivi comuni
+        showUpdatedStation(); // stampa della station del giocatore con counter risorse e punti di tutti i giocatori
+        showUpdatedHand(); // stampa della mano com obiettivo segreto
     }
 
     @Override
@@ -297,13 +318,14 @@ public class Cli2 implements UI {
     @Override
     public TokenEnum askToken(ArrayList<TokenEnum> availableTokens) {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        System.out.println("Use number to select one of the available tokens: " + availableTokens);
-        while (true) {
-            Integer choice = scanner.nextInt();
-            if (choice > 0 && choice <= availableTokens.size()) {
-                return availableTokens.get(choice - 1);
-            }
+
+        Integer choice;
+        do {
+            System.out.println("Use numbers to select one of the available tokens: " + availableTokens);
+            choice = scanner.nextInt();
         }
+        while (choice < 0 && choice >= availableTokens.size());
+        return availableTokens.get(choice - 1);
     }
 
     @Override
@@ -344,12 +366,14 @@ public class Cli2 implements UI {
     }
 
     private void printCard(CardStarting cardStarting){
-        System.out.println("This is the front of your starting card: \n");
-        printStartingFront(cardStarting);
-        System.out.println("\nThis is the back of your starting card: \n");
-        printStartingBack(cardStarting);
-    }
+        showStartingCard(cardStarting);
+//        System.out.println("This is the front of your starting card: \n");
+//        printStartingFront(cardStarting);
+//        System.out.println("\nThis is the back of your starting card: \n");
+//        printStartingBack(cardStarting);
 
+    }
+    //inutili?
     private void printCard(CardResource cardRes){
         System.out.println("This is the front of your resource card: \n");
         printResourceFront(cardRes);

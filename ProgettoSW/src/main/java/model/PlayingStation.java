@@ -6,8 +6,7 @@ import model.cards.*;
 import model.cards.face.Corner;
 import model.enums.SuitEnum;
 import observers.ObservableModel;
-import socket.Messages.CardStartingMessage;
-import socket.Messages.CardStartingPlayedBackMessage;
+import Socket.Messages.*;
 
 
 import java.io.Serializable;

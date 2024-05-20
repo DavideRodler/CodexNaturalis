@@ -1,5 +1,5 @@
-package socket.Messages;
-
+package Socket.Messages;
+import socket.Messages.Message;
 public class CardStartingPlayedBackMessage extends Message{
     private boolean playedBack;
     private String nickname;

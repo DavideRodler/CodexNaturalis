@@ -24,15 +24,15 @@ public interface UI {
     void printErrorMessage(Exception e);
     boolean askStartingCardPlayedBack();
 
-    void showObjectiveCards(ArrayList<CardObjective> cardObjectives);
+    void showObjectiveCards();
 
     Integer askObjectiveCard();
     
-    void showUpdatedBoard(PlayingBoard playingBoard);
+    void showUpdatedBoard();
     
-    void showUpdatedStation(Map<ArrayList<Integer>, CardPlaying> playingStation);
+    void showUpdatedStation();
 
-    void showUpdatedHand(ArrayList<CardResource> hand);
+    void showUpdatedHand();
 
     void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String name);
 

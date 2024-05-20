@@ -57,6 +57,8 @@ public class BoardMatrix {
         printMatrix(commonObjectives);
     }
 
+    CentralCardsCreator centralCardsCreator = new CentralCardsCreator();
+
     public void printCentralCard(CardResource card, int pos) {
         String[][] tmp = createFrontPlayingCard(card);
         int m = 0;

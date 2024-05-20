@@ -1,7 +1,7 @@
-package socket.Messages;
+package Socket.Messages;
 
 import model.enums.TokenEnum;
-
+import socket.Messages.Message;
 import java.util.HashMap;
 
 public class PlayersInfoMessage extends Message{
