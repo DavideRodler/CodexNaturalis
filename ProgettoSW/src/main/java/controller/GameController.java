@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameController implements Serializable {
-    private PlayingBoard board;
+    private static PlayingBoard board;
 
     //getter
     public PlayingBoard getBoard() {
@@ -284,19 +284,27 @@ public class GameController implements Serializable {
      * @param X    the x coordinate
      * @param Y    the y coordinate
      */
-    public synchronized void addCardToPlayingStation(String nickname, int id, Integer X, Integer Y) throws Exception {
+    public synchronized void addCardToPlayingStation(String nickname, int id, boolean front, Integer X, Integer Y) throws Exception {
         assertGameState(GameState.PLACING_CARD);
         assertIsMyTurn(nickname);
-        int points = 0;
+        int points;
+        int counter = 0;
+        HashMap<ArrayList<Integer>, Boolean> numCornerCovered;
         Player player = board.getPlayer(nickname);
 
         //check if the card is in your hand
         CardResource card = player.getHand().stream()
                 .filter(c -> c.getId().equals(id))
                 .findFirst()
-                .orElseThrow(()-> new NotValidMoveException("card not in your hand"));
+                .orElseThrow(() -> new NotValidMoveException("card not found in your hand"));
+
+
         //check if the card is Playable
-//        player.getStation().isPlayable(card, X, Y);
+        try {
+            numCornerCovered = player.getStation().isPlayable(card, X, Y);
+        } catch (Exception e) {
+            throw new NotValidMoveException("card not playable");
+        }
 
         // Check if the card can be placed
         player.removeCardFromHand(id);
@@ -308,9 +316,39 @@ public class GameController implements Serializable {
         player.getStation().getMap().put(coordinates, card);
 
         //updating the counters
-        //TODO: non va fatto cosi' devo cambiare metodo
         player.getStation().updateCounters(card);
 
+        if(front) {
+            for (var var : numCornerCovered.keySet()) {
+                switch (counter) {
+                    case 0: {
+                        if (numCornerCovered.get(var)) {
+                            player.getStation().getMap().get(var).getFront().getDownRight().setCovered(true);
+                            player.getStation().updateCounters(player.getStation().getMap().get(var).getFront().getDownRight());
+                        }
+                    }
+                    case 1: {
+                        if (numCornerCovered.get(var)) {
+                            player.getStation().getMap().get(var).getFront().getDownLeft().setCovered(true);
+                            player.getStation().updateCounters(player.getStation().getMap().get(var).getFront().getDownLeft());
+                        }
+                    }
+                    case 2: {
+                        if (numCornerCovered.get(var)) {
+                            player.getStation().getMap().get(var).getFront().getUpRight().setCovered(true);
+                            player.getStation().updateCounters(player.getStation().getMap().get(var).getFront().getUpRight());
+                        }
+                    }
+                    case 3: {
+                        if (numCornerCovered.get(var)) {
+                            player.getStation().getMap().get(var).getFront().getUpLeft().setCovered(true);
+                            player.getStation().updateCounters(player.getStation().getMap().get(var).getFront().getUpLeft());
+                        }
+                    }
+                }
+                counter++;
+            }
+        } else card.setPlayingBack(true);
 
         //calculating the points that the card generates
         if (!(card.getPlayingBack())) {
@@ -377,6 +415,36 @@ public class GameController implements Serializable {
                 board.getCentralCardsGold().add(i, board.getDeckCardGold().pop());
             }
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+        GameController game = new GameController();
+        board.setGameState(GameState.SET_PLAYER_NUMBER);
+        game.setPlayerNumber(2);
+        board.setGameState(GameState.SET_NAME_AND_TOKEN);
+        //numero di player settato, si mescolano in automatico e posso aggiungere nickname e token
+        game.addPlayer("tommy", TokenEnum.BLACK);
+        game.addPlayer("isa", TokenEnum.YELLOW);
+        game.InitializeGame();
+        //tutti i giocatori sono salvati, gli obiettivi e le carte Starting sono distribuite in automatico
+
+        //ho settato gli obiettivi di tutti i player il gioco inizia in automatico
+        String Player1 = game.getCurrentPlayer();
+        ArrayList<CardResource> Player1Hand = game.getPlayerHand(Player1);
+        board.setGameState(GameState.PLACING_CARD);
+        game.addCardToPlayingStation(Player1, Player1Hand.get(0).getId(),true,39,39);
+        game.addCardFromCentralCardsToPlayerHand(Player1,game.getBoard().getCentralCardsGold().get(0).getId());
+
+        /*String Player2 = game.getCurrentPlayer();
+        ArrayList<CardResource> Player2Hand = game.getPlayerHand(Player2);
+        game.addCardToPlayingStation(Player2, Player2Hand.get(0).getId(),true,39,39);
+        game.addCardFromCentralCardsToPlayerHand(Player2,game.getBoard().getCentralCardsGold().get(0).getId());
+
+        game.addCardToPlayingStation(Player1, Player1Hand.get(0).getId(),true,38,38);
+        game.addCardFromDeckToPlayerHand(Player1, DeckEnum.DECK_GOLD);
+
+        game.addCardToPlayingStation(Player2, Player2Hand.get(0).getId(),true,38,38);*/
+
     }
 
 }

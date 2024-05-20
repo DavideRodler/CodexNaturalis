@@ -4,13 +4,13 @@ import exception.ChangedStateException;
 import exception.NotValidMoveException;
 import model.PlayingStation;
 import model.cards.CardObjective;
-import model.enums.DirectionEnum;
-import model.enums.PositionEnum;
-import model.enums.SuitEnum;
-import model.enums.TokenEnum;
+import model.cards.CardResource;
+import model.enums.*;
 import model.objectives.ObjectiveDiagonal;
 import model.testsTemplate.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 public class PlacingConditionTest {
@@ -21,37 +21,51 @@ public class PlacingConditionTest {
 //    //  Finally I am also testing that the costs and scores are updated correctly
 //    //  with the placement of new cards
     @Test
-    public void test_null_corner() throws ChangedStateException, NotValidMoveException {
+    public void test_null_corner() throws Exception {
         // Creating the PlayingStation
 
-        PlayingStation station = PlayingStationTemplate.test_null_corner_c();
         GameController game = new GameController();
+        game.getBoard().setGameState(GameState.SET_PLAYER_NUMBER);
         game.setPlayerNumber(2);
-        game.addPlayer("isa", TokenEnum.BLUE);
-        game.addPlayer("tommy", TokenEnum.YELLOW);
-        game.getBoard().getPlayer("isa").setStation(station);
-        ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.ANIMAL);
-        CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
-        game.getBoard().getPlayer("isa").setSecretObjective(cardObjectiveTmp);
-        int punti = game.getBoard().getPlayer("isa").getPoints();
-        int animals = station.getCountAnimal();
-        int plants = station.getCountPlant();
-        int fungi = station.getCountFungi();
-        int insects = station.getCountInsect();
-        int inkwell = station.getCountInkwell();
-        int quill = station.getCountQuill();
-        int manuscript = station.getCountManuscript();
+        game.getBoard().setGameState(GameState.SET_NAME_AND_TOKEN);
+        //numero di player settato, si mescolano in automatico e posso aggiungere nickname e token
+        game.addPlayer("tommy", TokenEnum.BLACK);
+        game.addPlayer("isa", TokenEnum.YELLOW);
+        game.InitializeGame();
+        //tutti i giocatori sono salvati, gli obiettivi e le carte Starting sono distribuite in automatico
+
+        //ho settato gli obiettivi di tutti i player il gioco inizia in automatico
+        String Player1 = game.getCurrentPlayer();
+        ArrayList<CardResource> Player1Hand = game.getPlayerHand(Player1);
+        game.getBoard().setGameState(GameState.PLACING_CARD);
+        int puntiIn = Player1Hand.get(0).getPoints();
+        int animalsIn = Player1Hand.get(0).countResource(SuitEnum.ANIMAL) + game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCardStarting().countResource(SuitEnum.ANIMAL);
+        int plantsIn = Player1Hand.get(0).countResource(SuitEnum.PLANT) + game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCardStarting().countResource(SuitEnum.PLANT);
+        int fungiIn = Player1Hand.get(0).countResource(SuitEnum.FUNGI) + game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCardStarting().countResource(SuitEnum.FUNGI);
+        int insectsIn = Player1Hand.get(0).countResource(SuitEnum.INSECT) + game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCardStarting().countResource(SuitEnum.INSECT);
+        int inkwellIn = Player1Hand.get(0).countResource(SuitEnum.INKWELL);
+        int quillIn = Player1Hand.get(0).countResource(SuitEnum.QUILL);
+        int manuscriptIn = Player1Hand.get(0).countResource(SuitEnum.MANUSCRIPT);
+        game.addCardToPlayingStation(Player1, Player1Hand.get(0).getId(),true,39,39);
+        int punti = game.getBoard().getPlayer(game.getCurrentPlayer()).getPoints();
+        int animals = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountAnimal();
+        int plants = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountPlant();
+        int fungi = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountFungi();
+        int insects = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountInsect();
+        int inkwell = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountInkwell();
+        int quill = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountQuill();
+        int manuscript = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountManuscript();
 
 
 //        // Checking the result
-        assertEquals(1, punti, "Test failed. You scored " + punti + " points.");
-        assertEquals(3, animals, "Test failed. You scored " + animals + " animals.");
-        assertEquals(1, plants, "Test failed. You scored " + plants + " plants.");
-        assertEquals(2, fungi, "Test failed. You scored " + fungi + " fungi.");
-        assertEquals(1, insects, "Test failed. You scored " + insects + " insects.");
-        assertEquals(0, inkwell, "Test failed. You scored " + inkwell + " inkwell.");
-        assertEquals(0, quill, "Test failed. You scored " + quill + " quill.");
-        assertEquals(0, manuscript, "Test failed. You scored " + manuscript + " manuscript.");
+        assertEquals(puntiIn, punti, "Test failed. You scored " + punti + " points.");
+        assertEquals(animalsIn, animals, "Test failed. You scored " + animals + " animals.");
+        assertEquals(plantsIn, plants, "Test failed. You scored " + plants + " plants.");
+        assertEquals(fungiIn, fungi, "Test failed. You scored " + fungi + " fungi.");
+        assertEquals(insectsIn, insects, "Test failed. You scored " + insects + " insects.");
+        assertEquals(inkwellIn, inkwell, "Test failed. You scored " + inkwell + " inkwell.");
+        assertEquals(quillIn, quill, "Test failed. You scored " + quill + " quill.");
+        assertEquals(manuscriptIn, manuscript, "Test failed. You scored " + manuscript + " manuscript.");
     }
 //
 //

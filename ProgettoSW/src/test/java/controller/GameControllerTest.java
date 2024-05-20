@@ -135,18 +135,18 @@ class GameControllerTest {
         //ho settato gli obiettivi di tutti i player il gioco inizia in automatico
         String Player1 = game.getCurrentPlayer();
         ArrayList<CardResource> Player1Hand = game.getPlayerHand(Player1);
-        game.addCardToPlayingStation(Player1, Player1Hand.get(0).getId(),39,39);
+        game.addCardToPlayingStation(Player1, Player1Hand.get(0).getId(),true,39,39);
         game.addCardFromCentralCardsToPlayerHand(Player1,game.getBoard().getCentralCardsGold().get(0).getId());
 
         String Player2 = game.getCurrentPlayer();
         ArrayList<CardResource> Player2Hand = game.getPlayerHand(Player2);
-        game.addCardToPlayingStation(Player2, Player2Hand.get(0).getId(),39,39);
+        game.addCardToPlayingStation(Player2, Player2Hand.get(0).getId(),true,39,39);
         game.addCardFromCentralCardsToPlayerHand(Player2,game.getBoard().getCentralCardsGold().get(0).getId());
 
-        game.addCardToPlayingStation(Player1, Player1Hand.get(0).getId(),38,38);
+        game.addCardToPlayingStation(Player1, Player1Hand.get(0).getId(),true,38,38);
         game.addCardFromDeckToPlayerHand(Player1, DeckEnum.DECK_GOLD);
 
-        game.addCardToPlayingStation(Player2, Player2Hand.get(0).getId(),38,38);
+        game.addCardToPlayingStation(Player2, Player2Hand.get(0).getId(),true,38,38);
         game.addCardFromDeckToPlayerHand(Player2, DeckEnum.DECK_GOLD);
     }
 
