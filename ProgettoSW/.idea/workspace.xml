@@ -4,21 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="fix isPlayable">
-      <change afterPath="$PROJECT_DIR$/src/main/java/View/StartingCardMatrix.java" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Correzione Test Objective">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/BoardMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/BoardMatrix.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CardMatrixCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CardMatrixCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CentralCardsCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CentralCardsCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/HandMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/HandMatrix.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/StationMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/StationMatrix.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/VirtualUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +30,12 @@
     <option name="BRANCH" value="origin/main" />
   </component>
   <component name="Git.Rebase.Settings">
-    <option name="NEW_BASE" value="origin/ericscemo" />
+    <option name="NEW_BASE" value="origin/rmi-con-controller" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="Con-Contatori" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -99,10 +90,10 @@
     "JUnit.DeckConstructorTest.testDeckResource.executor": "Debug",
     "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
     "JUnit.GameControllerTest.GivingCardToPlayersTest.executor": "Run",
-    "JUnit.GameControllerTest.TestOfFourTurns.executor": "Run",
+    "JUnit.GameControllerTest.TestOfFourTurns.executor": "Debug",
     "JUnit.GameControllerTest.executor": "Run",
     "JUnit.GameControllerTest.getAvailableToken.executor": "Coverage",
-    "JUnit.GameControllerTest.getCurrentPlayer.executor": "Coverage",
+    "JUnit.GameControllerTest.getCurrentPlayer.executor": "Run",
     "JUnit.GameControllerTest.getObjectiveToChoose.executor": "Coverage",
     "JUnit.GameControllerTest.getPlayerHand.executor": "Coverage",
     "JUnit.GameControllerTest.getPlayerNumber.executor": "Run",
@@ -110,12 +101,13 @@
     "JUnit.GameControllerTest.isGamefinished.executor": "Run",
     "JUnit.GameControllerTest.setCentralCardPlayedBack.executor": "Run",
     "JUnit.GameControllerTest.setStartingCardForPlayers.executor": "Run",
-    "JUnit.GameControllerTest.setupOfTheGameTest.executor": "Run",
+    "JUnit.GameControllerTest.setupOfTheGameTest.executor": "Debug",
     "JUnit.GameControllerTest.testChecknickname.executor": "Run",
     "JUnit.GameControllerTest.testTokenAvailability.executor": "Run",
     "JUnit.GameTest.testChecknickname.executor": "Run",
     "JUnit.GameTest.testPlayers.executor": "Run",
     "JUnit.GameTest.testStations.executor": "Run",
+    "JUnit.ObjectiveDiagonalTest.executor": "Run",
     "JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor": "Run",
     "JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor": "Run",
     "JUnit.ObjectivePositioningTest.executor": "Run",
@@ -125,8 +117,6 @@
     "JUnit.PlacingConditionTest (1).executor": "Run",
     "JUnit.PlacingConditionTest.executor": "Run",
     "JUnit.PlacingConditionTest.test_null_corner.executor": "Run",
-    "JUnit.PrintStation.CliPrintStation.executor": "Run",
-    "JUnit.PrintStation.printStartingcard.executor": "Run",
     "JUnit.deckconstructorTest.deckResource.executor": "Run",
     "JUnit.java in ProgettoSW.executor": "Debug",
     "Maven.ProgettoSW [clean].executor": "Run",
@@ -147,7 +137,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "com.maddyhome.idea.vim.ui.VimEmulationConfigurable",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.ignored.files",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -192,49 +182,49 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlacingConditionTest.test_null_corner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest.getCurrentPlayer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.placingCondition.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.placingCondition" />
-      <option name="MAIN_CLASS_NAME" value="model.placingCondition.PlacingConditionTest" />
-      <option name="METHOD_NAME" value="test_null_corner" />
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
+      <option name="METHOD_NAME" value="getCurrentPlayer" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PrintStation.CliPrintStation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest.isGamefinished" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="View.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="View" />
-      <option name="MAIN_CLASS_NAME" value="View.PrintStation" />
-      <option name="METHOD_NAME" value="CliPrintStation" />
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
+      <option name="METHOD_NAME" value="isGamefinished" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PrintStation.printStartingcard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest.setupOfTheGameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="View.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="View" />
-      <option name="MAIN_CLASS_NAME" value="View.PrintStation" />
-      <option name="METHOD_NAME" value="printStartingcard" />
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
+      <option name="METHOD_NAME" value="setupOfTheGameTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -243,17 +233,17 @@
     <list>
       <item itemvalue="Application.ClientApp" />
       <item itemvalue="Application.ServerApp" />
-      <item itemvalue="JUnit.PrintStation.CliPrintStation" />
-      <item itemvalue="JUnit.PrintStation.printStartingcard" />
-      <item itemvalue="JUnit.PlacingConditionTest.test_null_corner" />
+      <item itemvalue="JUnit.GameControllerTest.getCurrentPlayer" />
+      <item itemvalue="JUnit.GameControllerTest.isGamefinished" />
+      <item itemvalue="JUnit.GameControllerTest.setupOfTheGameTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.ServerApp" />
-        <item itemvalue="JUnit.PrintStation.CliPrintStation" />
-        <item itemvalue="JUnit.PrintStation.printStartingcard" />
-        <item itemvalue="JUnit.PlacingConditionTest.test_null_corner" />
+        <item itemvalue="JUnit.GameControllerTest.isGamefinished" />
+        <item itemvalue="JUnit.GameControllerTest.getCurrentPlayer" />
+        <item itemvalue="JUnit.GameControllerTest.setupOfTheGameTest" />
       </list>
     </recent_temporary>
   </component>
@@ -649,15 +639,7 @@
       <option name="project" value="LOCAL" />
       <updated>1716106669480</updated>
     </task>
-    <task id="LOCAL-00046" summary="fix isPlayable">
-      <option name="closed" value="true" />
-      <created>1716287836950</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1716287836950</updated>
-    </task>
-    <option name="localTasksCounter" value="47" />
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -725,6 +707,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="modificato testo exception" />
     <MESSAGE value="Introduzione a CLI+Observer" />
     <MESSAGE value="Cantiere in corso RMI" />
     <MESSAGE value="Aggiunta di Client, Server Rmi, e della logica Rmi." />
@@ -749,8 +732,7 @@
     <MESSAGE value="messo idea nel gitingoore" />
     <MESSAGE value="CardStarting funzionanti con observer, il GameController non passa piu' da uno stato all'altro in modo automatico" />
     <MESSAGE value="Correzione Test Objective" />
-    <MESSAGE value="fix isPlayable" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix isPlayable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correzione Test Objective" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -774,14 +756,29 @@
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="228" />
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java</url>
+          <line>154</line>
+          <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>
-          <line>318</line>
-          <option name="timeStamp" value="229" />
+          <line>133</line>
+          <option name="timeStamp" value="224" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
+          <line>137</line>
+          <option name="timeStamp" value="225" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="226" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="227" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -809,33 +806,30 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_testChecknickname.ic" NAME="GameControllerTest.testChecknickname Coverage Results" MODIFIED="1715690160254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getObjectiveToChoose.ic" NAME="GameControllerTest.getObjectiveToChoose Coverage Results" MODIFIED="1715698653686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>controller.*</FILTER>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ClientApp.ic" NAME="ClientApp Coverage Results" MODIFIED="1714141966006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>StartApplication.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getAvailableToken.ic" NAME="GameControllerTest.getAvailableToken Coverage Results" MODIFIED="1715692588758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$java_in_ProgettoSW.ic" NAME="java in ProgettoSW Coverage Results" MODIFIED="1713876265206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_testChecknickname.ic" NAME="GameControllerTest.testChecknickname Coverage Results" MODIFIED="1715690160254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getPlayerHand.ic" NAME="GameControllerTest.getPlayerHand Coverage Results" MODIFIED="1715698739662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ClientApp.ic" NAME="ClientApp Coverage Results" MODIFIED="1714141966006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>StartApplication.*</FILTER>
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getStartingCard.ic" NAME="GameControllerTest.getStartingCard Coverage Results" MODIFIED="1715697139842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$java_in_ProgettoSW.ic" NAME="java in ProgettoSW Coverage Results" MODIFIED="1713876265206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getObjectiveToChoose.ic" NAME="GameControllerTest.getObjectiveToChoose Coverage Results" MODIFIED="1715698653686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$ObjectivePositioningTest_test_Positioning.ic" NAME="ObjectivePositioningTest.test_Positioning Coverage Results" MODIFIED="1713276818760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getCurrentPlayer.ic" NAME="GameControllerTest.getCurrentPlayer Coverage Results" MODIFIED="1715699049521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getStartingCard.ic" NAME="GameControllerTest.getStartingCard Coverage Results" MODIFIED="1715697139842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$PlacingConditionTest_test_null_corner.ic" NAME="PlacingConditionTest.test_null_corner Coverage Results" MODIFIED="1716288399310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>model.placingCondition.*</FILTER>
     </SUITE>
   </component>
 </project>

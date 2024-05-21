@@ -300,11 +300,7 @@ public class GameController implements Serializable {
 
 
         //check if the card is Playable
-        try {
-            numCornerCovered = player.getStation().isPlayable(card, X, Y);
-        } catch (Exception e) {
-            throw new NotValidMoveException("card not playable");
-        }
+        numCornerCovered = player.getStation().isPlayable(card, X, Y);
 
         // Check if the card can be placed
         player.removeCardFromHand(id);
@@ -315,10 +311,10 @@ public class GameController implements Serializable {
         coordinates.add(1, Y);
         player.getStation().getMap().put(coordinates, card);
 
-        //updating the counters
-        player.getStation().updateCounters(card);
 
+        //removing the counters of the covered cards
         if(front) {
+            card.setPlayingBack(false);
             for (var var : numCornerCovered.keySet()) {
                 switch (counter) {
                     case 0: {
@@ -350,6 +346,9 @@ public class GameController implements Serializable {
             }
         } else card.setPlayingBack(true);
 
+        //adding counters of te new card that has been added
+        player.getStation().updateCounters(card);
+
         //calculating the points that the card generates
         if (!(card.getPlayingBack())) {
             points = card.getObjective().countObjectivePoints(player.getStation(), card, X, Y);
@@ -373,16 +372,33 @@ public class GameController implements Serializable {
         return false;
     }
 
-    public String winner() {
-        int maxpoint = 0;
-        String maxpointHolder = "";
-        for (Player player : board.getPlayers()) {
-            if (maxpoint < player.getPoints()) {
-                maxpoint = player.getPoints();
-                maxpointHolder = player.getNickname();
-            }
+
+    /**
+     * This method is used to get the score board of the game at the end of the game
+     * @return  a Hasmap that has as key the nickname of the player and an arraylist that
+     * contains as the first element the position of the player and as a second element
+     * the total points that the players has scored
+     */
+    public HashMap<String,ArrayList<Integer>> getScoreBoard() {
+        HashMap<String,ArrayList<Integer>> scoreBoard = new HashMap<>();
+        ArrayList<Player> players = board.getPlayers();
+
+        //creating a Map with the players nickname and their extrapoints
+        HashMap<String,Integer> playerExtraPoints = new HashMap<>();
+        for (Player player : players) {
+            playerExtraPoints.put(player.getNickname(),player.getSecretObjective().getObjective().countObjectivePoints(player.getStation()));
         }
-        return maxpointHolder;
+
+
+        for( Player player: players){
+            ArrayList<Integer> playerScore = new ArrayList<>();
+            playerScore.add(1,player.getPoints() + playerExtraPoints.get(player.getNickname()));
+            scoreBoard.put(player.getNickname(),playerScore);
+
+        }
+
+        return scoreBoard;
+
     }
 
 
