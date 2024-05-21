@@ -136,8 +136,20 @@ public class ClientController {
     }
 
     public  void setupOfSecretObjective(){
-        ui.printCommonObjective();//obiettivi comuni
+        //printing common objectives
+        ui.printCommonObjective();
+
+        //getting selectable objectives from server and setting it on local model
+        try {
+            clientModel.getMyplayer().setSelectibleObjectives(server.getSelectableObjectives(clientModel.getMyplayer().getNickname()));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
+        //printing selectible objectives
         ui.printSelectableObjectives();
+
+        //asking secret objective
         int answer = ui.askObjectiveCard();
 
         //setting secret objective in local model

@@ -4,6 +4,7 @@ import Network.Client.RMI.VirtualView;
 import controller.GameController;
 import exception.ChangedStateException;
 import exception.NotValidMoveException;
+import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.enums.GameState;
 import model.enums.TokenEnum;
@@ -126,6 +127,11 @@ public class RmiServer implements VirtualServer {
     public void setSecretObjective(String nickname, Integer id) throws RemoteException, ChangedStateException, NotValidMoveException {
         gameController.setObjectiveOfPlayer(nickname, id);
 
+    }
+
+    @Override
+    public ArrayList<CardObjective> getSelectableObjectives(String nickname) throws RemoteException {
+        return gameController.getBoard().getPlayer(nickname).getSelectibleObjectives();
     }
 
     public  void initializeGame() throws RemoteException {

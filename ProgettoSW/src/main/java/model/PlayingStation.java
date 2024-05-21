@@ -182,6 +182,7 @@ public class PlayingStation extends ObservableModel implements Serializable {
          * @param Y    the y coordinate
          * @return true if the card can be placed, false otherwise
          */
+        //TODO: devo sapere se la carta e' giocata front o back
         public HashMap isPlayable (CardResource card, Integer X, Integer Y) throws InvalidPlacingCondition {
 
             // Check if the coordinates are free
@@ -239,6 +240,9 @@ public class PlayingStation extends ObservableModel implements Serializable {
 
                 if(getCard(X+1,Y) != null)
                     throw new InvalidPlacingCondition("You can't place a card above 2 corners of the same card");
+
+
+                //:Todo mettere un metodo che ritorna il lato della carta che gioco
 
                 if (getCard(X - 1, Y - 1) != null) { //checking if existing the down-right card adjacent with the card I want to play
                     if (!map.get(coordinates1).getPlayingBack()) { //checking if the card is played by front

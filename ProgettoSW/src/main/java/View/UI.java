@@ -22,7 +22,7 @@ public interface UI {
 
     void printSelectableObjectives();
 
-    Integer askObjectiveCard();
+    int askObjectiveCard();
 
     //this method only shows the 4 Central cards at the beginning of the game
     void print4CentralCards();

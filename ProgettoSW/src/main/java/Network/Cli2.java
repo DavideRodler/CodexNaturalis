@@ -133,10 +133,11 @@ public class Cli2 implements UI {
 
     @Override
     public void printCommonObjective() {
-        System.out.println();
+        System.out.println("Common objectives are: ");
         printCard(clientBoard.getFirstObjective());
         System.out.println();
         printCard(clientBoard.getSecondObjective());
+        System.out.println();
     }
 
     /**
@@ -153,16 +154,19 @@ public class Cli2 implements UI {
      */
     @Override
     public void printSelectableObjectives(){
+        System.out.println("Theese are the objectives you can choose from:");
         printCard(clientBoard.getMyplayer().getSelectibleObjectives().get(0));  //prima carta obj
         printCard(clientBoard.getMyplayer().getSelectibleObjectives().get(1)); // seconda carta obj
+        System.out.println();
     }
 
     /**
      * this method asks the player which objective card they want to keep
+     *
      * @return
      */
     @Override
-    public Integer askObjectiveCard() {
+    public int askObjectiveCard() {
         System.out.println("Select the Objective Card you want to keep:");
         Scanner in = new Scanner(new InputStreamReader(System.in));
         Integer choice;
@@ -170,7 +174,7 @@ public class Cli2 implements UI {
             System.out.println("1 for first, 2 for second");
             choice = in.nextInt();
         } while (choice != 1 && choice != 2);
-        return choice;
+        return choice -1;
     }
 
     /**
@@ -412,7 +416,7 @@ public class Cli2 implements UI {
 
     private void printMatrix(String[][] mat){
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 11; j++) {
+            for (int j = 0; j < 7; j++) {
                 System.out.print(mat[i][j]);
             }
             System.out.println();

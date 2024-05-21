@@ -3,6 +3,7 @@ package Network.Server;
 import Network.Client.RMI.VirtualView;
 import exception.ChangedStateException;
 import exception.NotValidMoveException;
+import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.enums.TokenEnum;
 
@@ -37,4 +38,6 @@ public interface VirtualServer extends Remote {
     ArrayList<CardResource> getMyHand(String nickname) throws RemoteException;
 
     void setSecretObjective(String nickname, Integer id) throws RemoteException, ChangedStateException, NotValidMoveException;
+
+    ArrayList<CardObjective> getSelectableObjectives(String nickname) throws RemoteException;
 }
