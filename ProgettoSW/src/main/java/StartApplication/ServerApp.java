@@ -41,7 +41,7 @@ public class ServerApp implements Remote {
                 }
             } while (true);
 
-            VirtualServer server = new RmiServer(new GameController());
+            VirtualServer server = new RmiServer();
             try{
                 VirtualServer stub = (VirtualServer) UnicastRemoteObject.exportObject(server, 0);
                 Registry registry = LocateRegistry.createRegistry(16000);

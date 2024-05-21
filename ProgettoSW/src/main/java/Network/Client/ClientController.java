@@ -19,6 +19,7 @@ import Socket.Messages.*;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class ClientController {
     private UI ui;
@@ -31,35 +32,11 @@ public class ClientController {
         this.server = server;
         this.rmiClient = rmiClient;
         ui = new Cli2(clientModel);
+        ui.showGameTitle();
     }
 
     public ClientBoard getClientModel() {
         return clientModel;
-    }
-
-    public void StartGame() {
-        ui.showGameTitle();
-        try {
-            if (server.askFirstPlayertoConnect()) {
-                server.setPlayerNumber(ui.askPlayerNumber());
-                server.checkAllPlayersConnected();
-            } else {
-                if(server.morePlayersNeeded()) {
-                    System.out.println("waiting to start game");
-                    server.checkAllPlayersConnected();
-                }
-                else {
-                    System.out.println("can't join game, too many players");
-                    server.disconnectClient(rmiClient);
-                }
-            }
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        } catch (ChangedStateException e) {
-            throw new RuntimeException(e);
-        } catch (NotValidMoveException e) {
-            System.out.println("Not valid move");
-        }
     }
 
     public void setupOfnicknameAndToken() {
@@ -223,4 +200,37 @@ public class ClientController {
         }
     }
 
+    public void setupOfPlayersNumber() {
+        try {
+            server.setPlayerNumber(ui.askPlayerNumber());
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        } catch (ChangedStateException e) {
+            throw new RuntimeException(e);
+        } catch (NotValidMoveException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void notifyAnotherPlayerSettingNumOfPlayers() throws RemoteException {
+        System.out.println("Another is selecting the number of players, do you want to try again?");
+        Scanner scanner = new Scanner(System.in);
+        String answer = scanner.nextLine();
+        if(answer.isEmpty()) {
+            rmiClient.connectToServer();
+        }
+    }
+
+    public void notifyAllPlayersConnected() {
+        System.out.println("All players are connected, the game is starting");
+    }
+
+    public void notifyWaitingForPlayersToJoin() {
+        System.out.println("You have joined the game!");
+        System.out.println("Waiting for other players to join");
+    }
+
+    public void notifyGameAlreadyStarted() {
+        System.out.println("The game has already started, you can't join now");
+    }
 }

@@ -15,35 +15,23 @@ import java.util.*;
 
 public class RmiServer implements VirtualServer {
 
-    final GameController gameController;
+    private GameController gameController;
     private List<VirtualView> clients;
     private HashMap<String, VirtualView> clientsMap;
 
 
-    public RmiServer(GameController gameController) {
-        this.gameController = gameController;
-        gameController.initGameController();
+    public RmiServer() {
         clients = new ArrayList<>();
         clientsMap = new HashMap<>();
 
     }
 
     @Override
-    public synchronized void connectClient(VirtualView client) {
-            this.clients.add(client);
-        gameController.getBoard().addObserver(client);
-            System.err.println("new client connected");
+    public void connectClient(VirtualView client) throws RemoteException {
+        handleNewClient(client);
+        System.err.println("new client connected");
     }
 
-    @Override
-    public boolean askFirstPlayertoConnect() throws RemoteException {
-        if (clients.size() == 1) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 
     @Override
     public void setPlayerNumber(int playerNumber) throws RemoteException, NotValidMoveException, ChangedStateException {
@@ -67,14 +55,13 @@ public class RmiServer implements VirtualServer {
 
     @Override
     public void addPlayer(String nickname, TokenEnum token, VirtualView Myclient) throws ChangedStateException, NotValidMoveException {
-        gameController.addPlayer(nickname,token);
-        for(VirtualView client : clients) {
+        gameController.addPlayer(nickname, token);
+        for (VirtualView client : clients) {
             gameController.getBoard().getPlayer(nickname).addObserver(client);
             gameController.getBoard().getPlayer(nickname).getStation().addObserver(client);
         }
         clientsMap.put(nickname, Myclient);
     }
-
 
 
     @Override
@@ -84,36 +71,9 @@ public class RmiServer implements VirtualServer {
         }
         initializeGame();
     }
- 
 
     @Override
-    public boolean morePlayersNeeded() throws RemoteException {
-        if (clients.size() <= gameController.getBoard().getPlayernumber() || gameController.getBoard().getGameState().equals(GameState.SET_PLAYER_NUMBER)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-
-    }
-
-    @Override
-    public void checkAllPlayersConnected() throws RemoteException {
-        if(clients.size() == (gameController.getBoard().getPlayernumber())){
-            startSetupOfNicknameAndToken();
-        }
-    }
-
-    @Override
-    public void disconnectClient(VirtualView client) throws RemoteException{
-        for (int i = 0; i < clients.size(); i++) {
-            clients.remove(clients.get(i));
-            System.err.println("client disconnected");
-        }
-    }
-
-    @Override
-    public void setStartingCardPlayedBack(boolean playedback, String nickname, int Id) throws ChangedStateException, NotValidMoveException, RemoteException{
+    public void setStartingCardPlayedBack(boolean playedback, String nickname, int Id) throws ChangedStateException, NotValidMoveException, RemoteException {
         gameController.setCentralCardPlayedBack(playedback, nickname, Id);
 
     }
@@ -134,7 +94,7 @@ public class RmiServer implements VirtualServer {
         return gameController.getBoard().getPlayer(nickname).getSelectibleObjectives();
     }
 
-    public  void initializeGame() throws RemoteException {
+    public void initializeGame() throws RemoteException {
         try {
             gameController.InitializeGame();
         } catch (NotValidMoveException e) {
@@ -144,6 +104,7 @@ public class RmiServer implements VirtualServer {
         }
         showFourCentralCardsToPlayers();
     }
+
     public void showFourCentralCardsToPlayers() throws RemoteException {
         for (VirtualView client : clients) {
             client.showFourCentralCards();
@@ -172,6 +133,40 @@ public class RmiServer implements VirtualServer {
         }
     }
 
+    public void notifyAllPlayersConnected() throws RemoteException {
+        for (VirtualView client : clients) {
+            client.notifyAllPlayersConnected();
+        }
+    }
+
+    public void handleNewClient(VirtualView client) throws RemoteException {
+        //first player to join
+        if (clients.isEmpty()) {
+            clients.add(client);
+            this.gameController = new GameController();
+            gameController.getBoard().addObserver(client);
+            client.setupOfPlayersNumber();
+            client.notifyWaitingForPlayersToJoin();
+        }
+        //another player is joining while setupping the player number
+        else if (gameController.getBoard().getGameState().equals(GameState.SET_PLAYER_NUMBER)) {
+            client.notifyAnotherPlayerSettingNumOfPlayers();
+        }
+        //all players have joined
+        else if (clients.size() == gameController.getBoard().getPlayernumber() -1) {
+            clients.add(client);
+            gameController.getBoard().addObserver(client);
+            notifyAllPlayersConnected();
+            startSetupOfNicknameAndToken();
+        }
+        //player joining game and waiting for other players
+        else if (clients.size() < gameController.getBoard().getPlayernumber() -1){
+            clients.add(client);
+            gameController.getBoard().addObserver(client);
+            client.notifyWaitingForPlayersToJoin();
+        }
+        else{
+            client.notifyGameAlreadyStarted();
+        }
+    }
 }
-
-

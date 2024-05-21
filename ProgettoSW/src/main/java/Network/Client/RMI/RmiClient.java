@@ -20,7 +20,6 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
 
     public void connectToServer() throws RemoteException{
         this.server.connectClient(this);
-        clientController.StartGame();
         }
 
     @Override
@@ -55,5 +54,34 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     public void setupOfSecretObjective() throws RemoteException {
         clientController.setupOfSecretObjective();
 
+    }
+
+    @Override
+    public void setupOfPlayersNumber() throws RemoteException {
+        clientController.setupOfPlayersNumber();
+
+    }
+
+    @Override
+    public void notifyAnotherPlayerSettingNumOfPlayers() throws RemoteException {
+        clientController.notifyAnotherPlayerSettingNumOfPlayers();
+
+    }
+
+    @Override
+    public void notifyWaitingForPlayersToJoin() throws RemoteException {
+        clientController.notifyWaitingForPlayersToJoin();
+
+    }
+
+    @Override
+    public void notifyAllPlayersConnected() throws RemoteException {
+        clientController.notifyAllPlayersConnected();
+
+    }
+
+    @Override
+    public void notifyGameAlreadyStarted() throws RemoteException {
+        clientController.notifyGameAlreadyStarted();
     }
 }

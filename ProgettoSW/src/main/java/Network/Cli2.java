@@ -105,7 +105,7 @@ public class Cli2 implements UI {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         Integer input;
         do {
-            System.out.println("Insert number of players in your Lobby: ");
+            System.out.println("You are the first player to join: insert number of players in your Lobby: ");
             input = scanner.nextInt();
         }while (input < 2 || input > 4);
         return input;
