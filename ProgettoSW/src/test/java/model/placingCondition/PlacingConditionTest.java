@@ -40,6 +40,7 @@ public class PlacingConditionTest {
         ArrayList<CardResource> Player1Hand = game.getPlayerHand(Player1);
         game.getBoard().setGameState(GameState.PLACING_CARD);
         int puntiIn = Player1Hand.get(0).getPoints();
+        //
         int animalsIn = Player1Hand.get(0).countResource(SuitEnum.ANIMAL) + game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCardStarting().countResource(SuitEnum.ANIMAL);
         int plantsIn = Player1Hand.get(0).countResource(SuitEnum.PLANT) + game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCardStarting().countResource(SuitEnum.PLANT);
         int fungiIn = Player1Hand.get(0).countResource(SuitEnum.FUNGI) + game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCardStarting().countResource(SuitEnum.FUNGI);

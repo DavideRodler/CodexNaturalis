@@ -23,18 +23,19 @@ class ObjectiveDiagonalTest {
     public void test_5Cards_1Diagonal() throws ChangedStateException, NotValidMoveException {
         // Creating the PlayingStation
         PlayingStation station = PlayingStationTemplate.test_5Cards_1Diagonal_c();
-        GameController game = new GameController();
-        game.setPlayerNumber(2);
-        game.addPlayer("isa", TokenEnum.BLUE);
-        game.addPlayer("tommy", TokenEnum.YELLOW);
-        game.getBoard().getPlayer("isa").setStation(station);
+        //GameController game = new GameController();
+        //game.setPlayerNumber(2);
+        //game.addPlayer("isa", TokenEnum.BLUE);
+        //game.addPlayer("tommy", TokenEnum.YELLOW);
+        // game.getBoard().getPlayer("isa").setStation(station);
         ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(DirectionEnum.RIGHT, SuitEnum.ANIMAL);
         CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
-        game.getBoard().getPlayer("isa").setSecretObjective(cardObjectiveTmp);
-        int punti = game.getBoard().getPlayer("isa").getSecretObjective().getObjective().countObjectivePoints(station);
+        int punti1 = cardObjectiveTmp.getObjective().countObjectivePoints(station);
+       // game.getBoard().getPlayer("isa").setSecretObjective(cardObjectiveTmp);
+       // int punti = game.getBoard().getPlayer("isa").getSecretObjective().getObjective().countObjectivePoints(station);
 
         // Checking the result
-        assertEquals(1, punti, "Test failed. You scored " + punti + " points.");
+        assertEquals(1, punti1, "Test failed. You scored " + punti1 + " points.");
     }
 
     @Test
@@ -43,15 +44,15 @@ class ObjectiveDiagonalTest {
 
         // Creating the PlayingStation
         PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
-        GameController game = new GameController();
-        game.setPlayerNumber(2);
-        game.addPlayer("isa", TokenEnum.BLUE);
-        game.addPlayer("tommy", TokenEnum.YELLOW);
-        game.getBoard().getPlayer("isa").setStation(station);
+        //GameController game = new GameController();
+       // game.setPlayerNumber(2);
+        //game.addPlayer("isa", TokenEnum.BLUE);
+        //game.addPlayer("tommy", TokenEnum.YELLOW);
+        //game.getBoard().getPlayer("isa").setStation(station);
         ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.ANIMAL);
         CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
-        game.getBoard().getPlayer("isa").setSecretObjective(cardObjectiveTmp);
-        int punti = game.getBoard().getPlayer("isa").getSecretObjective().getObjective().countObjectivePoints(station);
+        //game.getBoard().getPlayer("isa").setSecretObjective(cardObjectiveTmp);
+        int punti = cardObjectiveTmp.getObjective().countObjectivePoints(station);
 
         // Checking the result
         assertEquals(0, punti, "Test failed. You scored " + punti + " points.");

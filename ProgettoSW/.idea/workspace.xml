@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="fix isPlayable">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/model/placingCondition/PlacingConditionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/placingCondition/PlacingConditionTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +115,8 @@
     "JUnit.ObjectivePositioningTest.test_Positioning2.executor": "Run",
     "JUnit.PlacingConditionTest (1).executor": "Run",
     "JUnit.PlacingConditionTest.executor": "Run",
-    "JUnit.PlacingConditionTest.test_null_corner.executor": "Run",
+    "JUnit.PlacingConditionTest.test_alone_card.executor": "Run",
+    "JUnit.PlacingConditionTest.test_null_corner.executor": "Debug",
     "JUnit.deckconstructorTest.deckResource.executor": "Run",
     "JUnit.java in ProgettoSW.executor": "Debug",
     "Maven.ProgettoSW [clean].executor": "Run",
@@ -151,55 +155,40 @@
       <recent name="model.decktameplate" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PlacingConditionTest.test_null_corner">
-    <configuration name="DeckConstructorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.PlacingConditionTest.test_goldCard_cost">
+    <configuration name="GameControllerTest.TestOfFourTurns" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.deck.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.deck" />
-      <option name="MAIN_CLASS_NAME" value="model.deck.DeckConstructorTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ObjectiveDiagonalTest.test_5Cards_1Diagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonalTest" />
-      <option name="METHOD_NAME" value="test_5Cards_1Diagonal" />
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
+      <option name="METHOD_NAME" value="TestOfFourTurns" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjectivePositioningTest.test_Positioning" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest.getStartingCard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
-      <option name="METHOD_NAME" value="test_Positioning" />
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
+      <option name="METHOD_NAME" value="getStartingCard" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlacingConditionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlacingConditionTest.test_alone_card" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
@@ -209,7 +198,24 @@
       </extension>
       <option name="PACKAGE_NAME" value="model.placingCondition" />
       <option name="MAIN_CLASS_NAME" value="model.placingCondition.PlacingConditionTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="test_alone_card" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlacingConditionTest.test_goldCard_cost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.placingCondition.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.placingCondition" />
+      <option name="MAIN_CLASS_NAME" value="model.placingCondition.PlacingConditionTest" />
+      <option name="METHOD_NAME" value="test_goldCard_cost" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -231,19 +237,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.DeckConstructorTest" />
-      <item itemvalue="JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal" />
-      <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
-      <item itemvalue="JUnit.PlacingConditionTest" />
+      <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
+      <item itemvalue="JUnit.GameControllerTest.getStartingCard" />
+      <item itemvalue="JUnit.PlacingConditionTest.test_alone_card" />
+      <item itemvalue="JUnit.PlacingConditionTest.test_goldCard_cost" />
       <item itemvalue="JUnit.PlacingConditionTest.test_null_corner" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PlacingConditionTest.test_goldCard_cost" />
+        <item itemvalue="JUnit.PlacingConditionTest.test_alone_card" />
+        <item itemvalue="JUnit.GameControllerTest.getStartingCard" />
         <item itemvalue="JUnit.PlacingConditionTest.test_null_corner" />
-        <item itemvalue="JUnit.PlacingConditionTest" />
-        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
-        <item itemvalue="JUnit.DeckConstructorTest" />
-        <item itemvalue="JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal" />
+        <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
       </list>
     </recent_temporary>
   </component>
@@ -768,16 +774,6 @@
           <line>154</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="228" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>
-          <line>318</line>
-          <option name="timeStamp" value="229" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -804,33 +800,36 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getStartingCard.ic" NAME="GameControllerTest.getStartingCard Coverage Results" MODIFIED="1716293555017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_testChecknickname.ic" NAME="GameControllerTest.testChecknickname Coverage Results" MODIFIED="1715690160254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getObjectiveToChoose.ic" NAME="GameControllerTest.getObjectiveToChoose Coverage Results" MODIFIED="1715698653686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>controller.*</FILTER>
+    <SUITE FILE_PATH="coverage/ProgettoSW$PlacingConditionTest_test_null_corner.ic" NAME="PlacingConditionTest.test_null_corner Coverage Results" MODIFIED="1716288399310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>model.placingCondition.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getAvailableToken.ic" NAME="GameControllerTest.getAvailableToken Coverage Results" MODIFIED="1715692588758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$java_in_ProgettoSW.ic" NAME="java in ProgettoSW Coverage Results" MODIFIED="1713876265206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_isGamefinished.ic" NAME="GameControllerTest.isGamefinished Coverage Results" MODIFIED="1716111232885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getPlayerHand.ic" NAME="GameControllerTest.getPlayerHand Coverage Results" MODIFIED="1715698739662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ClientApp.ic" NAME="ClientApp Coverage Results" MODIFIED="1714141966006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>StartApplication.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$java_in_ProgettoSW.ic" NAME="java in ProgettoSW Coverage Results" MODIFIED="1713876265206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/ProgettoSW$ObjectivePositioningTest_test_Positioning.ic" NAME="ObjectivePositioningTest.test_Positioning Coverage Results" MODIFIED="1713276818760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getObjectiveToChoose.ic" NAME="GameControllerTest.getObjectiveToChoose Coverage Results" MODIFIED="1715698653686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ClientApp.ic" NAME="ClientApp Coverage Results" MODIFIED="1714141966006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>StartApplication.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getCurrentPlayer.ic" NAME="GameControllerTest.getCurrentPlayer Coverage Results" MODIFIED="1715699049521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getStartingCard.ic" NAME="GameControllerTest.getStartingCard Coverage Results" MODIFIED="1715697139842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$PlacingConditionTest_test_null_corner.ic" NAME="PlacingConditionTest.test_null_corner Coverage Results" MODIFIED="1716288399310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>model.placingCondition.*</FILTER>
     </SUITE>
   </component>
 </project>

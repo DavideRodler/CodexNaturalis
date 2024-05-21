@@ -119,19 +119,20 @@ class GameControllerTest {
         System.out.println(game.getAvailableToken());
         assertEquals(true, game.checkTokenAvailability(TokenEnum.YELLOW));
         game.addPlayer("isa", TokenEnum.YELLOW);
+        game.InitializeGame();
 
         //tutti i giocatori sono salvati, gli obiettivi e le carte Starting sono distribuite in automatico
 
         Cli2 cli = new Cli2();
 
-        //cli.showUpdatedHand(game.getPlayerHand("tommy"));
+    //    cli.showUpdatedHand(game.getPlayerHand("tommy"));
     //    cli.showStartingCard(game.getStartingCard("tommy"));
-    //    game.setObjectiveOfPlayer("tommy",game.getObjectiveToChoose("tommy").get(1).getId());
+        game.setObjectiveOfPlayer("tommy",game.getBoard().getPlayer("tommy").getSelectibleObjectives().get(1).getId());
     //    cli.showObjectiveCards(game.getObjectiveToChoose("tommy"));
 
     //    cli.showStartingCard(game.getStartingCard("isa"));
     //    cli.showStartingCard(game.getStartingCard("isa"));
-    //    game.setObjectiveOfPlayer("isa",game.getObjectiveToChoose("isa").get(1).getId());
+        game.setObjectiveOfPlayer("isa",game.getBoard().getPlayer("isa").getSelectibleObjectives().get(1).getId());
     //    cli.showObjectiveCards(game.getObjectiveToChoose("isa"));
 
         //ho settato gli obiettivi di tutti i player il gioco inizia in automatico
@@ -150,6 +151,7 @@ class GameControllerTest {
 
         game.addCardToPlayingStation(Player2, Player2Hand.get(0).getId(),true,38,38);
         game.addCardFromDeckToPlayerHand(Player2, DeckEnum.DECK_GOLD);
+
     }
 
 
@@ -180,7 +182,7 @@ class GameControllerTest {
         game.addPlayer("dave", TokenEnum.BLUE);
         PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
         game.getBoard().getPlayer("isa").setStation(station);
-    //    assertEquals(3,game.getStartingCard("isa").getId());
+        assertEquals(3,game.getBoard().getPlayer("isa").getStation().getCardStarting().getId());
 
     }
 
