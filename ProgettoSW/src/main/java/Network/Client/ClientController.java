@@ -99,7 +99,7 @@ public class ClientController {
             throw new RuntimeException(e);
         }
         //asking starting card face
-        ui.showStartingCard(cardStarting);
+        ui.showStartingCard();
         boolean answer = ui.askStartingCardPlayedBack();
 
         //setting starting card face in local model
@@ -136,7 +136,8 @@ public class ClientController {
     }
 
     public  void setupOfSecretObjective(){
-        ui.showObjectiveCards();
+        ui.printCommonObjective();//obiettivi comuni
+        ui.printSelectableObjectives();
         int answer = ui.askObjectiveCard();
 
         //setting secret objective in local model

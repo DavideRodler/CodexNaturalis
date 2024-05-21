@@ -13,15 +13,13 @@ import model.objectives.*;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 import static View.CardMatrixCreator.*;
+import static View.StartingCardMatrix.cardStartingPrinter;
 
 public class Cli2 implements UI {
 
-//    private final VirtualServer server;
-//    private final RmiClient client;
 //    private final String black;
     private final String red;
     private final String green;
@@ -35,7 +33,6 @@ public class Cli2 implements UI {
     private final String quill;
     private final String manuscript;
     private final String inkwell;
-    private StationMatrix stationMatrix;
     private ClientBoard clientBoard;
 
 
@@ -55,8 +52,7 @@ public class Cli2 implements UI {
         quill = gold + "Q";
 
         this.clientBoard = clientBoard;
-        stationMatrix = new StationMatrix();
-        stationMatrix.initializeStationPrint();
+
     }
 
     public Cli2() {
@@ -73,13 +69,15 @@ public class Cli2 implements UI {
         manuscript = gold + "M";
         quill = gold + "Q";
 
-        stationMatrix = new StationMatrix();
-        stationMatrix.initializeStationPrint();
     }
+
+    /**
+     * this method prints the front and back of the player's starting card
+     *
+     */
     @Override
-    public void showStartingCard(CardStarting cardStarting) {
-        cardStartingPrinter(cardStarting);
-        //printCard(cardStarting);
+    public void showStartingCard() { //TODO: da modificare firma in UI
+        cardStartingPrinter(clientBoard.getMyplayer().getStation().getCardStarting());
     }
    @Override
     public void showGameTitle(){
@@ -113,16 +111,13 @@ public class Cli2 implements UI {
         return input;
     }
 
-    @Override
-    public void printErrorMessage(Exception e) {
-        System.out.println("Error: " + e.getMessage());
-
-    }
-
-
+    /**
+     * this method asks the player if they want to play the starting card in front or in back
+     * @return
+     */
     @Override
     public boolean askStartingCardPlayedBack() {
-        System.out.println("Select the front of your starting card: ");
+        System.out.println("Select the front or the back of your starting card: ");
         Scanner in = new Scanner(new InputStreamReader(System.in));
         Integer choice;
         do {
@@ -132,14 +127,40 @@ public class Cli2 implements UI {
         return choice == 2;
     }
 
+    /**
+     * this method prints the common objectives
+     */
+
     @Override
-    public void showObjectiveCards() {
+    public void printCommonObjective() {
         System.out.println();
         printCard(clientBoard.getFirstObjective());
         System.out.println();
         printCard(clientBoard.getSecondObjective());
     }
 
+    /**
+     * this method prints the secret objective of the player
+     */
+    @Override
+    public void printSecretObjective(){
+        HandMatrix playerHand = new HandMatrix();
+        playerHand.addObjectiveToHand(clientBoard.getMyplayer().getSecretObjective());
+    }
+
+    /**
+     * this method prints the objectives to choose from
+     */
+    @Override
+    public void printSelectableObjectives(){
+        printCard(clientBoard.getMyplayer().getSelectibleObjectives().get(0));  //prima carta obj
+        printCard(clientBoard.getMyplayer().getSelectibleObjectives().get(1)); // seconda carta obj
+    }
+
+    /**
+     * this method asks the player which objective card they want to keep
+     * @return
+     */
     @Override
     public Integer askObjectiveCard() {
         System.out.println("Select the Objective Card you want to keep:");
@@ -152,13 +173,13 @@ public class Cli2 implements UI {
         return choice;
     }
 
+    /**
+     * this method prints the common cards.
+     */
     @Override
     public void print4CentralCards() {
         int pos = 0;
-        BoardMatrix board = new BoardMatrix();
         CentralCardsCreator centralCards = new CentralCardsCreator();
-        System.out.println("Common objectives: ");
-        board.printCommonObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
         System.out.println("Central cards are: ");
         for(int i = 0; i < clientBoard.getCentralCardsGold().size(); i++){
             centralCards.addCentralCard(clientBoard.getCentralCardsGold().get(i), pos);
@@ -171,8 +192,26 @@ public class Cli2 implements UI {
         centralCards.printCentral();
     }
 
+    /**
+     * this method prints the common objectives of all the players
+     */
+    public void printCommonObjectives(){  // TODO: aggiungere in UI
+        BoardMatrix board = new BoardMatrix();
+        System.out.println("Common objectives: ");
+        board.printCommonObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
+    }
+
+    //public void printMYSTATION
+     //clientBoard.getMyplayer().getStation();
+    //|
+    //|
+    //V
+
+
+
     @Override
-    public void showUpdatedStation() {
+    public void showUpdatedStation() { //TODO: modificare questo metodo mettendo la popolazione da mappa a matrice in stationPrint
+        // da lasciare solo: new statmat, popolazione con parametro la playstation e la stampa
         int fungi = clientBoard.getMyplayer().getStation().getCountFungi();
         int plant = clientBoard.getMyplayer().getStation().getCountPlant();
         int animal = clientBoard.getMyplayer().getStation().getCountAnimal();
@@ -181,7 +220,6 @@ public class Cli2 implements UI {
         int manuscript = clientBoard.getMyplayer().getStation().getCountManuscript();
         int inkwell = clientBoard.getMyplayer().getStation().getCountInkwell();
         int x, y, maxX, maxY, distanceX, distanceY, max;
-        int maxXPos, maxXNeg, maxYPos, maxYNeg;
         maxX = 0;
         maxY = 0;
         max = 0;
@@ -204,45 +242,37 @@ public class Cli2 implements UI {
             }
         }
         //ho popolato le carte della station, la passo come argomento alla boardmatrix
-        stationMatrix.addCardsToStation(station, max);
+        StationMatrix stationMatrix= new StationMatrix();
+        //stationMatrix.initializeStationPrint();
+        //--stationMatrix.populateMatrix/plyaingstation)
+//        stationMatrix.addCardsToStation(station, max);
+        //stationMatrix.addCoordinatesToMatrix(max);
         stationMatrix.printStation(max);
         stationMatrix.printResources(fungi, plant, animal, insect, quill, manuscript, inkwell);
         stationMatrix.printPoints(clientBoard);
     }
 
+    /**
+     * this method prints the hand of the player
+     */
     @Override
     public void printMyHand() { //TODO: cambiare i test.
         System.out.println("Here is your hand:");
         HandMatrix playerHand = new HandMatrix();
         playerHand.addCardsToHand(clientBoard.getMyplayer().getHand());
-        playerHand.addObjectiveToHand(clientBoard.getMyplayer().getSecretObjective());
         playerHand.printHandMatrix();
-    }
-
-    /**
-     * this is the method that prints everything needed for a player's turn.
-     *
-     * @param playingStation
-     * @param clientNickname
-     */
-    @Override
-    public void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String clientNickname) { //TODO: metodi in clientapp e serverapp!
-        System.out.println("\n Updated Station of " + clientNickname + "\n");
-        print4CentralCards(); //stampa delle carte centrali e obiettivi comuni
-        showUpdatedStation(); // stampa della station del giocatore con counter risorse e punti di tutti i giocatori
-        printMyHand(); // stampa della mano com obiettivo segreto
     }
 
     @Override
     public Integer[] askCoordinatesOfCards() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        Integer cardChoice;
+        int cardChoice;
         do {
             System.out.println("Which card do you want to place? Insert the number of the card (1-3)");
             cardChoice = scanner.nextInt();
         } while (cardChoice < 1 || cardChoice > 3);
 
-        Integer cardSide;
+        int cardSide;
         do {
             System.out.println("front (1) or back (2)");
             cardSide = scanner.nextInt();
@@ -252,13 +282,13 @@ public class Cli2 implements UI {
         System.out.println("Choose x coordinates");
         int x = scanner.nextInt();
         System.out.println("Choose y coordinates");
-        Integer y = scanner.nextInt();
+        int y = scanner.nextInt();
         Integer[] Choice = {cardChoice, cardSide, x, y};
         return Choice;
     }
 
     @Override
-    public Integer askDrawingCard() {
+    public Integer askWhichCardToDraw() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         Integer choice;
         do {
@@ -268,9 +298,22 @@ public class Cli2 implements UI {
         return choice;
     }
 
+    /**
+     * this method prints everything: 4 central cards, the hand, the secret obj, common obj, station
+     */
     @Override
-    public void printMyboard() {
+    public void printStartOfMyTurn() {
 
+    }
+
+    @Override
+    public void printAfterCardHasBeenAdded() {
+
+    }
+
+    @Override
+    public void printOtherPlayersStation(String nickname) {
+        clientBoard.getOtherPlayer(nickname).getStation(); //--> paramentro// della show station
     }
 
     //    private void printCard(Card card) {
@@ -359,12 +402,6 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public void printWaitingForPlayerToSetPlayerNumber() {
-        System.out.println("Waiting for other player to set the number of players in the lobby");
-
-    }
-
-    @Override
     public void printAvailableTokens(ArrayList<TokenEnum> availableTokens) {
         Scanner input = new Scanner(System.in);
         System.out.println("Available tokens are: " + availableTokens);
@@ -386,7 +423,7 @@ public class Cli2 implements UI {
     }
 
     private void printCard(CardStarting cardStarting){
-        showStartingCard(cardStarting);
+//        showStartingCard(cardStarting);
 //        System.out.println("This is the front of your starting card: \n");
 //        printStartingFront(cardStarting);
 //        System.out.println("\nThis is the back of your starting card: \n");

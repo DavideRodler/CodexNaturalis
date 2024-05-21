@@ -4,10 +4,20 @@ import model.cards.CardResource;
 
 import static View.CardMatrixCreator.createFrontPlayingCard;
 
+/**
+ * this class creates and prints the centrals card.
+ */
 public class CentralCardsCreator {
     // in questa classe creo la matrice per le carte centrali
+
     String[][] centralCards = new String[6][16];
-    public void     addCentralCard(CardResource card, int pos) {
+
+    /**
+     * this method adds a card resource to centralCards
+     * @param card is the card resource to be addes
+     * @param pos is the position in which the card is added
+     */
+    public void addCentralCard(CardResource card, int pos) {
         String[][] tmp = createFrontPlayingCard(card);
         int m = 0;
         int l = 0;
@@ -51,6 +61,9 @@ public class CentralCardsCreator {
         }
     }
 
+    /**
+     * this method prints the central cards.
+     */
     public void printCentral(){
         for(int i = 0; i < centralCards.length; i++) {
             for(int j = 0; j < centralCards[0].length; j++) {

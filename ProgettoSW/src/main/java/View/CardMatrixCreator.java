@@ -645,33 +645,4 @@ public class CardMatrixCreator {
         return createCountRes(suit);
     }
 
-    /**
-     * this method prints the starting card's front and back
-      * @param cardStarting
-     */
-    public static void cardStartingPrinter(CardStarting cardStarting){
-        String[][] cardFrontAndaAck = new String[3][16];
-        String[][] front = createFrontPlayingCard(cardStarting);
-        String[][] back = createBackPlayingCard(cardStarting);
-        int m = 0;
-        int l = 0;
-
-        for(int i = 0; i < cardFrontAndaAck.length; i++) { //copio front a sx.
-            System.arraycopy(front[i], 0, cardFrontAndaAck[i], 0, front[i].length);
-        }
-        for(int i = 0; i < cardFrontAndaAck.length; i++) { //inserisco spazi tra le due carte
-            for(int j = 7; j < 9; j++) {
-                cardFrontAndaAck[i][j] =  black + "█" + reset;;
-            }
-        }
-        for(int i = 0; i < cardFrontAndaAck.length; i++) { //copio back a dx
-            for(int j = 9; j < 16; j++) {
-                cardFrontAndaAck[i][j] = back[m][l];
-                l++;
-            }
-            l = 0;
-            m++;
-        }
-        printMatrix(cardFrontAndaAck);
-    }
 }

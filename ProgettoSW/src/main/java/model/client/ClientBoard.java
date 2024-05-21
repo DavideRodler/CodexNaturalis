@@ -5,8 +5,6 @@ import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.enums.GameState;
-import Socket.Messages.ChangeStateMessage;
-import Socket.Messages.Message;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -77,6 +75,13 @@ public class ClientBoard implements Serializable {
 
     public void setOtherplayers(ArrayList<ReductPlayer> otherplayers) {
         this.otherplayers = otherplayers;
+    }
+
+    public ReductPlayer getOtherPlayer(String nickname){
+        return otherplayers.stream()
+                .filter(p -> p.getNickname().equals(nickname))
+                .findFirst()
+                .orElse(null);
     }
 
     public void setGameState(GameState gameState) {

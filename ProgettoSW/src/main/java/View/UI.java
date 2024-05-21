@@ -1,14 +1,11 @@
 package View;
 
-import model.cards.CardPlaying;
-import model.cards.CardStarting;
 import model.enums.TokenEnum;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public interface UI {
-    void showStartingCard(CardStarting cardStarting);
+    void showStartingCard();
 
     void showGameTitle();
 
@@ -17,10 +14,13 @@ public interface UI {
     int askPlayerNumber();
 
 
-    void printErrorMessage(Exception e);
     boolean askStartingCardPlayedBack();
 
-    void showObjectiveCards();
+    void printCommonObjective();
+
+    void printSecretObjective();
+
+    void printSelectableObjectives();
 
     Integer askObjectiveCard();
 
@@ -32,17 +32,23 @@ public interface UI {
     //this mehtod only print the hand and is used at the beginning of the game
     void printMyHand();
 
-    void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String name);
+    //void prin
+
 
     Integer[] askCoordinatesOfCards();
 
-    Integer askDrawingCard();
+    Integer askWhichCardToDraw();
 
     //ToDo
 
     // this method print the 4 central cards, the hand , the playingstation, the common and private objectives
     // and the other players name and points;
-   void printMyboard();
+   void printStartOfMyTurn();
+
+   // printa solo la staion aggiornata più risorse e più punti
+   void printAfterCardHasBeenAdded();
+
+   void printOtherPlayersStation(String nickname);
 
     TokenEnum askToken(ArrayList<TokenEnum> availableTokens);
 
@@ -50,7 +56,7 @@ public interface UI {
 
     void showErrorMessage(String message);
 
-    void printWaitingForPlayerToSetPlayerNumber();
-
     void printAvailableTokens(ArrayList<TokenEnum> availableTokens);
+
+
 }

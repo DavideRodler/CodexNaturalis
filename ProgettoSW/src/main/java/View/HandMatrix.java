@@ -6,6 +6,7 @@ import model.cards.CardPlaying;
 import model.cards.CardResource;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static View.CardMatrixCreator.*;
 
@@ -19,10 +20,21 @@ public class HandMatrix {
         return handMatrix;
     }
 
+    public HandMatrix(){
+        initializeMatrix();
+    }
+
 //    private void addCardToHand(CardPlaying card, int pos) { //pos da 0 a 2
 //        //prende una carta e a seconda della pos la aggiunge alla matrice in coordinate diverse
 //        //es. la prima carta andrà da 0.0 a 2.10 poi una colonna di spazi e poi si aggiunge la seconda e così via.
 //    }
+
+    //inizializzo la matrice
+    private void initializeMatrix(){
+        for (String[] matrix : handMatrix) {
+            Arrays.fill(matrix, "");
+        }
+    }
 
     private void addCardToHand(CardPlaying card, int pos) {
         String[][] tmp = new String[3][7];
@@ -38,20 +50,12 @@ public class HandMatrix {
                     handMatrix[i][j] = tmp[i][j];
                 }
             }
-            for(int i = 0; i < 3; i++) {
-                handMatrix[i][7] = " ";
-                handMatrix[i][8] = " ";
-            }
         }
         else if(pos == 1){
             for(int i = 0; i < 3; i++) {
                 for(int j = 0; j < 7; j++) {
                     handMatrix[i][j+9] = tmp[i][j];
                 }
-            }
-            for(int i = 0; i < 3; i++) {
-                handMatrix[i][16] = " ";
-                handMatrix[i][17] = " ";
             }
         } else if(pos == 2){
             for(int i = 0; i < 3; i++) {
@@ -96,7 +100,7 @@ public class HandMatrix {
     public void addCardsToHand(ArrayList<CardResource> cards) { //cambiare anche hand in Player --> deve essere CardRes non playing
         //itero per ogni carta dentro l'arraylist chiamando la funzione sopra
         //devo fare in modo che restituisca una matrice
-        for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < cards.size(); i++) {
             if(cards.get(i) != null){
                 addCardToHand(cards.get(i), i);
             }
@@ -104,9 +108,11 @@ public class HandMatrix {
     }
 
     public void addObjectiveToHand(CardObjective cardObj){
+        String[][] tmp;
+        tmp = createObjective(cardObj.getObjective());
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 7; j++) {
-                handMatrix[i][j+27] = " ";
+                handMatrix[i][j+27] = tmp[i][j];
             }
         }
     }

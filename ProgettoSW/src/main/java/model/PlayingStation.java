@@ -13,8 +13,6 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.*;
 
-import static model.enums.SuitEnum.*;
-
 public class PlayingStation extends ObservableModel implements Serializable {
     private HashMap<ArrayList<Integer>, CardPlaying> map;
     private Integer countInsect;
