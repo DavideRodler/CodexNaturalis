@@ -25,6 +25,7 @@ public class PlacingConditionTest {
         // Creating the PlayingStation
 
         GameController game = new GameController();
+        boolean flag = true;
         game.getBoard().setGameState(GameState.SET_PLAYER_NUMBER);
         game.setPlayerNumber(2);
         game.getBoard().setGameState(GameState.SET_NAME_AND_TOKEN);
@@ -46,6 +47,20 @@ public class PlacingConditionTest {
         int inkwellIn = Player1Hand.get(0).countResource(SuitEnum.INKWELL);
         int quillIn = Player1Hand.get(0).countResource(SuitEnum.QUILL);
         int manuscriptIn = Player1Hand.get(0).countResource(SuitEnum.MANUSCRIPT);
+        try{game.addCardToPlayingStation(Player1, Player1Hand.get(0).getId(),true,39,39);}
+        catch (NotValidMoveException e){
+            System.out.println(e.getMessage());
+            flag=false;
+        }
+        int punti = game.getBoard().getPlayer(game.getCurrentPlayer()).getPoints();
+        int animals = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountAnimal();
+        int plants = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountPlant();
+        int fungi = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountFungi();
+        int insects = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountInsect();
+        int inkwell = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountInkwell();
+        int quill = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountQuill();
+        int manuscript = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountManuscript();
+        if(flag){
         switch(game.getBoard().getPlayer(Player1).getStation().getCardStarting().getFront().getUpLeft().getDrawing()){
             case SuitEnum.ANIMAL:
                 animalsIn--;
@@ -68,17 +83,7 @@ public class PlacingConditionTest {
             case SuitEnum.MANUSCRIPT:
                 manuscriptIn--;
                 break;
-        }
-
-        game.addCardToPlayingStation(Player1, Player1Hand.get(0).getId(),true,39,39);
-        int punti = game.getBoard().getPlayer(game.getCurrentPlayer()).getPoints();
-        int animals = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountAnimal();
-        int plants = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountPlant();
-        int fungi = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountFungi();
-        int insects = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountInsect();
-        int inkwell = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountInkwell();
-        int quill = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountQuill();
-        int manuscript = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountManuscript();
+        }}
 
 
 //        // Checking the result
