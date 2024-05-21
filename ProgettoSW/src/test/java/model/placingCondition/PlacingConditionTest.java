@@ -46,6 +46,30 @@ public class PlacingConditionTest {
         int inkwellIn = Player1Hand.get(0).countResource(SuitEnum.INKWELL);
         int quillIn = Player1Hand.get(0).countResource(SuitEnum.QUILL);
         int manuscriptIn = Player1Hand.get(0).countResource(SuitEnum.MANUSCRIPT);
+        switch(game.getBoard().getPlayer(Player1).getStation().getCardStarting().getFront().getUpLeft().getDrawing()){
+            case SuitEnum.ANIMAL:
+                animalsIn--;
+                break;
+            case SuitEnum.PLANT:
+                plantsIn--;
+                break;
+            case SuitEnum.FUNGI:
+                fungiIn--;
+                break;
+            case SuitEnum.INSECT:
+                insectsIn--;
+                break;
+            case SuitEnum.INKWELL:
+                inkwellIn--;
+                break;
+            case SuitEnum.QUILL:
+                quillIn--;
+                break;
+            case SuitEnum.MANUSCRIPT:
+                manuscriptIn--;
+                break;
+        }
+
         game.addCardToPlayingStation(Player1, Player1Hand.get(0).getId(),true,39,39);
         int punti = game.getBoard().getPlayer(game.getCurrentPlayer()).getPoints();
         int animals = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountAnimal();
