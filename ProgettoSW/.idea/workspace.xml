@@ -4,31 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Tutta fase di setup funzionante e con Cli(da rivedere)">
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/cards/CardGoldTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/cards/CardObjectiveTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/cards/CardPlayingTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/cards/CardResourceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/cards/CardStartingTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/cards/CardTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/cards/face/CornerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/cards/face/FaceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveAssignTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveCountingGoldTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveCountingResourceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveGoldCornersTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Test Model">
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/PlayerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardStarting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardStarting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/face/Corner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/face/Corner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/face/Face.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/face/Face.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/Objective.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/Objective.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveAssign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveAssign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingGold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveCountingGold.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveGoldCorners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveGoldCorners.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveGoldCornersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveGoldCornersTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,8 +136,11 @@
     "JUnit.PlacingConditionTest (1).executor": "Run",
     "JUnit.PlacingConditionTest.executor": "Run",
     "JUnit.PlacingConditionTest.test_null_corner.executor": "Run",
+    "JUnit.PlayerTest.getHand.executor": "Coverage",
+    "JUnit.PlayerTest.getToken.executor": "Run",
     "JUnit.deckconstructorTest.deckResource.executor": "Run",
     "JUnit.java in ProgettoSW.executor": "Debug",
+    "JUnit.model in ProgettoSW.executor": "Coverage",
     "Maven.ProgettoSW [clean].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -187,14 +171,14 @@
       <recent name="controller" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="model" />
       <recent name="model.objectives" />
       <recent name="model.cards" />
       <recent name="model.cards.face" />
       <recent name="controller" />
-      <recent name="model" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.model in ProgettoSW">
+  <component name="RunManager" selected="JUnit.ObjectiveGoldCornersTest.countObjectivePoints">
     <configuration name="ObjectiveCountingResourceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
@@ -206,22 +190,6 @@
       <option name="PACKAGE_NAME" value="model.objectives" />
       <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveCountingResourceTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ObjectiveCountingResourceTest.countObjectivePoints" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveCountingResourceTest" />
-      <option name="METHOD_NAME" value="countObjectivePoints" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -242,17 +210,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjectivePositioningTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlayerTest.getHand" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
+          <option name="PATTERN" value="model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.PlayerTest" />
+      <option name="METHOD_NAME" value="getHand" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlayerTest.getToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.PlayerTest" />
+      <option name="METHOD_NAME" value="getToken" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -267,18 +252,18 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.ObjectiveCountingResourceTest" />
-      <item itemvalue="JUnit.ObjectiveCountingResourceTest.countObjectivePoints" />
       <item itemvalue="JUnit.ObjectiveGoldCornersTest.countObjectivePoints" />
-      <item itemvalue="JUnit.ObjectivePositioningTest" />
+      <item itemvalue="JUnit.PlayerTest.getHand" />
+      <item itemvalue="JUnit.PlayerTest.getToken" />
       <item itemvalue="JUnit.model in ProgettoSW" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.model in ProgettoSW" />
         <item itemvalue="JUnit.ObjectiveGoldCornersTest.countObjectivePoints" />
+        <item itemvalue="JUnit.PlayerTest.getToken" />
+        <item itemvalue="JUnit.PlayerTest.getHand" />
+        <item itemvalue="JUnit.model in ProgettoSW" />
         <item itemvalue="JUnit.ObjectiveCountingResourceTest" />
-        <item itemvalue="JUnit.ObjectiveCountingResourceTest.countObjectivePoints" />
-        <item itemvalue="JUnit.ObjectivePositioningTest" />
       </list>
     </recent_temporary>
   </component>
@@ -690,7 +675,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716324908998</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Test Model">
+      <option name="closed" value="true" />
+      <created>1716373917287</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1716373917287</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -758,7 +751,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cantiere in corso RMI" />
     <MESSAGE value="Aggiunta di Client, Server Rmi, e della logica Rmi." />
     <MESSAGE value="Aggiunto display cardStarting" />
     <MESSAGE value="aggiunta colori" />
@@ -783,7 +775,8 @@
     <MESSAGE value="Correzione Test Objective" />
     <MESSAGE value="gitingnore e cambio delle exception nella addcard" />
     <MESSAGE value="Tutta fase di setup funzionante e con Cli(da rivedere)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tutta fase di setup funzionante e con Cli(da rivedere)" />
+    <MESSAGE value="Test Model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test Model" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -877,6 +870,9 @@
     <SUITE FILE_PATH="coverage/ProgettoSW$CornerTest.ic" NAME="CornerTest Coverage Results" MODIFIED="1716364382291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.cards.face.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveGoldCornersTest_countObjectivePoints.ic" NAME="ObjectiveGoldCornersTest.countObjectivePoints Coverage Results" MODIFIED="1716373784352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.objectives.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_testChecknickname.ic" NAME="GameControllerTest.testChecknickname Coverage Results" MODIFIED="1715690160254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>controller.*</FILTER>
     </SUITE>
@@ -905,11 +901,15 @@
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getCurrentPlayer.ic" NAME="GameControllerTest.getCurrentPlayer Coverage Results" MODIFIED="1715699049521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$model_in_ProgettoSW.ic" NAME="model in ProgettoSW Coverage Results" MODIFIED="1716373852224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/ProgettoSW$PlacingConditionTest_test_null_corner.ic" NAME="PlacingConditionTest.test_null_corner Coverage Results" MODIFIED="1716288399310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>model.placingCondition.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$CardTest_getId.ic" NAME="CardTest.getId Coverage Results" MODIFIED="1716364496620" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.cards.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$PlayerTest_getHand.ic" NAME="PlayerTest.getHand Coverage Results" MODIFIED="1716375014505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$FaceTest_getEachCorner.ic" NAME="FaceTest.getEachCorner Coverage Results" MODIFIED="1716364316727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.cards.face.*</FILTER>

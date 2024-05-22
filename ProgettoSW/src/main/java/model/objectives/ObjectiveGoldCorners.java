@@ -1,6 +1,7 @@
 package model.objectives;
 
 import model.PlayingStation;
+import model.cards.CardResource;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 public class ObjectiveGoldCorners implements Objective, Serializable {
 
     @Override
-    public int countObjectivePoints(PlayingStation station, int x, int y) {
+    public int countObjectivePoints(PlayingStation station , CardResource card, Integer x, Integer y) {
         int points = 0;
         //alto a dx
         int i = x+1;
