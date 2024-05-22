@@ -190,7 +190,7 @@ public class Decktemplates implements Serializable {
           case "gold" -> {
             String goldType = (String) card.get("goldType");
             int points = ((Long) card.get("points")).intValue();
-            Objective objectiveCountingGold = AssignObjective(goldType);
+            Objective objectiveCountingGold = AssignObjectives(goldType);
             CardObjective tmp = new CardObjective(id, points, objectiveCountingGold);
             deck.add(tmp);
           }
@@ -202,6 +202,8 @@ public class Decktemplates implements Serializable {
     shuffle(deck);
     return deck;
   }
+
+
 
   private static Corner AssignCorner(String s) {
     return switch (s) {
@@ -251,8 +253,8 @@ public class Decktemplates implements Serializable {
   // ObjectiveCountingResources or ObjectiveGoldCorners if the string is
   // respectability null, corners or gold resource and return that objective
 
-  private static Objective AssignObjective(String s) {
-    Objective obj;
+  private static Points AssignObjective(String s) {
+    Points obj;
     return switch (s) {
 
       case "points" -> {
@@ -280,6 +282,29 @@ public class Decktemplates implements Serializable {
         yield obj;
       }
       default -> throw new IllegalStateException("Unexpected value: " + s);
+    };
+  }
+
+  private static Objective AssignObjectives(String goldType) {
+    Objective obj;
+    return switch (goldType) {
+      case "manuscript" -> {
+        obj = new ObjectiveCountingGold(0, 1, 0);
+        yield obj;
+      }
+      case "inkwell" -> {
+        obj = new ObjectiveCountingGold(1, 0, 0);
+        yield obj;
+      }
+      case "quill" -> {
+        obj = new ObjectiveCountingGold(0, 0, 1);
+        yield obj;
+      }
+      case "all" -> {
+        obj = new ObjectiveCountingGold(1, 1, 1);
+        yield obj;
+      }
+      default -> throw new IllegalStateException("Unexpected value: " + goldType);
     };
   }
 

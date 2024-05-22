@@ -6,7 +6,7 @@ import model.enums.SuitEnum;
 
 import java.io.Serializable;
 
-public class ObjectiveCountingGold implements Objective, Serializable {
+public class ObjectiveCountingGold implements Objective,Points ,Serializable {
 
   private int countInkwell;
   private int countManuscript;
@@ -47,5 +47,10 @@ public class ObjectiveCountingGold implements Objective, Serializable {
 
   public int getCountManuscript() {
     return countManuscript;
+  }
+
+  @Override
+  public int countObjectivePoints(PlayingStation station, CardResource card, Integer x, Integer y) {
+    return countObjectivePoints(station,null,null,null);
   }
 }

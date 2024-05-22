@@ -6,7 +6,7 @@ import model.cards.CardResource;
 import java.io.Serializable;
 
 
-public class ObjectiveAssign implements Objective, Serializable {
+public class ObjectiveAssign implements Points, Serializable {
    @Override
     public int countObjectivePoints(PlayingStation station , CardResource card, Integer x, Integer y){
         return switch (card.getPoints()) {

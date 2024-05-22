@@ -12,13 +12,44 @@ import model.enums.TokenEnum;
 
 import java.rmi.RemoteException;
 import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 public class RmiServer implements VirtualServer {
 
     private GameController gameController;
     private List<VirtualView> clients;
     private HashMap<String, VirtualView> clientsMap;
+    private BlockingQueue<HashMap<String, VirtualView>> queue = new ArrayBlockingQueue<>(100);
 
+    public void serverToClientCall()
+    {
+        try {
+            HashMap<String, VirtualView> map = queue.take();
+            switch(map.keySet().toString())
+            {
+                case "startSetupOfNicknameAndToken" : map.get("startSetupOfNicknameAndToken").setupOfnicknameAndToken();
+                case "showFourCentralCardsToPlayers" : map.get("showFourCentralCardsToPlayers").showFourCentralCards();
+                case "startSetupOfStartingCard" : map.get("startSetupOfStartingCard").setupOfStartingCard();
+                case "firstHandSetup" : map.get("firstHandSetup").reciveMyFirstHand();
+                case "setupOfSecretObjective" : map.get("setupOfSecretObjective").setupOfSecretObjective();
+                case "notifyAllPlayersConnected" : map.get("notifyAllPlayersConnected").notifyAllPlayersConnected();
+            }
+
+        } catch (InterruptedException | RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void startServerToClientCallThread(){
+        Thread t = new Thread(() -> {
+            while(true)
+            {
+                serverToClientCall();
+            }
+        });
+        t.start();
+    }
 
     public RmiServer() {
         clients = new ArrayList<>();
@@ -66,8 +97,11 @@ public class RmiServer implements VirtualServer {
 
     @Override
     public void startSetupOfNicknameAndToken() throws RemoteException {
+        startServerToClientCallThread();
         for (VirtualView client : clients) {
-            client.setupOfnicknameAndToken();
+            queue.add(new HashMap<>() {{
+                put("startSetupOfNicknameAndToken", client);
+            }});
         }
         initializeGame();
     }

@@ -3,6 +3,7 @@ package model.cards;
 import model.cards.face.Face;
 import model.enums.SuitEnum;
 import model.objectives.Objective;
+import model.objectives.Points;
 
 import java.io.Serializable;
 
@@ -11,15 +12,13 @@ public class CardGold extends CardResource implements Serializable {
     private int costInsect;
     private int costFungi;
     private int costPlant;
-    private Objective objective;
 
-    public CardGold(int ID, Face front, Face back, SuitEnum symbol, Integer points, int costAnimal, int costInsect, int costFungi, int costPlant, Objective objective) {
+    public CardGold(int ID, Face front, Face back, SuitEnum symbol, Integer points, int costAnimal, int costInsect, int costFungi, int costPlant, Points objective) {
         super(ID, front, back, symbol, points, objective);
         this.costAnimal = costAnimal;
         this.costInsect = costInsect;
         this.costFungi = costFungi;
         this.costPlant = costPlant;
-        this.objective = objective;
     }
 
     public int getCostAnimal() {
@@ -37,9 +36,4 @@ public class CardGold extends CardResource implements Serializable {
     public int getCostPlant() {
         return costPlant;
     }
-
-    public Objective getObjective() {
-        return objective;
-    }
-
 }

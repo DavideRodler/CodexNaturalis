@@ -3,16 +3,17 @@ package model.cards;
 import model.cards.face.Face;
 import model.enums.SuitEnum;
 import model.objectives.Objective;
+import model.objectives.Points;
 
 import java.io.Serializable;
 
 public class CardResource extends CardPlaying implements Serializable {
     private final SuitEnum symbol;
     private final Integer points;
-    private final Objective objective;  // Aggiunto l'attributo Objective
+    private final Points objective;  // Aggiunto l'attributo Objective
 
 
-    public CardResource(int ID, Face front, Face back, SuitEnum symbol, Integer points, Objective objective) {
+    public CardResource(int ID, Face front, Face back, SuitEnum symbol, Integer points, Points objective) {
         super(ID, front, back);
         this.symbol = symbol;
         this.points = points;
@@ -26,7 +27,7 @@ public class CardResource extends CardPlaying implements Serializable {
     public int getPoints() {
         return points;
     }
-    public Objective getObjective() {  // Aggiunto il metodo getter per Objective
+    public Points getObjective() {  // Aggiunto il metodo getter per Objective
         return objective;
     }
 
