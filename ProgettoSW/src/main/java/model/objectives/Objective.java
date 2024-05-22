@@ -11,4 +11,8 @@ public interface Objective {
     default int countObjectivePoints(PlayingStation station, CardResource card, Integer x, Integer y) {
         return 0; //base case: points assigned when card is placed
     }
+
+    default int countObjectivePoints(PlayingStation station, int x, int y) {
+        return 0; //base case: points assigned when card is placed
+    }
 }

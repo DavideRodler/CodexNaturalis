@@ -57,4 +57,16 @@ class ObjectiveDiagonalTest {
         // Checking the result
         assertEquals(0, punti, "Test failed. You scored " + punti + " points.");
     }
+
+    @Test
+    void getInformation() {
+        Objective obj = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.ANIMAL);
+        //CardObjective objcard = new CardObjective(1, 2, obj);
+        DirectionEnum direction = ((ObjectiveDiagonal) obj).getDirection();
+        SuitEnum color = ((ObjectiveDiagonal) obj).getColor();
+        assertEquals(DirectionEnum.LEFT, direction);
+        assertEquals(SuitEnum.ANIMAL, color);
+
+    }
+
 }

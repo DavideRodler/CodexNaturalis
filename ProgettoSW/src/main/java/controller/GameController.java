@@ -351,10 +351,10 @@ public class GameController implements Serializable {
 
         //calculating the points that the card generates
         if (!(card.getPlayingBack())) {
-            points = card.getObjective().countObjectivePoints(player.getStation(), card, X, Y);
+       //     points = card.getObjective().countObjectivePoints(player.getStation(), card, X, Y);
         } else points = 0;
 
-        player.setPoints(player.getPoints() + points);
+       // player.setPoints(player.getPoints() + points);
         repopulatePlayingBoard();
         board.setGameState(GameState.ADDING_CARD_TO_HAND);
     }

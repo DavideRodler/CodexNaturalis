@@ -23,16 +23,16 @@ public class CardStarting extends CardPlaying implements Serializable{
     public int countResource(SuitEnum suit){
         int count = 0;
         if (getPlayingBack()){
-            if (getFront().getUpRight().getDrawing().equals(suit)) {
+            if (getBack().getUpRight().getDrawing().equals(suit)) {
                 count++;
             }
-            if(getFront().getDownRight().getDrawing().equals(suit)){
+            if(getBack().getDownRight().getDrawing().equals(suit)){
                 count++;
             }
-            if(getFront().getUpLeft().getDrawing().equals(suit)){
+            if(getBack().getUpLeft().getDrawing().equals(suit)){
                 count++;
             }
-            if(getFront().getDownLeft().getDrawing().equals(suit)){
+            if(getBack().getDownLeft().getDrawing().equals(suit)){
                 count++;
             }
         }

@@ -18,8 +18,9 @@ public class ObjectiveCountingGold implements Objective, Serializable {
     this.countQuill = countQuill;
   }
 
+
   @Override
-  public int countObjectivePoints(PlayingStation station, CardResource card, Integer x, Integer y) {
+  public int countObjectivePoints(PlayingStation station) {
     int points = 0;
     synchronized (this) {
       if ((countInkwell == countManuscript) && (countInkwell == countQuill) && (countInkwell == 1)) {
@@ -34,6 +35,7 @@ public class ObjectiveCountingGold implements Objective, Serializable {
     }
     return points;
   }
+
 
   public int getCountInkwell() {
     return countInkwell;

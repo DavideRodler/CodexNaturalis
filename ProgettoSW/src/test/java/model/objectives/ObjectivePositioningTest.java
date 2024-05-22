@@ -52,6 +52,19 @@ class ObjectivePositioningTest {
         int punti = game.getBoard().getPlayer("isa").getSecretObjective().getObjective().countObjectivePoints(station);
 
         // Checking the result
-       assertEquals(2, punti, "Test failed. You scored " + punti + " points.");
+        assertEquals(2, punti, "Test failed. You scored " + punti + " points.");
+    }
+
+    @Test
+    void getInformation() {
+        Objective obj = new ObjectivePositioning(SuitEnum.ANIMAL, SuitEnum.PLANT, DirectionEnum.RIGHT, PositionEnum.TOP);
+        DirectionEnum direction = ((ObjectivePositioning) obj).getHorizontalDirection();
+        PositionEnum position = ((ObjectivePositioning) obj).getVerticalDirection();
+        SuitEnum color1 = ((ObjectivePositioning) obj).getColorOneCard();
+        SuitEnum color2 = ((ObjectivePositioning) obj).getColorTwoCards();
+        assertEquals(DirectionEnum.RIGHT, direction);
+        assertEquals(PositionEnum.TOP, position);
+        assertEquals(SuitEnum.ANIMAL, color1);
+        assertEquals(SuitEnum.PLANT, color2);
     }
 }

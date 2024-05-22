@@ -7,8 +7,7 @@ public class Corner implements Serializable {
     private boolean covered;
     private SuitEnum drawing;
 
-    public Corner( SuitEnum drawing) {
-
+    public Corner(SuitEnum drawing) {
         this.covered = false;
         this.drawing = drawing;
     }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class ObjectiveGoldCorners implements Objective, Serializable {
 
+    @Override
     public int countObjectivePoints(PlayingStation station, int x, int y) {
         int points = 0;
         //alto a dx
