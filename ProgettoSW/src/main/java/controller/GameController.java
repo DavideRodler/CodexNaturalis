@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameController implements Serializable {
-    private static PlayingBoard board;
+    private PlayingBoard board;
 
     //getter
     public PlayingBoard getBoard() {
@@ -159,6 +159,7 @@ public class GameController implements Serializable {
         //now i give for each player its Starting card
         for (Player player: board.getPlayers()){
             player.getStation().setCardStarting(board.getDeckCardStarting().pop(),player.getNickname());
+
         };
 
         board.setGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
@@ -241,6 +242,7 @@ public class GameController implements Serializable {
             player.addCardToHand(card);
         }
         else throw new NotValidMoveException("you can't have another card");
+        repopulatePlayingBoard();
         board.setGameState(GameState.CHANGING_TURN);
         changeTurn();
     }
@@ -302,6 +304,7 @@ public class GameController implements Serializable {
         //check if the card is Playable
         numCornerCovered = player.getStation().isPlayable(card, X, Y);
 
+
         // Check if the card can be placed
         player.removeCardFromHand(id);
 
@@ -309,7 +312,7 @@ public class GameController implements Serializable {
         ArrayList<Integer> coordinates = new ArrayList<>();
         coordinates.add(0, X);
         coordinates.add(1, Y);
-        player.getStation().getMap().put(coordinates, card);
+        player.getStation().addCard(card, X,Y, front,nickname);
 
 
         //removing the counters of the covered cards
@@ -355,7 +358,6 @@ public class GameController implements Serializable {
         } else points = 0;
 
        // player.setPoints(player.getPoints() + points);
-        repopulatePlayingBoard();
         board.setGameState(GameState.ADDING_CARD_TO_HAND);
     }
 
@@ -376,29 +378,49 @@ public class GameController implements Serializable {
     /**
      * This method is used to get the score board of the game at the end of the game
      * @return  a Hasmap that has as key the nickname of the player and an arraylist that
-     * contains as the first element the position of the player and as a second element
-     * the total points that the players has scored
+     * contains as the first element the total points that the players has scored
+     * and as the second element the number of objective that he has completed
      */
     public HashMap<String,ArrayList<Integer>> getScoreBoard() {
-        HashMap<String,ArrayList<Integer>> scoreBoard = new HashMap<>();
+        HashMap<String, ArrayList<Integer>> scoreBoard = new HashMap<>();
         ArrayList<Player> players = board.getPlayers();
 
-        //creating a Map with the players nickname and their extrapoints
-        HashMap<String,Integer> playerExtraPoints = new HashMap<>();
         for (Player player : players) {
-            playerExtraPoints.put(player.getNickname(),player.getSecretObjective().getObjective().countObjectivePoints(player.getStation()));
+
+            //the total points of a player
+            int totalpoints = player.getPoints();
+
+            //the number of completed obj
+            int numOfCompletedObj = 0;
+
+            //calculating the extra points of the objectives
+            int secretObjPoints = player.getSecretObjective().getObjective().countObjectivePoints(player.getStation());
+            int firsObjPoints = board.getFirstObjective().getObjective().countObjectivePoints(player.getStation());
+            int secondObjPoints = board.getSecondObjective().getObjective().countObjectivePoints(player.getStation());
+
+
+            //calculating the number of completed objectives
+            if (secretObjPoints > 0) {
+                numOfCompletedObj++;
+            }
+            if (firsObjPoints > 0) {
+                numOfCompletedObj++;
+            }
+            if (secondObjPoints > 0) {
+                numOfCompletedObj++;
+            }
+
+            //adding the extra points to the total points
+            totalpoints += secretObjPoints + firsObjPoints + secondObjPoints;
+
+            ArrayList<Integer> pointsArraylist = new ArrayList<>();
+            pointsArraylist.add(0, totalpoints);
+            pointsArraylist.add(1, numOfCompletedObj);
+
+            //populating the board
+            scoreBoard.put(player.getNickname(), pointsArraylist);
         }
-
-
-        for( Player player: players){
-            ArrayList<Integer> playerScore = new ArrayList<>();
-            playerScore.add(1,player.getPoints() + playerExtraPoints.get(player.getNickname()));
-            scoreBoard.put(player.getNickname(),playerScore);
-
-        }
-
         return scoreBoard;
-
     }
 
 
@@ -406,6 +428,10 @@ public class GameController implements Serializable {
         if (board.getGameState() != gameState) {
             throw new ChangedStateException("not valid move, game state is " + board.getGameState() + " but expected " + gameState );
         }
+    }
+
+    public boolean isGameState(GameState gameState) {
+        return board.getGameState().equals(gameState);
     }
 
     public void assertIsMyTurn(String nickname) throws NotMyTurnException{

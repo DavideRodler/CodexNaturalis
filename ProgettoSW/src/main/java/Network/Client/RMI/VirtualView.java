@@ -9,7 +9,7 @@ public interface VirtualView extends Remote, Observer {
 
     void setupOfnicknameAndToken() throws RemoteException;
 
-    void setupOfStartingCard() throws RemoteException;
+    void notifyStartSetupOfStartingCard() throws RemoteException;
 
     void showFourCentralCards()throws RemoteException;
 
@@ -26,4 +26,6 @@ public interface VirtualView extends Remote, Observer {
     void notifyAllPlayersConnected() throws RemoteException;
 
     void notifyGameAlreadyStarted() throws RemoteException;
+
+    void notifyItIsYourTurn() throws RemoteException;
 }

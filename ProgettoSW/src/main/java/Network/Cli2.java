@@ -1,8 +1,10 @@
 package Network;
 
 import View.*;
+import model.Player;
 import model.cards.*;
 import model.client.ClientBoard;
+import model.client.ReductPlayer;
 import model.enums.TokenEnum;
 import model.objectives.ObjectiveCountingGold;
 import model.objectives.ObjectiveCountingResource;
@@ -247,10 +249,10 @@ public class Cli2 implements UI {
         }
         //ho popolato le carte della station, la passo come argomento alla boardmatrix
         StationMatrix stationMatrix= new StationMatrix();
-        //stationMatrix.initializeStationPrint();
-        //--stationMatrix.populateMatrix/plyaingstation)
-//        stationMatrix.addCardsToStation(station, max);
-        //stationMatrix.addCoordinatesToMatrix(max);
+        stationMatrix.initializeStationPrint();
+//        --stationMatrix.populateMatrix/plyaingstation)
+        stationMatrix.addCardsToStation(station, max);
+//        stationMatrix.addCoordinatesToMatrix(max);
         stationMatrix.printStation(max);
         stationMatrix.printResources(fungi, plant, animal, insect, quill, manuscript, inkwell);
         stationMatrix.printPoints(clientBoard);
@@ -307,7 +309,8 @@ public class Cli2 implements UI {
      */
     @Override
     public void printStartOfMyTurn() {
-
+        showUpdatedStation();
+        printMyHand();
     }
 
     @Override
@@ -318,6 +321,7 @@ public class Cli2 implements UI {
     @Override
     public void printOtherPlayersStation(String nickname) {
         clientBoard.getOtherPlayer(nickname).getStation(); //--> paramentro// della show station
+        printStationofOtherPlayer(clientBoard.getOtherPlayer(nickname));
     }
 
     //    private void printCard(Card card) {
@@ -402,7 +406,7 @@ public class Cli2 implements UI {
 
     @Override
     public void showErrorMessage(String message) {
-
+        System.out.println(message);
     }
 
     @Override
@@ -412,6 +416,47 @@ public class Cli2 implements UI {
         System.out.println("Choose one of the available tokens");
 
 
+    }
+    void printStationofOtherPlayer(ReductPlayer p) {
+        System.out.println( "player " +p.getNickname() + "just placed a card");
+        int fungi = p.getStation().getCountFungi();
+        int plant = p.getStation().getCountPlant();
+        int animal = p.getStation().getCountAnimal();
+        int insect = p.getStation().getCountInsect();
+        int quill = p.getStation().getCountQuill();
+        int manuscript = p.getStation().getCountManuscript();
+        int inkwell = p.getStation().getCountInkwell();
+        int x, y, maxX, maxY, distanceX, distanceY, max;
+        maxX = 0;
+        maxY = 0;
+        max = 0;
+//        System.out.println(reductPlayer.getNickname() + "'s station: ");//name);
+        CardPlaying[][] station = new CardPlaying[80][80];
+        HashMap<ArrayList<Integer>, CardPlaying> playingStationMap = clientBoard.getMyplayer().getStation().getMap();
+        for (HashMap.Entry<ArrayList<Integer>, CardPlaying> entry : playingStationMap.entrySet()) {
+            ArrayList<Integer> coordinates = entry.getKey();
+            CardPlaying card = entry.getValue();
+            x = coordinates.get(0);
+            y = coordinates.get(1);
+            station[x][y] = card;
+            distanceX = x - 40;
+            distanceY = y - 40;
+
+            if (distanceX > maxX || distanceY > maxY) {
+                maxX = distanceX;
+                maxY = distanceY;
+                max = Math.max(distanceX, distanceY);
+            }
+        }
+        //ho popolato le carte della station, la passo come argomento alla boardmatrix
+        StationMatrix stationMatrix= new StationMatrix();
+        stationMatrix.initializeStationPrint();
+//        --stationMatrix.populateMatrix/plyaingstation)
+        stationMatrix.addCardsToStation(station, max);
+//        stationMatrix.addCoordinatesToMatrix(max);
+        stationMatrix.printStation(max);
+        stationMatrix.printResources(fungi, plant, animal, insect, quill, manuscript, inkwell);
+        stationMatrix.printPoints(clientBoard);
     }
 
     private void printMatrix(String[][] mat){

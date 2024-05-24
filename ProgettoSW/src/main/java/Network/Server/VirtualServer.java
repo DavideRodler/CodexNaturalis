@@ -24,8 +24,6 @@ public interface VirtualServer extends Remote {
 
     void addPlayer(String nickname, TokenEnum token, VirtualView Myclient) throws RemoteException, ChangedStateException, NotValidMoveException;
 
-    void startSetupOfNicknameAndToken() throws RemoteException;
-
     void setStartingCardPlayedBack(boolean playedback, String nickname, int ID) throws ChangedStateException, NotValidMoveException, RemoteException;
 
     ArrayList<CardResource> getMyHand(String nickname) throws RemoteException;
@@ -34,4 +32,5 @@ public interface VirtualServer extends Remote {
 
     ArrayList<CardObjective> getSelectableObjectives(String nickname) throws RemoteException;
 
+    void addCardToStation(String nickname,int cardId, boolean front, int x, int y) throws RemoteException;
 }

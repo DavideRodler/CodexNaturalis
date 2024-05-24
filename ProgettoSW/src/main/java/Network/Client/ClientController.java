@@ -5,10 +5,12 @@ import Network.Client.RMI.RmiClient;
 import Network.Server.VirtualServer;
 import View.UI;
 import exception.ChangedStateException;
+import exception.InvalidPlacingCondition;
 import exception.NotValidMoveException;
 import model.Player;
 import model.PlayingStation;
 import model.cards.CardObjective;
+import model.cards.CardResource;
 import model.cards.CardStarting;
 import model.client.ClientBoard;
 import model.client.ReductPlayer;
@@ -62,19 +64,13 @@ public class ClientController {
         }
     }
 
-    public void showFourCentralCards() {
+    public synchronized void showFourCentralCards() {
         ui.print4CentralCards();
     }
 
-    public void setupOfStartingCard() {
-        ArrayList<CardObjective> cardObjectiveList = new ArrayList<>();
-        CardStarting cardStarting = null;
+    public synchronized void setupOfStartingCard() {
+        CardStarting cardStarting = (CardStarting) clientModel.getMyplayer().getStation().getCard(40,40);
 
-        try {
-            cardStarting = (CardStarting) clientModel.getMyplayer().getStation().getCard(40,40);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
         //asking starting card face
         ui.showStartingCard();
         boolean answer = ui.askStartingCardPlayedBack();
@@ -82,8 +78,6 @@ public class ClientController {
         //setting starting card face in local model
         clientModel.getMyplayer().getStation().setCardStartingPlayedBack(null,answer);
 
-        //Printing the board
-        ui.showUpdatedStation();
 
         //notify the server
         try {
@@ -98,7 +92,7 @@ public class ClientController {
 
     }
 
-    public void reciveMyFirstHand() {
+    public synchronized void reciveMyFirstHand() {
 
         //setting My Hand in the client model
         try {
@@ -112,7 +106,7 @@ public class ClientController {
 
     }
 
-    public  void setupOfSecretObjective(){
+    public synchronized void setupOfSecretObjective(){
         //printing common objectives
         ui.printCommonObjective();
 
@@ -147,6 +141,59 @@ public class ClientController {
         System.out.println("ciao");
     }
 
+    public void notifyItIsYourTurn() {
+        //showing the board
+        ui.printStartOfMyTurn();
+        //the answer to where to put the card
+        Integer[] answer;
+
+        //the card i want to put in the station
+        CardResource cardchoosen;
+        int cardId;
+
+        while (true) {
+            try {
+                answer = ui.askCoordinatesOfCards();
+                cardchoosen = clientModel.getMyplayer().getHand().get(answer[0]);
+                clientModel.getMyplayer().getStation().isPlayable(cardchoosen, answer[2], answer[3]);
+                cardId = cardchoosen.getId();
+                break;
+            }
+            catch (InvalidPlacingCondition e) {
+                ui.showErrorMessage(e.getMessage());
+            }
+        }
+        //updating the local model
+
+        //adding card to the station
+        clientModel.getMyplayer().getStation().addCard(cardchoosen,answer[2],answer[3],answer[1] == 0,clientModel.getMyplayer().getNickname());
+        try {
+            //removing the card from the hand
+            clientModel.getMyplayer().removeCardFromHand(cardchoosen.getId());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        // updating player points
+
+        ui.showUpdatedStation();
+
+        //sending the move to the server
+        try {
+            server.addCardToStation(clientModel.getMyplayer().getNickname(),cardId, answer[1] == 0, answer[2], answer[3]);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
+        ui.print4CentralCards();
+        int cardToDraw = ui.askWhichCardToDraw();
+//        try {
+//            server.drawCard(clientModel.getMyplayer().getNickname(), cardToDraw);
+//        } catch (RemoteException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+    }
+
     public void updateModel(Message message) throws RemoteException {
         switch (message.getType()) {
             case "ChangeState":
@@ -156,7 +203,7 @@ public class ClientController {
             case "PlayersInfo":
                 PlayersInfoMessage playerInfoMessage = (PlayersInfoMessage) message;
                 HashMap<String, TokenEnum> playersMap = playerInfoMessage.getPlayers();
-                for(String nickname : playersMap.keySet()) {
+                for (String nickname : playersMap.keySet()) {
                     if (!nickname.equals(clientModel.getMyplayer().getNickname())) {
                         clientModel.getOtherplayers().add(new ReductPlayer(nickname, playersMap.get(nickname)));
                     }
@@ -169,22 +216,21 @@ public class ClientController {
                 break;
             case "CardStarting":
                 CardStartingMessage cardStartingMessage = (CardStartingMessage) message;
-                if(clientModel.getMyplayer().getNickname().equals(cardStartingMessage.getNickname())) {
-                    clientModel.getMyplayer().getStation().setCardStarting(cardStartingMessage.getCardStarting(),null);
-                }
-                else {
-                    for(ReductPlayer player : clientModel.getOtherplayers()) {
-                        if(player.getNickname().equals(cardStartingMessage.getNickname())) {
-                            player.getStation().setCardStarting(cardStartingMessage.getCardStarting(),null);
+                if (clientModel.getMyplayer().getNickname().equals(cardStartingMessage.getNickname())) {
+                    clientModel.getMyplayer().getStation().setCardStarting(cardStartingMessage.getCardStarting(), null);
+                } else {
+                    for (ReductPlayer player : clientModel.getOtherplayers()) {
+                        if (player.getNickname().equals(cardStartingMessage.getNickname())) {
+                            player.getStation().setCardStarting(cardStartingMessage.getCardStarting(), null);
                         }
                     }
                 }
                 break;
             case "CardStartingPlayedBack":
                 CardStartingPlayedBackMessage cardStartingPlayedBackMessage = (CardStartingPlayedBackMessage) message;
-                for(ReductPlayer player : clientModel.getOtherplayers()) {
-                    if(player.getNickname().equals(cardStartingPlayedBackMessage.getNickname())) {
-                        player.getStation().setCardStartingPlayedBack(null,cardStartingPlayedBackMessage.isPlayedBack());
+                for (ReductPlayer player : clientModel.getOtherplayers()) {
+                    if (player.getNickname().equals(cardStartingPlayedBackMessage.getNickname())) {
+                        player.getStation().setCardStartingPlayedBack(null, cardStartingPlayedBackMessage.isPlayedBack());
                     }
                 }
                 break;
@@ -196,6 +242,16 @@ public class ClientController {
             case "CentralCardGold":
                 CentralCardGoldMessage centralCardGoldMessage = (CentralCardGoldMessage) message;
                 clientModel.getCentralCardsGold().add(centralCardGoldMessage.getCardGold());
+                break;
+
+            case "CardAddedToStation":
+                CardAddedToStationMessage cardAddedToStationMessage = (CardAddedToStationMessage) message;
+                for (ReductPlayer player : clientModel.getOtherplayers()) {
+                    if (player.getNickname().equals(cardAddedToStationMessage.getNickname())) {
+                        player.getStation().addCard(cardAddedToStationMessage.getCard(), cardAddedToStationMessage.getX(), cardAddedToStationMessage.getY(), cardAddedToStationMessage.getPlayedBack(), cardAddedToStationMessage.getNickname());
+                        ui.printOtherPlayersStation(cardAddedToStationMessage.getNickname());
+                    }
+                }
                 break;
         }
     }

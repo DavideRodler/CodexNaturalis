@@ -82,7 +82,6 @@ public class PlayingStation extends ObservableModel implements Serializable {
         coordinates.add(40);
         coordinates.add(40);
         map.put(coordinates, card);
-        updateCounters(card);
         try {
             notifyObservers(new CardStartingMessage(nickname,card));
         } catch (RemoteException e) {
@@ -94,6 +93,7 @@ public class PlayingStation extends ObservableModel implements Serializable {
         coordinates.add(40);
         coordinates.add(40);
         map.get(coordinates).setPlayingBack(playedback);
+        updateCounters((CardStarting) map.get(coordinates));
         try {
             notifyObservers(new CardStartingPlayedBackMessage(nickname,playedback));
         } catch (RemoteException e) {
@@ -308,6 +308,19 @@ public class PlayingStation extends ObservableModel implements Serializable {
                 return false;
             }
             return true;
+        }
+
+        public void addCard(CardResource card, Integer X, Integer Y,boolean playedback, String nickname) {
+            ArrayList<Integer> coordinates = new ArrayList<>();
+            coordinates.add(0, X);
+            coordinates.add(1, Y);
+            card.setPlayingBack(playedback);
+            map.put(coordinates, card);
+            try {
+                notifyObservers(new CardAddedToStationMessage(card, nickname, X, Y, playedback));
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
         }
 
 

@@ -33,7 +33,7 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     }
 
     @Override
-    public void setupOfStartingCard() throws RemoteException {
+    public void notifyStartSetupOfStartingCard() throws RemoteException {
         clientController.setupOfStartingCard();
 
     }
@@ -83,5 +83,11 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     @Override
     public void notifyGameAlreadyStarted() throws RemoteException {
         clientController.notifyGameAlreadyStarted();
+    }
+
+    @Override
+    public void notifyItIsYourTurn() throws RemoteException{
+        clientController.notifyItIsYourTurn();
+
     }
 }
