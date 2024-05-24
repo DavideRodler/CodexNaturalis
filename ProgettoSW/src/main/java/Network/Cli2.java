@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import static View.CardMatrixCreator.*;
-import static View.StartingCardMatrix.cardStartingPrinter;
+import static View.StartingCardPrinter.cardStartingPrinter;
 
 public class Cli2 implements UI {
 
@@ -134,12 +134,10 @@ public class Cli2 implements UI {
      */
 
     @Override
-    public void printCommonObjective() {
-        System.out.println("Common objectives are: ");
-        printCard(clientBoard.getFirstObjective());
-        System.out.println();
-        printCard(clientBoard.getSecondObjective());
-        System.out.println();
+    public void printCommonObjectives() {
+        BoardMatrix board = new BoardMatrix();
+        System.out.println("Common objectives: ");
+        board.printCommonObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
     }
 
     /**
@@ -147,7 +145,7 @@ public class Cli2 implements UI {
      */
     @Override
     public void printSecretObjective(){
-        HandMatrix playerHand = new HandMatrix();
+        HandPrinter playerHand = new HandPrinter();
         playerHand.addObjectiveToHand(clientBoard.getMyplayer().getSecretObjective());
     }
 
@@ -198,25 +196,22 @@ public class Cli2 implements UI {
         centralCards.printCentral();
     }
 
+
     /**
-     * this method prints the common objectives of all the players
+     * this method prints the station of the player at the beginning of their turn.
      */
-    public void printCommonObjectives(){  // TODO: aggiungere in UI
-        BoardMatrix board = new BoardMatrix();
-        System.out.println("Common objectives: ");
-        board.printCommonObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
+    public void printPlayerStationBeforeCardAdded(){
+        HashMap<ArrayList<Integer>, CardPlaying> playingStationMap = clientBoard.getMyplayer().getStation().getMap();
+        printPlayerStation(playingStationMap);
     }
+    //Adesso nella print updatedstation devo solo chiamare l'oggetto stationmatrix, popolarlo (mettendo la poopolazione dalla mappa alla matrice in stationMatrix, e stamparla
 
-    //public void printMYSTATION
-     //clientBoard.getMyplayer().getStation();
-    //|
-    //|
-    //V
-
-
-
+    /**
+     * this method prints the station of the player.
+     * @param playingStationMap is an HashMap containing the cards played by the player.
+     */
     @Override
-    public void showUpdatedStation() { //TODO: modificare questo metodo mettendo la popolazione da mappa a matrice in stationPrint
+    public void printPlayerStation(HashMap<ArrayList<Integer>, CardPlaying> playingStationMap) { //TODO: modificare questo metodo mettendo la popolazione da mappa a matrice in stationPrint
         // da lasciare solo: new statmat, popolazione con parametro la playstation e la stampa
         int fungi = clientBoard.getMyplayer().getStation().getCountFungi();
         int plant = clientBoard.getMyplayer().getStation().getCountPlant();
@@ -225,35 +220,9 @@ public class Cli2 implements UI {
         int quill = clientBoard.getMyplayer().getStation().getCountQuill();
         int manuscript = clientBoard.getMyplayer().getStation().getCountManuscript();
         int inkwell = clientBoard.getMyplayer().getStation().getCountInkwell();
-        int x, y, maxX, maxY, distanceX, distanceY, max;
-        maxX = 0;
-        maxY = 0;
-        max = 0;
-//        System.out.println(reductPlayer.getNickname() + "'s station: ");//name);
-        CardPlaying[][] station = new CardPlaying[80][80];
-        HashMap<ArrayList<Integer>, CardPlaying> playingStationMap = clientBoard.getMyplayer().getStation().getMap();
-        for (HashMap.Entry<ArrayList<Integer>, CardPlaying> entry : playingStationMap.entrySet()) {
-            ArrayList<Integer> coordinates = entry.getKey();
-            CardPlaying card = entry.getValue();
-            x = coordinates.get(0);
-            y = coordinates.get(1);
-            station[x][y] = card;
-            distanceX = x - 40;
-            distanceY = y - 40;
-
-            if(distanceX > maxX || distanceY > maxY){
-                maxX = distanceX;
-                maxY = distanceY;
-                max = Math.max(distanceX, distanceY);
-            }
-        }
-        //ho popolato le carte della station, la passo come argomento alla boardmatrix
+        int max = 0;
         StationMatrix stationMatrix= new StationMatrix();
-        stationMatrix.initializeStationPrint();
-//        --stationMatrix.populateMatrix/plyaingstation)
-        stationMatrix.addCardsToStation(station, max);
-//        stationMatrix.addCoordinatesToMatrix(max);
-        stationMatrix.printStation(max);
+        stationMatrix.printStation(playingStationMap);
         stationMatrix.printResources(fungi, plant, animal, insect, quill, manuscript, inkwell);
         stationMatrix.printPoints(clientBoard);
     }
@@ -264,11 +233,15 @@ public class Cli2 implements UI {
     @Override
     public void printMyHand() { //TODO: cambiare i test.
         System.out.println("Here is your hand:");
-        HandMatrix playerHand = new HandMatrix();
+        HandPrinter playerHand = new HandPrinter();
         playerHand.addCardsToHand(clientBoard.getMyplayer().getHand());
         playerHand.printHandMatrix();
     }
 
+    /**
+     * this method asks where the player which card he would like to play, if he wants to play it in front or in back and also where.
+     * @return an array containing the choices of the player.
+     */
     @Override
     public Integer[] askCoordinatesOfCards() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
@@ -305,23 +278,35 @@ public class Cli2 implements UI {
     }
 
     /**
-     * this method prints everything: 4 central cards, the hand, the secret obj, common obj, station
+     * this method prints everything needed for the start of the player's turn: the central cards, the common objectives, the secret objective, the hand and the station.
      */
     @Override
-    public void printStartOfMyTurn() {
-        showUpdatedStation();
+    public void printStartOfPlayerTurn() {
+        print4CentralCards();
+        System.out.println();
+        printCommonObjectives();
+        printSecretObjective();
         printMyHand();
+        printPlayerStationBeforeCardAdded();
     }
 
+    /**
+     * this method prints the station of the player after they place a card
+     */
     @Override
-    public void printAfterCardHasBeenAdded() {
-
+    public void printStationAfterCardHasBeenAdded() {
+        HashMap<ArrayList<Integer>, CardPlaying> playingStationMap = clientBoard.getMyplayer().getStation().getMap();
+        printPlayerStation(playingStationMap);
     }
 
+    /**
+     * this methtod prints the station of the other player after their turn ended.
+     * @param nickname is the nickname of the player of which the station is going to be printed
+     */
     @Override
     public void printOtherPlayersStation(String nickname) {
-        clientBoard.getOtherPlayer(nickname).getStation(); //--> paramentro// della show station
-        printStationofOtherPlayer(clientBoard.getOtherPlayer(nickname));
+        System.out.println(nickname + "'s station is: ");
+        printPlayerStation(clientBoard.getOtherPlayer(nickname).getStation().getMap());
     }
 
     //    private void printCard(Card card) {
@@ -386,6 +371,12 @@ public class Cli2 implements UI {
 //            }
 //        }
 //    }
+
+    /**
+     * this method asks the player to choose a token
+     * @param availableTokens is the list of available tokens
+     * @return the token chosen
+     */
     @Override
     public TokenEnum askToken(ArrayList<TokenEnum> availableTokens) {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
@@ -409,6 +400,10 @@ public class Cli2 implements UI {
         System.out.println(message);
     }
 
+    /**
+     * this method shows the available tokens to the player
+     * @param availableTokens
+     */
     @Override
     public void printAvailableTokens(ArrayList<TokenEnum> availableTokens) {
         Scanner input = new Scanner(System.in);
@@ -417,46 +412,10 @@ public class Cli2 implements UI {
 
 
     }
-    void printStationofOtherPlayer(ReductPlayer p) {
-        System.out.println( "player " +p.getNickname() + "just placed a card");
-        int fungi = p.getStation().getCountFungi();
-        int plant = p.getStation().getCountPlant();
-        int animal = p.getStation().getCountAnimal();
-        int insect = p.getStation().getCountInsect();
-        int quill = p.getStation().getCountQuill();
-        int manuscript = p.getStation().getCountManuscript();
-        int inkwell = p.getStation().getCountInkwell();
-        int x, y, maxX, maxY, distanceX, distanceY, max;
-        maxX = 0;
-        maxY = 0;
-        max = 0;
-//        System.out.println(reductPlayer.getNickname() + "'s station: ");//name);
-        CardPlaying[][] station = new CardPlaying[80][80];
-        HashMap<ArrayList<Integer>, CardPlaying> playingStationMap = clientBoard.getMyplayer().getStation().getMap();
-        for (HashMap.Entry<ArrayList<Integer>, CardPlaying> entry : playingStationMap.entrySet()) {
-            ArrayList<Integer> coordinates = entry.getKey();
-            CardPlaying card = entry.getValue();
-            x = coordinates.get(0);
-            y = coordinates.get(1);
-            station[x][y] = card;
-            distanceX = x - 40;
-            distanceY = y - 40;
 
-            if (distanceX > maxX || distanceY > maxY) {
-                maxX = distanceX;
-                maxY = distanceY;
-                max = Math.max(distanceX, distanceY);
-            }
-        }
-        //ho popolato le carte della station, la passo come argomento alla boardmatrix
-        StationMatrix stationMatrix= new StationMatrix();
-        stationMatrix.initializeStationPrint();
-//        --stationMatrix.populateMatrix/plyaingstation)
-        stationMatrix.addCardsToStation(station, max);
-//        stationMatrix.addCoordinatesToMatrix(max);
-        stationMatrix.printStation(max);
-        stationMatrix.printResources(fungi, plant, animal, insect, quill, manuscript, inkwell);
-        stationMatrix.printPoints(clientBoard);
+    @Override
+    public void printPlayerToken(){
+        System.out.println("Your token is: " + clientBoard.getMyplayer().getToken());
     }
 
     private void printMatrix(String[][] mat){
@@ -468,6 +427,7 @@ public class Cli2 implements UI {
         }
     }
 
+    //TODO: valutare se togliere questi printCards
     private void printCard(Card card){
     }
 

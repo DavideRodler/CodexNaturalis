@@ -78,6 +78,8 @@ public class ClientController {
         //setting starting card face in local model
         clientModel.getMyplayer().getStation().setCardStartingPlayedBack(null,answer);
 
+        //Printing the board
+        ui.printPlayerStation(clientModel.getMyplayer().getStation().getMap());
 
         //notify the server
         try {
@@ -108,7 +110,7 @@ public class ClientController {
 
     public synchronized void setupOfSecretObjective(){
         //printing common objectives
-        ui.printCommonObjective();
+        ui.printCommonObjectives();
 
         //getting selectable objectives from server and setting it on local model
         try {
@@ -143,7 +145,7 @@ public class ClientController {
 
     public void notifyItIsYourTurn() {
         //showing the board
-        ui.printStartOfMyTurn();
+        ui.printStartOfPlayerTurn();
         //the answer to where to put the card
         Integer[] answer;
 

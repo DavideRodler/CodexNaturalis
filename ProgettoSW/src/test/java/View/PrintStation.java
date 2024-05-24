@@ -26,49 +26,10 @@ public class PrintStation {
         showUpdatedStation(table);
     }
 
-    public static void showUpdatedStation(HashMap<ArrayList<Integer>, CardPlaying> playingStation) {
-        int x, y, maxX, maxY, distanceX, distanceY, max;
-        int maxXPos, maxXNeg, maxYPos, maxYNeg;
-        maxXPos = 0;
-        maxXNeg = 0;
-        maxYPos = 0;
-        maxYNeg = 0;
-        maxX = 0;
-        maxY = 0;
-        max = 0;
-        System.out.println("Station ");//name);
-        CardPlaying[][] stationCard = new CardPlaying[80][80];
-        for (HashMap.Entry<ArrayList<Integer>, CardPlaying> entry : playingStation.entrySet()) {
-            ArrayList<Integer> coordinates = entry.getKey();
-            CardPlaying card = entry.getValue();
-            x = coordinates.get(0);
-            y = coordinates.get(1);
-            stationCard[x][y] = card;
-            distanceX = x - 40;
-            distanceY = y - 40;
-//            if(distanceX > maxX || distanceY > maxY){
-//                maxX = distanceX;
-//                maxY = distanceY;
-//                max = Math.max(distanceX, distanceY);
-//            }
-            if(distanceX > maxXPos){
-                maxXPos = distanceX;
-            }
-            if(distanceY > maxYPos){
-                maxYPos = distanceY;
-            }
-            if(distanceX < maxXNeg) {
-                maxXNeg = distanceX;
-            }
-            if(distanceY < maxYNeg){
-                maxYNeg = distanceY;
-            }
-            max = Math.max(Math.max(maxXPos, -maxXNeg), Math.max(maxYPos, -maxYNeg));
-        }
-        StationMatrix stationMatrix = new StationMatrix();
-        stationMatrix.initializeStationPrint();
-        stationMatrix.addCardsToStation(stationCard, max);
-        stationMatrix.printStation(max);
+    public static void showUpdatedStation(HashMap<ArrayList<Integer>, CardPlaying> playingStationMap) {
+        StationMatrix stationMatrix= new StationMatrix();
+        stationMatrix.printStation(playingStationMap);
+        //stationMatrix.printResources(fungi, plant, animal, insect, quill, manuscript, inkwell);
     }
     @Test
     public void printStartingcard(){
@@ -126,7 +87,7 @@ public class PrintStation {
         StationMatrix stationMatrix = new StationMatrix();
         stationMatrix.initializeStationPrint();
         stationMatrix.addCardsToStation(stationCard, max);
-        stationMatrix.printStation(max);
+        //stationMatrix.printStation(max);
    }
 
    @Test

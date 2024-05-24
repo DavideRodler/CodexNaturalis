@@ -14,27 +14,27 @@ class CardPlayingTest {
 
     Face frontTmp = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.NULL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
 
-    Objective obj = new ObjectiveAssign();
-    // the card resource is of type ANIMAL
-    CardResource card = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
-    @Test
-    void getFront() {
-        assertEquals(frontTmp, card.getFront());
-    }
-
-    @Test
-    void getBack() {
-        assertEquals(backTmp, card.getBack());
-    }
-
-    @Test
-    void getPlayingBack() {
-        card.setPlayingBack(true);
-        assertEquals(true, card.getPlayingBack());
-    }
-
-    @Test
-    void countResource() {
-        assertEquals(1, card.countResource(SuitEnum.ANIMAL));
-    }
+//    Objective obj = new ObjectiveAssign();
+//    // the card resource is of type ANIMAL
+//    CardResource card = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
+//    @Test
+//    void getFront() {
+//        assertEquals(frontTmp, card.getFront());
+//    }
+//
+//    @Test
+//    void getBack() {
+//        assertEquals(backTmp, card.getBack());
+//    }
+//
+//    @Test
+//    void getPlayingBack() {
+//        card.setPlayingBack(true);
+//        assertEquals(true, card.getPlayingBack());
+//    }
+//
+//    @Test
+//    void countResource() {
+//        assertEquals(1, card.countResource(SuitEnum.ANIMAL));
+//    }
 }

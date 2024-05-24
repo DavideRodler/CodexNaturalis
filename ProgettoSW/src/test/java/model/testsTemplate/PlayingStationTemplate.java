@@ -21,7 +21,7 @@ public class PlayingStationTemplate {
                 new Corner(SuitEnum.EMPTY));
         Face frontTmp = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.EMPTY),
                 new Corner(SuitEnum.FUNGI));
-        Objective obj = new ObjectiveAssign();
+        Points obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
         CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
@@ -62,7 +62,7 @@ public class PlayingStationTemplate {
                 new Corner(SuitEnum.EMPTY));
         Face frontTmp = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.EMPTY),
                 new Corner(SuitEnum.FUNGI));
-        Objective obj = new ObjectiveAssign();
+        Points obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
         CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
@@ -111,7 +111,7 @@ public class PlayingStationTemplate {
                 new Corner(SuitEnum.EMPTY));
         Face frontTmp = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.EMPTY),
                 new Corner(SuitEnum.FUNGI));
-        Objective obj = new ObjectiveAssign();
+        Points obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
         CardResource cardPlant1 = new CardResource(1, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
@@ -157,7 +157,7 @@ public class PlayingStationTemplate {
                 new Corner(SuitEnum.EMPTY));
         Face frontTmp = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.EMPTY),
                 new Corner(SuitEnum.FUNGI));
-        Objective obj = new ObjectiveAssign();
+        Points obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
         CardResource cardPlant1 = new CardResource(1, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
@@ -217,7 +217,7 @@ public class PlayingStationTemplate {
         Face frontTmp = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.NULL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
 
         Face frontTmp2 = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
-        Objective obj = new ObjectiveAssign();
+        Points obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
         CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
@@ -259,7 +259,7 @@ public class PlayingStationTemplate {
         Face frontTmp = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.NULL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
 //
         Face frontTmp2 = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
-        Objective obj = new ObjectiveAssign();
+        Points obj = new ObjectiveAssign();
 //        // the card resource is of type ANIMAL
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
         CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
@@ -301,7 +301,7 @@ public class PlayingStationTemplate {
 //
             Face frontGold = new Face(new Corner(SuitEnum.INKWELL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
 //
-            Objective objectiveGold = new ObjectiveCountingGold(1, 0, 0);
+            Points objectiveGold = new ObjectiveCountingGold(1, 0, 0);
 //
 //        // the card resource is of type ANIMAL
             CardGold cardAnimal1 = new CardGold(0, frontGold, back, SuitEnum.ANIMAL, 1, 2, 1, 0, 0, objectiveGold);
@@ -344,7 +344,7 @@ public class PlayingStationTemplate {
                 Face frontTmp = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.NULL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
 //
                 Face frontTmp2 = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
-                Objective obj = new ObjectiveAssign();
+                Points obj = new ObjectiveAssign();
 //        // the card resource is of type ANIMAL
                 CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
                 CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
@@ -385,7 +385,7 @@ public class PlayingStationTemplate {
                     Face frontTmp = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.NULL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
 //
                     Face frontTmp2 = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
-                    Objective obj = new ObjectiveAssign();
+                    Points obj = new ObjectiveAssign();
                     // the card resource is of type ANIMAL
                     CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
                     CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);

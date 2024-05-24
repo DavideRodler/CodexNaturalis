@@ -13,14 +13,14 @@ import static View.CardMatrixCreator.*;
 /**
  * Oltre alla mano c'è anche l'obiettivo segreto.
  */
-public class HandMatrix {
+public class HandPrinter {
     private String[][] handMatrix = new String[3][36];
 
     public String[][] getHandMatrix() {
         return handMatrix;
     }
 
-    public HandMatrix(){
+    public HandPrinter(){
         initializeMatrix();
     }
 

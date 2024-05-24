@@ -1,8 +1,10 @@
 package View;
 
+import model.cards.CardPlaying;
 import model.enums.TokenEnum;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface UI {
     void showStartingCard();
@@ -16,7 +18,7 @@ public interface UI {
 
     boolean askStartingCardPlayedBack();
 
-    void printCommonObjective();
+    void printCommonObjectives();
 
     void printSecretObjective();
 
@@ -27,12 +29,12 @@ public interface UI {
     //this method only shows the 4 Central cards at the beginning of the game
     void print4CentralCards();
     
-    void showUpdatedStation();
+    void printPlayerStation(HashMap<ArrayList<Integer>, CardPlaying> playingStationMap);
 
     //this mehtod only print the hand and is used at the beginning of the game
     void printMyHand();
 
-    //void prin
+    void printPlayerStationBeforeCardAdded();
 
 
     Integer[] askCoordinatesOfCards();
@@ -43,14 +45,16 @@ public interface UI {
 
     // this method print the 4 central cards, the hand , the playingstation, the common and private objectives
     // and the other players name and points;
-   void printStartOfMyTurn();
+   void printStartOfPlayerTurn();
 
    // printa solo la staion aggiornata più risorse e più punti
-   void printAfterCardHasBeenAdded();
+   void printStationAfterCardHasBeenAdded();
 
    void printOtherPlayersStation(String nickname);
 
     TokenEnum askToken(ArrayList<TokenEnum> availableTokens);
+
+    void printPlayerToken();
 
     void waitingForOtherPlayers();
 

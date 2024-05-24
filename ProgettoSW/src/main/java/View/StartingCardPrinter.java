@@ -7,7 +7,7 @@ import static View.CardMatrixCreator.*;
 /**
  * this class creates and prints the front and back of the starting card
  */
-public class StartingCardMatrix {
+public class StartingCardPrinter {
     
     /**
      * this method prints the starting card's front and back
