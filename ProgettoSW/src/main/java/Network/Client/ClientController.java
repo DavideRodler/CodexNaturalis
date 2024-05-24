@@ -78,8 +78,6 @@ public class ClientController {
         //setting starting card face in local model
         clientModel.getMyplayer().getStation().setCardStartingPlayedBack(null,answer);
 
-        //Printing the board
-        ui.printPlayerStation(clientModel.getMyplayer().getStation().getMap());
 
         //notify the server
         try {
@@ -176,8 +174,7 @@ public class ClientController {
             throw new RuntimeException(e);
         }
         // updating player points
-
-        ui.showUpdatedStation();
+        ui.printStationAfterCardHasBeenAdded();
 
         //sending the move to the server
         try {

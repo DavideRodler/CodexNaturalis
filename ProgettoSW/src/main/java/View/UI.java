@@ -1,5 +1,6 @@
 package View;
 
+import model.PlayingStation;
 import model.cards.CardPlaying;
 import model.enums.TokenEnum;
 
@@ -29,13 +30,10 @@ public interface UI {
     //this method only shows the 4 Central cards at the beginning of the game
     void print4CentralCards();
     
-    void printPlayerStation(HashMap<ArrayList<Integer>, CardPlaying> playingStationMap);
+    void printPlayerStation(PlayingStation playingStation);
 
     //this mehtod only print the hand and is used at the beginning of the game
     void printMyHand();
-
-    void printPlayerStationBeforeCardAdded();
-
 
     Integer[] askCoordinatesOfCards();
 

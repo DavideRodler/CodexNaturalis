@@ -2,6 +2,7 @@ package Network;
 
 import View.*;
 import model.Player;
+import model.PlayingStation;
 import model.cards.*;
 import model.client.ClientBoard;
 import model.client.ReductPlayer;
@@ -200,29 +201,23 @@ public class Cli2 implements UI {
     /**
      * this method prints the station of the player at the beginning of their turn.
      */
-    public void printPlayerStationBeforeCardAdded(){
-        HashMap<ArrayList<Integer>, CardPlaying> playingStationMap = clientBoard.getMyplayer().getStation().getMap();
-        printPlayerStation(playingStationMap);
-    }
     //Adesso nella print updatedstation devo solo chiamare l'oggetto stationmatrix, popolarlo (mettendo la poopolazione dalla mappa alla matrice in stationMatrix, e stamparla
 
     /**
      * this method prints the station of the player.
-     * @param playingStationMap is an HashMap containing the cards played by the player.
      */
     @Override
-    public void printPlayerStation(HashMap<ArrayList<Integer>, CardPlaying> playingStationMap) { //TODO: modificare questo metodo mettendo la popolazione da mappa a matrice in stationPrint
+    public void printPlayerStation(PlayingStation playingStation) { //TODO: modificare questo metodo mettendo la popolazione da mappa a matrice in stationPrint
         // da lasciare solo: new statmat, popolazione con parametro la playstation e la stampa
-        int fungi = clientBoard.getMyplayer().getStation().getCountFungi();
-        int plant = clientBoard.getMyplayer().getStation().getCountPlant();
-        int animal = clientBoard.getMyplayer().getStation().getCountAnimal();
-        int insect = clientBoard.getMyplayer().getStation().getCountInsect();
-        int quill = clientBoard.getMyplayer().getStation().getCountQuill();
-        int manuscript = clientBoard.getMyplayer().getStation().getCountManuscript();
-        int inkwell = clientBoard.getMyplayer().getStation().getCountInkwell();
-        int max = 0;
+        int fungi = playingStation.getCountFungi();
+        int plant = playingStation.getCountPlant();
+        int animal = playingStation.getCountAnimal();
+        int insect = playingStation.getCountInsect();
+        int quill =playingStation.getCountQuill();
+        int manuscript = playingStation.getCountManuscript();
+        int inkwell = playingStation.getCountInkwell();
         StationMatrix stationMatrix= new StationMatrix();
-        stationMatrix.printStation(playingStationMap);
+        stationMatrix.printStation(playingStation.getMap());
         stationMatrix.printResources(fungi, plant, animal, insect, quill, manuscript, inkwell);
         stationMatrix.printPoints(clientBoard);
     }
@@ -248,8 +243,8 @@ public class Cli2 implements UI {
         int cardChoice;
         do {
             System.out.println("Which card do you want to place? Insert the number of the card (1-3)");
-            cardChoice = scanner.nextInt();
-        } while (cardChoice < 1 || cardChoice > 3);
+            cardChoice = scanner.nextInt() -1;
+        } while (cardChoice < 0 || cardChoice > 2);
 
         int cardSide;
         do {
@@ -287,7 +282,7 @@ public class Cli2 implements UI {
         printCommonObjectives();
         printSecretObjective();
         printMyHand();
-        printPlayerStationBeforeCardAdded();
+        printPlayerStation(clientBoard.getMyplayer().getStation());
     }
 
     /**
@@ -295,8 +290,7 @@ public class Cli2 implements UI {
      */
     @Override
     public void printStationAfterCardHasBeenAdded() {
-        HashMap<ArrayList<Integer>, CardPlaying> playingStationMap = clientBoard.getMyplayer().getStation().getMap();
-        printPlayerStation(playingStationMap);
+        printPlayerStation(clientBoard.getMyplayer().getStation());
     }
 
     /**
@@ -306,7 +300,7 @@ public class Cli2 implements UI {
     @Override
     public void printOtherPlayersStation(String nickname) {
         System.out.println(nickname + "'s station is: ");
-        printPlayerStation(clientBoard.getOtherPlayer(nickname).getStation().getMap());
+        printPlayerStation(clientBoard.getOtherPlayer(nickname).getStation());
     }
 
     //    private void printCard(Card card) {
