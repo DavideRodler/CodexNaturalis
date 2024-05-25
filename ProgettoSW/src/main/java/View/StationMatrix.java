@@ -40,13 +40,13 @@ public class StationMatrix {
     }
 
     /**
-     * this method adds a card resource to the station. distanceXFromStarting and distanceYFromStarting are the distances, respectively from the x and y coordinates of the starting card.
-     * also this method checks if a corner from the card that is added is covered and in that case doesn't add to the station what is in that corner.
+     * this method adds a card resource to the station. distanceXFromStarting and distanceYFromStarting are the distances, respectively from the x and y coordinates of the
+     * starting card. If a corner from the card that is added is covered by some other card, the corner doesn't get added to the station what is in that corner.
      * @param card is the card resource to be added
      * @param i is the row coordinate
      * @param j is the column coordinate
      */
-    public void addCardToStation(CardResource card, int i, int j) {
+    public void addCardToStation(CardResource card, int i, int j, boolean[] voidPositions) {
         int m = 0;
         int l = 0;
         boolean[] cornerCovered;
@@ -60,29 +60,46 @@ public class StationMatrix {
             tmp = createFrontPlayingCard(card);
             cornerCovered = checkCornerCovered(card);
         }
+        if(voidPositions[0]){ //aggiungo in alto a sx
+            addCoordinatesUpLeft(i, j);
+        }
+        if(voidPositions[1]){ //aggiungo in alto a dx
+            addCoordinatesUpRight(i, j);
+        }
+        if(voidPositions[2]){ // basso sx
+            addCoordinatesDownLeft(i, j);
+        }
+        if(voidPositions[3]){ //basso dx
+            addCoordinatesDownRight(i, j);
+        }
+
         for(int k = cardHeight*i + distanceXFromStarting; k < cardHeight*i+cardHeight+distanceXFromStarting; k++){
             for(int s = cardLength*j+distanceYFromStarting; s < cardLength*j+cardLength+distanceYFromStarting; s++){
-                if(UpLeftCornerCovered(m, l, cornerCovered[0])) { //controllo se angolo in alto a sx è coperto
-                    stationPrint[k][s] = stationPrint[k][s];
-                } else if(UpLeftCornerNotCovered(m, l, cornerCovered[0])){ //alto sx non coperto
-                    stationPrint[k][s] = tmp[m][l];
-                    //addCoordinatesUpLeft(i, j);
-                } else if(UpRightCornerCovered(m, l, cornerCovered[1])) { //alto a dx coperto
-                    stationPrint[k][s] = stationPrint[k][s];
-                } else if(UpRightCornerNotCovered(m, l, cornerCovered[1])){ // alto dx non cop
-                    stationPrint[k][s] = tmp[m][l];
-                    //addCoordinatesUpRight(i, j);
-                } else if(DownLeftCornerCovered(m, l, cornerCovered[2])){
-                    stationPrint[k][s] = stationPrint[k][s];
-                } else if(DownLeftCornerNotCovered(m, l, cornerCovered[2])){
-                    stationPrint[k][s] = tmp[m][l];
-                    //addCoordinatesDownLeft(i, j);
-                }else if(DownRightCornerCovered(m, l, cornerCovered[3])) {
-                    stationPrint[k][s] = stationPrint[k][s];
-                } else if(DownRightCornerNotCovered(m, l, cornerCovered[3])){
-                    stationPrint[k][s] = tmp[m][l];
-                    //addCoordinatesDownRight(i, j);
-                }else {
+                if(m == 0 && l == 0) { //controllo se angolo in alto a sx è coperto
+                    if(cornerCovered[0]){
+                        stationPrint[k][s] = stationPrint[k][s];
+                    } else{
+                        stationPrint[k][s] = tmp[m][l];
+                    }
+                } else if(m == 0 && l == 6) { //alto a dx coperto
+                    if(cornerCovered[1]){
+                        stationPrint[k][s] = stationPrint[k][s];
+                    } else{
+                        stationPrint[k][s] = tmp[m][l];
+                    }
+                } else if(m == 2 && l == 0){ // alto dx non cop
+                    if(cornerCovered[2]){
+                        stationPrint[k][s] = stationPrint[k][s];
+                    } else{
+                        stationPrint[k][s] = tmp[m][l];
+                    }
+                } else if(m == 2 && l == 6){
+                    if(cornerCovered[3]){
+                        stationPrint[k][s] = stationPrint[k][s];
+                    } else{
+                        stationPrint[k][s] = tmp[m][l];
+                    }
+                } else {
                     stationPrint[k][s] = tmp[m][l];
                 }
                 l++;
@@ -182,9 +199,9 @@ public class StationMatrix {
      * @param i is the row coordinate
      * @param j is the column coordinate
      */
-    private void addCardToStation(CardGold card, int i, int j){
+    private void addCardToStation(CardGold card, int i, int j, boolean[] voidPositions){
         if(card.getPlayingBack()){
-            addCardToStation((CardResource) card, i, j);
+            addCardToStation((CardResource) card, i, j, voidPositions);
         } else{
             String[][] tmp = createFrontPlayingCard(card);
             boolean[] cornerCovered = checkCornerCovered(card);
@@ -192,29 +209,46 @@ public class StationMatrix {
             int l = 0;
             int distanceXFromStarting = dimCardStation - i;
             int distanceYFromStarting = dimCardStation - j;
+            if(voidPositions[0]){ //aggiungo in alto a sx
+                addCoordinatesUpLeft(i, j);
+            }
+            if(voidPositions[1]){ //aggiungo in alto a dx
+                addCoordinatesUpRight(i, j);
+            }
+            if(voidPositions[2]){ // basso sx
+                addCoordinatesDownLeft(i, j);
+            }
+            if(voidPositions[3]){ //basso dx
+                addCoordinatesDownRight(i, j);
+            }
             for(int k = cardHeight*i + distanceXFromStarting; k < cardHeight*i+cardHeight+distanceXFromStarting; k++){
                 for(int s = cardLength*j+distanceYFromStarting; s < cardLength*j+cardLength+distanceYFromStarting; s++){
-                    if(UpLeftCornerCovered(m, l, cornerCovered[0])) { //controllo se angolo in alto a sx è coperto
-                        stationPrint[k][s] = stationPrint[k][s];
-                    } else if(UpLeftCornerNotCovered(m, l, cornerCovered[0])){ //alto sx non coperto
-                        stationPrint[k][s] = tmp[m][l];
-                        //addCoordinatesUpLeft(i, j);
-                    } else if(UpRightCornerCovered(m, l, cornerCovered[1])) { //alto a dx coperto
-                        stationPrint[k][s] = stationPrint[k][s];
-                    } else if(UpRightCornerNotCovered(m, l, cornerCovered[1])){ // alto dx non cop
-                        stationPrint[k][s] = tmp[m][l];
-                       // addCoordinatesUpRight(i, j);
-                    } else if(DownLeftCornerCovered(m, l, cornerCovered[2])){
-                        stationPrint[k][s] = stationPrint[k][s];
-                    } else if(DownLeftCornerNotCovered(m, l, cornerCovered[2])){
-                        stationPrint[k][s] = tmp[m][l];
-                        //addCoordinatesDownLeft(i, j);
-                    }else if(DownRightCornerCovered(m, l, cornerCovered[3])) {
-                        stationPrint[k][s] = stationPrint[k][s];
-                    } else if(DownRightCornerNotCovered(m, l, cornerCovered[3])){
-                        stationPrint[k][s] = tmp[m][l];
-                        //addCoordinatesDownRight(i, j);
-                    }else {
+                    if(m == 0 && l == 0) { //controllo se angolo in alto a sx è coperto
+                        if(cornerCovered[0]){
+                            stationPrint[k][s] = stationPrint[k][s];
+                        } else{
+                            stationPrint[k][s] = tmp[m][l];
+                        }
+                    } else if(m == 0 && l == 6) { //alto a dx coperto
+                        if(cornerCovered[1]){
+                            stationPrint[k][s] = stationPrint[k][s];
+                        } else{
+                            stationPrint[k][s] = tmp[m][l];
+                        }
+                    } else if(m == 2 && l == 0){ // alto dx non cop
+                        if(cornerCovered[2]){
+                            stationPrint[k][s] = stationPrint[k][s];
+                        } else{
+                            stationPrint[k][s] = tmp[m][l];
+                        }
+                    } else if(m == 2 && l == 6){
+                        if(cornerCovered[3]){
+                            stationPrint[k][s] = stationPrint[k][s];
+                        } else{
+                            stationPrint[k][s] = tmp[m][l];
+                        }
+
+                    } else {
                         stationPrint[k][s] = tmp[m][l];
                     }
                     l++;
@@ -232,18 +266,60 @@ public class StationMatrix {
      * @param i is the row of the card
      * @param j is the column of the card
      */
-    public void addCardToStation(CardStarting card, int i, int j){
+    public void addCardToStation(CardStarting card, int i, int j, boolean[] voidPositions){ //TODO: devo passare il posVoid e a quel punto decidere se stampare le coordinate o meno
         String[][] tmp;
         int m = 0;
         int l = 0;
+        boolean[] cornerCovered;
         if(card.getPlayingBack()){
             tmp = createBackPlayingCard(card);
+            cornerCovered = checkCornerCoveredPlayedBack(card);
         } else{
             tmp = createFrontPlayingCard(card);
+            cornerCovered = checkCornerCovered(card);
+        }
+        if(voidPositions[0]){
+            addCoordinatesUpLeft(i, j);
+        }
+        if(voidPositions[1]){
+            addCoordinatesUpRight(i, j);
+        }
+        if(voidPositions[2]){
+            addCoordinatesDownLeft(i, j);
+        }
+        if(voidPositions[3]){
+            addCoordinatesDownRight(i, j);
         }
         for(int k = cardHeight*i; k < cardHeight*i+3; k++){
             for(int s = cardLength*j; s < cardLength*j+cardLength; s++){
-                stationPrint[k][s] = tmp[m][l];
+                if(m == 0 && l == 0) { //controllo se angolo in alto a sx è coperto
+                    if(cornerCovered[0]){
+                        stationPrint[k][s] = stationPrint[k][s];
+                    } else{
+                        stationPrint[k][s] = tmp[m][l];
+                    }
+                } else if(m == 0 && l == 6) { //alto a dx coperto
+                    if(cornerCovered[1]){
+                        stationPrint[k][s] = stationPrint[k][s];
+                    } else{
+                        stationPrint[k][s] = tmp[m][l];
+                    }
+                } else if(m == 2 && l == 0){ // alto dx non cop
+                    if(cornerCovered[2]){
+                        stationPrint[k][s] = stationPrint[k][s];
+                    } else{
+                        stationPrint[k][s] = tmp[m][l];
+                    }
+                } else if(m == 2 && l == 6){
+                    if(cornerCovered[3]){
+                        stationPrint[k][s] = stationPrint[k][s];
+                    } else{
+                        stationPrint[k][s] = tmp[m][l];
+                    }
+
+                } else {
+                    stationPrint[k][s] = tmp[m][l];
+                }
                 l++;
             }
             l = 0;
@@ -271,7 +347,7 @@ public class StationMatrix {
     }
 
     private void addCoordinatesDownLeft(int i, int j){
-        int row = i * cardHeight + 2; //numeri per estetica
+        int row = i * cardHeight + 4; //numeri per estetica
         int col = j * cardLength - 6; //numeri per estetica
         String rowCoordinate = String.valueOf(i+1);
         String colCoordinate = String.valueOf(j-1);
@@ -279,8 +355,8 @@ public class StationMatrix {
     }
 
     private void addCoordinatesDownRight(int i, int j){
-        int row = i * cardHeight + 2; //numeri per estetica
-        int col = j * cardLength + 2; //numeri per estetica
+        int row = i * cardHeight + 4; //numeri per estetica
+        int col = j * cardLength + 4; //numeri per estetica
         String rowCoordinate = String.valueOf(i+1);
         String colCoordinate = String.valueOf(j+1);
         stationPrint[row][col] = rowCoordinate + "x" + colCoordinate;
@@ -293,8 +369,8 @@ public class StationMatrix {
     public void printStation(HashMap<ArrayList<Integer>, CardPlaying> playingStationMap){//121, 283 sono le coordinate della carta iniziale in stationPrint
         populateStation(playingStationMap);
         int max = calculateMaxDistance(playingStationMap);
-        for(int i = 120-cardHeight*max; i < 123+cardHeight*max; i++){
-            for(int j = 280-cardLength*max; j < 287+cardLength*max; j++){
+        for(int i = 120-cardHeight*max-3; i < 123+cardHeight*max+3; i++){
+            for(int j = 280-cardLength*max-7; j < 287+cardLength*max+7; j++){
                     System.out.print(stationPrint[i][j]);
 
 
@@ -340,31 +416,54 @@ public class StationMatrix {
     // inoltre devo potenzialmente aggiungere coordinate anche alla carta centrale
     // aggiungo parametri alla chiamata passando anche il booleano di ogni carta adiacente: se true --> allorca c'è una carta, else --> non c'è una carta --> stampa coordinate
     public void addCardsToStation(CardPlaying[][] station, int max){
+        boolean[] voidPositions;
         for(int i = dimCardStation-max; i < dimCardStation+max+1; i++){
             for(int j = dimCardStation-max; j < dimCardStation+max+1; j++){
                 if(station[i][j] != null) {
                     if (station[i][j].getPlayingBack()) {
                         if (i == 40 && j == 40) { //controllo se è la carta iniziale
-                            addCardToStation((CardStarting) station[i][j], i, j);
+                            voidPositions = positionIsVoid(station, i, j);
+                            addCardToStation((CardStarting) station[i][j], i, j, voidPositions);
 
                         } else { // carta risorsa o gold
                             //chiamo addCardToStation(CardRes)
-                            addCardToStation((CardResource) station[i][j], i, j);
+                            voidPositions = positionIsVoid(station, i, j);
+                            addCardToStation((CardResource) station[i][j], i, j, voidPositions);
                         }
                     } else {
                         if (i == 40 && j == 40) { // controllo se è la carta iniziale
-                            addCardToStation((CardStarting) station[i][j], i, j);
+                            voidPositions = positionIsVoid(station, i, j);
+                            addCardToStation((CardStarting) station[i][j], i, j, voidPositions);
                         } else {
                             if (station[i][j] instanceof CardGold) {
-                                addCardToStation((CardGold) station[i][j], i, j);
+                                voidPositions = positionIsVoid(station, i, j);
+                                addCardToStation((CardGold) station[i][j], i, j, voidPositions);
                             } else {
-                                addCardToStation((CardResource) station[i][j], i, j);
+                                voidPositions = positionIsVoid(station, i, j);
+                                addCardToStation((CardResource) station[i][j], i, j, voidPositions);
                             }
                         }
                     }
                 }
             }
         }
+    }
+
+    private boolean[] positionIsVoid(CardPlaying[][] station, int i, int j){
+        boolean[] voidPositions = new boolean[4];
+        if(station[i-1][j-1] == null){ //angolo in alto a sinistra
+            voidPositions[0] = true;
+        }
+        if(station[i-1][j+1] == null){ //angolo in alto a destra
+            voidPositions[1] = true;
+        }
+        if(station[i+1][j-1] == null){ //basso a sx
+            voidPositions[2] = true;
+        }
+        if(station[i+1][j+1] == null){
+            voidPositions[3] = true;
+        }
+        return voidPositions;
     }
 
     /**
@@ -391,7 +490,7 @@ public class StationMatrix {
      * @param card is the card that needs to be checked
      * @return is an array where the first element says if the left up corner is covered, then the right up, then the left down and the right down
      */
-    private boolean[] checkCornerCovered(CardResource card){
+    private boolean[] checkCornerCovered(CardPlaying card){
         boolean[] cornerCovered = new boolean[4];
         if(card.getFront().getUpLeft().isCovered()){
             cornerCovered[0] = true;
@@ -413,7 +512,7 @@ public class StationMatrix {
      * @param card is the card that needs to be checked
      * @return is an array where the first element says if the left up corner is covered, then the right up, then the left down and the right down
      */
-    private boolean[] checkCornerCoveredPlayedBack(CardResource card) {
+    private boolean[] checkCornerCoveredPlayedBack(CardPlaying card) {
         boolean[] cornerCovered = new boolean[4];
         if(card.getBack().getUpLeft().isCovered()){
             cornerCovered[0] = true;

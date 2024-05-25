@@ -185,11 +185,11 @@ public class Cli2 implements UI {
         CentralCardsCreator centralCards = new CentralCardsCreator();
         System.out.println("Central cards are: ");
         for(int i = 0; i < clientBoard.getCentralCardsGold().size(); i++){
-            centralCards.addCentralCard(clientBoard.getCentralCardsGold().get(i), pos);
+            centralCards.addCentralCardGold(clientBoard.getCentralCardsGold().get(i), pos);
             pos++;
         }
         for(int i = 0; i < clientBoard.getCentralCardsResource().size(); i++){
-            centralCards.addCentralCard(clientBoard.getCentralCardsResource().get(i), pos);
+            centralCards.addCentralCardRes(clientBoard.getCentralCardsResource().get(i), pos);
             pos++;
         }
         centralCards.printCentral();

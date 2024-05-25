@@ -58,13 +58,14 @@ public class CardMatrixCreator {
                     resCard[i][j] = color + "█" + "\u001B[0m";
                 }
             }
+            hasPoints(card, resCard);
         }
         return resCard;
     }
     
     public static String[][] createFrontPlayingCard(CardGold card){
         String[][] goldCard = createFrontPlayingCard((CardResource) card);
-        hasPoints(card, goldCard);
+        hasPoints(card, goldCard); //TODO: mettere hasPoints nella create Card Res e mettere tutti gli obiettivi possibili
         hasCost(card, goldCard);
         return goldCard;
     }
@@ -277,15 +278,25 @@ public class CardMatrixCreator {
         //return mat;
     }
     
-    public static void hasPoints(Card card, String[][] mat) {
-        int points = ((CardResource) card).getPoints();
+    public static void hasPoints(CardResource card, String[][] mat) {
+        int points = card.getPoints();
         if(points != 0) {
-            mat[0][2] = "";
             mat[0][3] = Integer.toString(points);
-            if(card instanceof CardGold && ((CardGold) card).getObjective() instanceof ObjectivePositioning){
-                mat[0][4] = "P";
+            if(card.getObjective() instanceof ObjectiveCountingGold && ((ObjectiveCountingGold) card.getObjective()).getCountInkwell() != 0){ // se ob è inkwell
+                mat[0][4] = inkwell;
+                mat[0][5] = " ";
+            } else if(card.getObjective() instanceof ObjectiveCountingGold && ((ObjectiveCountingGold) card.getObjective()).getCountManuscript() != 0){ // se ob è inkwell
+                mat[0][4] = manuscript;
+                mat[0][5] = " ";
+            } else if(card.getObjective() instanceof ObjectiveCountingGold && ((ObjectiveCountingGold) card.getObjective()).getCountQuill() != 0){ // se ob è inkwell
+                mat[0][4] = quill;
+                mat[0][5] = " ";
+            } else if(card.getObjective() instanceof ObjectiveGoldCorners) {
+                mat[0][4] = gold + "C" + reset;
+                mat[0][5] = "  ";
             } else {
-                mat[0][4] = "p";
+                mat[0][4] = gold + "P" + reset;
+                mat[0][5] = " ";
             }
         }
         //return mat;
