@@ -151,7 +151,7 @@ public class ClientController {
                 cardId = cardchoosen.getId();
 
                 //try to add the card to local model
-                int points = clientModel.getMyplayer().getStation().addCard(cardchoosen,answer[3],answer[2],answer[1] == 2,clientModel.getMyplayer().getNickname());
+                int points = clientModel.getMyplayer().getStation().addCard(cardchoosen,answer[2],answer[3],answer[1] == 2,clientModel.getMyplayer().getNickname());
 
                 //removing the card from the hand
                 try {
@@ -174,7 +174,7 @@ public class ClientController {
 
         //sending the move to the server
         try {
-            server.addCardToStation(clientModel.getMyplayer().getNickname(),cardId, answer[1] == 2 , answer[3], answer[2]);
+            server.addCardToStation(clientModel.getMyplayer().getNickname(),cardId, answer[1] == 2 , answer[2], answer[3]);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
