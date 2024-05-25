@@ -185,7 +185,7 @@ public class PlayingStation extends ObservableModel implements Serializable {
          * @return true if the card can be placed, false otherwise
          */
         //TODO: devo sapere se la carta e' giocata front o back
-        public HashMap isPlayable (CardResource card, Integer X, Integer Y) throws InvalidPlacingCondition {
+        public HashMap isPlayable (boolean playedback, CardResource card, Integer X, Integer Y) throws InvalidPlacingCondition {
 
             // Check if the coordinates are free
             HashMap<ArrayList<Integer>, Boolean> numCornerCovered;
@@ -248,7 +248,7 @@ public class PlayingStation extends ObservableModel implements Serializable {
 
                 if (getCard(X - 1, Y - 1) != null) { //checking if existing the down-right card adjacent with the card I want to play
                     if (!map.get(coordinates1).getPlayingBack()) { //checking if the card is played by front
-                        if (map.get(coordinates1).getFront().getDownRight().equals(SuitEnum.NULL)) { //checking if there is a corner available
+                        if (map.get(coordinates1).getFront().getDownRight().getDrawing().equals(SuitEnum.NULL)) { //checking if there is a corner available
                             throw new InvalidPlacingCondition("The down-right corner is NULL");
                         }
                     }
@@ -257,7 +257,7 @@ public class PlayingStation extends ObservableModel implements Serializable {
 
                 if (getCard(X + 1, Y - 1) != null) { //checking if existing the down-left card adjacent with the card I want to play
                     if (!map.get(coordinates2).getPlayingBack()) { //checking if the card is played by front
-                        if (map.get(coordinates2).getFront().getDownLeft().equals(SuitEnum.NULL)) { //checking if there is a corner available
+                        if (map.get(coordinates2).getFront().getDownLeft().getDrawing().equals(SuitEnum.NULL)) { //checking if there is a corner available
                             throw new InvalidPlacingCondition("Can't place a card over a NULL corner");
                         }
                     }
@@ -266,7 +266,7 @@ public class PlayingStation extends ObservableModel implements Serializable {
 
                 if (getCard(X - 1, Y + 1) != null) { //checking if existing the up-right card adjacent with the card I want to play
                     if (!map.get(coordinates3).getPlayingBack()) { //checking if the card is played by front
-                        if (map.get(coordinates3).getFront().getUpRight().equals(SuitEnum.NULL)) { //checking if there is a corner available
+                        if (map.get(coordinates3).getFront().getUpRight().getDrawing().equals(SuitEnum.NULL)) { //checking if there is a corner available
                             throw new InvalidPlacingCondition("Can't place a card over a NULL corner");
                         }
                     }
@@ -275,7 +275,7 @@ public class PlayingStation extends ObservableModel implements Serializable {
 
                 if (getCard(X + 1, Y + 1) != null) { //checking if existing the up-left card adjacent with the card I want to play
                     if (!map.get(coordinates4).getPlayingBack()) { //checking if the card is played by front
-                        if (map.get(coordinates4).getFront().getUpLeft().equals(SuitEnum.NULL)) { //checking if there is a corner available
+                        if (map.get(coordinates4).getFront().getUpLeft().getDrawing().equals(SuitEnum.NULL)) { //checking if there is a corner available
                             throw new InvalidPlacingCondition("Can't place a card over a NULL corner");
                         }
                     }
@@ -287,7 +287,7 @@ public class PlayingStation extends ObservableModel implements Serializable {
 
                 //Check if the card is a goldCard and then use method enoughResources to check if it's playable
                 if (card instanceof CardGold)
-                    if (!enoughResources((CardGold) card)&& !(card.getPlayingBack()))
+                    if (!enoughResources((CardGold) card)&& !playedback)
                         throw new InvalidPlacingCondition("Not enough resources to play the card");
             }
 
@@ -317,7 +317,7 @@ public class PlayingStation extends ObservableModel implements Serializable {
             int counter = 0;
             HashMap<ArrayList<Integer>, Boolean> numCornerCovered;
             //check if the card is Playable
-            numCornerCovered = isPlayable(card, X, Y);
+            numCornerCovered = isPlayable(playedback,card, X, Y);
             //putting the card in the map
             ArrayList<Integer> coordinates = new ArrayList<>();
             coordinates.add(0, X);
@@ -326,38 +326,43 @@ public class PlayingStation extends ObservableModel implements Serializable {
 
 
             //removing the counters of the covered cards
-            if(playedback) {
+            if(!playedback) {
                 card.setPlayingBack(false);
-                for (var var : numCornerCovered.keySet()) {
-                    switch (counter) {
-                        case 0: {
-                            if (numCornerCovered.get(var)) {
-                                this.getMap().get(var).getFront().getDownRight().setCovered(true);
-                                this.updateCounters(this.getMap().get(var).getFront().getDownRight());
-                            }
-                        }
-                        case 1: {
-                            if (numCornerCovered.get(var)) {
-                                this.getMap().get(var).getFront().getDownLeft().setCovered(true);
-                                this.updateCounters(this.getMap().get(var).getFront().getDownLeft());
-                            }
-                        }
-                        case 2: {
-                            if (numCornerCovered.get(var)) {
-                                this.getMap().get(var).getFront().getUpRight().setCovered(true);
-                                this.updateCounters(this.getMap().get(var).getFront().getUpRight());
-                            }
-                        }
-                        case 3: {
-                            if (numCornerCovered.get(var)) {
-                                this.getMap().get(var).getFront().getUpLeft().setCovered(true);
-                                this.updateCounters(this.getMap().get(var).getFront().getUpLeft());
-                            }
+            } else card.setPlayingBack(true);
+
+            for (var var : numCornerCovered.keySet()) {
+                switch (counter) {
+                    case 0: {
+                        if (numCornerCovered.get(var)) {
+                            this.getMap().get(var).getFront().getDownRight().setCovered(true);
+                            this.updateCounters(this.getMap().get(var).getFront().getDownRight());
+                            this.getMap().get(var).getFront().getDownRight().setCovered(true);
                         }
                     }
-                    counter++;
+                    case 1: {
+                        if (numCornerCovered.get(var)) {
+                            this.getMap().get(var).getFront().getDownLeft().setCovered(true);
+                            this.updateCounters(this.getMap().get(var).getFront().getDownLeft());
+                            this.getMap().get(var).getFront().getDownLeft().setCovered(true);
+                        }
+                    }
+                    case 2: {
+                        if (numCornerCovered.get(var)) {
+                            this.getMap().get(var).getFront().getUpRight().setCovered(true);
+                            this.updateCounters(this.getMap().get(var).getFront().getUpRight());
+                            this.getMap().get(var).getFront().getUpRight().setCovered(true);
+                        }
+                    }
+                    case 3: {
+                        if (numCornerCovered.get(var)) {
+                            this.getMap().get(var).getFront().getUpLeft().setCovered(true);
+                            this.updateCounters(this.getMap().get(var).getFront().getUpLeft());
+                            this.getMap().get(var).getFront().getUpLeft().setCovered(true);
+                        }
+                    }
                 }
-            } else card.setPlayingBack(true);
+                counter++;
+            }
 
             //adding counters of te new card that has been added
             this.updateCounters(card);

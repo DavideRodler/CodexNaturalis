@@ -4,6 +4,7 @@ import Network.Client.RMI.VirtualView;
 import controller.GameController;
 import exception.ChangedStateException;
 import exception.NotValidMoveException;
+import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.enums.GameState;
@@ -17,7 +18,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class RmiServer implements VirtualServer {
 
-    private GameController gameController;
+    private final GameController gameController;
     private List<VirtualView> clients;
     private HashMap<String, VirtualView> clientsMap;
     private BlockingQueue<String> queue = new ArrayBlockingQueue<>(100);
@@ -74,14 +75,7 @@ public class RmiServer implements VirtualServer {
     public RmiServer() {
         clients = new ArrayList<>();
         clientsMap = new HashMap<>();
-        Thread t = new Thread(()-> {
-            try {
-                serverToClientCall();
-            } catch (RemoteException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        t.start();
+        gameController = new GameController();
     }
 
     @Override
@@ -139,24 +133,28 @@ public class RmiServer implements VirtualServer {
 
     @Override
     public void setStartingCardPlayedBack(boolean playedback, String nickname, int Id) throws ChangedStateException, NotValidMoveException, RemoteException {
-        gameController.setCentralCardPlayedBack(playedback, nickname, Id);
+        synchronized (gameController){
+        gameController.setCentralCardPlayedBack(playedback, nickname, Id);}
 
     }
 
     @Override
     public ArrayList<CardResource> getMyHand(String nickname) throws RemoteException {
-        return gameController.getBoard().getPlayer(nickname).getHand();
+        synchronized (gameController){
+        return gameController.getBoard().getPlayer(nickname).getHand();}
     }
 
     @Override
     public void setSecretObjective(String nickname, Integer id) throws RemoteException, ChangedStateException, NotValidMoveException {
-        gameController.setObjectiveOfPlayer(nickname, id);
+        synchronized (gameController){
+        gameController.setObjectiveOfPlayer(nickname, id);}
 
     }
 
     @Override
     public ArrayList<CardObjective> getSelectableObjectives(String nickname) throws RemoteException {
-        return gameController.getBoard().getPlayer(nickname).getSelectibleObjectives();
+        synchronized (gameController){
+        return gameController.getBoard().getPlayer(nickname).getSelectibleObjectives();}
     }
 
     @Override
@@ -167,6 +165,28 @@ public class RmiServer implements VirtualServer {
             throw new RuntimeException(e);
         }
 
+    }
+
+    @Override
+    public void drawCard(String nickname, int cardToDraw, CardResource card) throws RemoteException {
+        try {
+            if(cardToDraw>=1 && cardToDraw<=4)
+                gameController.addCardFromCentralCardsToPlayerHand(nickname, card.getId());
+            else
+                gameController.addCardFromDeckToPlayerHand(nickname, cardToDraw);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public CardGold getCardFromGoldDeck() throws RemoteException {
+        return gameController.getBoard().getDeckCardGold().getLast();
+    }
+
+    @Override
+    public CardResource getCardFromResourceDeck() throws RemoteException {
+        return gameController.getBoard().getDeckCardResource().getLast();
     }
 
     public void initializeGame() throws RemoteException {
@@ -183,19 +203,32 @@ public class RmiServer implements VirtualServer {
     public void showFourCentralCardsToPlayers() throws RemoteException {
         for (VirtualView client : clients) {
             client.showFourCentralCards();
-            }
-        startSetupOfStartingCard();
         }
+        startSetupOfStartingCard();
+    }
 
     public void startSetupOfStartingCard() throws RemoteException {
         for (VirtualView client : clients) {
-
+            new Thread(() -> {
+                try {
                     client.notifyStartSetupOfStartingCard();
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
+            }).start();
         }
-        firstHandSetup();
+        while(true)
+        {
+            synchronized (gameController){
+            if(gameController.getBoard().getGameState().equals(GameState.PLACING_CARD))
+            {
+                break;
+            }}
+        }
+        startGame();
     }
 
-    public void firstHandSetup() throws RemoteException {
+    /*public void firstHandSetup() throws RemoteException {
         for (VirtualView client : clients) {
             client.reciveMyFirstHand();
         }
@@ -207,7 +240,7 @@ public class RmiServer implements VirtualServer {
             client.setupOfSecretObjective();
         }
         startGame();
-    }
+    }*/
 
     public void notifyAllPlayersConnected() throws RemoteException {
         for (VirtualView client : clients) {
@@ -219,7 +252,6 @@ public class RmiServer implements VirtualServer {
         //first player to join
         if (clients.isEmpty()) {
             clients.add(client);
-            this.gameController = new GameController();
             gameController.getBoard().addObserver(client);
             client.setupOfPlayersNumber();
             client.notifyWaitingForPlayersToJoin();

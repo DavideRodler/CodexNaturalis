@@ -234,9 +234,15 @@ public class GameController implements Serializable {
     public synchronized void addCardFromCentralCardsToPlayerHand(String nickname, int cardId) throws NotValidMoveException, NotMyTurnException, ChangedStateException {
         assertGameState(GameState.ADDING_CARD_TO_HAND);
         assertIsMyTurn(nickname);
-        CardResource card = board.getCardResource(cardId)
-                .orElse(board.getCardGold(cardId)
-                        .orElseThrow(() -> new IllegalStateException("Central card " + cardId + " not found")));
+        CardResource card = board.getCardResource(cardId);
+
+        if (card == null) {
+            card = board.getCardGold(cardId);
+            if (card == null) {
+                throw new NotValidMoveException("card not found");
+            }
+        }
+
         Player player = board.getPlayer(nickname);
         if(player.getNumberOfCardInHand() == 2) {
             player.addCardToHand(card);
@@ -246,12 +252,12 @@ public class GameController implements Serializable {
         board.setGameState(GameState.CHANGING_TURN);
         changeTurn();
     }
-    public synchronized void addCardFromDeckToPlayerHand(String nickname, DeckEnum deck) throws NotValidMoveException, NotMyTurnException, ChangedStateException {
+    public synchronized void addCardFromDeckToPlayerHand(String nickname, int cardToDraw) throws NotValidMoveException, NotMyTurnException, ChangedStateException {
         assertGameState(GameState.ADDING_CARD_TO_HAND);
         assertIsMyTurn(nickname);
         Player p = board.getPlayer(nickname);
         if(p.getNumberOfCardInHand() == 2) {
-            if(deck.equals(DeckEnum.DECK_GOLD)){
+            if(cardToDraw == 6){
                 p.addCardToHand(board.getDeckCardGold().pop());
             }
             else p.addCardToHand(board.getDeckCardResource().pop());

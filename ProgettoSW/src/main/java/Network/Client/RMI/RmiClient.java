@@ -35,7 +35,6 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     @Override
     public void notifyStartSetupOfStartingCard() throws RemoteException {
         clientController.setupOfStartingCard();
-
     }
 
     @Override

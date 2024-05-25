@@ -188,18 +188,22 @@ public class PlayingBoard extends ObservableModel {
     }
 
 
-    public Optional<CardResource> getCardResource(int id) {
-        return centralCardsResource
-                .stream()
-                .filter(c -> c.getId().equals(id))
-                .findFirst();
+    public CardResource getCardResource(int id) {
+        for(var c : centralCardsResource){
+            if(c.getId() == id){
+                return c;
+            }
+        }
+        return null;
     }
 
-    public Optional<CardGold> getCardGold(int id) {
-        return centralCardsGold
-                .stream()
-                .filter(c -> c.getId().equals(id))
-                .findFirst();
+    public CardGold getCardGold(int id) {
+        for(var c : centralCardsGold){
+            if(c.getId() == id){
+                return c;
+            }
+        }
+        return null;
     }
 
     public void addCardResource(CardResource card) {
