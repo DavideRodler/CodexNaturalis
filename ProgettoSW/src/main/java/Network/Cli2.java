@@ -1,11 +1,9 @@
 package Network;
 
 import View.*;
-import model.Player;
 import model.PlayingStation;
 import model.cards.*;
 import model.client.ClientBoard;
-import model.client.ReductPlayer;
 import model.enums.TokenEnum;
 import model.objectives.ObjectiveCountingGold;
 import model.objectives.ObjectiveCountingResource;
@@ -15,11 +13,9 @@ import model.objectives.*;
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 import static View.CardMatrixCreator.*;
-import static View.StartingCardPrinter.cardStartingPrinter;
 
 public class Cli2 implements UI {
 
@@ -79,8 +75,10 @@ public class Cli2 implements UI {
      *
      */
     @Override
-    public void showStartingCard() { //TODO: da modificare firma in UI
-        cardStartingPrinter(clientBoard.getMyplayer().getStation().getCardStarting());
+    public void showStartingCard() {
+        System.out.println("Your starting card: :");
+        StartingCardPrinter startingCardPrinter = new StartingCardPrinter();
+        startingCardPrinter.cardStartingPrinter(clientBoard.getMyplayer().getStation().getCardStarting());
     }
    @Override
     public void showGameTitle(){
@@ -136,9 +134,9 @@ public class Cli2 implements UI {
 
     @Override
     public void printCommonObjectives() {
-        BoardMatrix board = new BoardMatrix();
+        ObjectivePrinter objPrinter = new ObjectivePrinter();
         System.out.println("Common objectives: ");
-        board.printCommonObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
+        objPrinter.printSelectableObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
     }
 
     /**
@@ -146,8 +144,8 @@ public class Cli2 implements UI {
      */
     @Override
     public void printSecretObjective(){
-        HandPrinter playerHand = new HandPrinter();
-        playerHand.addObjectiveToHand(clientBoard.getMyplayer().getSecretObjective());
+        ObjectivePrinter objPrinter = new ObjectivePrinter();
+        objPrinter.printSecretObjective(clientBoard.getMyplayer().getSecretObjective());
     }
 
     /**
@@ -155,9 +153,9 @@ public class Cli2 implements UI {
      */
     @Override
     public void printSelectableObjectives(){
-        System.out.println("Theese are the objectives you can choose from:");
-        printCard(clientBoard.getMyplayer().getSelectibleObjectives().get(0));  //prima carta obj
-        printCard(clientBoard.getMyplayer().getSelectibleObjectives().get(1)); // seconda carta obj
+        ObjectivePrinter objPrinter = new ObjectivePrinter();
+        System.out.println("These are the objectives you can choose from:");
+        objPrinter.printSelectableObjectives(clientBoard.getMyplayer().getSelectibleObjectives().get(0),clientBoard.getMyplayer().getSelectibleObjectives().get(1));
         System.out.println();
     }
 
@@ -205,15 +203,15 @@ public class Cli2 implements UI {
 
     /**
      * this method prints the station of the player.
+     * @param playingStation is the playing station the player.
      */
     @Override
-    public void printPlayerStation(PlayingStation playingStation) { //TODO: modificare questo metodo mettendo la popolazione da mappa a matrice in stationPrint
-        // da lasciare solo: new statmat, popolazione con parametro la playstation e la stampa
+    public void printPlayerStation(PlayingStation playingStation) {
         int fungi = playingStation.getCountFungi();
         int plant = playingStation.getCountPlant();
         int animal = playingStation.getCountAnimal();
         int insect = playingStation.getCountInsect();
-        int quill =playingStation.getCountQuill();
+        int quill = playingStation.getCountQuill();
         int manuscript = playingStation.getCountManuscript();
         int inkwell = playingStation.getCountInkwell();
         StationMatrix stationMatrix= new StationMatrix();
@@ -223,15 +221,28 @@ public class Cli2 implements UI {
     }
 
     /**
-     * this method prints the hand of the player
+     * this method prints the hand of the player at the setup stage of the game
      */
     @Override
-    public void printMyHand() { //TODO: cambiare i test.
+    public void printSetupPlayerHand() {
         System.out.println("Here is your hand:");
         HandPrinter playerHand = new HandPrinter();
         playerHand.addCardsToHand(clientBoard.getMyplayer().getHand());
         playerHand.printHandMatrix();
     }
+
+    /**
+     * this method prints the hand of the player during the game. It also prints the secreto objective of the player
+     */
+    @Override
+    public void printPlayerHand(){
+        System.out.println("Here is your hand and your secret objective:");
+        HandPrinter playerHand = new HandPrinter();
+        playerHand.addCardsToHand(clientBoard.getMyplayer().getHand());
+        playerHand.addObjectiveToHand(clientBoard.getMyplayer().getSecretObjective());
+        playerHand.printHandMatrix();
+    }
+
 
     /**
      * this method asks where the player which card he would like to play, if he wants to play it in front or in back and also where.
@@ -261,6 +272,11 @@ public class Cli2 implements UI {
         return Choice;
     }
 
+    /**
+     * this method asks the player which card they would like to draw, whether onr of the central cards or from
+     * one ot the two decks.
+     * @return the choice of the player
+     */
     @Override
     public Integer askWhichCardToDraw() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
@@ -281,7 +297,7 @@ public class Cli2 implements UI {
         System.out.println();
         printCommonObjectives();
         printSecretObjective();
-        printMyHand();
+        printSetupPlayerHand();
         printPlayerStation(clientBoard.getMyplayer().getStation());
     }
 
@@ -294,7 +310,7 @@ public class Cli2 implements UI {
     }
 
     /**
-     * this methtod prints the station of the other player after their turn ended.
+     * this method prints the station of the other player after their turn ended.
      * @param nickname is the nickname of the player of which the station is going to be printed
      */
     @Override

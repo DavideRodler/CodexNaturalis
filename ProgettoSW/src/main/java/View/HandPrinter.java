@@ -32,7 +32,7 @@ public class HandPrinter {
     //inizializzo la matrice
     private void initializeMatrix(){
         for (String[] matrix : handMatrix) {
-            Arrays.fill(matrix, "");
+            Arrays.fill(matrix, " ");
         }
     }
 
@@ -108,8 +108,8 @@ public class HandPrinter {
     }
 
     public void addObjectiveToHand(CardObjective cardObj){
-        String[][] tmp;
-        tmp = createObjective(cardObj.getObjective());
+        ObjectivePrinter objectivePrinter = new ObjectivePrinter();
+        String[][] tmp = objectivePrinter.getObjectiveCard(cardObj.getObjective());
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 7; j++) {
                 handMatrix[i][j+27] = tmp[i][j];

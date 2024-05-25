@@ -21,7 +21,7 @@ public class PrintStation {
 
     @Test
     public void CliPrintStation() throws RemoteException {
-        PlayingStation station = PlayingStationTemplate.test_3Cards_1Positioning();
+        PlayingStation station = PlayingStationTemplate.test_6Cards_2Positioning();
         HashMap<ArrayList<Integer>, CardPlaying> table = station.getMap();
         showUpdatedStation(table);
     }

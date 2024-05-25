@@ -317,8 +317,8 @@ public class StationMatrix {
             ArrayList<Integer> coordinates = entry.getKey();
             x = coordinates.get(0);
             y = coordinates.get(1);
-            distanceX = x - dimCardStation;
-            distanceY = y - dimCardStation;
+            distanceX = Math.abs(x - dimCardStation);
+            distanceY = Math.abs(y - dimCardStation);
             if(distanceX > maxX || distanceY > maxY){
                 maxX = distanceX;
                 maxY = distanceY;
@@ -441,7 +441,7 @@ public class StationMatrix {
      * @param inkwell is the counter of inkwells in the station
      */
     public void printResources (int fungi, int plant, int animal, int insect, int quill, int manuscript, int inkwell) {
-        System.out.println("You have: "+fungi+"of fungi, "+plant+"of plant, "+animal+"of animal, "+insect+"of insect, "+quill+"of quill, "+manuscript+"of manuscript, "+inkwell+"of inkwell");
+        System.out.println("You have: "+fungi+" of fungi, "+plant+" of plant, "+animal+" of animal, "+insect+" of insect, "+quill+" of quill, "+manuscript+" of manuscript, "+inkwell+" of inkwell");
     }
 
     /**

@@ -9,7 +9,6 @@ import exception.InvalidPlacingCondition;
 import exception.NotValidMoveException;
 import model.Player;
 import model.PlayingStation;
-import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.CardStarting;
 import model.client.ClientBoard;
@@ -78,6 +77,8 @@ public class ClientController {
         //setting starting card face in local model
         clientModel.getMyplayer().getStation().setCardStartingPlayedBack(null,answer);
 
+        //Printing the board
+        ui.printPlayerStation(clientModel.getMyplayer().getStation());
 
         //notify the server
         try {
@@ -102,7 +103,7 @@ public class ClientController {
         }
 
         //Printing My hand
-        ui.printMyHand();
+        ui.printSetupPlayerHand();
 
     }
 
@@ -174,6 +175,7 @@ public class ClientController {
             throw new RuntimeException(e);
         }
         // updating player points
+
         ui.printStationAfterCardHasBeenAdded();
 
         //sending the move to the server

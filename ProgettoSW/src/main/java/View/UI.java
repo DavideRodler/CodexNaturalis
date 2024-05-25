@@ -1,11 +1,9 @@
 package View;
 
 import model.PlayingStation;
-import model.cards.CardPlaying;
 import model.enums.TokenEnum;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public interface UI {
     void showStartingCard();
@@ -33,7 +31,9 @@ public interface UI {
     void printPlayerStation(PlayingStation playingStation);
 
     //this mehtod only print the hand and is used at the beginning of the game
-    void printMyHand();
+    void printSetupPlayerHand();
+
+    void printPlayerHand();
 
     Integer[] askCoordinatesOfCards();
 
