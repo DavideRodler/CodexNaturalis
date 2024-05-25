@@ -32,5 +32,5 @@ public interface VirtualServer extends Remote {
 
     ArrayList<CardObjective> getSelectableObjectives(String nickname) throws RemoteException;
 
-    void addCardToStation(String nickname,int cardId, boolean front, int x, int y) throws RemoteException;
+    void addCardToStation(String nickname,int cardId, boolean playedBack, int x, int y) throws RemoteException;
 }

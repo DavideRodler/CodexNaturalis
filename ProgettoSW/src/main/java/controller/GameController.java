@@ -298,10 +298,13 @@ public class GameController implements Serializable {
                 .findFirst()
                 .orElseThrow(() -> new NotValidMoveException("card not found in your hand"));
 
-        // Check if the card can be placed
-        player.removeCardFromHand(id);
 
+        //adding the card
         points = player.getStation().addCard(card, X, Y, playedback, nickname);
+        player.setPoints(player.getPoints() + points);
+
+        //removing the card from the hand
+        player.removeCardFromHand(id);
 
         board.setGameState(GameState.ADDING_CARD_TO_HAND);
     }

@@ -160,9 +160,9 @@ public class RmiServer implements VirtualServer {
     }
 
     @Override
-    public void addCardToStation(String nickname,int id, boolean front, int x, int y) throws RemoteException {
+    public void addCardToStation(String nickname,int id, boolean playedBack, int x, int y) throws RemoteException {
         try {
-            gameController.addCardToPlayingStation(nickname, id, front, x, y);
+            gameController.addCardToPlayingStation(nickname, id, playedBack, x, y);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

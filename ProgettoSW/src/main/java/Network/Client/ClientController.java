@@ -156,31 +156,34 @@ public class ClientController {
             try {
                 answer = ui.askCoordinatesOfCards();
                 cardchoosen = clientModel.getMyplayer().getHand().get(answer[0]);
-                clientModel.getMyplayer().getStation().isPlayable(cardchoosen, answer[2], answer[3]);
                 cardId = cardchoosen.getId();
+
+                //try to add the card to local model
+                int points = clientModel.getMyplayer().getStation().addCard(cardchoosen,answer[2],answer[3],answer[1] == 2,clientModel.getMyplayer().getNickname());
+
+                //removing the card from the hand
+                try {
+                    clientModel.getMyplayer().removeCardFromHand(cardchoosen.getId());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+
+                // updating player points
+                clientModel.getMyplayer().setPoints( clientModel.getMyplayer().getPoints() + points);
+
                 break;
             }
             catch (InvalidPlacingCondition e) {
                 ui.showErrorMessage(e.getMessage());
             }
         }
-        //updating the local model
-
-        //adding card to the station
-        clientModel.getMyplayer().getStation().addCard(cardchoosen,answer[2],answer[3],answer[1] == 0,clientModel.getMyplayer().getNickname());
-        try {
-            //removing the card from the hand
-            clientModel.getMyplayer().removeCardFromHand(cardchoosen.getId());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        // updating player points
 
         ui.printStationAfterCardHasBeenAdded();
 
         //sending the move to the server
         try {
-            server.addCardToStation(clientModel.getMyplayer().getNickname(),cardId, answer[1] == 0, answer[2], answer[3]);
+            server.addCardToStation(clientModel.getMyplayer().getNickname(),cardId, answer[1] == 2
+                    , answer[2], answer[3]);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
@@ -249,7 +252,18 @@ public class ClientController {
                 CardAddedToStationMessage cardAddedToStationMessage = (CardAddedToStationMessage) message;
                 for (ReductPlayer player : clientModel.getOtherplayers()) {
                     if (player.getNickname().equals(cardAddedToStationMessage.getNickname())) {
-                        player.getStation().addCard(cardAddedToStationMessage.getCard(), cardAddedToStationMessage.getX(), cardAddedToStationMessage.getY(), cardAddedToStationMessage.getPlayedBack(), cardAddedToStationMessage.getNickname());
+
+                        //the card is added to the station of other player
+                        //it is always possible to add it
+                        try {
+                            int points = player.getStation().addCard(cardAddedToStationMessage.getCard(), cardAddedToStationMessage.getX(), cardAddedToStationMessage.getY(), cardAddedToStationMessage.getPlayedBack(), cardAddedToStationMessage.getNickname());
+                            player.setPoints(player.getPoints() + points);
+
+                        } catch (InvalidPlacingCondition e) {
+                            throw new RuntimeException(e);
+                        }
+
+
                         ui.printOtherPlayersStation(cardAddedToStationMessage.getNickname());
                     }
                 }
