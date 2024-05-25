@@ -286,12 +286,10 @@ public class GameController implements Serializable {
      * @param X    the x coordinate
      * @param Y    the y coordinate
      */
-    public synchronized void addCardToPlayingStation(String nickname, int id, boolean front, Integer X, Integer Y) throws Exception {
+    public synchronized void addCardToPlayingStation(String nickname, int id, boolean playedback, Integer X, Integer Y) throws Exception {
         assertGameState(GameState.PLACING_CARD);
         assertIsMyTurn(nickname);
-        int points;
-        int counter = 0;
-        HashMap<ArrayList<Integer>, Boolean> numCornerCovered;
+        int points = 0;
         Player player = board.getPlayer(nickname);
 
         //check if the card is in your hand
@@ -300,64 +298,11 @@ public class GameController implements Serializable {
                 .findFirst()
                 .orElseThrow(() -> new NotValidMoveException("card not found in your hand"));
 
-
-        //check if the card is Playable
-        numCornerCovered = player.getStation().isPlayable(card, X, Y);
-
-
         // Check if the card can be placed
         player.removeCardFromHand(id);
 
-        //putting the card in the map
-        ArrayList<Integer> coordinates = new ArrayList<>();
-        coordinates.add(0, X);
-        coordinates.add(1, Y);
-        player.getStation().addCard(card, X,Y, front,nickname);
+        points = player.getStation().addCard(card, X, Y, playedback, nickname);
 
-
-        //removing the counters of the covered cards
-        if(front) {
-            card.setPlayingBack(false);
-            for (var var : numCornerCovered.keySet()) {
-                switch (counter) {
-                    case 0: {
-                        if (numCornerCovered.get(var)) {
-                            player.getStation().getMap().get(var).getFront().getDownRight().setCovered(true);
-                            player.getStation().updateCounters(player.getStation().getMap().get(var).getFront().getDownRight());
-                        }
-                    }
-                    case 1: {
-                        if (numCornerCovered.get(var)) {
-                            player.getStation().getMap().get(var).getFront().getDownLeft().setCovered(true);
-                            player.getStation().updateCounters(player.getStation().getMap().get(var).getFront().getDownLeft());
-                        }
-                    }
-                    case 2: {
-                        if (numCornerCovered.get(var)) {
-                            player.getStation().getMap().get(var).getFront().getUpRight().setCovered(true);
-                            player.getStation().updateCounters(player.getStation().getMap().get(var).getFront().getUpRight());
-                        }
-                    }
-                    case 3: {
-                        if (numCornerCovered.get(var)) {
-                            player.getStation().getMap().get(var).getFront().getUpLeft().setCovered(true);
-                            player.getStation().updateCounters(player.getStation().getMap().get(var).getFront().getUpLeft());
-                        }
-                    }
-                }
-                counter++;
-            }
-        } else card.setPlayingBack(true);
-
-        //adding counters of te new card that has been added
-        player.getStation().updateCounters(card);
-
-        //calculating the points that the card generates
-        if (!(card.getPlayingBack())) {
-       //     points = card.getObjective().countObjectivePoints(player.getStation(), card, X, Y);
-        } else points = 0;
-
-       // player.setPoints(player.getPoints() + points);
         board.setGameState(GameState.ADDING_CARD_TO_HAND);
     }
 

@@ -1,9 +1,11 @@
 package model;
 
 import exception.InvalidPlacingCondition;
+import exception.NotValidMoveException;
 import model.cards.*;
 //import model.cards.face.Corner;
 import model.cards.face.Corner;
+import model.enums.GameState;
 import model.enums.SuitEnum;
 import observers.ObservableModel;
 import Socket.Messages.*;
@@ -310,17 +312,68 @@ public class PlayingStation extends ObservableModel implements Serializable {
             return true;
         }
 
-        public void addCard(CardResource card, Integer X, Integer Y,boolean playedback, String nickname) {
+        public int addCard(CardResource card, Integer X, Integer Y,boolean playedback, String nickname) throws InvalidPlacingCondition {
+            int points = 0;
+            int counter = 0;
+            HashMap<ArrayList<Integer>, Boolean> numCornerCovered;
+            //check if the card is Playable
+            numCornerCovered = isPlayable(card, X, Y);
+            //putting the card in the map
             ArrayList<Integer> coordinates = new ArrayList<>();
             coordinates.add(0, X);
             coordinates.add(1, Y);
-            card.setPlayingBack(playedback);
-            map.put(coordinates, card);
+            this.getMap().put(coordinates, card);
+
+
+            //removing the counters of the covered cards
+            if(playedback) {
+                card.setPlayingBack(false);
+                for (var var : numCornerCovered.keySet()) {
+                    switch (counter) {
+                        case 0: {
+                            if (numCornerCovered.get(var)) {
+                                this.getMap().get(var).getFront().getDownRight().setCovered(true);
+                                this.updateCounters(this.getMap().get(var).getFront().getDownRight());
+                            }
+                        }
+                        case 1: {
+                            if (numCornerCovered.get(var)) {
+                                this.getMap().get(var).getFront().getDownLeft().setCovered(true);
+                                this.updateCounters(this.getMap().get(var).getFront().getDownLeft());
+                            }
+                        }
+                        case 2: {
+                            if (numCornerCovered.get(var)) {
+                                this.getMap().get(var).getFront().getUpRight().setCovered(true);
+                                this.updateCounters(this.getMap().get(var).getFront().getUpRight());
+                            }
+                        }
+                        case 3: {
+                            if (numCornerCovered.get(var)) {
+                                this.getMap().get(var).getFront().getUpLeft().setCovered(true);
+                                this.updateCounters(this.getMap().get(var).getFront().getUpLeft());
+                            }
+                        }
+                    }
+                    counter++;
+                }
+            } else card.setPlayingBack(true);
+
+            //adding counters of te new card that has been added
+            this.updateCounters(card);
+
+            //calculating the points that the card generates
+            if (!(card.getPlayingBack())) {
+                //     points = card.getObjective().countObjectivePoints(player.getStation(), card, X, Y);
+            } else points = 0;
+
             try {
                 notifyObservers(new CardAddedToStationMessage(card, nickname, X, Y, playedback));
             } catch (RemoteException e) {
                 throw new RuntimeException(e);
             }
+
+            return points;
         }
 
 
