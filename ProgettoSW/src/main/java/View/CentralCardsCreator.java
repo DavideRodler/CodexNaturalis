@@ -1,5 +1,6 @@
 package View;
 
+import model.cards.CardGold;
 import model.cards.CardResource;
 
 import static View.CardMatrixCreator.createFrontPlayingCard;
@@ -10,14 +11,64 @@ import static View.CardMatrixCreator.createFrontPlayingCard;
 public class CentralCardsCreator {
     // in questa classe creo la matrice per le carte centrali
 
-    String[][] centralCards = new String[6][16];
+    private String[][] centralCards = new String[6][16];
+
+    public void addCentralCardGold(CardGold card, int pos) {
+        String[][] tmp = createFrontPlayingCard(card);
+        int m = 0;
+        int l = 0;
+        if(pos == 0) { //aggiungo la carta in alto a sinistra
+            for(int i = 0; i < tmp.length; i++) {
+                System.arraycopy(tmp[i], 0, centralCards[i], 0, tmp[0].length);
+            }
+            for(int i = 0; i < 3; i++) { //aggiungo spazi tra carta in alto a destra e in alto a sinistra
+                centralCards[i][7] = " ";
+                centralCards[i][8] = " ";
+            }
+        } else if (pos == 1) { //aggiungo la carta in alto a destra
+            for(int i = 0; i < 3; i++) {
+                for(int j = 0; j < 7; j++) {
+                    centralCards[i][j+9] = tmp[i][j];
+                }
+            }
+
+        } else if (pos == 2) {//in basso a sinistra
+            for(int i = 3; i < 6; i++) {
+                for(int j = 0; j < 7; j++) {
+                    centralCards[i][j] = tmp[m][l];
+                    l++;
+                }
+                l = 0;
+                m++;
+            }
+            for(int i = 3; i < 6; i++) { //aggiungo spazi tra carta in basso a destra e in basso a sinistra.
+                centralCards[i][7] = " ";
+                centralCards[i][8] = " ";
+            }
+        } else if(pos == 3) { //in basso a destra.
+            for(int i = 3; i < 6; i++) {
+                for(int j = 0; j < 7; j++) {
+                    centralCards[i][j+9] = tmp[m][l];
+                    l++;
+                }
+                l = 0;
+                m++;
+            }
+        }
+    }
+
+    private void addResCardToCentral(CardResource card, int pos) {
+    }
+
+    private void addGoldCardToCentral(CardGold card, int pos) {}
+
 
     /**
      * this method adds a card resource to centralCards
      * @param card is the card resource to be addes
      * @param pos is the position in which the card is added
      */
-    public void addCentralCard(CardResource card, int pos) {
+    public void addCentralCardRes(CardResource card, int pos) {
         String[][] tmp = createFrontPlayingCard(card);
         int m = 0;
         int l = 0;
