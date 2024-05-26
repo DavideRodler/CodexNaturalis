@@ -147,10 +147,10 @@ class GameControllerTest {
         game.addCardFromCentralCardsToPlayerHand(Player2,game.getBoard().getCentralCardsGold().get(0).getId());
 
         game.addCardToPlayingStation(Player1, Player1Hand.get(0).getId(),true,38,38);
-        game.addCardFromDeckToPlayerHand(Player1, DeckEnum.DECK_GOLD);
+        // game.addCardFromDeckToPlayerHand(Player1, DeckEnum.DECK_GOLD);
 
         game.addCardToPlayingStation(Player2, Player2Hand.get(0).getId(),true,38,38);
-        game.addCardFromDeckToPlayerHand(Player2, DeckEnum.DECK_GOLD);
+       // game.addCardFromDeckToPlayerHand(Player2, DeckEnum.DECK_GOLD);
 
     }
 

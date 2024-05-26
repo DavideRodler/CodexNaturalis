@@ -1,5 +1,6 @@
 package model;
 
+import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.face.Corner;
 import model.cards.face.Face;
@@ -7,6 +8,7 @@ import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 import model.objectives.Objective;
 import model.objectives.ObjectiveAssign;
+import model.objectives.ObjectiveCountingGold;
 import model.objectives.Points;
 import model.testsTemplate.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
@@ -59,25 +61,92 @@ class PlayerTest {
 
     @Test
     void getSelectibleObjectives() {
+        Objective obj1 = new ObjectiveCountingGold(2,0,0);
+        CardObjective objcard1 = new CardObjective(0, 2, obj1);
+        Objective obj2 = new ObjectiveCountingGold(1,1,1);
+        CardObjective objcard2 = new CardObjective(1, 2, obj2);
+        ArrayList<CardObjective> cards = new ArrayList<>();
+        cards.add(0,objcard1);
+        cards.add(1,objcard2);
+        PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
+        ArrayList<CardResource> hand = new ArrayList<>();
+        Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
+        isa.setSelectibleObjectives(cards);
+        assertEquals(cards, isa.getSelectibleObjectives());
+
     }
 
     @Test
     void getStation() {
+        PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
+        ArrayList<CardResource> hand = new ArrayList<>();
+        Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
+        assertEquals(station, isa.getStation());
     }
 
     @Test
     void getSecretObjective() {
+        Objective obj1 = new ObjectiveCountingGold(2,0,0);
+        CardObjective objcard1 = new CardObjective(0, 2, obj1);
+        PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
+        ArrayList<CardResource> hand = new ArrayList<>();
+        Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
+        isa.setSecretObjective(objcard1);
+        assertEquals(objcard1, isa.getSecretObjective());
     }
 
     @Test
-    void removeCardFromHand() {
+    void removeCardFromHand() throws Exception {
+        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
+        Face frontTmp = new Face(new Corner(SuitEnum.QUILL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.INKWELL), new Corner(SuitEnum.ANIMAL));
+        CardResource card1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
+        CardResource card2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
+        CardResource card3 = new CardResource(2, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
+        PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
+        ArrayList<CardResource> hand = new ArrayList<>();
+        hand.add(0, card1);
+        hand.add(1, card2);
+        hand.add(2, card3);
+        ArrayList<CardResource> handexpected = new ArrayList<>();
+        handexpected.add(0, card1);
+        handexpected.add(1, card3);
+        Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
+        isa.removeCardFromHand(1);
+        assertEquals(hand, handexpected);
+
     }
 
     @Test
     void getNumberOfCardInHand() {
+        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
+        Face frontTmp = new Face(new Corner(SuitEnum.QUILL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.INKWELL), new Corner(SuitEnum.ANIMAL));
+        CardResource card1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
+        CardResource card2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
+        PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
+        ArrayList<CardResource> hand = new ArrayList<>();
+        hand.add(0, card1);
+        hand.add(1, card2);
+        Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
+        assertEquals(2, isa.getNumberOfCardInHand());
     }
 
     @Test
     void addCardToHand() {
+        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
+        Face frontTmp = new Face(new Corner(SuitEnum.QUILL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.INKWELL), new Corner(SuitEnum.ANIMAL));
+        CardResource card1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
+        CardResource card2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
+        CardResource card3 = new CardResource(2, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
+        PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
+        ArrayList<CardResource> hand = new ArrayList<>();
+        hand.add(0, card1);
+        hand.add(1, card2);
+        ArrayList<CardResource> handexpected = new ArrayList<>();
+        handexpected.add(0, card1);
+        handexpected.add(1, card2);
+        handexpected.add(2, card3);
+        Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
+        isa.addCardToHand(card3);
+        assertEquals(hand, handexpected);
     }
 }
