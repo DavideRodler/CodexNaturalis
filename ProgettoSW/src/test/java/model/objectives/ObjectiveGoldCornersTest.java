@@ -16,21 +16,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class ObjectiveGoldCornersTest {
 
     @Test
-//    void countObjectivePoints() {
-//        PlayingStation station = new PlayingStation(new HashMap<>());
-//        Objective obj = new ObjectiveGoldCorners();
-//        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY),
-//                new Corner(SuitEnum.EMPTY));
-//        Face frontTmp = new Face(new Corner(SuitEnum.QUILL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.ANIMAL),
-//                new Corner(SuitEnum.ANIMAL));
-//        CardResource card1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
-//        CardResource card2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
-//        CardResource card = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-//        station.getMap().put(creatingCordinatesArray(38, 36), card1);
-//        station.getMap().put(creatingCordinatesArray(38, 38), card2);
-//        assertEquals(2,card.getObjective().countObjectivePoints(station, card, 39, 37));
-//
-//    }
+    void countObjectivePoints() {
+        PlayingStation station = new PlayingStation(new HashMap<>());
+        Points obj = new ObjectiveGoldCorners();
+        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY),
+                new Corner(SuitEnum.EMPTY));
+        Face frontTmp = new Face(new Corner(SuitEnum.QUILL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.ANIMAL),
+                new Corner(SuitEnum.ANIMAL));
+        CardResource card1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
+        CardResource card2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
+        CardResource card = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
+        station.getMap().put(creatingCordinatesArray(38, 36), card1);
+        station.getMap().put(creatingCordinatesArray(38, 38), card2);
+        assertEquals(2,card.getObjective().countObjectivePoints(station, card, 39, 37));
+
+    }
 
     public static ArrayList<Integer> creatingCordinatesArray (int x, int y){
         ArrayList<Integer> key = new ArrayList<>();

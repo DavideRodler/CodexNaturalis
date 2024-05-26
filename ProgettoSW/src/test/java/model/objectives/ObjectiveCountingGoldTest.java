@@ -1,6 +1,7 @@
 package model.objectives;
 
 import model.PlayingStation;
+import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.face.Corner;
@@ -40,11 +41,7 @@ class ObjectiveCountingGoldTest {
         CardResource card1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
         CardResource card2 = new CardResource(1, frontTmp2, backTmp, SuitEnum.ANIMAL, 0, null);
         CardResource card3 = new CardResource(2, frontTmp3, backTmp, SuitEnum.ANIMAL, 0, null);
-        //ArrayList<SuitEnum> suitList = new ArrayList<SuitEnum>();
-        //suitList.add(SuitEnum.ANIMAL);
-        //suitList.add(SuitEnum.PLANT);
-        //suitList.add(SuitEnum.INSECT);
-        //station.getMap().put(creatingCordinatesArray(40, 40), cardStarting);
+
         card1.setPlayingBack(false);
         card2.setPlayingBack(false);
         card3.setPlayingBack(false);

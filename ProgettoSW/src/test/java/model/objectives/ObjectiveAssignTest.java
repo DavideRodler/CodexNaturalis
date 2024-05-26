@@ -14,12 +14,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ObjectiveAssignTest {
 
-//    @Test
-//    void countObjectivePoints() {
-//        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
-//        Face frontTmp = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.NULL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
-//        Objective obj = new ObjectiveAssign();
-//        CardResource card = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 2, obj);
-//        assertEquals(2, card.getObjective().countObjectivePoints(new PlayingStation(new HashMap<>()), card, 0, 2));
-//    }
+    @Test
+    void countObjectivePoints() {
+        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
+        Face frontTmp = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.NULL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
+        Points obj = new ObjectiveAssign();
+        CardResource card = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 2, obj);
+        assertEquals(2, card.getObjective().countObjectivePoints(new PlayingStation(new HashMap<>()), card, 0, 2));
+    }
 }

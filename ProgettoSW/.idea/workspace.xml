@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="aggiunto lo svolgimento del turno" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Test Model">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,8 +50,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler.git&quot;,
-    &quot;accountId&quot;: &quot;ad3a3da8-fb67-4a71-8fdd-a0d917853f52&quot;
+    &quot;url&quot;: &quot;https://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@github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler&quot;,
+    &quot;accountId&quot;: &quot;77d1be0f-1935-4da1-bed4-002b7d7b8169&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -69,7 +74,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Application.ClientApp.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.ClientApp.executor&quot;: &quot;Run&quot;,
     &quot;Application.RmiClient.executor&quot;: &quot;Run&quot;,
     &quot;Application.ServerApp.executor&quot;: &quot;Run&quot;,
     &quot;Application.deckconstructor.executor&quot;: &quot;Run&quot;,
@@ -265,8 +270,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
       </set>
     </attachedChunks>
   </component>
@@ -294,7 +298,6 @@
       <workItem from="1714249020629" duration="771000" />
       <workItem from="1714317124791" duration="17270000" />
       <workItem from="1714383026397" duration="8112000" />
-      <workItem from="1716639277595" duration="15944000" />
     </task>
     <task id="LOCAL-00001" summary="new deckconstructor and card modifications">
       <option name="closed" value="true" />
@@ -808,23 +811,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java</url>
-          <line>35</line>
+          <line>34</line>
           <option name="timeStamp" value="230" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java</url>
-          <line>34</line>
+          <line>33</line>
           <option name="timeStamp" value="233" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java</url>
-          <line>186</line>
-          <option name="timeStamp" value="239" />
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java</url>
+          <line>208</line>
+          <option name="timeStamp" value="234" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>
-          <line>236</line>
-          <option name="timeStamp" value="243" />
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java</url>
+          <line>164</line>
+          <option name="timeStamp" value="236" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -848,7 +851,6 @@
         <watch expression="observers" />
         <watch expression="clientsMapNicknamesKey" />
         <watch expression="semaphore" />
-        <watch expression="card" />
       </configuration>
     </watches-manager>
   </component>
