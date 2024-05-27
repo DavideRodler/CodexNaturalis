@@ -1,6 +1,7 @@
 package model.client;
 
 import model.PlayingStation;
+import model.cards.CardResource;
 import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 
@@ -17,7 +18,7 @@ public class ReductPlayer {
 
     public ReductPlayer(int points, ArrayList<SuitEnum> hand, String nickname, PlayingStation station, TokenEnum token) {
         this.points = points;
-        this.hand = hand;
+        this.hand =hand;
         this.nickname = nickname;
         this.station = station;
         this.token = token;

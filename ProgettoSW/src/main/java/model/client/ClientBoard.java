@@ -29,10 +29,10 @@ public class ClientBoard implements Serializable {
         this.gameState = gameState;
     }
 
-    public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, GameState gameState) {
-        this.firstObjective = firstObjective;
-        this.secondObjective = secondObjective;
-    }
+   // public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, GameState gameState) {
+   //     this.firstObjective = firstObjective;
+   //     this.secondObjective = secondObjective;
+   // }
 
     public ArrayList<CardGold> getCentralCardsGold() {
         return centralCardsGold;

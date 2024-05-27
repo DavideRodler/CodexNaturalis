@@ -31,7 +31,6 @@ public abstract  class CardPlaying extends Card implements Serializable {
     }
 
     public int countResource(SuitEnum suit){
-        int count = 0;
-        return count;
+        return 0;
     }
 }

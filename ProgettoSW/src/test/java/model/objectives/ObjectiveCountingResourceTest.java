@@ -23,6 +23,8 @@ class ObjectiveCountingResourceTest {
         CardObjective objcard2 = new CardObjective(1, 1, obj2);
         Objective obj3 = new ObjectiveCountingResource(SuitEnum.INSECT);
         CardObjective objcard3 = new CardObjective(2, 1, obj3);
+        Objective obj4 = new ObjectiveCountingResource(SuitEnum.FUNGI);
+        CardObjective objcard4 = new CardObjective(2, 1, obj4);
 
         PlayingStation station = new PlayingStation(new HashMap<>());
         Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY),
@@ -50,6 +52,7 @@ class ObjectiveCountingResourceTest {
         assertEquals(2, objcard.getObjective().countObjectivePoints(station));
         assertEquals(1, objcard2.getObjective().countObjectivePoints(station));
         assertEquals(0, objcard3.getObjective().countObjectivePoints(station));
+        assertEquals(0, objcard4.getObjective().countObjectivePoints(station));
     }
 
     public static ArrayList<Integer> creatingCordinatesArray (int x, int y){
