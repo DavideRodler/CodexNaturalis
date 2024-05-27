@@ -1,5 +1,12 @@
 package View.GUI;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+
 public class StartSceneController {
 
     //TODO: idealmente la gui dovrebbe essere strutturata cosi:
@@ -12,5 +19,15 @@ public class StartSceneController {
     // - scena della scoreboard
     // - scena del vincitore
 
+    @FXML
+    private ImageView coverImage;
 
+
+    @FXML
+    void start(KeyEvent event) {
+        if(event.getCode() ==  KeyCode.ENTER){ //TODO: quando premuto enter in realtà si cambierà scena
+            coverImage.setVisible(false);
+            System.out.println("Enter pressed!");
+        }
+    }
 }
