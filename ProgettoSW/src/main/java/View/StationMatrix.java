@@ -331,35 +331,68 @@ public class StationMatrix {
 
     //Vorrei ad esempio che se mi viene passata la carta in pos 40x40 aggiungo 39x39. Avrò bisogno della posizione della carta piazzata
     private void addCoordinatesUpLeft(int i, int j){
-        int row = i * cardHeight - 2; //numeri per estetica
+        int row = i * cardHeight - 1; //numeri per estetica
         int col = j * cardLength - 6; //numeri per estetica
-        String rowCoordinate = String.valueOf(i-1);
-        String colCoordinate = String.valueOf(j-1);
-        stationPrint[row][col] = rowCoordinate + "x" + colCoordinate;
+        int rowCoordinate = i-1;
+        int colCoordinate = j-1;
+        int firstDigitRowCoordinate = rowCoordinate/10;
+        int secondDigitRowCoordinate = rowCoordinate%10;
+        int firstDigitColCoordinate = colCoordinate/10;
+        int secondDigitColCoordinate = colCoordinate%10;
+        stationPrint[row][col] = String.valueOf(firstDigitRowCoordinate);
+        stationPrint[row][col+1] = String.valueOf(secondDigitRowCoordinate);
+        stationPrint[row][col+2] = "x";
+        stationPrint[row][col+3] = String.valueOf(firstDigitColCoordinate);
+        stationPrint[row][col+4] = String.valueOf(secondDigitColCoordinate);
     }
 
     private void addCoordinatesUpRight(int i, int j){
-        int row = i * cardHeight - 2; //numeri per estetica
-        int col = j * cardLength + 2; //numeri per estetica
-        String rowCoordinate = String.valueOf(i-1);
-        String colCoordinate = String.valueOf(j+1);
-        stationPrint[row][col] = rowCoordinate + "x" + colCoordinate;
+        int row = i * cardHeight - 1; //numeri per estetica
+        int col = j * cardLength + 8; //numeri per estetica
+        int rowCoordinate = i-1;
+        int colCoordinate = j+1;
+        int firstDigitRowCoordinate = rowCoordinate/10;
+        int secondDigitRowCoordinate = rowCoordinate%10;
+        int firstDigitColCoordinate = colCoordinate/10;
+        int secondDigitColCoordinate = colCoordinate%10;
+        stationPrint[row][col] = String.valueOf(firstDigitRowCoordinate);
+        stationPrint[row][col+1] = String.valueOf(secondDigitRowCoordinate);
+        stationPrint[row][col+2] = "x";
+        stationPrint[row][col+3] = String.valueOf(firstDigitColCoordinate);
+        stationPrint[row][col+4] = String.valueOf(secondDigitColCoordinate);
+
     }
 
     private void addCoordinatesDownLeft(int i, int j){
-        int row = i * cardHeight + 4; //numeri per estetica
+        int row = i * cardHeight + 3; //numeri per estetica
         int col = j * cardLength - 6; //numeri per estetica
-        String rowCoordinate = String.valueOf(i+1);
-        String colCoordinate = String.valueOf(j-1);
-        stationPrint[row][col] = rowCoordinate + "x" + colCoordinate;
+        int rowCoordinate = i+1;
+        int colCoordinate = j-1;
+        int firstDigitRowCoordinate = rowCoordinate/10;
+        int secondDigitRowCoordinate = rowCoordinate%10;
+        int firstDigitColCoordinate = colCoordinate/10;
+        int secondDigitColCoordinate = colCoordinate%10;
+        stationPrint[row][col] = String.valueOf(firstDigitRowCoordinate);
+        stationPrint[row][col+1] = String.valueOf(secondDigitRowCoordinate);
+        stationPrint[row][col+2] = "x";
+        stationPrint[row][col+3] = String.valueOf(firstDigitColCoordinate);
+        stationPrint[row][col+4] = String.valueOf(secondDigitColCoordinate);
     }
 
     private void addCoordinatesDownRight(int i, int j){
-        int row = i * cardHeight + 4; //numeri per estetica
-        int col = j * cardLength + 4; //numeri per estetica
-        String rowCoordinate = String.valueOf(i+1);
-        String colCoordinate = String.valueOf(j+1);
-        stationPrint[row][col] = rowCoordinate + "x" + colCoordinate;
+        int row = i * cardHeight + 3; //numeri per estetica
+        int col = j * cardLength + 8; //numeri per estetica
+        int rowCoordinate = i+1;
+        int colCoordinate = j+1;
+        int firstDigitRowCoordinate = rowCoordinate/10;
+        int secondDigitRowCoordinate = rowCoordinate%10;
+        int firstDigitColCoordinate = colCoordinate/10;
+        int secondDigitColCoordinate = colCoordinate%10;
+        stationPrint[row][col] = String.valueOf(firstDigitRowCoordinate);
+        stationPrint[row][col+1] = String.valueOf(secondDigitRowCoordinate);
+        stationPrint[row][col+2] = "x";
+        stationPrint[row][col+3] = String.valueOf(firstDigitColCoordinate);
+        stationPrint[row][col+4] = String.valueOf(secondDigitColCoordinate);
     }
 
     /**
