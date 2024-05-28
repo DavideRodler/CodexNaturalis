@@ -148,7 +148,9 @@ public class RmiServer implements VirtualServer {
     public void setSecretObjective(String nickname, Integer id) throws RemoteException, ChangedStateException, NotValidMoveException {
         synchronized (gameController){
         gameController.setObjectiveOfPlayer(nickname, id);}
-
+        if(gameController.getBoard().getGameState().equals(GameState.PLACING_CARD)){
+            startGame();
+        }
     }
 
     @Override
@@ -217,15 +219,6 @@ public class RmiServer implements VirtualServer {
                 }
             }).start();
         }
-        while(true)
-        {
-            synchronized (gameController){
-            if(gameController.getBoard().getGameState().equals(GameState.PLACING_CARD))
-            {
-                break;
-            }}
-        }
-        startGame();
     }
 
     /*public void firstHandSetup() throws RemoteException {
