@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="riordinato package view">
-      <change afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Test ReductPlayer e ClientBoard (aumento %)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/GameSetupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/GameSetupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StartSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StartSceneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/GameSetup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/GameSetup.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/StartScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/StartScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/startGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/startGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/ChooseNickAndToken.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/ChooseNickAndToken.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +26,8 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -186,6 +188,9 @@
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="controller" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="View" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="model.client" />
       <recent name="model" />
@@ -194,7 +199,7 @@
       <recent name="model.cards.face" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.startGui">
+  <component name="RunManager" selected="JUnit.model in ProgettoSW">
     <configuration name="startGui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="View.GUI.startGui" />
       <module name="ProgettoSW" />
@@ -270,11 +275,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.model in ProgettoSW" />
         <item itemvalue="Application.startGui" />
         <item itemvalue="JUnit.ObjectiveCountingResourceTest" />
         <item itemvalue="JUnit.ObjectiveCountingGoldTest" />
         <item itemvalue="JUnit.ObjectiveAssignTest" />
-        <item itemvalue="JUnit.model in ProgettoSW" />
       </list>
     </recent_temporary>
   </component>
@@ -897,10 +902,10 @@
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getStartingCard.ic" NAME="GameControllerTest.getStartingCard Coverage Results" MODIFIED="1716293555017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_isGamefinished.ic" NAME="GameControllerTest.isGamefinished Coverage Results" MODIFIED="1716111232885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getAvailableToken.ic" NAME="GameControllerTest.getAvailableToken Coverage Results" MODIFIED="1715692588758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getAvailableToken.ic" NAME="GameControllerTest.getAvailableToken Coverage Results" MODIFIED="1715692588758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_isGamefinished.ic" NAME="GameControllerTest.isGamefinished Coverage Results" MODIFIED="1716111232885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveDiagonalTest.ic" NAME="ObjectiveDiagonalTest Coverage Results" MODIFIED="1716371771014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -918,7 +923,7 @@
     <SUITE FILE_PATH="coverage/ProgettoSW$TestMain.ic" NAME="TestMain Coverage Results" MODIFIED="1716363320275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>TEST.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveCountingGoldTest.ic" NAME="ObjectiveCountingGoldTest Coverage Results" MODIFIED="1716371493090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveCountingGoldTest.ic" NAME="ObjectiveCountingGoldTest Coverage Results" MODIFIED="1716839133009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$CornerTest.ic" NAME="CornerTest Coverage Results" MODIFIED="1716364382291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -965,7 +970,7 @@
       <FILTER>model.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$objectives_in_ProgettoSW.ic" NAME="objectives in ProgettoSW Coverage Results" MODIFIED="1716656541538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/ProgettoSW$model_in_ProgettoSW.ic" NAME="model in ProgettoSW Coverage Results" MODIFIED="1716838903978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProgettoSW$model_in_ProgettoSW.ic" NAME="model in ProgettoSW Coverage Results" MODIFIED="1716899348557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/ProgettoSW$PlacingConditionTest_test_null_corner.ic" NAME="PlacingConditionTest.test_null_corner Coverage Results" MODIFIED="1716288399310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>model.placingCondition.*</FILTER>
     </SUITE>
@@ -987,7 +992,7 @@
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getObjectiveToChoose.ic" NAME="GameControllerTest.getObjectiveToChoose Coverage Results" MODIFIED="1715698653686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveAssignTest.ic" NAME="ObjectiveAssignTest Coverage Results" MODIFIED="1716839070554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveAssignTest.ic" NAME="ObjectiveAssignTest Coverage Results" MODIFIED="1716839108793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$ClientApp.ic" NAME="ClientApp Coverage Results" MODIFIED="1716744281144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -999,7 +1004,7 @@
     <SUITE FILE_PATH="coverage/ProgettoSW$CardResourceTest.ic" NAME="CardResourceTest Coverage Results" MODIFIED="1716838851226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.cards.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveCountingResourceTest.ic" NAME="ObjectiveCountingResourceTest Coverage Results" MODIFIED="1716372539036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveCountingResourceTest.ic" NAME="ObjectiveCountingResourceTest Coverage Results" MODIFIED="1716839277178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
   </component>

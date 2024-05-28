@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class startGui extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseNickAndToken.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Codex");

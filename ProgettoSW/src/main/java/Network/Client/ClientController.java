@@ -3,7 +3,7 @@ package Network.Client;
 import View.CLI.Cli2;
 import Network.Client.RMI.RmiClient;
 import Network.Server.VirtualServer;
-import View.CLI.UI;
+import View.UI;
 import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
 import exception.NotValidMoveException;

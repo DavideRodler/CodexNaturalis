@@ -1,4 +1,4 @@
-package View.CLI;
+package View;
 
 import model.PlayingStation;
 import model.enums.TokenEnum;
