@@ -4,26 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="inizio classi per gui">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="riordinato package view">
+      <change afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CardMatrixCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/CardMatrixCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CentralCardsCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/CentralCardsCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Cli.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Cli2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/CommonBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/CommonBoardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/GameSetupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/GameSetupController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StartSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StartSceneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/HandPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/HandPrinter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/ObjectivePrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/ObjectivePrinter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/StartingCardPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/StartingCardPrinter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/StationMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/StationMatrix.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/GameSetup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/GameSetup.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/StartScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/StartScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,9 +23,9 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="FxmlFile" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -321,14 +309,6 @@
       <workItem from="1714249020629" duration="771000" />
       <workItem from="1714317124791" duration="17270000" />
       <workItem from="1714383026397" duration="8112000" />
-    </task>
-    <task id="LOCAL-00004" summary="COMMIT CON NUOVO DECK GOLD E PATTERN DI CREAZIONE FILE JSON">
-      <option name="closed" value="true" />
-      <created>1711025725730</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1711025725730</updated>
     </task>
     <task id="LOCAL-00005" summary="Commit con aggiunte parziali dei deck starting card e objective card, modifica table come Mappa con key=ArrayList">
       <option name="closed" value="true" />
@@ -714,7 +694,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716843949388</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="riordinato package view">
+      <option name="closed" value="true" />
+      <created>1716885400269</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1716885400271</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -782,7 +770,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Settaggio gioco iniziale con observer in modo reattivo" />
     <MESSAGE value="cli 2 commentata" />
     <MESSAGE value="esempio Socket per capire il funzionamento e per poter fare un pull" />
     <MESSAGE value="Aggiunta delle carte alla mano dei Players" />
@@ -807,7 +794,8 @@
     <MESSAGE value="uploadate risorse grafiche + tolti metodi print card nella cli" />
     <MESSAGE value="bozza struttura cli" />
     <MESSAGE value="inizio classi per gui" />
-    <option name="LAST_COMMIT_MESSAGE" value="inizio classi per gui" />
+    <MESSAGE value="riordinato package view" />
+    <option name="LAST_COMMIT_MESSAGE" value="riordinato package view" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

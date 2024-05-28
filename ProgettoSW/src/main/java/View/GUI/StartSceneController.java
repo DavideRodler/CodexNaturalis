@@ -31,4 +31,9 @@ public class StartSceneController {
             System.out.println("Enter pressed!");
         }
     }
+
+    @FXML
+    void startGame(MouseEvent event) {
+        coverImage.setVisible(false);
+    }
 }
