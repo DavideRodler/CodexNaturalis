@@ -1,11 +1,11 @@
-package View;
+package View.CLI;
 
 import model.cards.CardObjective;
 import model.objectives.*;
 
 import java.util.Arrays;
 
-import static View.CardMatrixCreator.*;
+import static View.CLI.CardMatrixCreator.*;
 
 public class ObjectivePrinter {
     final int cardHeight = 3;

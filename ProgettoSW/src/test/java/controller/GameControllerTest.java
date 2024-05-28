@@ -1,25 +1,15 @@
 package controller;
 
-import Network.Cli2;
+import View.CLI.Cli2;
 import exception.ChangedStateException;
-import model.Player;
-import model.PlayingBoard;
 import model.PlayingStation;
-import model.cards.CardGold;
-import model.cards.CardObjective;
 import model.cards.CardResource;
-import model.cards.CardStarting;
-import model.cards.face.Corner;
-import model.cards.face.Face;
 import model.enums.*;
-import model.objectives.ObjectiveDiagonal;
 import model.testsTemplate.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
 import exception.NotValidMoveException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 

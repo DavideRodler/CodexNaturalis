@@ -1,4 +1,4 @@
-package View;
+package View.CLI;
 
 import model.cards.*;
 import model.enums.SuitEnum;

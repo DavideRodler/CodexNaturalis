@@ -1,4 +1,4 @@
-package View;
+package View.CLI;
 
 import model.cards.CardGold;
 import model.cards.CardObjective;
@@ -8,7 +8,7 @@ import model.cards.CardResource;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static View.CardMatrixCreator.*;
+import static View.CLI.CardMatrixCreator.*;
 
 /**
  * Oltre alla mano c'è anche l'obiettivo segreto.

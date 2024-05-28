@@ -4,18 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="bozza struttura cli">
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/client/ReductPlayerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/testsTemplate/ClientBoardTemplate.java" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="inizio classi per gui">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/cards/CardPlaying.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cards/CardPlaying.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ReductPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ReductPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/cards/CardResourceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/cards/CardResourceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/cards/CardStartingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/cards/CardStartingTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveAssignTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveAssignTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/CardMatrixCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/CardMatrixCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/CentralCardsCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/CentralCardsCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Cli.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Cli2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/CommonBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/CommonBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/GameSetupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/GameSetupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StartSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StartSceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/HandPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/HandPrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/ObjectivePrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/ObjectivePrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/StartingCardPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/StartingCardPrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/StationMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/StationMatrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +96,7 @@
     "Application.deckconstructor.executor": "Run",
     "Application.decktameplatetom.executor": "Run",
     "Application.playngstationTameplate.executor": "Run",
+    "Application.startGui.executor": "Run",
     "JUnit.CardGoldTest.getInformation.executor": "Coverage",
     "JUnit.CardObjectiveTest.getInformation.executor": "Coverage",
     "JUnit.CardPlayingTest.executor": "Coverage",
@@ -197,19 +206,16 @@
       <recent name="model.cards.face" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ObjectiveCountingResourceTest">
-    <configuration name="CardResourceTest.countResource" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.startGui">
+    <configuration name="startGui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="View.GUI.startGui" />
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.cards.*" />
+          <option name="PATTERN" value="View.GUI.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.cards" />
-      <option name="MAIN_CLASS_NAME" value="model.cards.CardResourceTest" />
-      <option name="METHOD_NAME" value="countResource" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -268,7 +274,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.CardResourceTest.countResource" />
+      <item itemvalue="Application.startGui" />
       <item itemvalue="JUnit.ObjectiveAssignTest" />
       <item itemvalue="JUnit.ObjectiveCountingGoldTest" />
       <item itemvalue="JUnit.ObjectiveCountingResourceTest" />
@@ -276,11 +282,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.startGui" />
         <item itemvalue="JUnit.ObjectiveCountingResourceTest" />
         <item itemvalue="JUnit.ObjectiveCountingGoldTest" />
         <item itemvalue="JUnit.ObjectiveAssignTest" />
         <item itemvalue="JUnit.model in ProgettoSW" />
-        <item itemvalue="JUnit.CardResourceTest.countResource" />
       </list>
     </recent_temporary>
   </component>
@@ -315,14 +321,6 @@
       <workItem from="1714249020629" duration="771000" />
       <workItem from="1714317124791" duration="17270000" />
       <workItem from="1714383026397" duration="8112000" />
-    </task>
-    <task id="LOCAL-00003" summary="aggiunta robe eliminate da eric">
-      <option name="closed" value="true" />
-      <created>1710863315320</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1710863315320</updated>
     </task>
     <task id="LOCAL-00004" summary="COMMIT CON NUOVO DECK GOLD E PATTERN DI CREAZIONE FILE JSON">
       <option name="closed" value="true" />
@@ -708,7 +706,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716757535283</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="inizio classi per gui">
+      <option name="closed" value="true" />
+      <created>1716843949387</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1716843949388</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -776,7 +782,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="aggiunta local clientController" />
     <MESSAGE value="Settaggio gioco iniziale con observer in modo reattivo" />
     <MESSAGE value="cli 2 commentata" />
     <MESSAGE value="esempio Socket per capire il funzionamento e per poter fare un pull" />
@@ -801,7 +806,8 @@
     <MESSAGE value="Test corretti obj" />
     <MESSAGE value="uploadate risorse grafiche + tolti metodi print card nella cli" />
     <MESSAGE value="bozza struttura cli" />
-    <option name="LAST_COMMIT_MESSAGE" value="bozza struttura cli" />
+    <MESSAGE value="inizio classi per gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="inizio classi per gui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -840,37 +846,37 @@
           <option name="timeStamp" value="236" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/StationMatrix.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/View/CLI/StationMatrix.java</url>
           <line>78</line>
           <option name="timeStamp" value="247" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/StationMatrix.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/View/CLI/StationMatrix.java</url>
           <line>84</line>
           <option name="timeStamp" value="250" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/StationMatrix.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/View/CLI/StationMatrix.java</url>
           <line>90</line>
           <option name="timeStamp" value="251" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/StationMatrix.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/View/CLI/StationMatrix.java</url>
           <line>295</line>
           <option name="timeStamp" value="254" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/StationMatrix.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/View/CLI/StationMatrix.java</url>
           <line>301</line>
           <option name="timeStamp" value="255" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/StationMatrix.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/View/CLI/StationMatrix.java</url>
           <line>307</line>
           <option name="timeStamp" value="256" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/StationMatrix.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/View/CLI/StationMatrix.java</url>
           <line>313</line>
           <option name="timeStamp" value="257" />
         </line-breakpoint>

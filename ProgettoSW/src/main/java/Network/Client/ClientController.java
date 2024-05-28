@@ -1,9 +1,9 @@
 package Network.Client;
 
-import Network.Cli2;
+import View.CLI.Cli2;
 import Network.Client.RMI.RmiClient;
 import Network.Server.VirtualServer;
-import View.UI;
+import View.CLI.UI;
 import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
 import exception.NotValidMoveException;

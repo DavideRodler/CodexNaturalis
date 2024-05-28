@@ -1,21 +1,12 @@
-package Network;
+package View.CLI;
 
-import View.*;
 import model.PlayingStation;
-import model.cards.*;
 import model.client.ClientBoard;
 import model.enums.TokenEnum;
-import model.objectives.ObjectiveCountingGold;
-import model.objectives.ObjectiveCountingResource;
-import model.objectives.ObjectiveDiagonal;
-import model.objectives.ObjectivePositioning;
-import model.objectives.*;
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static View.CardMatrixCreator.*;
 
 public class Cli2 implements UI {
 

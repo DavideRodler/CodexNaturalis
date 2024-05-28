@@ -1,9 +1,9 @@
-package View;
+package View.CLI;
 
 import model.cards.CardGold;
 import model.cards.CardResource;
 
-import static View.CardMatrixCreator.createFrontPlayingCard;
+import static View.CLI.CardMatrixCreator.createFrontPlayingCard;
 
 /**
  * this class creates and prints the centrals card.

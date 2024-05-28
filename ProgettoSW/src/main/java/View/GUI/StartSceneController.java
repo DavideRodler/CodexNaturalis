@@ -22,6 +22,7 @@ public class StartSceneController {
     @FXML
     private ImageView coverImage;
 
+    //metto button --> più semplice
 
     @FXML
     void start(KeyEvent event) {

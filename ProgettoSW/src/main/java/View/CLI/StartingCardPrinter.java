@@ -1,10 +1,10 @@
-package View;
+package View.CLI;
 
 import model.cards.CardStarting;
 
 import java.util.Arrays;
 
-import static View.CardMatrixCreator.*;
+import static View.CLI.CardMatrixCreator.*;
 
 /**
  * this class creates and prints the front and back of the starting card

@@ -1,15 +1,14 @@
-package View;
+package View.CLI;
 
 import model.cards.*;
 import model.client.ClientBoard;
 import model.client.ReductPlayer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
-import static View.CardMatrixCreator.*;
-import static View.CardMatrixCreator.createFrontPlayingCard;
+import static View.CLI.CardMatrixCreator.*;
+import static View.CLI.CardMatrixCreator.createFrontPlayingCard;
 
 public class StationMatrix {
     private String[][] stationPrint = new String[242][561]; // aggiunte due righe e una colonna per le coordinate, prima era 240 e 560
