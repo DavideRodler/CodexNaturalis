@@ -1,11 +1,13 @@
 package model;
 
 
+import Socket.Messages.*;
 import model.cards.*;
 import model.enums.TokenEnum;
 import observers.ObservableModel;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 
@@ -40,11 +42,30 @@ public class Player extends ObservableModel implements Serializable{
     public void setStation(PlayingStation station) {
         this.station = station;
     }
-    public void setSelectibleObjectives(ArrayList<CardObjective> selectibleObjectives) {
+
+    public void setSelectibleObjectivesWithObserver(ArrayList<CardObjective> selectibleObjectives) {
+        setSelectibleObjectives(selectibleObjectives);
+        Message message = new SelectableObjMessage(selectibleObjectives);
+        try {
+            this.notifySpecificObserver(this.nickname, message);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void setSelectibleObjectives(ArrayList<CardObjective> selectibleObjectives){
         this.selectibleObjectives = selectibleObjectives;
     }
     public void setToken(TokenEnum token) {
         this.token = token;
+    }
+    public void setSecretObjectiveWithObs(CardObjective secretObjective) {
+        this.secretObjective = secretObjective;
+        Message message = new SelectionOfSecretObjMessage(secretObjective.getId());
+        try {
+            notifySpecificObserver(nickname, message);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void setSecretObjective(CardObjective secretObjective) {
         this.secretObjective = secretObjective;
@@ -81,18 +102,33 @@ public class Player extends ObservableModel implements Serializable{
      *
      * @return
      */
-    public void removeCardFromHand(int cardId)throws Exception {
-         hand.remove(hand.stream()
+    public void removeCardFromHandWithObs(int cardId)throws Exception {
+        removeCardFromHand(cardId);
+        Message message = new CardRemovedFromHandMessage(cardId);
+        try {
+            notifySpecificObserver(nickname, message);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void removeCardFromHand(int cardId) throws Exception {
+        hand.remove(hand.stream()
                 .filter(card -> card.getId().equals(cardId))
                 .findFirst()
                 .orElseThrow(() -> new Exception("Card not found in hand")));
-
     }
     public int getNumberOfCardInHand(){
         return hand.size();
     }
-    public void addCardToHand(CardResource card) {
+    public void addCardToHandWithObserver(CardResource card) {
         hand.add(card);
+        Message message = new CardAddedToHandMessage(card);
+        try {
+            notifySpecificObserver(this.nickname, message);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 

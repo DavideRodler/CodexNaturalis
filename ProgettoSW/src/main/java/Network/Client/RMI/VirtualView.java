@@ -13,10 +13,6 @@ public interface VirtualView extends Remote, Observer {
 
     void showFourCentralCards()throws RemoteException;
 
-    void reciveMyFirstHand() throws RemoteException;
-
-    void setupOfSecretObjective() throws RemoteException;
-
     void setupOfPlayersNumber() throws RemoteException;
 
     void notifyAnotherPlayerSettingNumOfPlayers() throws RemoteException;

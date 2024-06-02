@@ -5,7 +5,6 @@ import model.PlayingBoard;
 import model.PlayingStation;
 import model.cards.*;
 import model.deck.Decktemplates;
-import model.enums.DeckEnum;
 import model.enums.TokenEnum;
 import model.enums.GameState;
 import exception.*;
@@ -13,7 +12,6 @@ import exception.*;
 
 import java.io.Serializable;
 import java.util.*;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameController implements Serializable {
@@ -135,9 +133,9 @@ public class GameController implements Serializable {
 
         //populating hands
         board.getPlayers().stream().forEach(player -> {
-            player.getHand().add(board.getDeckCardResource().pop());
-            player.getHand().add(board.getDeckCardResource().pop());
-            player.getHand().add(board.getDeckCardGold().pop());
+            player.addCardToHandWithObserver(board.getDeckCardResource().pop());
+            player.addCardToHandWithObserver(board.getDeckCardResource().pop());
+            player.addCardToHandWithObserver(board.getDeckCardGold().pop());
         });
 
         //populating the central board
@@ -153,7 +151,7 @@ public class GameController implements Serializable {
             ArrayList<CardObjective> secretObjectivesToChoose = new ArrayList<CardObjective>();
             secretObjectivesToChoose.add(board.getDeckCardObjective().pop());
             secretObjectivesToChoose.add(board.getDeckCardObjective().pop());
-            p.setSelectibleObjectives(secretObjectivesToChoose);
+            p.setSelectibleObjectivesWithObserver(secretObjectivesToChoose);
         });
 
         //now i give for each player its Starting card
@@ -207,7 +205,7 @@ public class GameController implements Serializable {
                 .findFirst()
                 .isEmpty()) throw  new NotValidMoveException("the objective is not selectible");
         ArrayList<CardObjective> selectibleObjectives = p.getSelectibleObjectives();
-        p.setSecretObjective(selectibleObjectives.stream()
+        p.setSecretObjectiveWithObs(selectibleObjectives.stream()
                 .filter(card -> card.getId().equals(id))
                 .findFirst()
                 .orElseThrow());
@@ -245,22 +243,24 @@ public class GameController implements Serializable {
 
         Player player = board.getPlayer(nickname);
         if(player.getNumberOfCardInHand() == 2) {
-            player.addCardToHand(card);
+            player.addCardToHandWithObserver(card);
         }
         else throw new NotValidMoveException("you can't have another card");
+
+        board.removeCentralCard(cardId);
         repopulatePlayingBoard();
         board.setGameState(GameState.CHANGING_TURN);
         changeTurn();
     }
-    public synchronized void addCardFromDeckToPlayerHand(String nickname, int cardToDraw) throws NotValidMoveException, NotMyTurnException, ChangedStateException {
+    public synchronized void addCardFromDeckToPlayerHand(String nickname, int deck) throws NotValidMoveException, NotMyTurnException, ChangedStateException {
         assertGameState(GameState.ADDING_CARD_TO_HAND);
         assertIsMyTurn(nickname);
         Player p = board.getPlayer(nickname);
         if(p.getNumberOfCardInHand() == 2) {
-            if(cardToDraw == 6){
-                p.addCardToHand(board.getDeckCardGold().pop());
+            if(deck == 6){
+                p.addCardToHandWithObserver(board.getDeckCardGold().pop());
             }
-            else p.addCardToHand(board.getDeckCardResource().pop());
+            else p.addCardToHandWithObserver(board.getDeckCardResource().pop());
         }
         else throw new NotValidMoveException("you can't have another card");
         board.setGameState(GameState.CHANGING_TURN);
@@ -292,17 +292,30 @@ public class GameController implements Serializable {
      * @param X    the x coordinate
      * @param Y    the y coordinate
      */
-    public synchronized void addCardToPlayingStation(String nickname, int id, boolean playedback, Integer X, Integer Y) throws Exception {
-        assertGameState(GameState.PLACING_CARD);
-        assertIsMyTurn(nickname);
+    public synchronized void addCardToPlayingStation(String nickname, int id, boolean playedback, Integer X, Integer Y) throws InvalidPlacingCondition{
+        try {
+            assertGameState(GameState.PLACING_CARD);
+        } catch (ChangedStateException | NotValidMoveException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            assertIsMyTurn(nickname);
+        } catch (NotMyTurnException e) {
+            throw new RuntimeException(e);
+        }
         int points = 0;
         Player player = board.getPlayer(nickname);
 
         //check if the card is in your hand
-        CardResource card = player.getHand().stream()
-                .filter(c -> c.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new NotValidMoveException("card not found in your hand"));
+        CardResource card = null;
+        try {
+            card = player.getHand().stream()
+                    .filter(c -> c.getId().equals(id))
+                    .findFirst()
+                    .orElseThrow(() -> new NotValidMoveException("card not found in your hand"));
+        } catch (NotValidMoveException e) {
+            throw new RuntimeException(e);
+        }
 
 
         //adding the card
@@ -310,7 +323,11 @@ public class GameController implements Serializable {
         player.setPoints(player.getPoints() + points);
 
         //removing the card from the hand
-        player.removeCardFromHand(id);
+        try {
+            player.removeCardFromHandWithObs(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         board.setGameState(GameState.ADDING_CARD_TO_HAND);
     }
@@ -401,15 +418,11 @@ public class GameController implements Serializable {
     }
 
     private void repopulatePlayingBoard(){
-        for (int i = 0; i < 2; i++) {
-            if (board.getCentralCardsResource().get(i) == null){
-                board.getCentralCardsResource().add(i, board.getDeckCardResource().pop());
-            }
+        if (board.getCentralCardsResource().size() < 2){
+            board.addCardResource(board.getDeckCardResource().pop());
         }
-        for (int i = 0; i < 2; i++) {
-            if (board.getCentralCardsGold().get(i) == null){
-                board.getCentralCardsGold().add(i, board.getDeckCardGold().pop());
-            }
+        if (board.getCentralCardsGold().size() < 2){
+            board.addCardGold(board.getDeckCardGold().pop());
         }
     }
 

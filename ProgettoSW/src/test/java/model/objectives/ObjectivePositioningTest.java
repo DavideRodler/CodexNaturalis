@@ -28,7 +28,7 @@ class ObjectivePositioningTest {
         game.getBoard().getPlayer("isa").setStation(station);
         ObjectivePositioning objectivetmp = new ObjectivePositioning(SuitEnum.ANIMAL, SuitEnum.PLANT, DirectionEnum.RIGHT, PositionEnum.TOP);
         CardObjective cardObjectiveTmp = new CardObjective(5, 3, objectivetmp);
-        game.getBoard().getPlayer("isa").setSecretObjective(cardObjectiveTmp);
+        game.getBoard().getPlayer("isa").setSecretObjectiveWithObs(cardObjectiveTmp);
         int punti = game.getBoard().getPlayer("isa").getSecretObjective().getObjective().countObjectivePoints(station);
 
         // Checking the result
@@ -48,7 +48,7 @@ class ObjectivePositioningTest {
         game.getBoard().getPlayer("isa").setStation(station);
         ObjectivePositioning objectivetmp = new ObjectivePositioning(SuitEnum.ANIMAL, SuitEnum.PLANT, DirectionEnum.RIGHT, PositionEnum.TOP);
         CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
-        game.getBoard().getPlayer("isa").setSecretObjective(cardObjectiveTmp);
+        game.getBoard().getPlayer("isa").setSecretObjectiveWithObs(cardObjectiveTmp);
         int punti = game.getBoard().getPlayer("isa").getSecretObjective().getObjective().countObjectivePoints(station);
 
         // Checking the result

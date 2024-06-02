@@ -215,6 +215,8 @@ public class PlayingBoard extends ObservableModel {
         }
     }
 
+
+
     public void addCardGold(CardGold card) {
         centralCardsGold.add(card);
         try {
@@ -223,6 +225,17 @@ public class PlayingBoard extends ObservableModel {
             throw new RuntimeException(e);
         }
     }
+
+    public void removeCentralCard(int id) {
+        centralCardsResource.removeIf(c -> c.getId() == id);
+        centralCardsGold.removeIf(c -> c.getId() == id);
+        try {
+            notifyObservers(new CentralCardResourceRemovedMessage(id));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     // shuffle players
     public void shufflePlayer() {

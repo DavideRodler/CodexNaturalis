@@ -3,9 +3,11 @@ package Network.Server;
 import Network.Client.RMI.VirtualView;
 import controller.GameController;
 import exception.ChangedStateException;
+import exception.InvalidPlacingCondition;
+import exception.NotMyTurnException;
 import exception.NotValidMoveException;
+import model.Player;
 import model.cards.CardGold;
-import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.enums.GameState;
 import model.enums.TokenEnum;
@@ -108,11 +110,8 @@ public class RmiServer implements VirtualServer {
     @Override
     public void addPlayer(String nickname, TokenEnum token, VirtualView Myclient) throws ChangedStateException, NotValidMoveException, RemoteException {
         gameController.addPlayer(nickname, token);
-        for (VirtualView client : clients) {
-            gameController.getBoard().getPlayer(nickname).addObserver(client);
-            gameController.getBoard().getPlayer(nickname).getStation().addObserver(client);
-        }
         clientsMap.put(nickname, Myclient);
+
         if (gameController.isGameState(GameState.INITIALIZE_GAME)){
             initializeGame();
         }
@@ -138,11 +137,6 @@ public class RmiServer implements VirtualServer {
 
     }
 
-    @Override
-    public ArrayList<CardResource> getMyHand(String nickname) throws RemoteException {
-        synchronized (gameController){
-        return gameController.getBoard().getPlayer(nickname).getHand();}
-    }
 
     @Override
     public void setSecretObjective(String nickname, Integer id) throws RemoteException, ChangedStateException, NotValidMoveException {
@@ -153,33 +147,38 @@ public class RmiServer implements VirtualServer {
         }
     }
 
-    @Override
-    public ArrayList<CardObjective> getSelectableObjectives(String nickname) throws RemoteException {
-        synchronized (gameController){
-        return gameController.getBoard().getPlayer(nickname).getSelectibleObjectives();}
-    }
 
     @Override
-    public void addCardToStation(String nickname,int id, boolean playedBack, int x, int y) throws RemoteException {
+    public void addCardToStation(String nickname,int id, boolean playedBack, int x, int y) throws RemoteException, InvalidPlacingCondition {
+        gameController.addCardToPlayingStation(nickname, id, playedBack, x, y);
+
+    }
+
+
+    @Override
+    public void addCardFromDeckToPlayerHand(String nickname, int deck) throws RemoteException, InvalidPlacingCondition {
         try {
-            gameController.addCardToPlayingStation(nickname, id, playedBack, x, y);
-        } catch (Exception e) {
+            gameController.addCardFromDeckToPlayerHand(nickname, deck);
+        } catch (NotValidMoveException e) {
             throw new RuntimeException(e);
-        }
-
-    }
-
-    @Override
-    public void drawCard(String nickname, int cardToDraw, CardResource card) throws RemoteException {
-        try {
-            if(cardToDraw>=1 && cardToDraw<=4)
-                gameController.addCardFromCentralCardsToPlayerHand(nickname, card.getId());
-            else
-                gameController.addCardFromDeckToPlayerHand(nickname, cardToDraw);
-        } catch (Exception e) {
+        } catch (NotMyTurnException e) {
+            throw new RuntimeException(e);
+        } catch (ChangedStateException e) {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void addCardFromCentralCardsToPlayerHand(String nickname, int cardId) throws RemoteException, NotMyTurnException {
+        try {
+            gameController.addCardFromCentralCardsToPlayerHand(nickname, cardId);
+        } catch (NotValidMoveException e) {
+            throw new RuntimeException(e);
+        } catch (ChangedStateException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     @Override
     public CardGold getCardFromGoldDeck() throws RemoteException {
@@ -192,7 +191,20 @@ public class RmiServer implements VirtualServer {
     }
 
     public void initializeGame() throws RemoteException {
+        for (Player p : gameController.getBoard().getPlayers()){
+            //adding  normal observers to players and stations
+            for(VirtualView client : clients){
+                p.addObserver(client);
+                p.getStation().addObserver(client);
+            }
+            //adding specific observers to players and stations
+            for (Map.Entry<String, VirtualView> entry : clientsMap.entrySet()) {
+                p.addSpecificObserver(entry.getKey(), entry.getValue());
+                p.getStation().addSpecificObserver(entry.getKey(), entry.getValue());
+            }
+        }
         try {
+            //initialize gameController
             gameController.InitializeGame();
         } catch (NotValidMoveException e) {
             throw new RuntimeException(e);

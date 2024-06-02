@@ -29,8 +29,8 @@ class PlayerTest {
         Points obj = new ObjectiveAssign();
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
         CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
-        isa.addCardToHand(cardAnimal1);
-        isa.addCardToHand(cardAnimal2);
+        isa.addCardToHandWithObserver(cardAnimal1);
+        isa.addCardToHandWithObserver(cardAnimal2);
         assertEquals(hand, isa.getHand());
 
     }
@@ -71,7 +71,7 @@ class PlayerTest {
         PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
         ArrayList<CardResource> hand = new ArrayList<>();
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
-        isa.setSelectibleObjectives(cards);
+        isa.setSelectibleObjectivesWithObserver(cards);
         assertEquals(cards, isa.getSelectibleObjectives());
 
     }
@@ -91,12 +91,12 @@ class PlayerTest {
         PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
         ArrayList<CardResource> hand = new ArrayList<>();
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
-        isa.setSecretObjective(objcard1);
+        isa.setSecretObjectiveWithObs(objcard1);
         assertEquals(objcard1, isa.getSecretObjective());
     }
 
     @Test
-    void removeCardFromHand() throws Exception {
+    void removeCardFromHandWithObs() throws Exception {
         Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
         Face frontTmp = new Face(new Corner(SuitEnum.QUILL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.INKWELL), new Corner(SuitEnum.ANIMAL));
         CardResource card1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
@@ -111,7 +111,7 @@ class PlayerTest {
         handexpected.add(0, card1);
         handexpected.add(1, card3);
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
-        isa.removeCardFromHand(1);
+        isa.removeCardFromHandWithObs(1);
         assertEquals(hand, handexpected);
 
     }
@@ -146,7 +146,7 @@ class PlayerTest {
         handexpected.add(1, card2);
         handexpected.add(2, card3);
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
-        isa.addCardToHand(card3);
+        isa.addCardToHandWithObserver(card3);
         assertEquals(hand, handexpected);
     }
 }
