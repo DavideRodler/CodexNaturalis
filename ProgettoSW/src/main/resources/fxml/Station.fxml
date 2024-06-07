@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="View.GUI.StationController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GUI.StationController">
+   <children>
+      <Pane layoutX="200.0" layoutY="83.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="60.0" layoutY="92.0" text="station" />
+         </children>
+      </Pane>
+      <Button layoutX="14.0" layoutY="21.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="ShowBoard" />
+      <Button layoutX="16.0" layoutY="57.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" text="NextPlayer" />
+      <Button layoutX="16.0" layoutY="94.0" mnemonicParsing="false" text="NextPlayer+1" />
+      <Button layoutX="15.0" layoutY="130.0" mnemonicParsing="false" text="NextPlayer+2" />
+      <VBox alignment="CENTER" layoutX="473.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Button mnemonicParsing="false" text="hand1" />
+            <Button mnemonicParsing="false" text="hand2" />
+            <Button mnemonicParsing="false" text="hand3" />
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

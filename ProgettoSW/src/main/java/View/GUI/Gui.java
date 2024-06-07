@@ -1,12 +1,47 @@
 package View.GUI;
 
 import View.UI;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import model.PlayingStation;
 import model.enums.TokenEnum;
 
 import java.util.ArrayList;
 
-public class Gui implements UI {
+import static javafx.application.Application.launch;
+
+public class Gui extends Application implements UI {
+
+    private StartSceneController startSceneController;
+    private GameSetupController gameSetupController;
+    private StationController stationController;
+    private ChooseNickAndTokenController chooseNickAndTokenController;
+
+    public Gui(StartSceneController startSceneController, GameSetupController gameSetupController, StationController stationController, ChooseNickAndTokenController chooseNickAndTokenController){
+        this.startSceneController = startSceneController;
+        this.gameSetupController = gameSetupController;
+        this.stationController = stationController;
+        this.chooseNickAndTokenController = chooseNickAndTokenController;
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Codex");
+        //stage.setFullScreen(true);
+        stage.show();
+    }
+
+
+    public static void main(String[] args) {
+        launch();
+    }
+
 
     @Override
     public void showStartingCard() {
@@ -15,11 +50,11 @@ public class Gui implements UI {
 
     @Override
     public void showGameTitle() {
-
     }
 
     @Override
     public String askNickname() {
+
         return null;
     }
 

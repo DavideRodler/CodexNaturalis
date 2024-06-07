@@ -1,11 +1,15 @@
 package View.GUI;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class StartSceneController {
 
@@ -19,21 +23,21 @@ public class StartSceneController {
     // - scena della scoreboard
     // - scena del vincitore
 
-    @FXML
-    private ImageView coverImage;
-
-    //metto button --> più semplice
 
     @FXML
-    void start(KeyEvent event) {
-        if(event.getCode() ==  KeyCode.ENTER){ //TODO: quando premuto enter in realtà si cambierà scena
-            coverImage.setVisible(false);
-            System.out.println("Enter pressed!");
-        }
+    private Button button;
+
+    @FXML
+    public ImageView coverImage;
+
+    public void makeImageDisappear(){
+        coverImage.setVisible(false);
     }
 
     @FXML
-    void startGame(MouseEvent event) {
-        coverImage.setVisible(false);
+    void goToSetup(MouseEvent event) throws IOException {
+        Stage stage = (Stage) button.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseNicknameAndToken.fxml"));
+        stage.setScene(new Scene(root));
     }
 }
