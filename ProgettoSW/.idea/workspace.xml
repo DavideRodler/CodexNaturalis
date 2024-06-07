@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="scheletro scene gui">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StartSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StartSceneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/startGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/startGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/ChooseNickAndToken.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/ChooseNicknameAndToken.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/StartScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/StartScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,12 +47,12 @@
     &quot;assignee&quot;: &quot;tommypic&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler.git",
-    "accountId": "4557c571-f714-49c9-a328-43d1fd17bd55"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler.git&quot;,
+    &quot;accountId&quot;: &quot;4557c571-f714-49c9-a328-43d1fd17bd55&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>

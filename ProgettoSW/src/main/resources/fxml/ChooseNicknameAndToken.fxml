@@ -26,9 +26,14 @@
             <Font size="24.0" />
          </font></Label>
       <ChoiceBox fx:id="ChooseToken" layoutX="685.0" layoutY="152.0" prefHeight="44.0" prefWidth="232.0" />
-      <Button fx:id="enter" layoutX="543.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#enterNicknameAndToken" prefHeight="85.0" prefWidth="191.0" text="Enter">
+      <Button fx:id="btnnickname" layoutX="971.0" layoutY="69.0" mnemonicParsing="false" onMouseClicked="#enterNicknameAndToken" prefHeight="45.0" prefWidth="200.0" text="enter nickname">
          <font>
             <Font size="24.0" />
          </font></Button>
+      <Button fx:id="btntoken" layoutX="971.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#enterNicknameAndToken" prefHeight="45.0" prefWidth="200.0" text="enter token">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
