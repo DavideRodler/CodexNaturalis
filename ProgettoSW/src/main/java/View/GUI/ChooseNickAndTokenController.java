@@ -22,35 +22,33 @@ public class ChooseNickAndTokenController implements Initializable {
     private TextField chooseNickname;
 
     @FXML
-    private ChoiceBox<TokenEnum> ChooseToken;
+    private ChoiceBox<TokenEnum> chooseToken;
 
     @FXML
-    private Button enter;
+    private Button btnnickname;
+
+    @FXML
+    private Button btntoken;
 
     @FXML
     private Label label;
 
+
+    @FXML
+    public String enterNickname() {
+        String nickname = chooseNickname.getText();
+        return nickname;
+    }
+
+    @FXML
+    public TokenEnum enterToken() {
+        TokenEnum token = chooseToken.getValue();
+        return token;
+    }
+
     @FXML
     public void enterNicknameAndToken(MouseEvent event) {
-        do{
-            changeLabelText("Please enter a nickname!");
-        } while(chooseNickname == null);
 
-        do{
-            changeLabelText("Please choose a token!");
-        } while((ChooseToken.getValue() == null));
-
-        changeLabelText("Waiting for other players...");
-
-//        if(chooseNickname != null){
-//            if((ChooseToken.getValue() == null)){
-//                changeLabelText("Please choose a token!");
-//            } else{
-//                changeLabelText("Waiting for other players...");
-//            }
-//        } else{
-//            changeLabelText("Please enter a nickname!");
-//        }
     }
 
 
@@ -63,7 +61,7 @@ public class ChooseNickAndTokenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) { //fare qualcosa prima che parta questa scena
        // ArrayList<TokenEnum> tokens = ask;
-        ChooseToken.getItems().addAll(TokenEnum.YELLOW, TokenEnum.BLUE, TokenEnum.RED, TokenEnum.GREEN); //DA AGGIORNARE
+        chooseToken.getItems().addAll(TokenEnum.YELLOW, TokenEnum.BLUE, TokenEnum.RED, TokenEnum.GREEN); //DA AGGIORNARE
 
 
     }

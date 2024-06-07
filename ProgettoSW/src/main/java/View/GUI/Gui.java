@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.PlayingStation;
+import model.client.ClientBoard;
 import model.enums.TokenEnum;
 
 import java.util.ArrayList;
@@ -16,15 +17,17 @@ import static javafx.application.Application.launch;
 public class Gui extends Application implements UI {
 
     private StartSceneController startSceneController;
-    private GameSetupController gameSetupController;
     private StationController stationController;
     private ChooseNickAndTokenController chooseNickAndTokenController;
+    private ClientBoard clientBoard;
 
-    public Gui(StartSceneController startSceneController, GameSetupController gameSetupController, StationController stationController, ChooseNickAndTokenController chooseNickAndTokenController){
+
+
+    public Gui(StartSceneController startSceneController, StationController stationController, ChooseNickAndTokenController chooseNickAndTokenController, ClientBoard clientBoard){
         this.startSceneController = startSceneController;
-        this.gameSetupController = gameSetupController;
         this.stationController = stationController;
         this.chooseNickAndTokenController = chooseNickAndTokenController;
+        this.clientBoard = clientBoard;
     }
 
     @Override
@@ -45,7 +48,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public void showStartingCard() {
-
+        stationController.showStartingCard(clientBoard.getMyplayer().getStation().getCardStarting());
     }
 
     @Override
@@ -54,8 +57,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public String askNickname() {
-
-        return null;
+        return chooseNickAndTokenController.enterNickname();
     }
 
     @Override
@@ -65,32 +67,31 @@ public class Gui extends Application implements UI {
 
     @Override
     public boolean askStartingCardPlayedBack() {
-        return false;
+        return stationController.chooseSideStartingCard();
     }
 
     @Override
     public void printCommonObjectives() {
-
+        stationController.show2CommonObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
     }
 
     @Override
     public void printSecretObjective() {
-
     }
 
     @Override
     public void printSelectableObjectives() {
-
+        stationController.showSelectableObjectives(clientBoard.getMyplayer().getSelectibleObjectives().get(0), clientBoard.getMyplayer().getSelectibleObjectives().get(1));
     }
 
     @Override
     public int askObjectiveCard() {
-        return 0;
+        return stationController.chooseSecretObjective();
     }
 
     @Override
     public void print4CentralCards() {
-
+        stationController.show4CentralCards(clientBoard.getCentralCardsGold().get(0), clientBoard.getCentralCardsGold().get(1),clientBoard.getCentralCardsResource().get(0), clientBoard.getCentralCardsResource().get(1));
     }
 
     @Override
@@ -105,7 +106,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printPlayerHand() {
-
+        stationController.showPlayerHand(clientBoard.getMyplayer().getHand().get(0),clientBoard.getMyplayer().getHand().get(1), clientBoard.getMyplayer().getHand().get(2),clientBoard.getMyplayer().getSecretObjective());
     }
 
     @Override
@@ -135,7 +136,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public TokenEnum askToken(ArrayList<TokenEnum> availableTokens) {
-        return null;
+        return chooseNickAndTokenController.enterToken();
     }
 
     @Override
