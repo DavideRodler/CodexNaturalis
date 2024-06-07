@@ -160,3 +160,12 @@ public class Gui extends Application implements UI {
 
     }
 }
+
+//TODO:
+// - caricare carte -> seguo ID (da ogni front posso risalire al back - trovo pattern)
+// - passare da una scena all'altra tramite button
+// - salvare scelte di un giocatore a seconda del button
+// - COME PIAZZARE CARTE
+// - come passare da salvataggio giocatori a start game
+// - caricare bene immagini nelle ImageView
+// - label nel salvataggio nickname e token

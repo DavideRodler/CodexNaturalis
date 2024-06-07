@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="buttons">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="station test xml">
+      <change afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ScoreBoardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/ScoreBoard.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +21,8 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -313,14 +312,6 @@
       <workItem from="1714317124791" duration="17270000" />
       <workItem from="1714383026397" duration="8112000" />
       <workItem from="1717747226183" duration="1138000" />
-    </task>
-    <task id="LOCAL-00007" summary="put void instead of objective in method StartingCardDeck">
-      <option name="closed" value="true" />
-      <created>1711099931919</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1711099931919</updated>
     </task>
     <task id="LOCAL-00008" summary="Prova costruttoti file Json">
       <option name="closed" value="true" />
@@ -706,7 +697,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717756321537</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="station test xml">
+      <option name="closed" value="true" />
+      <created>1717763095986</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1717763095986</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -774,7 +773,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Aggiunta delle carte alla mano dei Players" />
     <MESSAGE value="Fixati bug che c'erano con le stampe dei thread e codice semplificato" />
     <MESSAGE value="Fixato bug nel metodo di Cli2 che lanciava CastException sulla stampa delle carte oro" />
     <MESSAGE value="Implementato RmiCompleto tranne controllo fine partita. Da controllare se il piazzamento delle carte è corretto." />
@@ -799,7 +797,8 @@
     <MESSAGE value="riordinato package view" />
     <MESSAGE value="buttons" />
     <MESSAGE value="GUI setUp" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI setUp" />
+    <MESSAGE value="station test xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="station test xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
