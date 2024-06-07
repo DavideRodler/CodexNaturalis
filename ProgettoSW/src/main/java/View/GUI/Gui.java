@@ -136,6 +136,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public TokenEnum askToken(ArrayList<TokenEnum> availableTokens) { //TODO: passare per al controller l'arraylist
+        chooseNickAndTokenController.setAvailableTokens(availableTokens);
         return chooseNickAndTokenController.enterToken();
     }
 

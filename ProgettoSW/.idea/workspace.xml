@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="buttons">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +22,8 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -194,7 +194,7 @@
       <recent name="model.cards.face" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Gui">
+  <component name="RunManager" selected="Application.startGui">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
       <module name="ProgettoSW" />
@@ -272,10 +272,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.startGui" />
         <item itemvalue="Application.Gui" />
         <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.ServerApp" />
-        <item itemvalue="Application.startGui" />
         <item itemvalue="JUnit.PlacingConditionTest.test_goldCard_cost" />
       </list>
     </recent_temporary>
@@ -313,14 +313,6 @@
       <workItem from="1714317124791" duration="17270000" />
       <workItem from="1714383026397" duration="8112000" />
       <workItem from="1717747226183" duration="1138000" />
-    </task>
-    <task id="LOCAL-00006" summary="fix objective">
-      <option name="closed" value="true" />
-      <created>1711099572921</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1711099572921</updated>
     </task>
     <task id="LOCAL-00007" summary="put void instead of objective in method StartingCardDeck">
       <option name="closed" value="true" />
@@ -706,7 +698,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717749502557</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="GUI setUp">
+      <option name="closed" value="true" />
+      <created>1717756321537</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1717756321537</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -774,7 +774,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="esempio Socket per capire il funzionamento e per poter fare un pull" />
     <MESSAGE value="Aggiunta delle carte alla mano dei Players" />
     <MESSAGE value="Fixati bug che c'erano con le stampe dei thread e codice semplificato" />
     <MESSAGE value="Fixato bug nel metodo di Cli2 che lanciava CastException sulla stampa delle carte oro" />
@@ -799,7 +798,8 @@
     <MESSAGE value="inizio classi per gui" />
     <MESSAGE value="riordinato package view" />
     <MESSAGE value="buttons" />
-    <option name="LAST_COMMIT_MESSAGE" value="buttons" />
+    <MESSAGE value="GUI setUp" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI setUp" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

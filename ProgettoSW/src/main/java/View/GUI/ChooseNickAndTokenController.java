@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ChooseNickAndTokenController implements Initializable {
+public class ChooseNickAndTokenController{
 //TODO: qua schermata con label + textBox per inserire il proprio nickname + tendina per scegliere il token
 // infine label che dice di attendere gli altri giocatori
     @FXML
@@ -46,24 +46,12 @@ public class ChooseNickAndTokenController implements Initializable {
         return token;
     }
 
-    @FXML
-    public void enterNicknameAndToken(MouseEvent event) {
-
-    }
-
 
     @FXML
-    private void changeLabelText(String text){
-        label.setText(text);
-    }
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) { //fare qualcosa prima che parta questa scena
-       // ArrayList<TokenEnum> tokens = ask;
-        chooseToken.getItems().addAll(TokenEnum.YELLOW, TokenEnum.BLUE, TokenEnum.RED, TokenEnum.GREEN); //DA AGGIORNARE
-
-
+    public void setAvailableTokens(ArrayList<TokenEnum> tokens){
+        for(TokenEnum token: tokens){
+            chooseToken.getItems().add(token);
+        }
     }
 
 }
