@@ -25,10 +25,10 @@ public class ChooseNickAndTokenController implements Initializable {
     private ChoiceBox<TokenEnum> chooseToken;
 
     @FXML
-    private Button btnnickname;
+    private Button btnNickname;
 
     @FXML
-    private Button btntoken;
+    private Button btnToken;
 
     @FXML
     private Label label;
@@ -41,7 +41,7 @@ public class ChooseNickAndTokenController implements Initializable {
     }
 
     @FXML
-    public TokenEnum enterToken() {
+    public TokenEnum enterToken() { //TODO: per inizializzarlo possiamo al posto del meotodo initialize, dalla gui ci facciamo passare i token disponibili e diamo solo quelli come scelta
         TokenEnum token = chooseToken.getValue();
         return token;
     }

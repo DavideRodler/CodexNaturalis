@@ -15,73 +15,73 @@ import model.cards.CardStarting;
 public class StationController {
 
         @FXML
-        private Button btnchoosestartingcard;
+        private Button btnChooseStartingCard;
 
         @FXML
-        private Button btnobj1;
+        private Button btnSelectableObj1;
 
         @FXML
-        private Button btnobj2;
+        private Button btnSelectableObj2;
 
         @FXML
-        private Button btnplayerplus1;
+        private Button btnOtherPlayer1;
 
         @FXML
-        private Button btnplayerplus2;
+        private Button btnOtherPlayer2;
 
         @FXML
-        private Button btnplayerplus3;
+        private Button btnOtherPlayer3;
 
         @FXML
-        private Button btnscoreboard;
+        private Button btnScoreboard;
 
         @FXML
-        private Button btnturnstartingcard;
+        private Button btnTurnStartingCard;
 
         @FXML
-        private ImageView cardhand1;
+        private ImageView cardHand1;
 
         @FXML
-        private ImageView cardhand2;
+        private ImageView cardHand2;
 
         @FXML
-        private ImageView cardhand3;
+        private ImageView cardHand3;
 
         @FXML
-        private ImageView centralcard1;
+        private ImageView centralCard1;
 
         @FXML
-        private ImageView centralcard2;
+        private ImageView centralCard2;
 
         @FXML
-        private ImageView centralcard3;
+        private ImageView centralCard3;
 
         @FXML
-        private ImageView centralcard4;
+        private ImageView centralCard4;
 
         @FXML
-        private ImageView chooseobj1;
+        private ImageView chooseObj1;
 
         @FXML
-        private ImageView chooseobj2;
+        private ImageView choosechooseObj2;
 
         @FXML
-        private ImageView commonobj1;
+        private ImageView commonObj1;
 
         @FXML
-        private ImageView commonobj2;
+        private ImageView commonObj2;
 
         @FXML
-        private ImageView deckgold;
+        private ImageView deckGold;
 
         @FXML
-        private ImageView deckresource;
+        private ImageView deckResource;
 
         @FXML
-        private ImageView secretobj;
+        private ImageView secretObj;
 
         @FXML
-        private ImageView startingcard;
+        private ImageView startingCard;
 
         public void show4CentralCards(CardGold cardGold1, CardGold cardGold2, CardResource cardResource1, CardResource cardResource2){
                 // centralcard1 = immagine cardGold1
