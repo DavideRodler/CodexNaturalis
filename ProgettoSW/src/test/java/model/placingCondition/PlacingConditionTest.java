@@ -48,11 +48,7 @@ public class PlacingConditionTest {
         int inkwellIn = Player1Hand.get(0).countResource(SuitEnum.INKWELL);
         int quillIn = Player1Hand.get(0).countResource(SuitEnum.QUILL);
         int manuscriptIn = Player1Hand.get(0).countResource(SuitEnum.MANUSCRIPT);
-        try{game.addCardToPlayingStation(Player1, Player1Hand.get(0).getId(),true,39,39);}
-        catch (NotValidMoveException e){
-            System.out.println(e.getMessage());
-            flag=false;
-        }
+        game.addCardToPlayingStation(Player1, Player1Hand.get(0).getId(),true,39,39);
         int punti = game.getBoard().getPlayer(game.getCurrentPlayer()).getPoints();
         int animals = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountAnimal();
         int plants = game.getBoard().getPlayer(game.getCurrentPlayer()).getStation().getCountPlant();

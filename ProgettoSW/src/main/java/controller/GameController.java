@@ -22,7 +22,6 @@ public class GameController implements Serializable {
         return board;
     }
 
-
     //costructor
     public GameController() {
         initGameController();
@@ -337,7 +336,7 @@ public class GameController implements Serializable {
         if (board.getPlayers().get(board.getPlayernumber()-1).getNickname().equals(board.getCurrentPlayer())) {
             //controllo ci sia almeno un player che ha fatto piu' di 20 punti
             for (Player player : board.getPlayers()) {
-                if (player.getPoints() > 20) {
+                if (player.getPoints() >= 20) {
                     return true;
                 }
             }
@@ -352,7 +351,7 @@ public class GameController implements Serializable {
      * contains as the first element the total points that the players has scored
      * and as the second element the number of objective that he has completed
      */
-    public HashMap<String,ArrayList<Integer>> getScoreBoard() {
+    public LinkedHashMap<String,ArrayList<Integer>> getScoreBoard() {
         HashMap<String, ArrayList<Integer>> scoreBoard = new HashMap<>();
         ArrayList<Player> players = board.getPlayers();
 
@@ -399,7 +398,7 @@ public class GameController implements Serializable {
                         Map.Entry::getValue,
                         (oldValue, _) -> oldValue, LinkedHashMap::new));
 
-        int classificato = 1;
+        int classificato = 0;
         int prevPlayerPoints = -1;
         int prevPlayerObjectiveCount = -1;
         for (Map.Entry<String, ArrayList<Integer>> entry : sortedMap.entrySet()) {
@@ -408,7 +407,7 @@ public class GameController implements Serializable {
                 prevPlayerObjectiveCount = entry.getValue().get(1);
                 classificato++;
             }
-            entry.getValue().add(3, classificato);
+            entry.getValue().add(2, classificato);
         }
         return sortedMap;
     }

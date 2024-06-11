@@ -283,9 +283,16 @@ public class RmiServer implements VirtualServer {
         }
     }
     public  void startGame(){
-        while (!gameController.isGamefinished()){
+        while (!gameController.getBoard().getGameState().equals(GameState.FINISHED)){
             try {
                 clientsMap.get(gameController.getBoard().getCurrentPlayer()).notifyItIsYourTurn();
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        for (VirtualView client : clients) {
+            try {
+                client.notifyGameFinished(gameController.getScoreBoard());
             } catch (RemoteException e) {
                 throw new RuntimeException(e);
             }

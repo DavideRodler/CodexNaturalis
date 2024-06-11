@@ -4,6 +4,7 @@ import model.PlayingStation;
 import model.enums.TokenEnum;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public interface UI {
     void showStartingCard();
@@ -49,6 +50,8 @@ public interface UI {
    void printStationAfterCardHasBeenAdded();
 
    void printOtherPlayersStation(String nickname);
+
+    void printFinalPoints(LinkedHashMap<String, ArrayList<Integer>> map);
 
     TokenEnum askToken(ArrayList<TokenEnum> availableTokens);
 

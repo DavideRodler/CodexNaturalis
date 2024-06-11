@@ -22,6 +22,7 @@ import Socket.Messages.*;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class ClientController {
@@ -334,5 +335,9 @@ public class ClientController {
 
     public void notifyGameAlreadyStarted() {
         System.out.println("The game has already started, you can't join now");
+    }
+
+    public void notifyGameFinished(LinkedHashMap<String, ArrayList<Integer>> scoreBoard) {
+        ui.printFinalPoints(scoreBoard);
     }
 }

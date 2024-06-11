@@ -11,6 +11,7 @@ import model.client.ClientBoard;
 import model.enums.TokenEnum;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 import static javafx.application.Application.launch;
 
@@ -131,6 +132,11 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printOtherPlayersStation(String nickname) {
+
+    }
+
+    @Override
+    public void printFinalPoints(LinkedHashMap<String, ArrayList<Integer>> map) {
 
     }
 

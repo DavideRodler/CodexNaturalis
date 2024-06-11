@@ -7,6 +7,9 @@ import Socket.Messages.Message;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class RmiClient extends UnicastRemoteObject implements VirtualView {
 
@@ -75,6 +78,12 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     @Override
     public void notifyItIsYourTurn() throws RemoteException{
         clientController.notifyItIsYourTurn();
+
+    }
+
+    @Override
+    public void notifyGameFinished(LinkedHashMap<String, ArrayList<Integer>> scoreBoard) throws RemoteException {
+        clientController.notifyGameFinished(scoreBoard);
 
     }
 }
