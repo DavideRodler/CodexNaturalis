@@ -298,6 +298,15 @@ public class ClientController {
                 clientModel.getCentralCardsResource().removeIf(c -> c.getId() == centralCardResourceRemovedMessage.getCardID());
                 clientModel.getCentralCardsGold().removeIf(c -> c.getId() == centralCardResourceRemovedMessage.getCardID());
                 break;
+            case "BackOfFirstCardOfDeck":
+                BackOfFirstCardOfDeckMessage backOfFirstCardOfDeckMessage = (BackOfFirstCardOfDeckMessage) message;
+                if (backOfFirstCardOfDeckMessage.isDeckGold()){
+                    clientModel.setBackOfGoldDeck(backOfFirstCardOfDeckMessage.getBackOfCard());
+                }
+                else {
+                    clientModel.setBackOfResourceDeck(backOfFirstCardOfDeckMessage.getBackOfCard());
+                }
+                break;
 
         }
 

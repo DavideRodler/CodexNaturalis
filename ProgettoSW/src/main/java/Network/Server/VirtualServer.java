@@ -37,7 +37,4 @@ public interface VirtualServer extends Remote {
 
     void addCardFromCentralCardsToPlayerHand(String nickname, int id) throws RemoteException, NotMyTurnException;
 
-    CardGold getCardFromGoldDeck() throws RemoteException;
-
-    CardResource getCardFromResourceDeck() throws RemoteException;
 }

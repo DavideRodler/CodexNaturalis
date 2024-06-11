@@ -60,10 +60,6 @@ public class PlayingBoard extends ObservableModel {
 
 
     //-------------------GETTER-----------------------------
-    public LinkedList<CardGold> getDeckCardGold() {
-        return deckCardGold;
-    }
-
     public CardObjective getFirstObjective() {
         return firstObjective;
     }
@@ -91,13 +87,27 @@ public class PlayingBoard extends ObservableModel {
     public LinkedList<CardObjective> getDeckCardObjective() {
         return deckCardObjective;
     }
-
-    public LinkedList<CardResource> getDeckCardResource() {
-        return deckCardResource;
-    }
-
     public LinkedList<CardStarting> getDeckCardStarting() {
         return deckCardStarting;
+    }
+
+    public CardGold getCardFromGoldDeck() {
+        CardGold card = deckCardGold.pop();
+        try {
+            notifyObservers(new BackOfFirstCardOfDeckMessage(deckCardGold.getFirst().getSymbol(),true));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+        return card;
+    }
+    public CardResource getCardFromResourceDeck() {
+        CardResource card = deckCardResource.pop();
+        try {
+            notifyObservers(new BackOfFirstCardOfDeckMessage(deckCardResource.getFirst().getSymbol(),false));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+        return card;
     }
 
     public ArrayList<Player> getPlayers() {
@@ -129,10 +139,6 @@ public class PlayingBoard extends ObservableModel {
 
     public void setCurrentPlayer(String currentPlayer) {
         this.currentPlayer = currentPlayer;
-    }
-
-    public void setDeckCardGold(LinkedList<CardGold> deckCardGold) {
-        this.deckCardGold = deckCardGold;
     }
 
     public void setDeckCardObjective(LinkedList<CardObjective> deckCardObjective) {

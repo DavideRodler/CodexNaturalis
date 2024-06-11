@@ -180,16 +180,6 @@ public class RmiServer implements VirtualServer {
     }
 
 
-    @Override
-    public CardGold getCardFromGoldDeck() throws RemoteException {
-        return gameController.getBoard().getDeckCardGold().getLast();
-    }
-
-    @Override
-    public CardResource getCardFromResourceDeck() throws RemoteException {
-        return gameController.getBoard().getDeckCardResource().getLast();
-    }
-
     public void initializeGame() throws RemoteException {
         for (Player p : gameController.getBoard().getPlayers()){
             //adding  normal observers to players and stations

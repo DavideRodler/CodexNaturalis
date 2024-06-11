@@ -5,6 +5,7 @@ import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.enums.GameState;
+import model.enums.SuitEnum;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ public class ClientBoard implements Serializable {
     private GameState gameState;
     private Player myplayer;
     private ArrayList<ReductPlayer> otherplayers;
+    private SuitEnum backOfResourceDeck;
+    private SuitEnum backOfGoldDeck;
 
     public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, ArrayList<ReductPlayer> otherplayers, Player myplayer, ArrayList<CardResource> centralCardsResource, ArrayList<CardGold> centralCardsGold, GameState gameState) {
         this.firstObjective = firstObjective;
@@ -61,6 +64,14 @@ public class ClientBoard implements Serializable {
         return gameState;
     }
 
+    public SuitEnum getBackOfResourceDeck() {
+        return backOfResourceDeck;
+    }
+
+    public SuitEnum getBackOfGoldDeck() {
+        return backOfGoldDeck;
+    }
+
     public void setCentralCardsGold(ArrayList<CardGold> centralCardsGold) {
         this.centralCardsGold = centralCardsGold;
     }
@@ -94,5 +105,13 @@ public class ClientBoard implements Serializable {
 
     public void setSecondObjective(CardObjective secondObjective) {
         this.secondObjective = secondObjective;
+    }
+
+    public void setBackOfResourceDeck(SuitEnum backOfResourceDeck) {
+        this.backOfResourceDeck = backOfResourceDeck;
+    }
+
+    public void setBackOfGoldDeck(SuitEnum backOfGoldDeck) {
+        this.backOfGoldDeck = backOfGoldDeck;
     }
 }

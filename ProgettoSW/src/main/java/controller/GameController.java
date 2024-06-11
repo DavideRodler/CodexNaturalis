@@ -132,17 +132,17 @@ public class GameController implements Serializable {
 
         //populating hands
         board.getPlayers().stream().forEach(player -> {
-            player.addCardToHandWithObserver(board.getDeckCardResource().pop());
-            player.addCardToHandWithObserver(board.getDeckCardResource().pop());
-            player.addCardToHandWithObserver(board.getDeckCardGold().pop());
+            player.addCardToHandWithObserver(board.getCardFromResourceDeck());
+            player.addCardToHandWithObserver(board.getCardFromResourceDeck());
+            player.addCardToHandWithObserver(board.getCardFromGoldDeck());
         });
 
         //populating the central board
-        board.addCardResource(board.getDeckCardResource().pop());
-        board.addCardResource(board.getDeckCardResource().pop());
+        board.addCardResource(board.getCardFromResourceDeck());
+        board.addCardResource(board.getCardFromResourceDeck());
 
-        board.addCardGold(board.getDeckCardGold().pop());
-        board.addCardGold(board.getDeckCardGold().pop());
+        board.addCardGold(board.getCardFromGoldDeck());
+        board.addCardGold(board.getCardFromGoldDeck());
 
         //giving each player his two personal objectives
         ArrayList<CardObjective> cardObjectives = new ArrayList<>();
@@ -257,9 +257,9 @@ public class GameController implements Serializable {
         Player p = board.getPlayer(nickname);
         if(p.getNumberOfCardInHand() == 2) {
             if(deck == 6){
-                p.addCardToHandWithObserver(board.getDeckCardGold().pop());
+                p.addCardToHandWithObserver(board.getCardFromGoldDeck());
             }
-            else p.addCardToHandWithObserver(board.getDeckCardResource().pop());
+            else p.addCardToHandWithObserver(board.getCardFromResourceDeck());
         }
         else throw new NotValidMoveException("you can't have another card");
         board.setGameState(GameState.CHANGING_TURN);
@@ -437,10 +437,10 @@ public class GameController implements Serializable {
 
     private void repopulatePlayingBoard(){
         if (board.getCentralCardsResource().size() < 2){
-            board.addCardResource(board.getDeckCardResource().pop());
+            board.addCardResource(board.getCardFromResourceDeck());
         }
         if (board.getCentralCardsGold().size() < 2){
-            board.addCardGold(board.getDeckCardGold().pop());
+            board.addCardGold(board.getCardFromGoldDeck());
         }
     }
 
