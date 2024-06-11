@@ -6,7 +6,12 @@ import model.enums.SuitEnum;
 
 import java.io.Serializable;
 
-public class ObjectiveCountingGold implements Objective,Points ,Serializable {
+
+/**
+ * this class represents the objective that counts the gold cards, it is used both in the cardObjective to count the
+ *
+ */
+public class ObjectiveCountingGold implements Objective, Points ,Serializable {
 
   private int countInkwell;
   private int countManuscript;
@@ -19,6 +24,10 @@ public class ObjectiveCountingGold implements Objective,Points ,Serializable {
   }
 
 
+  /**
+   * @param station is the station where we want to count the points
+   * @return the points of the objective
+   */
   @Override
   public int countObjectivePoints(PlayingStation station) {
     int points = 0;
@@ -49,8 +58,18 @@ public class ObjectiveCountingGold implements Objective,Points ,Serializable {
     return countManuscript;
   }
 
+
+  /**
+   * @param station is the station where we want to count the points
+   * @param card is the card we want to place(in this case we don't need it)
+   * @param x is the position(in this case we don't need it)
+   * @param y is the position(in this case we don't need it)
+   * @return the points of the objective
+   * this function is used to count the points of the objective
+   * and also to count the points of a gold card
+   */
   @Override
   public int countObjectivePoints(PlayingStation station, CardResource card, Integer x, Integer y) {
-    return countObjectivePoints(station,null,null,null);
+    return countObjectivePoints(station);
   }
 }
