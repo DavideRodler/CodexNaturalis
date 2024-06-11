@@ -332,29 +332,49 @@ public class PlayingStation extends ObservableModel implements Serializable {
                 switch (counter) {
                     case 0: {
                         if (numCornerCovered.get(var)) {
-                            this.getMap().get(var).getFront().getDownRight().setCovered(true);
-                            this.updateCounters(this.getMap().get(var).getFront().getDownRight());
+                            if (this.getMap().get(var).getPlayingBack()){
+                                this.getMap().get(var).getBack().getDownRight().setCovered(true);
+                                this.updateCounters(this.getMap().get(var).getBack().getDownRight());
+                            }else{
+                                this.getMap().get(var).getFront().getDownRight().setCovered(true);
+                                this.updateCounters(this.getMap().get(var).getFront().getDownRight());
+                            }
                         }
                         break;
                     }
                     case 1: {
                         if (numCornerCovered.get(var)) {
-                            this.getMap().get(var).getFront().getUpRight().setCovered(true);
-                            this.updateCounters(this.getMap().get(var).getFront().getUpRight());
+                            if (this.getMap().get(var).getPlayingBack()){
+                                this.getMap().get(var).getBack().getUpRight().setCovered(true);
+                                this.updateCounters(this.getMap().get(var).getBack().getUpRight());
+                            }else{
+                                this.getMap().get(var).getFront().getUpRight().setCovered(true);
+                                this.updateCounters(this.getMap().get(var).getFront().getUpRight());
+                            }
                         }
                         break;
                     }
                     case 2: {
                         if (numCornerCovered.get(var)) {
-                            this.getMap().get(var).getFront().getDownLeft().setCovered(true);
-                            this.updateCounters(this.getMap().get(var).getFront().getDownLeft());
+                            if (this.getMap().get(var).getPlayingBack()){
+                                this.getMap().get(var).getBack().getDownLeft().setCovered(true);
+                                this.updateCounters(this.getMap().get(var).getBack().getDownLeft());
+                            }else{
+                                this.getMap().get(var).getFront().getDownLeft().setCovered(true);
+                                this.updateCounters(this.getMap().get(var).getFront().getDownLeft());
+                            }
                         }
                         break;
                     }
                     case 3: {
                         if (numCornerCovered.get(var)) {
-                            this.getMap().get(var).getFront().getUpLeft().setCovered(true);
-                            this.updateCounters(this.getMap().get(var).getFront().getUpLeft());
+                            if (this.getMap().get(var).getPlayingBack()){
+                                this.getMap().get(var).getBack().getUpLeft().setCovered(true);
+                                this.updateCounters(this.getMap().get(var).getBack().getUpLeft());
+                            }else{
+                                this.getMap().get(var).getFront().getUpLeft().setCovered(true);
+                                this.updateCounters(this.getMap().get(var).getFront().getUpLeft());
+                            }
                         }
                         break;
                     }

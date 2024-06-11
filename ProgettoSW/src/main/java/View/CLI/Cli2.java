@@ -377,6 +377,7 @@ public class Cli2 implements UI {
 //    }
 
 
+
     public void printFinalPoints(LinkedHashMap<String,ArrayList<Integer>> map){
         System.out.println("The game is over! Here are the final points ");
         System.out.println("Drumroll please..............");
