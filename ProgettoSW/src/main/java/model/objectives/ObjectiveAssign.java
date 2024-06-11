@@ -15,6 +15,7 @@ public class ObjectiveAssign implements Points, Serializable {
             case 3 -> 3;
             case 4 -> 4;
             case 5 -> 5;
+            case 20 -> 20;
             default -> 0;
         };
     }

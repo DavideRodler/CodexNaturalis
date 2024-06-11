@@ -20,7 +20,7 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
 
     public void connectToServer() throws RemoteException{
         this.server.connectClient(this);
-        }
+    }
 
     @Override
     public void update(Message message) throws RemoteException {

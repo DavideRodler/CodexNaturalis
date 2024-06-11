@@ -40,7 +40,7 @@ public class ServerApp implements Remote {
                     System.out.println("Invalid IP ❌");
                 }
             } while (true);
-
+            System.setProperty("java.rmi.server.hostname", input);
             VirtualServer server = new RmiServer();
             try{
                 VirtualServer stub = (VirtualServer) UnicastRemoteObject.exportObject(server, 0);

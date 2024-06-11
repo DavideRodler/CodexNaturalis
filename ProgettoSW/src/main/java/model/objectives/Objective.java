@@ -5,7 +5,4 @@ import model.cards.CardResource;
 
 public interface Objective {
     int countObjectivePoints(PlayingStation station);
-
-
-
 }
