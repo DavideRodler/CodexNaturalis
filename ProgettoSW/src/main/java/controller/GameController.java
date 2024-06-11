@@ -391,7 +391,26 @@ public class GameController implements Serializable {
             //populating the board
             scoreBoard.put(player.getNickname(), pointsArraylist);
         }
-        return scoreBoard;
+
+        LinkedHashMap<String, ArrayList<Integer>> sortedMap = scoreBoard.entrySet().stream()
+                .sorted((e1, e2) -> e2.getValue().get(0).compareTo(e1.getValue().get(0)))
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (oldValue, _) -> oldValue, LinkedHashMap::new));
+
+        int classificato = 1;
+        int prevPlayerPoints = -1;
+        int prevPlayerObjectiveCount = -1;
+        for (Map.Entry<String, ArrayList<Integer>> entry : sortedMap.entrySet()) {
+            if (entry.getValue().get(0) != prevPlayerPoints || entry.getValue().get(1) != prevPlayerObjectiveCount) {
+                prevPlayerPoints = entry.getValue().get(0);
+                prevPlayerObjectiveCount = entry.getValue().get(1);
+                classificato++;
+            }
+            entry.getValue().add(3, classificato);
+        }
+        return sortedMap;
     }
 
 
