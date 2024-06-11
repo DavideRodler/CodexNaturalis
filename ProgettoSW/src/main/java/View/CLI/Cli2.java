@@ -7,6 +7,8 @@ import model.enums.TokenEnum;
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class Cli2 implements UI {
@@ -373,6 +375,19 @@ public class Cli2 implements UI {
 //            }
 //        }
 //    }
+
+
+    public void printFinalPoints(LinkedHashMap<String,ArrayList<Integer>> map){
+        System.out.println("The game is over! Here are the final points ");
+        System.out.println("Drumroll please..............");
+        for(String key : map.keySet()){
+            if(map.get(key).get(2)==1) {
+                System.out.println("Congratulations to " + key + " , you are the WINNER!");
+                System.out.println(key+" has totaled the beauty of "+map.get(key).get(0)+" points");
+            }
+            System.out.println(key +" arrived " + map.get(key).get(2) + " and has totaled "+ map.get(key).get(0) + " points");
+        }
+    }
 
     /**
      * this method asks the player to choose a token
