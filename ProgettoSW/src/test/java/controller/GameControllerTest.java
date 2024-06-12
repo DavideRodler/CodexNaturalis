@@ -145,13 +145,7 @@ class GameControllerTest {
     }
 
 
-    @Test
-    void getPlayerNumber() throws ChangedStateException, NotValidMoveException {
-        GameController game = new GameController();
-        game.setPlayerNumber(2);
-        assertEquals(2, game.getPlayerNumber());
 
-    }
 
     @Test
     void getAvailableToken() throws ChangedStateException, NotValidMoveException {

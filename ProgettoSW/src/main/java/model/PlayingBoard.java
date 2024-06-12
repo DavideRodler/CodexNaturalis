@@ -2,6 +2,7 @@ package model;
 
 import model.cards.*;
 import model.enums.GameState;
+import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 import observers.ObservableModel;
 import Socket.Messages.*;
@@ -21,6 +22,8 @@ public class PlayingBoard extends ObservableModel {
     private ArrayList<CardResource> centralCardsResource;
     private CardObjective firstObjective;
     private CardObjective secondObjective;
+    private SuitEnum firstCardOfResourceDeck;
+    private SuitEnum firstCardOfGoldDeck;
 
 
     //the current player playing

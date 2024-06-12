@@ -179,6 +179,13 @@ public class ClientController {
                 throw new RuntimeException(e);
             }
         }
+        try {
+            server.startTurn();
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        } catch (NotMyTurnException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void updateModel(Message message) throws RemoteException {
@@ -315,9 +322,7 @@ public class ClientController {
     public void setupOfPlayersNumber() {
         try {
             server.setPlayerNumber(ui.askPlayerNumber());
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        } catch (ChangedStateException e) {
+        } catch (RemoteException | ChangedStateException e) {
             throw new RuntimeException(e);
         } catch (NotValidMoveException e) {
             throw new RuntimeException(e);

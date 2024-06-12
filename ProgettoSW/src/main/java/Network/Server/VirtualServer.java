@@ -37,4 +37,6 @@ public interface VirtualServer extends Remote {
 
     void addCardFromCentralCardsToPlayerHand(String nickname, int id) throws RemoteException, NotMyTurnException;
 
+    void startTurn() throws RemoteException, NotMyTurnException;
+
 }

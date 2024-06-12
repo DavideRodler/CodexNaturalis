@@ -61,9 +61,6 @@ public class GameController implements Serializable {
         board.setGameState(GameState.SET_NAME_AND_TOKEN);
     }
 
-    public int getPlayerNumber() throws NotValidMoveException {
-        return board.getPlayernumber();
-    }
 
     /**
      * @return the list of token that are not already been choosen
