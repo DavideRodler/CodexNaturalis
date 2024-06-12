@@ -114,11 +114,14 @@ public class Cli2 implements UI {
     public boolean askStartingCardPlayedBack() {
         System.out.println("Select the front or the back of your starting card: ");
         Scanner in = new Scanner(new InputStreamReader(System.in));
-        Integer choice;
-        do {
-            System.out.println("1 for front 1, 2 for back 2");
+        int choice;
+        System.out.println("Insert 1 for choose the front or insert 2 for choose back");
+        choice = in.nextInt();
+        while (choice != 1 && choice != 2) {
+            System.out.println("Invalid choice, please try again.");
+            System.out.println("Insert 1 for choose the front or insert 2 for choose back");
             choice = in.nextInt();
-        } while (choice != 1 && choice != 2);
+        }
         return choice == 2;
     }
 
