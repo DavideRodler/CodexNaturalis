@@ -80,6 +80,32 @@ public class RmiServer implements VirtualServer {
                     }
                 }
                 break;
+            case "showHandsAndCommonObjectives":
+                synchronized (this.clients) {
+                    for (VirtualView client : clients) {
+                        new Thread(() -> {
+                            try {
+                                client.showHandsAndCommonObjectives();
+                            } catch (RemoteException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }).start();
+                    }
+                }
+                break;
+            case "setupOfSecretObjective":
+                synchronized (this.clients) {
+                    for (VirtualView client : clients) {
+                        new Thread(() -> {
+                            try {
+                                client.setupOfSecretObjective();
+                            } catch (RemoteException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }).start();
+                    }
+                }
+                break;
 
             case "startTurn":
                 try {
@@ -100,8 +126,7 @@ public class RmiServer implements VirtualServer {
                 }
             break;
 
-            case "setupOfSecretObjective":
-                break;
+
             }
 
         }
@@ -169,11 +194,13 @@ public class RmiServer implements VirtualServer {
 
     @Override
     public void setStartingCardPlayedBack(boolean playedback, String nickname, int Id) throws ChangedStateException, NotValidMoveException, RemoteException {
-        synchronized (gameController){
-        gameController.setCentralCardPlayedBack(playedback, nickname, Id);}
-
+        synchronized (gameController) {
+            gameController.setCentralCardPlayedBack(playedback, nickname, Id);
+            if (gameController.getBoard().getGameState().equals(GameState.SELECT_OBJECTIVE)) {
+                showHandsAndCommonObjectives();
+            }
+        }
     }
-
 
     @Override
     public void setSecretObjective(String nickname, Integer id) throws RemoteException, ChangedStateException, NotValidMoveException {
@@ -266,19 +293,22 @@ public class RmiServer implements VirtualServer {
         }
     }
 
-    /*public void firstHandSetup() throws RemoteException {
-        for (VirtualView client : clients) {
-            client.reciveMyFirstHand();
-        }
-        setupOfSecretObjective();
+    public void showHandsAndCommonObjectives() throws RemoteException {
+       try {
+              queue.put("showHandsAndCommonObjectives");
+         } catch (InterruptedException e) {
+              throw new RuntimeException(e);
+       }
+      setupOfSecretObjective();
     }
 
     public void setupOfSecretObjective() throws RemoteException {
-        for (VirtualView client : clients) {
-            client.setupOfSecretObjective();
+        try {
+            queue.put("setupOfSecretObjective");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
-        startGame();
-    }*/
+    }
 
     public void notifyAllPlayersConnected() throws RemoteException {
         try {

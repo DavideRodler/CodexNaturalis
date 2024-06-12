@@ -86,4 +86,14 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
         clientController.notifyGameFinished(scoreBoard);
 
     }
+
+    @Override
+    public void showHandsAndCommonObjectives() throws RemoteException {
+        clientController.showHandsAndCommonObjectives();
+    }
+
+    @Override
+    public void setupOfSecretObjective() throws RemoteException {
+        clientController.setupOfSecretObjective();
+    }
 }

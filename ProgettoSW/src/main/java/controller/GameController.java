@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class GameController implements Serializable {
     private PlayingBoard board;
-
+    private int NumberOfPlayerThatHasSettedTheStartingCardFace = 0;
     //getter
     public PlayingBoard getBoard() {
         return board;
@@ -153,13 +153,12 @@ public class GameController implements Serializable {
         //now i give for each player its Starting card
         for (Player player: board.getPlayers()){
             player.getStation().setCardStarting(board.getDeckCardStarting().pop(),player.getNickname());
-
         };
 
-        board.setGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
+
+        board.setGameState(GameState.SELECT_STARTINGCARDFACE);
+
     }
-
-
     /**
      * It is used after setStartingCardForPlayers() for selecting the face of the StartingCard
      *
@@ -168,7 +167,7 @@ public class GameController implements Serializable {
      * @throws NotValidMoveException
      */
     public void setCentralCardPlayedBack(boolean playedback,String nickname, int ID) throws NotValidMoveException, ChangedStateException {
-        assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
+        assertGameState(GameState.SELECT_STARTINGCARDFACE);
         Player player = board.getPlayers().stream()
                 .filter(x -> x.getNickname().equals(nickname))
                 .findFirst()
@@ -179,7 +178,10 @@ public class GameController implements Serializable {
             throw new RuntimeException(e);
         }
         player.getStation().setCardStartingPlayedBack(nickname,playedback);
-
+        NumberOfPlayerThatHasSettedTheStartingCardFace++;
+        if(NumberOfPlayerThatHasSettedTheStartingCardFace == board.getPlayernumber()){
+            board.setGameState(GameState.SELECT_OBJECTIVE);
+        }
     }
 
 
@@ -191,7 +193,7 @@ public class GameController implements Serializable {
     public void setObjectiveOfPlayer(String nickname,int id) throws NotValidMoveException, ChangedStateException {
 
         //check if i am in the right state
-        assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);
+        assertGameState(GameState.SELECT_OBJECTIVE);
         Player p = board.getPlayer(nickname);
 
         //i check if the objective is selectible

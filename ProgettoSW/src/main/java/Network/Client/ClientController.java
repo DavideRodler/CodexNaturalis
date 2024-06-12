@@ -87,24 +87,14 @@ public class ClientController {
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
-
-        //Printing the board
-        ui.printPlayerStation(clientModel.getMyplayer().getStation());
-
-
-        //Print Player hand
-        ui.printSetupPlayerHand();
-
-
-        setupOfSecretObjective();
     }
 
 
+    public void showPlayerHand() {
+        ui.printPlayerHand();
+    }
 
     public synchronized void setupOfSecretObjective(){
-        //printing common objectives
-        ui.printCommonObjectives();
-
         //printing selectible objectives
         ui.printSelectableObjectives();
 
@@ -353,5 +343,10 @@ public class ClientController {
 
     public void notifyGameFinished(LinkedHashMap<String, ArrayList<Integer>> scoreBoard) {
         ui.printFinalPoints(scoreBoard);
+    }
+
+    public synchronized void showHandsAndCommonObjectives() {
+        ui.printSetupPlayerHand();
+        ui.printCommonObjectives();
     }
 }

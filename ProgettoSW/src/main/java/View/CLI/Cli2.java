@@ -286,7 +286,8 @@ public class Cli2 implements UI {
     }
 
     /**
-     * this method prints everything needed for the start of the player's turn: the central cards, the common objectives, the secret objective, the hand and the station.
+     * this method prints everything needed for the start of the player's turn: the central cards, the
+     * common objectives, the secret objective, the hand and the station.
      */
     @Override
     public void printStartOfPlayerTurn() {
