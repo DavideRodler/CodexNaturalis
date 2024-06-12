@@ -27,8 +27,8 @@ public interface UI {
     int askObjectiveCard();
 
     //this method only shows the 4 Central cards at the beginning of the game
-    void print4CentralCards();
-    
+    void print4CentralCardsAndDecks();
+
     void printPlayerStation(PlayingStation playingStation);
 
     //this mehtod only print the hand and is used at the beginning of the game

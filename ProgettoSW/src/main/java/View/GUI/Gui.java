@@ -91,7 +91,7 @@ public class Gui extends Application implements UI {
     }
 
     @Override
-    public void print4CentralCards() {
+    public void print4CentralCardsAndDecks() {
         stationController.show4CentralCards(clientBoard.getCentralCardsGold().get(0), clientBoard.getCentralCardsGold().get(1),clientBoard.getCentralCardsResource().get(0), clientBoard.getCentralCardsResource().get(1));
     }
 

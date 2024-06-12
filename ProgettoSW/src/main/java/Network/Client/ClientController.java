@@ -67,7 +67,7 @@ public class ClientController {
     }
 
     public synchronized void showFourCentralCards() {
-        ui.print4CentralCards();
+        ui.print4CentralCardsAndDecks();
     }
 
     public synchronized void setupOfStartingCard() {
@@ -141,7 +141,7 @@ public class ClientController {
 
         ui.printStationAfterCardHasBeenAdded();
 
-        ui.print4CentralCards();
+        ui.print4CentralCardsAndDecks();
         int selection = ui.askWhichCardToDraw();
 
         CardResource card = null;

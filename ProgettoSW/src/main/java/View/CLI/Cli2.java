@@ -7,7 +7,6 @@ import model.enums.TokenEnum;
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
@@ -177,10 +176,11 @@ public class Cli2 implements UI {
      * this method prints the common cards.
      */
     @Override
-    public void print4CentralCards() {
+    public void print4CentralCardsAndDecks() {
         int pos = 0;
         CentralCardsCreator centralCards = new CentralCardsCreator();
-        System.out.println("Central cards are: ");
+        centralCards.initializeMatrix();
+        System.out.println("Central cards and decks: ");
         for(int i = 0; i < clientBoard.getCentralCardsGold().size(); i++){
             centralCards.addCentralCardGold(clientBoard.getCentralCardsGold().get(i), pos);
             pos++;
@@ -189,6 +189,8 @@ public class Cli2 implements UI {
             centralCards.addCentralCardRes(clientBoard.getCentralCardsResource().get(i), pos);
             pos++;
         }
+        centralCards.addDeckResToBoard(clientBoard.getBackOfResourceDeck());
+        centralCards.addDeckGoldToBoard(clientBoard.getBackOfGoldDeck());
         centralCards.printCentral();
     }
 
@@ -261,9 +263,9 @@ public class Cli2 implements UI {
         } while(cardSide < 1 || cardSide > 2);
 
         //qua il controllo viene fatto da isPlayable.
-        System.out.println("Choose x coordinates");
+        System.out.println("Choose first coordinates");
         int x = scanner.nextInt();
-        System.out.println("Choose y coordinates");
+        System.out.println("Choose second coordinates");
         int y = scanner.nextInt();
         Integer[] Choice = {cardChoice, cardSide, x, y};
         return Choice;
@@ -291,7 +293,7 @@ public class Cli2 implements UI {
      */
     @Override
     public void printStartOfPlayerTurn() {
-        print4CentralCards();
+        print4CentralCardsAndDecks();
         System.out.println();
         printCommonObjectives();
         printSecretObjective();

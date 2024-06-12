@@ -572,7 +572,7 @@ public class StationMatrix {
      * @param inkwell is the counter of inkwells in the station
      */
     public void printResources (int fungi, int plant, int animal, int insect, int quill, int manuscript, int inkwell) {
-        System.out.println("You have: "+fungi+" of fungi, "+plant+" of plant, "+animal+" of animal, "+insect+" of insect, "+quill+" of quill, "+manuscript+" of manuscript, "+inkwell+" of inkwell");
+        System.out.println("There are: "+fungi+" of fungi, "+plant+" of plant, "+animal+" of animal, "+insect+" of insect, "+quill+" of quill, "+manuscript+" of manuscript, "+inkwell+" of inkwell");
     }
 
     /**
@@ -581,9 +581,9 @@ public class StationMatrix {
      */
     public void printPoints(ClientBoard clientBoard){ //TODO: togliere obiettivi degli altri giocatori e aggiungere il colore
         int clientPoints = clientBoard.getMyplayer().getPoints();
-        System.out.println("You have: " + clientPoints + " points");
+        System.out.println( clientPoints + " points");
         for(ReductPlayer reductPlayer : clientBoard.getOtherplayers()){
-            System.out.println(reductPlayer.getNickname() + "has " + reductPlayer.getPoints() + " points");
+            System.out.println(reductPlayer.getNickname() + " has " + reductPlayer.getPoints() + " points");
         }
     }
 

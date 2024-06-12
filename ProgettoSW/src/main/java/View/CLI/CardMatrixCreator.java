@@ -180,6 +180,36 @@ public class CardMatrixCreator {
         }
         return startingCard;
     }
+
+    public static String[][] createBackResCardDeck(SuitEnum suit){
+        String[][] resCard = new String[3][7];
+        int rows = resCard.length;
+        int cols = resCard[0].length;
+
+        String color = switch(suit){
+            case INSECT -> purple;
+            case ANIMAL -> lightBlue;
+            case FUNGI -> red;
+            case PLANT -> green;
+            default -> "_";
+        };
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                resCard[i][j] = color + "█";
+            }
+        }
+        resCard[0][0] = reset + "E"; //setto gli angoli a empty
+        resCard[0][6] = reset + "E";
+        resCard[2][0] = reset + "E";
+        resCard[2][6] = reset + "E";
+        return resCard;
+    }
+
+    public static String[][] createBackGoldCardDeck(SuitEnum suit){
+        String[][] resCard = createBackResCardDeck(suit);
+        resCard[1][3] = gold + "G";
+        return resCard;
+    }
     
     private static boolean isUpLeftCorner(int row, int col, int rows, int cols) {
         return (row == 0 && col == 0);
