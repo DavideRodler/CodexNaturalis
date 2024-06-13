@@ -4,11 +4,11 @@ import Network.Client.ClientController;
 import Network.Server.VirtualServer;
 
 import Socket.Messages.Message;
+import exception.NonePlayerFoundException;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class RmiClient extends UnicastRemoteObject implements VirtualView {
@@ -26,7 +26,7 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     }
 
     @Override
-    public void update(Message message) throws RemoteException {
+    public void update(Message message) throws RemoteException, NonePlayerFoundException {
         clientController.updateModel(message);
         }
 
@@ -78,7 +78,6 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     @Override
     public void notifyItIsYourTurn() throws RemoteException{
         clientController.notifyItIsYourTurn();
-
     }
 
     @Override
@@ -95,5 +94,10 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     @Override
     public void setupOfSecretObjective() throws RemoteException {
         clientController.setupOfSecretObjective();
+    }
+
+    @Override
+    public void notifyIsNotYourTurn(String currentPlayer) throws RemoteException {
+        clientController.notifyIsNotYourTurn(currentPlayer);
     }
 }

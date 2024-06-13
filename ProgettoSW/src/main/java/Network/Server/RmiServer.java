@@ -108,11 +108,20 @@ public class RmiServer implements VirtualServer {
                 break;
 
             case "startTurn":
-                try {
-                    clientsMap.get(gameController.getBoard().getCurrentPlayer()).notifyItIsYourTurn();
-                } catch (RemoteException e) {
-                    throw new RuntimeException(e);
-                }
+
+                    for(VirtualView client : clients) {
+                        new Thread(() -> {
+                            try {
+                                if (!client.equals(clientsMap.get(gameController.getBoard().getCurrentPlayer()))) {
+                                    client.notifyIsNotYourTurn(gameController.getBoard().getCurrentPlayer());
+                                }
+                                else
+                                    client.notifyItIsYourTurn();
+                            } catch (RemoteException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }).start();
+                    }
             break;
             case "gameFinished":
                 synchronized (this.clients) {

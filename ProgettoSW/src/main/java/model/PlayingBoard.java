@@ -1,5 +1,6 @@
 package model;
 
+import exception.NonePlayerFoundException;
 import model.cards.*;
 import model.enums.GameState;
 import model.enums.SuitEnum;
@@ -100,6 +101,8 @@ public class PlayingBoard extends ObservableModel {
             notifyObservers(new BackOfFirstCardOfDeckMessage(deckCardGold.getFirst().getSymbol(),true));
         } catch (RemoteException e) {
             throw new RuntimeException(e);
+        } catch (NonePlayerFoundException e) {
+            throw new RuntimeException(e);
         }
         return card;
     }
@@ -107,7 +110,7 @@ public class PlayingBoard extends ObservableModel {
         CardResource card = deckCardResource.pop();
         try {
             notifyObservers(new BackOfFirstCardOfDeckMessage(deckCardResource.getFirst().getSymbol(),false));
-        } catch (RemoteException e) {
+        } catch (RemoteException | NonePlayerFoundException e) {
             throw new RuntimeException(e);
         }
         return card;
@@ -165,6 +168,8 @@ public class PlayingBoard extends ObservableModel {
             notifyObservers(new ChangeStateMessage("ChangeState", gameState));
         } catch (RemoteException e) {
             throw new RuntimeException(e);
+        } catch (NonePlayerFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -174,7 +179,7 @@ public class PlayingBoard extends ObservableModel {
         this.secondObjective = secondObjective;
         try {
             notifyObservers(new CommonObjectivesMessage(firstObjective,secondObjective));
-        } catch (RemoteException e) {
+        } catch (RemoteException | NonePlayerFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -219,7 +224,7 @@ public class PlayingBoard extends ObservableModel {
         centralCardsResource.add(card);
         try {
             notifyObservers(new CentralCardResourceMessage(card));
-        } catch (RemoteException e) {
+        } catch (RemoteException | NonePlayerFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -230,7 +235,7 @@ public class PlayingBoard extends ObservableModel {
         centralCardsGold.add(card);
         try {
             notifyObservers(new CentralCardGoldMessage(card));
-        } catch (RemoteException e) {
+        } catch (RemoteException | NonePlayerFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -240,7 +245,7 @@ public class PlayingBoard extends ObservableModel {
         centralCardsGold.removeIf(c -> c.getId() == id);
         try {
             notifyObservers(new CentralCardResourceRemovedMessage(id));
-        } catch (RemoteException e) {
+        } catch (RemoteException | NonePlayerFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -257,7 +262,7 @@ public class PlayingBoard extends ObservableModel {
 
         try {
             notifyObservers(new PlayersInfoMessage(playerslist));
-        } catch (RemoteException e) {
+        } catch (RemoteException | NonePlayerFoundException e) {
             throw new RuntimeException(e);
         }
     }

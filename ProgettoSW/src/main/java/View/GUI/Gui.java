@@ -126,6 +126,11 @@ public class Gui extends Application implements UI {
     }
 
     @Override
+    public void printMenu() {
+
+    }
+
+    @Override
     public void printStationAfterCardHasBeenAdded() {
 
     }
@@ -163,6 +168,36 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printAvailableTokens(ArrayList<TokenEnum> availableTokens) {
+
+    }
+
+    @Override
+    public Integer askMenuAction() {
+        return 0;
+    }
+
+    @Override
+    public String askWichStationToPrint() {
+        return "";
+    }
+
+    @Override
+    public void printSpace() {
+
+    }
+
+    @Override
+    public void printMenu2and3() {
+
+    }
+
+    @Override
+    public void printMenuNotMyTurn(String currentPlayer) {
+
+    }
+
+    @Override
+    public void printMenu2and3NotMyTurn(String currentPlayer) {
 
     }
 }

@@ -1,6 +1,7 @@
 package View.CLI;
 
 import View.UI;
+import exception.NonePlayerFoundException;
 import model.PlayingStation;
 import model.client.ClientBoard;
 import model.enums.TokenEnum;
@@ -293,13 +294,84 @@ public class Cli2 implements UI {
      */
     @Override
     public void printStartOfPlayerTurn() {
-        print4CentralCardsAndDecks();
+        /*print4CentralCardsAndDecks();
         System.out.println();
         printCommonObjectives();
         printSecretObjective();
         printSetupPlayerHand();
-        printPlayerStation(clientBoard.getMyplayer().getStation());
+        printPlayerStation(clientBoard.getMyplayer().getStation());*/
+        printMenu();
     }
+
+
+    @Override
+    public void printMenu(){
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("It's your turn");
+        System.out.println("----------------------------------------");
+        System.out.println("/    1. Play a card                    /");
+        System.out.println("/    2. Show my playing station        /");
+        System.out.println("/    3. Show other playing station     /");
+        System.out.println("/    4. Open Chat                      /");
+        System.out.println("/    5. End turn                       /");
+        System.out.println("----------------------------------------");
+        for(int i = 0; i < 17; i++) {
+            System.out.println();
+        }
+    }
+
+    @Override
+    public void printMenu2and3() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("It's your turn");
+        System.out.println("----------------------------------------");
+        System.out.println("/    1. Play a card                    /");
+        System.out.println("/    2. Show my playing station        /");
+        System.out.println("/    3. Show other playing station     /");
+        System.out.println("/    4. Open Chat                      /");
+        System.out.println("/    5. End turn                       /");
+        System.out.println("----------------------------------------");
+        for(int i = 0; i < 6; i++) {
+            System.out.println();
+        }
+    }
+
+    @Override
+    public void printMenuNotMyTurn(String currentPlayer) {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("It's " + currentPlayer + "'s turn");
+        System.out.println("----------------------------------------");
+        System.out.println("/    1. Show my playing station        /");
+        System.out.println("/    2. Show other playing station     /");
+        System.out.println("/    3. Open Chat                      /");
+        System.out.println("----------------------------------------");
+        for(int i = 0; i < 17; i++) {
+            System.out.println();
+        }
+    }
+
+    @Override
+    public void printMenu2and3NotMyTurn(String currentPlayer) {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("It's " + currentPlayer + "'s turn");
+        System.out.println("----------------------------------------");
+        System.out.println("/    1. Show my playing station        /");
+        System.out.println("/    3. Show other playing station     /");
+        System.out.println("/    4. Open Chat                      /");
+        System.out.println("----------------------------------------");
+        for(int i = 0; i < 6; i++) {
+            System.out.println();
+        }
+    }
+
 
     /**
      * this method prints the station of the player after they place a card
@@ -314,7 +386,7 @@ public class Cli2 implements UI {
      * @param nickname is the nickname of the player of which the station is going to be printed
      */
     @Override
-    public void printOtherPlayersStation(String nickname) {
+    public void printOtherPlayersStation(String nickname) throws NonePlayerFoundException {
         System.out.println(nickname + "'s station is: ");
         printPlayerStation(clientBoard.getOtherPlayer(nickname).getStation());
     }
@@ -438,6 +510,34 @@ public class Cli2 implements UI {
 
 
     }
+
+    @Override
+    public Integer askMenuAction() {
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        System.out.println("Choose an action: ");
+        Integer choice = scanner.nextInt();
+        while (choice < 1 || choice > 5) {
+            System.out.println("Invalid choice, please try again.");
+            System.out.println("Choose an action: ");
+            choice = scanner.nextInt();
+        }
+        return choice;
+    }
+
+    @Override
+    public String askWichStationToPrint() {
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        System.out.println("Insert the nickname of the player of which you want to see the station: ");
+        return scanner.nextLine();
+    }
+
+    @Override
+    public void printSpace() {
+        for (int i = 0; i < 4; i++) {
+            System.out.println();
+        }
+    }
+
 
     @Override
     public void printPlayerToken(){

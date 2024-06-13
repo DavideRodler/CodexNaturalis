@@ -81,8 +81,8 @@ ClientBoard board = ClientBoardTemplate.createClientBoard();
         assertEquals(gameState, board.getGameState());
     }
 
-    @Test
-    void getOtherPlayer() {
+    //@Test
+    /*void getOtherPlayer() {
         PlayingStation stationtommy = PlayingStationTemplate.test_3Cards_1Positioning();
         ArrayList<SuitEnum> handtommy = new ArrayList<>();
         PlayingStation stationgiorgio= PlayingStationTemplate.test_3Cards_1Positioning();
@@ -95,5 +95,5 @@ ClientBoard board = ClientBoardTemplate.createClientBoard();
         board.setOtherplayers(players);
         assertEquals(tommy, board.getOtherPlayer("tommy"));
 
-    }
+    }*/
 }

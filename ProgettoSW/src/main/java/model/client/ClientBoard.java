@@ -1,5 +1,6 @@
 package model.client;
 
+import exception.NonePlayerFoundException;
 import model.Player;
 import model.cards.CardGold;
 import model.cards.CardObjective;
@@ -88,11 +89,12 @@ public class ClientBoard implements Serializable {
         this.otherplayers = otherplayers;
     }
 
-    public ReductPlayer getOtherPlayer(String nickname){
+    public ReductPlayer getOtherPlayer(String nickname) throws NonePlayerFoundException{
         return otherplayers.stream()
                 .filter(p -> p.getNickname().equals(nickname))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(()->
+                        new NonePlayerFoundException("Player not found"));
     }
 
     public void setGameState(GameState gameState) {

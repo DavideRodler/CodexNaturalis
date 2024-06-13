@@ -1,5 +1,6 @@
 package View;
 
+import exception.NonePlayerFoundException;
 import model.PlayingStation;
 import model.enums.TokenEnum;
 
@@ -46,10 +47,12 @@ public interface UI {
     // and the other players name and points;
    void printStartOfPlayerTurn();
 
-   // printa solo la staion aggiornata più risorse e più punti
+    void printMenu();
+
+    // printa solo la staion aggiornata più risorse e più punti
    void printStationAfterCardHasBeenAdded();
 
-   void printOtherPlayersStation(String nickname);
+   void printOtherPlayersStation(String nickname) throws NonePlayerFoundException;
 
     void printFinalPoints(LinkedHashMap<String, ArrayList<Integer>> map);
 
@@ -64,4 +67,15 @@ public interface UI {
     void printAvailableTokens(ArrayList<TokenEnum> availableTokens);
 
 
+    Integer askMenuAction();
+
+    String askWichStationToPrint();
+
+    void printSpace();
+
+    void printMenu2and3();
+
+    void printMenuNotMyTurn(String currentPlayer);
+
+    void printMenu2and3NotMyTurn(String currentPlayer);
 }

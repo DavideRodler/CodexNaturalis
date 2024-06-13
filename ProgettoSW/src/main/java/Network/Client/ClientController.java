@@ -1,13 +1,11 @@
 package Network.Client;
 
+import Network.Client.RMI.VirtualView;
 import View.CLI.Cli2;
 import Network.Client.RMI.RmiClient;
 import Network.Server.VirtualServer;
 import View.UI;
-import exception.ChangedStateException;
-import exception.InvalidPlacingCondition;
-import exception.NotMyTurnException;
-import exception.NotValidMoveException;
+import exception.*;
 import model.Player;
 import model.PlayingStation;
 import model.cards.CardGold;
@@ -115,70 +113,128 @@ public class ClientController {
 
     public void notifyItIsYourTurn() {
         //showing the board
-        ui.printStartOfPlayerTurn();
-        //the answer to where to put the card
-        Integer[] answer;
-
+        //the menuAnswer to where to put the card
+        Integer menuAnswer;
+        Integer[] inputAnswer;
+        ui.printMenu();
         //the card i want to put in the station
         CardResource cardchoosen;
         int cardId;
+        while(true) {
+            do{
+                menuAnswer = ui.askMenuAction();
+                try {
+                    switch(menuAnswer) {
+                        case 1:
+                        {
+                            ui.printPlayerHand();
+                            inputAnswer = ui.askCoordinatesOfCards();
+                            cardchoosen = clientModel.getMyplayer().getHand().get(inputAnswer[0]);
+                            cardId = cardchoosen.getId();
 
-        while (true) {
-            try {
-                answer = ui.askCoordinatesOfCards();
-                cardchoosen = clientModel.getMyplayer().getHand().get(answer[0]);
-                cardId = cardchoosen.getId();
+                            server.addCardToStation(clientModel.getMyplayer().getNickname(),cardId, inputAnswer[1] == 2 , inputAnswer[2], inputAnswer[3]);
+                            int selection = ui.askWhichCardToDraw();
 
-                server.addCardToStation(clientModel.getMyplayer().getNickname(),cardId, answer[1] == 2 , answer[2], answer[3]);    //try to add the card to local model
-                break;
-            } catch (RemoteException e) {
-                throw new RuntimeException(e);
-            }
-            catch (InvalidPlacingCondition e) {
-                ui.showErrorMessage(e.getMessage());
-            }
+                            CardResource card = null;
+                            if(selection>=1 && selection<=4){
+                                if(selection>=3) {
+                                    ArrayList<CardResource> centralCardsResource = clientModel.getCentralCardsResource();
+                                    card = centralCardsResource.get(selection - 3);
+                                }
+                                else {
+                                    ArrayList<CardGold> centralCardsGold = clientModel.getCentralCardsGold();
+                                    card = centralCardsGold.get(selection - 1);
+                                }
+                                try {
+                                    server.addCardFromCentralCardsToPlayerHand(clientModel.getMyplayer().getNickname(), card.getId());
+                                } catch (RemoteException e) {
+                                    throw new RuntimeException(e);
+                                } catch (NotMyTurnException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                            else {
+                                try {
+                                    server.addCardFromDeckToPlayerHand(clientModel.getMyplayer().getNickname(), selection);
+                                } catch (RemoteException | InvalidPlacingCondition e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                            break;
+                        }
+                        case 2:
+                            ui.printMenu2and3();
+                            ui.printPlayerStation(clientModel.getMyplayer().getStation());
+                            ui.printSpace();
+                            break;
+                        case 3:
+                            String playerStationName = ui.askWichStationToPrint();
+                            ui.printMenu2and3();
+                            ui.printOtherPlayersStation(playerStationName);
+                            ui.printSpace();
+                            break;
+                        case 4:
+                            ui.printSecretObjective();
+                            break;
+                        case 5:
+                            server.startTurn();
+                            break;
+                    }
+                } catch (InvalidPlacingCondition e) {
+                    ui.showErrorMessage(e.getMessage());
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                } catch (NonePlayerFoundException e) {
+                    ui.showErrorMessage(e.getMessage());
+                } catch (NotMyTurnException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }while (menuAnswer != 5);
+
+            break;
         }
 
-        ui.printStationAfterCardHasBeenAdded();
+        /*ui.printStationAfterCardHasBeenAdded();
 
         ui.print4CentralCardsAndDecks();
-        int selection = ui.askWhichCardToDraw();
 
-        CardResource card = null;
-        if(selection>=1 && selection<=4){
-            if(selection>=3) {
-                ArrayList<CardResource> centralCardsResource = clientModel.getCentralCardsResource();
-                card = centralCardsResource.get(selection - 3);
-            }
-            else {
-                ArrayList<CardGold> centralCardsGold = clientModel.getCentralCardsGold();
-                card = centralCardsGold.get(selection - 1);
-            }
-            try {
-                server.addCardFromCentralCardsToPlayerHand(clientModel.getMyplayer().getNickname(), card.getId());
-            } catch (RemoteException e) {
-                throw new RuntimeException(e);
-            } catch (NotMyTurnException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        else {
-            try {
-                server.addCardFromDeckToPlayerHand(clientModel.getMyplayer().getNickname(), selection);
-            } catch (RemoteException | InvalidPlacingCondition e) {
-                throw new RuntimeException(e);
-            }
-        }
         try {
             server.startTurn();
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         } catch (NotMyTurnException e) {
             throw new RuntimeException(e);
+        }*/
+    }
+
+    public void notifyIsNotYourTurn(String currentPlayer) {
+        Integer menuAnswer;
+        ui.printMenuNotMyTurn(currentPlayer);
+        while(){
+            menuAnswer = ui.askMenuAction();
+            try{
+            switch (menuAnswer) {
+                case 1:
+                    ui.printMenu2and3NotMyTurn(currentPlayer);
+                    ui.printPlayerStation(clientModel.getMyplayer().getStation());
+                    ui.printSpace();
+                    break;
+                case 2:
+                    String playerStationName = ui.askWichStationToPrint();
+                    ui.printMenu2and3NotMyTurn(currentPlayer);
+                    ui.printOtherPlayersStation(playerStationName);
+                    ui.printSpace();
+                    break;
+                case 3:
+                    break;
+            }}catch (NonePlayerFoundException e) {
+                ui.showErrorMessage(e.getMessage());
+            }
         }
     }
 
-    public void updateModel(Message message) throws RemoteException {
+    public void updateModel(Message message) throws RemoteException, NonePlayerFoundException {
         switch (message.getType()) {
             case "ChangeState":
                 ChangeStateMessage changeStateMessage = (ChangeStateMessage) message;
@@ -349,4 +405,6 @@ public class ClientController {
         ui.printSetupPlayerHand();
         ui.printCommonObjectives();
     }
+
+
 }

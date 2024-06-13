@@ -2,6 +2,7 @@ package model;
 
 
 import Socket.Messages.*;
+import exception.NonePlayerFoundException;
 import model.cards.*;
 import model.enums.TokenEnum;
 import observers.ObservableModel;
@@ -50,6 +51,8 @@ public class Player extends ObservableModel implements Serializable{
             this.notifySpecificObserver(this.nickname, message);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
+        } catch (NonePlayerFoundException e) {
+            throw new RuntimeException(e);
         }
     }
     public void setSelectibleObjectives(ArrayList<CardObjective> selectibleObjectives){
@@ -64,6 +67,8 @@ public class Player extends ObservableModel implements Serializable{
         try {
             notifySpecificObserver(nickname, message);
         } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        } catch (NonePlayerFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -125,7 +130,7 @@ public class Player extends ObservableModel implements Serializable{
         Message message = new CardAddedToHandMessage(card);
         try {
             notifySpecificObserver(this.nickname, message);
-        } catch (RemoteException e) {
+        } catch (RemoteException | NonePlayerFoundException e) {
             throw new RuntimeException(e);
         }
 
