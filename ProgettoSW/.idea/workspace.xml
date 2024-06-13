@@ -5,22 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="fix mega definitiva addCard">
-      <change afterPath="$PROJECT_DIR$/src/main/java/exception/NonePlayerFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/CurrentPlayerMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/observers/ObservableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/observers/ObservableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/observers/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/observers/Observer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -843,21 +832,6 @@
           <url>file://$PROJECT_DIR$/src/test/java/model/deck/DeckConstructorTest.java</url>
           <line>19</line>
           <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/Player.java</url>
-          <line>128</line>
-          <option name="timeStamp" value="259" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>195</line>
-          <option name="timeStamp" value="266" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/PlayingStation.java</url>
-          <line>393</line>
-          <option name="timeStamp" value="267" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>

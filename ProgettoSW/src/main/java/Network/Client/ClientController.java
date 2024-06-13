@@ -211,7 +211,7 @@ public class ClientController {
     public void notifyIsNotYourTurn(String currentPlayer) {
         Integer menuAnswer;
         ui.printMenuNotMyTurn(currentPlayer);
-        while(){
+        while(true){
             menuAnswer = ui.askMenuAction();
             try{
             switch (menuAnswer) {
@@ -316,7 +316,7 @@ public class ClientController {
                             }
 
 
-                            ui.printOtherPlayersStation(cardAddedToStationMessage.getNickname());
+//                            ui.printOtherPlayersStation(cardAddedToStationMessage.getNickname());
                         }
                     }
                 }
@@ -359,6 +359,10 @@ public class ClientController {
                 else {
                     clientModel.setBackOfResourceDeck(backOfFirstCardOfDeckMessage.getBackOfCard());
                 }
+                break;
+            case "CurrentPlayer":
+                CurrentPlayerMessage currentPlayerMessage = (CurrentPlayerMessage) message;
+                clientModel.setCurrentPlayer(currentPlayerMessage.getCurrentPlayer());
                 break;
 
         }
