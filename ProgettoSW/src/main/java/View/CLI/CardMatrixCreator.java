@@ -323,7 +323,7 @@ public class CardMatrixCreator {
                 mat[0][5] = " ";
             } else if(card.getObjective() instanceof ObjectiveGoldCorners) {
                 mat[0][4] = gold + "C" + reset;
-                mat[0][5] = "  ";
+                mat[0][5] = " ";
             } else {
                 mat[0][4] = gold + "P" + reset;
                 mat[0][5] = " ";
