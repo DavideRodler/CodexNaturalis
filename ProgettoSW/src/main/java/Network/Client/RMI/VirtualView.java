@@ -34,4 +34,6 @@ public interface VirtualView extends Remote, Observer {
     void setupOfSecretObjective() throws RemoteException;
 
     void notifyIsNotYourTurn(String currentPlayer) throws RemoteException;
+
+    void unlockThread() throws RemoteException;
 }

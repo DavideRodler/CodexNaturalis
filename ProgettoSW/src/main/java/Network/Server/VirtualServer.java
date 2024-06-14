@@ -5,9 +5,6 @@ import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
 import exception.NotMyTurnException;
 import exception.NotValidMoveException;
-import model.cards.CardGold;
-import model.cards.CardObjective;
-import model.cards.CardResource;
 import model.enums.TokenEnum;
 
 import java.rmi.Remote;
@@ -39,4 +36,9 @@ public interface VirtualServer extends Remote {
 
     void startTurn() throws RemoteException, NotMyTurnException;
 
+    boolean menuChecker() throws RemoteException;
+
+    void updatePlayerReadyForNewMenu(int i) throws RemoteException;
+
+    void unlockAllThreadsForNewMenu() throws RemoteException;
 }

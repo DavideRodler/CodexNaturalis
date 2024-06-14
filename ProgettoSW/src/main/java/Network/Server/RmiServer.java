@@ -7,8 +7,6 @@ import exception.InvalidPlacingCondition;
 import exception.NotMyTurnException;
 import exception.NotValidMoveException;
 import model.Player;
-import model.cards.CardGold;
-import model.cards.CardResource;
 import model.enums.GameState;
 import model.enums.TokenEnum;
 //import socket.Messages.PlayersInfoMessage;
@@ -24,6 +22,16 @@ public class RmiServer implements VirtualServer {
     private List<VirtualView> clients;
     private HashMap<String, VirtualView> clientsMap;
     private BlockingQueue<String> queue = new ArrayBlockingQueue<>(100);
+    private int menuCounter=0;
+
+    public int getMenuCounter(){
+        return this.menuCounter;
+    }
+
+    public void setMenuCounter(int menuCounter){
+        this.menuCounter=menuCounter;
+    }
+
 
     public void serverToClientCall() throws RemoteException {
         while (true) {
@@ -108,20 +116,39 @@ public class RmiServer implements VirtualServer {
                 break;
 
             case "startTurn":
-
+                    System.out.println("startTurn");
                     for(VirtualView client : clients) {
-                        new Thread(() -> {
-                            try {
-                                if (!client.equals(clientsMap.get(gameController.getBoard().getCurrentPlayer()))) {
-                                    client.notifyIsNotYourTurn(gameController.getBoard().getCurrentPlayer());
+                        if (!client.equals(clientsMap.get(gameController.getBoard().getCurrentPlayer()))) {
+                            while(true){
+                                if(menuChecker()){
+                                    new Thread(() -> {
+                                        try {
+                                            client.notifyIsNotYourTurn(gameController.getBoard().getCurrentPlayer());
+                                        } catch (RemoteException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                    }).start();
+                                    break;
                                 }
-                                else
-                                    client.notifyItIsYourTurn();
-                            } catch (RemoteException e) {
-                                throw new RuntimeException(e);
                             }
-                        }).start();
+                        }
+                        else {
+                            while (true) {
+                                if (menuChecker()) {
+                                    new Thread(() -> {
+                                        try {
+                                            client.notifyItIsYourTurn();
+                                        } catch (RemoteException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                    }).start();
+                                    break;
+                                }
+                            }
+                        }
                     }
+
+                    this.setMenuCounter(0);
             break;
             case "gameFinished":
                 synchronized (this.clients) {
@@ -165,7 +192,28 @@ public class RmiServer implements VirtualServer {
     @Override
     public void connectClient(VirtualView client) throws RemoteException {
         handleNewClient(client);
+        this.setMenuCounter(this.getMenuCounter()+1);
         System.err.println("new client connected");
+    }
+
+    @Override
+    public synchronized boolean menuChecker(){
+        return getMenuCounter() == this.clients.size();
+    }
+
+    @Override
+    public synchronized void updatePlayerReadyForNewMenu(int i) throws RemoteException {
+        if (i==1)
+            this.setMenuCounter(this.getMenuCounter()+1);
+    }
+
+    @Override
+    public synchronized void unlockAllThreadsForNewMenu() throws RemoteException {
+            for(VirtualView client : clients){
+                client.unlockThread();
+                System.out.println("FLAG");
+            }
+
     }
 
 

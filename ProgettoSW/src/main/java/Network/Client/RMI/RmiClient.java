@@ -100,4 +100,9 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     public void notifyIsNotYourTurn(String currentPlayer) throws RemoteException {
         clientController.notifyIsNotYourTurn(currentPlayer);
     }
+
+    @Override
+    public void unlockThread() throws RemoteException {
+        //clientController.unlockThread();
+    }
 }

@@ -127,8 +127,27 @@ public class ClientController {
         //the card i want to put in the station
         CardResource cardchoosen;
         int cardId;
+        /*
+        try{
+            while(!server.menuChecker())
+            {
+                this.wait();
+            }
+            System.out.println("FLAG");
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
-            do{
+        try {
+            server.updatePlayerReadyForNewMenu(0);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+        */
+
+        do{
                 menuAnswer = ui.askMenuAction();
                 try {
                     switch(menuAnswer) {
@@ -197,6 +216,7 @@ public class ClientController {
 
             }while (menuAnswer != 5 || !endTurn);
         try {
+            server.updatePlayerReadyForNewMenu(1);
             server.startTurn();
         } catch (RemoteException e) {
             throw new RuntimeException(e);
@@ -212,28 +232,13 @@ public class ClientController {
      * @param currentPlayer
      */
     public synchronized void notifyIsNotYourTurn(String currentPlayer) {
+
         Integer menuAnswer;
         Boolean ready = false;
-        /*Boolean startNotTurn = false;
-        Boolean alredyPrinted = false;
-        do {
-            int playerReadyCounter = 0;
-            for (ReductPlayer player : clientModel.getOtherplayers()) {
-                if (player.) {
-                    playerReadyCounter++;
-                }
-            }
-            if (playerReadyCounter == clientModel.getOtherplayers().size()) {
-                startNotTurn = true;
-            }
 
-            if (!startNotTurn && !alredyPrinted) {
-                System.out.println("Waiting for other players to be ready for next turn...");
-                alredyPrinted = true;
-            } else {
-                clientModel.*/
-                ui.printMenuNotMyTurn(currentPlayer);
-                while (!clientModel.getCurrentPlayer().equals(clientModel.getMyplayer().getNickname()) && !ready) {
+        ui.printMenuNotMyTurn(currentPlayer);
+
+                while (!clientModel.getCurrentPlayer().equals(clientModel.getMyplayer().getNickname()) || !ready) {
                     menuAnswer = ui.askMenuAction();
                     try {
                         switch (menuAnswer) {
@@ -258,7 +263,12 @@ public class ClientController {
                         ui.showErrorMessage(e.getMessage());
                     }
                 }
-            }
+                try{
+                    server.updatePlayerReadyForNewMenu(1);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
+    }
         //} while(startNotTurn);
 
     public void updateModel(Message message) throws RemoteException, NonePlayerFoundException {
@@ -436,6 +446,7 @@ public class ClientController {
         ui.printSetupPlayerHand();
         ui.printCommonObjectives();
     }
+
 
 
 }
