@@ -4,23 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="fix mega definitiva addCard">
-      <change afterPath="$PROJECT_DIR$/src/main/java/exception/NonePlayerFoundException.java" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="work in progress menù e chat">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/CurrentPlayerInfoMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/observers/ObservableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/observers/ObservableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/observers/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/observers/Observer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ReductPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ReductPlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -339,15 +332,8 @@
       <workItem from="1718293457668" duration="1981000" />
       <workItem from="1718295585462" duration="3126000" />
       <workItem from="1718308792700" duration="2677000" />
-      <workItem from="1718311648606" duration="1447000" />
-    </task>
-    <task id="LOCAL-00012" summary="prova JSONArray e JSONParser">
-      <option name="closed" value="true" />
-      <created>1711470938933</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1711470938933</updated>
+      <workItem from="1718311648606" duration="2773000" />
+      <workItem from="1718347842111" duration="10079000" />
     </task>
     <task id="LOCAL-00013" summary="Aggiunta dei costruttori dei deck + test nel main, da sistemare gli obbiettivi">
       <option name="closed" value="true" />
@@ -733,7 +719,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718120948292</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="work in progress menù e chat">
+      <option name="closed" value="true" />
+      <created>1718314182635</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1718314182635</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -801,7 +795,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Controller quasi terminato" />
     <MESSAGE value="Aggiunta contatori e nuovi metodi controller(manca il controllo del vincitore)" />
     <MESSAGE value="rimesso corner" />
     <MESSAGE value="Test di gioco funzionante" />
@@ -826,7 +819,8 @@
     <MESSAGE value="aggiunto setProperty per giocare su due computer" />
     <MESSAGE value="Fine gioco implementata lato server e client" />
     <MESSAGE value="aggiunta documetazione objcounting gold" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiunta documetazione objcounting gold" />
+    <MESSAGE value="work in progress menù e chat" />
+    <option name="LAST_COMMIT_MESSAGE" value="work in progress menù e chat" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -846,7 +840,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/Player.java</url>
-          <line>128</line>
+          <line>139</line>
           <option name="timeStamp" value="259" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

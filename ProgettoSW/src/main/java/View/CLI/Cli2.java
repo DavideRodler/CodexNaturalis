@@ -350,6 +350,7 @@ public class Cli2 implements UI {
         System.out.println("/    1. Show my playing station        /");
         System.out.println("/    2. Show other playing station     /");
         System.out.println("/    3. Open Chat                      /");
+        System.out.println("/    4. Ready for next turn            /");
         System.out.println("----------------------------------------");
         for(int i = 0; i < 17; i++) {
             System.out.println();

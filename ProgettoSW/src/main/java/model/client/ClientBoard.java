@@ -19,6 +19,7 @@ public class ClientBoard implements Serializable {
     private CardObjective secondObjective;
     private GameState gameState;
     private Player myplayer;
+    private String currentPlayerName;
     private ArrayList<ReductPlayer> otherplayers;
     private SuitEnum backOfResourceDeck;
     private SuitEnum backOfGoldDeck;
@@ -37,6 +38,17 @@ public class ClientBoard implements Serializable {
    //     this.firstObjective = firstObjective;
    //     this.secondObjective = secondObjective;
    // }
+
+
+
+
+
+    public String getCurrentPlayer() {
+        return currentPlayerName;
+    }
+    public void setCurrentPlayer(String currentPlayerName) {
+        this.currentPlayerName = currentPlayerName;
+    }
 
     public ArrayList<CardGold> getCentralCardsGold() {
         return centralCardsGold;

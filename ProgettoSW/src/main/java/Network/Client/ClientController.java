@@ -1,6 +1,6 @@
 package Network.Client;
 
-import Network.Client.RMI.VirtualView;
+import Socket.Messages.CurrentPlayerInfoMessage;
 import View.CLI.Cli2;
 import Network.Client.RMI.RmiClient;
 import Network.Server.VirtualServer;
@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ClientController {
     private UI ui;
@@ -111,16 +113,21 @@ public class ClientController {
 
     }
 
-    public void notifyItIsYourTurn() {
+
+    /**
+     * This method is called when the player is the current player
+     */
+    public synchronized void notifyItIsYourTurn() {
         //showing the board
         //the menuAnswer to where to put the card
         Integer menuAnswer;
         Integer[] inputAnswer;
+        Boolean endTurn = false;
         ui.printMenu();
         //the card i want to put in the station
         CardResource cardchoosen;
         int cardId;
-        while(true) {
+
             do{
                 menuAnswer = ui.askMenuAction();
                 try {
@@ -160,6 +167,7 @@ public class ClientController {
                                     throw new RuntimeException(e);
                                 }
                             }
+                            endTurn = true;
                             break;
                         }
                         case 2:
@@ -173,11 +181,10 @@ public class ClientController {
                             ui.printOtherPlayersStation(playerStationName);
                             ui.printSpace();
                             break;
-                        case 4:
-                            ui.printSecretObjective();
-                            break;
                         case 5:
-                            server.startTurn();
+                            if(!endTurn)
+                                System.out.println("You can not end your turn before had placed a card in your station");
+
                             break;
                     }
                 } catch (InvalidPlacingCondition e) {
@@ -186,56 +193,80 @@ public class ClientController {
                     throw new RuntimeException(e);
                 } catch (NonePlayerFoundException e) {
                     ui.showErrorMessage(e.getMessage());
-                } catch (NotMyTurnException e) {
-                    throw new RuntimeException(e);
                 }
 
-            }while (menuAnswer != 5);
-
-            break;
-        }
-
-        /*ui.printStationAfterCardHasBeenAdded();
-
-        ui.print4CentralCardsAndDecks();
-
+            }while (menuAnswer != 5 || !endTurn);
         try {
             server.startTurn();
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         } catch (NotMyTurnException e) {
             throw new RuntimeException(e);
-        }*/
-    }
-
-    public void notifyIsNotYourTurn(String currentPlayer) {
-        Integer menuAnswer;
-        ui.printMenuNotMyTurn(currentPlayer);
-        while(){
-            menuAnswer = ui.askMenuAction();
-            try{
-            switch (menuAnswer) {
-                case 1:
-                    ui.printMenu2and3NotMyTurn(currentPlayer);
-                    ui.printPlayerStation(clientModel.getMyplayer().getStation());
-                    ui.printSpace();
-                    break;
-                case 2:
-                    String playerStationName = ui.askWichStationToPrint();
-                    ui.printMenu2and3NotMyTurn(currentPlayer);
-                    ui.printOtherPlayersStation(playerStationName);
-                    ui.printSpace();
-                    break;
-                case 3:
-                    break;
-            }}catch (NonePlayerFoundException e) {
-                ui.showErrorMessage(e.getMessage());
-            }
         }
     }
 
+
+    /**
+     * This method is called when the player is not the current player
+     * Prints the menu and waits for the player to choose an action while it is not his turn
+     * @param currentPlayer
+     */
+    public synchronized void notifyIsNotYourTurn(String currentPlayer) {
+        Integer menuAnswer;
+        Boolean ready = false;
+        /*Boolean startNotTurn = false;
+        Boolean alredyPrinted = false;
+        do {
+            int playerReadyCounter = 0;
+            for (ReductPlayer player : clientModel.getOtherplayers()) {
+                if (player.) {
+                    playerReadyCounter++;
+                }
+            }
+            if (playerReadyCounter == clientModel.getOtherplayers().size()) {
+                startNotTurn = true;
+            }
+
+            if (!startNotTurn && !alredyPrinted) {
+                System.out.println("Waiting for other players to be ready for next turn...");
+                alredyPrinted = true;
+            } else {
+                clientModel.*/
+                ui.printMenuNotMyTurn(currentPlayer);
+                while (!clientModel.getCurrentPlayer().equals(clientModel.getMyplayer().getNickname()) && !ready) {
+                    menuAnswer = ui.askMenuAction();
+                    try {
+                        switch (menuAnswer) {
+                            case 1:
+                                ui.printMenu2and3NotMyTurn(currentPlayer);
+                                ui.printPlayerStation(clientModel.getMyplayer().getStation());
+                                ui.printSpace();
+                                break;
+                            case 2:
+                                String playerStationName = ui.askWichStationToPrint();
+                                ui.printMenu2and3NotMyTurn(currentPlayer);
+                                ui.printOtherPlayersStation(playerStationName);
+                                ui.printSpace();
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                ready = true;
+                                break;
+                        }
+                    } catch (NonePlayerFoundException e) {
+                        ui.showErrorMessage(e.getMessage());
+                    }
+                }
+            }
+        //} while(startNotTurn);
+
     public void updateModel(Message message) throws RemoteException, NonePlayerFoundException {
         switch (message.getType()) {
+            case "CurrentPlayerInfo":
+                CurrentPlayerInfoMessage currentPlayerInfoMessage = (CurrentPlayerInfoMessage) message;
+                clientModel.setCurrentPlayer(currentPlayerInfoMessage.getCurrentPlayerName());
+                break;
             case "ChangeState":
                 ChangeStateMessage changeStateMessage = (ChangeStateMessage) message;
                 clientModel.setGameState((changeStateMessage).getGameState());
@@ -316,7 +347,7 @@ public class ClientController {
                             }
 
 
-                            ui.printOtherPlayersStation(cardAddedToStationMessage.getNickname());
+                            //ui.printOtherPlayersStation(cardAddedToStationMessage.getNickname());
                         }
                     }
                 }

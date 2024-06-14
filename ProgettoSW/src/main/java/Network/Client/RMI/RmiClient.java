@@ -28,7 +28,7 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     @Override
     public void update(Message message) throws RemoteException, NonePlayerFoundException {
         clientController.updateModel(message);
-        }
+    }
 
     @Override
     public void setupOfnicknameAndToken() {

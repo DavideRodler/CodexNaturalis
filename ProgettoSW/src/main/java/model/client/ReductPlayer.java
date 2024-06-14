@@ -24,6 +24,7 @@ public class ReductPlayer {
         this.token = token;
     }
 
+
     public ReductPlayer(String nickname, TokenEnum token) {
         this.nickname = nickname;
         this.token = token;

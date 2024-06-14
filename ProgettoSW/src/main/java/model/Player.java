@@ -17,9 +17,11 @@ public class Player extends ObservableModel implements Serializable{
     private int points;
     private TokenEnum token;
     private PlayingStation station;
+    private boolean readyForTurn;
     private ArrayList<CardResource> hand;
     private ArrayList<CardObjective> selectibleObjectives;
     private CardObjective secretObjective;
+
 
 
     // Costruttore
@@ -32,8 +34,17 @@ public class Player extends ObservableModel implements Serializable{
         this.hand = hand;
         this.selectibleObjectives = new ArrayList<>();
         this.secretObjective = null;
+        this.readyForTurn = false;
     }
 
+
+    public boolean isReadyForTurn() {
+        return readyForTurn;
+    }
+
+    public void setReadyForTurn(boolean readyForTurn) {
+        this.readyForTurn = readyForTurn;
+    }
 
 
     //setter

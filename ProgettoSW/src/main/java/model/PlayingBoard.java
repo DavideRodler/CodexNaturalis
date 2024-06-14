@@ -262,6 +262,7 @@ public class PlayingBoard extends ObservableModel {
 
         try {
             notifyObservers(new PlayersInfoMessage(playerslist));
+            notifyObservers(new CurrentPlayerInfoMessage(players.get(0).getNickname()));
         } catch (RemoteException | NonePlayerFoundException e) {
             throw new RuntimeException(e);
         }
@@ -270,9 +271,23 @@ public class PlayingBoard extends ObservableModel {
     public String getnextPlayer(){
         int indexOfCurrentPlayer = players.indexOf(getPlayer(currentPlayer));
         if (indexOfCurrentPlayer == players.size()-1){
+            try{
+                notifyObservers(new CurrentPlayerInfoMessage(players.get(0).getNickname()));
+            } catch (NonePlayerFoundException e) {
+                throw new RuntimeException(e);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
             return players.get(0).getNickname();
         }
         else {
+            try{
+                notifyObservers(new CurrentPlayerInfoMessage(players.get(indexOfCurrentPlayer+1).getNickname()));
+            } catch (NonePlayerFoundException e) {
+                throw new RuntimeException(e);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
             return players.get(indexOfCurrentPlayer+1).getNickname();
         }
     }
