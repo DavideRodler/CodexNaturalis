@@ -41,16 +41,6 @@ public class ClientBoard implements Serializable {
    // }
 
 
-
-
-
-    public String getCurrentPlayer() {
-        return currentPlayerName;
-    }
-    public void setCurrentPlayer(String currentPlayerName) {
-        this.currentPlayerName = currentPlayerName;
-    }
-
     public ArrayList<CardGold> getCentralCardsGold() {
         return centralCardsGold;
     }
