@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="work in progress menù e chat parte 2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
-    </list>
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="work in progress menù e chat parte 3" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,7 +70,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.ClientApp.executor": "Debug",
+    "Application.ClientApp.executor": "Run",
     "Application.Gui.executor": "Run",
     "Application.RmiClient.executor": "Run",
     "Application.ServerApp.executor": "Run",
@@ -332,15 +325,7 @@
       <workItem from="1718311648606" duration="2773000" />
       <workItem from="1718347842111" duration="10677000" />
       <workItem from="1718358686868" duration="4149000" />
-      <workItem from="1718368571883" duration="8069000" />
-    </task>
-    <task id="LOCAL-00015" summary="Aggiunta di tutti i deck e dei deck alla playing board">
-      <option name="closed" value="true" />
-      <created>1711536467666</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1711536467666</updated>
+      <workItem from="1718368571883" duration="8449000" />
     </task>
     <task id="LOCAL-00016" summary="TEST DELLA CREAZIONE DELLA PLAYINGBOARD, DA RIVEDERE L'UTILITA DI DECKCONSTRUCTOR">
       <option name="closed" value="true" />
@@ -726,7 +711,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718358878270</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="work in progress menù e chat parte 3">
+      <option name="closed" value="true" />
+      <created>1718377106724</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1718377106725</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -794,7 +787,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="rimesso corner" />
     <MESSAGE value="Test di gioco funzionante" />
     <MESSAGE value="Inizio del nuovo RMI con controller" />
     <MESSAGE value="Aggiunta del client controller" />
@@ -819,7 +811,8 @@
     <MESSAGE value="aggiunta documetazione objcounting gold" />
     <MESSAGE value="work in progress menù e chat" />
     <MESSAGE value="work in progress menù e chat parte 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="work in progress menù e chat parte 2" />
+    <MESSAGE value="work in progress menù e chat parte 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="work in progress menù e chat parte 3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -846,11 +839,6 @@
           <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
           <line>211</line>
           <option name="timeStamp" value="283" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java</url>
-          <line>119</line>
-          <option name="timeStamp" value="288" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

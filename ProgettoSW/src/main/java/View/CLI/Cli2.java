@@ -365,12 +365,24 @@ public class Cli2 implements UI {
         System.out.println("It's " + currentPlayer + "'s turn");
         System.out.println("----------------------------------------");
         System.out.println("/    1. Show my playing station        /");
-        System.out.println("/    3. Show other playing station     /");
-        System.out.println("/    4. Open Chat                      /");
+        System.out.println("/    2. Show other playing station     /");
+        System.out.println("/    3. Open Chat                      /");
+        System.out.println("/    4. Ready for next turn            /");
         System.out.println("----------------------------------------");
         for(int i = 0; i < 6; i++) {
             System.out.println();
         }
+    }
+
+    @Override
+    public String askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers) {
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        System.out.println("Insert the type of chat you want to open: ");
+        System.out.println("1. Public chat");
+        for(int i = 0; i < numberOfOtherPlayers; i++)
+            System.out.println(i+3 + ". Private chat with " + NamesOfOtherPlayers[i]);
+
+        return scanner.nextLine();
     }
 
 

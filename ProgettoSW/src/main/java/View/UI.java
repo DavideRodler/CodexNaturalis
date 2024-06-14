@@ -49,6 +49,8 @@ public interface UI {
 
     void printMenu();
 
+    String askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers);
+
     // printa solo la staion aggiornata più risorse e più punti
    void printStationAfterCardHasBeenAdded();
 

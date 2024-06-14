@@ -153,6 +153,7 @@ public class ClientController {
                     switch(menuAnswer) {
                         case 1:
                         {
+                            ui.printPlayerStation(clientModel.getMyplayer().getStation());
                             ui.printPlayerHand();
                             inputAnswer = ui.askCoordinatesOfCards();
                             cardchoosen = clientModel.getMyplayer().getHand().get(inputAnswer[0]);
@@ -200,6 +201,8 @@ public class ClientController {
                             ui.printOtherPlayersStation(playerStationName);
                             ui.printSpace();
                             break;
+                        case 4:
+                            String ChatChoice = ui.askTypeOfChat(clientModel.getOtherplayers().size(), clientModel.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
                         case 5:
                             if(!endTurn)
                                 System.out.println("You can not end your turn before had placed a card in your station");
