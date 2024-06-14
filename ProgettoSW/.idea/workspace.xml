@@ -189,7 +189,7 @@
       <recent name="model.cards.face" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientApp">
+  <component name="RunManager" selected="Application.ServerApp">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
       <module name="ProgettoSW" />
@@ -273,8 +273,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.ServerApp" />
+        <item itemvalue="Application.ClientApp" />
         <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
         <item itemvalue="JUnit.GameControllerTest.isGamefinished" />
         <item itemvalue="JUnit.GameControllerTest.win" />
@@ -325,15 +325,7 @@
       <workItem from="1718311648606" duration="2773000" />
       <workItem from="1718347842111" duration="10677000" />
       <workItem from="1718358686868" duration="4149000" />
-      <workItem from="1718368571883" duration="8449000" />
-    </task>
-    <task id="LOCAL-00016" summary="TEST DELLA CREAZIONE DELLA PLAYINGBOARD, DA RIVEDERE L'UTILITA DI DECKCONSTRUCTOR">
-      <option name="closed" value="true" />
-      <created>1711537929192</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1711537929192</updated>
+      <workItem from="1718368571883" duration="9630000" />
     </task>
     <task id="LOCAL-00017" summary="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station">
       <option name="closed" value="true" />
@@ -719,7 +711,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718377106725</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="work in progress menù e chat parte 3">
+      <option name="closed" value="true" />
+      <created>1718378337078</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1718378337078</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

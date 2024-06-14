@@ -131,6 +131,11 @@ public class Gui extends Application implements UI {
     }
 
     @Override
+    public String askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers) {
+        return "";
+    }
+
+    @Override
     public void printStationAfterCardHasBeenAdded() {
 
     }
