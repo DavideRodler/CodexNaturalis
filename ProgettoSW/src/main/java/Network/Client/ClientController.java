@@ -2,10 +2,7 @@ package Network.Client;
 
 import View.CLI.Cli2;
 import View.UI;
-import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
-import exception.NotMyTurnException;
-import exception.NotValidMoveException;
 import model.Player;
 import model.PlayingStation;
 import model.cards.CardGold;
@@ -26,11 +23,11 @@ import java.util.Scanner;
 public class ClientController {
     private UI ui;
     private ClientBoard clientModel;
-    private ClientCommunication clientCommunication;
+    private ClientToServerCommunication clientToServerCommunication;
 
-    public ClientController(ClientCommunication clientCommunication){
+    public ClientController(ClientToServerCommunication clientToServerCommunication){
         this.clientModel = new ClientBoard(null, null, new ArrayList<>(), null, new ArrayList<>(), new ArrayList<>(), null);
-        this.clientCommunication = clientCommunication;
+        this.clientToServerCommunication = clientToServerCommunication;
         ui = new Cli2(clientModel);
         ui.showGameTitle();
     }
@@ -40,15 +37,15 @@ public class ClientController {
         TokenEnum token;
         do {
             nickname = ui.askNickname();
-            token = ui.askToken(clientCommunication.getAvailableTokens());
-        } while (!clientCommunication.checkNicknameAvailability(nickname) || !clientCommunication.checkTokenAvailability(token));
+            token = ui.askToken(clientToServerCommunication.getAvailableTokens());
+        } while (!clientToServerCommunication.checkNicknameAvailability(nickname) || !clientToServerCommunication.checkTokenAvailability(token));
 
         //adding player to client model
         Player myplayer = new Player(nickname, token, new PlayingStation(new HashMap<>()), 0, new ArrayList<>());
         clientModel.setMyplayer(myplayer);
 
         //adding player to server
-        clientCommunication.addPlayer(nickname, token);
+        clientToServerCommunication.addPlayer(nickname, token);
     }
 
     public synchronized void showFourCentralCards() {
@@ -63,7 +60,7 @@ public class ClientController {
 
         //setting starting card face in server
         CardStarting cardStarting = (CardStarting) clientModel.getMyplayer().getStation().getCard(40,40);
-        clientCommunication.setStartingCardPlayedBack(answer, clientModel.getMyplayer().getNickname(),cardStarting.getId());
+        clientToServerCommunication.setStartingCardPlayedBack(answer, clientModel.getMyplayer().getNickname(),cardStarting.getId());
     }
 
 
@@ -75,7 +72,7 @@ public class ClientController {
         //asking secret objective
         int answer = ui.askObjectiveCard();
 
-        clientCommunication.setSecretObjective(clientModel.getMyplayer().getNickname(), clientModel.getMyplayer().getSelectibleObjectives().get(answer).getId());
+        clientToServerCommunication.setSecretObjective(clientModel.getMyplayer().getNickname(), clientModel.getMyplayer().getSelectibleObjectives().get(answer).getId());
 
     }
 
@@ -95,7 +92,7 @@ public class ClientController {
                 cardchoosen = clientModel.getMyplayer().getHand().get(answer[0]);
                 cardId = cardchoosen.getId();
 
-                clientCommunication.addCardToStation(clientModel.getMyplayer().getNickname(),cardId, answer[1] == 2 , answer[2], answer[3]);    //try to add the card to local model
+                clientToServerCommunication.addCardToStation(clientModel.getMyplayer().getNickname(),cardId, answer[1] == 2 , answer[2], answer[3]);    //try to add the card to local model
                 break;
             }
             catch (InvalidPlacingCondition e) {
@@ -118,12 +115,12 @@ public class ClientController {
                 ArrayList<CardGold> centralCardsGold = clientModel.getCentralCardsGold();
                 card = centralCardsGold.get(selection - 1);
             }
-                clientCommunication.addCardFromCentralCardsToPlayerHand(clientModel.getMyplayer().getNickname(), card.getId());
+                clientToServerCommunication.addCardFromCentralCardsToPlayerHand(clientModel.getMyplayer().getNickname(), card.getId());
         }
         else {
-                clientCommunication.addCardFromDeckToPlayerHand(clientModel.getMyplayer().getNickname(), selection);
+                clientToServerCommunication.addCardFromDeckToPlayerHand(clientModel.getMyplayer().getNickname(), selection);
         }
-        clientCommunication.startTurn();
+        clientToServerCommunication.startTurn();
     }
 
     public void updateModel(Message message) throws RemoteException {
@@ -258,7 +255,7 @@ public class ClientController {
     }
 
     public void setupOfPlayersNumber() {
-        clientCommunication.setPlayerNumber(ui.askPlayerNumber());
+        clientToServerCommunication.setPlayerNumber(ui.askPlayerNumber());
     }
 
     public void notifyAnotherPlayerSettingNumOfPlayers() {
@@ -267,7 +264,7 @@ public class ClientController {
         String answer = scanner.nextLine();
         if(answer.isEmpty()) {
             try {
-                clientCommunication.connectToServer();
+                clientToServerCommunication.connectToServer();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

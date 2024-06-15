@@ -1,12 +1,12 @@
 package StartApplication;
 
-import Network.Server.RmiServer;
+import Network.Server.RMI.RmiServer;
+import Network.Server.Server;
+import Network.Server.Socket.SocketServer;
 import Network.Server.VirtualServer;
-import controller.GameController;
 
 import java.io.*;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -41,14 +41,19 @@ public class ServerApp implements Remote {
                 }
             } while (true);
             System.setProperty("java.rmi.server.hostname", input);
-            VirtualServer server = new RmiServer();
+            Server server = new Server();
+            VirtualServer serverRmi = new RmiServer(server);
             try{
-                VirtualServer stub = (VirtualServer) UnicastRemoteObject.exportObject(server, 0);
+                VirtualServer stub = (VirtualServer) UnicastRemoteObject.exportObject(serverRmi, 0);
                 Registry registry = LocateRegistry.createRegistry(16000);
                 registry.rebind("MyServer", stub);
             }catch( RemoteException e ){
                 System.out.println("Error: " + e);
             }
+
+            ServerSocket listenSocket = new ServerSocket(16001);
+            new SocketServer(server, listenSocket);
+
             System.out.println("➖Server is booting....");
             System.out.println("➖Server created");
         } catch (Exception e) {

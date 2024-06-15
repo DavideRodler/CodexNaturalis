@@ -1,6 +1,6 @@
 package Network.Client.RMI;
 
-import Network.Client.ClientCommunication;
+import Network.Client.ClientToServerCommunication;
 import Network.Client.ClientController;
 import Network.Server.VirtualServer;
 
@@ -15,18 +15,75 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
-public class RmiClient extends UnicastRemoteObject implements ClientCommunication {
+public class RmiClientToServer extends UnicastRemoteObject implements ClientToServerCommunication, VirtualView {
 
     private ClientController clientController;
     private final VirtualServer server;
+    private BlockingQueue<String> queue = new ArrayBlockingQueue<>(100);
 
-    public RmiClient(VirtualServer server) throws RemoteException{
+    public RmiClientToServer(VirtualServer server) throws RemoteException{
         this.server = server;
         this.clientController = new ClientController(this);
     }
+
     public void setClientController(ClientController clientController){
         this.clientController = clientController;
+    }
+
+    public void ClientToServerCall() throws RemoteException {
+        while (true) {
+            String action = null;
+            try {
+                action = queue.take();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            switch (action) {
+                case "connectToServer":
+                    this.server.connectClient(this);
+                    break;
+                case "getAvailableTokens":
+                    getAvailableTokens();
+                    break;
+                case "checkNicknameAvailability":
+                    checkNicknameAvailability("nickname");
+                    break;
+                case "checkTokenAvailability":
+                    checkTokenAvailability(TokenEnum.BLACK);
+                    break;
+                case "addPlayer":
+                    addPlayer("nickname", TokenEnum.BLACK);
+                    break;
+                case "setStartingCardPlayedBack":
+                    setStartingCardPlayedBack(true, "nickname", 1);
+                    break;
+                case "setSecretObjective":
+                    setSecretObjective("nickname", 1);
+                    break;
+                case "addCardToStation":
+                    try {
+                        addCardToStation("nickname", 1, true, 1, 1);
+                    } catch (InvalidPlacingCondition e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case "addCardFromCentralCardsToPlayerHand":
+                    addCardFromCentralCardsToPlayerHand("nickname", 1);
+                    break;
+                case "addCardFromDeckToPlayerHand":
+                    addCardFromDeckToPlayerHand("nickname", 1);
+                    break;
+                case "startTurn":
+                    startTurn();
+                    break;
+                case "setPlayerNumber":
+                    setPlayerNumber(1);
+                    break;
+            }
+        }
     }
     //client To Server Communication
     @Override

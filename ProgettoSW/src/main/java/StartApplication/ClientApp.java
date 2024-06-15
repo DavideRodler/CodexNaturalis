@@ -1,25 +1,22 @@
 package StartApplication;
 
-import Network.Client.ClientCommunication;
 import Network.Client.ClientController;
-import Network.Client.RMI.RmiClient;
+import Network.Client.RMI.RmiClientToServer;
+import Network.Client.Socket.SocketClient;
 import Network.Server.VirtualServer;
-import exception.NotValidMoveException;
 
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
+import java.net.Socket;
 
 public class ClientApp implements Remote {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner in = new Scanner(new InputStreamReader(System.in));
         String ip;
         do {
@@ -45,7 +42,7 @@ public class ClientApp implements Remote {
                 try {
                     Registry registry = LocateRegistry.getRegistry(ip, 16000);
                     server = (VirtualServer) registry.lookup("MyServer");
-                    RmiClient client = new RmiClient(server);
+                    RmiClientToServer client = new RmiClientToServer(server);
                     ClientController clientController = new ClientController(client);
                     client.setClientController(clientController);
                     client.connectToServer();
@@ -57,7 +54,15 @@ public class ClientApp implements Remote {
                 break;
 
             } else if (selection ==2) {
-                System.out.println("non abbiamo implementato la comunicazione via socket");
+                Socket serverSocket = new Socket(ip, 16001);
+
+                InputStreamReader socketRx = new InputStreamReader(serverSocket.getInputStream());
+                OutputStreamWriter socketTx = new OutputStreamWriter(serverSocket.getOutputStream());
+                SocketClient client = new  SocketClient(new BufferedReader(socketRx), new PrintWriter(socketTx));
+                ClientController clientController = new ClientController(client);
+                client.setClientController(clientController);
+                client.run();
+
                 break;
             } else {
                 System.out.println("Invalid Input");

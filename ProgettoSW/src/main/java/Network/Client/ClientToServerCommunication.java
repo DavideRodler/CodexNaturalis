@@ -1,12 +1,11 @@
 package Network.Client;
 
-import Network.Client.RMI.VirtualView;
 import exception.InvalidPlacingCondition;
 import model.enums.TokenEnum;
 
 import java.util.ArrayList;
 
-public interface ClientCommunication extends VirtualView {
+public interface ClientToServerCommunication {
     void connectToServer() throws Exception;
 
     ArrayList<TokenEnum> getAvailableTokens();
