@@ -10,6 +10,7 @@ import model.enums.SuitEnum;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class ClientBoard implements Serializable {
 
@@ -24,6 +25,7 @@ public class ClientBoard implements Serializable {
     private ArrayList<ReductPlayer> otherplayers;
     private SuitEnum backOfResourceDeck;
     private SuitEnum backOfGoldDeck;
+    private LinkedHashMap<String, LinkedHashMap<String , String>> typeOfChat = new LinkedHashMap<>();
 
     public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, ArrayList<ReductPlayer> otherplayers, Player myplayer, ArrayList<CardResource> centralCardsResource, ArrayList<CardGold> centralCardsGold, GameState gameState) {
         this.firstObjective = firstObjective;
@@ -79,6 +81,10 @@ public class ClientBoard implements Serializable {
         return backOfGoldDeck;
     }
 
+    public LinkedHashMap<String, LinkedHashMap<String, String>> getTypeOfChat() {
+        return typeOfChat;
+    }
+
     public void setCentralCardsGold(ArrayList<CardGold> centralCardsGold) {
         this.centralCardsGold = centralCardsGold;
     }
@@ -124,5 +130,14 @@ public class ClientBoard implements Serializable {
 
     public void setBackOfGoldDeck(SuitEnum backOfGoldDeck) {
         this.backOfGoldDeck = backOfGoldDeck;
+    }
+
+    public void addNewChat(String typeOfChat) {
+       this.typeOfChat.put(typeOfChat, new LinkedHashMap<>());
+    }
+
+    public void updateChat(String type, String Name, String chatMessage) {
+        this.typeOfChat.get(type).put(Name, chatMessage);
+        System.out.println("Chat aggiornata");
     }
 }

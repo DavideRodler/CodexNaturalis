@@ -1,14 +1,15 @@
 package Network.Server;
 
 import Network.Client.RMI.VirtualView;
+import Socket.Messages.ChatMessage;
+import Socket.Messages.Message;
+import Socket.Messages.TypeOfChatMessage;
 import controller.GameController;
-import exception.ChangedStateException;
-import exception.InvalidPlacingCondition;
-import exception.NotMyTurnException;
-import exception.NotValidMoveException;
+import exception.*;
 import model.Player;
 import model.enums.GameState;
 import model.enums.TokenEnum;
+import observers.ObservableModel;
 //import socket.Messages.PlayersInfoMessage;
 
 import java.rmi.RemoteException;
@@ -16,13 +17,15 @@ import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public class RmiServer implements VirtualServer {
+public class RmiServer extends ObservableModel implements VirtualServer {
 
     private final GameController gameController;
     private List<VirtualView> clients;
     private HashMap<String, VirtualView> clientsMap;
+    private HashMap<VirtualView, String> clientsMapForChat;
     private BlockingQueue<String> queue = new ArrayBlockingQueue<>(100);
     private int menuCounter=0;
+    private LinkedHashMap<String, LinkedHashMap<String , String>> TypeOfChat;
 
     public int getMenuCounter(){
         return this.menuCounter;
@@ -185,7 +188,10 @@ public class RmiServer implements VirtualServer {
     public RmiServer() {
         clients = new ArrayList<>();
         clientsMap = new HashMap<>();
+        clientsMapForChat = new HashMap<>();
         gameController = new GameController();
+        TypeOfChat = new LinkedHashMap<>();
+        TypeOfChat.put("GLOBAL", new LinkedHashMap<>());
         startServerToClientCallThread();
     }
 
@@ -216,6 +222,16 @@ public class RmiServer implements VirtualServer {
 
     }
 
+    @Override
+    public void sendGlobalMessage(String nickname, String message) throws RemoteException {
+        TypeOfChat.get("GLOBAL").put(nickname, message);
+        try {
+            notifyObservers(new ChatMessage("GLOBAL",nickname, message));
+        } catch (NonePlayerFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     @Override
     public void setPlayerNumber(int playerNumber) throws RemoteException, NotValidMoveException, ChangedStateException {
@@ -241,8 +257,31 @@ public class RmiServer implements VirtualServer {
     public void addPlayer(String nickname, TokenEnum token, VirtualView Myclient) throws ChangedStateException, NotValidMoveException, RemoteException {
         gameController.addPlayer(nickname, token);
         clientsMap.put(nickname, Myclient);
+        clientsMapForChat.put(Myclient, nickname);
         if (gameController.isGameState(GameState.INITIALIZE_GAME)){
             initializeGame();
+            for (Map.Entry<String, VirtualView> entry : clientsMap.entrySet()) {
+                this.addSpecificObserver(entry.getKey(), entry.getValue());
+            }
+            try {
+                notifyObservers(new TypeOfChatMessage("GLOBAL"));
+                for (VirtualView client : clients) {
+                    for (VirtualView client1 : clients) {
+                        if (!client.equals(client1)) {
+                            if(!TypeOfChat.containsKey(clientsMapForChat.get(client) + clientsMapForChat.get(client1)) ||
+                                    !TypeOfChat.containsKey(clientsMapForChat.get(client1) + clientsMapForChat.get(client))) {
+                                String firstName = clientsMapForChat.get(client);
+                                String secondName = clientsMapForChat.get(client1);
+                                TypeOfChat.put(firstName + secondName, new LinkedHashMap<>());
+                                notifySpecificObserver(firstName, new TypeOfChatMessage(firstName + secondName));
+                                notifySpecificObserver(secondName, new TypeOfChatMessage(firstName + secondName));
+                            }
+                        }
+                    }
+                }
+            } catch (RemoteException | NonePlayerFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -330,6 +369,7 @@ public class RmiServer implements VirtualServer {
         } catch (ChangedStateException e) {
             throw new RuntimeException(e);
         }
+
         showFourCentralCardsToPlayers();
     }
 

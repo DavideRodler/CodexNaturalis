@@ -6,6 +6,7 @@ import exception.InvalidPlacingCondition;
 import exception.NotMyTurnException;
 import exception.NotValidMoveException;
 import model.enums.TokenEnum;
+import observers.Observer;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -41,4 +42,6 @@ public interface VirtualServer extends Remote {
     void updatePlayerReadyForNewMenu(int i) throws RemoteException;
 
     void unlockAllThreadsForNewMenu() throws RemoteException;
+
+    void sendGlobalMessage(String nickname, String message) throws RemoteException;
 }

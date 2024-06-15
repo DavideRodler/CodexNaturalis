@@ -80,4 +80,8 @@ public interface UI {
     void printMenuNotMyTurn(String currentPlayer);
 
     void printMenu2and3NotMyTurn(String currentPlayer);
+
+    String askMessage();
+
+    void printChat(String global);
 }

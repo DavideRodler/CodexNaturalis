@@ -375,10 +375,30 @@ public class Cli2 implements UI {
     }
 
     @Override
+    public String askMessage() {
+        printMenu();
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        System.out.println("Insert the message you want to send: ");
+        return scanner.nextLine();
+    }
+
+    @Override
+    public void printChat(String global) {
+        if(clientBoard.getTypeOfChat().get(global) == null){
+            System.out.println("No messages in this chat");
+        }
+        else{
+        for(var key : clientBoard.getTypeOfChat().get(global).keySet()){
+            if(clientBoard.getTypeOfChat().get(global).get(key) != null)
+                System.out.println(key + ": "+ clientBoard.getTypeOfChat().get(global).get(key));
+        }}
+    }
+
+    @Override
     public String askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers) {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         System.out.println("Insert the type of chat you want to open: ");
-        System.out.println("1. Public chat");
+        System.out.println("1. Global chat");
         for(int i = 0; i < numberOfOtherPlayers; i++)
             System.out.println(i+3 + ". Private chat with " + NamesOfOtherPlayers[i]);
 

@@ -205,6 +205,16 @@ public class Gui extends Application implements UI {
     public void printMenu2and3NotMyTurn(String currentPlayer) {
 
     }
+
+    @Override
+    public String askMessage() {
+        return "";
+    }
+
+    @Override
+    public void printChat(String global) {
+
+    }
 }
 
 //TODO:

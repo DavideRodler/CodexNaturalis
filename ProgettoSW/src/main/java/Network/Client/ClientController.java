@@ -127,26 +127,6 @@ public class ClientController {
         //the card i want to put in the station
         CardResource cardchoosen;
         int cardId;
-        /*
-        try{
-            while(!server.menuChecker())
-            {
-                this.wait();
-            }
-            System.out.println("FLAG");
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        try {
-            server.updatePlayerReadyForNewMenu(0);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-        */
-
         do{
                 menuAnswer = ui.askMenuAction();
                 try {
@@ -203,6 +183,19 @@ public class ClientController {
                             break;
                         case 4:
                             String ChatChoice = ui.askTypeOfChat(clientModel.getOtherplayers().size(), clientModel.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
+                            switch(ChatChoice) {
+                                case "1":
+                                    ui.printChat("GLOBAL");
+                                    String Message = ui.askMessage();
+                                    server.sendGlobalMessage(clientModel.getMyplayer().getNickname(), Message);
+                                    break;
+                                case "2":
+
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
                         case 5:
                             if(!endTurn)
                                 System.out.println("You can not end your turn before had placed a card in your station");
@@ -276,6 +269,14 @@ public class ClientController {
 
     public void updateModel(Message message) throws RemoteException, NonePlayerFoundException {
         switch (message.getType()) {
+            case "GLOBAL":
+                ChatMessage chatMessage = (ChatMessage) message;
+                clientModel.updateChat("GLOBAL", chatMessage.getNickname(), chatMessage.getMessage());
+                break;
+            case "typeOfChat":
+                TypeOfChatMessage typeOfChatMessage = (TypeOfChatMessage) message;
+                clientModel.addNewChat(typeOfChatMessage.getTypeOfChat());
+                break;
             case "CurrentPlayerInfo":
                 CurrentPlayerInfoMessage currentPlayerInfoMessage = (CurrentPlayerInfoMessage) message;
                 clientModel.setCurrentPlayer(currentPlayerInfoMessage.getCurrentPlayerName());
