@@ -29,10 +29,9 @@ public class SocketServer implements VirtualServer {
     public void RunServer() throws IOException {
         Socket clientSocket = null;
         while ((clientSocket = this.listenSocket.accept()) != null) {
-            InputStreamReader socketRx = new InputStreamReader(clientSocket.getInputStream());
-            OutputStreamWriter socketTx = new OutputStreamWriter(clientSocket.getOutputStream());
-
-            SocketClientHandler handler = new SocketClientHandler(new BufferedReader(socketRx), new PrintWriter(socketTx), server);
+            InputStream input = clientSocket.getInputStream();
+            OutputStream output = clientSocket.getOutputStream();
+            SocketClientHandler handler = new SocketClientHandler(new ObjectInputStream(input), new ObjectOutputStream(output), server);
 
             new Thread(() -> {
                 try {

@@ -44,8 +44,17 @@ public class SocketClient implements ClientToServerCommunication {
         while ((line = input.readLine()) != null) {
             // Read message and perform action
             switch (line) {
-                case "setupOfPlayersNumber" -> clientController.setupOfPlayersNumber();
                 case "setupOfNicknameAndToken" -> clientController.setupOfnicknameAndToken();
+                case "notifyStartSetupOfStartingCard" -> clientController.setupOfStartingCard();
+                case "showFourCentralCards" -> clientController.showFourCentralCards();
+                case "setupOfPlayersNumber" -> clientController.setupOfPlayersNumber();
+                case "notifyAnotherPlayerSettingNumOfPlayers" -> clientController.notifyAnotherPlayerSettingNumOfPlayers();
+                case "notifyWaitingForPlayersToJoin" -> clientController.notifyWaitingForPlayersToJoin();
+                case "notifyAllPlayersConnected" -> clientController.notifyAllPlayersConnected();
+                case "notifyGameAlreadyStarted" -> clientController.notifyGameAlreadyStarted();
+                case "notifyIsYourTurn" -> clientController.notifyItIsYourTurn();
+                case "setupOfSecretObjective" -> clientController.setupOfSecretObjective();
+                case ""
                 default -> System.err.println("[INVALID MESSAGE]");
             }
         }
