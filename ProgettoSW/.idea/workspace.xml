@@ -5,20 +5,204 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="work in progress menù e chat parte 4 (Global Chat)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/PrivateChatMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Chat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/PrivateChat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/back/ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/back/FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/back/INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/back/PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/41_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/42_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/43_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/44_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/45_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/46_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/47_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/48_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/49_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/50_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/51_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/52_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/53_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/54_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/55_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/56_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/57_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/58_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/59_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/60_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/61_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/62_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/63_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/64_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/65_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/66_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/67_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/68_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/69_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/70_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/71_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/72_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/73_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/74_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/75_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/76_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/77_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/78_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/79_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/gold/front/80_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/back/animal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/back/fungi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/back/insect.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/back/plant.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/10_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/11_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/12_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/13_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/14_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/15_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/16_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/17_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/18_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/19_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/1_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/20_PLANT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/21_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/22_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/23_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/24_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/25_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/26_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/27_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/28_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/29_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/2_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/30_ANIMAL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/31_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/32_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/33_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/34_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/35_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/36_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/37_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/38_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/39_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/3_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/40_INSECT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/4_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/5_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/6_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/7_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/8_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/resource/front/9_FUNGI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/starting/front/81_starting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/starting/front/82_starting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/starting/front/83_starting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/starting/front/84_starting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/starting/front/85_starting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cards/starting/front/86_starting.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/TypeOfChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/TypeOfChatMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/CentralCardsCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/CentralCardsCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/StationMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/StationMatrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/CardLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/CardLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/back/gold_animal.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/back/gold_fungi.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/back/gold_insect.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/back/gold_plant.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/animal/gold_animal1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/animal/gold_animal10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/animal/gold_animal2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/animal/gold_animal3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/animal/gold_animal4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/animal/gold_animal5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/animal/gold_animal6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/animal/gold_animal7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/animal/gold_animal8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/animal/gold_animal9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/fungi/gold_fungi1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/fungi/gold_fungi10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/fungi/gold_fungi2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/fungi/gold_fungi3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/fungi/gold_fungi4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/fungi/gold_fungi5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/fungi/gold_fungi6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/fungi/gold_fungi7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/fungi/gold_fungi8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/fungi/gold_fungi9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/insect/gold_insect1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/insect/gold_insect10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/insect/gold_insect2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/insect/gold_insect3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/insect/gold_insect4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/insect/gold_insect5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/insect/gold_insect6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/insect/gold_insect7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/insect/gold_insect8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/insect/gold_insect9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/plant/gold_plant1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/plant/gold_plant10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/plant/gold_plant2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/plant/gold_plant3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/plant/gold_plant4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/plant/gold_plant5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/plant/gold_plant6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/plant/gold_plant7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/plant/gold_plant8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/plant/gold_plant9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/back/res_animal.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/back/res_fungi.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/back/res_insect.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/back/res_plant.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/animal/res_animal1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/animal/res_animal10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/animal/res_animal2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/animal/res_animal3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/animal/res_animal4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/animal/res_animal5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/animal/res_animal6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/animal/res_animal7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/animal/res_animal8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/animal/res_animal9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/fungi/res_fungi1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/fungi/res_fungi10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/fungi/res_fungi2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/fungi/res_fungi3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/fungi/res_fungi4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/fungi/res_fungi5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/fungi/res_fungi6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/fungi/res_fungi7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/fungi/res_fungi8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/fungi/res_fungi9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/insect/res_insect1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/insect/res_insect10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/insect/res_insect2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/insect/res_insect3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/insect/res_insect4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/insect/res_insect5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/insect/res_insect6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/insect/res_insect7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/insect/res_insect8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/insect/res_insect9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/plant/res_plant1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/plant/res_plant10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/plant/res_plant2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/plant/res_plant3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/plant/res_plant4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/plant/res_plant5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/plant/res_plant6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/plant/res_plant7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/plant/res_plant8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/plant/res_plant9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/front/starting1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/front/starting2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/front/starting3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/front/starting4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/front/starting5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/front/starting6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/PlayingBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PlayingBoardTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +389,7 @@
       <recent name="model.cards.face" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerApp">
+  <component name="RunManager" selected="Application.ClientApp">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
       <module name="ProgettoSW" />

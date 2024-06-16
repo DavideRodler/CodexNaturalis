@@ -33,17 +33,30 @@ public class ChooseNickAndTokenController{
     @FXML
     private Label label;
 
+    private String nick;
+
 
     @FXML
-    public String enterNickname() {
-        String nickname = chooseNickname.getText();
-        return nickname;
+    public void enterNickname() {//notify
+        nick = chooseNickname.getText();
+        notifyAll();
+
     }
 
     @FXML
     public TokenEnum enterToken() { //TODO: per inizializzarlo possiamo al posto del meotodo initialize, dalla gui ci facciamo passare i token disponibili e diamo solo quelli come scelta
         TokenEnum token = chooseToken.getValue();
         return token;
+    }
+
+    //metodo che sta in wait fino a quando non arriva il nick
+    public synchronized String waitForNickname(){
+        try {
+            wait();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return nick;
     }
 
 

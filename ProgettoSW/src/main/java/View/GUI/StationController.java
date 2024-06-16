@@ -11,6 +11,8 @@ import model.cards.CardStarting;
 //TODO: qua ci sarà il board condiviso dai giocatori: punti, carte centrali, ob comuni.
 // a lato terrei sempre la mano del giocatore.
 // metterei un button per switchare tra questa scena e la propria station.
+// molte delle funzioni in realtà non sono altro che le funzioni già presenti nella classe gui.
+// potrei direttamente chiamarle da li. Infatti così facendo evito di dover passare tutto nelle funzioni
 
 public class StationController {
 
@@ -63,7 +65,7 @@ public class StationController {
         private ImageView chooseObj1;
 
         @FXML
-        private ImageView choosechooseObj2;
+        private ImageView chooseObj2;
 
         @FXML
         private ImageView commonObj1;
@@ -121,6 +123,8 @@ public class StationController {
                 // cardhand3 = immagine card3
                 // secretobj = immagine obj
         }
+
+
 
 
 }
