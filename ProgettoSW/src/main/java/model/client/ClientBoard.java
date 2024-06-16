@@ -1,7 +1,11 @@
 package model.client;
 
+import Socket.Messages.ChatMessage;
+import Socket.Messages.PrivateChatMessage;
 import exception.NonePlayerFoundException;
+import model.Chat;
 import model.Player;
+import model.PrivateChat;
 import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
@@ -25,7 +29,8 @@ public class ClientBoard implements Serializable {
     private ArrayList<ReductPlayer> otherplayers;
     private SuitEnum backOfResourceDeck;
     private SuitEnum backOfGoldDeck;
-    private LinkedHashMap<String, LinkedHashMap<String , String>> typeOfChat = new LinkedHashMap<>();
+    private Chat globalChat;
+    private ArrayList<PrivateChat> privateChatArrayList;
 
     public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, ArrayList<ReductPlayer> otherplayers, Player myplayer, ArrayList<CardResource> centralCardsResource, ArrayList<CardGold> centralCardsGold, GameState gameState) {
         this.firstObjective = firstObjective;
@@ -35,13 +40,28 @@ public class ClientBoard implements Serializable {
         this.centralCardsResource = centralCardsResource;
         this.centralCardsGold = centralCardsGold;
         this.gameState = gameState;
+        globalChat = new Chat();
+        privateChatArrayList = new ArrayList<>();
     }
 
-   // public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, GameState gameState) {
-   //     this.firstObjective = firstObjective;
-   //     this.secondObjective = secondObjective;
-   // }
+    // public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, GameState gameState) {
+    //     this.firstObjective = firstObjective;
+    //     this.secondObjective = secondObjective;
+    // }
 
+
+    public Chat getGlobalChat() {
+        return globalChat;
+    }
+
+    public ArrayList<PrivateChatMessage> getPrivateChat(String nickname1, String nickname2) {
+        for (PrivateChat p : privateChatArrayList) {
+            if ((p.getNickname1().equals(nickname1) && p.getNickname2().equals(nickname2)) || (p.getNickname1().equals(nickname2) && p.getNickname2().equals(nickname1))) {
+                return p.getMessage();
+            }
+        }
+        return null;
+    }
 
     public ArrayList<CardGold> getCentralCardsGold() {
         return centralCardsGold;
@@ -58,6 +78,7 @@ public class ClientBoard implements Serializable {
     public Player getMyplayer() {
         return myplayer;
     }
+
     public String getCurrentPlayer() {
         return currentPlayer;
     }
@@ -69,6 +90,7 @@ public class ClientBoard implements Serializable {
     public CardObjective getSecondObjective() {
         return secondObjective;
     }
+
     public GameState getGameState() {
         return gameState;
     }
@@ -79,10 +101,6 @@ public class ClientBoard implements Serializable {
 
     public SuitEnum getBackOfGoldDeck() {
         return backOfGoldDeck;
-    }
-
-    public LinkedHashMap<String, LinkedHashMap<String, String>> getTypeOfChat() {
-        return typeOfChat;
     }
 
     public void setCentralCardsGold(ArrayList<CardGold> centralCardsGold) {
@@ -100,15 +118,16 @@ public class ClientBoard implements Serializable {
     public void setOtherplayers(ArrayList<ReductPlayer> otherplayers) {
         this.otherplayers = otherplayers;
     }
+
     public void setCurrentPlayer(String currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
 
-    public ReductPlayer getOtherPlayer(String nickname) throws NonePlayerFoundException{
+    public ReductPlayer getOtherPlayer(String nickname) throws NonePlayerFoundException {
         return otherplayers.stream()
                 .filter(p -> p.getNickname().equals(nickname))
                 .findFirst()
-                .orElseThrow(()->
+                .orElseThrow(() ->
                         new NonePlayerFoundException("Player not found"));
     }
 
@@ -132,12 +151,22 @@ public class ClientBoard implements Serializable {
         this.backOfGoldDeck = backOfGoldDeck;
     }
 
-    public void addNewChat(String typeOfChat) {
-       this.typeOfChat.put(typeOfChat, new LinkedHashMap<>());
+    public void addNewPrivateChat(String nickname1, String nickname2) {
+        privateChatArrayList.add(new PrivateChat(nickname1, nickname2));
     }
 
-    public void updateChat(String type, String Name, String chatMessage) {
-        this.typeOfChat.get(type).put(Name, chatMessage);
-        System.out.println("Chat aggiornata");
+    public void updateChat(String chat, String nicknameSender, String nicknameReceiver, String message) {
+        if (chat.equals("GLOBAL")) {
+            globalChat.addMessage(new ChatMessage("GLOBAL", message, nicknameSender));
+        }
+        else if (chat.equals("PRIVATE")) {
+                privateChatArrayList.stream()
+                        .filter(p -> (p.getNickname1().equals(nicknameSender) && p.getNickname2().equals(nicknameReceiver)) || (p.getNickname1().equals(nicknameReceiver) && p.getNickname2().equals(nicknameSender)))
+                        .findFirst()
+                        .ifPresentOrElse(
+                                p -> p.addMessage(new PrivateChatMessage( message,nicknameSender,nicknameReceiver)),
+                                () -> System.out.println("Chat not found")
+                        );
+        }
     }
 }

@@ -25,7 +25,8 @@ public class PlayingBoard extends ObservableModel {
     private CardObjective secondObjective;
     private SuitEnum firstCardOfResourceDeck;
     private SuitEnum firstCardOfGoldDeck;
-
+    private Chat globalChat;
+    private ArrayList<PrivateChat> privateChat;
 
     //the current player playing
     private String currentPlayer;
@@ -49,6 +50,8 @@ public class PlayingBoard extends ObservableModel {
         this.centralCardsResource = centralCardsResource;
         this.centralCardsGold = centralCardsGold;
         this.gameState = gameState;
+        this.globalChat = new Chat();
+        this.privateChat = new ArrayList<>();
     }
 
     public PlayingBoard() {
@@ -60,6 +63,7 @@ public class PlayingBoard extends ObservableModel {
         this.deckCardGold = new LinkedList<>();
         this.centralCardsResource = new ArrayList<>();
         this.centralCardsGold = new ArrayList<>();
+
     }
 
 
@@ -299,5 +303,45 @@ public class PlayingBoard extends ObservableModel {
         }
     }
 
+    public void addNewPrivateChat(String nickname1, String nickname2) {
+        try{
+            getPrivateChat(nickname1, nickname2);
+        }catch(IllegalStateException e){
+            privateChat.add(new PrivateChat(nickname1, nickname2));
+            try {
+                notifySpecificObserver(nickname1, new TypeOfChatMessage(nickname1, nickname2));
+                notifySpecificObserver(nickname2, new TypeOfChatMessage(nickname1, nickname2));
+            } catch (RemoteException | NonePlayerFoundException f) {
+                throw new RuntimeException(f);
+            }
+        }
+    }
 
+    public PrivateChat getPrivateChat(String nickname1, String nickname2) {
+        return privateChat.stream()
+                .filter(p -> (p.getNickname1().equals(nickname1) && p.getNickname2().equals(nickname2)) || (p.getNickname1().equals(nickname2) && p.getNickname2().equals(nickname1)))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("Chat not found"));
+    }
+
+    public void addMessageToGlobalChat(String nickname, String message) {
+        globalChat.addMessage(new ChatMessage("GLOBAL", message, nickname));
+        try {
+            notifyObservers(new ChatMessage("GLOBAL", message, nickname));
+        } catch (RemoteException | NonePlayerFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void addMessageToPrivateChat(String nickname, String nickname1, String message2) {
+        try {
+            getPrivateChat(nickname, nickname1).addMessage(new PrivateChatMessage(message2, nickname, nickname1));
+            notifySpecificObserver(nickname, new PrivateChatMessage(message2, nickname, nickname1));
+            notifySpecificObserver(nickname1, new PrivateChatMessage(message2, nickname, nickname1));
+        } catch (IllegalStateException e) {
+            throw new RuntimeException(e);
+        } catch (RemoteException | NonePlayerFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

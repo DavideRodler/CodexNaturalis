@@ -83,5 +83,11 @@ public interface UI {
 
     String askMessage();
 
-    void printChat(String global);
+    void printChat();
+
+    void printChatInfo();
+
+    String printPrivateChatInfo();
+
+    void printPrivateChat(String nickname, String nickname1);
 }

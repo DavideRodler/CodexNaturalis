@@ -3,14 +3,20 @@ package Socket.Messages;
 import java.util.LinkedHashMap;
 
 public class TypeOfChatMessage extends Message{
-    private String TypeOfChat;
+    private String nickname1;
+    private String nickname2;
 
-    public TypeOfChatMessage(String TypeOfChat){
+    public TypeOfChatMessage(String nickname1, String nickname2){
         super("typeOfChat");
-        this.TypeOfChat = TypeOfChat;
+        this.nickname1 = nickname1;
+        this.nickname2 = nickname2;
     }
 
-    public String getTypeOfChat() {
-        return TypeOfChat;
+    public String getNickname1() {
+        return nickname1;
+    }
+
+    public String getNickname2() {
+        return nickname2;
     }
 }

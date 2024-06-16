@@ -25,7 +25,6 @@ public class RmiServer extends ObservableModel implements VirtualServer {
     private HashMap<VirtualView, String> clientsMapForChat;
     private BlockingQueue<String> queue = new ArrayBlockingQueue<>(100);
     private int menuCounter=0;
-    private LinkedHashMap<String, LinkedHashMap<String , String>> TypeOfChat;
 
     public int getMenuCounter(){
         return this.menuCounter;
@@ -190,8 +189,6 @@ public class RmiServer extends ObservableModel implements VirtualServer {
         clientsMap = new HashMap<>();
         clientsMapForChat = new HashMap<>();
         gameController = new GameController();
-        TypeOfChat = new LinkedHashMap<>();
-        TypeOfChat.put("GLOBAL", new LinkedHashMap<>());
         startServerToClientCallThread();
     }
 
@@ -223,13 +220,13 @@ public class RmiServer extends ObservableModel implements VirtualServer {
     }
 
     @Override
-    public void sendGlobalMessage(String nickname, String message) throws RemoteException {
-        TypeOfChat.get("GLOBAL").put(nickname, message);
-        try {
-            notifyObservers(new ChatMessage("GLOBAL",nickname, message));
-        } catch (NonePlayerFoundException e) {
-            throw new RuntimeException(e);
-        }
+    public synchronized void sendGlobalMessage(String nickname, String message) throws RemoteException {
+        gameController.addMessageToGlobalChat(nickname, message);
+    }
+
+    @Override
+    public void sendPrivateMessage(String nickname, String nickname1, String message2) {
+        gameController.addMessageToPrivateChat(nickname, nickname1, message2);
     }
 
 
@@ -257,32 +254,11 @@ public class RmiServer extends ObservableModel implements VirtualServer {
     public void addPlayer(String nickname, TokenEnum token, VirtualView Myclient) throws ChangedStateException, NotValidMoveException, RemoteException {
         gameController.addPlayer(nickname, token);
         clientsMap.put(nickname, Myclient);
-        clientsMapForChat.put(Myclient, nickname);
         if (gameController.isGameState(GameState.INITIALIZE_GAME)){
             initializeGame();
-            for (Map.Entry<String, VirtualView> entry : clientsMap.entrySet()) {
-                this.addSpecificObserver(entry.getKey(), entry.getValue());
-            }
-            try {
-                notifyObservers(new TypeOfChatMessage("GLOBAL"));
-                for (VirtualView client : clients) {
-                    for (VirtualView client1 : clients) {
-                        if (!client.equals(client1)) {
-                            if(!TypeOfChat.containsKey(clientsMapForChat.get(client) + clientsMapForChat.get(client1)) ||
-                                    !TypeOfChat.containsKey(clientsMapForChat.get(client1) + clientsMapForChat.get(client))) {
-                                String firstName = clientsMapForChat.get(client);
-                                String secondName = clientsMapForChat.get(client1);
-                                TypeOfChat.put(firstName + secondName, new LinkedHashMap<>());
-                                notifySpecificObserver(firstName, new TypeOfChatMessage(firstName + secondName));
-                                notifySpecificObserver(secondName, new TypeOfChatMessage(firstName + secondName));
-                            }
-                        }
-                    }
-                }
-            } catch (RemoteException | NonePlayerFoundException e) {
-                throw new RuntimeException(e);
-            }
         }
+
+
     }
 
 
@@ -361,6 +337,9 @@ public class RmiServer extends ObservableModel implements VirtualServer {
                 p.getStation().addSpecificObserver(entry.getKey(), entry.getValue());
             }
         }
+        for (Map.Entry<String, VirtualView> entry : clientsMap.entrySet()) {
+            gameController.getBoard().addSpecificObserver(entry.getKey(), entry.getValue());
+        }
         try {
             //initialize gameController
             gameController.InitializeGame();
@@ -371,6 +350,14 @@ public class RmiServer extends ObservableModel implements VirtualServer {
         }
 
         showFourCentralCardsToPlayers();
+
+        for(var c : gameController.getBoard().getPlayers()){
+            for(var d : gameController.getBoard().getPlayers()){
+                if(!c.getNickname().equals(d.getNickname())){
+                   gameController.addNewPrivateChat(c.getNickname(), d.getNickname());
+                }
+            }
+        }
     }
 
     public void showFourCentralCardsToPlayers() throws RemoteException {

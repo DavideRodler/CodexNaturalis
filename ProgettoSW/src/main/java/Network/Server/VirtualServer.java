@@ -44,4 +44,6 @@ public interface VirtualServer extends Remote {
     void unlockAllThreadsForNewMenu() throws RemoteException;
 
     void sendGlobalMessage(String nickname, String message) throws RemoteException;
+
+    void sendPrivateMessage(String nickname, String nickname1, String message2) throws RemoteException;
 }

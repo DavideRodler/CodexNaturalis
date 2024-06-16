@@ -212,7 +212,22 @@ public class Gui extends Application implements UI {
     }
 
     @Override
-    public void printChat(String global) {
+    public void printChat() {
+
+    }
+
+    @Override
+    public void printChatInfo() {
+
+    }
+
+    @Override
+    public String printPrivateChatInfo() {
+        return "";
+    }
+
+    @Override
+    public void printPrivateChat(String nickname, String nickname1) {
 
     }
 }

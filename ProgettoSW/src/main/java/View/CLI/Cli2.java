@@ -1,5 +1,7 @@
 package View.CLI;
 
+import Socket.Messages.ChatMessage;
+import Socket.Messages.PrivateChatMessage;
 import View.UI;
 import exception.NonePlayerFoundException;
 import model.PlayingStation;
@@ -376,22 +378,60 @@ public class Cli2 implements UI {
 
     @Override
     public String askMessage() {
-        printMenu();
+        //printMenu();
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        System.out.println("Insert the message you want to send: ");
         return scanner.nextLine();
     }
 
     @Override
-    public void printChat(String global) {
-        if(clientBoard.getTypeOfChat().get(global) == null){
-            System.out.println("No messages in this chat");
+    public void printChat() {
+
+        if(!clientBoard.getGlobalChat().getMessage().isEmpty()){
+            for(ChatMessage message : clientBoard.getGlobalChat().getMessage()){
+                System.out.println(message.getNickname() + ": " + message.getMessage());
+            }
         }
-        else{
-        for(var key : clientBoard.getTypeOfChat().get(global).keySet()){
-            if(clientBoard.getTypeOfChat().get(global).get(key) != null)
-                System.out.println(key + ": "+ clientBoard.getTypeOfChat().get(global).get(key));
-        }}
+    }
+
+    @Override
+    public void printChatInfo() {
+        System.out.println();
+        System.out.println("Insert Message to send: ");
+        System.out.println("Insert EXIT to exit the chat");
+        System.out.println("Press enter to update the chat");
+        System.out.println();
+    }
+
+    @Override
+    public String printPrivateChatInfo() {
+        System.out.println();
+        System.out.println("Insert the nickname of the player you want to chat with: ");
+        for (var c : clientBoard.getOtherplayers()) {
+            System.out.print(c.getNickname() + " ");
+        }
+        System.out.println();
+        String nickname = "";
+        boolean validNickname = false;
+        do {
+            try {
+                Scanner scanner = new Scanner(new InputStreamReader(System.in));
+                nickname = scanner.nextLine();
+                clientBoard.getOtherPlayer(nickname); // This will throw an exception if the player does not exist
+                validNickname = true;
+            } catch (NonePlayerFoundException e) {
+                System.out.println("Invalid nickname. Please try again.");
+            }
+        } while (!validNickname);
+        return nickname;
+    }
+
+    @Override
+    public void printPrivateChat(String nickname, String nickname1) {
+        if(!clientBoard.getPrivateChat(nickname, nickname1).isEmpty()){
+            for(PrivateChatMessage message : clientBoard.getPrivateChat(nickname, nickname1)){
+                System.out.println(message.getNicknameSender() + ": " + message.getMessage());
+            }
+        }
     }
 
     @Override
@@ -399,9 +439,7 @@ public class Cli2 implements UI {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         System.out.println("Insert the type of chat you want to open: ");
         System.out.println("1. Global chat");
-        for(int i = 0; i < numberOfOtherPlayers; i++)
-            System.out.println(i+3 + ". Private chat with " + NamesOfOtherPlayers[i]);
-
+        System.out.println("2. Private chat");
         return scanner.nextLine();
     }
 

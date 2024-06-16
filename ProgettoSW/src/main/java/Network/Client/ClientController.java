@@ -6,6 +6,7 @@ import Network.Client.RMI.RmiClient;
 import Network.Server.VirtualServer;
 import View.UI;
 import exception.*;
+import model.Chat;
 import model.Player;
 import model.PlayingStation;
 import model.cards.CardGold;
@@ -183,18 +184,8 @@ public class ClientController {
                             break;
                         case 4:
                             String ChatChoice = ui.askTypeOfChat(clientModel.getOtherplayers().size(), clientModel.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
-                            switch(ChatChoice) {
-                                case "1":
-                                    ui.printChat("GLOBAL");
-                                    String Message = ui.askMessage();
-                                    server.sendGlobalMessage(clientModel.getMyplayer().getNickname(), Message);
-                                    break;
-                                case "2":
-
-                                    break;
-                                default:
-                                    break;
-                            }
+                            ChatPrinter(ChatChoice);
+                            ui.printMenu();
                             break;
                         case 5:
                             if(!endTurn)
@@ -218,6 +209,56 @@ public class ClientController {
             throw new RuntimeException(e);
         } catch (NotMyTurnException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void ChatPrinter(String chatChoice) throws RemoteException {
+        switch(chatChoice) {
+            case "1":
+                String Message;
+                do{
+                    ui.printChatInfo();
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printChat();
+                    Message = ui.askMessage();
+                    if(!Message.isEmpty())
+                        server.sendGlobalMessage(clientModel.getMyplayer().getNickname(), Message);
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printSpace();
+                }while(!Message.equals("EXIT"));
+                break;
+            case "2":
+                String Message2;
+                String nickname = ui.printPrivateChatInfo();
+                do{
+                    ui.printChatInfo();
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printPrivateChat(clientModel.getMyplayer().getNickname(), nickname);
+                    Message2 = ui.askMessage();
+                    if(!Message2.isEmpty())
+                        server.sendPrivateMessage(clientModel.getMyplayer().getNickname(), nickname, Message2);
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printSpace();
+                    ui.printSpace();
+                }while(!Message2.equals("EXIT"));
+                break;
+            default:
+                break;
         }
     }
 
@@ -250,6 +291,9 @@ public class ClientController {
                                 ui.printSpace();
                                 break;
                             case 3:
+                                String ChatChoice = ui.askTypeOfChat(clientModel.getOtherplayers().size(), clientModel.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
+                                ChatPrinter(ChatChoice);
+                                ui.printMenuNotMyTurn(currentPlayer);
                                 break;
                             case 4:
                                 ready = true;
@@ -257,6 +301,8 @@ public class ClientController {
                         }
                     } catch (NonePlayerFoundException e) {
                         ui.showErrorMessage(e.getMessage());
+                    } catch (RemoteException e) {
+                        throw new RuntimeException(e);
                     }
                 }
                 try{
@@ -269,13 +315,18 @@ public class ClientController {
 
     public void updateModel(Message message) throws RemoteException, NonePlayerFoundException {
         switch (message.getType()) {
+            case "PRIVATE":
+                PrivateChatMessage privateMessage = (PrivateChatMessage) message;
+                clientModel.updateChat( "PRIVATE", privateMessage.getNicknameSender(), privateMessage.getNicknameReceiver(), privateMessage.getMessage());
+                break;
+
             case "GLOBAL":
                 ChatMessage chatMessage = (ChatMessage) message;
-                clientModel.updateChat("GLOBAL", chatMessage.getNickname(), chatMessage.getMessage());
+                clientModel.updateChat("GLOBAL", chatMessage.getNickname(), null ,chatMessage.getMessage());
                 break;
             case "typeOfChat":
                 TypeOfChatMessage typeOfChatMessage = (TypeOfChatMessage) message;
-                clientModel.addNewChat(typeOfChatMessage.getTypeOfChat());
+                clientModel.addNewPrivateChat(typeOfChatMessage.getNickname1(), typeOfChatMessage.getNickname2());
                 break;
             case "CurrentPlayerInfo":
                 CurrentPlayerInfoMessage currentPlayerInfoMessage = (CurrentPlayerInfoMessage) message;
