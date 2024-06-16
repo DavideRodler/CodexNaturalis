@@ -22,16 +22,14 @@ public class SocketServer implements VirtualServer {
     public SocketServer(Server server, ServerSocket serverSocket) throws IOException {
         this.server = server;
         this.listenSocket = serverSocket;
-        RunServer();
-
     }
 
     public void RunServer() throws IOException {
         Socket clientSocket = null;
         while ((clientSocket = this.listenSocket.accept()) != null) {
-            InputStream input = clientSocket.getInputStream();
             OutputStream output = clientSocket.getOutputStream();
-            SocketClientHandler handler = new SocketClientHandler(new ObjectInputStream(input), new ObjectOutputStream(output), server);
+            InputStream input = clientSocket.getInputStream();
+            SocketClientHandler handler = new SocketClientHandler( new ObjectOutputStream(output),new ObjectInputStream(input), server);
 
             new Thread(() -> {
                 try {

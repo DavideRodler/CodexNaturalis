@@ -2,20 +2,25 @@ package Network.Client.Socket;
 
 import Network.Client.RMI.VirtualView;
 import Network.Server.VirtualServer;
+import Socket.Messages.ClientToServer.AddPlayerMessage;
+import Socket.Messages.ClientToServer.SetPlayerNumberMessage;
+import Socket.Messages.ClientToServer.SetSecretObjectiveMessage;
+import Socket.Messages.ClientToServer.SetStartingCardPlayedBackMessage;
 import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
 import exception.NotMyTurnException;
 import exception.NotValidMoveException;
 import model.enums.TokenEnum;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class VirtualSocketServer implements VirtualServer {
-    private PrintWriter output;
+    private ObjectOutputStream output;
 
-    public VirtualSocketServer(PrintWriter output) {
+    public VirtualSocketServer(ObjectOutputStream output) {
         this.output = output;
     }
 
@@ -26,10 +31,24 @@ public class VirtualSocketServer implements VirtualServer {
 
     @Override
     public void setPlayerNumber(int playerNumber) throws RemoteException, NotValidMoveException, ChangedStateException {
-        output.println("setPlayerNumber");
-        output.println(playerNumber);
-        output.flush();
+        SetPlayerNumberMessage message = new SetPlayerNumberMessage(playerNumber);
+        try {
+            output.writeObject(message);
+            output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    @Override
+    public void addPlayer(String nickname, TokenEnum token, VirtualView Client) throws RemoteException, ChangedStateException, NotValidMoveException {
+        AddPlayerMessage message = new AddPlayerMessage(nickname, token);
+        try {
+            output.writeObject(message);
+            output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -48,18 +67,27 @@ public class VirtualSocketServer implements VirtualServer {
     }
 
     @Override
-    public void addPlayer(String nickname, TokenEnum token, VirtualView Myclient) throws RemoteException, ChangedStateException, NotValidMoveException {
-
-    }
-
-    @Override
     public void setStartingCardPlayedBack(boolean playedback, String nickname, int ID) throws ChangedStateException, NotValidMoveException, RemoteException {
+        SetStartingCardPlayedBackMessage message = new SetStartingCardPlayedBackMessage(playedback, nickname, ID);
+        try {
+            output.writeObject(message);
+            output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 
     @Override
     public void setSecretObjective(String nickname, Integer id) throws RemoteException, ChangedStateException, NotValidMoveException {
-
+        SetSecretObjectiveMessage message = new SetSecretObjectiveMessage(nickname, id);
+        try {
+            output.writeObject(message);
+            output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

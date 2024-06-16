@@ -6,6 +6,7 @@ import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.enums.GameState;
 import model.enums.SuitEnum;
+import model.enums.TokenEnum;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -93,6 +94,15 @@ public class ClientBoard implements Serializable {
                 .filter(p -> p.getNickname().equals(nickname))
                 .findFirst()
                 .orElse(null);
+    }
+    public ArrayList<TokenEnum> getAvailableTokens(){
+        ArrayList<TokenEnum> availableTokens = new ArrayList<>();
+        for(TokenEnum token : TokenEnum.values()){
+            if(otherplayers.stream().noneMatch(p -> p.getToken().equals(token))){
+                availableTokens.add(token);
+            }
+        }
+        return availableTokens;
     }
 
     public void setGameState(GameState gameState) {

@@ -56,9 +56,11 @@ public class ClientApp implements Remote {
             } else if (selection ==2) {
                 Socket serverSocket = new Socket(ip, 16001);
 
-                InputStreamReader socketRx = new InputStreamReader(serverSocket.getInputStream());
-                OutputStreamWriter socketTx = new OutputStreamWriter(serverSocket.getOutputStream());
-                SocketClient client = new  SocketClient(new BufferedReader(socketRx), new PrintWriter(socketTx));
+                InputStream socketRx = serverSocket.getInputStream();
+                OutputStream socketTx = serverSocket.getOutputStream();
+
+                SocketClient client = new  SocketClient(new ObjectInputStream(socketRx), new ObjectOutputStream(socketTx));
+
                 ClientController clientController = new ClientController(client);
                 client.setClientController(clientController);
                 client.run();

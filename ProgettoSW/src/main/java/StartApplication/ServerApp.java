@@ -52,7 +52,7 @@ public class ServerApp implements Remote {
             }
 
             ServerSocket listenSocket = new ServerSocket(16001);
-            new SocketServer(server, listenSocket);
+            new SocketServer(server, listenSocket).RunServer();
 
             System.out.println("➖Server is booting....");
             System.out.println("➖Server created");

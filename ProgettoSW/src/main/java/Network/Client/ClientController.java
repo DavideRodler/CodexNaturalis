@@ -35,10 +35,9 @@ public class ClientController {
     public void setupOfnicknameAndToken() {
         String nickname;
         TokenEnum token;
-        do {
-            nickname = ui.askNickname();
-            token = ui.askToken(clientToServerCommunication.getAvailableTokens());
-        } while (!clientToServerCommunication.checkNicknameAvailability(nickname) || !clientToServerCommunication.checkTokenAvailability(token));
+
+        nickname = ui.askNickname();
+        token = ui.askToken(clientModel.getAvailableTokens());
 
         //adding player to client model
         Player myplayer = new Player(nickname, token, new PlayingStation(new HashMap<>()), 0, new ArrayList<>());
