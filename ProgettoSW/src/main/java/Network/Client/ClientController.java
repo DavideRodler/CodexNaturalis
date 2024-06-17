@@ -124,6 +124,7 @@ public class ClientController {
         Integer menuAnswer;
         Integer[] inputAnswer;
         Boolean endTurn = false;
+        Boolean cardPlaced = false;
         ui.printMenu();
         //the card i want to put in the station
         CardResource cardchoosen;
@@ -134,43 +135,46 @@ public class ClientController {
                     switch(menuAnswer) {
                         case 1:
                         {
-                            ui.printPlayerStation(clientModel.getMyplayer().getStation());
-                            ui.printPlayerHand();
-                            inputAnswer = ui.askCoordinatesOfCards();
-                            cardchoosen = clientModel.getMyplayer().getHand().get(inputAnswer[0]);
-                            cardId = cardchoosen.getId();
+                            if(!cardPlaced) {
+                                ui.printPlayerStation(clientModel.getMyplayer().getStation());
+                                ui.printPlayerHand();
+                                inputAnswer = ui.askCoordinatesOfCards();
+                                cardchoosen = clientModel.getMyplayer().getHand().get(inputAnswer[0]);
+                                cardId = cardchoosen.getId();
 
-                            server.addCardToStation(clientModel.getMyplayer().getNickname(),cardId, inputAnswer[1] == 2 , inputAnswer[2], inputAnswer[3]);
-                            ui.printSpace();
-                            ui.print4CentralCardsAndDecks();
-                            int selection = ui.askWhichCardToDraw();
+                                server.addCardToStation(clientModel.getMyplayer().getNickname(), cardId, inputAnswer[1] == 2, inputAnswer[2], inputAnswer[3]);
+                                cardPlaced = true;
+                                ui.printSpace();
+                                ui.print4CentralCardsAndDecks();
+                                int selection = ui.askWhichCardToDraw();
 
-                            CardResource card = null;
-                            if(selection>=1 && selection<=4){
-                                if(selection>=3) {
-                                    ArrayList<CardResource> centralCardsResource = clientModel.getCentralCardsResource();
-                                    card = centralCardsResource.get(selection - 3);
+                                CardResource card = null;
+                                if (selection >= 1 && selection <= 4) {
+                                    if (selection >= 3) {
+                                        ArrayList<CardResource> centralCardsResource = clientModel.getCentralCardsResource();
+                                        card = centralCardsResource.get(selection - 3);
+                                    } else {
+                                        ArrayList<CardGold> centralCardsGold = clientModel.getCentralCardsGold();
+                                        card = centralCardsGold.get(selection - 1);
+                                    }
+                                    try {
+                                        server.addCardFromCentralCardsToPlayerHand(clientModel.getMyplayer().getNickname(), card.getId());
+                                    } catch (RemoteException e) {
+                                        throw new RuntimeException(e);
+                                    } catch (NotMyTurnException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                } else {
+                                    try {
+                                        server.addCardFromDeckToPlayerHand(clientModel.getMyplayer().getNickname(), selection);
+                                    } catch (RemoteException | InvalidPlacingCondition e) {
+                                        throw new RuntimeException(e);
+                                    }
                                 }
-                                else {
-                                    ArrayList<CardGold> centralCardsGold = clientModel.getCentralCardsGold();
-                                    card = centralCardsGold.get(selection - 1);
-                                }
-                                try {
-                                    server.addCardFromCentralCardsToPlayerHand(clientModel.getMyplayer().getNickname(), card.getId());
-                                } catch (RemoteException e) {
-                                    throw new RuntimeException(e);
-                                } catch (NotMyTurnException e) {
-                                    throw new RuntimeException(e);
-                                }
+                                endTurn = true;
                             }
-                            else {
-                                try {
-                                    server.addCardFromDeckToPlayerHand(clientModel.getMyplayer().getNickname(), selection);
-                                } catch (RemoteException | InvalidPlacingCondition e) {
-                                    throw new RuntimeException(e);
-                                }
-                            }
-                            endTurn = true;
+                            else
+                                ui.showErrorMessage("You have already placed a card in your station");
                             break;
                         }
                         case 2:
