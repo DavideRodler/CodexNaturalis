@@ -16,9 +16,9 @@ public class RmiClient extends UnicastRemoteObject implements VirtualView {
     final VirtualServer server;
     private ClientController clientController;
 
-    public RmiClient(VirtualServer server) throws RemoteException{
+    public RmiClient(VirtualServer server, String uiChoice) throws RemoteException{
         this.server = server;
-        this.clientController = new ClientController(server,this);
+        this.clientController = new ClientController(server,this, uiChoice);
     }
 
     public void connectToServer() throws RemoteException{

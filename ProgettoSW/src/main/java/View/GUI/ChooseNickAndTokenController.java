@@ -25,10 +25,10 @@ public class ChooseNickAndTokenController{
     private ChoiceBox<TokenEnum> chooseToken;
 
     @FXML
-    private Button btnNickname;
+    private Button enterNicknameButton;
 
     @FXML
-    private Button btnToken;
+    private Button enterTokenButton;
 
     @FXML
     private Label label;
@@ -37,10 +37,10 @@ public class ChooseNickAndTokenController{
 
 
     @FXML
-    public void enterNickname() {//notify
+    public String enterNickname() {
         nick = chooseNickname.getText();
-        notifyAll();
-
+        System.out.println(nick);
+        return nick;
     }
 
     @FXML
@@ -49,15 +49,6 @@ public class ChooseNickAndTokenController{
         return token;
     }
 
-    //metodo che sta in wait fino a quando non arriva il nick
-    public synchronized String waitForNickname(){
-        try {
-            wait();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        return nick;
-    }
 
 
     @FXML
@@ -67,4 +58,6 @@ public class ChooseNickAndTokenController{
         }
     }
 
+    public void enterNicknameAndToken(MouseEvent mouseEvent) {
+    }
 }

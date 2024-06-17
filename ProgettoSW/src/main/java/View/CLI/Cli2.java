@@ -66,6 +66,11 @@ public class Cli2 implements UI {
 
     }
 
+    @Override
+    public void launchGui(ClientBoard clientModel) {
+
+    }
+
     /**
      * this method prints the front and back of the player's starting card
      *

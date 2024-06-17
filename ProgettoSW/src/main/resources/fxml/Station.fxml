@@ -86,7 +86,7 @@
               </ImageView>
               <ImageView fx:id="secretobj" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                      <Image url="@../cards/objective/front/counting_resources/objective_counting_resources_plant.jpg" />
+                      <Image url="@../cards/objective/front/counting_resources/95_objective.png" />
                   </image>
               </ImageView>
          </children>
@@ -98,17 +98,17 @@
         </ImageView>
         <Button mnemonicParsing="false" text="Button" />
         <Button fx:id="btnchoosestartingcard" layoutX="675.0" layoutY="274.0" mnemonicParsing="false" text="choose starting card" />
-        <Button fx:id="btnturnstartingcard" layoutX="666.0" layoutY="183.0" mnemonicParsing="false" text="turn card" />
+        <Button fx:id="btnturnstartingcard" layoutX="666.0" layoutY="183.0" mnemonicParsing="false" onAction="#turnCard" text="turn card" />
         <Button fx:id="btnobj1" layoutX="370.0" layoutY="551.0" mnemonicParsing="false" text="choose first objective" />
         <Button fx:id="btnobj2" layoutX="633.0" layoutY="552.0" mnemonicParsing="false" text="choose second objective" />
         <ImageView fx:id="chooseobj1" fitHeight="150.0" fitWidth="200.0" layoutX="350.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../cards/objective/front/counting_resources/objective_counting_resources_plant.jpg" />
+                <Image url="@../cards/objective/front/counting_resources/95_objective.png" />
             </image>
         </ImageView>
         <ImageView fx:id="chooseobj2" fitHeight="150.0" fitWidth="200.0" layoutX="618.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../cards/objective/front/counting_resources/objective_counting_resources_plant.jpg" />
+                <Image url="@../cards/objective/front/counting_resources/95_objective.png" />
             </image>
         </ImageView>
     </children>

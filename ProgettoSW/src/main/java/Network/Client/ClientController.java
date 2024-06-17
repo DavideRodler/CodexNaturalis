@@ -4,8 +4,10 @@ import Socket.Messages.CurrentPlayerInfoMessage;
 import View.CLI.Cli2;
 import Network.Client.RMI.RmiClient;
 import Network.Server.VirtualServer;
+import View.GUI.Gui;
 import View.UI;
 import exception.*;
+import javafx.application.Platform;
 import model.Chat;
 import model.Player;
 import model.PlayingStation;
@@ -32,11 +34,18 @@ public class ClientController {
     private VirtualServer server;
     private RmiClient rmiClient;
 
-    public ClientController(VirtualServer server, RmiClient rmiClient) {
+    public ClientController(VirtualServer server, RmiClient rmiClient, String uiChoice) {
         this.clientModel = new ClientBoard(null, null, new ArrayList<>(), null, new ArrayList<>(), new ArrayList<>(), null);
         this.server = server;
         this.rmiClient = rmiClient;
-        ui = new Cli2(clientModel);
+        if(uiChoice.equals("GUI"))
+        {
+            ui = new Gui();
+
+        }
+        else
+            ui= new Cli2(clientModel);
+
         ui.showGameTitle();
     }
 
@@ -46,10 +55,14 @@ public class ClientController {
 
     public void setupOfnicknameAndToken() {
         try {
-            String nickname;
+            String nickname = null;
             TokenEnum token;
             do {
-                nickname = ui.askNickname();
+
+                ui.launchGui(clientModel);
+                Platform.runLater(()->{
+                    System.out.println("GUI!!!!");
+                });
                 token = ui.askToken(server.getAvailableTokens());
             } while (!server.checkNicknameAvailability(nickname) || !server.checkTokenAvailability(token));
 

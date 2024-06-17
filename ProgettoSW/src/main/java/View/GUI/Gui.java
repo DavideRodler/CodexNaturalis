@@ -24,16 +24,16 @@ public class Gui extends Application implements UI {
 
 
 
-    public Gui(StartSceneController startSceneController, StationController stationController, ChooseNickAndTokenController chooseNickAndTokenController, ClientBoard clientBoard){
-        this.startSceneController = startSceneController;
-        this.stationController = stationController;
-        this.chooseNickAndTokenController = chooseNickAndTokenController;
-        this.clientBoard = clientBoard;
+    public Gui(){
+        this.startSceneController = new StartSceneController();
+        this.stationController = new StationController();
+        this.chooseNickAndTokenController = new ChooseNickAndTokenController();
     }
+
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseNicknameAndToken.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Codex");
@@ -41,8 +41,9 @@ public class Gui extends Application implements UI {
         stage.show();
     }
 
-
-    public static void main(String[] args) {
+    @Override
+    public void launchGui(ClientBoard clientBoard){
+        this.clientBoard = clientBoard;
         launch();
     }
 
@@ -58,7 +59,8 @@ public class Gui extends Application implements UI {
 
     @Override
     public String askNickname() {
-        return chooseNickAndTokenController.waitForNickname();
+        return chooseNickAndTokenController.enterNickname();
+
     }
 
     @Override

@@ -1,5 +1,6 @@
 package View.GUI;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -124,7 +125,10 @@ public class StationController {
                 // secretobj = immagine obj
         }
 
+        @FXML
+        void turnCard(ActionEvent event) {
 
+        }
 
 
 }

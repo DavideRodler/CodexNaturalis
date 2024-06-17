@@ -13,7 +13,7 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-      <TextField fx:id="ChooseNickname" layoutX="680.0" layoutY="71.0" prefHeight="44.0" prefWidth="239.0">
+      <TextField fx:id="chooseNickname" layoutX="680.0" layoutY="71.0" prefHeight="44.0" prefWidth="239.0">
          <font>
             <Font size="24.0" />
          </font></TextField>
@@ -25,12 +25,12 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-      <ChoiceBox fx:id="ChooseToken" layoutX="685.0" layoutY="152.0" prefHeight="44.0" prefWidth="232.0" />
-      <Button fx:id="btnnickname" layoutX="971.0" layoutY="69.0" mnemonicParsing="false" onMouseClicked="#enterNicknameAndToken" prefHeight="45.0" prefWidth="200.0" text="enter nickname">
+      <ChoiceBox fx:id="chooseToken" layoutX="685.0" layoutY="152.0" prefHeight="44.0" prefWidth="232.0" />
+      <Button fx:id="enterNicknameButton" layoutX="971.0" layoutY="69.0" mnemonicParsing="false" onAction="#enterNickname" onMouseClicked="#enterNicknameAndToken" prefHeight="45.0" prefWidth="200.0" text="enter nickname">
          <font>
             <Font size="24.0" />
          </font></Button>
-      <Button fx:id="btntoken" layoutX="971.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#enterNicknameAndToken" prefHeight="45.0" prefWidth="200.0" text="enter token">
+      <Button fx:id="enterTokenButton" layoutX="971.0" layoutY="152.0" mnemonicParsing="false" onAction="#enterToken" onMouseClicked="#enterNicknameAndToken" prefHeight="45.0" prefWidth="200.0" text="enter token">
          <font>
             <Font size="24.0" />
          </font>

@@ -2,12 +2,15 @@ package View;
 
 import exception.NonePlayerFoundException;
 import model.PlayingStation;
+import model.client.ClientBoard;
 import model.enums.TokenEnum;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public interface UI {
+    void launchGui(ClientBoard clientModel);
+
     void showStartingCard();
 
     void showGameTitle();

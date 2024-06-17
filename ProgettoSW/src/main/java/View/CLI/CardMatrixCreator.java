@@ -311,6 +311,7 @@ public class CardMatrixCreator {
     public static void hasPoints(CardResource card, String[][] mat) {
         int points = card.getPoints();
         if(points != 0) {
+            mat[0][2] = " ";
             mat[0][3] = Integer.toString(points);
             if(card.getObjective() instanceof ObjectiveCountingGold && ((ObjectiveCountingGold) card.getObjective()).getCountInkwell() != 0){ // se ob è inkwell
                 mat[0][4] = inkwell;
@@ -329,7 +330,6 @@ public class CardMatrixCreator {
                 mat[0][5] = " ";
             }
         }
-        //return mat;
     }
     
     public static void printMatrix(String[][] mat){
