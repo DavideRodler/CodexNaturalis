@@ -112,16 +112,16 @@ public class StationMatrix {
         int rowLeftCorner = 2*i - 2;
         int colLeftCorner = 6*j - 6;
 
-        if(voidPositions[0]){ //aggiungo in alto a sx
+        if(voidPositions[0] && !cardToAdd[0][0].equals("N")){ //aggiungo in alto a sx
             addCoordinates(i-1, j-1); //TODO!!!!!!!" con formule i: 2i-1 e j: 6j-5
         }
-        if(voidPositions[1]){ //aggiungo in alto a dx
+        if(voidPositions[1] && !cardToAdd[0][cardLength-1].equals("N")){ //aggiungo in alto a dx
             addCoordinates(i-1, j+1);
         }
-        if(voidPositions[2]){ // basso sx
+        if(voidPositions[2] && !cardToAdd[cardHeight-1][0].equals("N")){ // basso sx
             addCoordinates(i+1, j-1);
         }
-        if(voidPositions[3]){ //basso dx
+        if(voidPositions[3] && !cardToAdd[cardHeight-1][cardLength-1].equals("N")){ //basso dx
             addCoordinates(i+1, j+1);
         }
         for(int k = rowLeftCorner; k < rowLeftCorner + cardHeight; k++){
