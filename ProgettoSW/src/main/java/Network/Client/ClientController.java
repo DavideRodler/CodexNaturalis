@@ -304,12 +304,12 @@ public class ClientController {
      */
     public synchronized void notifyIsNotYourTurn(String currentPlayer) {
 
-        Integer menuAnswer;
+        Integer menuAnswer = 0;
         Boolean ready = false;
 
         ui.printMenuNotMyTurn(currentPlayer);
 
-                while (!clientModel.getCurrentPlayer().equals(clientModel.getMyplayer().getNickname()) || !ready) {
+                while ((!clientModel.getCurrentPlayer().equals(clientModel.getMyplayer().getNickname())) && (!ready || menuAnswer != 7)) {
                     menuAnswer = ui.askNotMyTurnMenuAction();
                     try {
                         switch (menuAnswer) {

@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Fine Cantiere Menu" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Fine Cantiere Menu">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -331,22 +334,7 @@
       <workItem from="1718443949983" duration="23485000" />
       <workItem from="1718484349867" duration="8009000" />
       <workItem from="1718528272198" duration="3527000" />
-    </task>
-    <task id="LOCAL-00022" summary="Cantiere in corso RMI">
-      <option name="closed" value="true" />
-      <created>1713773004063</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1713773004063</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Aggiunta di Client, Server Rmi, e della logica Rmi.">
-      <option name="closed" value="true" />
-      <created>1713808423438</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1713808423438</updated>
+      <workItem from="1718628835978" duration="1194000" />
     </task>
     <task id="LOCAL-00024" summary="Aggiunto display cardStarting">
       <option name="closed" value="true" />
@@ -724,7 +712,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718621774265</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Fine Cantiere Menu">
+      <option name="closed" value="true" />
+      <created>1718621952778</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1718621952778</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Fine Cantiere Menu">
+      <option name="closed" value="true" />
+      <created>1718622183852</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1718622183852</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
