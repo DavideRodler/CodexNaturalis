@@ -49,6 +49,8 @@ public interface UI {
 
     void printMenu();
 
+    void privateChatTitlePrinter();
+
     String askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers);
 
     // printa solo la staion aggiornata più risorse e più punti
@@ -71,6 +73,8 @@ public interface UI {
 
     Integer askMenuAction();
 
+    Integer askNotMyTurnMenuAction();
+
     String askWichStationToPrint();
 
     void printSpace();
@@ -90,4 +94,8 @@ public interface UI {
     String printPrivateChatInfo();
 
     void printPrivateChat(String nickname, String nickname1);
+
+    void chatTitlePrinter();
+
+    void printPoints();
 }

@@ -131,6 +131,11 @@ public class Gui extends Application implements UI {
     }
 
     @Override
+    public void privateChatTitlePrinter() {
+
+    }
+
+    @Override
     public String askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers) {
         return "";
     }
@@ -182,6 +187,11 @@ public class Gui extends Application implements UI {
     }
 
     @Override
+    public Integer askNotMyTurnMenuAction() {
+        return 0;
+    }
+
+    @Override
     public String askWichStationToPrint() {
         return "";
     }
@@ -228,6 +238,16 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printPrivateChat(String nickname, String nickname1) {
+
+    }
+
+    @Override
+    public void chatTitlePrinter() {
+
+    }
+
+    @Override
+    public void printPoints() {
 
     }
 }

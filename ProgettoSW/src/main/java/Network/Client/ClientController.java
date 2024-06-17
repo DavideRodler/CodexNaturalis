@@ -141,6 +141,8 @@ public class ClientController {
                             cardId = cardchoosen.getId();
 
                             server.addCardToStation(clientModel.getMyplayer().getNickname(),cardId, inputAnswer[1] == 2 , inputAnswer[2], inputAnswer[3]);
+                            ui.printSpace();
+                            ui.print4CentralCardsAndDecks();
                             int selection = ui.askWhichCardToDraw();
 
                             CardResource card = null;
@@ -183,11 +185,30 @@ public class ClientController {
                             ui.printSpace();
                             break;
                         case 4:
+                            ui.printMenu2and3();
+                            ui.print4CentralCardsAndDecks();
+                            ui.printCommonObjectives();
+                            ui.printSpace();
+                            break;
+                        case 5:
+                            ui.printMenu2and3();
+                            ui.printPlayerHand();
+                            ui.printSpace();
+                            break;
+                        case 6:
+                            ui.printMenu2and3();
+                            ui.printSpace();
+                            ui.printSpace();
+                            ui.printPoints();
+                            ui.printSpace();
+                            ui.printSpace();
+                            break;
+                        case 7:
                             String ChatChoice = ui.askTypeOfChat(clientModel.getOtherplayers().size(), clientModel.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
                             ChatPrinter(ChatChoice);
                             ui.printMenu();
                             break;
-                        case 5:
+                        case 8:
                             if(!endTurn)
                                 System.out.println("You can not end your turn before had placed a card in your station");
 
@@ -201,7 +222,7 @@ public class ClientController {
                     ui.showErrorMessage(e.getMessage());
                 }
 
-            }while (menuAnswer != 5 || !endTurn);
+            }while (menuAnswer != 7 || !endTurn);
         try {
             server.updatePlayerReadyForNewMenu(1);
             server.startTurn();
@@ -217,13 +238,14 @@ public class ClientController {
             case "1":
                 String Message;
                 do{
+                    ui.chatTitlePrinter();
                     ui.printChatInfo();
                     ui.printSpace();
                     ui.printSpace();
                     ui.printSpace();
                     ui.printChat();
                     Message = ui.askMessage();
-                    if(!Message.isEmpty())
+                    if(!Message.isEmpty() && !Message.equals("EXIT"))
                         server.sendGlobalMessage(clientModel.getMyplayer().getNickname(), Message);
                     ui.printSpace();
                     ui.printSpace();
@@ -239,13 +261,14 @@ public class ClientController {
                 String Message2;
                 String nickname = ui.printPrivateChatInfo();
                 do{
+                    ui.privateChatTitlePrinter();
                     ui.printChatInfo();
                     ui.printSpace();
                     ui.printSpace();
                     ui.printSpace();
                     ui.printPrivateChat(clientModel.getMyplayer().getNickname(), nickname);
                     Message2 = ui.askMessage();
-                    if(!Message2.isEmpty())
+                    if(!Message2.isEmpty() && !Message2.equals("EXIT"))
                         server.sendPrivateMessage(clientModel.getMyplayer().getNickname(), nickname, Message2);
                     ui.printSpace();
                     ui.printSpace();
@@ -276,7 +299,7 @@ public class ClientController {
         ui.printMenuNotMyTurn(currentPlayer);
 
                 while (!clientModel.getCurrentPlayer().equals(clientModel.getMyplayer().getNickname()) || !ready) {
-                    menuAnswer = ui.askMenuAction();
+                    menuAnswer = ui.askNotMyTurnMenuAction();
                     try {
                         switch (menuAnswer) {
                             case 1:
@@ -291,11 +314,30 @@ public class ClientController {
                                 ui.printSpace();
                                 break;
                             case 3:
+                                ui.printMenu2and3NotMyTurn(currentPlayer);
+                                ui.print4CentralCardsAndDecks();
+                                ui.printCommonObjectives();
+                                ui.printSpace();
+                                break;
+                            case 4:
+                                ui.printMenu2and3NotMyTurn(currentPlayer);
+                                ui.printPlayerHand();
+                                ui.printSpace();
+                                break;
+                            case 5:
+                                ui.printMenu2and3NotMyTurn(currentPlayer);
+                                ui.printSpace();
+                                ui.printSpace();
+                                ui.printPoints();
+                                ui.printSpace();
+                                ui.printSpace();
+                                break;
+                            case 6:
                                 String ChatChoice = ui.askTypeOfChat(clientModel.getOtherplayers().size(), clientModel.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
                                 ChatPrinter(ChatChoice);
                                 ui.printMenuNotMyTurn(currentPlayer);
                                 break;
-                            case 4:
+                            case 7:
                                 ready = true;
                                 break;
                         }
@@ -319,7 +361,6 @@ public class ClientController {
                 PrivateChatMessage privateMessage = (PrivateChatMessage) message;
                 clientModel.updateChat( "PRIVATE", privateMessage.getNicknameSender(), privateMessage.getNicknameReceiver(), privateMessage.getMessage());
                 break;
-
             case "GLOBAL":
                 ChatMessage chatMessage = (ChatMessage) message;
                 clientModel.updateChat("GLOBAL", chatMessage.getNickname(), null ,chatMessage.getMessage());

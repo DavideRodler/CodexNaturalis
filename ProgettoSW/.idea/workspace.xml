@@ -4,21 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="work in progress menù e chat parte 4 (Global Chat)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/PrivateChatMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Chat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/PrivateChat.java" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Fine Cantiere Chat Globale e Privata -&gt; TODO: Finire di sistemare meglio gli spazi nel menu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/TypeOfChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/TypeOfChatMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,8 +280,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.ServerApp" />
+        <item itemvalue="Application.ClientApp" />
         <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
         <item itemvalue="JUnit.GameControllerTest.isGamefinished" />
         <item itemvalue="JUnit.GameControllerTest.win" />
@@ -345,15 +336,9 @@
       <workItem from="1718443519957" duration="96000" />
       <workItem from="1718443949983" duration="23485000" />
       <workItem from="1718484349867" duration="8009000" />
-      <workItem from="1718528272198" duration="3527000" />
-    </task>
-    <task id="LOCAL-00019" summary="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning">
-      <option name="closed" value="true" />
-      <created>1711664037867</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1711664037867</updated>
+      <workItem from="1718528272198" duration="4065000" />
+      <workItem from="1718539250395" duration="668000" />
+      <workItem from="1718609131090" duration="10039000" />
     </task>
     <task id="LOCAL-00020" summary="Aggiunta metodi e test per piazzare nuove carte sulla board">
       <option name="closed" value="true" />
@@ -739,7 +724,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718458346835</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Fine Cantiere Chat Globale e Privata -&gt; TODO: Finire di sistemare meglio gli spazi nel menu">
+      <option name="closed" value="true" />
+      <created>1718532608185</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1718532608186</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -807,7 +800,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Inizio del nuovo RMI con controller" />
     <MESSAGE value="Aggiunta del client controller" />
     <MESSAGE value="Client model viene aggiornato con observer." />
     <MESSAGE value="messo idea nel gitingoore" />
@@ -832,7 +824,8 @@
     <MESSAGE value="work in progress menù e chat parte 2" />
     <MESSAGE value="work in progress menù e chat parte 3" />
     <MESSAGE value="work in progress menù e chat parte 4 (Global Chat)" />
-    <option name="LAST_COMMIT_MESSAGE" value="work in progress menù e chat parte 4 (Global Chat)" />
+    <MESSAGE value="Fine Cantiere Chat Globale e Privata -&gt; TODO: Finire di sistemare meglio gli spazi nel menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fine Cantiere Chat Globale e Privata -&gt; TODO: Finire di sistemare meglio gli spazi nel menu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

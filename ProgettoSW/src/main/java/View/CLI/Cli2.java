@@ -219,7 +219,6 @@ public class Cli2 implements UI {
         StationMatrix stationMatrix= new StationMatrix();
         stationMatrix.printStation(playingStation.getMap());
         stationMatrix.printResources(fungi, plant, animal, insect, quill, manuscript, inkwell);
-        stationMatrix.printPoints(clientBoard);
     }
 
     /**
@@ -312,13 +311,16 @@ public class Cli2 implements UI {
             System.out.println();
         }
         System.out.println("It's your turn");
-        System.out.println("----------------------------------------");
-        System.out.println("/    1. Play a card                    /");
-        System.out.println("/    2. Show my playing station        /");
-        System.out.println("/    3. Show other playing station     /");
-        System.out.println("/    4. Open Chat                      /");
-        System.out.println("/    5. End turn                       /");
-        System.out.println("----------------------------------------");
+        System.out.println("---------------------------------------------");
+        System.out.println("/    1. Play a card                         /");
+        System.out.println("/    2. Show my playing station             /");
+        System.out.println("/    3. Show other playing station          /");
+        System.out.println("/    4. Show central cards and decks        /");
+        System.out.println("/    5. Show hand and secret objectives     /");
+        System.out.println("/    6. Show Points                         /");
+        System.out.println("/    7. Open Chat                           /");
+        System.out.println("/    8. End turn                            /");
+        System.out.println("---------------------------------------------");
         for(int i = 0; i < 17; i++) {
             System.out.println();
         }
@@ -330,13 +332,16 @@ public class Cli2 implements UI {
             System.out.println();
         }
         System.out.println("It's your turn");
-        System.out.println("----------------------------------------");
-        System.out.println("/    1. Play a card                    /");
-        System.out.println("/    2. Show my playing station        /");
-        System.out.println("/    3. Show other playing station     /");
-        System.out.println("/    4. Open Chat                      /");
-        System.out.println("/    5. End turn                       /");
-        System.out.println("----------------------------------------");
+        System.out.println("---------------------------------------------");
+        System.out.println("/    1. Play a card                         /");
+        System.out.println("/    2. Show my playing station             /");
+        System.out.println("/    3. Show other playing station          /");
+        System.out.println("/    4. Show central cards and decks        /");
+        System.out.println("/    5. Show hand and secret objectives     /");
+        System.out.println("/    6. Show Points                         /");
+        System.out.println("/    7. Open Chat                           /");
+        System.out.println("/    8. End turn                            /");
+        System.out.println("---------------------------------------------");
         for(int i = 0; i < 6; i++) {
             System.out.println();
         }
@@ -348,12 +353,15 @@ public class Cli2 implements UI {
             System.out.println();
         }
         System.out.println("It's " + currentPlayer + "'s turn");
-        System.out.println("----------------------------------------");
-        System.out.println("/    1. Show my playing station        /");
-        System.out.println("/    2. Show other playing station     /");
-        System.out.println("/    3. Open Chat                      /");
-        System.out.println("/    4. Ready for next turn            /");
-        System.out.println("----------------------------------------");
+        System.out.println("---------------------------------------------");
+        System.out.println("/    1. Show my playing station             /");
+        System.out.println("/    2. Show other playing station          /");
+        System.out.println("/    3. Show central cards and decks        /");
+        System.out.println("/    4. Show hand and secret objectives     /");
+        System.out.println("/    5. Show Points                         /");
+        System.out.println("/    6. Open Chat                           /");
+        System.out.println("/    7. Ready for next turn                 /");
+        System.out.println("---------------------------------------------");
         for(int i = 0; i < 17; i++) {
             System.out.println();
         }
@@ -365,12 +373,14 @@ public class Cli2 implements UI {
             System.out.println();
         }
         System.out.println("It's " + currentPlayer + "'s turn");
-        System.out.println("----------------------------------------");
-        System.out.println("/    1. Show my playing station        /");
-        System.out.println("/    2. Show other playing station     /");
-        System.out.println("/    3. Open Chat                      /");
-        System.out.println("/    4. Ready for next turn            /");
-        System.out.println("----------------------------------------");
+        System.out.println("---------------------------------------------");
+        System.out.println("/    1. Show my playing station             /");
+        System.out.println("/    2. Show other playing station          /");
+        System.out.println("/    3. Show central cards and decks        /");
+        System.out.println("/    4. Show hand and secret objectives     /");
+        System.out.println("/    5. Open Chat                           /");
+        System.out.println("/    6. Ready for next turn                 /");
+        System.out.println("---------------------------------------------");
         for(int i = 0; i < 6; i++) {
             System.out.println();
         }
@@ -407,9 +417,9 @@ public class Cli2 implements UI {
         System.out.println();
         System.out.println("Insert the nickname of the player you want to chat with: ");
         for (var c : clientBoard.getOtherplayers()) {
-            System.out.print(c.getNickname() + " ");
+            System.out.print(lightBlue + c.getNickname() + reset + " ");
         }
-        System.out.println();
+        printSpace();
         String nickname = "";
         boolean validNickname = false;
         do {
@@ -433,6 +443,53 @@ public class Cli2 implements UI {
             }
         }
     }
+
+    @Override
+    public void chatTitlePrinter() {
+            printSpace();
+            printSpace();
+            printSpace();
+            printSpace();
+            printSpace();
+            printSpace();
+
+System.out.println(purple+"            _____ _       _           _    _____ _            _"+reset);
+System.out.println(purple+"           / ____| |     | |         | |  / ____| |          | |"+reset);
+System.out.println(purple+"          | |  __| | ___ | |__   __ _| | | |    | |___   __ _| |_"+reset);
+System.out.println(purple+"          | | |_ | |/ _ || '_ | / _` | | | |    | '_  | / _` | __|"+reset);
+System.out.println(purple+"          | |__| | | (_) | |_) | (_| | | | |____| | | || (_| | |_"+reset);
+System.out.println(purple+"          |______|_||___/|_.__/|___,_|_| |______|_| |_||___,_|___|"+reset);
+
+
+    }
+
+    @Override
+    public void printPoints() {
+        StationMatrix stationMatrix= new StationMatrix();
+        stationMatrix.printPoints(clientBoard);
+    }
+
+    @Override
+    public void privateChatTitlePrinter() {
+        printSpace();
+        printSpace();
+        printSpace();
+        printSpace();
+        printSpace();
+        printSpace();
+
+        System.out.println(purple+"    _____                    _           _____ _            _"+reset);
+        System.out.println(purple+"   |  __ |    (_)           | |         / ____| |          | |"+reset);
+        System.out.println(purple+"   | |__) | __ ___    ____ _| |_ ___   | |    | |___   __ _| |_"+reset);
+        System.out.println(purple+"   |  ___/ '__| || | / / _` | __/ _ |  | |    | '_  | / _` | __|"+reset);
+        System.out.println(purple+"   | |   | |  | | | V / (_| | ||  __/  | |____| | | || (_| | |_"+reset);
+        System.out.println(purple+"   |_|   |_|  |_|  |_/ |__,_|__|_____| |______|_| |_||___,_|___|"+reset);
+
+
+    }
+
+
+
 
     @Override
     public String askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers) {
@@ -461,71 +518,6 @@ public class Cli2 implements UI {
         System.out.println(nickname + "'s station is: ");
         printPlayerStation(clientBoard.getOtherPlayer(nickname).getStation());
     }
-
-    //    private void printCard(Card card) {
-//        if (card instanceof CardStarting) {
-//            System.out.println("This is the front of your starting card: \n");
-//            printStartingFront(card);
-//            System.out.println("\nThis is the back of your starting card: \n");
-//            printStartingBack(card);
-//        } else if (card instanceof CardResource) { //tutti hanno il back uguale! un metodo unico
-//            if (card instanceof CardGold) {
-//                //Stampo la carta oro. Deve mostrare i punti e il costo. colore variabile
-//                //per differenziare metto un quadrato oro nel centro
-//                System.out.println("This is the front of your gold card: \n");
-//                printGoldFront(card);
-//                System.out.println("This is the back of your gold card: \n");
-//                printResBack(card);
-//            } else{
-//                //Stampo la carta risorsa. può avere punti e non ha costo. colore variabile
-//                System.out.println("This is the front of your resource card: \n");
-//                printResourceFront(card);
-//                System.out.println("This is the back of your resource card: \n");
-//                printResBack(card);
-//            }
-//        } else if (card instanceof CardObjective) {
-//            System.out.println("This is the your objective card: \n");
-//            if(((CardObjective) card).getObjective() instanceof ObjectivePositioning){
-//                System.out.println("Your type of objective is: positioning");
-//                if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.FUNGI){
-//                    printFungiPositioning();
-//                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.PLANT) {
-//                    printPlantPositioning();
-//                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.ANIMAL){
-//                    printAnimalPositioning();
-//                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.INSECT){
-//                    printInsectPositioning();
-//                }
-//            } else if (((CardObjective) card).getObjective() instanceof ObjectiveCountingGold) {
-//                System.out.println("Your type of objective is: counting gold");
-//                int countInkwell = ((ObjectiveCountingGold) ((CardObjective) card).getObjective()).getCountInkwell();
-//                int countManuscript = ((ObjectiveCountingGold) ((CardObjective) card).getObjective()).getCountManuscript();
-//                int countQuill = ((ObjectiveCountingGold) ((CardObjective) card).getObjective()).getCountQuill();
-//                if((countInkwell == countManuscript)&&(countInkwell == countQuill)&&(countInkwell == 1)){
-//                    printCountAll();
-//                }
-//                else if((countQuill != 0)&&(countInkwell == 0)&&(countManuscript==0)){
-//                    printCountGold(Suit.QUILL);
-//                }
-//                else if ((countQuill == 0)&&(countInkwell != 0)&&(countManuscript==0)) {
-//                    printCountGold(Suit.INKWELL);
-//                }
-//                else if ((countQuill == 0)&&(countInkwell == 0)&&(countManuscript!=0)){
-//                    printCountGold(Suit.MANUSCRIPT);
-//                }
-//            } else if (((CardObjective) card).getObjective() instanceof ObjectiveCountingResource) {
-//                System.out.println("Your type of objective is: counting resourses");
-//                Suit suit = ((ObjectiveCountingResource) ((CardObjective) card).getObjective()).getSymbol();
-//                printCountRes(suit);
-//            } else if (((CardObjective) card).getObjective() instanceof ObjectiveDiagonal) {
-//                System.out.println("Your type of objective is: ");
-//                Suit suit = ((ObjectiveDiagonal) ((CardObjective) card).getObjective()).getColor();
-//                printDiagonal(suit);
-//            }
-//        }
-//    }
-
-
 
     @Override
     public void printFinalPoints(LinkedHashMap<String, ArrayList<Integer>> map) {
@@ -587,7 +579,20 @@ public class Cli2 implements UI {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         System.out.println("Choose an action: ");
         Integer choice = scanner.nextInt();
-        while (choice < 1 || choice > 5) {
+        while (choice < 1 || choice > 8) {
+            System.out.println("Invalid choice, please try again.");
+            System.out.println("Choose an action: ");
+            choice = scanner.nextInt();
+        }
+        return choice;
+    }
+
+    @Override
+    public Integer askNotMyTurnMenuAction() {
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        System.out.println("Choose an action: ");
+        Integer choice = scanner.nextInt();
+        while (choice < 1 || choice > 7) {
             System.out.println("Invalid choice, please try again.");
             System.out.println("Choose an action: ");
             choice = scanner.nextInt();
@@ -599,6 +604,10 @@ public class Cli2 implements UI {
     public String askWichStationToPrint() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         System.out.println("Insert the nickname of the player of which you want to see the station: ");
+        for (var c : clientBoard.getOtherplayers()) {
+            System.out.print(lightBlue + c.getNickname() + reset + " ");
+        }
+        printSpace();
         return scanner.nextLine();
     }
 
