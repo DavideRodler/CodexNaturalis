@@ -378,8 +378,9 @@ public class Cli2 implements UI {
         System.out.println("/    2. Show other playing station          /");
         System.out.println("/    3. Show central cards and decks        /");
         System.out.println("/    4. Show hand and secret objectives     /");
-        System.out.println("/    5. Open Chat                           /");
-        System.out.println("/    6. Ready for next turn                 /");
+        System.out.println("/    5. Show Points                         /");
+        System.out.println("/    6. Open Chat                           /");
+        System.out.println("/    7. Ready for next turn                 /");
         System.out.println("---------------------------------------------");
         for(int i = 0; i < 6; i++) {
             System.out.println();

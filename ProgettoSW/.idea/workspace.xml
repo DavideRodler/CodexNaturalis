@@ -389,7 +389,7 @@
       <recent name="model.cards.face" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientApp">
+  <component name="RunManager" selected="Application.ServerApp">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
       <module name="ProgettoSW" />
@@ -473,8 +473,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.ServerApp" />
+        <item itemvalue="Application.ClientApp" />
         <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
         <item itemvalue="JUnit.GameControllerTest.isGamefinished" />
         <item itemvalue="JUnit.GameControllerTest.win" />
