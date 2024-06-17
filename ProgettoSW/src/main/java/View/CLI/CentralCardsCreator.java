@@ -124,7 +124,7 @@ public class CentralCardsCreator {
      */
     public void addDeckResToBoard(SuitEnum suit){
         //chiamo la add central card res in posizione 4
-        int m = 0;
+        int m = 3;
         int l = 18;
         String [][] deckRes = createBackResCardDeck(suit);
         for(int i = 0; i < deckRes.length; i++){
@@ -139,7 +139,7 @@ public class CentralCardsCreator {
 
     public void addDeckGoldToBoard(SuitEnum suit){
         //chiamo la add central card gold in posizione 5
-        int m = 3;
+        int m = 0;
         int l = 18;
         String[][] deckGold = createBackGoldCardDeck(suit);
         for(int i = 0; i < deckGold.length; i++){

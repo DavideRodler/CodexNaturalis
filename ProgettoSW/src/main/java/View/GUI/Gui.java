@@ -58,7 +58,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public String askNickname() {
-        return chooseNickAndTokenController.enterNickname();
+        return chooseNickAndTokenController.waitForNickname();
     }
 
     @Override

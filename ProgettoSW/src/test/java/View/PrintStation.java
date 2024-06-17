@@ -59,4 +59,9 @@ public class PrintStation {
                new Corner(SuitEnum.FUNGI));
 
    }
+   @Test
+    public void printStationMatrix(){
+        StationMatrix stationMatrix= new StationMatrix();
+        stationMatrix.printStationTest();
+   }
 }

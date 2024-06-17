@@ -14,6 +14,6 @@ public class CardLoader {
     public ImageView cardtwo = FXMLLoader.load(getClass().getResource("/cards/gold/front/animal/gold_animal2"));
 
     public CardLoader() throws IOException {
-
+        //TODO: fare switch per vedere a seconda dell'id in che directory è --> poi fare come nelle carte
     }
 }
