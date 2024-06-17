@@ -35,7 +35,7 @@ public class Server {
                 throw new RuntimeException(e);
             }
             switch (action) {
-                case "setuoOfPlayersNumber":
+                case "setupOfPlayersNumber":
                     try {
                         clients.get(0).setupOfPlayersNumber();
                     } catch (RemoteException e) {
@@ -53,7 +53,38 @@ public class Server {
                         }
                     }
                     break;
-
+                case "notifyAnotherPlayerSettingNumOfPlayers":
+                    synchronized (this.clients) {
+                        VirtualView client = clients.get(clients.size() - 1);
+                            try {
+                                client.notifyAnotherPlayerSettingNumOfPlayers();
+                            } catch (RemoteException e) {
+                                throw new RuntimeException(e);
+                            }
+                        clients.remove(client);
+                        }
+                    break;
+                case "notifyWaitingForPlayersToJoin":
+                    synchronized (this.clients) {
+                        VirtualView client = clients.get(clients.size() - 1);
+                            try {
+                                client.notifyWaitingForPlayersToJoin();
+                            } catch (RemoteException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    break;
+                case "notifyGameAlreadyStarted":
+                    synchronized (this.clients) {
+                        VirtualView client = clients.get(clients.size() - 1);
+                            try {
+                                client.notifyGameAlreadyStarted();
+                            } catch (RemoteException e) {
+                                throw new RuntimeException(e);
+                            }
+                        clients.remove(client);
+                        }
+                    break;
                 case "startSetupOfNicknameAndToken":
                     synchronized (this.clients) {
                         for (VirtualView client : clients) {
@@ -183,8 +214,22 @@ public class Server {
         return gameController.checkTokenAvailability(token);
     }
 
-    public void addPlayer(String nickname, TokenEnum token, VirtualView Myclient) throws ChangedStateException, NotValidMoveException, RemoteException {
-        gameController.addPlayer(nickname, token);
+    public void addPlayer(String nickname, TokenEnum token, VirtualView Myclient) throws ChangedStateException, RemoteException {
+        try {
+            gameController.addPlayer(nickname, token);
+        } catch (NotValidMoveException e) {
+            if (e.getMessage().equals("Nickname already taken")) {
+                Myclient.notifyNicknameAlreadyTaken();
+                return;
+            }
+            else if (e.getMessage().equals("Token already taken")) {
+                Myclient.notifyTokenAlreadyTaken();
+                return;
+            }
+            else {
+                throw new RuntimeException(e);
+            }
+        }
         clientsMap.put(nickname, Myclient);
         if (gameController.isGameState(GameState.INITIALIZE_GAME)){
             initializeGame();
@@ -307,15 +352,6 @@ public class Server {
         }
     }
 
-    public void notifyAllPlayersConnected() throws RemoteException {
-        try {
-            queue.put("notifyAllPlayersConnected");
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
 
     public void handleNewClient(VirtualView client) throws RemoteException {
         //first player to join
@@ -323,13 +359,15 @@ public class Server {
             clients.add(client);
             gameController.getBoard().addObserver(client);
             try {
-                queue.put("setuoOfPlayersNumber");
+                queue.put("setupOfPlayersNumber");
+                queue.put("notifyWaitingForPlayersToJoin");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
         //another player is joining while setupping the player number
         else if (gameController.getBoard().getGameState().equals(GameState.SET_PLAYER_NUMBER)) {
+            clients.add(client);
             try {
                 queue.put("notifyAnotherPlayerSettingNumOfPlayers");
             } catch (InterruptedException e) {
@@ -358,6 +396,7 @@ public class Server {
             }
         }
         else{
+            clients.add(client);
             try {
                 queue.put("notifyGameAlreadyStarted");
             } catch (InterruptedException e) {

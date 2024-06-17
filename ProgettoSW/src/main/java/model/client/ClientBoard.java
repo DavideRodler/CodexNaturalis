@@ -95,6 +95,8 @@ public class ClientBoard implements Serializable {
                 .findFirst()
                 .orElse(null);
     }
+
+    //TODO: metodo giusto ma inutile perche' il messaggio dei giocatori arriva dopo
     public ArrayList<TokenEnum> getAvailableTokens(){
         ArrayList<TokenEnum> availableTokens = new ArrayList<>();
         for(TokenEnum token : TokenEnum.values()){

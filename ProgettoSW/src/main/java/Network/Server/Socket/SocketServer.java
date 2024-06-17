@@ -38,7 +38,6 @@ public class SocketServer implements VirtualServer {
                     throw new RuntimeException(e);
                 }
             }).start();
-            server.connectClient(handler);
         }
     }
 

@@ -2,10 +2,7 @@ package Network.Client.Socket;
 
 import Network.Client.RMI.VirtualView;
 import Network.Server.VirtualServer;
-import Socket.Messages.ClientToServer.AddPlayerMessage;
-import Socket.Messages.ClientToServer.SetPlayerNumberMessage;
-import Socket.Messages.ClientToServer.SetSecretObjectiveMessage;
-import Socket.Messages.ClientToServer.SetStartingCardPlayedBackMessage;
+import Socket.Messages.ClientToServer.*;
 import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
 import exception.NotMyTurnException;
@@ -26,7 +23,13 @@ public class VirtualSocketServer implements VirtualServer {
 
     @Override
     public void connectClient(VirtualView client) throws RemoteException {
-
+        ConnectClientMessage message = new ConnectClientMessage();
+        try {
+            output.writeObject(message);
+            output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

@@ -4,21 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="funziona solo set del playernumber">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/AddPlayerMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/SetPlayerNumberMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/SetSecretObjectiveMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/SetStartingCardPlayedBackMessage.java" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Setup finito con Socket, molte cose da rivedere">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/ConnectClientMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/VirtualSocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/VirtualSocketServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ServerToClient/ActionMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ServerToClient/ActionMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ServerApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +83,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.ClientApp.executor": "Run",
+    "Application.ClientApp.executor": "Debug",
     "Application.Gui.executor": "Run",
     "Application.RmiClient.executor": "Run",
     "Application.ServerApp.executor": "Run",
@@ -861,19 +858,75 @@
           <option name="timeStamp" value="284" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="285" />
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="306" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="307" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Server/Server.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="311" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="303" />
+          <line>110</line>
+          <option name="timeStamp" value="312" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="314" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java</url>
-          <line>58</line>
-          <option name="timeStamp" value="305" />
+          <line>39</line>
+          <option name="timeStamp" value="315" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/Socket/VirtualSocketServer.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="316" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java</url>
+          <line>169</line>
+          <properties class="Network.Server.Socket.SocketClientHandler" method="showFourCentralCards">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="308" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java</url>
+          <line>180</line>
+          <properties class="Network.Server.Socket.SocketClientHandler" method="showHandsAndCommonObjectives">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="309" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Server/Server.java</url>
+          <line>355</line>
+          <properties class="Network.Server.Server" method="handleNewClient">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="313" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java</url>
+          <line>99</line>
+          <properties class="model.client.ClientBoard" method="getAvailableTokens">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="317" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

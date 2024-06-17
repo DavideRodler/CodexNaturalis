@@ -46,6 +46,7 @@ public class ClientApp implements Remote {
                     ClientController clientController = new ClientController(client);
                     client.setClientController(clientController);
                     client.connectToServer();
+
                 } catch (RemoteException r) {
                     System.out.println("Error: " + r);
                 } catch (NotBoundException e) {
@@ -64,6 +65,11 @@ public class ClientApp implements Remote {
                 ClientController clientController = new ClientController(client);
                 client.setClientController(clientController);
                 client.run();
+                try {
+                    client.connectToServer();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
 
                 break;
             } else {

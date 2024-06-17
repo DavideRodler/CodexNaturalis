@@ -37,11 +37,16 @@ public class SocketClientHandler implements VirtualView {
                 throw new RuntimeException(e);
             }
             switch (message.getType()) {
+                case "ConnectClient" -> {
+                    server.connectClient(this);
+                }
                 case "SetPlayerNumber" -> {
                     SetPlayerNumberMessage setPlayerNumberMessage = (SetPlayerNumberMessage) message;
                     try {
                         server.setPlayerNumber(setPlayerNumberMessage.getNumber());
-                    } catch (NotValidMoveException | ChangedStateException e) {
+                    } catch (NotValidMoveException e) {
+                        throw new RuntimeException(e);
+                    } catch (ChangedStateException e) {
                         throw new RuntimeException(e);
                     }
                 }
@@ -49,7 +54,7 @@ public class SocketClientHandler implements VirtualView {
                     AddPlayerMessage addPlayerMessage = (AddPlayerMessage) message;
                     try {
                         server.addPlayer(addPlayerMessage.getNickname(), addPlayerMessage.getToken(), this);
-                    } catch (ChangedStateException | NotValidMoveException e) {
+                    } catch (ChangedStateException e) {
                         throw new RuntimeException(e);
                     }
                 }
@@ -69,8 +74,6 @@ public class SocketClientHandler implements VirtualView {
                         throw new RuntimeException(e);
                     }
                 }
-
-
                 default -> System.out.println("invalid message");
                 // handle the message
             }
@@ -197,6 +200,30 @@ public class SocketClientHandler implements VirtualView {
         }
 
     }
+
+    @Override
+    public void notifyNicknameAlreadyTaken() throws RemoteException {
+        Message message = new ActionMessage("notifyNicknameAlreadyTaken");
+        try {
+            this.output.writeObject(message);
+            this.output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+    public void notifyTokenAlreadyTaken() throws RemoteException {
+        Message message = new ActionMessage("notifyTokenAlreadyTaken");
+        try {
+            this.output.writeObject(message);
+            this.output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public void notifyItIsYourTurn() throws RemoteException {
         Message message = new ActionMessage("notifyItIsYourTurn");

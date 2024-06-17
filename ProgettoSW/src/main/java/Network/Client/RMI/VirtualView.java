@@ -33,4 +33,8 @@ public interface VirtualView extends Remote, Observer {
     void showHandsAndCommonObjectives() throws RemoteException;
 
     void setupOfSecretObjective() throws RemoteException;
+
+    void notifyNicknameAlreadyTaken() throws RemoteException;
+
+    void notifyTokenAlreadyTaken() throws RemoteException;
 }

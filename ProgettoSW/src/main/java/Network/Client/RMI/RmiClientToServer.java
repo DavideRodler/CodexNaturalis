@@ -283,4 +283,14 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
     public void setupOfSecretObjective() throws RemoteException {
         clientController.setupOfSecretObjective();
     }
+
+    @Override
+    public void notifyNicknameAlreadyTaken() throws RemoteException {
+        clientController.notifyNicknameAlreadyTaken();
+    }
+
+    @Override
+    public void notifyTokenAlreadyTaken() throws RemoteException {
+        clientController.notifyTokenAlreadyTaken();
+    }
 }

@@ -57,10 +57,15 @@ public class SocketClient implements ClientToServerCommunication{
                 case "notifyGameAlreadyStarted" -> clientController.notifyGameAlreadyStarted();
 
                 case "setupOfNicknameAndToken" -> clientController.setupOfnicknameAndToken();
+                case "notifyNicknameAlreadyTaken" -> clientController.notifyNicknameAlreadyTaken();
+                case "notifyTokenAlreadyTaken" -> clientController.notifyTokenAlreadyTaken();
+
                 case "showFourCentralCards" -> clientController.showFourCentralCards();
+                case "notifyStartSetupOfStartingCard" -> clientController.setupOfStartingCard();
+
+                case "showHandsAndCommonObjectives" -> clientController.showHandsAndCommonObjectives();
                 case "setupOfSecretObjective" -> clientController.setupOfSecretObjective();
 
-                case "notifyStartSetupOfStartingCard" -> clientController.setupOfStartingCard();
                 case "notifyIsYourTurn" -> clientController.notifyItIsYourTurn();
 
                 default -> clientController.updateModel(message);
@@ -70,7 +75,7 @@ public class SocketClient implements ClientToServerCommunication{
 
     @Override
     public void connectToServer() throws Exception {
-
+        server.connectClient(null);
     }
 
     @Override

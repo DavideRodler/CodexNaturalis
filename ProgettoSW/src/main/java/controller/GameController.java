@@ -102,8 +102,8 @@ public class GameController implements Serializable {
     public void addPlayer(String nickname, TokenEnum token) throws NotValidMoveException, ChangedStateException {
         assertGameState(GameState.SET_NAME_AND_TOKEN);
         if(board.getPlayernumber() < board.getPlayers().size()) throw new NotValidMoveException("numero di player massimo raggiunto");
-        if(!checkNicknameAvailability(nickname)) throw new NotValidMoveException("nickname already been choosen");
-        if(!checkTokenAvailability(token)) throw new NotValidMoveException("token already been choosen");
+        if(!checkNicknameAvailability(nickname)) throw new NotValidMoveException("Nickname already taken");
+        if(!checkTokenAvailability(token)) throw new NotValidMoveException("Token already taken");
         this.board.addPlayer(new Player(nickname, token, new PlayingStation( new HashMap<>()), 0, new ArrayList<>()));
         if(board.getPlayers().size() == board.getPlayernumber()){
             board.setGameState(GameState.INITIALIZE_GAME);

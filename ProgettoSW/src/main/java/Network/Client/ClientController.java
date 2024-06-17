@@ -248,7 +248,7 @@ public class ClientController {
                     clientModel.setBackOfResourceDeck(backOfFirstCardOfDeckMessage.getBackOfCard());
                 }
                 break;
-
+            default: System.err.println("Invalid message type");
         }
 
     }
@@ -290,5 +290,15 @@ public class ClientController {
     public synchronized void showHandsAndCommonObjectives() {
         ui.printSetupPlayerHand();
         ui.printCommonObjectives();
+    }
+
+    public void notifyNicknameAlreadyTaken() {
+        System.out.println("The nickname is already taken, please choose another one");
+        setupOfnicknameAndToken();
+    }
+
+    public void notifyTokenAlreadyTaken() {
+        System.out.println("The token is already taken, please choose another one");
+        setupOfnicknameAndToken();
     }
 }
