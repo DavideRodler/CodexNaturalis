@@ -226,7 +226,7 @@ public class ClientController {
                     ui.showErrorMessage(e.getMessage());
                 }
 
-            }while (menuAnswer != 7 || !endTurn);
+            }while (menuAnswer != 8 || !endTurn);
         try {
             server.updatePlayerReadyForNewMenu(1);
             server.startTurn();
