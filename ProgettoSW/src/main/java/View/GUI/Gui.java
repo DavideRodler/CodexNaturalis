@@ -2,6 +2,7 @@ package View.GUI;
 
 import View.UI;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -50,7 +51,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public void showStartingCard() {
-        stationController.showStartingCard(clientBoard.getMyplayer().getStation().getCardStarting());
+        Platform.runLater(() -> stationController.showStartingCard(clientBoard.getMyplayer().getStation().getCardStarting()));
     }
 
     @Override
@@ -59,7 +60,8 @@ public class Gui extends Application implements UI {
 
     @Override
     public String askNickname() {
-        return chooseNickAndTokenController.enterNickname();
+        String a="";
+        Platform.runLater(() -> a = chooseNickAndTokenController.enterNickname());
 
     }
 

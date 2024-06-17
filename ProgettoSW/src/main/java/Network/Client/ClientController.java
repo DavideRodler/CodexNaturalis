@@ -41,7 +41,7 @@ public class ClientController {
         if(uiChoice.equals("GUI"))
         {
             ui = new Gui();
-
+            ui.launchGui(clientModel);
         }
         else
             ui= new Cli2(clientModel);
@@ -58,11 +58,7 @@ public class ClientController {
             String nickname = null;
             TokenEnum token;
             do {
-
-                ui.launchGui(clientModel);
-                Platform.runLater(()->{
-                    System.out.println("GUI!!!!");
-                });
+                nickname = ui.askNickname();
                 token = ui.askToken(server.getAvailableTokens());
             } while (!server.checkNicknameAvailability(nickname) || !server.checkTokenAvailability(token));
 
