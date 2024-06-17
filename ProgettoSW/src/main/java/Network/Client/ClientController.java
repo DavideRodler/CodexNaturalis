@@ -172,9 +172,16 @@ public class ClientController {
                                     }
                                 }
                                 endTurn = true;
+                                ui.printMenu();
                             }
-                            else
+                            else {
+                                ui.printMenu2and3();
+                                ui.printSpace();
+                                ui.printSpace();
                                 ui.showErrorMessage("You have already placed a card in your station");
+                                ui.printSpace();
+                                ui.printSpace();
+                            }
                             break;
                         }
                         case 2:
