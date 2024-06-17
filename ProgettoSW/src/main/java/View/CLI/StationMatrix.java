@@ -629,7 +629,7 @@ public class StationMatrix {
      */
     public void printPoints(ClientBoard clientBoard){ //TODO: togliere obiettivi degli altri giocatori e aggiungere il colore
         int clientPoints = clientBoard.getMyplayer().getPoints();
-        System.out.println( clientPoints + " points");
+        System.out.println("You have " + clientPoints + " points");
         for(ReductPlayer reductPlayer : clientBoard.getOtherplayers()){
             System.out.println(reductPlayer.getNickname() + " has " + reductPlayer.getPoints() + " points");
         }
