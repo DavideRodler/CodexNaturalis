@@ -66,7 +66,7 @@ public class SocketClient implements ClientToServerCommunication{
                 case "showHandsAndCommonObjectives" -> clientController.showHandsAndCommonObjectives();
                 case "setupOfSecretObjective" -> clientController.setupOfSecretObjective();
 
-                case "notifyIsYourTurn" -> clientController.notifyItIsYourTurn();
+                case "notifyItIsYourTurn" -> clientController.notifyItIsYourTurn();
 
                 default -> clientController.updateModel(message);
             }
