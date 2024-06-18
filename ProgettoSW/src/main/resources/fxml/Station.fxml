@@ -71,29 +71,29 @@
          <children>
               <ImageView fx:id="cardhand1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                      <Image url="@../cards/gold/front/41_FUNGI.png" />
+                      <Image url="@../41_FUNGI_front.png" />
                   </image>
               </ImageView>
               <ImageView fx:id="cardhand2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                      <Image url="@../cards/gold/front/41_FUNGI.png" />
+                      <Image url="@../41_FUNGI_front.png" />
                   </image>
               </ImageView>
               <ImageView fx:id="cardhand3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                      <Image url="@../cards/gold/front/41_FUNGI.png" />
+                      <Image url="@../41_FUNGI_front.png" />
                   </image>
               </ImageView>
               <ImageView fx:id="secretobj" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                      <Image url="@../cards/objective/front/counting_resources/95_objective.png" />
+                      <Image url="@../95_objective_front.png" />
                   </image>
               </ImageView>
          </children>
       </VBox>
         <ImageView fx:id="startingcard" fitHeight="150.0" fitWidth="200.0" layoutX="459.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../cards/starting/front/81_starting.png" />
+                <Image url="@../81_starting_front.png" />
             </image>
         </ImageView>
         <Button mnemonicParsing="false" text="Button" />
@@ -103,12 +103,12 @@
         <Button fx:id="btnobj2" layoutX="633.0" layoutY="552.0" mnemonicParsing="false" text="choose second objective" />
         <ImageView fx:id="chooseobj1" fitHeight="150.0" fitWidth="200.0" layoutX="350.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../cards/objective/front/counting_resources/95_objective.png" />
+                <Image url="@../95_objective_front.png" />
             </image>
         </ImageView>
         <ImageView fx:id="chooseobj2" fitHeight="150.0" fitWidth="200.0" layoutX="618.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../cards/objective/front/counting_resources/95_objective.png" />
+                <Image url="@../95_objective_front.png" />
             </image>
         </ImageView>
     </children>

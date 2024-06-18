@@ -54,7 +54,7 @@ public class CardLoader {
             stream = this.getClass().getClassLoader().getResourceAsStream(id +"_starting_front.png");
         }
         else if(id > 86 && id < 103){
-            stream = this.getClass().getClassLoader().getResourceAsStream(id + "objective_front.png");
+            stream = this.getClass().getClassLoader().getResourceAsStream(id + "_objective_front.png");
         }
         else{
             System.out.println("Erroreeeee");

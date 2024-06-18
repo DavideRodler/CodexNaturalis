@@ -4,14 +4,127 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Correzione JSON">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gold_INSECT_back.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="getCards GUI">
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/PlayingStationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/CardLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/CardLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/63_ANIMAL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/23_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/23_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/back/ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/gold_ANIMAL_back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/back/FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/gold_FUNGI_back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/back/INSECT.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/back/PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/gold_PLANT_back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/41_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/41_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/42_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/42_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/43_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/43_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/44_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/44_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/45_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/45_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/46_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/46_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/47_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/47_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/48_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/48_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/49_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/49_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/50_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/50_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/51_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/51_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/52_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/52_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/53_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/53_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/54_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/54_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/55_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/55_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/56_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/56_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/57_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/57_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/58_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/58_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/59_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/59_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/60_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/60_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/61_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/61_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/62_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/62_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/63_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/63_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/64_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/64_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/65_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/65_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/66_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/66_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/67_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/67_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/68_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/68_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/69_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/69_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/70_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/70_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/71_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/71_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/72_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/72_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/73_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/73_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/74_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/74_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/75_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/75_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/76_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/76_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/77_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/77_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/78_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/78_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/79_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/79_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/gold/front/80_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/80_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/back/objective.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/objective_back.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/counting_gold/100_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/100_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/counting_gold/101_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/101_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/counting_gold/102_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/102_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/counting_gold/99_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/99_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/counting_resources/95_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/95_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/counting_resources/96_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/96_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/counting_resources/97_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/97_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/counting_resources/98_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/98_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/diagonal/87_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/87_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/diagonal/88_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/88_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/diagonal/89_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/89_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/diagonal/90_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/90_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/positioning/91_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/91_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/positioning/92_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/92_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/positioning/93_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/93_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/objective/front/positioning/94_objective.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/94_objective_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/back/ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resource_ANIMAL_back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/back/FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resource_FUNGI_back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/back/INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resource_INSECT_back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/back/PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resource_PLANT_back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/10_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/10_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/11_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/11_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/12_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/12_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/13_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/13_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/14_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/14_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/15_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/15_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/16_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/16_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/17_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/17_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/18_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/18_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/19_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/19_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/1_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/1_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/20_PLANT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/20_PLANT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/21_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/21_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/22_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/22_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/23_ANIMAL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/24_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/24_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/25_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/25_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/26_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/26_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/27_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/27_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/28_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/28_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/29_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/29_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/2_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/2_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/30_ANIMAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/30_ANIMAL_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/31_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/31_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/32_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/32_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/33_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/33_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/34_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/34_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/35_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/35_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/36_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/36_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/37_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/37_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/38_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/38_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/39_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/39_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/3_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/3_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/40_INSECT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/40_INSECT_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/4_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/4_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/5_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/5_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/6_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/6_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/7_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/7_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/8_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/8_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/resource/front/9_FUNGI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/9_FUNGI_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/back/81_starting.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/81_starting_back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/back/82_starting.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/82_starting_back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/back/83_starting.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/83_starting_back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/back/84_starting.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/84_starting_back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/back/85_starting.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/85_starting_back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/back/86_starting.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/86_starting_back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/front/81_starting.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/81_starting_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/front/82_starting.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/82_starting_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/front/83_starting.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/83_starting_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/front/84_starting.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/84_starting_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/front/85_starting.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/85_starting_front.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cards/starting/front/86_starting.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/86_starting_front.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/ChooseNicknameAndToken.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/ChooseNicknameAndToken.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" afterDir="false" />
     </list>
@@ -25,9 +138,9 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -160,7 +273,7 @@
     "JUnit.PlayingBoardTest.getPlayers.executor": "Run",
     "JUnit.ReductPlayerTest.executor": "Coverage",
     "JUnit.deckconstructorTest.deckResource.executor": "Run",
-    "JUnit.java in ProgettoSW.executor": "Debug",
+    "JUnit.java in ProgettoSW.executor": "Coverage",
     "JUnit.model in ProgettoSW.executor": "Coverage",
     "Maven.ProgettoSW [clean].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -199,14 +312,14 @@
       <recent name="controller" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="model.client" />
       <recent name="model" />
+      <recent name="model.client" />
       <recent name="model.objectives" />
       <recent name="model.cards" />
       <recent name="model.cards.face" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientApp">
+  <component name="RunManager" selected="JUnit.java in ProgettoSW">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
       <module name="ProgettoSW" />
@@ -265,18 +378,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameControllerTest.win" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="java in ProgettoSW" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="controller" />
-      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
-      <option name="METHOD_NAME" value="win" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -284,17 +389,17 @@
     <list>
       <item itemvalue="Application.ClientApp" />
       <item itemvalue="Application.ServerApp" />
+      <item itemvalue="JUnit.java in ProgettoSW" />
       <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
       <item itemvalue="JUnit.GameControllerTest.isGamefinished" />
-      <item itemvalue="JUnit.GameControllerTest.win" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.java in ProgettoSW" />
         <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.ServerApp" />
         <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
         <item itemvalue="JUnit.GameControllerTest.isGamefinished" />
-        <item itemvalue="JUnit.GameControllerTest.win" />
       </list>
     </recent_temporary>
   </component>
@@ -348,14 +453,6 @@
       <workItem from="1718484349867" duration="8009000" />
       <workItem from="1718528272198" duration="3527000" />
       <workItem from="1718628835978" duration="1194000" />
-    </task>
-    <task id="LOCAL-00025" summary="aggiunta colori">
-      <option name="closed" value="true" />
-      <created>1713878558957</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1713878558958</updated>
     </task>
     <task id="LOCAL-00026" summary="aggiunta local clientController">
       <option name="closed" value="true" />
@@ -741,7 +838,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718712941943</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="getCards GUI">
+      <option name="closed" value="true" />
+      <created>1718717994424</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1718717994424</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -809,7 +914,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="CardStarting funzionanti con observer, il GameController non passa piu' da uno stato all'altro in modo automatico" />
     <MESSAGE value="Correzione Test Objective" />
     <MESSAGE value="gitingnore e cambio delle exception nella addcard" />
     <MESSAGE value="Tutta fase di setup funzionante e con Cli(da rivedere)" />
@@ -834,7 +938,8 @@
     <MESSAGE value="finito di aggiungere immagini carte, classe CardLoader e inizio client gui" />
     <MESSAGE value="se corner è null non avrà coordinate" />
     <MESSAGE value="Correzione JSON" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correzione JSON" />
+    <MESSAGE value="getCards GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="getCards GUI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -855,11 +960,6 @@
           <url>file://$PROJECT_DIR$/src/test/java/model/deck/DeckConstructorTest.java</url>
           <line>19</line>
           <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>
-          <line>211</line>
-          <option name="timeStamp" value="283" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -890,10 +990,10 @@
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getStartingCard.ic" NAME="GameControllerTest.getStartingCard Coverage Results" MODIFIED="1716293555017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_isGamefinished.ic" NAME="GameControllerTest.isGamefinished Coverage Results" MODIFIED="1716111232885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getAvailableToken.ic" NAME="GameControllerTest.getAvailableToken Coverage Results" MODIFIED="1715692588758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getAvailableToken.ic" NAME="GameControllerTest.getAvailableToken Coverage Results" MODIFIED="1715692588758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_isGamefinished.ic" NAME="GameControllerTest.isGamefinished Coverage Results" MODIFIED="1716111232885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveDiagonalTest.ic" NAME="ObjectiveDiagonalTest Coverage Results" MODIFIED="1716371771014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -932,7 +1032,7 @@
     <SUITE FILE_PATH="coverage/ProgettoSW$CardObjectiveTest_getInformation.ic" NAME="CardObjectiveTest.getInformation Coverage Results" MODIFIED="1716364937299" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.cards.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$java_in_ProgettoSW.ic" NAME="java in ProgettoSW Coverage Results" MODIFIED="1713876265206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProgettoSW$java_in_ProgettoSW.ic" NAME="java in ProgettoSW Coverage Results" MODIFIED="1718718070708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/ProgettoSW$CardGoldTest_getInformation.ic" NAME="CardGoldTest.getInformation Coverage Results" MODIFIED="1716364744164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.cards.*</FILTER>
     </SUITE>
