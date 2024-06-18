@@ -60,9 +60,9 @@ public class Gui extends Application implements UI {
 
     @Override
     public String askNickname() {
-        String a="";
-        Platform.runLater(() -> a = chooseNickAndTokenController.enterNickname());
-
+        String a ="";
+        //Platform.runLater(() -> a = chooseNickAndTokenController.enterNickname());
+        return a;
     }
 
     @Override

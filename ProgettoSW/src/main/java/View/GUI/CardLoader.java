@@ -1,12 +1,9 @@
 package View.GUI;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import model.enums.SuitEnum;
 
-import java.io.IOException;
+import java.io.InputStream;
 
 public class CardLoader {
 
@@ -29,15 +26,28 @@ public class CardLoader {
              type = "/objective";
          }
 
-         fileNameFront = type + "/front" + id + suit + ".png";
-         fileNameBack = type + "/back" + id + suit + ".png";
+         fileNameFront = type + "/front/" + id + "_"+ suit + ".png";
+         fileNameBack = type + "/back/" + id + "_" + suit + ".png";
      }
 
-    public Image getBack() {
-        return new Image("/resources/cards/" + fileNameBack);
+     public void printPath(int id, SuitEnum suit){
+         createImageOfCard(id, suit);
+         System.out.println("/resources/cards" + fileNameFront);
+     }
+
+    public Image getBack(int id, SuitEnum suit) {
+         createImageOfCard(id, suit);
+         return new Image("/resources/cards" + fileNameBack);
     }
 
-    public Image getFront() {
-         return new Image("/resources/cards/" + fileNameFront);
+    public Image getFront(int id, SuitEnum suit) {
+         createImageOfCard(id, suit);
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream("63_ANIMAL.png");
+        if(stream == null){
+            System.out.println("Erroreeeee");
+        } else{
+            return new Image(stream);
+        }
+         return new Image(this.getClass().getClassLoader().getResourceAsStream("cards/23_ANIMAL.png"));
     }
 }
