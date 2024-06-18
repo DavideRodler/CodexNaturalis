@@ -34,9 +34,9 @@ public class ClientApp implements Remote {
             }
         } while (true);
 
-        System.out.println("Select Communication Type: 1. RMI 2. Socket");
-        int selection = in.nextInt();
         while (true) {
+            System.out.println("Select Communication Type: 1. RMI 2. Socket");
+            int selection = in.nextInt();
             if (selection == 1) {
                 VirtualServer server;
                 try {

@@ -100,7 +100,7 @@ public class ClientBoard implements Serializable {
     public ArrayList<TokenEnum> getAvailableTokens(){
         ArrayList<TokenEnum> availableTokens = new ArrayList<>();
         for(TokenEnum token : TokenEnum.values()){
-            if(otherplayers.stream().noneMatch(p -> p.getToken().equals(token))){
+            if(otherplayers.stream().noneMatch(p -> p.getToken() ==token)){
                 availableTokens.add(token);
             }
         }

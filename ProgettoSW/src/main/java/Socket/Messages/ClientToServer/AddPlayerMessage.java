@@ -6,18 +6,13 @@ import model.enums.TokenEnum;
 
 public class AddPlayerMessage extends Message {
     private String playerName;
-    private TokenEnum token;
 
-    public AddPlayerMessage(String playerName, TokenEnum token) {
+    public AddPlayerMessage(String playerName) {
         super("AddPlayer");
         this.playerName = playerName;
-        this.token = token;
     }
 
     public String getNickname() {
         return playerName;
-    }
-    public TokenEnum getToken() {
-        return token;
     }
 }

@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public class GameController implements Serializable {
     private PlayingBoard board;
     private int NumberOfPlayerThatHasSettedTheStartingCardFace = 0;
+    private  int NumberOfPlayerThatHasSettedToken = 0;
     //getter
     public PlayingBoard getBoard() {
         return board;
@@ -58,7 +59,7 @@ public class GameController implements Serializable {
         if(playernumber>4) throw new NotValidMoveException("player must less than four");
         assertGameState(GameState.SET_PLAYER_NUMBER);
         board.setPlayernumber(playernumber);
-        board.setGameState(GameState.SET_NAME_AND_TOKEN);
+        board.setGameState(GameState.ADD_PLAYERS);
     }
 
 
@@ -70,7 +71,7 @@ public class GameController implements Serializable {
         return Arrays.stream(TokenEnum.values())
                 .filter(t -> board.getPlayers()
                         .stream()
-                        .noneMatch(p -> p.getToken().equals(t)))
+                        .noneMatch(p -> p.getToken() == t))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
@@ -96,17 +97,27 @@ public class GameController implements Serializable {
      * it add a player to the game and its token
      *
      * @param nickname
-     * @param token
      * @throws NotValidMoveException if i am in another state of the game
      */
-    public void addPlayer(String nickname, TokenEnum token) throws NotValidMoveException, ChangedStateException {
-        assertGameState(GameState.SET_NAME_AND_TOKEN);
+    public void addPlayer(String nickname) throws NotValidMoveException, ChangedStateException {
+        assertGameState(GameState.ADD_PLAYERS);
         if(board.getPlayernumber() < board.getPlayers().size()) throw new NotValidMoveException("numero di player massimo raggiunto");
         if(!checkNicknameAvailability(nickname)) throw new NotValidMoveException("Nickname already taken");
-        if(!checkTokenAvailability(token)) throw new NotValidMoveException("Token already taken");
-        this.board.addPlayer(new Player(nickname, token, new PlayingStation( new HashMap<>()), 0, new ArrayList<>()));
+        this.board.addPlayer(new Player(nickname, new PlayingStation( new HashMap<>()), 0, new ArrayList<>()));
         if(board.getPlayers().size() == board.getPlayernumber()){
             board.setGameState(GameState.INITIALIZE_GAME);
+        }
+    }
+
+    public void selectToken(String nickname, TokenEnum token) throws NotValidMoveException, ChangedStateException {
+        assertGameState(GameState.SELECT_TOKEN);
+        if(!checkTokenAvailability(token)) {
+            throw new NotValidMoveException("Token already taken");
+        }
+        board.getPlayer(nickname).setToken(token);
+        NumberOfPlayerThatHasSettedToken++;
+        if(NumberOfPlayerThatHasSettedToken == board.getPlayernumber()){
+            board.setGameState(GameState.SELECT_STARTINGCARDFACE);
         }
     }
 
@@ -156,7 +167,7 @@ public class GameController implements Serializable {
         };
 
 
-        board.setGameState(GameState.SELECT_STARTINGCARDFACE);
+        board.setGameState(GameState.SELECT_TOKEN);
 
     }
     /**

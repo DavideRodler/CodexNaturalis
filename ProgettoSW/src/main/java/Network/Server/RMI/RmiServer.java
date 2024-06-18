@@ -48,8 +48,13 @@ public class RmiServer implements VirtualServer {
     }
 
     @Override
-    public void addPlayer(String nickname, TokenEnum token, VirtualView Myclient) throws ChangedStateException, NotValidMoveException, RemoteException {
-        server.addPlayer(nickname, token, Myclient);
+    public void addPlayer(String nickname, VirtualView Myclient) throws ChangedStateException, NotValidMoveException, RemoteException {
+        server.addPlayer(nickname, Myclient);
+    }
+
+    @Override
+    public void setToken(String nickname, TokenEnum token) throws RemoteException, ChangedStateException, NotValidMoveException {
+        server.setToken(nickname, token);
     }
 
 

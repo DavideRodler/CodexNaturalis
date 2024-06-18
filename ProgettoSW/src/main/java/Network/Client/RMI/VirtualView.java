@@ -5,12 +5,11 @@ import observers.Observer;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public interface VirtualView extends Remote, Observer {
 
-    void setupOfnicknameAndToken() throws RemoteException;
+    void setupOfNickname() throws RemoteException;
 
     void notifyStartSetupOfStartingCard() throws RemoteException;
 
@@ -37,4 +36,6 @@ public interface VirtualView extends Remote, Observer {
     void notifyNicknameAlreadyTaken() throws RemoteException;
 
     void notifyTokenAlreadyTaken() throws RemoteException;
+
+    void setupOfToken() throws RemoteException;
 }

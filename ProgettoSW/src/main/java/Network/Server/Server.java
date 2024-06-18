@@ -1,7 +1,6 @@
 package Network.Server;
 
 import Network.Client.RMI.VirtualView;
-import Network.Server.VirtualServer;
 import controller.GameController;
 import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
@@ -85,12 +84,12 @@ public class Server {
                         clients.remove(client);
                         }
                     break;
-                case "startSetupOfNicknameAndToken":
+                case "startSetupOfNickname":
                     synchronized (this.clients) {
                         for (VirtualView client : clients) {
                             new Thread(() -> {
                                 try {
-                                    client.setupOfnicknameAndToken();
+                                    client.setupOfNickname();
                                 } catch (RemoteException e) {
                                     throw new RuntimeException(e);
                                 }
@@ -98,6 +97,20 @@ public class Server {
                         }
                     }
                     break;
+                case "startSetupOfToken":
+                    synchronized (this.clients) {
+                        for (VirtualView client : clients) {
+                            new Thread(() -> {
+                                try {
+                                    client.setupOfToken();
+                                } catch (RemoteException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }).start();
+                        }
+                    }
+                    break;
+
 
                 case "showFourCentralCardsToPlayers":
                     synchronized (this.clients) {
@@ -214,16 +227,12 @@ public class Server {
         return gameController.checkTokenAvailability(token);
     }
 
-    public void addPlayer(String nickname, TokenEnum token, VirtualView Myclient) throws ChangedStateException, RemoteException {
+    public void addPlayer(String nickname, VirtualView Myclient) throws ChangedStateException, RemoteException {
         try {
-            gameController.addPlayer(nickname, token);
+            gameController.addPlayer(nickname);
         } catch (NotValidMoveException e) {
             if (e.getMessage().equals("Nickname already taken")) {
                 Myclient.notifyNicknameAlreadyTaken();
-                return;
-            }
-            else if (e.getMessage().equals("Token already taken")) {
-                Myclient.notifyTokenAlreadyTaken();
                 return;
             }
             else {
@@ -236,6 +245,25 @@ public class Server {
         }
     }
 
+    public void setToken(String nickname, TokenEnum token) throws ChangedStateException, NotValidMoveException, RemoteException {
+        synchronized (gameController) {
+            try {
+                gameController.selectToken(nickname, token);
+            }
+            catch (NotValidMoveException e){
+                if (e.getMessage().equals("Token already taken")){
+                    clientsMap.get(nickname).notifyTokenAlreadyTaken();
+                    return;
+                }
+                else {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        if(gameController.getBoard().getGameState().equals(GameState.SELECT_STARTINGCARDFACE)){
+            showFourCentralCardsToPlayers();
+        }
+    }
 
 
 
@@ -315,7 +343,15 @@ public class Server {
         } catch (ChangedStateException e) {
             throw new RuntimeException(e);
         }
-        showFourCentralCardsToPlayers();
+        startSetupOfToken();
+    }
+    public void startSetupOfToken() throws RemoteException {
+        try {
+            queue.put("startSetupOfToken");
+        }
+        catch (InterruptedException e ){
+            throw new RuntimeException(e);
+        }
     }
 
     public void showFourCentralCardsToPlayers() throws RemoteException {
@@ -326,6 +362,7 @@ public class Server {
         }
         startSetupOfStartingCard();
     }
+
 
     public void startSetupOfStartingCard() throws RemoteException {
         try {
@@ -380,7 +417,7 @@ public class Server {
             gameController.getBoard().addObserver(client);
             try {
                 queue.put("notifyAllPlayersConnected");
-                queue.put("startSetupOfNicknameAndToken");
+                queue.put("startSetupOfNickname");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

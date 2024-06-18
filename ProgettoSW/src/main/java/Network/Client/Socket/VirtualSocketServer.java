@@ -44,8 +44,19 @@ public class VirtualSocketServer implements VirtualServer {
     }
 
     @Override
-    public void addPlayer(String nickname, TokenEnum token, VirtualView Client) throws RemoteException, ChangedStateException, NotValidMoveException {
-        AddPlayerMessage message = new AddPlayerMessage(nickname, token);
+    public void addPlayer(String nickname, VirtualView Client) throws RemoteException, ChangedStateException, NotValidMoveException {
+        AddPlayerMessage message = new AddPlayerMessage(nickname);
+        try {
+            output.writeObject(message);
+            output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void setToken(String nickname, TokenEnum token) throws RemoteException {
+        SetTokenMessage message = new SetTokenMessage(nickname, token);
         try {
             output.writeObject(message);
             output.flush();

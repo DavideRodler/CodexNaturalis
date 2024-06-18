@@ -3,10 +3,7 @@ package Network.Server.Socket;
 import Network.Client.RMI.VirtualView;
 import Network.Server.Server;
 import Network.Server.ServerToClientCommunication;
-import Socket.Messages.ClientToServer.AddPlayerMessage;
-import Socket.Messages.ClientToServer.SetPlayerNumberMessage;
-import Socket.Messages.ClientToServer.SetSecretObjectiveMessage;
-import Socket.Messages.ClientToServer.SetStartingCardPlayedBackMessage;
+import Socket.Messages.ClientToServer.*;
 import Socket.Messages.Message;
 import Socket.Messages.ServerToClient.ActionMessage;
 import exception.ChangedStateException;
@@ -53,7 +50,7 @@ public class SocketClientHandler implements VirtualView {
                 case "AddPlayer" -> {
                     AddPlayerMessage addPlayerMessage = (AddPlayerMessage) message;
                     try {
-                        server.addPlayer(addPlayerMessage.getNickname(), addPlayerMessage.getToken(), this);
+                        server.addPlayer(addPlayerMessage.getNickname(), this);
                     } catch (ChangedStateException e) {
                         throw new RuntimeException(e);
                     }
@@ -74,6 +71,15 @@ public class SocketClientHandler implements VirtualView {
                         throw new RuntimeException(e);
                     }
                 }
+                case "SetToken"->{
+                    SetTokenMessage setTokenMessage = (SetTokenMessage) message;
+                    try {
+                        server.setToken(setTokenMessage.getNickname(), setTokenMessage.getToken());
+                    } catch (ChangedStateException | NotValidMoveException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
                 default -> System.out.println("invalid message");
                 // handle the message
             }
@@ -140,7 +146,7 @@ public class SocketClientHandler implements VirtualView {
     }
 
     @Override
-    public void setupOfnicknameAndToken() throws RemoteException {
+    public void setupOfNickname() throws RemoteException {
         Message message = new ActionMessage("setupOfNicknameAndToken");
         try {
             this.output.writeObject(message);
@@ -216,6 +222,17 @@ public class SocketClientHandler implements VirtualView {
     @Override
     public void notifyTokenAlreadyTaken() throws RemoteException {
         Message message = new ActionMessage("notifyTokenAlreadyTaken");
+        try {
+            this.output.writeObject(message);
+            this.output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void setupOfToken() throws RemoteException {
+        Message message = new ActionMessage("setupOfToken");
         try {
             this.output.writeObject(message);
             this.output.flush();

@@ -28,7 +28,7 @@ public class PlacingConditionTest {
         boolean flag = true;
         game.getBoard().setGameState(GameState.SET_PLAYER_NUMBER);
         game.setPlayerNumber(2);
-        game.getBoard().setGameState(GameState.SET_NAME_AND_TOKEN);
+        game.getBoard().setGameState(GameState.ADD_PLAYERS);
         //numero di player settato, si mescolano in automatico e posso aggiungere nickname e token
         game.addPlayer("tommy", TokenEnum.BLACK);
         game.addPlayer("isa", TokenEnum.YELLOW);

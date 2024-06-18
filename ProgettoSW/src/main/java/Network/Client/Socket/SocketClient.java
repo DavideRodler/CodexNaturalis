@@ -2,8 +2,6 @@ package Network.Client.Socket;
 
 import Network.Client.ClientController;
 import Network.Client.ClientToServerCommunication;
-import Network.Client.RMI.VirtualView;
-import Network.Server.VirtualServer;
 import Socket.Messages.Message;
 import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
@@ -14,7 +12,6 @@ import model.enums.TokenEnum;
 import java.io.*;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 public class SocketClient implements ClientToServerCommunication{
     final ObjectInputStream input;
@@ -56,8 +53,10 @@ public class SocketClient implements ClientToServerCommunication{
                 case "notifyAllPlayersConnected" -> clientController.notifyAllPlayersConnected();
                 case "notifyGameAlreadyStarted" -> clientController.notifyGameAlreadyStarted();
 
-                case "setupOfNicknameAndToken" -> clientController.setupOfnicknameAndToken();
+                case "setupOfNicknameAndToken" -> clientController.setupOfnickname();
                 case "notifyNicknameAlreadyTaken" -> clientController.notifyNicknameAlreadyTaken();
+
+                case "setupOfToken" -> clientController.setupOfToken();
                 case "notifyTokenAlreadyTaken" -> clientController.notifyTokenAlreadyTaken();
 
                 case "showFourCentralCards" -> clientController.showFourCentralCards();
@@ -71,6 +70,16 @@ public class SocketClient implements ClientToServerCommunication{
                 default -> clientController.updateModel(message);
             }
         }
+    }
+
+    @Override
+    public void setToken(String nickname, TokenEnum token) {
+        try {
+            server.setToken(nickname, token);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
@@ -96,9 +105,9 @@ public class SocketClient implements ClientToServerCommunication{
 
 
     @Override
-    public void addPlayer(String nickname, TokenEnum token) {
+    public void addPlayer(String nickname) {
         try {
-            server.addPlayer(nickname, token, null);
+            server.addPlayer(nickname, null);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         } catch (ChangedStateException e) {

@@ -41,7 +41,8 @@ ReductPlayer player = ClientBoardTemplate.createReductClient();
 
     @Test
     void getToken() {
-        ReductPlayer tom = new ReductPlayer("tommy", TokenEnum.BLUE);
+        ReductPlayer tom = new ReductPlayer("tommy");
+        tom.setToken(TokenEnum.BLUE);
         assertEquals(TokenEnum.BLUE, tom.getToken());
     }
 }

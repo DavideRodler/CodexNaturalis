@@ -249,10 +249,9 @@ public class PlayingBoard extends ObservableModel {
     // shuffle players
     public void shufflePlayer() {
         Collections.shuffle(players);
-        HashMap<String,TokenEnum> playerslist = new HashMap<String, TokenEnum>();
+        ArrayList<String> playerslist = new ArrayList<>();
         for (Player p : players) {
-            playerslist.put(p.getNickname(),p.getToken());
-
+            playerslist.add(p.getNickname());
         }
 
         try {

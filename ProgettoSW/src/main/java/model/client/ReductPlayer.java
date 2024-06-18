@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class ReductPlayer {
     private final String nickname;
     private int points;
-    private final TokenEnum token;
+    private TokenEnum token;
     private PlayingStation station;
     private ArrayList<SuitEnum> hand;
 
@@ -24,9 +24,8 @@ public class ReductPlayer {
         this.token = token;
     }
 
-    public ReductPlayer(String nickname, TokenEnum token) {
+    public ReductPlayer(String nickname) {
         this.nickname = nickname;
-        this.token = token;
         this.hand = new ArrayList<>();
         this.station = new PlayingStation(new HashMap<>());
         this.points = 0;
@@ -62,5 +61,9 @@ public class ReductPlayer {
 
     public void setStation(PlayingStation station) {
         this.station = station;
+    }
+
+    public void setToken(TokenEnum tokenEnum) {
+        this.token = tokenEnum;
     }
 }

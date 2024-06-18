@@ -25,7 +25,9 @@ public interface VirtualServer extends Remote {
 
     boolean checkTokenAvailability(TokenEnum token)throws RemoteException;
 
-    void addPlayer(String nickname, TokenEnum token, VirtualView Myclient) throws RemoteException, ChangedStateException, NotValidMoveException;
+    void addPlayer(String nickname, VirtualView Myclient) throws RemoteException, ChangedStateException, NotValidMoveException;
+
+    void setToken(String nickname, TokenEnum token) throws RemoteException, ChangedStateException, NotValidMoveException;
 
     void setStartingCardPlayedBack(boolean playedback, String nickname, int ID) throws ChangedStateException, NotValidMoveException, RemoteException;
 

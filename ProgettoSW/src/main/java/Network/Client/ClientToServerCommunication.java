@@ -6,6 +6,8 @@ import model.enums.TokenEnum;
 import java.util.ArrayList;
 
 public interface ClientToServerCommunication {
+    void setToken(String nickname, TokenEnum token);
+
     void connectToServer() throws Exception;
 
     ArrayList<TokenEnum> getAvailableTokens();
@@ -14,7 +16,7 @@ public interface ClientToServerCommunication {
 
     boolean checkTokenAvailability(TokenEnum token);
 
-    void addPlayer(String nickname, TokenEnum token);
+    void addPlayer(String nickname);
 
     void setStartingCardPlayedBack(boolean playedBack, String nickname, int id);
 

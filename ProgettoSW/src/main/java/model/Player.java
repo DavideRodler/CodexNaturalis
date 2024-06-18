@@ -2,6 +2,7 @@ package model;
 
 
 import Socket.Messages.*;
+import Socket.Messages.ClientToServer.SetTokenMessage;
 import model.cards.*;
 import model.enums.TokenEnum;
 import observers.ObservableModel;
@@ -23,7 +24,16 @@ public class Player extends ObservableModel implements Serializable{
 
     // Costruttore
 
-    public Player(String nickname, TokenEnum token, PlayingStation station, int points, ArrayList<CardResource> hand) {
+    public Player(String nickname, PlayingStation station, int points, ArrayList<CardResource> hand) {
+        this.nickname = nickname;
+        this.station = station;
+        this.points = points;
+        this.hand = hand;
+        this.selectibleObjectives = new ArrayList<>();
+        this.secretObjective = null;
+    }
+
+    public Player(String nickname,TokenEnum token, PlayingStation station, int points, ArrayList<CardResource> hand) {
         this.nickname = nickname;
         this.token = token;
         this.station = station;
@@ -57,7 +67,14 @@ public class Player extends ObservableModel implements Serializable{
     }
     public void setToken(TokenEnum token) {
         this.token = token;
+        Message message = new TokenOfPlayerMessage(this.nickname, token);
+        try {
+            this.notifyObservers(message);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
+
     public void setSecretObjectiveWithObs(CardObjective secretObjective) {
         this.secretObjective = secretObjective;
         Message message = new SelectionOfSecretObjMessage(secretObjective.getId());

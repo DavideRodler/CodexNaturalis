@@ -3,8 +3,9 @@ package model.enums;
 
 public enum GameState {
     SET_PLAYER_NUMBER,
-    SET_NAME_AND_TOKEN,
+    ADD_PLAYERS,
     INITIALIZE_GAME,
+    SELECT_TOKEN,
     SELECT_STARTINGCARDFACE,
     SELECT_OBJECTIVE,
     PLACING_CARD,

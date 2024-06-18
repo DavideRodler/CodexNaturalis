@@ -67,7 +67,12 @@ public class SocketServer implements VirtualServer {
     }
 
     @Override
-    public void addPlayer(String nickname, TokenEnum token, VirtualView Myclient) throws RemoteException, ChangedStateException, NotValidMoveException {
+    public void addPlayer(String nickname, VirtualView Myclient) throws RemoteException, ChangedStateException, NotValidMoveException {
+
+    }
+
+    @Override
+    public void setToken(String nickname, TokenEnum token) throws RemoteException, ChangedStateException, NotValidMoveException {
 
     }
 

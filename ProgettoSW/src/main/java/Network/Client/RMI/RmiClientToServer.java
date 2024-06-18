@@ -55,7 +55,7 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
                     checkTokenAvailability(TokenEnum.BLACK);
                     break;
                 case "addPlayer":
-                    addPlayer("nickname", TokenEnum.BLACK);
+                    addPlayer("nickname");
                     break;
                 case "setStartingCardPlayedBack":
                     setStartingCardPlayedBack(true, "nickname", 1);
@@ -85,6 +85,20 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
             }
         }
     }
+
+    @Override
+    public void setToken(String nickname, TokenEnum token) {
+        try {
+            this.server.setToken(nickname,token);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        } catch (ChangedStateException e) {
+            throw new RuntimeException(e);
+        } catch (NotValidMoveException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     //client To Server Communication
     @Override
     public void connectToServer() throws RemoteException{
@@ -120,10 +134,10 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
 
 
     @Override
-    public void addPlayer(String nickname, TokenEnum token)
+    public void addPlayer(String nickname)
     {
         try {
-            server.addPlayer(nickname, token, this);
+            server.addPlayer(nickname, this);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         } catch (ChangedStateException e) {
@@ -218,8 +232,8 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
         }
 
     @Override
-    public void setupOfnicknameAndToken() {
-        clientController.setupOfnicknameAndToken();
+    public void setupOfNickname() {
+        clientController.setupOfnickname();
     }
 
     @Override
@@ -292,5 +306,10 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
     @Override
     public void notifyTokenAlreadyTaken() throws RemoteException {
         clientController.notifyTokenAlreadyTaken();
+    }
+
+    @Override
+    public void setupOfToken() throws RemoteException {
+        clientController.setupOfToken();
     }
 }

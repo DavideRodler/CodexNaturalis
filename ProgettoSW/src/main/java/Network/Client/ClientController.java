@@ -32,19 +32,17 @@ public class ClientController {
         ui.showGameTitle();
     }
 
-    public void setupOfnicknameAndToken() {
+    public void setupOfnickname() {
         String nickname;
-        TokenEnum token;
 
         nickname = ui.askNickname();
-        token = ui.askToken(clientModel.getAvailableTokens());
 
         //adding player to client model
-        Player myplayer = new Player(nickname, token, new PlayingStation(new HashMap<>()), 0, new ArrayList<>());
+        Player myplayer = new Player(nickname, new PlayingStation(new HashMap<>()), 0, new ArrayList<>());
         clientModel.setMyplayer(myplayer);
 
         //adding player to server
-        clientToServerCommunication.addPlayer(nickname, token);
+        clientToServerCommunication.addPlayer(nickname);
     }
 
     public synchronized void showFourCentralCards() {
@@ -130,10 +128,23 @@ public class ClientController {
                 break;
             case "PlayersInfo":
                 PlayersInfoMessage playerInfoMessage = (PlayersInfoMessage) message;
-                HashMap<String, TokenEnum> playersMap = playerInfoMessage.getPlayers();
-                for (String nickname : playersMap.keySet()) {
+                ArrayList<String> playes = playerInfoMessage.getPlayers();
+                for (String nickname : playes) {
                     if (!nickname.equals(clientModel.getMyplayer().getNickname())) {
-                        clientModel.getOtherplayers().add(new ReductPlayer(nickname, playersMap.get(nickname)));
+                        clientModel.getOtherplayers().add(new ReductPlayer(nickname));
+                    }
+                }
+                break;
+            case "TokenOfPlayer":
+                TokenOfPlayerMessage tokenOfPlayerMessage = (TokenOfPlayerMessage) message;
+                if (clientModel.getMyplayer().getNickname().equals(tokenOfPlayerMessage.getNickname())) {
+                    clientModel.getMyplayer().setToken(tokenOfPlayerMessage.getToken());
+                }
+                else {
+                    for (ReductPlayer player : clientModel.getOtherplayers()) {
+                        if (player.getNickname().equals(tokenOfPlayerMessage.getNickname())) {
+                            player.setToken(tokenOfPlayerMessage.getToken());
+                        }
                     }
                 }
                 break;
@@ -294,11 +305,16 @@ public class ClientController {
 
     public void notifyNicknameAlreadyTaken() {
         System.out.println("The nickname is already taken, please choose another one");
-        setupOfnicknameAndToken();
+        setupOfnickname();
     }
 
     public void notifyTokenAlreadyTaken() {
         System.out.println("The token is already taken, please choose another one");
-        setupOfnicknameAndToken();
+        setupOfToken();
+    }
+
+    public void setupOfToken() {
+        TokenEnum token = ui.askToken(clientModel.getAvailableTokens());
+        clientToServerCommunication.setToken(clientModel.getMyplayer().getNickname(), token);
     }
 }
