@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import model.enums.SuitEnum;
@@ -49,6 +50,10 @@ public class ChooseNickAndTokenController implements Initializable{
     private ImageView testCardLoaderBack;
 
     @FXML
+    private ImageView imgtest;
+
+
+    @FXML
     public String enterNickname() {
         nick = chooseNickname.getText();
         label.setText("Choose your token!");
@@ -79,9 +84,13 @@ public class ChooseNickAndTokenController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        CardLoader cardLoader = new CardLoader();
         label.setText("Enter your nickname!");
         enterTokenButton.setVisible(false);
         chooseToken.setVisible(false);
+        //imgtest.setImage(cardLoader.getBack(78, SuitEnum.INSECT));
 
     }
+
+
 }

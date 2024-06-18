@@ -71,17 +71,17 @@
          <children>
               <ImageView fx:id="cardhand1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                      <Image url="@../cards/gold/front/animal/gold_animal2.jpg" />
+                      <Image url="@../cards/gold/front/41_FUNGI.png" />
                   </image>
               </ImageView>
               <ImageView fx:id="cardhand2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                      <Image url="@../cards/gold/front/animal/gold_animal2.jpg" />
+                      <Image url="@../cards/gold/front/41_FUNGI.png" />
                   </image>
               </ImageView>
               <ImageView fx:id="cardhand3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                      <Image url="@../cards/gold/front/animal/gold_animal2.jpg" />
+                      <Image url="@../cards/gold/front/41_FUNGI.png" />
                   </image>
               </ImageView>
               <ImageView fx:id="secretobj" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">

@@ -3,6 +3,7 @@ package View.GUI;
 import javafx.scene.image.Image;
 import model.enums.SuitEnum;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 public class CardLoader {
@@ -15,39 +16,68 @@ public class CardLoader {
 
 
     //TODO: fare switch per vedere a seconda dell'id in che directory è --> poi fare come nelle carte
-     private void createImageOfCard(int id, SuitEnum suit){
-         if(id > 0 && id < 41){ // la carta è risorsa
-            type = "/resource";
-         } else if(id >= 41 && id < 81){
-             type = "/gold";
-         } else if(id >= 81 && id < 87){
-             type = "/starting";
-         } else if(id >= 87 && id < 103){
-             type = "/objective";
-         }
 
-         fileNameFront = type + "/front/" + id + "_"+ suit + ".png";
-         fileNameBack = type + "/back/" + id + "_" + suit + ".png";
-     }
-
-     public void printPath(int id, SuitEnum suit){
-         createImageOfCard(id, suit);
-         System.out.println("/resources/cards" + fileNameFront);
-     }
 
     public Image getBack(int id, SuitEnum suit) {
-         createImageOfCard(id, suit);
-         return new Image("/resources/cards" + fileNameBack);
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream("");
+        if(id > 0 && id < 41){ //resource
+            stream = this.getClass().getClassLoader().getResourceAsStream("resource_"+ suit +"_back.png");
+        }
+        else if(id > 40 && id < 81){ //gold
+            stream = this.getClass().getClassLoader().getResourceAsStream("gold_"+ suit +"_back.png");
+        }
+        else{
+            System.out.println("Erroreeeee");
+        }
+        assert stream != null;
+        return new Image(stream);
     }
 
-    public Image getFront(int id, SuitEnum suit) {
-         createImageOfCard(id, suit);
-        InputStream stream = this.getClass().getClassLoader().getResourceAsStream("63_ANIMAL.png");
-        if(stream == null){
-            System.out.println("Erroreeeee");
-        } else{
-            return new Image(stream);
+    public Image getBack(int id) {
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream("");
+        if(id > 80 && id < 87){ //starting
+            stream = this.getClass().getClassLoader().getResourceAsStream(id +"_starting_back.png");
         }
-         return new Image(this.getClass().getClassLoader().getResourceAsStream("cards/23_ANIMAL.png"));
+         else if(id > 86 && id < 103){
+            stream = this.getClass().getClassLoader().getResourceAsStream("objective_back.png");
+        }
+        else{
+            System.out.println("Erroreeeee");
+        }
+        assert stream != null;
+        return new Image(stream);
+    }
+
+    public Image getFront(int id) {
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream("");
+        if(id > 80 && id < 87){ //starting
+            stream = this.getClass().getClassLoader().getResourceAsStream(id +"_starting_front.png");
+        }
+        else if(id > 86 && id < 103){
+            stream = this.getClass().getClassLoader().getResourceAsStream(id + "objective_front.png");
+        }
+        else{
+            System.out.println("Erroreeeee");
+        }
+        assert stream != null;
+        return new Image(stream);
+    }
+
+    public Image getFront(int id, SuitEnum suit){
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream(id + "_"+ suit +"_front.png");
+        assert stream != null;
+        return new Image(stream);
+    }
+
+    public Image getTopDeckGold(SuitEnum suit){
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream("gold_"+ suit +"_back.png");
+        assert stream != null;
+        return new Image(stream);
+    }
+
+    public Image getTopDeckResource(SuitEnum suit){
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream("resource_"+ suit +"_back.png");
+        assert stream != null;
+        return new Image(stream);
     }
 }
