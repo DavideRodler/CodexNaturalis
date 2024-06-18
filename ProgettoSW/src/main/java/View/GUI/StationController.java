@@ -1,134 +1,135 @@
 package View.GUI;
 
-import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import model.cards.CardGold;
-import model.cards.CardObjective;
-import model.cards.CardResource;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import model.cards.CardStarting;
 
-//TODO: qua ci sarà il board condiviso dai giocatori: punti, carte centrali, ob comuni.
-// a lato terrei sempre la mano del giocatore.
-// metterei un button per switchare tra questa scena e la propria station.
-// molte delle funzioni in realtà non sono altro che le funzioni già presenti nella classe gui.
-// potrei direttamente chiamarle da li. Infatti così facendo evito di dover passare tutto nelle funzioni
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class StationController {
+public class StationController implements Initializable {
+
 
         @FXML
-        private Button btnChooseStartingCard;
+        private HBox cardPlacementBox;
 
         @FXML
-        private Button btnSelectableObj1;
+        private FlowPane centralCardsAndDecksPane;
 
         @FXML
-        private Button btnSelectableObj2;
+        private Button chatButton;
 
         @FXML
-        private Button btnOtherPlayer1;
+        private Button endTurnButton;
 
         @FXML
-        private Button btnOtherPlayer2;
+        private ImageView firstCardInHand;
 
         @FXML
-        private Button btnOtherPlayer3;
+        private VBox handPane;
 
         @FXML
-        private Button btnScoreboard;
+        private VBox menuPane;
 
         @FXML
-        private Button btnTurnStartingCard;
+        private Button placeButtonDownButton;
 
         @FXML
-        private ImageView cardHand1;
+        private Button placeCardUpLeftButton;
 
         @FXML
-        private ImageView cardHand2;
+        private Button placeCardUpRightButton;
 
         @FXML
-        private ImageView cardHand3;
+        private Button placeDownRightButton;
 
         @FXML
-        private ImageView centralCard1;
+        private Button player1StationButton;
 
         @FXML
-        private ImageView centralCard2;
+        private Button player2StationButton;
 
         @FXML
-        private ImageView centralCard3;
+        private Button player3StationButton;
 
         @FXML
-        private ImageView centralCard4;
+        private Button scoreboardButton;
 
         @FXML
-        private ImageView chooseObj1;
+        private ImageView secondCardInHand;
 
         @FXML
-        private ImageView chooseObj2;
+        private ImageView secretObjectiveInHand;
 
         @FXML
-        private ImageView commonObj1;
+        private Button selectCardButton;
 
         @FXML
-        private ImageView commonObj2;
+        private StackPane stationPane;
 
         @FXML
-        private ImageView deckGold;
+        private ImageView thirdCardInHand;
 
         @FXML
-        private ImageView deckResource;
+        private Button turnCardButton;
 
-        @FXML
-        private ImageView secretObj;
+        private ImageView selectedCard;
+        //TODO resettare la selected card dopo che è stato premuto il bottone.
 
-        @FXML
-        private ImageView startingCard;
-
-        public void show4CentralCards(CardGold cardGold1, CardGold cardGold2, CardResource cardResource1, CardResource cardResource2){
-                // centralcard1 = immagine cardGold1
-                // centralcard2 = immagine cardGold2
-                // centralcard3 = immagine cardRes1
-                // centralcard4 = immagine cardRes2
-        }
-
-        public void show2CommonObjectives(CardObjective obj1, CardObjective obj2){
-                // commonobj1 = immagine obj1
-                // commonobj2 = immagine obj2
-        }
-
-        public void showStartingCard(CardStarting cardStarting){
-                // cardstarting = immagine cardStarting
-        }
-
-        public Boolean chooseSideStartingCard(){
-                //restituisco lato su cui ho posizionato la carta iniziale
-        return true;
-        } //TODO: segnalino colorato su carta iniziale
-
-        public void showSelectableObjectives(CardObjective obj1, CardObjective obj2){
-                // commonobj1 = immagine obj1
-                // commonobj2 = immagine obj2
-        }
-
-        public int chooseSecretObjective(){
-                //controllo button schiacciato e prendo indice corrispondente (1 passa 0, 2 passa 1)
-                return 0;
-        }
-
-
-        public void showPlayerHand(CardResource card1, CardResource card2, CardResource card3, CardObjective obj){
-                // cardhand1 = immagine card1
-                // cardhand2 = immagine card2
-                // cardhand3 = immagine card3
-                // secretobj = immagine obj
-        }
-
-        @FXML
-        void turnCard(ActionEvent event) {
+        public void addCardsToHand(){
 
         }
 
+        //in questo metodo voglio che quando l'utente clicca su una carta, questa diventa la selectedCard.
+        private void selectCard(Event event){
+        }
 
+        /**
+         * this method handles when a cards gets clicked. It sets selectedCard to the clicked card.
+         * @param event the mouse click event
+         */
+        private void handleCardClick(MouseEvent event){
+                selectedCard = (ImageView) event.getSource();
+        }
+
+
+
+        /**
+         * this method adds the starting card to the station.
+         * @param cardStarting is the starting card to be added
+         */
+        public void showStartingCard(CardStarting cardStarting) {
+                //TODO: bisogna mettere cardStarting nel centro dello stackPane
+                int id = cardStarting.getId();
+                CardLoader cardLoader = new CardLoader();
+                ImageView startingCardFront = new ImageView();
+                ImageView startingCardBack = new ImageView();
+                startingCardFront.setImage(cardLoader.getFront(id));
+                startingCardBack.setImage(cardLoader.getBack(id));
+                //TODO: aggiungere handler alla carta ogni volta che una carta viene aggiunta
+                startingCardBack.setOnMouseClicked(this::handleCardClick);
+                startingCardFront.setOnMouseClicked(this::handleCardClick);
+                //ho ottenuto l'immagine della carta --> devo metterla nel centro della station
+                stationPane.getChildren().add(startingCardFront);
+        }
+
+
+
+
+        @Override
+        public void initialize(URL url, ResourceBundle resourceBundle) {
+                centralCardsAndDecksPane.setVisible(false);
+                endTurnButton.setVisible(false);
+                handPane.setVisible(false);
+                cardPlacementBox.setVisible(false);
+                stationPane.setVisible(false);
+        }
 }

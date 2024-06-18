@@ -54,19 +54,17 @@ public class ChooseNickAndTokenController implements Initializable{
 
 
     @FXML
-    public String enterNickname() {
+    public void enterNickname() {
         nick = chooseNickname.getText();
         label.setText("Choose your token!");
         enterTokenButton.setVisible(true);
         chooseToken.setVisible(true);
-        return nick;
     }
 
     @FXML
-    public TokenEnum enterToken() { //TODO: gestire il fatto che un token potrebbe essere stato scelto da un altro giocatore
+    public void enterToken() { //TODO: gestire il fatto che un token potrebbe essere stato scelto da un altro giocatore
         TokenEnum token = chooseToken.getValue();
         label.setText("Waiting for other players...");
-        return token;
     }
 
 
