@@ -60,9 +60,9 @@ public class Gui extends Application implements UI {
 
     @Override
     public String askNickname() {
-        String a ="";
-        //Platform.runLater(() -> a = chooseNickAndTokenController.enterNickname());
-        return a;
+        String a="";
+        Platform.runLater(() -> a = chooseNickAndTokenController.enterNickname());
+
     }
 
     @Override
@@ -72,12 +72,12 @@ public class Gui extends Application implements UI {
 
     @Override
     public boolean askStartingCardPlayedBack() {
-        return true;
+        return stationController.chooseSideStartingCard();
     }
 
     @Override
     public void printCommonObjectives() {
-        //stationController.show2CommonObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
+        stationController.show2CommonObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
     }
 
     @Override
@@ -86,17 +86,17 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printSelectableObjectives() {
-        //stationController.showSelectableObjectives(clientBoard.getMyplayer().getSelectibleObjectives().get(0), clientBoard.getMyplayer().getSelectibleObjectives().get(1));
+        stationController.showSelectableObjectives(clientBoard.getMyplayer().getSelectibleObjectives().get(0), clientBoard.getMyplayer().getSelectibleObjectives().get(1));
     }
 
     @Override
     public int askObjectiveCard() {
-        return 0;
+        return stationController.chooseSecretObjective();
     }
 
     @Override
     public void print4CentralCardsAndDecks() {
-        //stationController.show4CentralCards(clientBoard.getCentralCardsGold().get(0), clientBoard.getCentralCardsGold().get(1),clientBoard.getCentralCardsResource().get(0), clientBoard.getCentralCardsResource().get(1));
+        stationController.show4CentralCards(clientBoard.getCentralCardsGold().get(0), clientBoard.getCentralCardsGold().get(1),clientBoard.getCentralCardsResource().get(0), clientBoard.getCentralCardsResource().get(1));
     }
 
     @Override
@@ -111,7 +111,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printPlayerHand() {
-        //stationController.showPlayerHand(clientBoard.getMyplayer().getHand().get(0),clientBoard.getMyplayer().getHand().get(1), clientBoard.getMyplayer().getHand().get(2),clientBoard.getMyplayer().getSecretObjective());
+        stationController.showPlayerHand(clientBoard.getMyplayer().getHand().get(0),clientBoard.getMyplayer().getHand().get(1), clientBoard.getMyplayer().getHand().get(2),clientBoard.getMyplayer().getSecretObjective());
     }
 
     @Override
@@ -162,7 +162,7 @@ public class Gui extends Application implements UI {
     @Override
     public TokenEnum askToken(ArrayList<TokenEnum> availableTokens) { //TODO: passare per al controller l'arraylist
         chooseNickAndTokenController.setAvailableTokens(availableTokens);
-        return null;
+        return chooseNickAndTokenController.enterToken();
     }
 
     @Override
