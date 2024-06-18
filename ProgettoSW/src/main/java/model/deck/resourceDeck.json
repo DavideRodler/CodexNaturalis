@@ -115,7 +115,7 @@
     "type": "plant",
     "upright": "insect",
     "upleft": "null",
-    "downright": "empty",
+    "downright": "plant",
     "downleft": "quill",
     "points": 0
   },
