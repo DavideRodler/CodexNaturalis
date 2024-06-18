@@ -205,192 +205,12 @@ public class Server {
         startServerToClientCallThread();
     }
 
-    public void connectClient(VirtualView client) throws RemoteException {
+    public void connectClient(VirtualView client) {
         handleNewClient(client);
         System.err.println("new client connected");
     }
 
-
-    public void setPlayerNumber(int playerNumber) throws RemoteException, NotValidMoveException, ChangedStateException {
-        gameController.setPlayerNumber(playerNumber);
-    }
-
-    public ArrayList<TokenEnum> getAvailableTokens() throws RemoteException {
-        return gameController.getAvailableToken();
-    }
-
-    public boolean checkNicknameAvailability(String nickname) throws RemoteException {
-        return gameController.checkNicknameAvailability(nickname);
-    }
-
-    public boolean checkTokenAvailability(TokenEnum token) throws RemoteException {
-        return gameController.checkTokenAvailability(token);
-    }
-
-    public void addPlayer(String nickname, VirtualView Myclient) throws ChangedStateException, RemoteException {
-        try {
-            gameController.addPlayer(nickname);
-        } catch (NotValidMoveException e) {
-            if (e.getMessage().equals("Nickname already taken")) {
-                Myclient.notifyNicknameAlreadyTaken();
-                return;
-            }
-            else {
-                throw new RuntimeException(e);
-            }
-        }
-        clientsMap.put(nickname, Myclient);
-        if (gameController.isGameState(GameState.INITIALIZE_GAME)){
-            initializeGame();
-        }
-    }
-
-    public void setToken(String nickname, TokenEnum token) throws ChangedStateException, NotValidMoveException, RemoteException {
-        synchronized (gameController) {
-            try {
-                gameController.selectToken(nickname, token);
-            }
-            catch (NotValidMoveException e){
-                if (e.getMessage().equals("Token already taken")){
-                    clientsMap.get(nickname).notifyTokenAlreadyTaken();
-                    return;
-                }
-                else {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-        if(gameController.getBoard().getGameState().equals(GameState.SELECT_STARTINGCARDFACE)){
-            showFourCentralCardsToPlayers();
-        }
-    }
-
-
-
-    public void setStartingCardPlayedBack(boolean playedback, String nickname, int Id) throws ChangedStateException, NotValidMoveException, RemoteException {
-        synchronized (gameController) {
-            gameController.setCentralCardPlayedBack(playedback, nickname, Id);
-            if (gameController.getBoard().getGameState().equals(GameState.SELECT_OBJECTIVE)) {
-                showHandsAndCommonObjectives();
-            }
-        }
-    }
-
-    public void setSecretObjective(String nickname, Integer id) throws RemoteException, ChangedStateException, NotValidMoveException {
-        synchronized (gameController){
-            gameController.setObjectiveOfPlayer(nickname, id);}
-        if(gameController.getBoard().getGameState().equals(GameState.PLACING_CARD)){
-            startTurn();
-        }
-    }
-
-
-    public void addCardToStation(String nickname,int id, boolean playedBack, int x, int y) throws RemoteException, InvalidPlacingCondition {
-        gameController.addCardToPlayingStation(nickname, id, playedBack, x, y);
-
-    }
-
-
-    public void addCardFromDeckToPlayerHand(String nickname, int deck) throws RemoteException, InvalidPlacingCondition {
-        try {
-            gameController.addCardFromDeckToPlayerHand(nickname, deck);
-        } catch (NotValidMoveException e) {
-            throw new RuntimeException(e);
-        } catch (NotMyTurnException e) {
-            throw new RuntimeException(e);
-        } catch (ChangedStateException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void addCardFromCentralCardsToPlayerHand(String nickname, int cardId) throws RemoteException, NotMyTurnException {
-        try {
-            gameController.addCardFromCentralCardsToPlayerHand(nickname, cardId);
-        } catch (NotValidMoveException e) {
-            throw new RuntimeException(e);
-        } catch (ChangedStateException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void startSetupOfNicknameAndToken() throws RemoteException {
-        try {
-            queue.put("startSetupOfNicknameAndToken");
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    public void initializeGame() throws RemoteException {
-        for (Player p : gameController.getBoard().getPlayers()){
-            //adding  normal observers to players and stations
-            for(VirtualView client : clients){
-                p.addObserver(client);
-                p.getStation().addObserver(client);
-            }
-            //adding specific observers to players and stations
-            for (Map.Entry<String, VirtualView> entry : clientsMap.entrySet()) {
-                p.addSpecificObserver(entry.getKey(), entry.getValue());
-                p.getStation().addSpecificObserver(entry.getKey(), entry.getValue());
-            }
-        }
-        try {
-            //initialize gameController
-            gameController.InitializeGame();
-        } catch (NotValidMoveException e) {
-            throw new RuntimeException(e);
-        } catch (ChangedStateException e) {
-            throw new RuntimeException(e);
-        }
-        startSetupOfToken();
-    }
-    public void startSetupOfToken() throws RemoteException {
-        try {
-            queue.put("startSetupOfToken");
-        }
-        catch (InterruptedException e ){
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void showFourCentralCardsToPlayers() throws RemoteException {
-        try {
-            queue.put("showFourCentralCardsToPlayers");
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        startSetupOfStartingCard();
-    }
-
-
-    public void startSetupOfStartingCard() throws RemoteException {
-        try {
-            queue.put("startSetupOfStartingCard");
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void showHandsAndCommonObjectives() throws RemoteException {
-        try {
-            queue.put("showHandsAndCommonObjectives");
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        setupOfSecretObjective();
-    }
-
-    public void setupOfSecretObjective() throws RemoteException {
-        try {
-            queue.put("setupOfSecretObjective");
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-    public void handleNewClient(VirtualView client) throws RemoteException {
+    private void handleNewClient(VirtualView client) {
         //first player to join
         if (clients.isEmpty()) {
             clients.add(client);
@@ -439,6 +259,195 @@ public class Server {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+    public void setPlayerNumber(int playerNumber){
+        try {
+            gameController.setPlayerNumber(playerNumber);
+        } catch (NotValidMoveException e) {
+            throw new RuntimeException(e);
+        } catch (ChangedStateException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void addPlayer(String nickname, VirtualView Myclient) {
+        try {
+            gameController.addPlayer(nickname);
+        } catch (NotValidMoveException | ChangedStateException e) {
+            if (e.getMessage().equals("Nickname already taken")) {
+                Myclient.notifyNicknameAlreadyTaken();
+                return;
+            }
+            else {
+                throw new RuntimeException(e);
+            }
+        }
+        clientsMap.put(nickname, Myclient);
+        if (gameController.isGameState(GameState.INITIALIZE_GAME)){
+            initializeGame();
+        }
+    }
+
+    public void setToken(String nickname, TokenEnum token) {
+        synchronized (gameController) {
+            try {
+                gameController.selectToken(nickname, token);
+            }
+            catch (NotValidMoveException e){
+                if (e.getMessage().equals("Token already taken")){
+                    clientsMap.get(nickname).notifyTokenAlreadyTaken();
+                    return;
+                }
+                else {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        if(gameController.getBoard().getGameState().equals(GameState.SELECT_STARTINGCARDFACE)){
+            showFourCentralCardsToPlayers();
+        }
+    }
+
+
+    public void setStartingCardPlayedBack(boolean playedback, String nickname, int Id) {
+        synchronized (gameController) {
+            try {
+                gameController.setCentralCardPlayedBack(playedback, nickname, Id);
+            } catch (NotValidMoveException e) {
+                throw new RuntimeException(e);
+            } catch (ChangedStateException e) {
+                throw new RuntimeException(e);
+            }
+            if (gameController.getBoard().getGameState().equals(GameState.SELECT_OBJECTIVE)) {
+                showHandsAndCommonObjectives();
+            }
+        }
+    }
+
+    public void setSecretObjective(String nickname, Integer id) {
+        synchronized (gameController){
+            try {
+                gameController.setObjectiveOfPlayer(nickname, id);
+            } catch (NotValidMoveException e) {
+                throw new RuntimeException(e);
+            } catch (ChangedStateException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        if(gameController.getBoard().getGameState().equals(GameState.PLACING_CARD)){
+            startTurn();
+        }
+    }
+
+
+    public void addCardToStation(String nickname,int id, boolean playedBack, int x, int y) {
+        try {
+            gameController.addCardToPlayingStation(nickname, id, playedBack, x, y);
+        } catch (InvalidPlacingCondition e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+    public void addCardFromDeckToPlayerHand(String nickname, int deck) throws RemoteException {
+        try {
+            gameController.addCardFromDeckToPlayerHand(nickname, deck);
+        } catch (NotValidMoveException e) {
+            throw new RuntimeException(e);
+        } catch (NotMyTurnException e) {
+            throw new RuntimeException(e);
+        } catch (ChangedStateException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void addCardFromCentralCardsToPlayerHand(String nickname, int cardId) throws RemoteException {
+        try {
+            gameController.addCardFromCentralCardsToPlayerHand(nickname, cardId);
+        } catch (NotValidMoveException e) {
+            throw new RuntimeException(e);
+        } catch (ChangedStateException e) {
+            throw new RuntimeException(e);
+        } catch (NotMyTurnException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void startSetupOfNicknameAndToken() {
+        try {
+            queue.put("startSetupOfNicknameAndToken");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void initializeGame() {
+        for (Player p : gameController.getBoard().getPlayers()){
+            //adding  normal observers to players and stations
+            for(VirtualView client : clients){
+                p.addObserver(client);
+                p.getStation().addObserver(client);
+            }
+            //adding specific observers to players and stations
+            for (Map.Entry<String, VirtualView> entry : clientsMap.entrySet()) {
+                p.addSpecificObserver(entry.getKey(), entry.getValue());
+                p.getStation().addSpecificObserver(entry.getKey(), entry.getValue());
+            }
+        }
+        try {
+            //initialize gameController
+            gameController.InitializeGame();
+        } catch (NotValidMoveException e) {
+            throw new RuntimeException(e);
+        } catch (ChangedStateException e) {
+            throw new RuntimeException(e);
+        }
+        startSetupOfToken();
+    }
+    public void startSetupOfToken(){
+        try {
+            queue.put("startSetupOfToken");
+        }
+        catch (InterruptedException e ){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void showFourCentralCardsToPlayers()  {
+        try {
+            queue.put("showFourCentralCardsToPlayers");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        startSetupOfStartingCard();
+    }
+
+
+    public void startSetupOfStartingCard()  {
+        try {
+            queue.put("startSetupOfStartingCard");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void showHandsAndCommonObjectives()  {
+        try {
+            queue.put("showHandsAndCommonObjectives");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        setupOfSecretObjective();
+    }
+
+    public void setupOfSecretObjective()  {
+        try {
+            queue.put("setupOfSecretObjective");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -17,28 +17,22 @@ import java.util.ArrayList;
 public interface VirtualServer extends Remote {
     void connectClient(VirtualView client) throws RemoteException;
 
-    void setPlayerNumber(int playerNumber) throws RemoteException, NotValidMoveException, ChangedStateException;
+    void setPlayerNumber(int playerNumber) throws RemoteException;
 
-    ArrayList<TokenEnum> getAvailableTokens() throws RemoteException;
+    void addPlayer(String nickname, VirtualView Myclient) throws RemoteException;
 
-    boolean checkNicknameAvailability(String nickname) throws RemoteException;
+    void setToken(String nickname, TokenEnum token) throws RemoteException;
 
-    boolean checkTokenAvailability(TokenEnum token)throws RemoteException;
+    void setStartingCardPlayedBack(boolean playedback, String nickname, int ID) throws RemoteException;
 
-    void addPlayer(String nickname, VirtualView Myclient) throws RemoteException, ChangedStateException, NotValidMoveException;
+    void setSecretObjective(String nickname, Integer id) throws RemoteException;
 
-    void setToken(String nickname, TokenEnum token) throws RemoteException, ChangedStateException, NotValidMoveException;
+    void addCardToStation(String nickname,int cardId, boolean playedBack, int x, int y) throws RemoteException;
 
-    void setStartingCardPlayedBack(boolean playedback, String nickname, int ID) throws ChangedStateException, NotValidMoveException, RemoteException;
+    void addCardFromDeckToPlayerHand(String nickname, int cardId) throws RemoteException;
 
-    void setSecretObjective(String nickname, Integer id) throws RemoteException, ChangedStateException, NotValidMoveException;
+    void addCardFromCentralCardsToPlayerHand(String nickname, int id) throws RemoteException;
 
-    void addCardToStation(String nickname,int cardId, boolean playedBack, int x, int y) throws RemoteException, InvalidPlacingCondition;
-
-    void addCardFromDeckToPlayerHand(String nickname, int cardId) throws RemoteException, InvalidPlacingCondition;
-
-    void addCardFromCentralCardsToPlayerHand(String nickname, int id) throws RemoteException, NotMyTurnException;
-
-    void startTurn() throws RemoteException, NotMyTurnException;
+    void startTurn() throws RemoteException;
 
 }
