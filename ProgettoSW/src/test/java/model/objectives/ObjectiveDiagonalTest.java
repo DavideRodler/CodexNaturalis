@@ -1,20 +1,13 @@
 package model.objectives;
 
-import controller.GameController;
 import exception.ChangedStateException;
 import exception.NotValidMoveException;
-import model.Player;
 import model.PlayingStation;
 import model.cards.CardObjective;
-import model.cards.CardPlaying;
-import model.cards.CardResource;
 import model.enums.DirectionEnum;
 import model.enums.SuitEnum;
-import model.enums.TokenEnum;
-import model.testsTemplate.PlayingStationTemplate;
+import model.testTemplates.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,6 +23,19 @@ class ObjectiveDiagonalTest {
 
         // Checking the result
         assertEquals(1, punti1, "Test failed. You scored " + punti1 + " points.");
+    }
+
+    @Test
+    public void test_7Cards_2Diagonal() throws ChangedStateException, NotValidMoveException {
+        // Creating the PlayingStation
+        PlayingStation station = PlayingStationTemplate.test_7Cards_2Diagonal_c();
+        ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.ANIMAL);
+        CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
+        int punti1 = cardObjectiveTmp.getObjective().countObjectivePoints(station);
+
+
+        // Checking the result
+        assertEquals(2, punti1, "Test failed. You scored " + punti1 + " points.");
     }
 
     @Test

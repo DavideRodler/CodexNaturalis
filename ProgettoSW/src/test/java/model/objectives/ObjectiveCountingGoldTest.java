@@ -1,7 +1,6 @@
 package model.objectives;
 
 import model.PlayingStation;
-import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.face.Corner;
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static model.testsTemplate.PlayingStationTemplate.creatingCordinatesArray;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ObjectiveCountingGoldTest {
