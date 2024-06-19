@@ -83,20 +83,24 @@ public class ClientController {
         CardResource cardchoosen;
         int cardId;
 
-        while (true) {
-            try {
-                answer = ui.askCoordinatesOfCards();
-                cardchoosen = clientModel.getMyplayer().getHand().get(answer[0]);
-                cardId = cardchoosen.getId();
+        answer = ui.askCoordinatesOfCards();
+        cardchoosen = clientModel.getMyplayer().getHand().get(answer[0]);
+        cardId = cardchoosen.getId();
 
-                clientToServerCommunication.addCardToStation(clientModel.getMyplayer().getNickname(),cardId, answer[1] == 2 , answer[2], answer[3]);    //try to add the card to local model
-                break;
-            }
-            catch (InvalidPlacingCondition e) {
-                ui.showErrorMessage(e.getMessage());
-            }
+        clientToServerCommunication.addCardToStation(clientModel.getMyplayer().getNickname(), cardId, answer[1] == 2, answer[2], answer[3]);    //try to add the card to local model
+    }
+
+    public void handleResultOfCardAdded(boolean result, String message) {
+        if(result) {
+            ui.printCardAddedSuccessfully();
         }
+        else {
+            ui.printCardNotAdded(message);
+        }
+    }
 
+
+    public void startAfterCardHasBeenAddedToStation() {
         ui.printStationAfterCardHasBeenAdded();
 
         ui.print4CentralCards();
@@ -117,8 +121,9 @@ public class ClientController {
         else {
                 clientToServerCommunication.addCardFromDeckToPlayerHand(clientModel.getMyplayer().getNickname(), selection);
         }
-        clientToServerCommunication.startTurn();
+        clientToServerCommunication.finishTurn();
     }
+
 
     public void updateModel(Message message) throws RemoteException {
         switch (message.getType()) {

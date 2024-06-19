@@ -121,7 +121,7 @@ public class SocketClient implements ClientToServerCommunication{
     }
 
     @Override
-    public void addCardToStation(String nickname, int cardid, boolean playedback, int x, int y) throws InvalidPlacingCondition {
+    public void addCardToStation(String nickname, int cardid, boolean playedback, int x, int y) {
         try {
             server.addCardToStation(nickname, cardid, playedback, x, y);
         } catch (RemoteException e) {
@@ -150,7 +150,7 @@ public class SocketClient implements ClientToServerCommunication{
     }
 
     @Override
-    public void startTurn() {
+    public void finishTurn() {
         try {
             server.startTurn();
         } catch (RemoteException e) {

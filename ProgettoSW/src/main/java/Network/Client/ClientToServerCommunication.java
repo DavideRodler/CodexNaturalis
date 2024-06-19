@@ -1,9 +1,6 @@
 package Network.Client;
 
-import exception.InvalidPlacingCondition;
 import model.enums.TokenEnum;
-
-import java.util.ArrayList;
 
 public interface ClientToServerCommunication {
     void setToken(String nickname, TokenEnum token);
@@ -16,13 +13,13 @@ public interface ClientToServerCommunication {
 
     void setSecretObjective(String nickname, int id);
 
-    void addCardToStation(String nickname, int cardid, boolean playedback, int x, int y) throws InvalidPlacingCondition;
+    void addCardToStation(String nickname, int cardid, boolean playedback, int x, int y);
 
     void addCardFromCentralCardsToPlayerHand(String nickname, int cardid);
 
     void addCardFromDeckToPlayerHand(String nickname, int cardid);
 
-    void startTurn();
+    void finishTurn();
 
     void setPlayerNumber(int num);
 }

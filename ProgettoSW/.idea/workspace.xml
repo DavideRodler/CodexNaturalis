@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Errore battitura di un messaggio e aggiuti metodi nel Socket client to server">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/queqe/QuequeActionWithClientMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="queue su client e server con messaggi">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ServerToClient/AddCardResultMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientToServerCommunication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientToServerCommunication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -317,14 +317,6 @@
       <workItem from="1718019709867" duration="3815000" />
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
-    </task>
-    <task id="LOCAL-00017" summary="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station">
-      <option name="closed" value="true" />
-      <created>1711553758036</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1711553758036</updated>
     </task>
     <task id="LOCAL-00018" summary="Da classe a interfaccia">
       <option name="closed" value="true" />
@@ -710,7 +702,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718809035384</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="queue su client e server con messaggi">
+      <option name="closed" value="true" />
+      <created>1718815905571</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1718815905571</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -778,7 +778,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Aggiunta del client controller" />
     <MESSAGE value="Client model viene aggiornato con observer." />
     <MESSAGE value="messo idea nel gitingoore" />
     <MESSAGE value="CardStarting funzionanti con observer, il GameController non passa piu' da uno stato all'altro in modo automatico" />
@@ -803,7 +802,8 @@
     <MESSAGE value="Gestione delle eccezzioni e cambio enum" />
     <MESSAGE value="Blockingqueque client e messaggi client to server" />
     <MESSAGE value="Errore battitura di un messaggio e aggiuti metodi nel Socket client to server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Errore battitura di un messaggio e aggiuti metodi nel Socket client to server" />
+    <MESSAGE value="queue su client e server con messaggi" />
+    <option name="LAST_COMMIT_MESSAGE" value="queue su client e server con messaggi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

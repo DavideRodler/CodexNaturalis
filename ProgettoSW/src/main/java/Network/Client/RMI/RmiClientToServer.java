@@ -146,7 +146,7 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
     }
 
     @Override
-    public void addCardToStation(String nickname, int cardid, boolean playedback, int x, int y) throws InvalidPlacingCondition {
+    public void addCardToStation(String nickname, int cardid, boolean playedback, int x, int y){
         AddCardToStationMessage addCardToStationMessage = new AddCardToStationMessage(nickname,cardid,playedback,x,y);
         try {
             queue.put(addCardToStationMessage);
@@ -177,7 +177,7 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
     }
 
     @Override
-    public void startTurn() {
+    public void finishTurn() {
         StartTurnMessage startTurnMessage = new StartTurnMessage();
         try {
             queue.put(startTurnMessage);
@@ -249,6 +249,11 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
     @Override
     public void notifyItIsYourTurn() throws RemoteException{
         clientController.notifyItIsYourTurn();
+
+    }
+
+    @Override
+    public void notifyResultOfCardAdded(boolean result, String message) throws RemoteException {
 
     }
 
