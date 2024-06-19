@@ -7,12 +7,8 @@ import Network.Server.VirtualServer;
 import View.GUI.Gui;
 import View.UI;
 import exception.*;
-import javafx.application.Platform;
-import model.Chat;
 import model.Player;
 import model.PlayingStation;
-import model.cards.CardGold;
-import model.cards.CardResource;
 import model.cards.CardStarting;
 import model.client.ClientBoard;
 import model.client.ReductPlayer;
@@ -25,8 +21,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ClientController {
     private UI ui;
@@ -41,10 +35,10 @@ public class ClientController {
         if(uiChoice.equals("GUI"))
         {
             ui = new Gui();
-            ui.launchGui(clientModel);
+            ui.launchGui(clientModel, this);
         }
         else
-            ui= new Cli2(clientModel);
+            ui= new Cli2(clientModel, this);
 
         ui.showGameTitle();
     }
@@ -128,121 +122,9 @@ public class ClientController {
      * This method is called when the player is the current player
      */
     public synchronized void notifyItIsYourTurn() {
-        //showing the board
-        //the menuAnswer to where to put the card
-        Integer menuAnswer;
-        Integer[] inputAnswer;
-        Boolean endTurn = false;
-        Boolean cardPlaced = false;
-        ui.printMenu();
-        //the card i want to put in the station
-        CardResource cardchoosen;
-        int cardId;
-        do{
-                menuAnswer = ui.askMenuAction();
-                try {
-                    switch(menuAnswer) {
-                        case 1:
-                        {
-                            if(!cardPlaced) {
-                                ui.printPlayerStation(clientModel.getMyplayer().getStation());
-                                ui.printPlayerHand();
-                                inputAnswer = ui.askCoordinatesOfCards();
-                                cardchoosen = clientModel.getMyplayer().getHand().get(inputAnswer[0]);
-                                cardId = cardchoosen.getId();
 
-                                server.addCardToStation(clientModel.getMyplayer().getNickname(), cardId, inputAnswer[1] == 2, inputAnswer[2], inputAnswer[3]);
-                                cardPlaced = true;
-                                ui.printSpace();
-                                ui.print4CentralCardsAndDecks();
-                                int selection = ui.askWhichCardToDraw();
+        ui.askMenuAction();
 
-                                CardResource card = null;
-                                if (selection >= 1 && selection <= 4) {
-                                    if (selection >= 3) {
-                                        ArrayList<CardResource> centralCardsResource = clientModel.getCentralCardsResource();
-                                        card = centralCardsResource.get(selection - 3);
-                                    } else {
-                                        ArrayList<CardGold> centralCardsGold = clientModel.getCentralCardsGold();
-                                        card = centralCardsGold.get(selection - 1);
-                                    }
-                                    try {
-                                        server.addCardFromCentralCardsToPlayerHand(clientModel.getMyplayer().getNickname(), card.getId());
-                                    } catch (RemoteException e) {
-                                        throw new RuntimeException(e);
-                                    } catch (NotMyTurnException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                } else {
-                                    try {
-                                        server.addCardFromDeckToPlayerHand(clientModel.getMyplayer().getNickname(), selection);
-                                    } catch (RemoteException | InvalidPlacingCondition e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }
-                                endTurn = true;
-                                ui.printMenu();
-                            }
-                            else {
-                                ui.printMenu2and3();
-                                ui.printSpace();
-                                ui.printSpace();
-                                ui.showErrorMessage("You have already placed a card in your station");
-                                ui.printSpace();
-                                ui.printSpace();
-                            }
-                            break;
-                        }
-                        case 2:
-                            ui.printMenu2and3();
-                            ui.printPlayerStation(clientModel.getMyplayer().getStation());
-                            ui.printSpace();
-                            break;
-                        case 3:
-                            String playerStationName = ui.askWichStationToPrint();
-                            ui.printMenu2and3();
-                            ui.printOtherPlayersStation(playerStationName);
-                            ui.printSpace();
-                            break;
-                        case 4:
-                            ui.printMenu2and3();
-                            ui.print4CentralCardsAndDecks();
-                            ui.printCommonObjectives();
-                            ui.printSpace();
-                            break;
-                        case 5:
-                            ui.printMenu2and3();
-                            ui.printPlayerHand();
-                            ui.printSpace();
-                            break;
-                        case 6:
-                            ui.printMenu2and3();
-                            ui.printSpace();
-                            ui.printSpace();
-                            ui.printPoints();
-                            ui.printSpace();
-                            ui.printSpace();
-                            break;
-                        case 7:
-                            String ChatChoice = ui.askTypeOfChat(clientModel.getOtherplayers().size(), clientModel.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
-                            ChatPrinter(ChatChoice);
-                            ui.printMenu();
-                            break;
-                        case 8:
-                            if(!endTurn)
-                                System.out.println("You can not end your turn before had placed a card in your station");
-
-                            break;
-                    }
-                } catch (InvalidPlacingCondition e) {
-                    ui.showErrorMessage(e.getMessage());
-                } catch (RemoteException e) {
-                    throw new RuntimeException(e);
-                } catch (NonePlayerFoundException e) {
-                    ui.showErrorMessage(e.getMessage());
-                }
-
-            }while (menuAnswer != 8 || !endTurn);
         try {
             server.updatePlayerReadyForNewMenu(1);
             server.startTurn();
@@ -257,50 +139,10 @@ public class ClientController {
         switch(chatChoice) {
             case "1":
                 String Message;
-                do{
-                    ui.chatTitlePrinter();
-                    ui.printChatInfo();
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printChat();
-                    Message = ui.askMessage();
-                    if(!Message.isEmpty() && !Message.equals("EXIT"))
-                        server.sendGlobalMessage(clientModel.getMyplayer().getNickname(), Message);
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printSpace();
-                }while(!Message.equals("EXIT"));
+                ui.printGloablChatInfo();
                 break;
             case "2":
-                String Message2;
-                String nickname = ui.printPrivateChatInfo();
-                do{
-                    ui.privateChatTitlePrinter();
-                    ui.printChatInfo();
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printPrivateChat(clientModel.getMyplayer().getNickname(), nickname);
-                    Message2 = ui.askMessage();
-                    if(!Message2.isEmpty() && !Message2.equals("EXIT"))
-                        server.sendPrivateMessage(clientModel.getMyplayer().getNickname(), nickname, Message2);
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printSpace();
-                    ui.printSpace();
-                }while(!Message2.equals("EXIT"));
-                break;
-            default:
+                ui.printPrivateChatInfo();
                 break;
         }
     }
@@ -313,65 +155,14 @@ public class ClientController {
      */
     public synchronized void notifyIsNotYourTurn(String currentPlayer) {
 
-        Integer menuAnswer = 0;
-        Boolean ready = false;
-
         ui.printMenuNotMyTurn(currentPlayer);
+        ui.askNotMyTurnMenuAction(currentPlayer);
 
-                while ((!clientModel.getCurrentPlayer().equals(clientModel.getMyplayer().getNickname())) && (!ready || menuAnswer != 7)) {
-                    menuAnswer = ui.askNotMyTurnMenuAction();
-                    try {
-                        switch (menuAnswer) {
-                            case 1:
-                                ui.printMenu2and3NotMyTurn(currentPlayer);
-                                ui.printPlayerStation(clientModel.getMyplayer().getStation());
-                                ui.printSpace();
-                                break;
-                            case 2:
-                                String playerStationName = ui.askWichStationToPrint();
-                                ui.printMenu2and3NotMyTurn(currentPlayer);
-                                ui.printOtherPlayersStation(playerStationName);
-                                ui.printSpace();
-                                break;
-                            case 3:
-                                ui.printMenu2and3NotMyTurn(currentPlayer);
-                                ui.print4CentralCardsAndDecks();
-                                ui.printCommonObjectives();
-                                ui.printSpace();
-                                break;
-                            case 4:
-                                ui.printMenu2and3NotMyTurn(currentPlayer);
-                                ui.printPlayerHand();
-                                ui.printSpace();
-                                break;
-                            case 5:
-                                ui.printMenu2and3NotMyTurn(currentPlayer);
-                                ui.printSpace();
-                                ui.printSpace();
-                                ui.printPoints();
-                                ui.printSpace();
-                                ui.printSpace();
-                                break;
-                            case 6:
-                                String ChatChoice = ui.askTypeOfChat(clientModel.getOtherplayers().size(), clientModel.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
-                                ChatPrinter(ChatChoice);
-                                ui.printMenuNotMyTurn(currentPlayer);
-                                break;
-                            case 7:
-                                ready = true;
-                                break;
-                        }
-                    } catch (NonePlayerFoundException e) {
-                        ui.showErrorMessage(e.getMessage());
-                    } catch (RemoteException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-                try{
-                    server.updatePlayerReadyForNewMenu(1);
-                } catch (RemoteException e) {
-                    throw new RuntimeException(e);
-                }
+        try{
+            server.updatePlayerReadyForNewMenu(1);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
         //} while(startNotTurn);
 
@@ -521,6 +312,53 @@ public class ClientController {
         }
 
     }
+
+    public void messageToServerhandler(Message message) throws RemoteException, InvalidPlacingCondition, NotMyTurnException {
+        switch(message.getType()){
+            case "NICKNAME_CHOICE" :
+                NicknameMessage nicknameMessage = (NicknameMessage) message;
+                break;
+            case "TOKEN_CHOICE" :
+                TokenMessage tokenMessage = (TokenMessage) message;
+                break;
+            case "STARTING_CARD_CHOICE" :
+                StartingCardMessage startingCardMessage = (StartingCardMessage) message;
+                break;
+            case "SECRET_OBJ_CHOICE" :
+                SecretObjMessage secretObjMessage = (SecretObjMessage) message;
+                break;
+            case "PLACE_CARD_CHOICE" :
+                PlaceCardMessage placeCardMessage = (PlaceCardMessage) message;
+                server.addCardToStation(clientModel.getMyplayer().getNickname(), placeCardMessage.getCardID(), placeCardMessage.getPlayedBack(), placeCardMessage.getXcoordinate(), placeCardMessage.getYcoordinate());
+                break;
+            case "DRAW_CARD_CHOICE" :
+                DrawCardMessage drawCardMessage = (DrawCardMessage) message;
+                server.addCardFromCentralCardsToPlayerHand(clientModel.getMyplayer().getNickname(), drawCardMessage.getCardID());
+                break;
+            case "DRAW_DECK_CHOICE" :
+                DrawDeckMessage drawDeckMessage = (DrawDeckMessage) message;
+                server.addCardFromDeckToPlayerHand(clientModel.getMyplayer().getNickname(), drawDeckMessage.getSelection());
+                break;
+            case "CHAT_CHOICE" :
+                ChatChoiceMessage chatChoiceMessage = (ChatChoiceMessage) message;
+                ChatPrinter(chatChoiceMessage.getChatChoice());
+                break;
+            case "PRIVATE_CHAT_NICKNAME_CHOICE":
+                PrivateChatNicknameMessage privateChatNicknameMessage = (PrivateChatNicknameMessage) message;
+                ui.askPrivateMessage(privateChatNicknameMessage.getNickname());
+                break;
+            case "PRIVATE" :
+                PrivateChatMessage privateChatMessage = (PrivateChatMessage) message;
+                server.sendPrivateMessage(privateChatMessage.getNicknameSender(), privateChatMessage.getNicknameReceiver(), privateChatMessage.getMessage());
+                break;
+            case "GLOBAL":
+                ChatMessage chatMessage = (ChatMessage) message;
+                server.sendGlobalMessage(chatMessage.getNickname(), chatMessage.getMessage());
+                break;
+        }
+    }
+
+
 
     public void setupOfPlayersNumber() {
         try {

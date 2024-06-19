@@ -1,5 +1,6 @@
 package View.GUI;
 
+import Network.Client.ClientController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -52,6 +53,12 @@ public class ChooseNickAndTokenController implements Initializable{
     @FXML
     private ImageView imgtest;
 
+    private ClientController clientController;
+
+    public ChooseNickAndTokenController(ClientController clientController){
+        this.clientController = clientController;
+    }
+
 
     @FXML
     public void enterNickname() {
@@ -59,6 +66,7 @@ public class ChooseNickAndTokenController implements Initializable{
         label.setText("Choose your token!");
         enterTokenButton.setVisible(true);
         chooseToken.setVisible(true);
+
     }
 
     @FXML

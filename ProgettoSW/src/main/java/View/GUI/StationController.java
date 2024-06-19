@@ -1,5 +1,6 @@
 package View.GUI;
 
+import Network.Client.ClientController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +19,9 @@ import java.util.ResourceBundle;
 public class StationController implements Initializable {
 
 
-        @FXML
+    private ClientController clientController;
+
+    @FXML
         private HBox cardPlacementBox;
 
         @FXML
@@ -82,7 +85,11 @@ public class StationController implements Initializable {
         private Button turnCardButton;
 
         private ImageView selectedCard;
-        //TODO resettare la selected card dopo che è stato premuto il bottone.
+
+    public StationController(ClientController clientController) {
+        this.clientController = clientController;
+    }
+    //TODO resettare la selected card dopo che è stato premuto il bottone.
 
         public void addCardsToHand(){
 

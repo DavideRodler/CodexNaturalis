@@ -1,5 +1,6 @@
 package View.GUI;
 
+import Network.Client.ClientController;
 import View.UI;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -22,13 +23,11 @@ public class Gui extends Application implements UI {
     private StationController stationController;
     private ChooseNickAndTokenController chooseNickAndTokenController;
     private ClientBoard clientBoard;
+    private ClientController clientController;
 
 
 
     public Gui(){
-        this.startSceneController = new StartSceneController();
-        this.stationController = new StationController();
-        this.chooseNickAndTokenController = new ChooseNickAndTokenController();
     }
 
 
@@ -43,8 +42,12 @@ public class Gui extends Application implements UI {
     }
 
     @Override
-    public void launchGui(ClientBoard clientBoard){
+    public void launchGui(ClientBoard clientBoard, ClientController clientController){
         this.clientBoard = clientBoard;
+        this.clientController = clientController;
+        this.startSceneController = new StartSceneController(this.clientController);
+        this.stationController = new StationController(this.clientController);
+        this.chooseNickAndTokenController = new ChooseNickAndTokenController(this.clientController);
         launch();
     }
 
@@ -115,16 +118,6 @@ public class Gui extends Application implements UI {
     }
 
     @Override
-    public Integer[] askCoordinatesOfCards() {
-        return new Integer[0];
-    }
-
-    @Override
-    public Integer askWhichCardToDraw() {
-        return null;
-    }
-
-    @Override
     public void printStartOfPlayerTurn() {
 
     }
@@ -140,8 +133,7 @@ public class Gui extends Application implements UI {
     }
 
     @Override
-    public String askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers) {
-        return "";
+    public void askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers) {
     }
 
     @Override
@@ -186,18 +178,12 @@ public class Gui extends Application implements UI {
     }
 
     @Override
-    public Integer askMenuAction() {
-        return 0;
+    public void askMenuAction() {
+
     }
 
     @Override
-    public Integer askNotMyTurnMenuAction() {
-        return 0;
-    }
-
-    @Override
-    public String askWichStationToPrint() {
-        return "";
+    public void askNotMyTurnMenuAction(String currentPlayer) {
     }
 
     @Override
@@ -221,8 +207,8 @@ public class Gui extends Application implements UI {
     }
 
     @Override
-    public String askMessage() {
-        return "";
+    public void askPrivateMessage(String nickname) {
+
     }
 
     @Override
@@ -236,8 +222,8 @@ public class Gui extends Application implements UI {
     }
 
     @Override
-    public String printPrivateChatInfo() {
-        return "";
+    public void printPrivateChatInfo() {
+
     }
 
     @Override
@@ -252,6 +238,11 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printPoints() {
+
+    }
+
+    @Override
+    public void printGloablChatInfo() {
 
     }
 }

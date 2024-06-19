@@ -1,5 +1,6 @@
 package View.GUI;
 
+import Network.Client.ClientController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class StartSceneController {
+
 
     //TODO: idealmente la gui dovrebbe essere strutturata cosi:
     // - creazione del server e del client fatta da terminale
@@ -29,6 +31,13 @@ public class StartSceneController {
 
     @FXML
     public ImageView coverImage;
+
+    private ClientController clientController;
+
+
+    public StartSceneController(ClientController clientController) {
+        this.clientController = clientController;
+    }
 
     public void makeImageDisappear(){
         coverImage.setVisible(false);
