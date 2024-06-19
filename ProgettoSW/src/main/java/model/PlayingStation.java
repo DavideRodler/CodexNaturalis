@@ -127,14 +127,14 @@ public class PlayingStation extends ObservableModel implements Serializable {
      */
 
 //    TODO: passare id della carta e non la carta
-    public Integer getXCoordinate(CardPlaying card) {
+ /**   public Integer getXCoordinate(CardPlaying card) {
         for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : map.entrySet()) {
             if (entry.getValue().equals(card)) {
                 return entry.getKey().get(0);
             }
         }
         return null; // Return null if the card is not found
-    }
+    }**/
 
 
     /**
@@ -144,14 +144,14 @@ public class PlayingStation extends ObservableModel implements Serializable {
      * @return the y coordinate of the given card or null if the card is not found
      */
 //    TODO: passare id della carta e non la carta
-    public Integer getYCoordinate(CardPlaying card) {
+/**    public Integer getYCoordinate(CardPlaying card) {
         for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : map.entrySet()) {
             if (entry.getValue().equals(card)) {
                 return entry.getKey().get(1);
             }
         }
         return null; // Return null if the card is not found
-    }
+    }**/
 
 
     /**

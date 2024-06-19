@@ -4,24 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Rinominazione carte">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Modifiche al setup del nickname e token e la handle dei client">
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/ChatTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/PrivateChatTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PlayerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/PlayingBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PlayingBoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/model/PlayingStationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PlayingStationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/client/ReductPlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/client/ReductPlayerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveCountingGoldTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveCountingGoldTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/placingCondition/PlacingConditionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/placingCondition/PlacingConditionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/testsTemplate/ClientBoardTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testTemplates/ClientBoardTemplate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/testsTemplate/PlayingBoardTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingBoardTemplate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/testsTemplate/PlayingStationTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingStationTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingStationTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingStationTemplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
         <option value="JUnit5 Test Class" />
       </list>
@@ -48,7 +37,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="Socket-2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -65,7 +54,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler.git&quot;,
-    &quot;accountId&quot;: &quot;ad3a3da8-fb67-4a71-8fdd-a0d917853f52&quot;
+    &quot;accountId&quot;: &quot;a3d271fb-6c6c-4c38-8a7a-48f3d47d3e52&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -105,8 +94,10 @@
     "JUnit.CardStartingTest.executor": "Coverage",
     "JUnit.CardStartingTest.getSymbols.executor": "Run",
     "JUnit.CardTest.getId.executor": "Coverage",
-    "JUnit.ClientBoardTest.executor": "Coverage",
-    "JUnit.ClientBoardTest.getOtherPlayer.executor": "Run",
+    "JUnit.ChatMessageTest.executor": "Coverage",
+    "JUnit.ChatTest.addMessage.executor": "Run",
+    "JUnit.ChatTest.executor": "Coverage",
+    "JUnit.ClientBoardTest.executor": "Run",
     "JUnit.CornerTest.executor": "Coverage",
     "JUnit.DeckConstructorTest.executor": "Coverage",
     "JUnit.DeckConstructorTest.printcards.executor": "Run",
@@ -145,16 +136,12 @@
     "JUnit.ObjectiveDiagonalTest.executor": "Coverage",
     "JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor": "Run",
     "JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor": "Coverage",
-    "JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal.executor": "Coverage",
     "JUnit.ObjectiveGoldCornersTest.countObjectivePoints.executor": "Run",
     "JUnit.ObjectivePositioningTest.executor": "Coverage",
     "JUnit.ObjectivePositioningTest.getInformation.executor": "Run",
     "JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor": "Run",
     "JUnit.ObjectivePositioningTest.test_Positioning.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test_Positioning1_down.executor": "Run",
     "JUnit.ObjectivePositioningTest.test_Positioning2.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test_Positioning2_down.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test_Positioning_down.executor": "Run",
     "JUnit.PlacingConditionTest (1).executor": "Run",
     "JUnit.PlacingConditionTest.executor": "Run",
     "JUnit.PlacingConditionTest.test_goldCard_cost.executor": "Run",
@@ -171,22 +158,35 @@
     "JUnit.PlayingBoardTest.executor": "Run",
     "JUnit.PlayingBoardTest.getDeckCardGold.executor": "Run",
     "JUnit.PlayingBoardTest.getPlayers.executor": "Run",
+    "JUnit.PlayingStationTest.addCard.executor": "Run",
+    "JUnit.PlayingStationTest.checkCounters.executor": "Run",
+    "JUnit.PlayingStationTest.enoughResources.executor": "Coverage",
+    "JUnit.PlayingStationTest.executor": "Coverage",
+    "JUnit.PlayingStationTest.getCardStarting.executor": "Run",
+    "JUnit.PlayingStationTest.getCountManuscript.executor": "Run",
+    "JUnit.PlayingStationTest.isPlayable.executor": "Run",
+    "JUnit.PlayingStationTest.isPlayable_2cornersamecard.executor": "Run",
+    "JUnit.PlayingStationTest.isPlayable_downleftnull.executor": "Run",
+    "JUnit.PlayingStationTest.isPlayable_downrightnull.executor": "Run",
+    "JUnit.PlayingStationTest.isPlayable_upleftnull.executor": "Run",
+    "JUnit.PlayingStationTest.isPlayable_uprightnull.executor": "Run",
+    "JUnit.PlayingStationTest.setCardStartingPlayedBack.executor": "Run",
+    "JUnit.PrivateChatTest.addMessage.executor": "Run",
+    "JUnit.PrivateChatTest.executor": "Coverage",
     "JUnit.ReductPlayerTest.executor": "Coverage",
     "JUnit.deckconstructorTest.deckResource.executor": "Run",
     "JUnit.java in ProgettoSW.executor": "Coverage",
     "JUnit.model in ProgettoSW.executor": "Coverage",
-    "JUnit.objectives in ProgettoSW.executor": "Coverage",
     "Maven.ProgettoSW [clean].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "extract.method.default.visibility": "private",
     "git-widget-placeholder": "ericscemo",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/isabellaponzani/Documents/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW/src/main/resources",
+    "last_opened_file_path": "C:/Users/tomma/IdeaProjects/ing-sw-2023-saccani-spangaro-sanvito-pedersoli",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -195,126 +195,111 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources" />
-    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="controller" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="model" />
+      <recent name="Socket.Messages" />
       <recent name="model.client" />
       <recent name="model.objectives" />
       <recent name="model.cards" />
-      <recent name="model.cards.face" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.objectives in ProgettoSW">
-    <configuration name="ObjectiveDiagonalTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.model in ProgettoSW">
+    <configuration name="ChatMessageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
+          <option name="PATTERN" value="Socket.Messages.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonalTest" />
+      <option name="PACKAGE_NAME" value="Socket.Messages" />
+      <option name="MAIN_CLASS_NAME" value="Socket.Messages.ChatMessageTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjectiveDiagonalTest.test_5Cards_1Diagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ChatTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
+          <option name="PATTERN" value="model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonalTest" />
-      <option name="METHOD_NAME" value="test_5Cards_1Diagonal" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ObjectiveDiagonalTest.test_7Cards_2Diagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonalTest" />
-      <option name="METHOD_NAME" value="test_7Cards_2Diagonal" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ObjectivePositioningTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.ChatTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="objectives in ProgettoSW" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ChatTest.addMessage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.ChatTest" />
+      <option name="METHOD_NAME" value="addMessage" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PrivateChatTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.PrivateChatTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="model in ProgettoSW" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/src/test/java/model/objectives" />
+      <dir value="$PROJECT_DIR$/src/test/java/model" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ObjectiveDiagonalTest" />
-      <item itemvalue="JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal" />
-      <item itemvalue="JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal" />
-      <item itemvalue="JUnit.ObjectivePositioningTest" />
-      <item itemvalue="JUnit.objectives in ProgettoSW" />
+      <item itemvalue="JUnit.ChatMessageTest" />
+      <item itemvalue="JUnit.ChatTest" />
+      <item itemvalue="JUnit.ChatTest.addMessage" />
+      <item itemvalue="JUnit.PrivateChatTest" />
+      <item itemvalue="JUnit.model in ProgettoSW" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.objectives in ProgettoSW" />
-        <item itemvalue="JUnit.ObjectiveDiagonalTest" />
-        <item itemvalue="JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal" />
-        <item itemvalue="JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal" />
-        <item itemvalue="JUnit.ObjectivePositioningTest" />
+        <item itemvalue="JUnit.model in ProgettoSW" />
+        <item itemvalue="JUnit.ChatTest" />
+        <item itemvalue="JUnit.ChatTest.addMessage" />
+        <item itemvalue="JUnit.ChatMessageTest" />
+        <item itemvalue="JUnit.PrivateChatTest" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -345,19 +330,110 @@
       <workItem from="1718019709867" duration="3815000" />
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
-      <workItem from="1718292501190" duration="920000" />
-      <workItem from="1718293457668" duration="1981000" />
-      <workItem from="1718295585462" duration="3126000" />
-      <workItem from="1718308792700" duration="2677000" />
-      <workItem from="1718311648606" duration="2773000" />
-      <workItem from="1718347842111" duration="10677000" />
-      <workItem from="1718358686868" duration="4149000" />
-      <workItem from="1718368571883" duration="9929000" />
-      <workItem from="1718443519957" duration="96000" />
-      <workItem from="1718443949983" duration="23485000" />
-      <workItem from="1718484349867" duration="8009000" />
-      <workItem from="1718528272198" duration="3527000" />
-      <workItem from="1718628835978" duration="1194000" />
+    </task>
+    <task id="LOCAL-00014" summary="aggiornamento path&#10; file lettura">
+      <option name="closed" value="true" />
+      <created>1711530007480</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1711530007480</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Aggiunta di tutti i deck e dei deck alla playing board">
+      <option name="closed" value="true" />
+      <created>1711536467666</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1711536467666</updated>
+    </task>
+    <task id="LOCAL-00016" summary="TEST DELLA CREAZIONE DELLA PLAYINGBOARD, DA RIVEDERE L'UTILITA DI DECKCONSTRUCTOR">
+      <option name="closed" value="true" />
+      <created>1711537929192</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1711537929192</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station">
+      <option name="closed" value="true" />
+      <created>1711553758036</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1711553758036</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Da classe a interfaccia">
+      <option name="closed" value="true" />
+      <created>1711554924633</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1711554924633</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning">
+      <option name="closed" value="true" />
+      <created>1711664037867</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1711664037867</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Aggiunta metodi e test per piazzare nuove carte sulla board">
+      <option name="closed" value="true" />
+      <created>1711819687498</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1711819687500</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Introduzione a CLI+Observer">
+      <option name="closed" value="true" />
+      <created>1713525117286</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1713525117286</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Cantiere in corso RMI">
+      <option name="closed" value="true" />
+      <created>1713773004063</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1713773004063</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Aggiunta di Client, Server Rmi, e della logica Rmi.">
+      <option name="closed" value="true" />
+      <created>1713808423438</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1713808423438</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Aggiunto display cardStarting">
+      <option name="closed" value="true" />
+      <created>1713865523143</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1713865523143</updated>
+    </task>
+    <task id="LOCAL-00025" summary="aggiunta colori">
+      <option name="closed" value="true" />
+      <created>1713878558957</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1713878558958</updated>
+    </task>
+    <task id="LOCAL-00026" summary="aggiunta local clientController">
+      <option name="closed" value="true" />
+      <created>1713894085806</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1713894085806</updated>
     </task>
     <task id="LOCAL-00027" summary="Settaggio gioco iniziale con observer in modo reattivo">
       <option name="closed" value="true" />
@@ -631,127 +707,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718120948292</updated>
     </task>
-    <task id="LOCAL-00061" summary="work in progress menù e chat">
+    <task id="LOCAL-00061" summary="La selezione della starting card e quella dell'obiettivo sono fatte in modo separato">
       <option name="closed" value="true" />
-      <created>1718314182635</created>
+      <created>1718231931414</created>
       <option name="number" value="00061" />
       <option name="presentableId" value="LOCAL-00061" />
       <option name="project" value="LOCAL" />
-      <updated>1718314182635</updated>
+      <updated>1718231931414</updated>
     </task>
-    <task id="LOCAL-00062" summary="work in progress menù e chat parte 2">
+    <task id="LOCAL-00062" summary="Modifiche al setup del nickname e token e la handle dei client">
       <option name="closed" value="true" />
-      <created>1718358337081</created>
+      <created>1718664590868</created>
       <option name="number" value="00062" />
       <option name="presentableId" value="LOCAL-00062" />
       <option name="project" value="LOCAL" />
-      <updated>1718358337082</updated>
+      <updated>1718664590868</updated>
     </task>
-    <task id="LOCAL-00063" summary="work in progress menù e chat parte 2">
-      <option name="closed" value="true" />
-      <created>1718358878269</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1718358878270</updated>
-    </task>
-    <task id="LOCAL-00064" summary="work in progress menù e chat parte 3">
-      <option name="closed" value="true" />
-      <created>1718377106724</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1718377106725</updated>
-    </task>
-    <task id="LOCAL-00065" summary="work in progress menù e chat parte 3">
-      <option name="closed" value="true" />
-      <created>1718378337078</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1718378337078</updated>
-    </task>
-    <task id="LOCAL-00066" summary="work in progress menù e chat parte 3">
-      <option name="closed" value="true" />
-      <created>1718378414965</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1718378414965</updated>
-    </task>
-    <task id="LOCAL-00067" summary="work in progress menù e chat parte 4 (Global Chat)">
-      <option name="closed" value="true" />
-      <created>1718458346835</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1718458346835</updated>
-    </task>
-    <task id="LOCAL-00068" summary="Fine Cantiere Menu">
-      <option name="closed" value="true" />
-      <created>1718621115383</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1718621115383</updated>
-    </task>
-    <task id="LOCAL-00069" summary="Fine Cantiere Menu">
-      <option name="closed" value="true" />
-      <created>1718621202410</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1718621202410</updated>
-    </task>
-    <task id="LOCAL-00070" summary="Fine Cantiere Menu">
-      <option name="closed" value="true" />
-      <created>1718621774265</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1718621774265</updated>
-    </task>
-    <task id="LOCAL-00071" summary="Fine Cantiere Menu">
-      <option name="closed" value="true" />
-      <created>1718621952778</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1718621952778</updated>
-    </task>
-    <task id="LOCAL-00072" summary="Fine Cantiere Menu">
-      <option name="closed" value="true" />
-      <created>1718622183852</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1718622183852</updated>
-    </task>
-    <task id="LOCAL-00073" summary="Correzione JSON">
-      <option name="closed" value="true" />
-      <created>1718712941943</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1718712941943</updated>
-    </task>
-    <task id="LOCAL-00074" summary="getCards GUI">
-      <option name="closed" value="true" />
-      <created>1718717994424</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1718717994424</updated>
-    </task>
-    <task id="LOCAL-00075" summary="Rinominazione carte">
-      <option name="closed" value="true" />
-      <created>1718720759345</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1718720759345</updated>
-    </task>
-    <option name="localTasksCounter" value="76" />
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -806,42 +778,27 @@
             </list>
           </value>
         </entry>
-        <entry key="User">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="*" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
       </map>
     </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/Socket-2" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="rimesso corner" />
+    <MESSAGE value="Test di gioco funzionante" />
+    <MESSAGE value="Inizio del nuovo RMI con controller" />
+    <MESSAGE value="Aggiunta del client controller" />
+    <MESSAGE value="Client model viene aggiornato con observer." />
+    <MESSAGE value="messo idea nel gitingoore" />
+    <MESSAGE value="CardStarting funzionanti con observer, il GameController non passa piu' da uno stato all'altro in modo automatico" />
+    <MESSAGE value="Correzione Test Objective" />
     <MESSAGE value="gitingnore e cambio delle exception nella addcard" />
     <MESSAGE value="Tutta fase di setup funzionante e con Cli(da rivedere)" />
     <MESSAGE value="Test Model" />
@@ -857,17 +814,9 @@
     <MESSAGE value="aggiunto setProperty per giocare su due computer" />
     <MESSAGE value="Fine gioco implementata lato server e client" />
     <MESSAGE value="aggiunta documetazione objcounting gold" />
-    <MESSAGE value="work in progress menù e chat" />
-    <MESSAGE value="work in progress menù e chat parte 2" />
-    <MESSAGE value="work in progress menù e chat parte 3" />
-    <MESSAGE value="work in progress menù e chat parte 4 (Global Chat)" />
-    <MESSAGE value="Fine Cantiere Menu" />
-    <MESSAGE value="finito di aggiungere immagini carte, classe CardLoader e inizio client gui" />
-    <MESSAGE value="se corner è null non avrà coordinate" />
-    <MESSAGE value="Correzione JSON" />
-    <MESSAGE value="getCards GUI" />
-    <MESSAGE value="Rinominazione carte" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rinominazione carte" />
+    <MESSAGE value="La selezione della starting card e quella dell'obiettivo sono fatte in modo separato" />
+    <MESSAGE value="Modifiche al setup del nickname e token e la handle dei client" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modifiche al setup del nickname e token e la handle dei client" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -933,6 +882,9 @@
     <SUITE FILE_PATH="coverage/ProgettoSW$ObjectivePositioningTest.ic" NAME="ObjectivePositioningTest Coverage Results" MODIFIED="1718789407915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$PlayingStationTest_enoughResources.ic" NAME="PlayingStationTest.enoughResources Coverage Results" MODIFIED="1718808999263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getPlayerHand.ic" NAME="GameControllerTest.getPlayerHand Coverage Results" MODIFIED="1715698739662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
@@ -945,6 +897,12 @@
     <SUITE FILE_PATH="coverage/ProgettoSW$CornerTest.ic" NAME="CornerTest Coverage Results" MODIFIED="1716364382291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.cards.face.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$PlayingStationTest.ic" NAME="PlayingStationTest Coverage Results" MODIFIED="1718816049744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ChatMessageTest.ic" NAME="ChatMessageTest Coverage Results" MODIFIED="1718816647287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Socket.Messages.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveGoldCornersTest_countObjectivePoints.ic" NAME="ObjectiveGoldCornersTest.countObjectivePoints Coverage Results" MODIFIED="1716373784352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
@@ -953,6 +911,9 @@
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_testChecknickname.ic" NAME="GameControllerTest.testChecknickname Coverage Results" MODIFIED="1715690160254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$PrivateChatTest.ic" NAME="PrivateChatTest Coverage Results" MODIFIED="1718816399071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$CardPlayingTest.ic" NAME="CardPlayingTest Coverage Results" MODIFIED="1716365206445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.cards.*</FILTER>
@@ -986,7 +947,7 @@
       <FILTER>model.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$objectives_in_ProgettoSW.ic" NAME="objectives in ProgettoSW Coverage Results" MODIFIED="1718790107476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/ProgettoSW$model_in_ProgettoSW.ic" NAME="model in ProgettoSW Coverage Results" MODIFIED="1718785313839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProgettoSW$model_in_ProgettoSW.ic" NAME="model in ProgettoSW Coverage Results" MODIFIED="1718816910405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/ProgettoSW$PlacingConditionTest_test_null_corner.ic" NAME="PlacingConditionTest.test_null_corner Coverage Results" MODIFIED="1716288399310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>model.placingCondition.*</FILTER>
     </SUITE>
@@ -1022,6 +983,9 @@
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$CardResourceTest.ic" NAME="CardResourceTest Coverage Results" MODIFIED="1716838851226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.cards.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ChatTest.ic" NAME="ChatTest Coverage Results" MODIFIED="1718816879179" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveCountingResourceTest.ic" NAME="ObjectiveCountingResourceTest Coverage Results" MODIFIED="1716372539036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>

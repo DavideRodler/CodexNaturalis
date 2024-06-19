@@ -538,7 +538,48 @@ public class PlayingStationTemplate {
                     return key;
                 }
 
+    public static PlayingStation playingStation_test() {
 
+        // i create two card resource with an EMPTY back and some Suits in the front,
+        // with all corner that can be covered
+        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
+        Face frontTmp1 = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT));
+        Face frontTmp2 = new Face(new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.INSECT),new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.INSECT));
+        Points obj = new ObjectiveAssign();
+
+        CardResource cardAnimal1 = new CardResource(0, frontTmp1, backTmp, SuitEnum.ANIMAL, 0, obj);
+        CardResource cardPlant1 = new CardResource(1, frontTmp1, backTmp, SuitEnum.PLANT, 0, obj);
+        CardResource cardPlant2 = new CardResource(2, frontTmp1, backTmp, SuitEnum.PLANT, 0, obj);
+        CardResource cardAnimal2 = new CardResource(0, frontTmp1, backTmp, SuitEnum.ANIMAL, 0, obj);
+        CardResource cardInsect1 = new CardResource(1, frontTmp2, backTmp, SuitEnum.INSECT, 0, obj);
+        CardResource cardFungi1 = new CardResource(2, frontTmp2, backTmp, SuitEnum.FUNGI, 0, obj);
+        CardResource cardInsect2 = new CardResource(1, frontTmp2, backTmp, SuitEnum.INSECT, 0, obj);
+        CardResource cardFungi2 = new CardResource(2, frontTmp2, backTmp, SuitEnum.FUNGI, 0, obj);
+        ArrayList<SuitEnum> suitList = new ArrayList<SuitEnum>();
+        suitList.add(SuitEnum.ANIMAL);
+        suitList.add(SuitEnum.PLANT);
+        suitList.add(SuitEnum.INSECT);
+        CardStarting cardStarting = new CardStarting(6, frontTmp1, backTmp, suitList);
+        ObjectivePositioning objectivetmp = new ObjectivePositioning(SuitEnum.ANIMAL, SuitEnum.PLANT, DirectionEnum.LEFT, PositionEnum.TOP);
+        CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
+
+        PlayingStation station = new PlayingStation(new HashMap<ArrayList<Integer>, CardPlaying>());
+
+/**        station.getMap().put(creatingCordinatesArray(40, 40), cardStarting);
+        station.getMap().put(creatingCordinatesArray(41, 41), cardAnimal1);
+        station.getMap().put(creatingCordinatesArray(42, 42), cardPlant1);
+        station.getMap().put(creatingCordinatesArray(41, 43), cardAnimal2);
+        station.getMap().put(creatingCordinatesArray(42, 44), cardPlant2);
+
+
+        station.getMap().put(creatingCordinatesArray(43, 45), cardFungi1);
+        station.getMap().put(creatingCordinatesArray(42, 46), cardInsect1);
+        station.getMap().put(creatingCordinatesArray(43, 47), cardFungi2);
+        station.getMap().put(creatingCordinatesArray(42, 48), cardInsect2);**/
+
+        return station;
+
+    }
 
 }
 
