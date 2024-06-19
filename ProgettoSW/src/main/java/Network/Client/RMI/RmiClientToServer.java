@@ -45,15 +45,6 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
                 case "connectToServer":
                     this.server.connectClient(this);
                     break;
-                case "getAvailableTokens":
-                    getAvailableTokens();
-                    break;
-                case "checkNicknameAvailability":
-                    checkNicknameAvailability("nickname");
-                    break;
-                case "checkTokenAvailability":
-                    checkTokenAvailability(TokenEnum.BLACK);
-                    break;
                 case "addPlayer":
                     addPlayer("nickname");
                     break;
@@ -92,10 +83,6 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
             this.server.setToken(nickname,token);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
-        } catch (ChangedStateException e) {
-            throw new RuntimeException(e);
-        } catch (NotValidMoveException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -103,33 +90,6 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
     @Override
     public void connectToServer() throws RemoteException{
         this.server.connectClient(this);
-    }
-
-    @Override
-    public ArrayList<TokenEnum> getAvailableTokens() {
-        try {
-            return server.getAvailableTokens();
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public boolean checkNicknameAvailability(String nickname) {
-        try {
-            return server.checkNicknameAvailability(nickname);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public boolean checkTokenAvailability(TokenEnum token) {
-        try {
-            return server.checkTokenAvailability(token);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
     }
 
 
@@ -140,20 +100,12 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
             server.addPlayer(nickname, this);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
-        } catch (ChangedStateException e) {
-            throw new RuntimeException(e);
-        } catch (NotValidMoveException e) {
-            throw new RuntimeException(e);
         }
     }
     @Override
     public void setStartingCardPlayedBack(boolean playedBack, String nickname, int id){
         try {
             server.setStartingCardPlayedBack(playedBack,nickname,id);
-        } catch (ChangedStateException e) {
-            throw new RuntimeException(e);
-        } catch (NotValidMoveException e) {
-            throw new RuntimeException(e);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
@@ -164,10 +116,6 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
         try {
             server.setSecretObjective(nickname, id);
         } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        } catch (ChangedStateException e) {
-            throw new RuntimeException(e);
-        } catch (NotValidMoveException e) {
             throw new RuntimeException(e);
         }
     }
@@ -187,8 +135,6 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
             server.addCardFromCentralCardsToPlayerHand(nickname,cardid);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
-        } catch (NotMyTurnException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -198,8 +144,6 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
             server.addCardFromDeckToPlayerHand(nickname,cardid);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
-        } catch (InvalidPlacingCondition e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -207,7 +151,7 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
     public void startTurn() {
         try {
             server.startTurn();
-        } catch (RemoteException | NotMyTurnException e) {
+        } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
     }
@@ -217,10 +161,6 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
         try {
             server.setPlayerNumber(num);
         } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        } catch (ChangedStateException e) {
-            throw new RuntimeException(e);
-        } catch (NotValidMoveException e) {
             throw new RuntimeException(e);
         }
     }

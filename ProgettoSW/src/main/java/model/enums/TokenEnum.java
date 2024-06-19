@@ -5,5 +5,4 @@ public enum TokenEnum {
     RED,
     GREEN,
     YELLOW,
-    BLACK
 }

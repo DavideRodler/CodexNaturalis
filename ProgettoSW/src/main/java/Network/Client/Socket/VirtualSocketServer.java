@@ -33,7 +33,7 @@ public class VirtualSocketServer implements VirtualServer {
     }
 
     @Override
-    public void setPlayerNumber(int playerNumber) throws RemoteException, NotValidMoveException, ChangedStateException {
+    public void setPlayerNumber(int playerNumber) throws RemoteException {
         SetPlayerNumberMessage message = new SetPlayerNumberMessage(playerNumber);
         try {
             output.writeObject(message);
@@ -44,7 +44,7 @@ public class VirtualSocketServer implements VirtualServer {
     }
 
     @Override
-    public void addPlayer(String nickname, VirtualView Client) throws RemoteException, ChangedStateException, NotValidMoveException {
+    public void addPlayer(String nickname, VirtualView Client) throws RemoteException {
         AddPlayerMessage message = new AddPlayerMessage(nickname);
         try {
             output.writeObject(message);
@@ -66,22 +66,7 @@ public class VirtualSocketServer implements VirtualServer {
     }
 
     @Override
-    public ArrayList<TokenEnum> getAvailableTokens() throws RemoteException {
-        return null;
-    }
-
-    @Override
-    public boolean checkNicknameAvailability(String nickname) throws RemoteException {
-        return false;
-    }
-
-    @Override
-    public boolean checkTokenAvailability(TokenEnum token) throws RemoteException {
-        return false;
-    }
-
-    @Override
-    public void setStartingCardPlayedBack(boolean playedback, String nickname, int ID) throws ChangedStateException, NotValidMoveException, RemoteException {
+    public void setStartingCardPlayedBack(boolean playedback, String nickname, int ID) throws RemoteException{
         SetStartingCardPlayedBackMessage message = new SetStartingCardPlayedBackMessage(playedback, nickname, ID);
         try {
             output.writeObject(message);
@@ -94,7 +79,7 @@ public class VirtualSocketServer implements VirtualServer {
     }
 
     @Override
-    public void setSecretObjective(String nickname, Integer id) throws RemoteException, ChangedStateException, NotValidMoveException {
+    public void setSecretObjective(String nickname, Integer id) throws RemoteException {
         SetSecretObjectiveMessage message = new SetSecretObjectiveMessage(nickname, id);
         try {
             output.writeObject(message);
@@ -105,22 +90,22 @@ public class VirtualSocketServer implements VirtualServer {
     }
 
     @Override
-    public void addCardToStation(String nickname, int cardId, boolean playedBack, int x, int y) throws RemoteException, InvalidPlacingCondition {
+    public void addCardToStation(String nickname, int cardId, boolean playedBack, int x, int y) throws RemoteException{
 
     }
 
     @Override
-    public void addCardFromDeckToPlayerHand(String nickname, int cardId) throws RemoteException, InvalidPlacingCondition {
+    public void addCardFromDeckToPlayerHand(String nickname, int cardId) throws RemoteException {
 
     }
 
     @Override
-    public void addCardFromCentralCardsToPlayerHand(String nickname, int id) throws RemoteException, NotMyTurnException {
+    public void addCardFromCentralCardsToPlayerHand(String nickname, int id) throws RemoteException {
 
     }
 
     @Override
-    public void startTurn() throws RemoteException, NotMyTurnException {
+    public void startTurn() throws RemoteException {
 
     }
 }

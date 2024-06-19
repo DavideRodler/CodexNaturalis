@@ -15,7 +15,7 @@ import java.net.Socket;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class SocketServer implements VirtualServer {
+public class SocketServer {
     private ServerSocket listenSocket;
     private Server server;
 
@@ -41,68 +41,4 @@ public class SocketServer implements VirtualServer {
         }
     }
 
-    @Override
-    public void connectClient(VirtualView client) throws RemoteException {
-
-    }
-
-    @Override
-    public void setPlayerNumber(int playerNumber) throws RemoteException, NotValidMoveException, ChangedStateException {
-
-    }
-
-    @Override
-    public ArrayList<TokenEnum> getAvailableTokens() throws RemoteException {
-        return null;
-    }
-
-    @Override
-    public boolean checkNicknameAvailability(String nickname) throws RemoteException {
-        return false;
-    }
-
-    @Override
-    public boolean checkTokenAvailability(TokenEnum token) throws RemoteException {
-        return false;
-    }
-
-    @Override
-    public void addPlayer(String nickname, VirtualView Myclient) throws RemoteException, ChangedStateException, NotValidMoveException {
-
-    }
-
-    @Override
-    public void setToken(String nickname, TokenEnum token) throws RemoteException, ChangedStateException, NotValidMoveException {
-
-    }
-
-    @Override
-    public void setStartingCardPlayedBack(boolean playedback, String nickname, int ID) throws ChangedStateException, NotValidMoveException, RemoteException {
-
-    }
-
-    @Override
-    public void setSecretObjective(String nickname, Integer id) throws RemoteException, ChangedStateException, NotValidMoveException {
-
-    }
-
-    @Override
-    public void addCardToStation(String nickname, int cardId, boolean playedBack, int x, int y) throws RemoteException, InvalidPlacingCondition {
-
-    }
-
-    @Override
-    public void addCardFromDeckToPlayerHand(String nickname, int cardId) throws RemoteException, InvalidPlacingCondition {
-
-    }
-
-    @Override
-    public void addCardFromCentralCardsToPlayerHand(String nickname, int id) throws RemoteException, NotMyTurnException {
-
-    }
-
-    @Override
-    public void startTurn() throws RemoteException, NotMyTurnException {
-
-    }
 }

@@ -10,12 +10,6 @@ public interface ClientToServerCommunication {
 
     void connectToServer() throws Exception;
 
-    ArrayList<TokenEnum> getAvailableTokens();
-
-    boolean checkNicknameAvailability(String nickname);
-
-    boolean checkTokenAvailability(TokenEnum token);
-
     void addPlayer(String nickname);
 
     void setStartingCardPlayedBack(boolean playedBack, String nickname, int id);

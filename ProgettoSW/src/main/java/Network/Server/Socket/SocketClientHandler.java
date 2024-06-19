@@ -39,47 +39,24 @@ public class SocketClientHandler implements VirtualView {
                 }
                 case "SetPlayerNumber" -> {
                     SetPlayerNumberMessage setPlayerNumberMessage = (SetPlayerNumberMessage) message;
-                    try {
-                        server.setPlayerNumber(setPlayerNumberMessage.getNumber());
-                    } catch (NotValidMoveException e) {
-                        throw new RuntimeException(e);
-                    } catch (ChangedStateException e) {
-                        throw new RuntimeException(e);
-                    }
+                    server.setPlayerNumber(setPlayerNumberMessage.getNumber());
                 }
                 case "AddPlayer" -> {
                     AddPlayerMessage addPlayerMessage = (AddPlayerMessage) message;
-                    try {
-                        server.addPlayer(addPlayerMessage.getNickname(), this);
-                    } catch (ChangedStateException e) {
-                        throw new RuntimeException(e);
-                    }
+                    server.addPlayer(addPlayerMessage.getNickname(), this);
                 }
                 case "SetStartingCardPlayedBack" -> {
                     SetStartingCardPlayedBackMessage setStartingCardPlayedBackMessage = (SetStartingCardPlayedBackMessage) message;
-                    try {
-                        server.setStartingCardPlayedBack(setStartingCardPlayedBackMessage.isPlayedBack(), setStartingCardPlayedBackMessage.getNickname(), setStartingCardPlayedBackMessage.getId());
-                    } catch (ChangedStateException | NotValidMoveException e) {
-                        throw new RuntimeException(e);
+                    server.setStartingCardPlayedBack(setStartingCardPlayedBackMessage.isPlayedBack(), setStartingCardPlayedBackMessage.getNickname(), setStartingCardPlayedBackMessage.getId());
                     }
-                }
                 case "SetSecretObjective" -> {
                     SetSecretObjectiveMessage setSecretObjectiveMessage = (SetSecretObjectiveMessage) message;
-                    try {
-                        server.setSecretObjective(setSecretObjectiveMessage.getNickname(), setSecretObjectiveMessage.getId());
-                    } catch (ChangedStateException | NotValidMoveException e) {
-                        throw new RuntimeException(e);
+                    server.setSecretObjective(setSecretObjectiveMessage.getNickname(), setSecretObjectiveMessage.getId());
                     }
-                }
                 case "SetToken"->{
                     SetTokenMessage setTokenMessage = (SetTokenMessage) message;
-                    try {
                         server.setToken(setTokenMessage.getNickname(), setTokenMessage.getToken());
-                    } catch (ChangedStateException | NotValidMoveException e) {
-                        throw new RuntimeException(e);
                     }
-                }
-
                 default -> System.out.println("invalid message");
                 // handle the message
             }

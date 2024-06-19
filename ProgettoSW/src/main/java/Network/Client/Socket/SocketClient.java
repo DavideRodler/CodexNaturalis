@@ -87,21 +87,6 @@ public class SocketClient implements ClientToServerCommunication{
         server.connectClient(null);
     }
 
-    @Override
-    public ArrayList<TokenEnum> getAvailableTokens() {
-        return null;
-    }
-
-    @Override
-    public boolean checkNicknameAvailability(String nickname) {
-        return false;
-    }
-
-    @Override
-    public boolean checkTokenAvailability(TokenEnum token) {
-        return false;
-    }
-
 
 
     @Override
@@ -109,10 +94,6 @@ public class SocketClient implements ClientToServerCommunication{
         try {
             server.addPlayer(nickname, null);
         } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        } catch (ChangedStateException e) {
-            throw new RuntimeException(e);
-        } catch (NotValidMoveException e) {
             throw new RuntimeException(e);
         }
 
@@ -123,10 +104,6 @@ public class SocketClient implements ClientToServerCommunication{
         try {
             server.setStartingCardPlayedBack(playedBack, nickname, id);
         } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        } catch (ChangedStateException e) {
-            throw new RuntimeException(e);
-        } catch (NotValidMoveException e) {
             throw new RuntimeException(e);
         }
     }
@@ -139,10 +116,6 @@ public class SocketClient implements ClientToServerCommunication{
             server.setSecretObjective(nickname, id);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
-        } catch (ChangedStateException e) {
-            throw new RuntimeException(e);
-        } catch (NotValidMoveException e) {
-            throw new RuntimeException(e);
         }
 
     }
@@ -153,8 +126,6 @@ public class SocketClient implements ClientToServerCommunication{
             server.addCardToStation(nickname, cardid, playedback, x, y);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
-        } catch (InvalidPlacingCondition e) {
-            throw new RuntimeException(e);
         }
 
     }
@@ -163,7 +134,7 @@ public class SocketClient implements ClientToServerCommunication{
     public void addCardFromCentralCardsToPlayerHand(String nickname, int cardid) {
         try {
             server.addCardFromCentralCardsToPlayerHand(nickname, cardid);
-        } catch (RemoteException | NotMyTurnException e) {
+        } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
 
@@ -173,7 +144,7 @@ public class SocketClient implements ClientToServerCommunication{
     public void addCardFromDeckToPlayerHand(String nickname, int cardid) {
         try {
             server.addCardFromDeckToPlayerHand(nickname, cardid);
-        } catch (RemoteException | InvalidPlacingCondition e) {
+        } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
     }
@@ -182,7 +153,7 @@ public class SocketClient implements ClientToServerCommunication{
     public void startTurn() {
         try {
             server.startTurn();
-        } catch (RemoteException | NotMyTurnException e) {
+        } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
     }
@@ -194,11 +165,6 @@ public class SocketClient implements ClientToServerCommunication{
             server.setPlayerNumber(num);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
-        } catch (NotValidMoveException e) {
-            throw new RuntimeException(e);
-        } catch (ChangedStateException e) {
-            throw new RuntimeException(e);
         }
-
     }
 }

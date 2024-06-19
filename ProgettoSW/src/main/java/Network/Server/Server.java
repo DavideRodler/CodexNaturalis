@@ -271,7 +271,7 @@ public class Server {
         }
     }
 
-    public void addPlayer(String nickname, VirtualView Myclient) {
+    public void addPlayer(String nickname, VirtualView Myclient) throws RemoteException {
         try {
             gameController.addPlayer(nickname);
         } catch (NotValidMoveException | ChangedStateException e) {
@@ -289,7 +289,7 @@ public class Server {
         }
     }
 
-    public void setToken(String nickname, TokenEnum token) {
+    public void setToken(String nickname, TokenEnum token) throws RemoteException {
         synchronized (gameController) {
             try {
                 gameController.selectToken(nickname, token);
@@ -302,6 +302,8 @@ public class Server {
                 else {
                     throw new RuntimeException(e);
                 }
+            } catch (ChangedStateException e) {
+                throw new RuntimeException(e);
             }
         }
         if(gameController.getBoard().getGameState().equals(GameState.SELECT_STARTINGCARDFACE)){
@@ -351,7 +353,7 @@ public class Server {
     }
 
 
-    public void addCardFromDeckToPlayerHand(String nickname, int deck) throws RemoteException {
+    public void addCardFromDeckToPlayerHand(String nickname, int deck){
         try {
             gameController.addCardFromDeckToPlayerHand(nickname, deck);
         } catch (NotValidMoveException e) {
@@ -363,14 +365,10 @@ public class Server {
         }
     }
 
-    public void addCardFromCentralCardsToPlayerHand(String nickname, int cardId) throws RemoteException {
+    public void addCardFromCentralCardsToPlayerHand(String nickname, int cardId){
         try {
             gameController.addCardFromCentralCardsToPlayerHand(nickname, cardId);
-        } catch (NotValidMoveException e) {
-            throw new RuntimeException(e);
-        } catch (ChangedStateException e) {
-            throw new RuntimeException(e);
-        } catch (NotMyTurnException e) {
+        } catch (NotValidMoveException | NotMyTurnException | ChangedStateException e) {
             throw new RuntimeException(e);
         }
     }
