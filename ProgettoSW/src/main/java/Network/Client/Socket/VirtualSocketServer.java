@@ -3,16 +3,11 @@ package Network.Client.Socket;
 import Network.Client.RMI.VirtualView;
 import Network.Server.VirtualServer;
 import Socket.Messages.ClientToServer.*;
-import exception.ChangedStateException;
-import exception.InvalidPlacingCondition;
-import exception.NotMyTurnException;
-import exception.NotValidMoveException;
 import model.enums.TokenEnum;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 public class VirtualSocketServer implements VirtualServer {
     private ObjectOutputStream output;
@@ -23,7 +18,7 @@ public class VirtualSocketServer implements VirtualServer {
 
     @Override
     public void connectClient(VirtualView client) throws RemoteException {
-        ConnectClientMessage message = new ConnectClientMessage();
+        ConnectToServerMessage message = new ConnectToServerMessage();
         try {
             output.writeObject(message);
             output.flush();

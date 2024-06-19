@@ -373,16 +373,25 @@ public class Server {
         }
     }
 
-    public void startSetupOfNicknameAndToken() {
-        try {
-            queue.put("startSetupOfNicknameAndToken");
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+    public  void startTurn(){
+        if (!gameController.getBoard().getGameState().equals(GameState.FINISHED)){
+            try {
+                queue.put("startTurn");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else {
+            try {
+                queue.put("gameFinished");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
 
     }
 
-    public void initializeGame() {
+    private void initializeGame() {
         for (Player p : gameController.getBoard().getPlayers()){
             //adding  normal observers to players and stations
             for(VirtualView client : clients){
@@ -403,9 +412,6 @@ public class Server {
         } catch (ChangedStateException e) {
             throw new RuntimeException(e);
         }
-        startSetupOfToken();
-    }
-    public void startSetupOfToken(){
         try {
             queue.put("startSetupOfToken");
         }
@@ -414,7 +420,7 @@ public class Server {
         }
     }
 
-    public void showFourCentralCardsToPlayers()  {
+    private void showFourCentralCardsToPlayers()  {
         try {
             queue.put("showFourCentralCardsToPlayers");
         } catch (InterruptedException e) {
@@ -424,7 +430,7 @@ public class Server {
     }
 
 
-    public void startSetupOfStartingCard()  {
+    private void startSetupOfStartingCard()  {
         try {
             queue.put("startSetupOfStartingCard");
         } catch (InterruptedException e) {
@@ -432,7 +438,7 @@ public class Server {
         }
     }
 
-    public void showHandsAndCommonObjectives()  {
+    private void showHandsAndCommonObjectives()  {
         try {
             queue.put("showHandsAndCommonObjectives");
         } catch (InterruptedException e) {
@@ -441,7 +447,7 @@ public class Server {
         setupOfSecretObjective();
     }
 
-    public void setupOfSecretObjective()  {
+    private void setupOfSecretObjective()  {
         try {
             queue.put("setupOfSecretObjective");
         } catch (InterruptedException e) {
@@ -449,22 +455,6 @@ public class Server {
         }
     }
 
-    public  void startTurn(){
-        if (!gameController.getBoard().getGameState().equals(GameState.FINISHED)){
-            try {
-                queue.put("startTurn");
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        else {
-            try {
-                queue.put("gameFinished");
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
 
-    }
 
 }

@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Errore di battitura">
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Gestione delle eccezzioni e cambio enum">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/AddCardFromCentralCardsToPlayerHandsMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/AddCardFromDeckToPlayerHandMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/AddCardToStationMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/StartTurnMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/queqe/QuequeActionMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientToServerCommunication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientToServerCommunication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/VirtualSocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/VirtualSocketServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/ConnectClientMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/ConnectToServerMessage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -319,14 +321,6 @@
       <workItem from="1718019709867" duration="3815000" />
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
-    </task>
-    <task id="LOCAL-00014" summary="aggiornamento path&#10; file lettura">
-      <option name="closed" value="true" />
-      <created>1711530007480</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1711530007480</updated>
     </task>
     <task id="LOCAL-00015" summary="Aggiunta di tutti i deck e dei deck alla playing board">
       <option name="closed" value="true" />
@@ -712,7 +706,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718664590868</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Gestione delle eccezzioni e cambio enum">
+      <option name="closed" value="true" />
+      <created>1718800551028</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1718800551029</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -780,7 +782,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="rimesso corner" />
     <MESSAGE value="Test di gioco funzionante" />
     <MESSAGE value="Inizio del nuovo RMI con controller" />
     <MESSAGE value="Aggiunta del client controller" />
@@ -805,7 +806,8 @@
     <MESSAGE value="aggiunta documetazione objcounting gold" />
     <MESSAGE value="La selezione della starting card e quella dell'obiettivo sono fatte in modo separato" />
     <MESSAGE value="Modifiche al setup del nickname e token e la handle dei client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modifiche al setup del nickname e token e la handle dei client" />
+    <MESSAGE value="Gestione delle eccezzioni e cambio enum" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gestione delle eccezzioni e cambio enum" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -847,6 +849,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java</url>
           <line>36</line>
           <option name="timeStamp" value="315" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="316" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java</url>

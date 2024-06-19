@@ -4,11 +4,10 @@ import Network.Client.ClientToServerCommunication;
 import Network.Client.ClientController;
 import Network.Server.VirtualServer;
 
+import Socket.Messages.ClientToServer.*;
 import Socket.Messages.Message;
-import exception.ChangedStateException;
+import Socket.Messages.queqe.QuequeActionMessage;
 import exception.InvalidPlacingCondition;
-import exception.NotMyTurnException;
-import exception.NotValidMoveException;
 import model.enums.TokenEnum;
 
 import java.rmi.RemoteException;
@@ -22,11 +21,18 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
 
     private ClientController clientController;
     private final VirtualServer server;
-    private BlockingQueue<String> queue = new ArrayBlockingQueue<>(100);
+    private BlockingQueue<Message> queue = new ArrayBlockingQueue<>(100);
 
     public RmiClientToServer(VirtualServer server) throws RemoteException{
         this.server = server;
         this.clientController = new ClientController(this);
+        new Thread(() ->{
+            try {
+                ClientToServerCall();
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
     }
 
     public void setClientController(ClientController clientController){
@@ -35,132 +41,158 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
 
     public void ClientToServerCall() throws RemoteException {
         while (true) {
-            String action = null;
+            Message actionMessage = null;
             try {
-                action = queue.take();
+                actionMessage = queue.take();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            switch (action) {
-                case "connectToServer":
+            switch (actionMessage.getType()) {
+                case "ConnectToServer"-> {
                     this.server.connectClient(this);
-                    break;
-                case "addPlayer":
-                    addPlayer("nickname");
-                    break;
-                case "setStartingCardPlayedBack":
-                    setStartingCardPlayedBack(true, "nickname", 1);
-                    break;
-                case "setSecretObjective":
-                    setSecretObjective("nickname", 1);
-                    break;
-                case "addCardToStation":
-                    try {
-                        addCardToStation("nickname", 1, true, 1, 1);
-                    } catch (InvalidPlacingCondition e) {
-                        throw new RuntimeException(e);
-                    }
-                    break;
-                case "addCardFromCentralCardsToPlayerHand":
-                    addCardFromCentralCardsToPlayerHand("nickname", 1);
-                    break;
-                case "addCardFromDeckToPlayerHand":
-                    addCardFromDeckToPlayerHand("nickname", 1);
-                    break;
-                case "startTurn":
-                    startTurn();
-                    break;
-                case "setPlayerNumber":
-                    setPlayerNumber(1);
-                    break;
-            }
-        }
-    }
+                }
+                case "SetPlayerNumber"-> {
+                    SetPlayerNumberMessage setPlayerNumberMessage = (SetPlayerNumberMessage) actionMessage;
+                    server.setPlayerNumber(setPlayerNumberMessage.getNumber());
+                }
+                case "AddPlayer"-> {
+                    AddPlayerMessage addPlayerMessage = (AddPlayerMessage) actionMessage;
+                    server.addPlayer(addPlayerMessage.getNickname(), this);
+                }
+                case "SetToken"-> {
+                    SetTokenMessage setTokenMessage = (SetTokenMessage) actionMessage;
+                    server.setToken(setTokenMessage.getNickname(), setTokenMessage.getToken());
+                }
+                case "SetStartingCardPlayedBack" -> {
+                    SetStartingCardPlayedBackMessage setStartingCardPlayedBackMessage = (SetStartingCardPlayedBackMessage) actionMessage;
+                    server.setStartingCardPlayedBack(setStartingCardPlayedBackMessage.isPlayedBack(), setStartingCardPlayedBackMessage.getNickname(), setStartingCardPlayedBackMessage.getId());
 
-    @Override
-    public void setToken(String nickname, TokenEnum token) {
-        try {
-            this.server.setToken(nickname,token);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
+                }
+                case "SetSecretObjective" -> {
+                    SetSecretObjectiveMessage setSecretObjectiveMessage = (SetSecretObjectiveMessage) actionMessage;
+                    server.setSecretObjective(setSecretObjectiveMessage.getNickname(), setSecretObjectiveMessage.getId());
+                }
+                case "AddCardToStation" -> {
+                    AddCardToStationMessage addCardToStationMessage = (AddCardToStationMessage) actionMessage;
+                    server.addCardToStation(addCardToStationMessage.getNickname(), addCardToStationMessage.getCardId(), addCardToStationMessage.isPlayedBack(), addCardToStationMessage.getX(), addCardToStationMessage.getY());
+                    }
+                case "AddCardFromCentralCardsToPlayerHands" -> {
+                    AddCardFromCentralCardsToPlayerHandsMessage addCardFromCentralCardsToPlayerHandsMessage = (AddCardFromCentralCardsToPlayerHandsMessage) actionMessage;
+                    server.addCardFromCentralCardsToPlayerHand(addCardFromCentralCardsToPlayerHandsMessage.getNickname(), addCardFromCentralCardsToPlayerHandsMessage.getCardId());
+                }
+                case "AddCardFromDeckToPlayerHand" -> {
+                    AddCardFromDeckToPlayerHandMessage addCardFromDeckToPlayerHandMessage = (AddCardFromDeckToPlayerHandMessage) actionMessage;
+                    server.addCardFromDeckToPlayerHand(addCardFromDeckToPlayerHandMessage.getNickname(), addCardFromDeckToPlayerHandMessage.getCardId());
+                }
+                case "StartTurn" -> {
+                    server.startTurn();
+                }
+                default -> throw new RuntimeException("Invalid message type");
+            }
         }
     }
 
     //client To Server Communication
     @Override
     public void connectToServer() throws RemoteException{
-        this.server.connectClient(this);
+        ConnectToServerMessage message = new ConnectToServerMessage();
+        try {
+            queue.put(message);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
     @Override
-    public void addPlayer(String nickname)
-    {
+    public void addPlayer(String nickname) {
+        AddPlayerMessage message = new AddPlayerMessage(nickname);
         try {
-            server.addPlayer(nickname, this);
-        } catch (RemoteException e) {
+            queue.put(message);
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void setToken(String nickname, TokenEnum token) {
+        SetTokenMessage message = new SetTokenMessage(nickname,token);
+        try {
+            queue.put(message);
+        }
+        catch (InterruptedException e){
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public void setStartingCardPlayedBack(boolean playedBack, String nickname, int id){
+        SetStartingCardPlayedBackMessage setStartingCardPlayedBackMessage = new SetStartingCardPlayedBackMessage(playedBack,nickname,id);
         try {
-            server.setStartingCardPlayedBack(playedBack,nickname,id);
-        } catch (RemoteException e) {
+            queue.put(setStartingCardPlayedBackMessage);
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
     public void setSecretObjective(String nickname, int id) {
+        SetSecretObjectiveMessage setSecretObjectiveMessage = new SetSecretObjectiveMessage(nickname,id);
         try {
-            server.setSecretObjective(nickname, id);
-        } catch (RemoteException e) {
+            queue.put(setSecretObjectiveMessage);
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     @Override
     public void addCardToStation(String nickname, int cardid, boolean playedback, int x, int y) throws InvalidPlacingCondition {
+        AddCardToStationMessage addCardToStationMessage = new AddCardToStationMessage(nickname,cardid,playedback,x,y);
         try {
-            server.addCardToStation(nickname,cardid,playedback,x,y);
-        } catch (RemoteException e) {
+            queue.put(addCardToStationMessage);
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
     public void addCardFromCentralCardsToPlayerHand(String nickname, int cardid) {
+        AddCardFromCentralCardsToPlayerHandsMessage addCardFromCentralCardsToPlayerHandsMessage = new AddCardFromCentralCardsToPlayerHandsMessage(nickname,cardid);
         try {
-            server.addCardFromCentralCardsToPlayerHand(nickname,cardid);
-        } catch (RemoteException e) {
+            queue.put(addCardFromCentralCardsToPlayerHandsMessage);
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     @Override
     public void addCardFromDeckToPlayerHand(String nickname, int cardid) {
+        AddCardFromDeckToPlayerHandMessage addCardFromDeckToPlayerHandMessage = new AddCardFromDeckToPlayerHandMessage(nickname,cardid);
         try {
-            server.addCardFromDeckToPlayerHand(nickname,cardid);
-        } catch (RemoteException e) {
+            queue.put(addCardFromDeckToPlayerHandMessage);
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
     public void startTurn() {
+        StartTurnMessage startTurnMessage = new StartTurnMessage();
         try {
-            server.startTurn();
-        } catch (RemoteException e) {
+            queue.put(startTurnMessage);
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
-
     @Override
     public void setPlayerNumber(int num) {
+        SetPlayerNumberMessage setPlayerNumberMessage = new SetPlayerNumberMessage(num);
         try {
-            server.setPlayerNumber(num);
-        } catch (RemoteException e) {
+            queue.put(setPlayerNumberMessage);
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
