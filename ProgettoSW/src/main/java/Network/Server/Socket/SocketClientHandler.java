@@ -34,7 +34,7 @@ public class SocketClientHandler implements VirtualView {
                 throw new RuntimeException(e);
             }
             switch (message.getType()) {
-                case "ConnectClient" -> {
+                case "ConnectToServer" -> {
                     server.connectClient(this);
                 }
                 case "SetPlayerNumber" -> {

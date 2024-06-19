@@ -1,6 +1,9 @@
 package Network.Server;
 
 import Network.Client.RMI.VirtualView;
+import Socket.Messages.Message;
+import Socket.Messages.ServerToClient.ActionMessage;
+import Socket.Messages.queqe.QueueActionWithClientMessage;
 import controller.GameController;
 import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
@@ -23,22 +26,27 @@ public class Server {
     private final GameController gameController;
     private List<VirtualView> clients;
     private HashMap<String, VirtualView> clientsMap;
-    private BlockingQueue<String> queue = new ArrayBlockingQueue<>(100);
+    private BlockingQueue<Message> queue = new ArrayBlockingQueue<>(100);
 
     public void serverToClientCall() throws RemoteException {
         while (true) {
-            String action = null;
+            Message actionMessage = null;
             try {
-                action = queue.take();
+                actionMessage = queue.take();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            switch (action) {
+            switch (actionMessage.getType()) {
                 case "setupOfPlayersNumber":
-                    try {
-                        clients.get(0).setupOfPlayersNumber();
-                    } catch (RemoteException e) {
-                        throw new RuntimeException(e);
+                    synchronized (this.clients) {
+                    VirtualView client = ((QueueActionWithClientMessage) actionMessage).getClient();
+                            new Thread(() -> {
+                                try {
+                                    client.setupOfPlayersNumber();
+                                } catch (RemoteException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }).start();
                     }
                     break;
                 case "notifyAllPlayersConnected":
@@ -53,19 +61,20 @@ public class Server {
                     }
                     break;
                 case "notifyAnotherPlayerSettingNumOfPlayers":
-                    synchronized (this.clients) {
-                        VirtualView client = clients.get(clients.size() - 1);
+                    synchronized (this.clients){
+                        VirtualView client = ((QueueActionWithClientMessage) actionMessage).getClient();
+                        new Thread(() -> {
                             try {
                                 client.notifyAnotherPlayerSettingNumOfPlayers();
                             } catch (RemoteException e) {
                                 throw new RuntimeException(e);
                             }
-                        clients.remove(client);
+                        }).start();
                         }
                     break;
                 case "notifyWaitingForPlayersToJoin":
                     synchronized (this.clients) {
-                        VirtualView client = clients.get(clients.size() - 1);
+                        VirtualView client = ((QueueActionWithClientMessage) actionMessage).getClient();
                             try {
                                 client.notifyWaitingForPlayersToJoin();
                             } catch (RemoteException e) {
@@ -75,15 +84,15 @@ public class Server {
                     break;
                 case "notifyGameAlreadyStarted":
                     synchronized (this.clients) {
-                        VirtualView client = clients.get(clients.size() - 1);
+                        VirtualView client = ((QueueActionWithClientMessage) actionMessage).getClient();
                             try {
                                 client.notifyGameAlreadyStarted();
                             } catch (RemoteException e) {
                                 throw new RuntimeException(e);
                             }
-                        clients.remove(client);
                         }
                     break;
+
                 case "startSetupOfNickname":
                     synchronized (this.clients) {
                         for (VirtualView client : clients) {
@@ -94,6 +103,16 @@ public class Server {
                                     throw new RuntimeException(e);
                                 }
                             }).start();
+                        }
+                    }
+                    break;
+                case "notifyNicknameAlreadyTaken":
+                    synchronized (this.clients) {
+                        VirtualView client = ((QueueActionWithClientMessage) actionMessage).getClient();
+                        try {
+                            client.notifyNicknameAlreadyTaken();
+                        } catch (RemoteException e) {
+                            throw new RuntimeException(e);
                         }
                     }
                     break;
@@ -110,8 +129,16 @@ public class Server {
                         }
                     }
                     break;
-
-
+                case "notifyTokenAlreadyTaken":
+                    synchronized (this.clients) {
+                        VirtualView client = ((QueueActionWithClientMessage) actionMessage).getClient();
+                        try {
+                            client.notifyTokenAlreadyTaken();
+                        } catch (RemoteException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    break;
                 case "showFourCentralCardsToPlayers":
                     synchronized (this.clients) {
                         for (VirtualView client : clients) {
@@ -177,8 +204,8 @@ public class Server {
                         }
                     }
                     break;
-
-
+                default:
+                    throw new RuntimeException("Message type not recognized");
             }
 
         }
@@ -216,17 +243,16 @@ public class Server {
             clients.add(client);
             gameController.getBoard().addObserver(client);
             try {
-                queue.put("setupOfPlayersNumber");
-                queue.put("notifyWaitingForPlayersToJoin");
+                queue.put(new QueueActionWithClientMessage("setupOfPlayersNumber", client));
+                queue.put(new QueueActionWithClientMessage("notifyWaitingForPlayersToJoin", client));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
         //another player is joining while setupping the player number
         else if (gameController.getBoard().getGameState().equals(GameState.SET_PLAYER_NUMBER)) {
-            clients.add(client);
             try {
-                queue.put("notifyAnotherPlayerSettingNumOfPlayers");
+                queue.put(new QueueActionWithClientMessage("notifyAnotherPlayerSettingNumOfPlayers", client));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -236,8 +262,8 @@ public class Server {
             clients.add(client);
             gameController.getBoard().addObserver(client);
             try {
-                queue.put("notifyAllPlayersConnected");
-                queue.put("startSetupOfNickname");
+                queue.put(new ActionMessage("notifyAllPlayersConnected"));
+                queue.put(new ActionMessage("startSetupOfNickname"));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -247,15 +273,14 @@ public class Server {
             clients.add(client);
             gameController.getBoard().addObserver(client);
             try {
-                queue.put("notifyWaitingForPlayersToJoin");
+                queue.put(new QueueActionWithClientMessage("notifyWaitingForPlayersToJoin", client));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
         else{
-            clients.add(client);
             try {
-                queue.put("notifyGameAlreadyStarted");
+                queue.put(new QueueActionWithClientMessage("notifyGameAlreadyStarted",client));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -276,7 +301,11 @@ public class Server {
             gameController.addPlayer(nickname);
         } catch (NotValidMoveException | ChangedStateException e) {
             if (e.getMessage().equals("Nickname already taken")) {
-                Myclient.notifyNicknameAlreadyTaken();
+                try {
+                    queue.put(new QueueActionWithClientMessage("notifyNicknameAlreadyTaken", Myclient));
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
                 return;
             }
             else {
@@ -296,7 +325,11 @@ public class Server {
             }
             catch (NotValidMoveException e){
                 if (e.getMessage().equals("Token already taken")){
-                    clientsMap.get(nickname).notifyTokenAlreadyTaken();
+                    try {
+                        queue.put(new QueueActionWithClientMessage("notifyTokenAlreadyTaken", clientsMap.get(nickname)));
+                    } catch (InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     return;
                 }
                 else {
@@ -376,14 +409,14 @@ public class Server {
     public  void startTurn(){
         if (!gameController.getBoard().getGameState().equals(GameState.FINISHED)){
             try {
-                queue.put("startTurn");
+                queue.put(new ActionMessage("startTurn"));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
         else {
             try {
-                queue.put("gameFinished");
+                queue.put(new ActionMessage("gameFinished"));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -413,7 +446,7 @@ public class Server {
             throw new RuntimeException(e);
         }
         try {
-            queue.put("startSetupOfToken");
+            queue.put(new ActionMessage("startSetupOfToken"));
         }
         catch (InterruptedException e ){
             throw new RuntimeException(e);
@@ -422,7 +455,7 @@ public class Server {
 
     private void showFourCentralCardsToPlayers()  {
         try {
-            queue.put("showFourCentralCardsToPlayers");
+            queue.put(new ActionMessage("showFourCentralCardsToPlayers"));
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -432,7 +465,7 @@ public class Server {
 
     private void startSetupOfStartingCard()  {
         try {
-            queue.put("startSetupOfStartingCard");
+            queue.put(new ActionMessage("startSetupOfStartingCard"));
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -440,7 +473,7 @@ public class Server {
 
     private void showHandsAndCommonObjectives()  {
         try {
-            queue.put("showHandsAndCommonObjectives");
+            queue.put(new ActionMessage("showHandsAndCommonObjectives"));
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -449,7 +482,7 @@ public class Server {
 
     private void setupOfSecretObjective()  {
         try {
-            queue.put("setupOfSecretObjective");
+            queue.put(new ActionMessage("setupOfSecretObjective"));
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

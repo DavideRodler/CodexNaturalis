@@ -40,8 +40,11 @@ public class ClientApp implements Remote {
             if (selection == 1) {
                 VirtualServer server;
                 try {
+                    //locating the registry
                     Registry registry = LocateRegistry.getRegistry(ip, 16000);
                     server = (VirtualServer) registry.lookup("MyServer");
+
+                    //creating my client with RMI and a client controller
                     RmiClientToServer client = new RmiClientToServer(server);
                     ClientController clientController = new ClientController(client);
                     client.setClientController(clientController);
@@ -55,6 +58,7 @@ public class ClientApp implements Remote {
                 break;
 
             } else if (selection ==2) {
+                //creating the soket communication
                 Socket serverSocket = new Socket(ip, 16001);
 
                 InputStream socketRx = serverSocket.getInputStream();
@@ -62,6 +66,7 @@ public class ClientApp implements Remote {
 
                 SocketClient client = new  SocketClient(new ObjectInputStream(socketRx), new ObjectOutputStream(socketTx));
 
+                //creating the client controller
                 ClientController clientController = new ClientController(client);
                 client.setClientController(clientController);
                 client.run();

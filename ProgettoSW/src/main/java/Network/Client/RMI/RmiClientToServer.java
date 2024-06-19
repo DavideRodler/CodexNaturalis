@@ -6,7 +6,6 @@ import Network.Server.VirtualServer;
 
 import Socket.Messages.ClientToServer.*;
 import Socket.Messages.Message;
-import Socket.Messages.queqe.QuequeActionMessage;
 import exception.InvalidPlacingCondition;
 import model.enums.TokenEnum;
 
@@ -25,7 +24,6 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
 
     public RmiClientToServer(VirtualServer server) throws RemoteException{
         this.server = server;
-        this.clientController = new ClientController(this);
         new Thread(() ->{
             try {
                 ClientToServerCall();
