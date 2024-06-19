@@ -28,7 +28,7 @@ class ObjectiveDiagonalTest {
     @Test
     public void test_7Cards_2Diagonal() throws ChangedStateException, NotValidMoveException {
         // Creating the PlayingStation
-        PlayingStation station = PlayingStationTemplate.test_6Cards_2Positioning();
+        PlayingStation station = PlayingStationTemplate.test_7Cards_2Diagonal_c();
         ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.ANIMAL);
         CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
         int punti1 = cardObjectiveTmp.getObjective().countObjectivePoints(station);

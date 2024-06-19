@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Modifiche al setup del nickname e token e la handle dei client">
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/ChatTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/model/PrivateChatTest.java" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="TEST">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/PlayingStationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PlayingStationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingStationTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingStationTemplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +42,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="RESET_MODE" value="MIXED" />
     <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -136,6 +134,7 @@
     "JUnit.ObjectiveDiagonalTest.executor": "Coverage",
     "JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor": "Run",
     "JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor": "Coverage",
+    "JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal.executor": "Run",
     "JUnit.ObjectiveGoldCornersTest.countObjectivePoints.executor": "Run",
     "JUnit.ObjectivePositioningTest.executor": "Coverage",
     "JUnit.ObjectivePositioningTest.getInformation.executor": "Run",
@@ -177,6 +176,7 @@
     "JUnit.deckconstructorTest.deckResource.executor": "Run",
     "JUnit.java in ProgettoSW.executor": "Coverage",
     "JUnit.model in ProgettoSW.executor": "Coverage",
+    "JUnit.objectives in ProgettoSW.executor": "Coverage",
     "Maven.ProgettoSW [clean].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -214,90 +214,91 @@
       <recent name="model.cards" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.model in ProgettoSW">
-    <configuration name="ChatMessageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.objectives in ProgettoSW">
+    <configuration name="ObjectiveDiagonalTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Socket.Messages.*" />
+          <option name="PATTERN" value="model.objectives.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="Socket.Messages" />
-      <option name="MAIN_CLASS_NAME" value="Socket.Messages.ChatMessageTest" />
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonalTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ChatTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ObjectiveDiagonalTest.test_7Cards_2Diagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.*" />
+          <option name="PATTERN" value="model.objectives.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.ChatTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ChatTest.addMessage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.ChatTest" />
-      <option name="METHOD_NAME" value="addMessage" />
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonalTest" />
+      <option name="METHOD_NAME" value="test_7Cards_2Diagonal" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PrivateChatTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ObjectivePositioningTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.*" />
+          <option name="PATTERN" value="model.objectives.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.PrivateChatTest" />
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="model in ProgettoSW" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ObjectivePositioningTest.test_Positioning" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.objectives.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
+      <option name="METHOD_NAME" value="test_Positioning" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="objectives in ProgettoSW" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/src/test/java/model" />
+      <dir value="$PROJECT_DIR$/src/test/java/model/objectives" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ChatMessageTest" />
-      <item itemvalue="JUnit.ChatTest" />
-      <item itemvalue="JUnit.ChatTest.addMessage" />
-      <item itemvalue="JUnit.PrivateChatTest" />
-      <item itemvalue="JUnit.model in ProgettoSW" />
+      <item itemvalue="JUnit.ObjectiveDiagonalTest" />
+      <item itemvalue="JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal" />
+      <item itemvalue="JUnit.ObjectivePositioningTest" />
+      <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
+      <item itemvalue="JUnit.objectives in ProgettoSW" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.model in ProgettoSW" />
-        <item itemvalue="JUnit.ChatTest" />
-        <item itemvalue="JUnit.ChatTest.addMessage" />
-        <item itemvalue="JUnit.ChatMessageTest" />
-        <item itemvalue="JUnit.PrivateChatTest" />
+        <item itemvalue="JUnit.objectives in ProgettoSW" />
+        <item itemvalue="JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal" />
+        <item itemvalue="JUnit.ObjectiveDiagonalTest" />
+        <item itemvalue="JUnit.ObjectivePositioningTest" />
+        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
       </list>
     </recent_temporary>
   </component>
@@ -330,22 +331,6 @@
       <workItem from="1718019709867" duration="3815000" />
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
-    </task>
-    <task id="LOCAL-00014" summary="aggiornamento path&#10; file lettura">
-      <option name="closed" value="true" />
-      <created>1711530007480</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1711530007480</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Aggiunta di tutti i deck e dei deck alla playing board">
-      <option name="closed" value="true" />
-      <created>1711536467666</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1711536467666</updated>
     </task>
     <task id="LOCAL-00016" summary="TEST DELLA CREAZIONE DELLA PLAYINGBOARD, DA RIVEDERE L'UTILITA DI DECKCONSTRUCTOR">
       <option name="closed" value="true" />
@@ -723,7 +708,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718664590868</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="TEST">
+      <option name="closed" value="true" />
+      <created>1718816963548</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1718816963548</updated>
+    </task>
+    <task id="LOCAL-00064" summary="TEST">
+      <option name="closed" value="true" />
+      <created>1718817596173</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1718817596173</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -791,7 +792,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="rimesso corner" />
     <MESSAGE value="Test di gioco funzionante" />
     <MESSAGE value="Inizio del nuovo RMI con controller" />
     <MESSAGE value="Aggiunta del client controller" />
@@ -816,7 +816,8 @@
     <MESSAGE value="aggiunta documetazione objcounting gold" />
     <MESSAGE value="La selezione della starting card e quella dell'obiettivo sono fatte in modo separato" />
     <MESSAGE value="Modifiche al setup del nickname e token e la handle dei client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modifiche al setup del nickname e token e la handle dei client" />
+    <MESSAGE value="TEST" />
+    <option name="LAST_COMMIT_MESSAGE" value="TEST" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -873,17 +874,17 @@
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_isGamefinished.ic" NAME="GameControllerTest.isGamefinished Coverage Results" MODIFIED="1716111232885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveDiagonalTest.ic" NAME="ObjectiveDiagonalTest Coverage Results" MODIFIED="1718790087055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveDiagonalTest.ic" NAME="ObjectiveDiagonalTest Coverage Results" MODIFIED="1718818600496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveAssignTest_countObjectivePoints.ic" NAME="ObjectiveAssignTest.countObjectivePoints Coverage Results" MODIFIED="1716367203902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectivePositioningTest.ic" NAME="ObjectivePositioningTest Coverage Results" MODIFIED="1718789407915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.objectives.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$PlayingStationTest_enoughResources.ic" NAME="PlayingStationTest.enoughResources Coverage Results" MODIFIED="1718808999263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectivePositioningTest.ic" NAME="ObjectivePositioningTest Coverage Results" MODIFIED="1718818579666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.objectives.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getPlayerHand.ic" NAME="GameControllerTest.getPlayerHand Coverage Results" MODIFIED="1715698739662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
@@ -946,8 +947,8 @@
     <SUITE FILE_PATH="coverage/ProgettoSW$PlayingBoardTest.ic" NAME="PlayingBoardTest Coverage Results" MODIFIED="1716747960716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$objectives_in_ProgettoSW.ic" NAME="objectives in ProgettoSW Coverage Results" MODIFIED="1718790107476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/ProgettoSW$model_in_ProgettoSW.ic" NAME="model in ProgettoSW Coverage Results" MODIFIED="1718816910405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProgettoSW$objectives_in_ProgettoSW.ic" NAME="objectives in ProgettoSW Coverage Results" MODIFIED="1718818054726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProgettoSW$model_in_ProgettoSW.ic" NAME="model in ProgettoSW Coverage Results" MODIFIED="1718817739319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/ProgettoSW$PlacingConditionTest_test_null_corner.ic" NAME="PlacingConditionTest.test_null_corner Coverage Results" MODIFIED="1716288399310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>model.placingCondition.*</FILTER>
     </SUITE>
