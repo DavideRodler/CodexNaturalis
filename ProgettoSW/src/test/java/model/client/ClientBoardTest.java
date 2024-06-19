@@ -14,8 +14,8 @@ import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 import model.objectives.Objective;
 import model.objectives.ObjectiveCountingGold;
-import model.testsTemplate.ClientBoardTemplate;
-import model.testsTemplate.PlayingStationTemplate;
+import model.testTemplates.ClientBoardTemplate;
+import model.testTemplates.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
