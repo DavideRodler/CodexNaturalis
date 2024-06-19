@@ -6,7 +6,7 @@ import model.PlayingStation;
 import model.cards.CardObjective;
 import model.enums.DirectionEnum;
 import model.enums.SuitEnum;
-import model.testsTemplate.PlayingStationTemplate;
+import model.testTemplates.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
