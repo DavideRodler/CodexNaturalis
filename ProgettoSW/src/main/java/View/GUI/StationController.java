@@ -12,9 +12,14 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import model.cards.Card;
+import model.cards.CardPlaying;
 import model.cards.CardStarting;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class StationController implements Initializable {
@@ -85,12 +90,22 @@ public class StationController implements Initializable {
         @FXML
         private Button turnCardButton;
 
-        private ImageView activeCard;
+        private Card activeCard;
 
         private boolean playedBack;
 
+        private Map<ImageView, CardPlaying> imageToCardPlayingHashMap = new HashMap<>();
+
+        private Map <CardPlaying, ArrayList<ImageView>> cardPlayingToImageHashMap= new HashMap<>();
+
+        private CardLoader cardLoader;
+
+        @FXML
+        private ImageView startingCard;
+
     public StationController(ClientController clientController) {
         this.clientController = clientController;
+        cardLoader = new CardLoader();
     }
     //TODO resettare la active card dopo che è stato premuto il bottone.
 
@@ -107,7 +122,12 @@ public class StationController implements Initializable {
          * @param event the mouse click event
          */
         private void handleCardClick(MouseEvent event){
-                activeCard = (ImageView) event.getSource();
+                ImageView selectedCard = (ImageView) event.getSource();
+                if(imageToCardPlayingHashMap.containsKey(selectedCard)){
+                    activeCard = imageToCardPlayingHashMap.get(selectedCard);
+                    turnCardButton.setVisible(true);
+                    selectCardButton.setVisible(true);
+                }
         }
 
         //TODO: potrei farmi diversi handler per le diverse situazioni di gioco.
@@ -117,22 +137,26 @@ public class StationController implements Initializable {
 
         /**
          * this method adds the starting card to the station.
-         * @param cardStarting is the starting card to be added
+         *
          */
-        public void showStartingCard(CardStarting cardStarting) {
-                //TODO: bisogna mettere cardStarting nel centro dello stackPane
-                int id = cardStarting.getId();
-                CardLoader cardLoader = new CardLoader();
+        public void showStartingCard() {
+                CardStarting cardStarting =  clientController.getClientModel().getMyplayer().getStation().getCardStarting();
+
+                ArrayList<ImageView> images = new ArrayList<>();
                 ImageView startingCardFront = new ImageView();
                 ImageView startingCardBack = new ImageView();
-                startingCardFront.setImage(cardLoader.getFront(id));
-                startingCardBack.setImage(cardLoader.getBack(id));
-                //TODO: aggiungere handler alla carta ogni volta che una carta viene aggiunta
+                startingCardFront.setImage(cardLoader.getFront(cardStarting.getId()));
+                startingCardBack.setImage(cardLoader.getBack(cardStarting.getId()));
                 startingCardBack.setOnMouseClicked(this::handleCardClick);
                 startingCardFront.setOnMouseClicked(this::handleCardClick);
+                imageToCardPlayingHashMap.put(startingCardFront, cardStarting);
+                imageToCardPlayingHashMap.put(startingCardBack, cardStarting);
+                images.add(startingCardFront);
+                images.add(startingCardBack);
+                cardPlayingToImageHashMap.put(cardStarting, images);
                 //ho ottenuto l'immagine della carta --> devo metterla nel centro della station
-                stationPane.getChildren().add(startingCardFront);
-
+                stationPane.getChildren().add(startingCard);
+                startingCard.setImage(images.getFirst().getImage()); //inizializzo con la carta centrale
         }
 
     //TODO: metodo per fare in modo che quando il bottone select viene premuto --> si ottengano le coordinate della activeCard e si resetti la activeCard
@@ -140,10 +164,19 @@ public class StationController implements Initializable {
 
         @FXML
         void turnCard(ActionEvent event){
-            boolean playedFront;
-            //if()
+            boolean front = true;
+
+            if(activeCard != null){ // controllo se è in front
+                cardPlayingToImageHashMap.get(activeCard); //come controllo se la carta è giocata è la 0 o la 1??
+            }
+
+            turnCardButton.setVisible(false);
+            activeCard = null;
         }
 
+
+
+//TODO: una volta che una carta viene giocata, toglierla dalla mappa! non deve più essere selezionabile e girata.
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
                 centralCardsAndDecksPane.setVisible(false);

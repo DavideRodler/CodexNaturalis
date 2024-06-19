@@ -54,7 +54,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public void showStartingCard() {
-        Platform.runLater(() -> stationController.showStartingCard(clientBoard.getMyplayer().getStation().getCardStarting()));
+        Platform.runLater(() -> stationController.showStartingCard());
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Gui extends Application implements UI {
     }
 
     @Override
-    public String askNickname() {
+    public String askNickname() { //TODO: NELLA GUI INUTILE
         String a ="";
         //Platform.runLater(() -> a = chooseNickAndTokenController.enterNickname());
         return a;
@@ -153,8 +153,9 @@ public class Gui extends Application implements UI {
 
     @Override
     public TokenEnum askToken(ArrayList<TokenEnum> availableTokens) { //TODO: passare per al controller l'arraylist
-        chooseNickAndTokenController.setAvailableTokens(availableTokens);
+        Platform.runLater(() -> chooseNickAndTokenController.setAvailableTokens(availableTokens));
         return null;
+
     }
 
     @Override
