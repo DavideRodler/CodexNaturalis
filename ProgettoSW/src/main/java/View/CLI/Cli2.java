@@ -103,21 +103,36 @@ public class Cli2 implements UI {
 
     @Override
     public String askNickname() {
+        boolean validNickname = false;
         Scanner in = new Scanner(new InputStreamReader(System.in));
-        String input;
+        String input="";
         System.out.println("Insert your nickname: ");
-        input = in.nextLine();
+        while(!validNickname) {
+            try {
+                input = in.nextLine();
+                validNickname = true;
+            } catch (Exception e) {
+                System.out.println("Invalid nickname, please try again.");
+            }
+        }
         return input;
     }
 
     @Override
     public int askPlayerNumber() {
+        boolean validNumber = false;
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        Integer input;
-        do {
-            System.out.println("You are the first player to join: insert number of players in your Lobby: ");
-            input = scanner.nextInt();
-        }while (input < 2 || input > 4);
+        int input = 2;
+        while(!validNumber || (input<2 || input>4)) {
+            try {
+                System.out.println("You are the first player to join: insert number of players in your Lobby: ");
+                input = scanner.nextInt();
+                validNumber = true;
+            } catch (Exception e) {
+                System.out.println("Invalid number of players, please try again.");
+                return askPlayerNumber();
+            }
+        }
         return input;
     }
 
@@ -656,16 +671,26 @@ System.out.println(purple+"          |______|_||___/|_.__/|___,_|_| |______|_| |
         Integer[] inputAnswer;
         boolean endTurn = false;
         boolean cardPlaced = false;
+
         printMenu();
         //the card i want to put in the station
         CardResource cardchoosen;
         int cardId;
-        int menuAnswer;
+        int menuAnswer = 0;
+        boolean continuee = false;
 
         do{
             Scanner scanner = new Scanner(new InputStreamReader(System.in));
             System.out.println("Choose an action: ");
-            menuAnswer = scanner.nextInt();
+            while(!continuee){
+                try {
+                    menuAnswer = scanner.nextInt();
+                    continuee = true;
+                } catch (Exception e) {
+                    System.out.println("Invalid choice, please try again.");
+                }
+            }
+            continuee=false;
             while (menuAnswer < 1 || menuAnswer > 8) {
                 System.out.println("Invalid choice, please try again.");
                 System.out.println("Choose an action: ");
@@ -774,11 +799,22 @@ System.out.println(purple+"          |______|_||___/|_.__/|___,_|_| |______|_| |
     @Override
     public void askNotMyTurnMenuAction(String currentPlayer) {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        System.out.println("Choose an action: ");
+        boolean continuee = false;
         int menuAnswer = 0;
         boolean ready = false;
         while ((!clientBoard.getCurrentPlayer().equals(clientBoard.getMyplayer().getNickname())) && (!ready || menuAnswer != 7)) {
-            menuAnswer = scanner.nextInt();
+            System.out.println("Choose an action: ");
+            while(!continuee){
+                try {
+                    menuAnswer = scanner.nextInt();
+                    continuee = true;
+                } catch (Exception e) {
+                    System.out.println("Invalid choice, please try again.");
+                }
+            }
+
+            continuee=false;
+
             while (menuAnswer < 1 || menuAnswer > 7) {
                 System.out.println("Invalid choice, please try again.");
                 System.out.println("Choose an action: ");
@@ -832,12 +868,23 @@ System.out.println(purple+"          |______|_||___/|_.__/|___,_|_| |______|_| |
 
     private String askWichStationToPrint() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        boolean validNickname = false;
+        String nickname = "";
         System.out.println("Insert the nickname of the player of which you want to see the station: ");
         for (var c : clientBoard.getOtherplayers()) {
             System.out.print(lightBlue + c.getNickname() + reset + " ");
         }
         printSpace();
-        return scanner.nextLine();
+        while(!validNickname) {
+            try {
+                nickname = scanner.nextLine();
+                clientBoard.getOtherPlayer(nickname); // This will throw an exception if the player does not exist
+                validNickname = true;
+            } catch (NonePlayerFoundException e) {
+                System.out.println("Invalid nickname. Please try again.");
+            }
+        }
+        return nickname;
     }
 
     @Override

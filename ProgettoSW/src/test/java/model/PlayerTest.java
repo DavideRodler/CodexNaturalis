@@ -10,7 +10,7 @@ import model.objectives.Objective;
 import model.objectives.ObjectiveAssign;
 import model.objectives.ObjectiveCountingGold;
 import model.objectives.Points;
-import model.testTemplates.PlayingStationTemplate;
+import model.testsTemplate.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
