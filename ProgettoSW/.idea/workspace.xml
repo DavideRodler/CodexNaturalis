@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="TEST">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingStationTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingStationTemplate.java" afterDir="false" />
-    </list>
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="OBJ CORREZIONE" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -214,7 +208,7 @@
       <recent name="model.cards" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.objectives in ProgettoSW">
+  <component name="RunManager" selected="JUnit.PlayerTest">
     <configuration name="ObjectiveDiagonalTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
@@ -246,33 +240,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjectivePositioningTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
+          <option name="PATTERN" value="model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.PlayerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjectivePositioningTest.test_Positioning" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="model in ProgettoSW" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
-      <option name="METHOD_NAME" value="test_Positioning" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/model" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -288,17 +274,17 @@
     <list>
       <item itemvalue="JUnit.ObjectiveDiagonalTest" />
       <item itemvalue="JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal" />
-      <item itemvalue="JUnit.ObjectivePositioningTest" />
-      <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
+      <item itemvalue="JUnit.PlayerTest" />
       <item itemvalue="JUnit.objectives in ProgettoSW" />
+      <item itemvalue="JUnit.model in ProgettoSW" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PlayerTest" />
+        <item itemvalue="JUnit.model in ProgettoSW" />
         <item itemvalue="JUnit.objectives in ProgettoSW" />
         <item itemvalue="JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal" />
         <item itemvalue="JUnit.ObjectiveDiagonalTest" />
-        <item itemvalue="JUnit.ObjectivePositioningTest" />
-        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
       </list>
     </recent_temporary>
   </component>
@@ -331,14 +317,6 @@
       <workItem from="1718019709867" duration="3815000" />
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
-    </task>
-    <task id="LOCAL-00016" summary="TEST DELLA CREAZIONE DELLA PLAYINGBOARD, DA RIVEDERE L'UTILITA DI DECKCONSTRUCTOR">
-      <option name="closed" value="true" />
-      <created>1711537929192</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1711537929192</updated>
     </task>
     <task id="LOCAL-00017" summary="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station">
       <option name="closed" value="true" />
@@ -724,7 +702,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718817596173</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="OBJ CORREZIONE">
+      <option name="closed" value="true" />
+      <created>1718819042098</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1718819042098</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -792,7 +778,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Test di gioco funzionante" />
     <MESSAGE value="Inizio del nuovo RMI con controller" />
     <MESSAGE value="Aggiunta del client controller" />
     <MESSAGE value="Client model viene aggiornato con observer." />
@@ -817,7 +802,8 @@
     <MESSAGE value="La selezione della starting card e quella dell'obiettivo sono fatte in modo separato" />
     <MESSAGE value="Modifiche al setup del nickname e token e la handle dei client" />
     <MESSAGE value="TEST" />
-    <option name="LAST_COMMIT_MESSAGE" value="TEST" />
+    <MESSAGE value="OBJ CORREZIONE" />
+    <option name="LAST_COMMIT_MESSAGE" value="OBJ CORREZIONE" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -947,7 +933,7 @@
     <SUITE FILE_PATH="coverage/ProgettoSW$PlayingBoardTest.ic" NAME="PlayingBoardTest Coverage Results" MODIFIED="1716747960716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$objectives_in_ProgettoSW.ic" NAME="objectives in ProgettoSW Coverage Results" MODIFIED="1718818054726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProgettoSW$objectives_in_ProgettoSW.ic" NAME="objectives in ProgettoSW Coverage Results" MODIFIED="1718819020250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/ProgettoSW$model_in_ProgettoSW.ic" NAME="model in ProgettoSW Coverage Results" MODIFIED="1718817739319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/ProgettoSW$PlacingConditionTest_test_null_corner.ic" NAME="PlacingConditionTest.test_null_corner Coverage Results" MODIFIED="1716288399310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>model.placingCondition.*</FILTER>

@@ -71,7 +71,8 @@ class PlayerTest {
         PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
         ArrayList<CardResource> hand = new ArrayList<>();
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
-        isa.setSelectibleObjectivesWithObserver(cards);
+        //isa.setSelectibleObjectivesWithObserver(cards);
+        isa.setSelectibleObjectives(cards);
         assertEquals(cards, isa.getSelectibleObjectives());
 
     }
@@ -91,7 +92,8 @@ class PlayerTest {
         PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
         ArrayList<CardResource> hand = new ArrayList<>();
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
-        isa.setSecretObjectiveWithObs(objcard1);
+        //isa.setSecretObjectiveWithObs(objcard1);
+        isa.setSecretObjective(objcard1);
         assertEquals(objcard1, isa.getSecretObjective());
     }
 
@@ -111,7 +113,8 @@ class PlayerTest {
         handexpected.add(0, card1);
         handexpected.add(1, card3);
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
-        isa.removeCardFromHandWithObs(1);
+        //isa.removeCardFromHandWithObs(1);
+        isa.removeCardFromHand(1);
         assertEquals(hand, handexpected);
 
     }
