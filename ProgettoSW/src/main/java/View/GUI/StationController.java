@@ -1,6 +1,7 @@
 package View.GUI;
 
 import Network.Client.ClientController;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -84,28 +85,33 @@ public class StationController implements Initializable {
         @FXML
         private Button turnCardButton;
 
-        private ImageView selectedCard;
+        private ImageView activeCard;
+
+        private boolean playedBack;
 
     public StationController(ClientController clientController) {
         this.clientController = clientController;
     }
-    //TODO resettare la selected card dopo che è stato premuto il bottone.
+    //TODO resettare la active card dopo che è stato premuto il bottone.
 
         public void addCardsToHand(){
 
         }
 
-        //in questo metodo voglio che quando l'utente clicca su una carta, questa diventa la selectedCard.
+        //in questo metodo voglio che quando l'utente clicca su una carta, questa diventa la activeCard.
         private void selectCard(Event event){
         }
 
         /**
-         * this method handles when a cards gets clicked. It sets selectedCard to the clicked card.
+         * this method handles when a cards gets clicked. It sets activeCard to the clicked card.
          * @param event the mouse click event
          */
         private void handleCardClick(MouseEvent event){
-                selectedCard = (ImageView) event.getSource();
+                activeCard = (ImageView) event.getSource();
         }
+
+        //TODO: potrei farmi diversi handler per le diverse situazioni di gioco.
+        // per l'inizio mi servono solo situazion
 
 
 
@@ -126,10 +132,17 @@ public class StationController implements Initializable {
                 startingCardFront.setOnMouseClicked(this::handleCardClick);
                 //ho ottenuto l'immagine della carta --> devo metterla nel centro della station
                 stationPane.getChildren().add(startingCardFront);
+
         }
 
+    //TODO: metodo per fare in modo che quando il bottone select viene premuto --> si ottengano le coordinate della activeCard e si resetti la activeCard
+    // inoltre deve controllare se la carta è giocata in front o in back.
 
-
+        @FXML
+        void turnCard(ActionEvent event){
+            boolean playedFront;
+            //if()
+        }
 
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
