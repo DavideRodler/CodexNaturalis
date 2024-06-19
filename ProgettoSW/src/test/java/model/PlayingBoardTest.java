@@ -10,13 +10,15 @@ import model.enums.GameState;
 import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 import model.objectives.Objective;
+import model.objectives.ObjectiveAssign;
 import model.objectives.ObjectiveCountingGold;
 import model.objectives.Points;
-import model.testTemplates.PlayingBoardTemplate;
-import model.testTemplates.PlayingStationTemplate;
+import model.testsTemplate.PlayingBoardTemplate;
+import model.testsTemplate.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;

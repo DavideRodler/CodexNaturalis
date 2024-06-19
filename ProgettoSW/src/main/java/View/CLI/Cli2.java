@@ -774,10 +774,10 @@ System.out.println(purple+"          |______|_||___/|_.__/|___,_|_| |______|_| |
     @Override
     public void askNotMyTurnMenuAction(String currentPlayer) {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        System.out.println("Choose an action: ");
         int menuAnswer = 0;
         boolean ready = false;
         while ((!clientBoard.getCurrentPlayer().equals(clientBoard.getMyplayer().getNickname())) && (!ready || menuAnswer != 7)) {
-            System.out.println("Choose an action: ");
             menuAnswer = scanner.nextInt();
             while (menuAnswer < 1 || menuAnswer > 7) {
                 System.out.println("Invalid choice, please try again.");

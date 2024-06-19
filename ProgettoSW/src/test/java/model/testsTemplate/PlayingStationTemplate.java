@@ -1,4 +1,4 @@
-package model.testTemplates;
+package model.testsTemplate;
 
 import model.PlayingStation;
 import model.cards.*;
@@ -94,60 +94,9 @@ public class PlayingStationTemplate {
         station.getMap().put(creatingCordinatesArray(39, 39), cardAnimal1);
         station.getMap().put(creatingCordinatesArray(38, 38), cardAnimal2);
         station.getMap().put(creatingCordinatesArray(37, 37), cardAnimal3);
-        station.getMap().put(creatingCordinatesArray(36, 36), cardAnimal3);
-        station.getMap().put(creatingCordinatesArray(35, 35), cardAnimal3);
         /*station.addCard(cardAnimal4, 36, 36);
         station.addCard(cardAnimal5, 35, 35);
         station.addCard(cardAnimal6, 34, 34);*/
-
-        return station;
-    }
-
-    public static PlayingStation test_7Cards_2Diagonal_c() {
-
-        // i create three card resource with an EMPTY back and some Suits in the front,
-        // with all corner that can be covered
-        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY),
-                new Corner(SuitEnum.EMPTY));
-        Face frontTmp = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.EMPTY),
-                new Corner(SuitEnum.FUNGI));
-        Points obj = new ObjectiveAssign();
-        // the card resource is of type ANIMAL
-        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-        CardResource cardAnimal3 = new CardResource(2, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-        CardResource cardAnimal4 = new CardResource(3, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-        CardResource cardAnimal5 = new CardResource(4, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-        CardResource cardAnimal6 = new CardResource(5, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-
-        // now i have to make the starting card, i use the same front and back as the
-        // resoources
-        // first i make the ArrayList for the centralsuit
-        ArrayList<SuitEnum> suitList = new ArrayList<SuitEnum>();
-        suitList.add(SuitEnum.ANIMAL);
-        suitList.add(SuitEnum.PLANT);
-        suitList.add(SuitEnum.INSECT);
-
-
-        // i make a PlayingStation with a cardObjective of type diagonalLeft and no
-        // central card, for this test i don't need them
-        //
-        // the objective is of type Diagonal and type ANIMAL
-         ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.ANIMAL);
-         CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
-
-        // for the second objective i set it to null
-        PlayingStation station = new PlayingStation(new HashMap<ArrayList<Integer>, CardPlaying>());
-
-        // now i have to populate the table
-        station.getMap().put(creatingCordinatesArray(56, 45), cardAnimal1);
-        station.getMap().put(creatingCordinatesArray(57, 44), cardAnimal2);
-        station.getMap().put(creatingCordinatesArray(58, 43), cardAnimal3);
-        station.getMap().put(creatingCordinatesArray(32, 27), cardAnimal1);
-        station.getMap().put(creatingCordinatesArray(33, 26), cardAnimal2);
-        station.getMap().put(creatingCordinatesArray(34, 25), cardAnimal3);
-        station.getMap().put(creatingCordinatesArray(25, 24), cardAnimal1);
-
 
         return station;
     }
@@ -182,21 +131,17 @@ public class PlayingStationTemplate {
         // central card, for this test i don't need them
         //
         // the objective is of type Diagonal and type ANIMAL
-        ObjectivePositioning objectivetmp = new ObjectivePositioning(SuitEnum.ANIMAL, SuitEnum.PLANT, DirectionEnum.LEFT, PositionEnum.TOP);
+        ObjectivePositioning objectivetmp = new ObjectivePositioning(SuitEnum.ANIMAL, SuitEnum.PLANT, DirectionEnum.RIGHT, PositionEnum.TOP);
         CardObjective cardObjectiveTmp = new CardObjective(5, 3, objectivetmp);
 
         // for the second objective i set it to null
         PlayingStation station = new PlayingStation(new HashMap<ArrayList<Integer>, CardPlaying>());
 
-        //station.getMap().put(creatingCordinatesArray(43, 45), cardAnimal1);
-        //station.getMap().put(creatingCordinatesArray(42, 46), cardPlant1);
-       // station.getMap().put(creatingCordinatesArray(43, 47), cardAnimal2);
-       // station.getMap().put(creatingCordinatesArray(42, 48), cardPlant2);
         // now i have to populate the table
-        station.getMap().put(creatingCordinatesArray(70, 70), cardAnimal1);
-        station.getMap().put(creatingCordinatesArray(69, 71), cardPlant1);
-        station.getMap().put(creatingCordinatesArray(70, 72), cardAnimal2);
-        station.getMap().put(creatingCordinatesArray(69, 73), cardPlant2);
+        station.getMap().put(creatingCordinatesArray(41, 41), cardAnimal1);
+        station.getMap().put(creatingCordinatesArray(42, 42), cardPlant1);
+        station.getMap().put(creatingCordinatesArray(41, 43), cardAnimal2);
+        station.getMap().put(creatingCordinatesArray(42, 44), cardPlant2);
 
 
         return station;
@@ -235,7 +180,7 @@ public class PlayingStationTemplate {
         // central card, for this test i don't need them
         //
         // the objective is of type Diagonal and type ANIMAL
-        ObjectivePositioning objectivetmp = new ObjectivePositioning(SuitEnum.ANIMAL, SuitEnum.PLANT, DirectionEnum.LEFT
+        ObjectivePositioning objectivetmp = new ObjectivePositioning(SuitEnum.ANIMAL, SuitEnum.PLANT, DirectionEnum.RIGHT
                 , PositionEnum.TOP);
         CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
 
@@ -264,64 +209,6 @@ public class PlayingStationTemplate {
 
     }
 
-    public static PlayingStation test_6Cards_2Positioning_down() {
-
-        // i create two card resource with an EMPTY back and some Suits in the front,
-        // with all corner that can be covered
-        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY),
-                new Corner(SuitEnum.EMPTY));
-        Face frontTmp = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.EMPTY),
-                new Corner(SuitEnum.FUNGI));
-        Points obj = new ObjectiveAssign();
-        // the card resource is of type ANIMAL
-        CardResource cardInsect1 = new CardResource(0, frontTmp, backTmp, SuitEnum.INSECT, 0, obj);
-        CardResource cardFungi1 = new CardResource(1, frontTmp, backTmp, SuitEnum.FUNGI, 0, obj);
-        CardResource cardFungi2 = new CardResource(2, frontTmp, backTmp, SuitEnum.FUNGI, 0, obj);
-        CardResource cardInsect2 = new CardResource(0, frontTmp, backTmp, SuitEnum.INSECT, 0, obj);
-        CardResource cardPlant3 = new CardResource(1, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
-        CardResource cardPlant4 = new CardResource(2, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
-
-        // now i have to make the starting card, i use the same front and back as the
-        // resources
-        // first i make the ArrayList for the centralsuit
-        ArrayList<SuitEnum> suitList = new ArrayList<SuitEnum>();
-        suitList.add(SuitEnum.ANIMAL);
-        suitList.add(SuitEnum.PLANT);
-        suitList.add(SuitEnum.INSECT);
-
-        CardStarting cardStarting = new CardStarting(6, frontTmp, backTmp, suitList);
-
-        // i make a PlayingStation with a cardObjective of type diagonalLeft and no
-        // central card, for this test i don't need them
-        //
-        // the objective is of type Diagonal and type ANIMAL
-        ObjectivePositioning objectivetmp = new ObjectivePositioning(SuitEnum.ANIMAL, SuitEnum.PLANT, DirectionEnum.RIGHT
-                , PositionEnum.BOTTOM);
-        CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
-
-        // for the second objective i set it to null
-        PlayingStation station = new PlayingStation(new HashMap<ArrayList<Integer>, CardPlaying>());
-
-
-        station.getMap().put(creatingCordinatesArray(50, 50), cardInsect1);
-        station.getMap().put(creatingCordinatesArray(49, 49), cardFungi1);
-        station.getMap().put(creatingCordinatesArray(50, 48), cardInsect2);
-        station.getMap().put(creatingCordinatesArray(49, 47), cardFungi2);
-
-        //second time objective is satisfied
-        station.getMap().put(creatingCordinatesArray(31, 37), cardInsect1);
-        station.getMap().put(creatingCordinatesArray(30, 36), cardFungi1);
-        station.getMap().put(creatingCordinatesArray(31, 35), cardInsect2);
-        station.getMap().put(creatingCordinatesArray(30, 34), cardFungi2);
-
-        station.getMap().put(creatingCordinatesArray(46, 52), cardInsect1);
-        station.getMap().put(creatingCordinatesArray(47, 51), cardFungi1);
-        station.getMap().put(creatingCordinatesArray(46, 50), cardInsect2);
-        station.getMap().put(creatingCordinatesArray(47, 49), cardFungi2);
-
-        return station;
-
-    }
     public static PlayingStation test_null_corner_c() { //2 animal, 1 plant, 2 fungi, 1 insect, 1 points
         // i create two card resource with an EMPTY back and some Suits in the front,
         // with all corner that can be covered

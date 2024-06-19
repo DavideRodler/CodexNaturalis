@@ -7,7 +7,7 @@ import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.enums.*;
 import model.objectives.ObjectiveDiagonal;
-import model.testTemplates.PlayingStationTemplate;
+import model.testsTemplate.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

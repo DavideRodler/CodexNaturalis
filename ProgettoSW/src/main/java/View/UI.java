@@ -60,6 +60,7 @@ public interface UI {
 
     void printAvailableTokens(ArrayList<TokenEnum> availableTokens);
 
+
     void askMenuAction();
 
     void askNotMyTurnMenuAction(String currentPlayer);
