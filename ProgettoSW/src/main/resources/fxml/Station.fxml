@@ -42,11 +42,11 @@
             <Image url="@../80_INSECT_front.png" />
          </image>
       </ImageView>
-      <VBox layoutX="415.0" layoutY="617.0" spacing="10.0">
+      <VBox layoutX="490.0" layoutY="626.0" spacing="10.0">
          <children>
             <HBox alignment="TOP_CENTER" spacing="40.0">
                <children>
-                  <Button fx:id="turnCardButton" mnemonicParsing="false" text="turn" />
+                  <Button fx:id="turnCardButton" mnemonicParsing="false" onAction="#turnCard" text="turn" />
                   <Button fx:id="selectCardButton" mnemonicParsing="false" text="select" />
                </children>
             </HBox>
@@ -86,7 +86,7 @@
       </VBox>
       <ScrollPane hbarPolicy="ALWAYS" layoutX="261.0" layoutY="12.0" prefHeight="590.0" prefWidth="793.0" vbarPolicy="ALWAYS">
          <content>
-            <StackPane fx:id="stationPane" prefHeight="575.0" prefWidth="774.0" />
+            <StackPane fx:id="stationPane" prefHeight="578.0" prefWidth="773.0" />
          </content>
       </ScrollPane>
    </children>

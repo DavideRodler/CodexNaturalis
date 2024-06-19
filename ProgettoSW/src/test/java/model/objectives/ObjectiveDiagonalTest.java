@@ -6,7 +6,7 @@ import model.PlayingStation;
 import model.cards.CardObjective;
 import model.enums.DirectionEnum;
 import model.enums.SuitEnum;
-import model.testTemplates.PlayingStationTemplate;
+import model.testsTemplate.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,7 +28,7 @@ class ObjectiveDiagonalTest {
     @Test
     public void test_7Cards_2Diagonal() throws ChangedStateException, NotValidMoveException {
         // Creating the PlayingStation
-        PlayingStation station = PlayingStationTemplate.test_7Cards_2Diagonal_c();
+        PlayingStation station = PlayingStationTemplate.test_6Cards_2Positioning();
         ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.ANIMAL);
         CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
         int punti1 = cardObjectiveTmp.getObjective().countObjectivePoints(station);

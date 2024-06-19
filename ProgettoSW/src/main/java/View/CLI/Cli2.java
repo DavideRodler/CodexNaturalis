@@ -1,14 +1,20 @@
 package View.CLI;
 
-import Socket.Messages.ChatMessage;
-import Socket.Messages.PrivateChatMessage;
+import Network.Client.ClientController;
+import Socket.Messages.*;
 import View.UI;
+import exception.InvalidPlacingCondition;
 import exception.NonePlayerFoundException;
+import exception.NotMyTurnException;
 import model.PlayingStation;
+import model.cards.CardGold;
+import model.cards.CardResource;
 import model.client.ClientBoard;
+import model.client.ReductPlayer;
 import model.enums.TokenEnum;
 
 import java.io.InputStreamReader;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
@@ -29,10 +35,11 @@ public class Cli2 implements UI {
     private final String manuscript;
     private final String inkwell;
     private ClientBoard clientBoard;
+    private ClientController clientController;
 
 
     //constructor with clientboard
-    public Cli2(ClientBoard clientBoard) {
+    public Cli2(ClientBoard clientBoard, ClientController clientController) {
         blue = "\033[0;34m";
         green = "\033[0;32m";
         yellow = "\033[0;33m";
@@ -47,7 +54,7 @@ public class Cli2 implements UI {
         quill = gold + "Q";
 
         this.clientBoard = clientBoard;
-
+        this.clientController = clientController;
     }
 
     public Cli2() {
@@ -67,7 +74,7 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public void launchGui(ClientBoard clientModel) {
+    public void launchGui(ClientBoard clientModel, ClientController clientController){
 
     }
 
@@ -93,6 +100,7 @@ public class Cli2 implements UI {
 
     }
 
+
     @Override
     public String askNickname() {
         Scanner in = new Scanner(new InputStreamReader(System.in));
@@ -117,6 +125,7 @@ public class Cli2 implements UI {
      * this method asks the player if they want to play the starting card in front or in back
      * @return
      */
+
     @Override
     public boolean askStartingCardPlayedBack() {
         System.out.println("Select the front or the back of your starting card: ");
@@ -168,6 +177,7 @@ public class Cli2 implements UI {
      *
      * @return
      */
+
     @Override
     public int askObjectiveCard() {
         System.out.println("Select the Objective Card you want to keep:");
@@ -254,8 +264,8 @@ public class Cli2 implements UI {
      * this method asks where the player which card he would like to play, if he wants to play it in front or in back and also where.
      * @return an array containing the choices of the player.
      */
-    @Override
-    public Integer[] askCoordinatesOfCards() {
+
+    private Integer[] askCoordinatesOfCards() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int cardChoice;
         do {
@@ -283,8 +293,7 @@ public class Cli2 implements UI {
      * one ot the two decks.
      * @return the choice of the player
      */
-    @Override
-    public Integer askWhichCardToDraw() {
+    private Integer askWhichCardToDraw() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         Integer choice;
         do {
@@ -300,12 +309,6 @@ public class Cli2 implements UI {
      */
     @Override
     public void printStartOfPlayerTurn() {
-        /*print4CentralCardsAndDecks();
-        System.out.println();
-        printCommonObjectives();
-        printSecretObjective();
-        printSetupPlayerHand();
-        printPlayerStation(clientBoard.getMyplayer().getStation());*/
         printMenu();
     }
 
@@ -393,10 +396,33 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public String askMessage() {
-        //printMenu();
+    public void askPrivateMessage(String nickname) {
+        String Message2;
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        return scanner.nextLine();
+        do{
+            privateChatTitlePrinter();
+            printChatInfo();
+            printSpace();
+            printSpace();
+            printSpace();
+            printPrivateChat(clientBoard.getMyplayer().getNickname(), nickname);
+            Message2 = scanner.nextLine();
+            if(!Message2.isEmpty() && !Message2.equals("EXIT")) {
+                try {
+                    clientController.messageToServerhandler(new PrivateChatMessage(Message2, clientBoard.getMyplayer().getNickname(), nickname));
+                }catch (RemoteException | InvalidPlacingCondition | NotMyTurnException e){
+                    e.printStackTrace();
+                }
+            }
+            printSpace();
+            printSpace();
+            printSpace();
+            printSpace();
+            printSpace();
+            printSpace();
+            printSpace();
+            printSpace();
+        }while(!Message2.equals("EXIT"));
     }
 
     @Override
@@ -419,7 +445,7 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public String printPrivateChatInfo() {
+    public void printPrivateChatInfo() {
         System.out.println();
         System.out.println("Insert the nickname of the player you want to chat with: ");
         for (var c : clientBoard.getOtherplayers()) {
@@ -438,7 +464,12 @@ public class Cli2 implements UI {
                 System.out.println("Invalid nickname. Please try again.");
             }
         } while (!validNickname);
-        return nickname;
+        try{
+            this.clientController.messageToServerhandler(new PrivateChatNicknameMessage(nickname));
+        }catch(RemoteException | InvalidPlacingCondition | NotMyTurnException e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -476,6 +507,39 @@ System.out.println(purple+"          |______|_||___/|_.__/|___,_|_| |______|_| |
     }
 
     @Override
+    public void printGloablChatInfo() {
+
+        String Message;
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        do{
+            privateChatTitlePrinter();
+            printChatInfo();
+            printSpace();
+            printSpace();
+            printSpace();
+            printChat();
+            Message = scanner.nextLine();
+            if(!Message.isEmpty() && !Message.equals("EXIT")) {
+                try {
+                    clientController.messageToServerhandler(new ChatMessage("GLOBAL", Message, clientBoard.getMyplayer().getNickname()));
+                }catch (RemoteException | InvalidPlacingCondition | NotMyTurnException e){
+                    e.printStackTrace();
+                }
+            }
+            printSpace();
+            printSpace();
+            printSpace();
+            printSpace();
+            printSpace();
+            printSpace();
+            printSpace();
+            printSpace();
+        }while(!Message.equals("EXIT"));
+    }
+
+
+
+    @Override
     public void privateChatTitlePrinter() {
         printSpace();
         printSpace();
@@ -498,12 +562,16 @@ System.out.println(purple+"          |______|_||___/|_.__/|___,_|_| |______|_| |
 
 
     @Override
-    public String askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers) {
+    public void askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers) {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         System.out.println("Insert the type of chat you want to open: ");
         System.out.println("1. Global chat");
         System.out.println("2. Private chat");
-        return scanner.nextLine();
+        try {
+            this.clientController.messageToServerhandler(new ChatChoiceMessage(scanner.nextLine()));
+        }catch (RemoteException | InvalidPlacingCondition | NotMyTurnException e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -581,33 +649,188 @@ System.out.println(purple+"          |______|_||___/|_.__/|___,_|_| |______|_| |
     }
 
     @Override
-    public Integer askMenuAction() {
-        Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        System.out.println("Choose an action: ");
-        Integer choice = scanner.nextInt();
-        while (choice < 1 || choice > 8) {
-            System.out.println("Invalid choice, please try again.");
+    public void askMenuAction() {
+
+        //showing the board
+        //the menuAnswer to where to put the card
+        Integer[] inputAnswer;
+        boolean endTurn = false;
+        boolean cardPlaced = false;
+        printMenu();
+        //the card i want to put in the station
+        CardResource cardchoosen;
+        int cardId;
+        int menuAnswer;
+
+        do{
+            Scanner scanner = new Scanner(new InputStreamReader(System.in));
             System.out.println("Choose an action: ");
-            choice = scanner.nextInt();
-        }
-        return choice;
+            menuAnswer = scanner.nextInt();
+            while (menuAnswer < 1 || menuAnswer > 8) {
+                System.out.println("Invalid choice, please try again.");
+                System.out.println("Choose an action: ");
+                menuAnswer = scanner.nextInt();
+            }
+
+            try {
+                switch(menuAnswer) {
+                    case 1:
+                    {
+                        if(!cardPlaced) {
+                            printPlayerStation(clientBoard.getMyplayer().getStation());
+                            printPlayerHand();
+                            inputAnswer = askCoordinatesOfCards();
+                            cardchoosen = clientBoard.getMyplayer().getHand().get(inputAnswer[0]);
+                            cardId = cardchoosen.getId();
+                            this.clientController.messageToServerhandler(new PlaceCardMessage(cardId, inputAnswer[1] == 2, inputAnswer[2], inputAnswer[3]));
+                            cardPlaced = true;
+                            printSpace();
+                            print4CentralCardsAndDecks();
+                            int selection = askWhichCardToDraw();
+
+                            CardResource card;
+                            if (selection >= 1 && selection <= 4) {
+                                if (selection >= 3) {
+                                    ArrayList<CardResource> centralCardsResource = clientBoard.getCentralCardsResource();
+                                    card = centralCardsResource.get(selection - 3);
+                                } else {
+                                    ArrayList<CardGold> centralCardsGold = clientBoard.getCentralCardsGold();
+                                    card = centralCardsGold.get(selection - 1);
+                                }
+                                try {
+                                    this.clientController.messageToServerhandler(new DrawCardMessage(card.getId()));
+                                } catch (RemoteException | NotMyTurnException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            } else {
+                                try {
+                                    this.clientController.messageToServerhandler(new DrawDeckMessage(selection));
+                                } catch (RemoteException | InvalidPlacingCondition | NotMyTurnException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                            endTurn = true;
+                            printMenu();
+                        }
+                        else {
+                            printMenu2and3();
+                            printSpace();
+                            printSpace();
+                            showErrorMessage("You have already placed a card in your station");
+                            printSpace();
+                            printSpace();
+                        }
+                        break;
+                    }
+                    case 2:
+                        printMenu2and3();
+                        printPlayerStation(clientBoard.getMyplayer().getStation());
+                        printSpace();
+                        break;
+                    case 3:
+                        String playerStationName = askWichStationToPrint();
+                        printMenu2and3();
+                        printOtherPlayersStation(playerStationName);
+                        printSpace();
+                        break;
+                    case 4:
+                        printMenu2and3();
+                        print4CentralCardsAndDecks();
+                        printCommonObjectives();
+                        printSpace();
+                        break;
+                    case 5:
+                        printMenu2and3();
+                        printPlayerHand();
+                        printSpace();
+                        break;
+                    case 6:
+                        printMenu2and3();
+                        printSpace();
+                        printSpace();
+                        printPoints();
+                        printSpace();
+                        printSpace();
+                        break;
+                    case 7:
+                        askTypeOfChat(clientBoard.getOtherplayers().size(), clientBoard.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
+                        printMenu();
+                        break;
+                    case 8:
+                        if(!endTurn)
+                            System.out.println("You can not end your turn before had placed a card in your station");
+
+                        break;
+                }
+            } catch (InvalidPlacingCondition | NonePlayerFoundException e) {
+                showErrorMessage(e.getMessage());
+            } catch (RemoteException | NotMyTurnException e) {
+                throw new RuntimeException(e);
+            }
+
+        }while (menuAnswer != 8 || !endTurn);
     }
 
     @Override
-    public Integer askNotMyTurnMenuAction() {
+    public void askNotMyTurnMenuAction(String currentPlayer) {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         System.out.println("Choose an action: ");
-        Integer choice = scanner.nextInt();
-        while (choice < 1 || choice > 7) {
-            System.out.println("Invalid choice, please try again.");
-            System.out.println("Choose an action: ");
-            choice = scanner.nextInt();
+        int menuAnswer = 0;
+        boolean ready = false;
+        while ((!clientBoard.getCurrentPlayer().equals(clientBoard.getMyplayer().getNickname())) && (!ready || menuAnswer != 7)) {
+            menuAnswer = scanner.nextInt();
+            while (menuAnswer < 1 || menuAnswer > 7) {
+                System.out.println("Invalid choice, please try again.");
+                System.out.println("Choose an action: ");
+                menuAnswer = scanner.nextInt();
+            }
+            try {
+                switch (menuAnswer) {
+                    case 1:
+                        printMenu2and3NotMyTurn(currentPlayer);
+                        printPlayerStation(clientBoard.getMyplayer().getStation());
+                        printSpace();
+                        break;
+                    case 2:
+                        String playerStationName = askWichStationToPrint();
+                        printMenu2and3NotMyTurn(currentPlayer);
+                        printOtherPlayersStation(playerStationName);
+                        printSpace();
+                        break;
+                    case 3:
+                        printMenu2and3NotMyTurn(currentPlayer);
+                        print4CentralCardsAndDecks();
+                        printCommonObjectives();
+                        printSpace();
+                        break;
+                    case 4:
+                        printMenu2and3NotMyTurn(currentPlayer);
+                        printPlayerHand();
+                        printSpace();
+                        break;
+                    case 5:
+                        printMenu2and3NotMyTurn(currentPlayer);
+                        printSpace();
+                        printSpace();
+                        printPoints();
+                        printSpace();
+                        printSpace();
+                        break;
+                    case 6:
+                        askTypeOfChat(clientBoard.getOtherplayers().size(), clientBoard.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
+                        printMenuNotMyTurn(currentPlayer);
+                        break;
+                    case 7:
+                        ready = true;
+                        break;
+                }
+            } catch (NonePlayerFoundException e) {
+                showErrorMessage(e.getMessage());
+            }
         }
-        return choice;
     }
 
-    @Override
-    public String askWichStationToPrint() {
+    private String askWichStationToPrint() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         System.out.println("Insert the nickname of the player of which you want to see the station: ");
         for (var c : clientBoard.getOtherplayers()) {

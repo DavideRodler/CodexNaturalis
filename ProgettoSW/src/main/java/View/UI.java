@@ -1,5 +1,6 @@
 package View;
 
+import Network.Client.ClientController;
 import exception.NonePlayerFoundException;
 import model.PlayingStation;
 import model.client.ClientBoard;
@@ -9,27 +10,19 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public interface UI {
-    void launchGui(ClientBoard clientModel);
+
+    void launchGui(ClientBoard clientBoard, ClientController clientController);
 
     void showStartingCard();
 
     void showGameTitle();
-
-    String askNickname();
-
-    int askPlayerNumber();
-
-
-    boolean askStartingCardPlayedBack();
 
     void printCommonObjectives();
 
     void printSecretObjective();
 
     void printSelectableObjectives();
-
-    int askObjectiveCard();
-
+    
     //this method only shows the 4 Central cards at the beginning of the game
     void print4CentralCardsAndDecks();
 
@@ -39,10 +32,6 @@ public interface UI {
     void printSetupPlayerHand();
 
     void printPlayerHand();
-
-    Integer[] askCoordinatesOfCards();
-
-    Integer askWhichCardToDraw();
 
     //ToDo
 
@@ -54,7 +43,7 @@ public interface UI {
 
     void privateChatTitlePrinter();
 
-    String askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers);
+    void askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers);
 
     // printa solo la staion aggiornata più risorse e più punti
    void printStationAfterCardHasBeenAdded();
@@ -62,8 +51,6 @@ public interface UI {
    void printOtherPlayersStation(String nickname) throws NonePlayerFoundException;
 
     void printFinalPoints(LinkedHashMap<String, ArrayList<Integer>> map);
-
-    TokenEnum askToken(ArrayList<TokenEnum> availableTokens);
 
     void printPlayerToken();
 
@@ -74,11 +61,9 @@ public interface UI {
     void printAvailableTokens(ArrayList<TokenEnum> availableTokens);
 
 
-    Integer askMenuAction();
+    void askMenuAction();
 
-    Integer askNotMyTurnMenuAction();
-
-    String askWichStationToPrint();
+    void askNotMyTurnMenuAction(String currentPlayer);
 
     void printSpace();
 
@@ -88,17 +73,29 @@ public interface UI {
 
     void printMenu2and3NotMyTurn(String currentPlayer);
 
-    String askMessage();
+    void askPrivateMessage(String nickname);
 
     void printChat();
 
     void printChatInfo();
 
-    String printPrivateChatInfo();
+    void printPrivateChatInfo();
 
     void printPrivateChat(String nickname, String nickname1);
 
     void chatTitlePrinter();
 
     void printPoints();
+
+    void printGloablChatInfo();
+
+    String askNickname();
+
+    TokenEnum askToken(ArrayList<TokenEnum> availableTokens);
+
+    boolean askStartingCardPlayedBack();
+
+    int askPlayerNumber();
+
+    int askObjectiveCard();
 }

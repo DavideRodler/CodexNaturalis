@@ -25,7 +25,7 @@ public class ClientBoard implements Serializable {
     private GameState gameState;
     private String currentPlayer;
     private Player myplayer;
- //   private String currentPlayerName;
+    private String currentPlayerName;
     private ArrayList<ReductPlayer> otherplayers;
     private SuitEnum backOfResourceDeck;
     private SuitEnum backOfGoldDeck;

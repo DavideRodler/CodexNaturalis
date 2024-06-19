@@ -1,5 +1,10 @@
 package View.GUI;
 
+import Network.Client.ClientController;
+import Socket.Messages.NicknameMessage;
+import Socket.Messages.TokenMessage;
+import exception.InvalidPlacingCondition;
+import exception.NotMyTurnException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -9,11 +14,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 
 
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -52,21 +59,33 @@ public class ChooseNickAndTokenController implements Initializable{
     @FXML
     private ImageView imgtest;
 
+    @FXML
+    private HBox nicknamePane;
 
     @FXML
-    public void enterNickname() {
+    private HBox tokenPane;
+
+    private ClientController clientController;
+
+    public ChooseNickAndTokenController(ClientController clientController){
+        this.clientController = clientController;
+    }
+
+
+    @FXML
+    public void enterNickname() throws InvalidPlacingCondition, RemoteException, NotMyTurnException {
         nick = chooseNickname.getText();
         label.setText("Choose your token!");
-        enterTokenButton.setVisible(true);
-        chooseToken.setVisible(true);
+        this.clientController.messageToServerhandler(new NicknameMessage(nick));
     }
 
     @FXML
     public void enterToken() { //TODO: gestire il fatto che un token potrebbe essere stato scelto da un altro giocatore
         TokenEnum token = chooseToken.getValue();
+        //clientController.messageToServerhandler(new TokenMessage(clientController.getClientModel().getMyplayer().getNickname(), token));
         label.setText("Waiting for other players...");
+        //cambio di scena quanto tutti i players sono connessi --> dall'esterno
     }
-
 
 
     @FXML
@@ -74,20 +93,15 @@ public class ChooseNickAndTokenController implements Initializable{
         for(TokenEnum token: tokens){
             chooseToken.getItems().add(token);
         }
+        tokenPane.setVisible(true);
     }
 
-    public void enterNicknameAndToken(MouseEvent mouseEvent) {
-    }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        CardLoader cardLoader = new CardLoader();
         label.setText("Enter your nickname!");
-        enterTokenButton.setVisible(false);
-        chooseToken.setVisible(false);
-        //imgtest.setImage(cardLoader.getBack(78, SuitEnum.INSECT));
-
+        tokenPane.setVisible(false);
     }
 
 

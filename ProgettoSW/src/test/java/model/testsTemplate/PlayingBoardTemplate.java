@@ -1,4 +1,4 @@
-package model.testTemplates;
+package model.testsTemplate;
 
 import model.Player;
 import model.PlayingBoard;
