@@ -175,6 +175,11 @@ public class StationController implements Initializable {
         }
 
 
+        private void getImageBack(){
+
+        }
+
+
 
 //TODO: una volta che una carta viene giocata, toglierla dalla mappa! non deve più essere selezionabile e girata.
         @Override
