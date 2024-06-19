@@ -64,4 +64,7 @@ public interface UI {
     void printAvailableTokens(ArrayList<TokenEnum> availableTokens);
 
 
+    void printCardAddedSuccessfully();
+
+    void printCardNotAdded(String message);
 }

@@ -230,6 +230,11 @@ public class SocketClientHandler implements VirtualView {
     }
 
     @Override
+    public void notifyResultOfCardAddedToStation(boolean result, String message) throws RemoteException {
+
+    }
+
+    @Override
     public void notifyGameFinished(LinkedHashMap<String, ArrayList<Integer>> scoreBoard) throws RemoteException {
         //TODO
     }

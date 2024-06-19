@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="queue su client e server con messaggi">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ServerToClient/AddCardResultMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/ServerToClient/ResultOfCardAddedToStationMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/queqe/QueueResultOfCardAddedToStationMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientToServerCommunication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientToServerCommunication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +85,7 @@
     "Application.ClientApp.executor": "Run",
     "Application.Gui.executor": "Run",
     "Application.RmiClient.executor": "Run",
-    "Application.ServerApp.executor": "Run",
+    "Application.ServerApp.executor": "Debug",
     "Application.deckconstructor.executor": "Run",
     "Application.decktameplatetom.executor": "Run",
     "Application.playngstationTameplate.executor": "Run",
@@ -194,6 +199,9 @@
       <recent name="model.objectives" />
       <recent name="model.cards" />
       <recent name="model.cards.face" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Socket.Messages.queqe" />
     </key>
   </component>
   <component name="RunManager" selected="Application.ClientApp">
@@ -848,13 +856,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Network/Server/Server.java</url>
-          <line>254</line>
+          <line>268</line>
           <option name="timeStamp" value="319" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Network/Server/Server.java</url>
-          <line>38</line>
+          <line>40</line>
           <option name="timeStamp" value="320" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="321" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Server/RMI/RmiServer.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="322" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java</url>
+          <line>255</line>
+          <option name="timeStamp" value="324" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java</url>
@@ -873,6 +896,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="309" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java</url>
+          <line>325</line>
+          <properties class="Network.Client.ClientController" method="HandleCardAddedToStation">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="323" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

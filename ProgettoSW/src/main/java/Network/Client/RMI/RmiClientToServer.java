@@ -6,7 +6,6 @@ import Network.Server.VirtualServer;
 
 import Socket.Messages.ClientToServer.*;
 import Socket.Messages.Message;
-import exception.InvalidPlacingCondition;
 import model.enums.TokenEnum;
 
 import java.rmi.RemoteException;
@@ -253,7 +252,8 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
     }
 
     @Override
-    public void notifyResultOfCardAdded(boolean result, String message) throws RemoteException {
+    public void notifyResultOfCardAddedToStation(boolean result, String message) throws RemoteException {
+        clientController.HandleCardAddedToStation(result, message);
 
     }
 

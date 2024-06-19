@@ -438,6 +438,17 @@ public class Cli2 implements UI {
     }
 
     @Override
+    public void printCardAddedSuccessfully() {
+        System.out.println("Card added successfully");
+    }
+
+    @Override
+    public void printCardNotAdded(String message) {
+        System.out.println(message);
+
+    }
+
+    @Override
     public void printPlayerToken(){
         System.out.println("Your token is: " + clientBoard.getMyplayer().getToken());
     }

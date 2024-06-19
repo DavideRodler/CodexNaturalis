@@ -3,7 +3,9 @@ package Network.Server;
 import Network.Client.RMI.VirtualView;
 import Socket.Messages.Message;
 import Socket.Messages.ServerToClient.ActionMessage;
+import Socket.Messages.ServerToClient.ResultOfCardAddedToStationMessage;
 import Socket.Messages.queqe.QueueActionWithClientMessage;
+import Socket.Messages.queqe.QueueResultOfCardAddedToStationMessage;
 import controller.GameController;
 import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
@@ -193,6 +195,18 @@ public class Server {
                         throw new RuntimeException(e);
                     }
                     break;
+                case "QueueResultOfCardAddedToStation":
+                    synchronized (this.clients) {
+                        QueueResultOfCardAddedToStationMessage message = (QueueResultOfCardAddedToStationMessage) actionMessage;
+                        new Thread(() -> {
+                            try {
+                                message.getClient().notifyResultOfCardAddedToStation(message.isAdded(), message.getMessage());
+                            } catch (RemoteException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }).start();
+                    }
+                    break;
                 case "gameFinished":
                     synchronized (this.clients) {
                         for (VirtualView client : clients) {
@@ -380,6 +394,17 @@ public class Server {
         try {
             gameController.addCardToPlayingStation(nickname, id, playedBack, x, y);
         } catch (InvalidPlacingCondition e) {
+            String message = "NO MESSAGE";
+            message = e.getMessage();
+            try {
+                queue.put(new QueueResultOfCardAddedToStationMessage(false, message, clientsMap.get(nickname)));
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        try {
+            queue.put(new QueueResultOfCardAddedToStationMessage(true, "Card added to station", clientsMap.get(nickname)));
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 

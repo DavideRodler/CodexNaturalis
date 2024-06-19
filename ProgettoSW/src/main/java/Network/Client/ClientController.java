@@ -322,4 +322,15 @@ public class ClientController {
         TokenEnum token = ui.askToken(clientModel.getAvailableTokens());
         clientToServerCommunication.setToken(clientModel.getMyplayer().getNickname(), token);
     }
+
+    public void HandleCardAddedToStation(boolean result, String message) {
+        if(result) {
+            ui.printCardAddedSuccessfully();
+            startAfterCardHasBeenAddedToStation();
+        }
+        else {
+            ui.printCardNotAdded(message);
+            notifyItIsYourTurn();
+        }
+    }
 }

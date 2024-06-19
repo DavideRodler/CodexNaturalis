@@ -165,6 +165,16 @@ public class Gui extends Application implements UI {
     public void printAvailableTokens(ArrayList<TokenEnum> availableTokens) {
 
     }
+
+    @Override
+    public void printCardAddedSuccessfully() {
+
+    }
+
+    @Override
+    public void printCardNotAdded(String message) {
+
+    }
 }
 
 //TODO:
