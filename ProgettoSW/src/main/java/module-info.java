@@ -3,6 +3,7 @@
     requires javafx.fxml;
     requires json.simple;
     requires java.rmi;
+
     requires javafx.graphics;
     requires javafx.controls;
     requires java.desktop;
