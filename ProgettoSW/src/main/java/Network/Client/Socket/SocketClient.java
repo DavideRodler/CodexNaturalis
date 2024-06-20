@@ -3,6 +3,7 @@ package Network.Client.Socket;
 import Network.Client.ClientController;
 import Network.Client.ClientToServerCommunication;
 import Socket.Messages.Message;
+import Socket.Messages.ServerToClient.ResultOfCardAddedToStationMessage;
 import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
 import exception.NotMyTurnException;
@@ -64,6 +65,11 @@ public class SocketClient implements ClientToServerCommunication{
 
                 case "showHandsAndCommonObjectives" -> clientController.showHandsAndCommonObjectives();
                 case "setupOfSecretObjective" -> clientController.setupOfSecretObjective();
+
+                case "ResultOfCardAddedToStation" -> {
+                    ResultOfCardAddedToStationMessage resultOfCardAddedToStationMessage = (ResultOfCardAddedToStationMessage) message;
+                    clientController.handleResultOfCardAdded(resultOfCardAddedToStationMessage.isAdded(), resultOfCardAddedToStationMessage.getMessage());
+                }
 
                 case "notifyItIsYourTurn" -> clientController.notifyItIsYourTurn();
 

@@ -93,9 +93,11 @@ public class ClientController {
     public void handleResultOfCardAdded(boolean result, String message) {
         if(result) {
             ui.printCardAddedSuccessfully();
+            startAfterCardHasBeenAddedToStation();
         }
         else {
             ui.printCardNotAdded(message);
+            notifyItIsYourTurn();
         }
     }
 
@@ -323,14 +325,5 @@ public class ClientController {
         clientToServerCommunication.setToken(clientModel.getMyplayer().getNickname(), token);
     }
 
-    public void HandleCardAddedToStation(boolean result, String message) {
-        if(result) {
-            ui.printCardAddedSuccessfully();
-            startAfterCardHasBeenAddedToStation();
-        }
-        else {
-            ui.printCardNotAdded(message);
-            notifyItIsYourTurn();
-        }
-    }
+
 }

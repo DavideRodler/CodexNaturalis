@@ -2,12 +2,12 @@ package Socket.Messages.ClientToServer;
 
 import Socket.Messages.Message;
 
-public class AddCardFromCentralCardsToPlayerHandsMessage extends Message {
+public class AddCardFromCentralCardsToPlayerHandMessage extends Message {
     private final String nickname;
     private final int cardId;
 
-    public AddCardFromCentralCardsToPlayerHandsMessage(String nickname, int cardId) {
-        super("AddCardFromCentralCardsToPlayerHands");
+    public AddCardFromCentralCardsToPlayerHandMessage(String nickname, int cardId) {
+        super("AddCardFromCentralCardsToPlayerHand");
         this.nickname = nickname;
         this.cardId = cardId;
     }

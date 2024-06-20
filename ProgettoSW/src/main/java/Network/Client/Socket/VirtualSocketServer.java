@@ -86,21 +86,45 @@ public class VirtualSocketServer implements VirtualServer {
 
     @Override
     public void addCardToStation(String nickname, int cardId, boolean playedBack, int x, int y) throws RemoteException{
-
+        AddCardToStationMessage message = new AddCardToStationMessage(nickname, cardId, playedBack, x, y);
+        try {
+            output.writeObject(message);
+            output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void addCardFromDeckToPlayerHand(String nickname, int cardId) throws RemoteException {
-
+        AddCardFromDeckToPlayerHandMessage message = new AddCardFromDeckToPlayerHandMessage(nickname, cardId);
+        try {
+            output.writeObject(message);
+            output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void addCardFromCentralCardsToPlayerHand(String nickname, int id) throws RemoteException {
-
+        AddCardFromCentralCardsToPlayerHandMessage message = new AddCardFromCentralCardsToPlayerHandMessage(nickname, id);
+        try {
+            output.writeObject(message);
+            output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void startTurn() throws RemoteException {
-
+        StartTurnMessage message = new StartTurnMessage();
+        try {
+            output.writeObject(message);
+            output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

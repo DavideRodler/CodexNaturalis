@@ -6,6 +6,7 @@ import Network.Server.ServerToClientCommunication;
 import Socket.Messages.ClientToServer.*;
 import Socket.Messages.Message;
 import Socket.Messages.ServerToClient.ActionMessage;
+import Socket.Messages.ServerToClient.ResultOfCardAddedToStationMessage;
 import exception.ChangedStateException;
 import exception.NotValidMoveException;
 
@@ -57,6 +58,22 @@ public class SocketClientHandler implements VirtualView {
                     SetTokenMessage setTokenMessage = (SetTokenMessage) message;
                         server.setToken(setTokenMessage.getNickname(), setTokenMessage.getToken());
                     }
+                case "StartTurn" ->{
+                    server.startTurn();
+                }
+                case "AddCardToStation" -> {
+                    AddCardToStationMessage addCardToStationMessage = (AddCardToStationMessage) message;
+                    server.addCardToStation(addCardToStationMessage.getNickname(), addCardToStationMessage.getCardId(), addCardToStationMessage.isPlayedBack(), addCardToStationMessage.getX(), addCardToStationMessage.getY());
+                }
+                case "AddCardFromDeckToPlayerHand" -> {
+                    AddCardFromDeckToPlayerHandMessage addCardFromDeckToPlayerHandMessage = (AddCardFromDeckToPlayerHandMessage) message;
+                    server.addCardFromDeckToPlayerHand(addCardFromDeckToPlayerHandMessage.getNickname(), addCardFromDeckToPlayerHandMessage.getCardId());
+                }
+                case "AddCardFromCentralCardsToPlayerHand" -> {
+                    AddCardFromCentralCardsToPlayerHandMessage addCardFromCentralCardsToPlayerHandMessage = (AddCardFromCentralCardsToPlayerHandMessage) message;
+                    server.addCardFromCentralCardsToPlayerHand(addCardFromCentralCardsToPlayerHandMessage.getNickname(), addCardFromCentralCardsToPlayerHandMessage.getCardId());
+                }
+
                 default -> System.out.println("invalid message");
                 // handle the message
             }
@@ -231,6 +248,13 @@ public class SocketClientHandler implements VirtualView {
 
     @Override
     public void notifyResultOfCardAddedToStation(boolean result, String message) throws RemoteException {
+        ResultOfCardAddedToStationMessage resultOfCardAddedToStationMessage = new ResultOfCardAddedToStationMessage(result, message);
+        try {
+            this.output.writeObject(resultOfCardAddedToStationMessage);
+            this.output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

@@ -73,9 +73,9 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
                     AddCardToStationMessage addCardToStationMessage = (AddCardToStationMessage) actionMessage;
                     server.addCardToStation(addCardToStationMessage.getNickname(), addCardToStationMessage.getCardId(), addCardToStationMessage.isPlayedBack(), addCardToStationMessage.getX(), addCardToStationMessage.getY());
                     }
-                case "AddCardFromCentralCardsToPlayerHands" -> {
-                    AddCardFromCentralCardsToPlayerHandsMessage addCardFromCentralCardsToPlayerHandsMessage = (AddCardFromCentralCardsToPlayerHandsMessage) actionMessage;
-                    server.addCardFromCentralCardsToPlayerHand(addCardFromCentralCardsToPlayerHandsMessage.getNickname(), addCardFromCentralCardsToPlayerHandsMessage.getCardId());
+                case "AddCardFromCentralCardsToPlayerHand" -> {
+                    AddCardFromCentralCardsToPlayerHandMessage addCardFromCentralCardsToPlayerHandMessage = (AddCardFromCentralCardsToPlayerHandMessage) actionMessage;
+                    server.addCardFromCentralCardsToPlayerHand(addCardFromCentralCardsToPlayerHandMessage.getNickname(), addCardFromCentralCardsToPlayerHandMessage.getCardId());
                 }
                 case "AddCardFromDeckToPlayerHand" -> {
                     AddCardFromDeckToPlayerHandMessage addCardFromDeckToPlayerHandMessage = (AddCardFromDeckToPlayerHandMessage) actionMessage;
@@ -156,9 +156,9 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
 
     @Override
     public void addCardFromCentralCardsToPlayerHand(String nickname, int cardid) {
-        AddCardFromCentralCardsToPlayerHandsMessage addCardFromCentralCardsToPlayerHandsMessage = new AddCardFromCentralCardsToPlayerHandsMessage(nickname,cardid);
+        AddCardFromCentralCardsToPlayerHandMessage addCardFromCentralCardsToPlayerHandMessage = new AddCardFromCentralCardsToPlayerHandMessage(nickname,cardid);
         try {
-            queue.put(addCardFromCentralCardsToPlayerHandsMessage);
+            queue.put(addCardFromCentralCardsToPlayerHandMessage);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -253,7 +253,7 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
 
     @Override
     public void notifyResultOfCardAddedToStation(boolean result, String message) throws RemoteException {
-        clientController.HandleCardAddedToStation(result, message);
+        clientController.handleResultOfCardAdded(result, message);
 
     }
 
