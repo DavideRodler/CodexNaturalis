@@ -398,6 +398,7 @@ public class Server {
             message = e.getMessage();
             try {
                 queue.put(new QueueResultOfCardAddedToStationMessage(false, message, clientsMap.get(nickname)));
+                return;
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
