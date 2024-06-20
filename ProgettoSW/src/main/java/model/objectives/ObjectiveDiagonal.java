@@ -1,19 +1,79 @@
 package model.objectives;
 
 import model.PlayingStation;
+import model.cards.CardPlaying;
 import model.cards.CardResource;
 import model.enums.SuitEnum;
 import model.enums.DirectionEnum;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class ObjectiveDiagonal implements Objective, Serializable { //direzione data dalla carta in alto
 private DirectionEnum directionEnum;
 private SuitEnum color;
 
+
+    public ObjectiveDiagonal(DirectionEnum directionEnum, SuitEnum color){
+        this.color = color;
+        this.directionEnum = directionEnum;
+    }
+
+    public DirectionEnum getDirection (){
+        return directionEnum;
+    }
+
+    public SuitEnum getColor (){
+        return color;
+    }
+
+    public int countObjectivePoints(PlayingStation station) {
+        // Definisci il pattern di carte che stai cercando
+        List<PatternCard> pattern = Arrays.asList(
+                new PatternCard(0, 0, SuitEnum.FUNGI),
+                new PatternCard(1, 0, SuitEnum.FUNGI),
+                new PatternCard(2, 1, SuitEnum.ANIMAL)
+        );
+
+        int points = 0;
+
+        // Scorri attraverso ogni possibile punto di partenza nella PlayingStation
+        HashMap<ArrayList<Integer>, CardPlaying> patternMap = station.getMap();
+        patternMap.remove(new ArrayList<>(Arrays.asList(40, 40)));
+        for (ArrayList<Integer> key : patternMap.keySet()) { // Creiamo una copia del keySet per evitare ConcurrentModificationException
+            if (matchesPattern(station, key, pattern)) {
+                points++;
+                removePattern(station, key, pattern); // Rimuovi le carte corrispondenti al pattern
+            }
+        }
+
+        return points;
+    }
+
+    private boolean matchesPattern(PlayingStation station, ArrayList<Integer> start, List<PatternCard> pattern) {
+        for (PatternCard patternCard : pattern) {
+            ArrayList<Integer> key = new ArrayList<>();
+            key.add(start.get(0) + patternCard.getDx());
+            key.add(start.get(1) + patternCard.getDy());
+            CardResource card = (CardResource) station.getMap().get(key);
+            if (card == null || card.getSymbol() != patternCard.getSuit()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void removePattern(PlayingStation station, ArrayList<Integer> start, List<PatternCard> pattern) {
+        for (PatternCard patternCard : pattern) {
+            ArrayList<Integer> key = new ArrayList<>();
+            key.add(start.get(0) + patternCard.getDx());
+            key.add(start.get(1) + patternCard.getDy());
+            station.getMap().remove(key); // Rimuovi la carta corrispondente dal pattern
+        }
+    }
+
+/*
 @Override
 public int countObjectivePoints(PlayingStation station){
     Boolean[][] flags = new Boolean[81][81];
@@ -165,7 +225,9 @@ public int countObjectivePoints(PlayingStation station){
 
     public ObjectiveDiagonal(DirectionEnum directionEnum, SuitEnum color){
     this.color = color;
+
     this.directionEnum = directionEnum;
-    }
+
+    }*/
 
 }

@@ -1,14 +1,17 @@
 package model.objectives;
 
 import model.PlayingStation;
+import model.cards.CardPlaying;
 import model.cards.CardResource;
+import model.cards.CardStarting;
+import model.cards.face.Corner;
+import model.cards.face.Face;
 import model.enums.SuitEnum;
 import model.enums.DirectionEnum;
 import model.enums.PositionEnum;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class ObjectivePositioning implements Objective, Serializable {
     public SuitEnum colorOneCard;
@@ -40,7 +43,99 @@ public class ObjectivePositioning implements Objective, Serializable {
         this.verticalDirection = verticalDirection;
     }
 
+    @Override
+    public int countObjectivePoints(PlayingStation station) {
+        // Definisci il pattern di carte che stai cercando
+        List<List<PatternCard>> patterns = Arrays.asList(
+                Arrays.asList(
+                        new PatternCard(0, 0, SuitEnum.FUNGI),
+                        new PatternCard(0, 2, SuitEnum.FUNGI),
+                        new PatternCard(1, 3, SuitEnum.ANIMAL)
+                ),
+                Arrays.asList(
+                        new PatternCard(0, 0, SuitEnum.ANIMAL),
+                        new PatternCard(0, 2, SuitEnum.ANIMAL),
+                        new PatternCard(1, 3, SuitEnum.FUNGI)
+                )
 
+                // Aggiungi altri pattern qui...
+        );
+
+        int points = 0;
+
+        // Scorri attraverso ogni possibile punto di partenza nella PlayingStation
+        HashMap<ArrayList<Integer>, CardPlaying> patternMap = station.getMap();
+        patternMap.remove(new ArrayList<>(Arrays.asList(40, 40)));
+        // Creiamo una copia del keySet per evitare ConcurrentModificationException
+        Set<ArrayList<Integer>> keys = new HashSet<>(patternMap.keySet());
+        for (ArrayList<Integer> key : keys) {
+            for (List<PatternCard> pattern : patterns) {
+                if (matchesPattern(station, key, pattern)) {
+                    points++;
+                    removePattern(station, key, pattern); // Rimuovi le carte corrispondenti al pattern
+                }
+            }
+        }
+
+        return points;
+    }
+
+    private boolean matchesPattern(PlayingStation station, ArrayList<Integer> start, List<PatternCard> pattern) {
+        for (PatternCard patternCard : pattern) {
+            ArrayList<Integer> key = new ArrayList<>();
+            key.add(start.get(0) + patternCard.getDx());
+            key.add(start.get(1) + patternCard.getDy());
+            CardResource card = (CardResource) station.getMap().get(key);
+            if (card == null || card.getSymbol() != patternCard.getSuit()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void removePattern(PlayingStation station, ArrayList<Integer> start, List<PatternCard> pattern) {
+        for (PatternCard patternCard : pattern) {
+            ArrayList<Integer> key = new ArrayList<>();
+            key.add(start.get(0) + patternCard.getDx());
+            key.add(start.get(1) + patternCard.getDy());
+            station.getMap().remove(key); // Rimuovi la carta corrispondente dal pattern
+        }
+    }
+
+
+    public static void main(String[] args){
+        HashMap<ArrayList<Integer>, CardPlaying> map = new HashMap<>();
+        PlayingStation station = new PlayingStation(map);
+        Face front = new Face(new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI));
+        Face back = new Face(new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI));
+        CardPlaying card1 = new CardResource(0, front, back, SuitEnum.FUNGI, 1, null);
+        CardPlaying card2 = new CardResource(1, front, back, SuitEnum.FUNGI, 1, null);
+        CardPlaying card3 = new CardResource(2, front, back, SuitEnum.ANIMAL, 1, null);
+        CardPlaying card4 = new CardResource(3, front, back, SuitEnum.FUNGI, 1, null);
+        CardPlaying card5 = new CardResource(4, front, back, SuitEnum.FUNGI, 1, null);
+        CardPlaying card6 = new CardResource(5, front, back, SuitEnum.ANIMAL, 1, null);
+        CardPlaying card7 = new CardResource(6, front, back, SuitEnum.ANIMAL, 1, null);
+        CardPlaying card8 = new CardResource(7, front, back, SuitEnum.ANIMAL, 1, null);
+        ArrayList<SuitEnum> suits = new ArrayList<>();
+        suits.add(SuitEnum.FUNGI);
+        suits.add(SuitEnum.FUNGI);
+        CardStarting cardS = new CardStarting(6, front, back, suits);
+        station.getMap().put(new ArrayList<>(Arrays.asList(40, 40)), cardS);
+        station.getMap().put(new ArrayList<>(Arrays.asList(41, 41)), card1);
+        station.getMap().put(new ArrayList<>(Arrays.asList(41, 43)), card2);
+        station.getMap().put(new ArrayList<>(Arrays.asList(42, 44)), card3);
+        station.getMap().put(new ArrayList<>(Arrays.asList(51, 51)), card4);
+        station.getMap().put(new ArrayList<>(Arrays.asList(51, 53)), card5);
+        station.getMap().put(new ArrayList<>(Arrays.asList(52, 54)), card6);
+        station.getMap().put(new ArrayList<>(Arrays.asList(50, 50)), card7);
+        station.getMap().put(new ArrayList<>(Arrays.asList(50, 48)), card8);
+
+
+        ObjectivePositioning objective = new ObjectivePositioning(SuitEnum.FUNGI, SuitEnum.ANIMAL, DirectionEnum.RIGHT, PositionEnum.TOP);
+        System.out.println(objective.countObjectivePoints(station)); // 1
+    }
+
+    /*
     @Override
     public int countObjectivePoints(PlayingStation station) {
         Boolean[][] flags = new Boolean[81][81];
@@ -274,5 +369,5 @@ public class ObjectivePositioning implements Objective, Serializable {
             }//end for i
         }
         return points;
-    }
+    }*/
 }

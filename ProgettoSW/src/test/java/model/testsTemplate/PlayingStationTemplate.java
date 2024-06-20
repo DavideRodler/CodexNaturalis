@@ -113,9 +113,9 @@ public class PlayingStationTemplate {
                 new Corner(SuitEnum.FUNGI));
         Points obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
-        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-        CardResource cardPlant1 = new CardResource(1, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
-        CardResource cardPlant2 = new CardResource(2, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
+        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.FUNGI, 0, obj);
+        CardResource cardPlant1 = new CardResource(1, frontTmp, backTmp, SuitEnum.FUNGI, 0, obj);
+        CardResource cardPlant2 = new CardResource(2, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
         CardResource cardAnimal2 = new CardResource(4, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
 
         // now i have to make the starting card, i use the same front and back as the
