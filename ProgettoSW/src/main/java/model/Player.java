@@ -38,13 +38,13 @@ public class Player extends ObservableModel implements Serializable{
     }
 
 
-    public boolean isReadyForTurn() {
-        return readyForTurn;
-    }
+//    public boolean isReadyForTurn() {
+//        return readyForTurn;
+//    }
 
-    public void setReadyForTurn(boolean readyForTurn) {
-        this.readyForTurn = readyForTurn;
-    }
+//    public void setReadyForTurn(boolean readyForTurn) {
+//        this.readyForTurn = readyForTurn;
+//    }
 
 
     //setter

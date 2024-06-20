@@ -105,19 +105,25 @@ ClientBoard board = ClientBoardTemplate.createClientBoard();
     @Test
     void getGlobalChat() {
         Chat globalChat = new Chat();
-        assertEquals(board.getGlobalChat(), globalChat);
+        board.setGlobalChat(globalChat);
+        assertEquals(globalChat, board.getGlobalChat());
 
     }
 
-    /**    @Test
+        @Test
    void getPrivateChat() {
-        ArrayList<PrivateChat> privateChatArrayList = new ArrayList<>();
-        PrivateChatMessage mex = new PrivateChatMessage("ciao", "isa", "tommy");
+        //ArrayList<PrivateChat> privateChatArrayList = new ArrayList<>();
+        PrivateChatMessage mex = new PrivateChatMessage("ciao", "tommy", "isa");
         PrivateChat chat = new PrivateChat("isa", "tommy");
         chat.addMessage(mex);
-        privateChatArrayList.add(chat);
-        assertEquals(board.getPrivateChat("isa", "tommy"), chat);
-    } **/
+       // privateChatArrayList.add(chat);
+        board.addNewPrivateChat("isa", "tommy");
+        board.updateChat("PRIVATE", "tommy", "isa", "ciao");
+        assertEquals(chat.getMessage().size(), board.getPrivateChat("isa", "tommy").size());
+        //assertEquals(chat.getMessage(), board.getPrivateChat("isa", "tommy"));
+        // return ArrayList<PrivateChatMessage>
+            // scorre ArrayList<PrivateChat> privateChatArrayList
+    }
 
 
     @Test
@@ -139,15 +145,6 @@ ClientBoard board = ClientBoardTemplate.createClientBoard();
         assertEquals(SuitEnum.INSECT, board.getBackOfGoldDeck());
     }
 
-    @Test
-    void addNewPrivateChat() {
-        PrivateChat chat = new PrivateChat("eric", "davide");
-        board.addNewPrivateChat("eric", "davide");
-        assertEquals(chat, board.getPrivateChat("eric", "davide"));
-    }
 
-    @Test
-    void updateChat() {
 
-    }
 }

@@ -54,6 +54,8 @@ public class ClientBoard implements Serializable {
         return globalChat;
     }
 
+    public void setGlobalChat(Chat globalChat){ this.globalChat = globalChat; }
+
     public ArrayList<PrivateChatMessage> getPrivateChat(String nickname1, String nickname2) {
         for (PrivateChat p : privateChatArrayList) {
             if ((p.getNickname1().equals(nickname1) && p.getNickname2().equals(nickname2)) || (p.getNickname1().equals(nickname2) && p.getNickname2().equals(nickname1))) {
