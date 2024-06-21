@@ -4,17 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="OBJ CORREZIONE">
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Fine Cantiere Menu">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/DeckEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/DeckEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PlayerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/PlayingBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PlayingBoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveDiagonal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectiveDiagonal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectivePositioning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/objectives/ObjectivePositioning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/View/PrintStation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingBoardTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingBoardTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/client/ReductPlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/client/ReductPlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingStationTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingStationTemplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +81,8 @@
   "keyToString": {
     "Application.ClientApp.executor": "Run",
     "Application.Gui.executor": "Run",
+    "Application.ObjectiveDiagonal.executor": "Run",
+    "Application.ObjectivePositioning.executor": "Run",
     "Application.RmiClient.executor": "Run",
     "Application.ServerApp.executor": "Run",
     "Application.deckconstructor.executor": "Run",
@@ -138,12 +139,12 @@
     "JUnit.ObjectiveCountingGoldTest.getCounters.executor": "Run",
     "JUnit.ObjectiveCountingResourceTest.countObjectivePoints.executor": "Run",
     "JUnit.ObjectiveCountingResourceTest.executor": "Coverage",
-    "JUnit.ObjectiveDiagonalTest.executor": "Coverage",
+    "JUnit.ObjectiveDiagonalTest.executor": "Run",
     "JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor": "Run",
     "JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor": "Coverage",
     "JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal.executor": "Run",
     "JUnit.ObjectiveGoldCornersTest.countObjectivePoints.executor": "Run",
-    "JUnit.ObjectivePositioningTest.executor": "Coverage",
+    "JUnit.ObjectivePositioningTest.executor": "Run",
     "JUnit.ObjectivePositioningTest.getInformation.executor": "Run",
     "JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor": "Run",
     "JUnit.ObjectivePositioningTest.test_Positioning.executor": "Run",
@@ -226,93 +227,106 @@
       <recent name="model.cards" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.model in ProgettoSW">
-    <configuration name="ClientBoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ObjectivePositioningTest.test_Positioning">
+    <configuration name="ObjectiveDiagonal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonal" />
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.client.*" />
+          <option name="PATTERN" value="model.objectives.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.client" />
-      <option name="MAIN_CLASS_NAME" value="model.client.ClientBoardTest" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ObjectiveDiagonalTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.objectives.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonalTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClientBoardTest.getGlobalChat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ObjectiveDiagonalTest.test_7Cards_2Diagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.client.*" />
+          <option name="PATTERN" value="model.objectives.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.client" />
-      <option name="MAIN_CLASS_NAME" value="model.client.ClientBoardTest" />
-      <option name="METHOD_NAME" value="getGlobalChat" />
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonalTest" />
+      <option name="METHOD_NAME" value="test_7Cards_2Diagonal" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClientBoardTest.getPrivateChat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ObjectivePositioningTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.client.*" />
+          <option name="PATTERN" value="model.objectives.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.client" />
-      <option name="MAIN_CLASS_NAME" value="model.client.ClientBoardTest" />
-      <option name="METHOD_NAME" value="getPrivateChat" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReductPlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.client" />
-      <option name="MAIN_CLASS_NAME" value="model.client.ReductPlayerTest" />
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="model in ProgettoSW" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ObjectivePositioningTest.test_Positioning" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/src/test/java/model" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.objectives.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
+      <option name="METHOD_NAME" value="test_Positioning" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ClientBoardTest" />
-      <item itemvalue="JUnit.ClientBoardTest.getGlobalChat" />
-      <item itemvalue="JUnit.ClientBoardTest.getPrivateChat" />
-      <item itemvalue="JUnit.ReductPlayerTest" />
-      <item itemvalue="JUnit.model in ProgettoSW" />
+      <item itemvalue="Application.ObjectiveDiagonal" />
+      <item itemvalue="JUnit.ObjectiveDiagonalTest" />
+      <item itemvalue="JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal" />
+      <item itemvalue="JUnit.ObjectivePositioningTest" />
+      <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.model in ProgettoSW" />
-        <item itemvalue="JUnit.ReductPlayerTest" />
-        <item itemvalue="JUnit.ClientBoardTest" />
-        <item itemvalue="JUnit.ClientBoardTest.getPrivateChat" />
-        <item itemvalue="JUnit.ClientBoardTest.getGlobalChat" />
+        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
+        <item itemvalue="JUnit.ObjectivePositioningTest" />
+        <item itemvalue="JUnit.ObjectiveDiagonalTest" />
+        <item itemvalue="Application.ObjectiveDiagonal" />
+        <item itemvalue="JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -343,6 +357,7 @@
       <workItem from="1718019709867" duration="3815000" />
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
+      <workItem from="1718976202647" duration="1245000" />
     </task>
     <task id="LOCAL-00017" summary="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station">
       <option name="closed" value="true" />
@@ -858,7 +873,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/model/PlayerTest.java</url>
-          <line>203</line>
+          <line>199</line>
           <option name="timeStamp" value="346" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -873,12 +888,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java</url>
-          <line>160</line>
+          <line>162</line>
           <option name="timeStamp" value="354" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java</url>
-          <line>156</line>
+          <line>158</line>
           <option name="timeStamp" value="355" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">

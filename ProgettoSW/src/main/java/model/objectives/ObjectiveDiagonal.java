@@ -48,8 +48,8 @@ private SuitEnum color;
                 ),
                 Arrays.asList(
                         new PatternCard(0, 0, SuitEnum.ANIMAL),
-                        new PatternCard(-1, -1, SuitEnum.ANIMAL),
-                        new PatternCard(-2, -2, SuitEnum.ANIMAL)
+                        new PatternCard(1, -1, SuitEnum.ANIMAL),
+                        new PatternCard(2, -2, SuitEnum.ANIMAL)
                 ),
                 Arrays.asList(
                         new PatternCard(0, 0, SuitEnum.INSECT),
@@ -77,7 +77,7 @@ private SuitEnum color;
             }
         }
 
-        return points*3;
+        return points;
     }
 
     /**
@@ -134,13 +134,13 @@ private SuitEnum color;
         suits.add(SuitEnum.FUNGI);
         CardStarting cardS = new CardStarting(6, front, back, suits);
         station.getMap().put(new ArrayList<>(Arrays.asList(40, 40)), cardS);
-        station.getMap().put(new ArrayList<>(Arrays.asList(41, 41)), card3);
-        station.getMap().put(new ArrayList<>(Arrays.asList(42, 42)), card3);
-        station.getMap().put(new ArrayList<>(Arrays.asList(43, 43)), card3);
-        station.getMap().put(new ArrayList<>(Arrays.asList(44, 44)), card3);
-        station.getMap().put(new ArrayList<>(Arrays.asList(41, 39)), card1);
-        station.getMap().put(new ArrayList<>(Arrays.asList(42, 38)), card1);
-        station.getMap().put(new ArrayList<>(Arrays.asList(43, 37)), card1);
+        station.getMap().put(new ArrayList<>(Arrays.asList(56, 45)), card2);
+        station.getMap().put(new ArrayList<>(Arrays.asList(57, 44)), card2);
+        station.getMap().put(new ArrayList<>(Arrays.asList(58, 43)), card2);
+        station.getMap().put(new ArrayList<>(Arrays.asList(32, 27)), card2);
+        station.getMap().put(new ArrayList<>(Arrays.asList(33, 26)), card2);
+        station.getMap().put(new ArrayList<>(Arrays.asList(34, 25)), card2);
+        station.getMap().put(new ArrayList<>(Arrays.asList(25, 24)), card2);
 
         ObjectiveDiagonal objective = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.FUNGI);
         System.out.println(objective.countObjectivePoints(station)); // 1

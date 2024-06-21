@@ -54,23 +54,23 @@ public class ObjectivePositioning implements Objective, Serializable {
         List<List<PatternCard>> patterns = Arrays.asList(
                 Arrays.asList(
                         new PatternCard(0, 0, SuitEnum.FUNGI),
-                        new PatternCard(0, 2, SuitEnum.FUNGI),
-                        new PatternCard(1, 3, SuitEnum.PLANT)
+                        new PatternCard(2, 0, SuitEnum.FUNGI),
+                        new PatternCard(3, 1, SuitEnum.PLANT)
                 ),
                 Arrays.asList(
                         new PatternCard(0, 0, SuitEnum.ANIMAL),
-                        new PatternCard(0, 2, SuitEnum.ANIMAL),
-                        new PatternCard(1, -1, SuitEnum.FUNGI)
+                        new PatternCard(2, 0, SuitEnum.ANIMAL),
+                        new PatternCard(-1, 1, SuitEnum.FUNGI)
                 ),
                 Arrays.asList(
                         new PatternCard(0, 0, SuitEnum.INSECT),
-                        new PatternCard(0, 2, SuitEnum.INSECT),
+                        new PatternCard(2, 0, SuitEnum.INSECT),
                         new PatternCard(-1, -1, SuitEnum.ANIMAL)
                 ),
                 Arrays.asList(
                         new PatternCard(0, 0, SuitEnum.PLANT),
-                        new PatternCard(0, 2, SuitEnum.PLANT),
-                        new PatternCard(-1, 3, SuitEnum.INSECT)
+                        new PatternCard(2, 0, SuitEnum.PLANT),
+                        new PatternCard(3, -1, SuitEnum.INSECT)
                 )
         );
 
@@ -88,7 +88,7 @@ public class ObjectivePositioning implements Objective, Serializable {
             }
         }
 
-        return points*3;
+        return points;
     }
 
 
@@ -146,11 +146,11 @@ public class ObjectivePositioning implements Objective, Serializable {
         CardStarting cardS = new CardStarting(6, front, back, suits);
         station.getMap().put(new ArrayList<>(Arrays.asList(40, 40)), cardS);
         station.getMap().put(new ArrayList<>(Arrays.asList(41, 41)), card1);
-        station.getMap().put(new ArrayList<>(Arrays.asList(40, 42)), card2);
-        station.getMap().put(new ArrayList<>(Arrays.asList(40, 44)), card3);
+        station.getMap().put(new ArrayList<>(Arrays.asList(42, 40)), card2);
+        station.getMap().put(new ArrayList<>(Arrays.asList(44, 40)), card3);
         station.getMap().put(new ArrayList<>(Arrays.asList(50, 50)), card4);
-        station.getMap().put(new ArrayList<>(Arrays.asList(50, 52)), card5);
-        station.getMap().put(new ArrayList<>(Arrays.asList(49, 53)), card6);
+        station.getMap().put(new ArrayList<>(Arrays.asList(52, 50)), card5);
+        station.getMap().put(new ArrayList<>(Arrays.asList(53, 49)), card6);
 
 
         ObjectivePositioning objective = new ObjectivePositioning(SuitEnum.FUNGI, SuitEnum.ANIMAL, DirectionEnum.RIGHT, PositionEnum.TOP);

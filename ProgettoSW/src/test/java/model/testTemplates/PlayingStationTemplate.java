@@ -193,10 +193,10 @@ public class PlayingStationTemplate {
         station.getMap().put(creatingCordinatesArray(41, 43), cardAnimal2);
         station.getMap().put(creatingCordinatesArray(42, 44), cardPlant2);**/
 
-        station.getMap().put(creatingCordinatesArray(70, 70), cardAnimal1);
+        station.getMap().put(creatingCordinatesArray(67, 71), cardAnimal1);
         station.getMap().put(creatingCordinatesArray(69, 71), cardPlant1);
-        station.getMap().put(creatingCordinatesArray(70, 72), cardAnimal2);
-        station.getMap().put(creatingCordinatesArray(69, 73), cardPlant2);
+        station.getMap().put(creatingCordinatesArray(70, 70), cardAnimal2);
+        station.getMap().put(creatingCordinatesArray(68, 70), cardPlant2);
 
 
         return station;
@@ -246,7 +246,7 @@ public class PlayingStationTemplate {
         station.getMap().put(creatingCordinatesArray(40, 40), cardStarting);
         station.getMap().put(creatingCordinatesArray(41, 41), cardAnimal1);
         station.getMap().put(creatingCordinatesArray(42, 42), cardPlant1);
-        station.getMap().put(creatingCordinatesArray(41, 43), cardAnimal2);
+        station.getMap().put(creatingCordinatesArray(43, 41), cardAnimal2);
         station.getMap().put(creatingCordinatesArray(42, 44), cardPlant2);
 
         station.getMap().put(creatingCordinatesArray(43, 45), cardAnimal1);
