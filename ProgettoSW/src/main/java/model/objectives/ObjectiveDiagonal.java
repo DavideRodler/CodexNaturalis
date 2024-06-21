@@ -118,7 +118,7 @@ private SuitEnum color;
 
 
     //MAIN DA TOGLIERE L'HO USATO COME TESTER
-    public static void main(String[] args){
+/**    public static void main(String[] args){
         HashMap<ArrayList<Integer>, CardPlaying> map = new HashMap<>();
         PlayingStation station = new PlayingStation(map);
         Face front = new Face(new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI));
@@ -144,7 +144,7 @@ private SuitEnum color;
 
         ObjectiveDiagonal objective = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.FUNGI);
         System.out.println(objective.countObjectivePoints(station)); // 1
-    }
+    }**/
 
 
 /*

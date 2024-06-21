@@ -129,7 +129,7 @@ public class ObjectivePositioning implements Objective, Serializable {
     }
 
     //MAIN DA TOGLIERE L'HO USATO COME TESTER
-    public static void main(String[] args){
+ /**   public static void main(String[] args){
         HashMap<ArrayList<Integer>, CardPlaying> map = new HashMap<>();
         PlayingStation station = new PlayingStation(map);
         Face front = new Face(new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI));
@@ -155,7 +155,7 @@ public class ObjectivePositioning implements Objective, Serializable {
 
         ObjectivePositioning objective = new ObjectivePositioning(SuitEnum.FUNGI, SuitEnum.ANIMAL, DirectionEnum.RIGHT, PositionEnum.TOP);
         System.out.println(objective.countObjectivePoints(station)); // 1
-    }
+    }**/
 
     /*
     @Override

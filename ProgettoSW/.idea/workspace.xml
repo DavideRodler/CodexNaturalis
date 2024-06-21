@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Fine Cantiere Menu">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="CORRETTO DIAGONAL">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectiveDiagonalTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/objectives/ObjectivePositioningTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingStationTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingStationTemplate.java" afterDir="false" />
     </list>
@@ -144,7 +142,9 @@
     "JUnit.ObjectivePositioningTest.getInformation.executor": "Run",
     "JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor": "Run",
     "JUnit.ObjectivePositioningTest.test_Positioning.executor": "Run",
+    "JUnit.ObjectivePositioningTest.test_Positioning1_down.executor": "Run",
     "JUnit.ObjectivePositioningTest.test_Positioning2.executor": "Run",
+    "JUnit.ObjectivePositioningTest.test_Positioning2_down.executor": "Run",
     "JUnit.PlacingConditionTest (1).executor": "Run",
     "JUnit.PlacingConditionTest.executor": "Run",
     "JUnit.PlacingConditionTest.test_goldCard_cost.executor": "Run",
@@ -223,36 +223,7 @@
       <recent name="model.cards" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ObjectivePositioning">
-    <configuration name="ObjectivePositioning" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioning" />
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ObjectiveDiagonalTest.test_2Cards_0Diagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonalTest" />
-      <option name="METHOD_NAME" value="test_2Cards_0Diagonal" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.model.objectives in ProgettoSW">
     <configuration name="ObjectivePositioningTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
@@ -268,7 +239,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjectivePositioningTest.test_Positioning" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ObjectivePositioningTest.test_Positioning1_down" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
@@ -278,7 +249,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="model.objectives" />
       <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
-      <option name="METHOD_NAME" value="test_Positioning" />
+      <option name="METHOD_NAME" value="test_Positioning1_down" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -300,20 +271,50 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ObjectivePositioningTest.test_Positioning2_down" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.objectives.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
+      <option name="METHOD_NAME" value="test_Positioning2_down" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="model.objectives in ProgettoSW" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.objectives.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model.objectives" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.ObjectivePositioning" />
-      <item itemvalue="JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal" />
+      <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning1_down" />
       <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
+      <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2_down" />
+      <item itemvalue="JUnit.model.objectives in ProgettoSW" />
       <item itemvalue="JUnit.ObjectivePositioningTest" />
-      <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ObjectivePositioning" />
-        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
-        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
+        <item itemvalue="JUnit.model.objectives in ProgettoSW" />
         <item itemvalue="JUnit.ObjectivePositioningTest" />
-        <item itemvalue="JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal" />
+        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning1_down" />
+        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2_down" />
+        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
       </list>
     </recent_temporary>
   </component>
@@ -355,14 +356,6 @@
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
       <workItem from="1718976202647" duration="1245000" />
-    </task>
-    <task id="LOCAL-00017" summary="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station">
-      <option name="closed" value="true" />
-      <created>1711553758036</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1711553758036</updated>
     </task>
     <task id="LOCAL-00018" summary="Da classe a interfaccia">
       <option name="closed" value="true" />
@@ -748,7 +741,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718819042098</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="CORRETTO DIAGONAL">
+      <option name="closed" value="true" />
+      <created>1718979484866</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1718979484867</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -816,7 +817,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Inizio del nuovo RMI con controller" />
     <MESSAGE value="Aggiunta del client controller" />
     <MESSAGE value="Client model viene aggiornato con observer." />
     <MESSAGE value="messo idea nel gitingoore" />
@@ -841,7 +841,8 @@
     <MESSAGE value="Modifiche al setup del nickname e token e la handle dei client" />
     <MESSAGE value="TEST" />
     <MESSAGE value="OBJ CORREZIONE" />
-    <option name="LAST_COMMIT_MESSAGE" value="OBJ CORREZIONE" />
+    <MESSAGE value="CORRETTO DIAGONAL" />
+    <option name="LAST_COMMIT_MESSAGE" value="CORRETTO DIAGONAL" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
