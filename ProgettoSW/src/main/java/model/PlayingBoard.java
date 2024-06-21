@@ -162,9 +162,9 @@ public class PlayingBoard extends ObservableModel {
         this.deckCardObjective = deckCardObjective;
     }
 
-    public void setDeckCardResource(LinkedList<CardResource> deckCardResource) {
+/**    public void setDeckCardResource(LinkedList<CardResource> deckCardResource) {
         this.deckCardResource = deckCardResource;
-    }
+    }**/
 
     public void setDeckCardStarting(LinkedList<CardStarting> deckCardStarting) {
         this.deckCardStarting = deckCardStarting;
@@ -203,14 +203,14 @@ public class PlayingBoard extends ObservableModel {
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("Player " + nickname + " not found"));
     }
-    private int getPlayerPositon(String nickname){
+/**    private int getPlayerPositon(String nickname){
         for (int i = 0; i < players.size(); i++) {
             if (players.get(i).getNickname().equals(nickname)){
                 return i;
             }
         }
         return -1;
-    }
+    }**/
 
 
     public CardResource getCardResource(int id) {

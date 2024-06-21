@@ -1,5 +1,7 @@
 package model;
 
+import Socket.Messages.ChatMessage;
+import Socket.Messages.PrivateChatMessage;
 import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
@@ -13,12 +15,11 @@ import model.objectives.Objective;
 import model.objectives.ObjectiveAssign;
 import model.objectives.ObjectiveCountingGold;
 import model.objectives.Points;
-import model.testsTemplate.PlayingBoardTemplate;
-import model.testsTemplate.PlayingStationTemplate;
+import model.testTemplates.PlayingBoardTemplate;
+import model.testTemplates.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -215,4 +216,57 @@ class PlayingBoardTest {
     void getnextPlayer() {
         assertEquals("tommy", board.getnextPlayer());
     }
+    /**    @Test
+    void  getCardFromGoldDeck(){
+        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
+        Face frontTmp1 = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT));
+        Points obj = new ObjectiveAssign();
+        CardGold cardAnimal1 = new CardGold(0, frontTmp1, backTmp, SuitEnum.ANIMAL, 0, 1,1,1,1,obj);
+        assertEquals(cardAnimal1.getId(), board.getCardFromGoldDeck().getId());
+    }**/
+    @Test
+    void getCardFromResourceDeck(){
+
+
+    }
+    @Test
+    void removeCentralCard(){
+        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
+        Face frontTmp1 = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT));
+        Points obj = new ObjectiveAssign();
+        CardGold cardAnimal1 = new CardGold(0, frontTmp1, backTmp, SuitEnum.ANIMAL, 0, 1,1,1,1,obj);
+        CardGold cardAnimal2 = new CardGold(1, frontTmp1, backTmp, SuitEnum.ANIMAL, 0, 1,1,1,1,obj);
+        ArrayList<CardGold> cards= new ArrayList<>();
+        cards.add(cardAnimal1);
+        cards.add(cardAnimal2);
+        board.setCentralCardsGold(cards);
+        ArrayList<CardGold> cardspost= new ArrayList<>();
+        cardspost.add(cardAnimal2);
+        board.removeCentralCard(0);
+        assertEquals(cardspost, board.getCentralCardsGold());
+
+    }
+    @Test
+    void shufflePlayer(){
+
+    }
+    /**    @Test
+   void addNewPrivateChat() {
+        PrivateChat chat = new PrivateChat("isa", "tommy");
+        board.addNewPrivateChat("isa", "tommy");
+        assertEquals(chat, board.getPrivateChat("isa", "tommy"));
+    }
+
+    @Test
+    void addMessageToPrivateChat(){
+        PrivateChat chat = new PrivateChat("isa", "tommy");
+        PrivateChatMessage mex = new PrivateChatMessage("ciaoo", "tommy", "isa");
+        chat.addMessage(mex);
+        board.addNewPrivateChat("isa", "tommy");
+        board.addMessageToPrivateChat("isa", "tommy", "ciaoo");
+        assertEquals(mex, board.getPrivateChat("isa", "tommy").getMessage());
+
+    } **/
+
 }
+

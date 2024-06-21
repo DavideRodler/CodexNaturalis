@@ -1,4 +1,4 @@
-package model.testsTemplate;
+package model.testTemplates;
 
 import model.Player;
 import model.PlayingBoard;
@@ -7,10 +7,15 @@ import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardStarting;
 import model.cards.CardResource;
+import model.cards.face.Corner;
+import model.cards.face.Face;
 import model.enums.GameState;
+import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 import model.objectives.Objective;
+import model.objectives.ObjectiveAssign;
 import model.objectives.ObjectiveCountingGold;
+import model.objectives.Points;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -39,6 +44,15 @@ public class PlayingBoardTemplate {
         LinkedList<CardResource> deckCardResource = new LinkedList<>();
         LinkedList<CardObjective> deckCardObjective = new LinkedList<>();
         LinkedList<CardGold> deckCardGold = new LinkedList<>();
+        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
+        Face frontTmp1 = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT));
+        Points obj = new ObjectiveAssign();
+        CardGold cardAnimal1 = new CardGold(0, frontTmp1, backTmp, SuitEnum.ANIMAL, 0, 1,1,1,1,obj);
+        CardGold cardAnimal2 = new CardGold(1, frontTmp1, backTmp, SuitEnum.ANIMAL, 0, 1,1,1,1,obj);
+        CardGold cardAnimal3 = new CardGold(2, frontTmp1, backTmp, SuitEnum.ANIMAL, 0, 1,1,1,1,obj);
+        deckCardGold.add(cardAnimal1);
+        //deckCardGold.add(cardAnimal2);
+        //deckCardGold.add(cardAnimal3);
         ArrayList<CardResource> centralCardsResource = new ArrayList<>();
         ArrayList<CardGold> centralCardsGold = new ArrayList<>();
         GameState gameState = GameState.INITIALIZE_GAME;

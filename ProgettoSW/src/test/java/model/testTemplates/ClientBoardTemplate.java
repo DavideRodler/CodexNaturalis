@@ -1,7 +1,6 @@
-package model.testsTemplate;
+package model.testTemplates;
 
 import model.Player;
-import model.PlayingBoard;
 import model.PlayingStation;
 import model.cards.CardGold;
 import model.cards.CardObjective;

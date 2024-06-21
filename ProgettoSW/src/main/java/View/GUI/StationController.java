@@ -164,6 +164,7 @@ public class StationController implements Initializable {
 
         @FXML
         void turnCard(ActionEvent event){
+            boolean front = true;
 
             if(activeCard != null){ // controllo se è in front
                 cardPlayingToImageHashMap.get(activeCard); //come controllo se la carta è giocata è la 0 o la 1??
@@ -174,9 +175,11 @@ public class StationController implements Initializable {
         }
 
 
-        private boolean cardFace(){
-            return true;
+        private void getImageBack(){
+
         }
+
+
 
 //TODO: una volta che una carta viene giocata, toglierla dalla mappa! non deve più essere selezionabile e girata.
         @Override

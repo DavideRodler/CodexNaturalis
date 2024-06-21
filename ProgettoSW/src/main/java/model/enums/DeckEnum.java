@@ -1,6 +1,6 @@
-package model.enums;
+//package model.enums;
 
-public enum DeckEnum {
-    DECK_RESOURCE,
-    DECK_GOLD
-}
+//public enum DeckEnum {
+//    DECK_RESOURCE,
+//    DECK_GOLD
+//}
