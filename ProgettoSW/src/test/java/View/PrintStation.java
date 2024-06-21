@@ -7,14 +7,14 @@ import model.cards.CardStarting;
 import model.cards.face.Corner;
 import model.cards.face.Face;
 import model.enums.SuitEnum;
-import model.testsTemplate.PlayingStationTemplate;
+import model.testTemplates.PlayingStationTemplate;
 import org.junit.Test;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static model.testsTemplate.PlayingStationTemplate.creatingCordinatesArray;
+import static model.testTemplates.PlayingStationTemplate.creatingCordinatesArray;
 
 public class PrintStation {
     //PlayngStationTameplate stationTempl = new PlayngStationTameplate();
