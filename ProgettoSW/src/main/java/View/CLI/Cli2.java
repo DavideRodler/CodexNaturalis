@@ -205,6 +205,25 @@ public class Cli2 implements UI {
         return choice -1;
     }
 
+    @Override
+    public void cliOrGuiChoice() {
+        String choice;
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        do{
+            System.out.println("Choice GUI or CLI:");
+            choice = scanner.nextLine();
+        }while(!(choice.equals("GUI") ) && !(choice.equals("CLI")));
+        try {
+            this.clientController.messageToServerhandler(new CliGuiChoiceMessage(choice));
+        }catch (InvalidPlacingCondition e) {
+            throw new RuntimeException(e);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        } catch (NotMyTurnException e) {
+            throw new RuntimeException(e);
+        } ;
+    }
+
     /**
      * this method prints the common cards.
      */

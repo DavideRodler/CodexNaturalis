@@ -33,7 +33,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseNicknameAndToken.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Station.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Codex");
@@ -47,7 +47,8 @@ public class Gui extends Application implements UI {
         this.clientController = clientController;
         this.startSceneController = new StartSceneController(this.clientController);
         this.stationController = new StationController(this.clientController);
-        this.chooseNickAndTokenController = new ChooseNickAndTokenController(this.clientController);
+        this.chooseNickAndTokenController = new ChooseNickAndTokenController();
+        this.chooseNickAndTokenController.setClientController(this.clientController);
         launch();
     }
 
@@ -81,15 +82,18 @@ public class Gui extends Application implements UI {
     @Override
     public void printCommonObjectives() {
         //stationController.show2CommonObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
+        Platform.runLater(() -> stationController.showCommonObjectives());
     }
 
     @Override
     public void printSecretObjective() {
+        Platform.runLater(() -> stationController.showStartingCard());
     }
 
     @Override
     public void printSelectableObjectives() {
         //stationController.showSelectableObjectives(clientBoard.getMyplayer().getSelectibleObjectives().get(0), clientBoard.getMyplayer().getSelectibleObjectives().get(1));
+        Platform.runLater(() -> stationController.showSelectableObjectives());
     }
 
     @Override
@@ -98,8 +102,14 @@ public class Gui extends Application implements UI {
     }
 
     @Override
+    public void cliOrGuiChoice() {
+
+    }
+
+    @Override
     public void print4CentralCardsAndDecks() {
         //stationController.show4CentralCards(clientBoard.getCentralCardsGold().get(0), clientBoard.getCentralCardsGold().get(1),clientBoard.getCentralCardsResource().get(0), clientBoard.getCentralCardsResource().get(1));
+        Platform.runLater(() -> stationController.showCentralCardsAndDecks());
     }
 
     @Override
@@ -115,6 +125,7 @@ public class Gui extends Application implements UI {
     @Override
     public void printPlayerHand() {
         //stationController.showPlayerHand(clientBoard.getMyplayer().getHand().get(0),clientBoard.getMyplayer().getHand().get(1), clientBoard.getMyplayer().getHand().get(2),clientBoard.getMyplayer().getSecretObjective());
+        Platform.runLater(() -> stationController.showPlayerHand());
     }
 
     @Override
@@ -153,6 +164,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public TokenEnum askToken(ArrayList<TokenEnum> availableTokens) { //TODO: passare per al controller l'arraylist
+        System.out.println("Dio porco");
         Platform.runLater(() -> chooseNickAndTokenController.setAvailableTokens(availableTokens));
         return null;
 

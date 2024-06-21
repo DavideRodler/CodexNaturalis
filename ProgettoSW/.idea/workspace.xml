@@ -5,16 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="OBJ CORREZIONE">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Socket/Messages/CliGuiChoiceMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/View/TestStationGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/enums/DeckEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/enums/DeckEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PlayerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/PlayingBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PlayingBoardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingBoardTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testTemplates/PlayingBoardTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +31,8 @@
         <option value="Enum" />
         <option value="FxmlFile" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -185,6 +189,7 @@
     "JUnit.PrivateChatTest.addMessage.executor": "Run",
     "JUnit.PrivateChatTest.executor": "Coverage",
     "JUnit.ReductPlayerTest.executor": "Coverage",
+    "JUnit.TestStationGUI.startGUI.executor": "Run",
     "JUnit.deckconstructorTest.deckResource.executor": "Run",
     "JUnit.java in ProgettoSW.executor": "Coverage",
     "JUnit.model in ProgettoSW.executor": "Coverage",
@@ -226,50 +231,29 @@
       <recent name="model.cards" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.model in ProgettoSW">
-    <configuration name="ClientBoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TestStationGUI.startGUI">
+    <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.client.*" />
+          <option name="PATTERN" value="StartApplication.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.client" />
-      <option name="MAIN_CLASS_NAME" value="model.client.ClientBoardTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClientBoardTest.getGlobalChat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="StartApplication.ServerApp" />
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.client.*" />
+          <option name="PATTERN" value="StartApplication.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.client" />
-      <option name="MAIN_CLASS_NAME" value="model.client.ClientBoardTest" />
-      <option name="METHOD_NAME" value="getGlobalChat" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ClientBoardTest.getPrivateChat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.client" />
-      <option name="MAIN_CLASS_NAME" value="model.client.ClientBoardTest" />
-      <option name="METHOD_NAME" value="getPrivateChat" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -289,6 +273,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestStationGUI.startGUI" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProgettoSW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="View.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="View" />
+      <option name="MAIN_CLASS_NAME" value="View.TestStationGUI" />
+      <option name="METHOD_NAME" value="startGUI" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="model in ProgettoSW" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <option name="TEST_OBJECT" value="directory" />
@@ -298,21 +298,29 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ClientBoardTest" />
-      <item itemvalue="JUnit.ClientBoardTest.getGlobalChat" />
-      <item itemvalue="JUnit.ClientBoardTest.getPrivateChat" />
+      <item itemvalue="Application.ClientApp" />
+      <item itemvalue="Application.ServerApp" />
+      <item itemvalue="JUnit.TestStationGUI.startGUI" />
       <item itemvalue="JUnit.ReductPlayerTest" />
       <item itemvalue="JUnit.model in ProgettoSW" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestStationGUI.startGUI" />
+        <item itemvalue="Application.ClientApp" />
+        <item itemvalue="Application.ServerApp" />
         <item itemvalue="JUnit.model in ProgettoSW" />
         <item itemvalue="JUnit.ReductPlayerTest" />
-        <item itemvalue="JUnit.ClientBoardTest" />
-        <item itemvalue="JUnit.ClientBoardTest.getPrivateChat" />
-        <item itemvalue="JUnit.ClientBoardTest.getGlobalChat" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -343,6 +351,7 @@
       <workItem from="1718019709867" duration="3815000" />
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
+      <workItem from="1718869159060" duration="23124000" />
     </task>
     <task id="LOCAL-00017" summary="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station">
       <option name="closed" value="true" />
@@ -880,6 +889,19 @@
           <url>file://$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java</url>
           <line>156</line>
           <option name="timeStamp" value="355" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/View/GUI/Gui.java</url>
+          <line>167</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="357" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/View/GUI/Gui.java</url>
+          <line>166</line>
+          <option name="timeStamp" value="359" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/main/java/model/enums/DeckEnum.java</url>
