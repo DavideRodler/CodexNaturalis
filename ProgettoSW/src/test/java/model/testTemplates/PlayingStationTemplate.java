@@ -92,10 +92,10 @@ public class PlayingStationTemplate {
 
         // now i have to populate the table
         station.getMap().put(creatingCordinatesArray(39, 39), cardAnimal1);
-        station.getMap().put(creatingCordinatesArray(38, 38), cardAnimal2);
-        station.getMap().put(creatingCordinatesArray(37, 37), cardAnimal3);
-        station.getMap().put(creatingCordinatesArray(36, 36), cardAnimal3);
-        station.getMap().put(creatingCordinatesArray(35, 35), cardAnimal3);
+        station.getMap().put(creatingCordinatesArray(38, 40), cardAnimal2);
+        station.getMap().put(creatingCordinatesArray(37, 41), cardAnimal3);
+        station.getMap().put(creatingCordinatesArray(36, 42), cardAnimal3);
+        station.getMap().put(creatingCordinatesArray(35, 43), cardAnimal3);
         /*station.addCard(cardAnimal4, 36, 36);
         station.addCard(cardAnimal5, 35, 35);
         station.addCard(cardAnimal6, 34, 34);*/
@@ -112,12 +112,12 @@ public class PlayingStationTemplate {
                 new Corner(SuitEnum.FUNGI));
         Points obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
-        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-        CardResource cardAnimal3 = new CardResource(2, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-        CardResource cardAnimal4 = new CardResource(3, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-        CardResource cardAnimal5 = new CardResource(4, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-        CardResource cardAnimal6 = new CardResource(5, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
+        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
+        CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
+        CardResource cardAnimal3 = new CardResource(2, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
+        CardResource cardAnimal4 = new CardResource(3, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
+        CardResource cardAnimal5 = new CardResource(4, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
+        CardResource cardAnimal6 = new CardResource(5, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
 
         // now i have to make the starting card, i use the same front and back as the
         // resoources
@@ -132,7 +132,7 @@ public class PlayingStationTemplate {
         // central card, for this test i don't need them
         //
         // the objective is of type Diagonal and type ANIMAL
-        ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.ANIMAL);
+        ObjectiveDiagonal objectivetmp = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.PLANT);
         CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
 
         // for the second objective i set it to null
@@ -140,12 +140,12 @@ public class PlayingStationTemplate {
 
         // now i have to populate the table
         station.getMap().put(creatingCordinatesArray(56, 45), cardAnimal1);
-        station.getMap().put(creatingCordinatesArray(57, 44), cardAnimal2);
-        station.getMap().put(creatingCordinatesArray(58, 43), cardAnimal3);
+        station.getMap().put(creatingCordinatesArray(57, 46), cardAnimal2);
+        station.getMap().put(creatingCordinatesArray(58, 47), cardAnimal3);
         station.getMap().put(creatingCordinatesArray(32, 27), cardAnimal1);
-        station.getMap().put(creatingCordinatesArray(33, 26), cardAnimal2);
-        station.getMap().put(creatingCordinatesArray(34, 25), cardAnimal3);
-        station.getMap().put(creatingCordinatesArray(25, 24), cardAnimal1);
+        station.getMap().put(creatingCordinatesArray(33, 28), cardAnimal2);
+        station.getMap().put(creatingCordinatesArray(34, 29), cardAnimal3);
+        station.getMap().put(creatingCordinatesArray(25, 30), cardAnimal1);
 
 
         return station;
@@ -193,10 +193,10 @@ public class PlayingStationTemplate {
         station.getMap().put(creatingCordinatesArray(41, 43), cardAnimal2);
         station.getMap().put(creatingCordinatesArray(42, 44), cardPlant2);**/
 
-        station.getMap().put(creatingCordinatesArray(67, 71), cardAnimal1);
-        station.getMap().put(creatingCordinatesArray(69, 71), cardPlant1);
-        station.getMap().put(creatingCordinatesArray(70, 70), cardAnimal2);
-        station.getMap().put(creatingCordinatesArray(68, 70), cardPlant2);
+        station.getMap().put(creatingCordinatesArray(67, 71), cardPlant1);
+        station.getMap().put(creatingCordinatesArray(69, 71), cardAnimal1);
+        station.getMap().put(creatingCordinatesArray(70, 70), cardPlant2);
+        station.getMap().put(creatingCordinatesArray(68, 70), cardAnimal2);
 
 
         return station;
@@ -214,12 +214,11 @@ public class PlayingStationTemplate {
                 new Corner(SuitEnum.FUNGI));
         Points obj = new ObjectiveAssign();
         // the card resource is of type ANIMAL
-        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-        CardResource cardPlant1 = new CardResource(1, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
-        CardResource cardPlant2 = new CardResource(2, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
-        CardResource cardAnimal2 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
-        CardResource cardPlant3 = new CardResource(1, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
-        CardResource cardPlant4 = new CardResource(2, frontTmp, backTmp, SuitEnum.PLANT, 0, obj);
+        CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.FUNGI, 0, obj);
+        CardResource cardPlant1 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
+        CardResource cardPlant2 = new CardResource(2, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
+        CardResource cardAnimal2 = new CardResource(0, frontTmp, backTmp, SuitEnum.FUNGI, 0, obj);
+
 
         // now i have to make the starting card, i use the same front and back as the
         // resources
@@ -245,20 +244,20 @@ public class PlayingStationTemplate {
         // now i have to populate the table
         station.getMap().put(creatingCordinatesArray(40, 40), cardStarting);
         station.getMap().put(creatingCordinatesArray(41, 41), cardAnimal1);
-        station.getMap().put(creatingCordinatesArray(42, 42), cardPlant1);
-        station.getMap().put(creatingCordinatesArray(43, 41), cardAnimal2);
-        station.getMap().put(creatingCordinatesArray(42, 44), cardPlant2);
+        station.getMap().put(creatingCordinatesArray(42, 40), cardPlant1);
+        station.getMap().put(creatingCordinatesArray(43, 39), cardAnimal2);
+        station.getMap().put(creatingCordinatesArray(42, 38), cardPlant2);
 
         station.getMap().put(creatingCordinatesArray(43, 45), cardAnimal1);
-        station.getMap().put(creatingCordinatesArray(44, 46), cardPlant1);
-        station.getMap().put(creatingCordinatesArray(43, 47), cardAnimal2);
-        station.getMap().put(creatingCordinatesArray(44, 48), cardPlant2);
+        station.getMap().put(creatingCordinatesArray(44, 44), cardPlant1);
+        station.getMap().put(creatingCordinatesArray(43, 43), cardAnimal2);
+        station.getMap().put(creatingCordinatesArray(44, 42), cardPlant2);
 
         //second time objective is satisfied
         station.getMap().put(creatingCordinatesArray(43, 45), cardAnimal1);
-        station.getMap().put(creatingCordinatesArray(42, 46), cardPlant1);
-        station.getMap().put(creatingCordinatesArray(43, 47), cardAnimal2);
-        station.getMap().put(creatingCordinatesArray(42, 48), cardPlant2);
+        station.getMap().put(creatingCordinatesArray(42, 44), cardPlant1);
+        station.getMap().put(creatingCordinatesArray(43, 43), cardAnimal2);
+        station.getMap().put(creatingCordinatesArray(42, 42), cardPlant2);
 
         return station;
 
