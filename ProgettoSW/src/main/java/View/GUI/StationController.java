@@ -1,17 +1,13 @@
 package View.GUI;
 
 import Network.Client.ClientController;
-import Socket.Messages.SelectionOfSecretObjMessage;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import model.cards.*;
 import model.cards.face.Corner;
 import model.cards.face.Face;
@@ -83,6 +79,9 @@ public class StationController implements Initializable {
     private VBox handPane;
 
     @FXML
+    private Label instructionsLabel;
+
+    @FXML
     private VBox menuPane;
 
     @FXML
@@ -119,7 +118,7 @@ public class StationController implements Initializable {
     private Button selectCardButton;
 
     @FXML
-    private StackPane stationPane;
+    private Pane stationPane;
 
     @FXML
     private ImageView thirdCardInHand;
@@ -127,7 +126,7 @@ public class StationController implements Initializable {
     @FXML
     private Button turnCardButton;
 
-    private Card activeCard;
+    private ImageView activeCard;
 
     private boolean playedBack;
 
@@ -142,6 +141,8 @@ public class StationController implements Initializable {
     private Map<ImageView, CardPlaying> cardsInStationMap = new HashMap<>();
 
     private CardLoader cardLoader;
+
+    private ImageView cardToPlay;
 
     @FXML
     private ImageView startingCard;
@@ -163,15 +164,16 @@ public class StationController implements Initializable {
     private void handleCardClick(MouseEvent event){
         //ottengo l'immagine che è stata cliccata
         ImageView selectedCard = (ImageView) event.getSource();
+        System.out.println(("Hai premuto la carta 1!"));
         //controllo se la carta fa parte delle SELECTABLECARDS
         //se lo è --> allora la gioco
         //--> mando messaggio che l'ho piazzata e la aggiungo allo stack pane
         if(imageToCardPlayingHashMap.containsKey(selectedCard)){
-            activeCard = imageToCardPlayingHashMap.get(selectedCard);
+            //activeCard = imageToCardPlayingHashMap.get(selectedCard);
             turnCardButton.setVisible(true);
             selectCardButton.setVisible(true);
-            chooseCard1.setOnMouseClicked(this::chooseStartingCardToPlayClick);
-            chooseCard2.setOnMouseClicked(this::chooseStartingCardToPlayClick);
+            chooseCard1.setOnMouseClicked(this::chooseStartingCard);
+            chooseCard2.setOnMouseClicked(this::chooseStartingCard);
             //imageToCardPlayingHashMap.remove(selectedCard);
             //tolgo l'immagine dalla mappa solo una volta che ho giocato una carta --> infatti potrei volere selezionare
             //più carte nello stesso turno
@@ -183,21 +185,45 @@ public class StationController implements Initializable {
      * this method sets the side of the starting card
      * @param event mouse click
      */
-    private void chooseStartingCardToPlayClick(MouseEvent event) {
-            //ho scelto la carta che voglio giocare
-            //Devo fare due cose: 1) dire al controller che ho scelto la carta da piazzare 2) la devo aggiungere al pane
-            //1)
-            ImageView selectedCard = (ImageView) event.getSource();
+    private void chooseStartingCard(MouseEvent event) {
+        //ho scelto la carta che voglio giocare
+        //Devo fare due cose: 1) dire al controller che ho scelto la carta da piazzare 2) la devo aggiungere al pane
+        //1)
+        ImageView selectedCard = (ImageView) event.getSource();;
+        setCardDimensions(selectedCard);
+        ImageView startingCard = new ImageView();
+//      stationPane.setVisible(true);
+//      selectedCard.setLayoutX(500);
+//      selectedCard.setLayoutY(375);
+//      stationPane.getChildren().add(selectedCard);
+        //chooseCard2.setImage(chooseCard1.getImage());
 
-            if(imageToCardPlayingHashMap.containsKey(selectedCard) && selectedCard.equals(chooseCard1)){
-                //invio al controller che ho giocato la carta 1
-                //devo piazzare
-            } else if(imageToCardPlayingHashMap.containsKey(selectedCard) && selectedCard.equals(chooseCard2)) {
-                //invio al controller che ho giocato la carta in bakc
-            }
+        //tolto da if la condizione che era dentro la mappa
 
-            chooseCard1.setImage(null);
-            chooseCard2.setImage(null);
+        if(selectedCard.equals(chooseCard1)){
+            //invio al controller che ho giocato la carta 1
+            //devo piazzare
+            System.out.println("Hai selezionato la carta 1");
+
+            startingCard.setImage(chooseCard1.getImage());
+        } else if(selectedCard.equals(chooseCard2)) {
+            startingCard.setImage(chooseCard2.getImage());
+            //invio al controller che ho giocato la carta in bakc
+        }
+            setCardDimensions(startingCard);
+            stationPane.setVisible(true);
+            startingCard.setLayoutX(500);
+            startingCard.setLayoutY(375);
+            startingCard.setOnMouseClicked(this::chooseCardToPlayOn);
+            stationPane.getChildren().add(startingCard);
+            chooseCard1.setVisible(false);
+            chooseCard2.setVisible(false);
+            chooseCard1.setOnMouseClicked(null);
+            chooseCard2.setOnMouseClicked(null);
+            testChooseObjective();
+
+            //potrei togliere dalla mappa la carta non giocata, ma non saprei come.
+        //oppure aggiungo handler solo in starting card.
         }
 
     /**
@@ -205,20 +231,89 @@ public class StationController implements Initializable {
      * @param event
      */
     @FXML
-        void objectiveChosen(MouseEvent event){
-            ImageView selectedCard = (ImageView) event.getSource();
+    void objectiveChosen(MouseEvent event){
+        ImageView selectedCard = (ImageView) event.getSource();
+        ImageView secretObjective = new ImageView();
 
-            if(selectedCard.equals(chooseCard1)){
-                //mando messaggio che il giocatore ha scelto il primo obiettivo
-                //clientController.messageToServerhandler(new SelectionOfSecretObjMessage(0)); //cosa vuole la position??
-            } else{
-                //clientController.messageToServerhandler(new SelectionOfSecretObjMessage(1));
-            }
-            //tolgo la carta dalla mappa
-            secretObjectiveInHand.setImage(selectedCard.getImage());
-            chooseCard1.setImage(null);
-            chooseCard2.setImage(null);
+        if(selectedCard.equals(chooseCard1)){
+            //mando messaggio che il giocatore ha scelto il primo obiettivo
+            //clientController.messageToServerhandler(new SelectionOfSecretObjMessage(0)); //cosa vuole la position??
+            secretObjective.setImage(chooseCard1.getImage());
+            //setCardDimensions(secretObjective);
+            secretObjectiveInHand.setImage(secretObjective.getImage());
+        } else{
+            secretObjective.setImage(chooseCard2.getImage());
+            //setCardDimensions(secretObjective);
+            secretObjectiveInHand.setImage(secretObjective.getImage());
+            //clientController.messageToServerhandler(new SelectionOfSecretObjMessage(1));
         }
+        //tolgo la carta dalla mappa
+        //secretObjectiveInHand.setImage(selectedCard.getImage());
+        chooseCard1.setImage(null);
+        chooseCard2.setImage(null);
+        chooseCard1.setOnMouseClicked(null);
+        chooseCard2.setOnMouseClicked(null);
+        testChooseAndPlayFromHand();
+    }
+
+    void cardInHandChosen(MouseEvent event){
+        ImageView selectedCard = (ImageView) event.getSource();
+        ImageView cardChosen = new ImageView();
+        CardLoader cL1 = new CardLoader();
+        //TODO: possibile controllo che posso effettivamente scegliere la carta con la mappa:
+        // a inizio turno popolo la mappa con le carte che ho in mano, a fine turno la svuoto
+        // in questo modo non posso "usare" una carta se non è il mio turno.
+        // oppure più semplicemente quando non è il mio turno non faccio vedere le carte che ho in mano
+
+        //mappa mi serve lo stesso per ottenere il back (oppure fare in qualche altro modo)
+        //qua per provare me le passo direttamente
+
+
+        if(selectedCard.equals(firstCardInHand)){
+            chooseCard1.setImage(firstCardInHand.getImage());
+            chooseCard2.setImage(cL1.getBack(1, SuitEnum.FUNGI));
+            cardChosen.setImage(firstCardInHand.getImage());
+            System.out.println("Scelta la prima");
+        } else if(selectedCard.equals(secondCardInHand)) {
+            chooseCard1.setImage(secondCardInHand.getImage());
+            chooseCard2.setImage(cL1.getBack(7, SuitEnum.FUNGI));
+            cardChosen.setImage(secondCardInHand.getImage());
+            System.out.println("Scelta la seconda");
+        } else if(selectedCard.equals(thirdCardInHand)) {
+            chooseCard1.setImage(thirdCardInHand.getImage());
+            chooseCard2.setImage(cL1.getBack(62, SuitEnum.ANIMAL));
+            cardChosen.setImage(thirdCardInHand.getImage());
+            System.out.println("Scelta la terza");
+        }
+        instructionsLabel.setText("Choose front or back!");
+        chooseCard1.setOnMouseClicked(this::chooseCardSide);
+        chooseCard2.setOnMouseClicked(this::chooseCardSide);
+    }
+
+    void chooseCardSide(MouseEvent event){
+        cardToPlay = (ImageView) event.getSource();
+        //a questo punto le carte da cui scegliere non devono ancora poter fare niente.
+        //potranno fare qualcosa solo dopo che è stata scelta la carta su cui giocare.
+//        chooseCard1.setOnMouseClicked(this::chooseCardToPlayOn);
+//        chooseCard1.setOnMouseClicked(this::chooseCardToPlayOn);
+        instructionsLabel.setText("Choose a card on the station to play on!");
+        //potrei fare che per tutte le immagini che sono dentro la mappa di carte giocabili aggiungo handler
+        for(ImageView image: cardsInStationMap.keySet()){
+            image.setOnMouseClicked(this::chooseCardToPlayOn);
+        }
+    }
+
+    void chooseCardToPlayOn(MouseEvent event){
+        ImageView selectedCard = (ImageView) event.getSource();
+        activeCard = selectedCard;
+        System.out.println("Hai premuto una carta su cui scegliere");
+
+        cardPlacementBox.setVisible(true);
+        placeCardDownRightButton.setOnMouseClicked(this::chooseCardPlacement);
+        selectedCard.getLayoutX();
+        selectedCard.getLayoutY();
+
+    }
 
     /**
      * this method handles the choice of the card to be played
@@ -239,6 +334,7 @@ public class StationController implements Initializable {
             //adesso tutte e sole le carte selezionabili devono essere quelle "in gioco"
             //mappa delle carte in gioco? così che puoi selezionare solo quelle per poter piazzarci
             //solo una volta premuta quella carta allora mostro i bottoni di piazzamento.
+            instructionsLabel.setText("Choose where you want to play your cards using the buttons");
             cardPlacementBox.setVisible(true);
             placeCardDownRightButton.setOnMouseClicked(this::chooseCardPlacement);
             placeCardDownLeftButton.setOnMouseClicked(this::chooseCardPlacement);
@@ -252,10 +348,19 @@ public class StationController implements Initializable {
      * @param event mouse click on the corresponding button
      */
     private void chooseCardPlacement(MouseEvent event){
+        //adesso mi metto nell'ipotesi che la carta si posso sempre giocare --> non considero caso in cui non possa giocarla
             Button buttonPressed = (Button) event.getSource();
+            double x = activeCard.getLayoutX();
+            double y = activeCard.getLayoutY();
             if(buttonPressed.equals(placeCardDownLeftButton)){
+
                 //mando messaggio che voglio giocare in basso a sinistra
             } else if(buttonPressed.equals(placeCardDownRightButton)){
+                System.out.println("Scelto bottone in basso a destra");
+                cardToPlay.setLayoutX(x+85);
+                cardToPlay.setLayoutY(y+40);
+                setCardDimensions(cardToPlay);
+                stationPane.getChildren().add(cardToPlay);
 
             } else if(buttonPressed.equals(placeCardUpLeftButton)) {
 
@@ -360,14 +465,14 @@ public class StationController implements Initializable {
         }
 
 
-    public void testCardStart(){
+    public void testCardStarting(){
         Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
         Face frontTmp2 = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
         ArrayList<SuitEnum> suitList = new ArrayList<SuitEnum>();
         suitList.add(SuitEnum.ANIMAL);
         suitList.add(SuitEnum.PLANT);
         suitList.add(SuitEnum.INSECT);
-        CardStarting cardStarting = new CardStarting(3, frontTmp2, backTmp, suitList);
+        CardStarting cardStarting = new CardStarting(86, frontTmp2, backTmp, suitList);
         //creo le nuove immagini
         CardLoader cardLoader1 = new CardLoader();
         ImageView startingCardFront = new ImageView();
@@ -382,22 +487,113 @@ public class StationController implements Initializable {
         chooseCard2.setVisible(true);
         imageToCardPlayingHashMap.put(startingCardFront, cardStarting);
         imageToCardPlayingHashMap.put(startingCardBack, cardStarting);
-        //aggiungo alle immagini gli handler -> se immagine premuta viene scelta la carta corrispondente
         // mi tengo mappa (o comunque un riferimento dall'immagine alla carta)
         //mando messaggio al controller (con un thread a parte) che ho scelto la mia carta
-        startingCardBack.setOnMouseClicked(this::handleCardClick);
-        startingCardFront.setOnMouseClicked(this::handleCardClick);
+        cardsInStationMap.put(startingCardFront, cardStarting);
+        cardsInStationMap.put(startingCardBack, cardStarting);
+        //aggiungo alle immagini gli handler -> se immagine premuta viene scelta la carta corrispondente
+        chooseCard1.setOnMouseClicked(this::chooseStartingCard);
+        chooseCard2.setOnMouseClicked(this::chooseStartingCard);
+//        startingCardBack.setOnMouseClicked(this::handleCardClick);
+//        startingCardFront.setOnMouseClicked(this::handleCardClick);
         imageToCardPlayingHashMap.put(startingCardFront, cardStarting);
     }
+
+    public void testChooseObjective(){
+        ImageView obj1 = new ImageView();
+        ImageView obj2 = new ImageView();
+        CardLoader cardLoader1 = new CardLoader();
+        obj1.setImage(cardLoader1.getFront(87));
+        obj2.setImage(cardLoader1.getFront(88));
+        chooseCard1.setOnMouseClicked(this::objectiveChosen);
+        chooseCard2.setOnMouseClicked(this::objectiveChosen);
+        chooseCard1.setVisible(true);
+        chooseCard2.setVisible(true);
+        chooseCard1.setImage(obj1.getImage());
+        chooseCard2.setImage(obj2.getImage());
+        instructionsLabel.setText("Choose your secret objective");
+
+    }
+
+    public void testChooseAndPlayFromHand(){
+        CardLoader cl = new CardLoader();
+        firstCardInHand.setImage(cl.getFront(1, SuitEnum.FUNGI));
+        secondCardInHand.setImage(cl.getFront(7, SuitEnum.FUNGI));
+        thirdCardInHand.setImage(cl.getFront(62, SuitEnum.ANIMAL));
+        //Aggiungo immagini alla mappa--> così riesco a ottenere la carta dall'immagine --> se viene scelta
+        // posso estrarre il back della carta.
+        //playableCardsHashMap.put()
+        firstCardInHand.setOnMouseClicked(this::cardInHandChosen);
+        secondCardInHand.setOnMouseClicked(this::cardInHandChosen);
+        thirdCardInHand.setOnMouseClicked(this::cardInHandChosen);
+        instructionsLabel.setText("Choose a card to play from your hand");
+    }
+
+    //metodo da chiamare ogni volta che si crea una carta
+
+    /**
+     * this method sets the dimension of the imageView representing the card.
+     * @param card
+     */
+    private void setCardDimensions(ImageView card){
+        card.setFitHeight(65);
+        card.setFitWidth(110);
+    }
+
 
 //TODO: una volta che una carta viene giocata, toglierla dalla mappa! non deve più essere selezionabile e girata.
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
-            centralCardsAndDecksPane.setVisible(false);
-            endTurnButton.setVisible(false);
-            handPane.setVisible(false);
-            cardPlacementBox.setVisible(false);
-            stationPane.setVisible(false);
-            testCardStart();
+//        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
+//        Face frontTmp2 = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
+//        ArrayList<SuitEnum> suitList = new ArrayList<SuitEnum>();
+//        suitList.add(SuitEnum.ANIMAL);
+//        suitList.add(SuitEnum.PLANT);
+//        suitList.add(SuitEnum.INSECT);
+//        Points obj = new ObjectiveAssign();
+//        CardStarting cardStarting = new CardStarting(84, frontTmp2, backTmp, suitList);
+//        CardResource cardResource = new CardResource(21, frontTmp2, backTmp, SuitEnum.ANIMAL, 1, obj);
+//        CardLoader cardLoader1 = new CardLoader();
+//        ImageView startingCardFront = new ImageView();
+//        ImageView testDownRight = new ImageView();
+//        ImageView testUpRight = new ImageView();
+//        ImageView testUpLeft = new ImageView();
+//        ImageView testDownLeft = new ImageView();
+//        startingCardFront.setImage(cardLoader1.getFront(cardStarting.getId()));
+//        testDownRight.setImage(cardLoader1.getFront(cardResource.getId(), SuitEnum.ANIMAL));
+//        testUpRight.setImage(cardLoader1.getFront(cardResource.getId(), SuitEnum.ANIMAL));
+//        testUpLeft.setImage(cardLoader1.getFront(cardResource.getId(), SuitEnum.ANIMAL));
+//        testDownLeft.setImage(cardLoader1.getFront(cardResource.getId(), SuitEnum.ANIMAL));
+//        setCardDimensions(startingCardFront);
+//        setCardDimensions(testDownRight);
+//        setCardDimensions(testUpRight);
+//        setCardDimensions(testUpLeft);
+//        setCardDimensions(testDownLeft);
+
+//        centralCardsAndDecksPane.setVisible(false);
+//        endTurnButton.setVisible(false);
+//        handPane.setVisible(false);
+//        cardPlacementBox.setVisible(false);
+//        stationPane.setVisible(true);
+        testCardStarting();
+        //centerImage(stationPane, startingCardFront);
+//        startingCardFront.setLayoutX(500);
+//        startingCardFront.setLayoutY(375);
+//        stationPane.getChildren().add(startingCardFront);
+//        double x = startingCardFront.getLayoutX();
+//        double y = startingCardFront.getLayoutY();
+//        testDownRight.setLayoutX(x+85);
+//        testDownRight.setLayoutY(y+40);
+//        stationPane.getChildren().add(testDownRight);
+//        testUpRight.setLayoutX(x+85);
+//        testUpRight.setLayoutY(y-40);
+//        stationPane.getChildren().add(testUpRight);
+//        testUpLeft.setLayoutX(x-85);
+//        testUpLeft.setLayoutY(y-40);
+//        stationPane.getChildren().add(testUpLeft);
+//        testDownLeft.setLayoutX(x-85);
+//        testDownLeft.setLayoutY(y+40);
+//        stationPane.getChildren().add(testDownLeft);
+        instructionsLabel.setText("Choose the side of your starting card starting card");
         }
 }
