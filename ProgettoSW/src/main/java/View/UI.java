@@ -98,4 +98,6 @@ public interface UI {
     int askPlayerNumber();
 
     int askObjectiveCard();
+
+    void cliOrGuiChoice();
 }

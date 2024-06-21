@@ -22,14 +22,17 @@
             <Button fx:id="endTurnButton" mnemonicParsing="false" prefWidth="120.0" text="Button" />
          </children>
       </VBox>
-      <FlowPane fx:id="centralCardsAndDecksPane" hgap="10.0" layoutX="16.0" layoutY="50.0" prefHeight="211.0" prefWidth="232.0" vgap="10.0">
+      <FlowPane fx:id="centralCardsAndDecksPane" alignment="CENTER" hgap="10.0" layoutY="75.0" prefHeight="265.0" prefWidth="380.0" vgap="10.0">
          <children>
-            <ImageView fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="deckResourceImage" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="centralResourceImage1" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="centralResourceImage2" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="deckGoldImage" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="centralGoldImage1" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="centralGoldImage2" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="deckObjectivesImage" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="commonObjectiveImage1" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="commonObjectiveImage2" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </FlowPane>
       <ImageView fitHeight="65.0" fitWidth="110.0" layoutX="543.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
@@ -42,29 +45,11 @@
             <Image url="@../80_INSECT_front.png" />
          </image>
       </ImageView>
-      <VBox layoutX="490.0" layoutY="626.0" spacing="10.0">
-         <children>
-            <HBox alignment="TOP_CENTER" spacing="40.0">
-               <children>
-                  <Button fx:id="turnCardButton" mnemonicParsing="false" onAction="#turnCard" text="turn" />
-                  <Button fx:id="selectCardButton" mnemonicParsing="false" text="select" />
-               </children>
-            </HBox>
-            <HBox fx:id="cardPlacementBox" spacing="10.0">
-               <children>
-                  <Button fx:id="placeCardUpLeftButton" mnemonicParsing="false" text="up left" />
-                  <Button fx:id="placeCardUpRightButton" mnemonicParsing="false" text="up right" />
-                  <Button fx:id="placeButtonDownButton" mnemonicParsing="false" text="down left" />
-                  <Button fx:id="placeDownRightButton" mnemonicParsing="false" text="down right" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
       <VBox fx:id="handPane" layoutX="1062.0" layoutY="205.0" spacing="20.0">
          <children>
             <ImageView fx:id="firstCardInHand" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../80_INSECT_front.png" />
+                  <Image url="@../tokens/RED_token.png" />
                </image>
             </ImageView>
             <ImageView fx:id="secondCardInHand" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
@@ -84,10 +69,46 @@
             </ImageView>
          </children>
       </VBox>
-      <ScrollPane hbarPolicy="ALWAYS" layoutX="261.0" layoutY="12.0" prefHeight="590.0" prefWidth="793.0" vbarPolicy="ALWAYS">
+      <ScrollPane hbarPolicy="ALWAYS" layoutX="404.0" layoutY="19.0" prefHeight="502.0" prefWidth="636.0" vbarPolicy="ALWAYS">
          <content>
-            <StackPane fx:id="stationPane" prefHeight="578.0" prefWidth="773.0" />
+            <StackPane fx:id="stationPane" prefHeight="572.0" prefWidth="797.0" />
          </content>
       </ScrollPane>
+      <HBox alignment="CENTER_LEFT" layoutX="262.0" layoutY="605.0" prefHeight="100.0" prefWidth="781.0" spacing="100.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="404.0" spacing="10.0">
+               <children>
+                  <HBox alignment="TOP_CENTER" spacing="40.0">
+                     <children>
+                        <Button fx:id="turnCardButton" mnemonicParsing="false" text="turn" />
+                        <Button fx:id="selectCardButton" mnemonicParsing="false" text="select" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="cardPlacementBox" alignment="CENTER" spacing="10.0">
+                     <children>
+                        <Button fx:id="placeCardUpLeftButton" mnemonicParsing="false" text="up left" />
+                        <Button fx:id="placeCardUpRightButton" mnemonicParsing="false" text="up right" />
+                        <Button fx:id="placeCardDownLeftButton" mnemonicParsing="false" text="down left" />
+                        <Button fx:id="placeCardDownRightButton" mnemonicParsing="false" text="down right" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox fx:id="chooseCardBox" alignment="CENTER" prefHeight="100.0" prefWidth="404.0" spacing="75.0">
+               <children>
+                  <ImageView fx:id="chooseCard1" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../86_starting_front.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="chooseCard2" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../86_starting_back.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

@@ -1,9 +1,9 @@
 package Network.Client;
 
 import Socket.Messages.CurrentPlayerInfoMessage;
-import View.CLI.Cli2;
 import Network.Client.RMI.RmiClient;
 import Network.Server.VirtualServer;
+import View.CLI.Cli2;
 import View.GUI.Gui;
 import View.UI;
 import exception.*;
@@ -28,18 +28,11 @@ public class ClientController {
     private VirtualServer server;
     private RmiClient rmiClient;
 
-    public ClientController(VirtualServer server, RmiClient rmiClient, String uiChoice) {
+    public ClientController(VirtualServer server, RmiClient rmiClient) {
         this.clientModel = new ClientBoard(null, null, new ArrayList<>(), null, new ArrayList<>(), new ArrayList<>(), null);
         this.server = server;
         this.rmiClient = rmiClient;
-        if(uiChoice.equals("GUI"))
-        {
-            ui = new Gui();
-            ui.launchGui(clientModel, this);
-        }
-        else
-            ui= new Cli2(clientModel, this);
-
+        this.ui=new Cli2(clientModel, this);
         ui.showGameTitle();
     }
 
@@ -48,6 +41,7 @@ public class ClientController {
     }
 
     public void setupOfnicknameAndToken() {
+        ui.cliOrGuiChoice();
         try {
             String nickname = null;
             TokenEnum token;
@@ -315,6 +309,15 @@ public class ClientController {
 
     public void messageToServerhandler(Message message) throws RemoteException, InvalidPlacingCondition, NotMyTurnException {
         switch(message.getType()){
+            case "CLI_GUI_CHOICE":
+                CliGuiChoiceMessage cliGuiChoiceMessage = (CliGuiChoiceMessage) message;
+                if(!cliGuiChoiceMessage.getChoice().equals("CLI"))
+                {
+                    this.ui=new Gui();
+                    ui.launchGui(this.getClientModel(), this);
+                }
+
+                break;
             case "NICKNAME_CHOICE" :
                 NicknameMessage nicknameMessage = (NicknameMessage) message;
                 break;
@@ -368,6 +371,8 @@ public class ClientController {
         } catch (NotValidMoveException e) {
             throw new RuntimeException(e);
         }
+
+
     }
 
     public void notifyAnotherPlayerSettingNumOfPlayers() throws RemoteException {

@@ -35,17 +35,13 @@ public class ClientApp implements Remote {
             }
         } while (true);
 
-        String uiChoice ="";
-        do{
-            System.out.println("Type GUI or CLI");
-            uiChoice = in.nextLine();
-        }while(!(uiChoice.equals("GUI")) && !(uiChoice.equals("CLI")));
+
 
         VirtualServer server;
         try {
             Registry registry = LocateRegistry.getRegistry(input, 16000);
             server = (VirtualServer) registry.lookup("MyServer");
-            RmiClient client = new RmiClient(server, uiChoice);
+            RmiClient client = new RmiClient(server);
             client.connectToServer();
         } catch (RemoteException r) {
             System.out.println("Error: " + r);
