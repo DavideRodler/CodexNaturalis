@@ -15,7 +15,7 @@ import model.objectives.ObjectiveCountingGold;
 
 import java.util.ArrayList;
 
-public class ClientBoardTemplate {
+public class ClientBoardTemplate { //
     public static ClientBoard createClientBoard(){
         Objective obj1 = new ObjectiveCountingGold(2,0,0);
         CardObjective objcard1 = new CardObjective(0, 2, obj1);
