@@ -3,6 +3,10 @@ package model.objectives;
 import model.PlayingStation;
 import model.cards.CardPlaying;
 import model.cards.CardResource;
+import model.cards.CardStarting;
+import model.cards.face.Corner;
+import model.cards.face.Face;
+import model.enums.PositionEnum;
 import model.enums.SuitEnum;
 import model.enums.DirectionEnum;
 
@@ -28,29 +32,61 @@ private SuitEnum color;
         return color;
     }
 
+
+    /**
+     * Conta i punti ottenuti completando le diagonali con le carte presenti nella PlayingStation
+     * @param station la PlayingStation
+     * @return il numero di punti ottenuti
+     */
+    @Override
     public int countObjectivePoints(PlayingStation station) {
-        // Definisci il pattern di carte che stai cercando
-        List<PatternCard> pattern = Arrays.asList(
-                new PatternCard(0, 0, SuitEnum.FUNGI),
-                new PatternCard(1, 0, SuitEnum.FUNGI),
-                new PatternCard(2, 1, SuitEnum.ANIMAL)
+        List<List<PatternCard>> patterns = Arrays.asList(
+                Arrays.asList(
+                        new PatternCard(0, 0, SuitEnum.FUNGI),
+                        new PatternCard(1, -1, SuitEnum.FUNGI),
+                        new PatternCard(2, -2, SuitEnum.FUNGI)
+                ),
+                Arrays.asList(
+                        new PatternCard(0, 0, SuitEnum.ANIMAL),
+                        new PatternCard(-1, -1, SuitEnum.ANIMAL),
+                        new PatternCard(-2, -2, SuitEnum.ANIMAL)
+                ),
+                Arrays.asList(
+                        new PatternCard(0, 0, SuitEnum.INSECT),
+                        new PatternCard(1, 1, SuitEnum.INSECT),
+                        new PatternCard(2, 2, SuitEnum.INSECT)
+                ),
+                Arrays.asList(
+                        new PatternCard(0, 0, SuitEnum.PLANT),
+                        new PatternCard(1, 1, SuitEnum.PLANT),
+                        new PatternCard(2, 2, SuitEnum.PLANT)
+                )
         );
 
         int points = 0;
 
-        // Scorri attraverso ogni possibile punto di partenza nella PlayingStation
         HashMap<ArrayList<Integer>, CardPlaying> patternMap = station.getMap();
         patternMap.remove(new ArrayList<>(Arrays.asList(40, 40)));
-        for (ArrayList<Integer> key : patternMap.keySet()) { // Creiamo una copia del keySet per evitare ConcurrentModificationException
-            if (matchesPattern(station, key, pattern)) {
-                points++;
-                removePattern(station, key, pattern); // Rimuovi le carte corrispondenti al pattern
+        Set<ArrayList<Integer>> keys = new HashSet<>(patternMap.keySet());
+        for (ArrayList<Integer> key : keys) {
+            for (List<PatternCard> pattern : patterns) {
+                if (matchesPattern(station, key, pattern)) {
+                    points++;
+                    removePattern(station, key, pattern);
+                }
             }
         }
 
-        return points;
+        return points*3;
     }
 
+    /**
+     * Controlla se il pattern di carte corrisponde a quello presente nella PlayingStation
+     * @param station PlayingStation
+     * @param start Punto di partenza del pattern
+     * @param pattern Pattern di carte da cercare
+     * @return true se il pattern è presente, false altrimenti
+     */
     private boolean matchesPattern(PlayingStation station, ArrayList<Integer> start, List<PatternCard> pattern) {
         for (PatternCard patternCard : pattern) {
             ArrayList<Integer> key = new ArrayList<>();
@@ -64,14 +100,52 @@ private SuitEnum color;
         return true;
     }
 
+
+    /**
+     * Rimuove le carte corrispondenti al pattern dalla PlayingStation
+     * @param station la PlayingStation
+     * @param start le coordinate della carta in alto a sinistra del pattern
+     * @param pattern il pattern di carte da rimuovere
+     */
     private void removePattern(PlayingStation station, ArrayList<Integer> start, List<PatternCard> pattern) {
         for (PatternCard patternCard : pattern) {
             ArrayList<Integer> key = new ArrayList<>();
             key.add(start.get(0) + patternCard.getDx());
             key.add(start.get(1) + patternCard.getDy());
-            station.getMap().remove(key); // Rimuovi la carta corrispondente dal pattern
+            station.getMap().remove(key);
         }
     }
+
+
+    //MAIN DA TOGLIERE L'HO USATO COME TESTER
+    public static void main(String[] args){
+        HashMap<ArrayList<Integer>, CardPlaying> map = new HashMap<>();
+        PlayingStation station = new PlayingStation(map);
+        Face front = new Face(new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI));
+        Face back = new Face(new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI));
+        CardPlaying card1 = new CardResource(0, front, back, SuitEnum.FUNGI, 1, null);
+        CardPlaying card2 = new CardResource(1, front, back, SuitEnum.ANIMAL, 1, null);
+        CardPlaying card3 = new CardResource(4, front, back, SuitEnum.PLANT, 1, null);
+        CardPlaying card4 = new CardResource(5, front, back, SuitEnum.INSECT, 1, null);
+        //CardPlaying card7 = new CardResource(6, front, back, SuitEnum.ANIMAL, 1, null);
+        //CardPlaying card8 = new CardResource(7, front, back, SuitEnum.ANIMAL, 1, null);
+        ArrayList<SuitEnum> suits = new ArrayList<>();
+        suits.add(SuitEnum.FUNGI);
+        suits.add(SuitEnum.FUNGI);
+        CardStarting cardS = new CardStarting(6, front, back, suits);
+        station.getMap().put(new ArrayList<>(Arrays.asList(40, 40)), cardS);
+        station.getMap().put(new ArrayList<>(Arrays.asList(41, 41)), card3);
+        station.getMap().put(new ArrayList<>(Arrays.asList(42, 42)), card3);
+        station.getMap().put(new ArrayList<>(Arrays.asList(43, 43)), card3);
+        station.getMap().put(new ArrayList<>(Arrays.asList(44, 44)), card3);
+        station.getMap().put(new ArrayList<>(Arrays.asList(41, 39)), card1);
+        station.getMap().put(new ArrayList<>(Arrays.asList(42, 38)), card1);
+        station.getMap().put(new ArrayList<>(Arrays.asList(43, 37)), card1);
+
+        ObjectiveDiagonal objective = new ObjectiveDiagonal(DirectionEnum.LEFT, SuitEnum.FUNGI);
+        System.out.println(objective.countObjectivePoints(station)); // 1
+    }
+
 
 /*
 @Override
