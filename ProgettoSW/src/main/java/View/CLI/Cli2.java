@@ -310,6 +310,7 @@ public class Cli2 implements UI {
                     System.out.println("Chat is not implemented yet");
                     break;
                 case "8":
+                    this.clientController.imReadyForNextTurn();
                     break;
             }
         }while(!choice.equals("8"));

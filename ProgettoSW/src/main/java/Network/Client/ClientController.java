@@ -24,12 +24,21 @@ public class ClientController {
     private final UI ui;
     private final ClientBoard clientModel;
     private final ClientToServerCommunication clientToServerCommunication;
+    private boolean readyForNextTurn = false;
 
     public ClientController(ClientToServerCommunication clientToServerCommunication){
         this.clientModel = new ClientBoard(null, null, new ArrayList<>(), null, new ArrayList<>(), new ArrayList<>(), null);
         this.clientToServerCommunication = clientToServerCommunication;
         ui = new Cli2(clientModel, this);
         ui.showGameTitle();
+    }
+
+    public void imReadyForNextTurn() {
+        readyForNextTurn = true;
+    }
+
+    public void imNotReadyForNextTurn() {
+        readyForNextTurn = false;
     }
 
     public void setupOfnickname(){
@@ -72,7 +81,7 @@ public class ClientController {
     }
 
     public void notifyItIsYourTurn() {
-
+        imNotReadyForNextTurn();
         ui.printIsMyTurnMenu();
     }
 
@@ -323,6 +332,7 @@ public class ClientController {
     public void setupOfToken_CLI(TokenEnum token){
         clientToServerCommunication.setToken(clientModel.getMyplayer().getNickname(), token);
     }
+
 
 
 }

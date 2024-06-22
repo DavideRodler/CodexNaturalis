@@ -26,7 +26,7 @@ import java.util.concurrent.BlockingQueue;
 public class Server {
 
     private final GameController gameController;
-    private List<VirtualView> clients;
+    private final List<VirtualView> clients;
     private HashMap<String, VirtualView> clientsMap;
     private BlockingQueue<Message> queue = new ArrayBlockingQueue<>(100);
 
