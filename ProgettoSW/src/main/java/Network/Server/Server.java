@@ -248,13 +248,13 @@ public class Server {
 
     public void connectClient(VirtualView client) {
         handleNewClient(client);
-        System.err.println("new client connected");
     }
 
     private void handleNewClient(VirtualView client) {
         //first player to join
         if (clients.isEmpty()) {
             clients.add(client);
+            System.err.println("new client connected");
             gameController.getBoard().addObserver(client);
             try {
                 queue.put(new QueueActionWithClientMessage("setupOfPlayersNumber", client));
@@ -273,6 +273,7 @@ public class Server {
         //all players have joined
         else if (clients.size() == gameController.getBoard().getPlayernumber() -1) {
             clients.add(client);
+            System.err.println("new client connected");
             gameController.getBoard().addObserver(client);
             try {
                 queue.put(new ActionMessage("notifyAllPlayersConnected"));
@@ -284,6 +285,7 @@ public class Server {
         //player joining game and waiting for other players
         else if (clients.size() < gameController.getBoard().getPlayernumber() -1) {
             clients.add(client);
+            System.err.println("new client connected");
             gameController.getBoard().addObserver(client);
             try {
                 queue.put(new QueueActionWithClientMessage("notifyWaitingForPlayersToJoin", client));
