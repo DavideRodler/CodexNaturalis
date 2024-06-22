@@ -121,6 +121,11 @@ public class Gui extends Application implements UI {
     }
 
     @Override
+    public void printStartOfMenu() {
+
+    }
+
+    @Override
     public void printStartOfPlayerTurn() {
 
     }

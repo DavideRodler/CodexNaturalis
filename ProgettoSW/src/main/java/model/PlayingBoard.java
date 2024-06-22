@@ -142,6 +142,11 @@ public class PlayingBoard extends ObservableModel {
 
     public void setCurrentPlayer(String currentPlayer) {
         this.currentPlayer = currentPlayer;
+        try {
+            notifyObservers(new CurrentPlayerMessage(currentPlayer));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setDeckCardObjective(LinkedList<CardObjective> deckCardObjective) {

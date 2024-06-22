@@ -42,6 +42,8 @@ public interface UI {
 
     //ToDo
 
+    void printStartOfMenu();
+
     // this method print the 4 central cards, the hand , the playingstation, the common and private objectives
     // and the other players name and points;
    void printStartOfPlayerTurn();

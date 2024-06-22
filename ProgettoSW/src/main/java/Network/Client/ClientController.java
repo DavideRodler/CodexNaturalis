@@ -10,6 +10,7 @@ import model.cards.CardResource;
 import model.cards.CardStarting;
 import model.client.ClientBoard;
 import model.client.ReductPlayer;
+import model.enums.GameState;
 import model.enums.TokenEnum;
 import Socket.Messages.Message;
 import Socket.Messages.*;
@@ -28,7 +29,7 @@ public class ClientController {
     public ClientController(ClientToServerCommunication clientToServerCommunication){
         this.clientModel = new ClientBoard(null, null, new ArrayList<>(), null, new ArrayList<>(), new ArrayList<>(), null);
         this.clientToServerCommunication = clientToServerCommunication;
-        ui = new Cli2(clientModel);
+        ui = new Cli2(clientModel, this);
         ui.showGameTitle();
     }
 
@@ -75,31 +76,43 @@ public class ClientController {
 
     public void notifyItIsYourTurn() {
         //showing the board
-        ui.printStartOfPlayerTurn();
+//        ui.printStartOfPlayerTurn();
         //the answer to where to put the card
-        Integer[] answer;
-
-        //the card i want to put in the station
-        CardResource cardchoosen;
-        int cardId;
-
-        answer = ui.askCoordinatesOfCards();
-        cardchoosen = clientModel.getMyplayer().getHand().get(answer[0]);
-        cardId = cardchoosen.getId();
-
-        clientToServerCommunication.addCardToStation(clientModel.getMyplayer().getNickname(), cardId, answer[1] == 2, answer[2], answer[3]);    //try to add the card to local model
+//        Integer[] answer;
+//
+//        //the card i want to put in the station
+//        CardResource cardchoosen;
+//        int cardId;
+//
+//        answer = ui.askCoordinatesOfCards();
+//        cardchoosen = clientModel.getMyplayer().getHand().get(answer[0]);
+//        cardId = cardchoosen.getId();
+//
+//        clientToServerCommunication.addCardToStation(clientModel.getMyplayer().getNickname(), cardId, answer[1] == 2, answer[2], answer[3]);    //try to add the card to local model
+    }
+    public void setCartToStation(int cardId, boolean playedBack, int x, int y) {
+        clientToServerCommunication.addCardToStation(clientModel.getMyplayer().getNickname(), cardId, playedBack, x, y);
     }
 
     public void handleResultOfCardAdded(boolean result, String message) {
         if(result) {
             ui.printCardAddedSuccessfully();
-            startAfterCardHasBeenAddedToStation();
+            ui.printStartOfPlayerTurn();
         }
         else {
             ui.printCardNotAdded(message);
-            notifyItIsYourTurn();
+            ui.printStartOfPlayerTurn();
         }
     }
+
+    public void addCardFromCentralCardsToPlayerHand(int cardId) {
+        clientToServerCommunication.addCardFromCentralCardsToPlayerHand(clientModel.getMyplayer().getNickname(), cardId);
+    }
+
+    public void addCardFromDeckToPlayerHand(int cardId) {
+        clientToServerCommunication.addCardFromDeckToPlayerHand(clientModel.getMyplayer().getNickname(), cardId);
+    }
+
 
 
     public void startAfterCardHasBeenAddedToStation() {
@@ -129,9 +142,17 @@ public class ClientController {
 
     public void updateModel(Message message) throws RemoteException {
         switch (message.getType()) {
+            case "CurrentPlayer":
+                CurrentPlayerMessage currentPlayerMessage = (CurrentPlayerMessage) message;
+                clientModel.setCurrentPlayer(currentPlayerMessage.getCurrentPlayer());
+                break;
             case "ChangeState":
                 ChangeStateMessage changeStateMessage = (ChangeStateMessage) message;
                 clientModel.setGameState((changeStateMessage).getGameState());
+                if (clientModel.getGameState().equals(GameState.ADDING_CARD_TO_HAND) || clientModel.getGameState().equals(GameState.PLACING_CARD)) {
+                    new Thread(() -> ui.printStartOfMenu()).start();
+                    ui.printStartOfPlayerTurn();
+                }
                 break;
             case "PlayersInfo":
                 PlayersInfoMessage playerInfoMessage = (PlayersInfoMessage) message;

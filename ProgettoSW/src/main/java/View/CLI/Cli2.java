@@ -1,13 +1,14 @@
 package View.CLI;
 
+import Network.Client.ClientController;
 import View.UI;
 import model.PlayingStation;
 import model.client.ClientBoard;
+import model.enums.GameState;
 import model.enums.TokenEnum;
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
@@ -27,10 +28,11 @@ public class Cli2 implements UI {
     private final String manuscript;
     private final String inkwell;
     private ClientBoard clientBoard;
+    private ClientController clientController;
 
 
     //constructor with clientboard
-    public Cli2(ClientBoard clientBoard) {
+    public Cli2(ClientBoard clientBoard, ClientController clientController) {
         blue = "\033[0;34m";
         green = "\033[0;32m";
         yellow = "\033[0;33m";
@@ -45,6 +47,7 @@ public class Cli2 implements UI {
         quill = gold + "Q";
 
         this.clientBoard = clientBoard;
+        this.clientController = clientController;
 
     }
 
@@ -246,7 +249,9 @@ public class Cli2 implements UI {
      * @return an array containing the choices of the player.
      */
     @Override
-    public Integer[] askCoordinatesOfCards() {
+    public synchronized Integer[] askCoordinatesOfCards() {
+        printPlayerStation(clientBoard.getMyplayer().getStation());
+        printPlayerHand();
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int cardChoice;
         do {
@@ -266,7 +271,9 @@ public class Cli2 implements UI {
         System.out.println("Choose y coordinates");
         int y = scanner.nextInt();
         Integer[] Choice = {cardChoice, cardSide, x, y};
+        clientController.setCartToStation(clientBoard.getMyplayer().getHand().get(cardChoice).getId(), cardSide == 2, x, y);
         return Choice;
+
     }
 
     /**
@@ -275,14 +282,69 @@ public class Cli2 implements UI {
      * @return the choice of the player
      */
     @Override
-    public Integer askWhichCardToDraw() {
+    public synchronized Integer askWhichCardToDraw() {
+        print4CentralCards();
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        Integer choice;
+        int choice;
         do {
             System.out.println("Which card do you want to draw? Insert 1 for up left card, 2 for up right card, 3 for down left card, 4 for down right card, 5 for resource Deck, 6 for gold Deck");
             choice = scanner.nextInt();
         } while (choice < 1 || choice > 6);
+        if (choice < 5) {
+            clientController.addCardFromCentralCardsToPlayerHand(choice - 1);
+        } else {
+            clientController.addCardFromDeckToPlayerHand(choice - 5);
+        }
         return choice;
+    }
+
+    @Override
+    public synchronized void printStartOfMenu() {
+        String currentplayer = clientBoard.getCurrentPlayer();
+        GameState gameState = clientBoard.getGameState();
+
+        print4CentralCards();
+        System.out.println();
+        printCommonObjectives();
+        printSecretObjective();
+        printPlayerStation(clientBoard.getMyplayer().getStation());
+        if (clientBoard.getCurrentPlayer().equals(clientBoard.getMyplayer().getNickname())) {
+            System.out.println("It's your turn!");
+        } else System.out.println("It's " + currentplayer + "'s turn!");
+        System.out.println("The game is now in the " + gameState + " state");
+        System.out.println("You can do the following actions: ");
+        System.out.println("1. to see another player's station");
+        System.out.println("2. Draw a card");
+        System.out.println("3. Place a card");
+    }
+
+
+    public void getanswerOfmenu() {
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        Integer choice;
+        do {
+            choice = scanner.nextInt();
+        } while (choice < 1 || choice > 3);
+        switch (choice) {
+            case 1 -> {
+                synchronized (this) {
+                    System.out.println("The players in the game are: " + clientBoard.getOtherplayers().stream().map(p -> p.getNickname()).toList());
+                    System.out.println("Insert the number of the player you want to see the station of: ");
+                    int choice2 = scanner.nextInt();
+                    printOtherPlayersStation(clientBoard.getOtherplayers().get(choice2 - 1).getNickname());
+                }
+                    new Thread(() -> {
+                        printStartOfMenu();
+                    }).start();
+                    getanswerOfmenu();
+            }
+            case 2 -> {
+                askWhichCardToDraw();
+            }
+            case 3 -> {
+                askCoordinatesOfCards();
+            }
+        }
     }
 
     /**
@@ -291,12 +353,16 @@ public class Cli2 implements UI {
      */
     @Override
     public void printStartOfPlayerTurn() {
-        print4CentralCards();
-        System.out.println();
-        printCommonObjectives();
-        printSecretObjective();
-        printSetupPlayerHand();
-        printPlayerStation(clientBoard.getMyplayer().getStation());
+        new Thread(() -> {
+            printStartOfMenu();
+        }).start();
+        getanswerOfmenu();
+//        print4CentralCards();
+//        System.out.println();
+//        printCommonObjectives();
+//        printSecretObjective();
+//        printSetupPlayerHand();
+//        printPlayerStation(clientBoard.getMyplayer().getStation());
     }
 
     /**
@@ -312,74 +378,10 @@ public class Cli2 implements UI {
      * @param nickname is the nickname of the player of which the station is going to be printed
      */
     @Override
-    public void printOtherPlayersStation(String nickname) {
+    public synchronized void printOtherPlayersStation(String nickname) {
         System.out.println(nickname + "'s station is: ");
         printPlayerStation(clientBoard.getOtherPlayer(nickname).getStation());
     }
-
-    //    private void printCard(Card card) {
-//        if (card instanceof CardStarting) {
-//            System.out.println("This is the front of your starting card: \n");
-//            printStartingFront(card);
-//            System.out.println("\nThis is the back of your starting card: \n");
-//            printStartingBack(card);
-//        } else if (card instanceof CardResource) { //tutti hanno il back uguale! un metodo unico
-//            if (card instanceof CardGold) {
-//                //Stampo la carta oro. Deve mostrare i punti e il costo. colore variabile
-//                //per differenziare metto un quadrato oro nel centro
-//                System.out.println("This is the front of your gold card: \n");
-//                printGoldFront(card);
-//                System.out.println("This is the back of your gold card: \n");
-//                printResBack(card);
-//            } else{
-//                //Stampo la carta risorsa. può avere punti e non ha costo. colore variabile
-//                System.out.println("This is the front of your resource card: \n");
-//                printResourceFront(card);
-//                System.out.println("This is the back of your resource card: \n");
-//                printResBack(card);
-//            }
-//        } else if (card instanceof CardObjective) {
-//            System.out.println("This is the your objective card: \n");
-//            if(((CardObjective) card).getObjective() instanceof ObjectivePositioning){
-//                System.out.println("Your type of objective is: positioning");
-//                if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.FUNGI){
-//                    printFungiPositioning();
-//                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.PLANT) {
-//                    printPlantPositioning();
-//                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.ANIMAL){
-//                    printAnimalPositioning();
-//                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.INSECT){
-//                    printInsectPositioning();
-//                }
-//            } else if (((CardObjective) card).getObjective() instanceof ObjectiveCountingGold) {
-//                System.out.println("Your type of objective is: counting gold");
-//                int countInkwell = ((ObjectiveCountingGold) ((CardObjective) card).getObjective()).getCountInkwell();
-//                int countManuscript = ((ObjectiveCountingGold) ((CardObjective) card).getObjective()).getCountManuscript();
-//                int countQuill = ((ObjectiveCountingGold) ((CardObjective) card).getObjective()).getCountQuill();
-//                if((countInkwell == countManuscript)&&(countInkwell == countQuill)&&(countInkwell == 1)){
-//                    printCountAll();
-//                }
-//                else if((countQuill != 0)&&(countInkwell == 0)&&(countManuscript==0)){
-//                    printCountGold(Suit.QUILL);
-//                }
-//                else if ((countQuill == 0)&&(countInkwell != 0)&&(countManuscript==0)) {
-//                    printCountGold(Suit.INKWELL);
-//                }
-//                else if ((countQuill == 0)&&(countInkwell == 0)&&(countManuscript!=0)){
-//                    printCountGold(Suit.MANUSCRIPT);
-//                }
-//            } else if (((CardObjective) card).getObjective() instanceof ObjectiveCountingResource) {
-//                System.out.println("Your type of objective is: counting resourses");
-//                Suit suit = ((ObjectiveCountingResource) ((CardObjective) card).getObjective()).getSymbol();
-//                printCountRes(suit);
-//            } else if (((CardObjective) card).getObjective() instanceof ObjectiveDiagonal) {
-//                System.out.println("Your type of objective is: ");
-//                Suit suit = ((ObjectiveDiagonal) ((CardObjective) card).getObjective()).getColor();
-//                printDiagonal(suit);
-//            }
-//        }
-//    }
-
 
 
     @Override
