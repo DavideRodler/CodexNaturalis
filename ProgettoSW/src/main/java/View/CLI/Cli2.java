@@ -89,8 +89,38 @@ public class Cli2 implements UI {
 
     }
 
-    @Override
-    public void printIsMyTurnMenu() {
+
+
+    private void privateChatTitlePrinter() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+
+        System.out.println(purple+"    _____                    _           _____ _            _"+reset);
+        System.out.println(purple+"   |  __ |    (_)           | |         / ____| |          | |"+reset);
+        System.out.println(purple+"   | |__) | __ ___    ____ _| |_ ___   | |    | |___   __ _| |_"+reset);
+        System.out.println(purple+"   |  ___/ '__| || | / / _` | __/ _ |  | |    | '_  | / _` | __|"+reset);
+        System.out.println(purple+"   | |   | |  | | | V / (_| | ||  __/  | |____| | | || (_| | |_"+reset);
+        System.out.println(purple+"   |_|   |_|  |_|  |_/ |__,_|__|_____| |______|_| |_||___,_|___|"+reset);
+
+
+    }
+
+    private void globalChatTitlePrinter() {
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+
+        System.out.println(purple + "            _____ _       _           _    _____ _            _" + reset);
+        System.out.println(purple + "           / ____| |     | |         | |  / ____| |          | |" + reset);
+        System.out.println(purple + "          | |  __| | ___ | |__   __ _| | | |    | |___   __ _| |_" + reset);
+        System.out.println(purple + "          | | |_ | |/ _ || '_ | / _` | | | |    | '_  | / _` | __|" + reset);
+        System.out.println(purple + "          | |__| | | (_) | |_) | (_| | | | |____| | | || (_| | |_" + reset);
+        System.out.println(purple + "          |______|_||___/|_.__/|___,_|_| |______|_| |_||___,_|___|" + reset);
+
+    }
+
+    public void printMenu(){
         for(int i = 0; i < 50; i++) {
             System.out.println();
         }
@@ -108,45 +138,181 @@ public class Cli2 implements UI {
         for(int i = 0; i < 17; i++) {
             System.out.println();
         }
+    }
+
+    private void printMenu2() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("It's your turn");
+        System.out.println("---------------------------------------------");
+        System.out.println("/    1. Play a card                         /");
+        System.out.println("/    2. Show my playing station             /");
+        System.out.println("/    3. Show other playing station          /");
+        System.out.println("/    4. Show central cards and decks        /");
+        System.out.println("/    5. Show hand and secret objectives     /");
+        System.out.println("/    6. Show Points                         /");
+        System.out.println("/    7. Open Chat                           /");
+        System.out.println("/    8. End turn                            /");
+        System.out.println("---------------------------------------------");
+        for(int i = 0; i < 16; i++) {
+            System.out.println();
+        }
+    }
+
+    private void printMenu3() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("It's your turn");
+        System.out.println("---------------------------------------------");
+        System.out.println("/    1. Play a card                         /");
+        System.out.println("/    2. Show my playing station             /");
+        System.out.println("/    3. Show other playing station          /");
+        System.out.println("/    4. Show central cards and decks        /");
+        System.out.println("/    5. Show hand and secret objectives     /");
+        System.out.println("/    6. Show Points                         /");
+        System.out.println("/    7. Open Chat                           /");
+        System.out.println("/    8. End turn                            /");
+        System.out.println("---------------------------------------------");
+        for(int i = 0; i < 15; i++) {
+            System.out.println();
+        }
+    }
+
+    private void printMenu4() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("It's your turn");
+        System.out.println("---------------------------------------------");
+        System.out.println("/    1. Play a card                         /");
+        System.out.println("/    2. Show my playing station             /");
+        System.out.println("/    3. Show other playing station          /");
+        System.out.println("/    4. Show central cards and decks        /");
+        System.out.println("/    5. Show hand and secret objectives     /");
+        System.out.println("/    6. Show Points                         /");
+        System.out.println("/    7. Open Chat                           /");
+        System.out.println("/    8. End turn                            /");
+        System.out.println("---------------------------------------------");
+        for(int i = 0; i < 15; i++) {
+            System.out.println();
+        }
+    }
+
+    private void printMenu5() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("It's your turn");
+        System.out.println("---------------------------------------------");
+        System.out.println("/    1. Play a card                         /");
+        System.out.println("/    2. Show my playing station             /");
+        System.out.println("/    3. Show other playing station          /");
+        System.out.println("/    4. Show central cards and decks        /");
+        System.out.println("/    5. Show hand and secret objectives     /");
+        System.out.println("/    6. Show Points                         /");
+        System.out.println("/    7. Open Chat                           /");
+        System.out.println("/    8. End turn                            /");
+        System.out.println("---------------------------------------------");
+        for(int i = 0; i < 15; i++) {
+            System.out.println();
+        }
+    }
+
+    private void printMenu6() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("It's your turn");
+        System.out.println("---------------------------------------------");
+        System.out.println("/    1. Play a card                         /");
+        System.out.println("/    2. Show my playing station             /");
+        System.out.println("/    3. Show other playing station          /");
+        System.out.println("/    4. Show central cards and decks        /");
+        System.out.println("/    5. Show hand and secret objectives     /");
+        System.out.println("/    6. Show Points                         /");
+        System.out.println("/    7. Open Chat                           /");
+        System.out.println("/    8. End turn                            /");
+        System.out.println("---------------------------------------------");
+        for(int i = 0; i < 15; i++) {
+            System.out.println();
+        }
+    }
+
+    private void printMenu7() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("It's your turn");
+        System.out.println("---------------------------------------------");
+        System.out.println("/    1. Play a card                         /");
+        System.out.println("/    2. Show my playing station             /");
+        System.out.println("/    3. Show other playing station          /");
+        System.out.println("/    4. Show central cards and decks        /");
+        System.out.println("/    5. Show hand and secret objectives     /");
+        System.out.println("/    6. Show Points                         /");
+        System.out.println("/    7. Open Chat                           /");
+        System.out.println("/    8. End turn                            /");
+        System.out.println("---------------------------------------------");
+        for(int i = 0; i < 15; i++) {
+            System.out.println();
+        }
+    }
+
+    @Override
+    public void printIsMyTurnMenu() {
+
+        this.printMenu();
 
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         String choice;
         do {
-            System.out.println("Choose an option: ");
-            choice = scanner.nextLine();
-        } while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4") && !choice.equals("5") && !choice.equals("6") && !choice.equals("7") && !choice.equals("8"));
+            do {
+                System.out.println("Choose an option: ");
+                choice = scanner.nextLine();
+            } while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4") && !choice.equals("5") && !choice.equals("6") && !choice.equals("7") && !choice.equals("8"));
 
-        switch (choice) {
-            case "1":
-                Integer[] answer = this.askCoordinatesOfCards();
-                CardResource cardchoosen = this.clientBoard.getMyplayer().getHand().get(answer[0]);
-                int cardId = cardchoosen.getId();
-                this.clientController.playCardOnPS_UI(answer, cardchoosen, cardId);
-                break;
-            case "2":
-                printPlayerStation(clientBoard.getMyplayer().getStation());
-                break;
-            case "3":
-                System.out.println("Insert the nickname of the player you want to see the station of: ");
-                String nickname = getValidNickname();
-                printOtherPlayersStation(nickname);
-                break;
-            case "4":
-                print4CentralCards();
-                break;
-            case "5":
-                printPlayerHand();
-                break;
-            case "6":
-                printAllPlayersPoints();
-                break;
-            case "7":
-                System.out.println("Chat is not implemented yet");
-                break;
-            case "8":
-                //this.clientController.endTurn_CLI();
-                break;
-        }
+            switch (choice) {
+                case "1":
+                    Integer[] answer = this.askCoordinatesOfCards();
+                    CardResource cardchoosen = this.clientBoard.getMyplayer().getHand().get(answer[0]);
+                    int cardId = cardchoosen.getId();
+                    this.clientController.playCardOnPS_UI(answer, cardchoosen, cardId);
+                    break;
+                case "2":
+                    printMenu2();
+                    printPlayerStation(clientBoard.getMyplayer().getStation());
+                    break;
+                case "3":
+                    System.out.println("Insert the nickname of the player you want to see the station of: ");
+                    String nickname = getValidNickname();
+                    printMenu3();
+                    printOtherPlayersStation(nickname);
+                    break;
+                case "4":
+                    printMenu4();
+                    print4CentralCards();
+
+                    break;
+                case "5":
+                    printMenu5();
+                    printPlayerHand();
+
+                    break;
+                case "6":
+                    printMenu6();
+                    printAllPlayersPoints();
+
+                    break;
+                case "7":
+                    printMenu7();
+                    System.out.println("Chat is not implemented yet");
+                    break;
+                case "8":
+                    break;
+            }
+        }while(!choice.equals("8"));
     }
 
     private void printAllPlayersPoints() {
@@ -162,6 +328,11 @@ public class Cli2 implements UI {
         String nickname="";
         boolean valid = false;
         do {
+            for (var c : clientBoard.getOtherplayers()) {
+                System.out.print(lightBlue + c.getNickname() + reset + " ");
+            }
+            System.out.println();
+            System.out.println();
             try{
                 nickname = scanner.nextLine();
                 if (clientBoard.getOtherPlayer(nickname) == null){
@@ -169,10 +340,11 @@ public class Cli2 implements UI {
                 }
                 valid = true;
             } catch (Exception e) {
+                printMenu();
                 System.out.println("Invalid nickname, please try again.");
             }
         } while (!valid);
-         return nickname;
+        return nickname;
     }
 
     @Override
