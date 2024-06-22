@@ -2,17 +2,28 @@ package View.GUI;
 
 import Network.Client.ClientController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
+import model.Player;
+import model.PlayingStation;
 import model.cards.*;
 import model.cards.face.Corner;
 import model.cards.face.Face;
+import model.client.ClientBoard;
+import model.client.ReductPlayer;
 import model.enums.SuitEnum;
+import model.enums.TokenEnum;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -595,5 +606,32 @@ public class StationController implements Initializable {
 //        testDownLeft.setLayoutY(y+40);
 //        stationPane.getChildren().add(testDownLeft);
         instructionsLabel.setText("Choose the side of your starting card starting card");
+        scoreboardButton.setOnMouseClicked(this::switchToScoreBoard);
         }
+
+    public void switchToScoreBoard(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ScoreBoard.fxml"));
+            Parent root = fxmlLoader.load();
+            ScoreBoardController controller = fxmlLoader.getController();
+            controller.setPreScene(scoreboardButton.getScene());
+            Stage stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            /**ReductPlayer tommy = new ReductPlayer(2, new ArrayList<>(), "tommy", new PlayingStation(new HashMap<>()), TokenEnum.BLUE );
+            ReductPlayer eric = new ReductPlayer(4, new ArrayList<>(), "eric", new PlayingStation(new HashMap<>()), TokenEnum.YELLOW );
+            ReductPlayer dave = new ReductPlayer(6, new ArrayList<>(), "dave", new PlayingStation(new HashMap<>()), TokenEnum.RED);
+            ArrayList<ReductPlayer> redplayers= new ArrayList<>();
+            redplayers.add(0, tommy);
+            redplayers.add(1, eric);
+            redplayers.add(2, dave);
+            Player isa = new Player("isa", TokenEnum.GREEN, new PlayingStation(new HashMap<>()), 15, new ArrayList<>());
+            controller.setClientBoard(new ClientBoard(null, null, redplayers, isa, null, null, null));
+            controller.updateTokens2(); **/
+            controller.updateTokens();
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

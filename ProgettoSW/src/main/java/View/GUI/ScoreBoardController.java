@@ -1,20 +1,38 @@
 package View.GUI;
 
+import Network.Client.ClientController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import model.client.ClientBoard;
 import model.client.ReductPlayer;
 import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 
-public class ScoreBoardController {
+public class ScoreBoardController implements Initializable{
+
+    @FXML
+    private Button btngoback;
+
+    @FXML
+    public ClientController clientController;
 
     @FXML
     private ImageView imgScoreBoard;
@@ -120,13 +138,28 @@ public class ScoreBoardController {
 
     private Integer oldpoints;
 
-    public void updateScoreBoard(){
-        //prendo coordinate delle caselle e sposto sopra la pedina
+    private Scene preScene;
+    private ClientBoard clientBoard;
+
+    public void setClientController(ClientController clientController){
+        this.clientController = clientController;
     }
 
-    public void updatePointsLabel(){
-
+    public void setClientBoard(ClientBoard clientBoard){
+        this.clientBoard = clientBoard;
     }
+
+    public ClientBoard getClientModel(){
+        return clientBoard;
+    }
+
+    public void updateTokens(){
+        findPos(clientController.getClientModel().getMyplayer().getPoints()).setImage(this.getImageToken(clientController.getClientModel().getMyplayer().getToken()));
+        for(ReductPlayer player: clientController.getClientModel().getOtherplayers() ){
+            findPos(player.getPoints()).setImage(this.getImageToken(player.getToken()));
+        }
+    }
+
 
     public Image getImageToken(TokenEnum token){
         InputStream stream = this.getClass().getClassLoader().getResourceAsStream(token +"_token.png");
@@ -134,7 +167,7 @@ public class ScoreBoardController {
         return new Image(stream);
     }
 
-    public ImageView findPos(Integer points){
+    public ImageView findPos(int points){
         switch(points){
             case 1: return pos1;
             case 2: return pos2;
@@ -168,30 +201,34 @@ public class ScoreBoardController {
         }
     }
 
-    /**
-     *
-     * @param player
-     */
-    public void moveToken(ClientBoard player){ //da collegare al flusso di gioco, appena prima di passare al next player
-        if(!Objects.equals(player.getMyplayer().getPoints(), oldpoints)) {
-            checkOtherPlayerPoints(player.getOtherplayers(), oldpoints);
-            findPos(player.getMyplayer().getPoints()).setImage(this.getImageToken(player.getMyplayer().getToken()));
-            oldpoints = player.getMyplayer().getPoints();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        btngoback.setOnMouseClicked(this::switchToStation);
+
+    }
+
+    public void switchToStation(MouseEvent mouseEvent) {
+        Stage stage = (Stage)btngoback.getScene().getWindow();
+        stage.setScene(preScene);
+        stage.show();
+    }
+
+    public void setPreScene(Scene preScene) {
+        this.preScene = preScene;
+    }
+
+
+    //VERSIONE DELLE FUNZIONI PER TEST CON CLIENTMODEL
+
+    public void updateTokens2(){
+        findPos(this.getClientModel().getMyplayer().getPoints()).setImage(this.getImageToken(this.getClientModel().getMyplayer().getToken()));
+        for(ReductPlayer player: this.getClientModel().getOtherplayers() ){
+            findPos(player.getPoints()).setImage(this.getImageToken(player.getToken()));
         }
     }
 
-    /**
-     *
-     * @param otherPlayers
-     * @param points
-     */
-    public void checkOtherPlayerPoints(ArrayList<ReductPlayer> otherPlayers, int points){
-        for(ReductPlayer player: otherPlayers ){
-            if(player.getPoints() == points){
-                findPos(points).setImage(this.getImageToken(player.getToken()));
-            }
-        }
-    }
+
 
 }
 

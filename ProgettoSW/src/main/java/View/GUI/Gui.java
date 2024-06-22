@@ -25,6 +25,8 @@ public class Gui extends Application implements UI {
     private ClientBoard clientBoard;
     private ClientController clientController;
 
+    private ScoreBoardController scoreBoardController;
+
 
 
     public Gui(){
@@ -48,7 +50,9 @@ public class Gui extends Application implements UI {
         this.startSceneController = new StartSceneController(this.clientController);
         this.stationController = new StationController(this.clientController);
         this.chooseNickAndTokenController = new ChooseNickAndTokenController();
+        this.scoreBoardController = new ScoreBoardController();
         this.chooseNickAndTokenController.setClientController(this.clientController);
+        this.scoreBoardController.setClientController(this.clientController);
         launch();
     }
 

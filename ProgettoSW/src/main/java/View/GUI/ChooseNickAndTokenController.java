@@ -71,7 +71,7 @@ public class ChooseNickAndTokenController implements Initializable{
         this.clientController = new ClientController(null,null);
     }
 
-    public void setClientController(ClientController clientController){
+    public void setClientController(ClientController clientController) {
         this.clientController = clientController;
     }
 

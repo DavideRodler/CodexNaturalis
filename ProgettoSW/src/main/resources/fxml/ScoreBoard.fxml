@@ -11,10 +11,10 @@
    <children>
       <ImageView fx:id="imgScoreBoard" fitHeight="600.0" fitWidth="400.0" layoutX="70.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../scoreboard/scoreboard.jpg" />
+            <Image url="@../scoreboard/scoreboard.png" />
          </image>
       </ImageView>
-      <Button layoutX="1075.0" layoutY="625.0" mnemonicParsing="false" text="Go Back" />
+      <Button fx:id="btngoback" layoutX="1075.0" layoutY="625.0" mnemonicParsing="false" text="Go Back" />
       <VBox layoutX="773.0" layoutY="73.0" spacing="10.0">
          <children>
             <Label fx:id="lblFirstPlace" />
