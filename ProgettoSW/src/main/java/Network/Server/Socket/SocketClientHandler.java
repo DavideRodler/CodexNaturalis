@@ -6,6 +6,7 @@ import Network.Server.ServerToClientCommunication;
 import Socket.Messages.ClientToServer.*;
 import Socket.Messages.Message;
 import Socket.Messages.ServerToClient.ActionMessage;
+import Socket.Messages.ServerToClient.GameFinishedMessage;
 import Socket.Messages.ServerToClient.ResultOfCardAddedToStationMessage;
 import exception.ChangedStateException;
 import exception.NotValidMoveException;
@@ -260,7 +261,13 @@ public class SocketClientHandler implements VirtualView {
 
     @Override
     public void notifyGameFinished(LinkedHashMap<String, ArrayList<Integer>> scoreBoard) throws RemoteException {
-        //TODO
+        GameFinishedMessage gameFinishedMessage = new GameFinishedMessage(scoreBoard);
+        try {
+            this.output.writeObject(gameFinishedMessage);
+            this.output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

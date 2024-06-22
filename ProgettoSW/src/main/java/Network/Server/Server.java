@@ -258,7 +258,6 @@ public class Server {
             gameController.getBoard().addObserver(client);
             try {
                 queue.put(new QueueActionWithClientMessage("setupOfPlayersNumber", client));
-                queue.put(new QueueActionWithClientMessage("notifyWaitingForPlayersToJoin", client));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

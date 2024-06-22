@@ -3,6 +3,7 @@ package Network.Client.Socket;
 import Network.Client.ClientController;
 import Network.Client.ClientToServerCommunication;
 import Socket.Messages.Message;
+import Socket.Messages.ServerToClient.GameFinishedMessage;
 import Socket.Messages.ServerToClient.ResultOfCardAddedToStationMessage;
 import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
@@ -69,6 +70,10 @@ public class SocketClient implements ClientToServerCommunication{
                 case "ResultOfCardAddedToStation" -> {
                     ResultOfCardAddedToStationMessage resultOfCardAddedToStationMessage = (ResultOfCardAddedToStationMessage) message;
                     clientController.handleResultOfCardAdded(resultOfCardAddedToStationMessage.isAdded(), resultOfCardAddedToStationMessage.getMessage());
+                }
+                case "GameFinished" -> {
+                    GameFinishedMessage gameFinishedMessage = (GameFinishedMessage) message;
+                    clientController.notifyGameFinished(gameFinishedMessage.getScoreBoard());
                 }
 
                 case "notifyItIsYourTurn" -> clientController.notifyItIsYourTurn();
