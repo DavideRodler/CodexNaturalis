@@ -57,23 +57,27 @@ public class Gui extends Application implements UI {
     }
 
     @Override
-    public String askNickname() {
-        return chooseNickAndTokenController.enterNickname();
+    public void printIsMyTurnMenu() {
+
     }
 
     @Override
-    public int askPlayerNumber() {
-        return 0;
+    public void askNickname() {
     }
 
     @Override
-    public boolean askStartingCardPlayedBack() {
-        return stationController.chooseSideStartingCard();
+    public void askPlayerNumber() {
+
+    }
+
+    @Override
+    public void askStartingCardPlayedBack() {
+
     }
 
     @Override
     public void printCommonObjectives() {
-        stationController.show2CommonObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
+
     }
 
     @Override
@@ -86,8 +90,8 @@ public class Gui extends Application implements UI {
     }
 
     @Override
-    public int askObjectiveCard() {
-        return stationController.chooseSecretObjective();
+    public void askObjectiveCard() {
+
     }
 
     @Override
@@ -116,8 +120,8 @@ public class Gui extends Application implements UI {
     }
 
     @Override
-    public Integer askWhichCardToDraw() {
-        return null;
+    public void askWhichCardToDraw() {
+
     }
 
     @Override
@@ -146,9 +150,8 @@ public class Gui extends Application implements UI {
     }
 
     @Override
-    public TokenEnum askToken(ArrayList<TokenEnum> availableTokens) { //TODO: passare per al controller l'arraylist
-        chooseNickAndTokenController.setAvailableTokens(availableTokens);
-        return chooseNickAndTokenController.enterToken();
+    public void askToken(ArrayList<TokenEnum> availableTokens) { //TODO: passare per al controller l'arraylist
+
     }
 
     @Override

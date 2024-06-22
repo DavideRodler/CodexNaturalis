@@ -40,4 +40,5 @@ public interface VirtualView extends Remote, Observer {
     void notifyTokenAlreadyTaken() throws RemoteException;
 
     void setupOfToken() throws RemoteException;
+
 }

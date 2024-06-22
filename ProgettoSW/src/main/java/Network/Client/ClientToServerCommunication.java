@@ -1,5 +1,7 @@
 package Network.Client;
 
+import Socket.Messages.Chat.GlobalChatMessage;
+import Socket.Messages.Chat.PrivateChatMessage;
 import model.enums.TokenEnum;
 
 public interface ClientToServerCommunication {
@@ -22,4 +24,8 @@ public interface ClientToServerCommunication {
     void finishTurn();
 
     void setPlayerNumber(int num);
+
+    void sendGlobalMessage(GlobalChatMessage global);
+
+    void sendPrivateMessage(PrivateChatMessage privateMessage);
 }
