@@ -38,6 +38,8 @@ public class ClientBoard implements Serializable {
         this.centralCardsResource = centralCardsResource;
         this.centralCardsGold = centralCardsGold;
         this.gameState = gameState;
+        this.privateChats = new ArrayList<>();
+        this.globalChat = new GlobalChat();
     }
 
     // public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, GameState gameState) {

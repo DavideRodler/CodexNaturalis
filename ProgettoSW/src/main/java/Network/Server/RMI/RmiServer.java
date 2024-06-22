@@ -3,6 +3,8 @@ package Network.Server.RMI;
 import Network.Client.RMI.VirtualView;
 import Network.Server.Server;
 import Network.Server.VirtualServer;
+import Socket.Messages.Chat.GlobalChatMessage;
+import Socket.Messages.Chat.PrivateChatMessage;
 import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
 import exception.NotMyTurnException;
@@ -74,5 +76,17 @@ public class RmiServer implements VirtualServer {
     @Override
     public void startTurn() throws RemoteException {
         server.startTurn();
+    }
+
+    @Override
+    public void takeGlobalMessage(GlobalChatMessage globalChatMessage) throws RemoteException{
+        server.takeGlobalMessage(globalChatMessage);
+
+    }
+
+    @Override
+    public void takePrivateMessage(PrivateChatMessage privateChatMessage) throws RemoteException{
+        server.takePrivateMessage(privateChatMessage);
+
     }
 }

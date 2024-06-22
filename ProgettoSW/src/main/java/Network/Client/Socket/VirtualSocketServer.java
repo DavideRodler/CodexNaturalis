@@ -2,7 +2,10 @@ package Network.Client.Socket;
 
 import Network.Client.RMI.VirtualView;
 import Network.Server.VirtualServer;
+import Socket.Messages.Chat.GlobalChatMessage;
+import Socket.Messages.Chat.PrivateChatMessage;
 import Socket.Messages.ClientToServer.*;
+import model.enums.GameState;
 import model.enums.TokenEnum;
 
 import java.io.IOException;
@@ -122,6 +125,27 @@ public class VirtualSocketServer implements VirtualServer {
         StartTurnMessage message = new StartTurnMessage();
         try {
             output.writeObject(message);
+            output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void takeGlobalMessage(GlobalChatMessage globalChatMessage) {
+        try {
+            output.writeObject(globalChatMessage);
+            output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+    public void takePrivateMessage(PrivateChatMessage privateChatMessage) {
+        try {
+            output.writeObject(privateChatMessage);
             output.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);

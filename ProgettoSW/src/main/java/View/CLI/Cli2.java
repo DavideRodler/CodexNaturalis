@@ -4,15 +4,12 @@ import Network.Client.ClientController;
 import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
 import View.UI;
-import exception.InvalidPlacingCondition;
-import exception.NotMyTurnException;
 import model.PlayingStation;
 import model.cards.CardResource;
 import model.client.ClientBoard;
 import model.enums.TokenEnum;
 import model.client.ReductPlayer;
 import java.io.InputStreamReader;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
@@ -283,7 +280,7 @@ public class Cli2 implements UI {
                     Integer[] answer = this.askCoordinatesOfCards();
                     CardResource cardchoosen = this.clientBoard.getMyplayer().getHand().get(answer[0]);
                     int cardId = cardchoosen.getId();
-                    this.clientController.playCardOnPS_UI(answer, cardchoosen, cardId);
+                    this.clientController.playCardOnPlayngStation_UI(answer, cardchoosen, cardId);
                     break;
                 case "2":
                     printMenu2();
@@ -630,6 +627,11 @@ public class Cli2 implements UI {
         int y = scanner.nextInt();
         Integer[] Choice = {cardChoice, cardSide, x, y};
         return Choice;
+    }
+
+    @Override
+    public void printStartOfMenu() {
+
     }
 
     /**

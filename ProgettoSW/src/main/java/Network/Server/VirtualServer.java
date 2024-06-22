@@ -1,6 +1,8 @@
 package Network.Server;
 
 import Network.Client.RMI.VirtualView;
+import Socket.Messages.Chat.GlobalChatMessage;
+import Socket.Messages.Chat.PrivateChatMessage;
 import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
 import exception.NotMyTurnException;
@@ -35,4 +37,7 @@ public interface VirtualServer extends Remote {
 
     void startTurn() throws RemoteException;
 
+    void takeGlobalMessage(GlobalChatMessage globalChatMessage) throws RemoteException;
+
+    void takePrivateMessage(PrivateChatMessage privateChatMessage) throws RemoteException;
 }

@@ -2,6 +2,8 @@ package Network.Client.Socket;
 
 import Network.Client.ClientController;
 import Network.Client.ClientToServerCommunication;
+import Socket.Messages.Chat.GlobalChatMessage;
+import Socket.Messages.Chat.PrivateChatMessage;
 import Socket.Messages.Message;
 import Socket.Messages.ServerToClient.GameFinishedMessage;
 import Socket.Messages.ServerToClient.ResultOfCardAddedToStationMessage;
@@ -177,5 +179,15 @@ public class SocketClient implements ClientToServerCommunication{
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void sendGlobalMessage(GlobalChatMessage global) {
+        server.takeGlobalMessage(global);
+    }
+
+    @Override
+    public void sendPrivateMessage(PrivateChatMessage privateMessage) {
+        server.takePrivateMessage(privateMessage);
     }
 }

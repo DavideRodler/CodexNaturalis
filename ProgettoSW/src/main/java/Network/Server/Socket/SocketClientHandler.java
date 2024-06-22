@@ -3,6 +3,8 @@ package Network.Server.Socket;
 import Network.Client.RMI.VirtualView;
 import Network.Server.Server;
 import Network.Server.ServerToClientCommunication;
+import Socket.Messages.Chat.GlobalChatMessage;
+import Socket.Messages.Chat.PrivateChatMessage;
 import Socket.Messages.ClientToServer.*;
 import Socket.Messages.Message;
 import Socket.Messages.ServerToClient.ActionMessage;
@@ -73,6 +75,14 @@ public class SocketClientHandler implements VirtualView {
                 case "AddCardFromCentralCardsToPlayerHand" -> {
                     AddCardFromCentralCardsToPlayerHandMessage addCardFromCentralCardsToPlayerHandMessage = (AddCardFromCentralCardsToPlayerHandMessage) message;
                     server.addCardFromCentralCardsToPlayerHand(addCardFromCentralCardsToPlayerHandMessage.getNickname(), addCardFromCentralCardsToPlayerHandMessage.getCardId());
+                }
+                case "GLOBAL" -> {
+                    GlobalChatMessage globalChatMessage = (GlobalChatMessage) message;
+                    server.takeGlobalMessage(globalChatMessage);
+                }
+                case "PRIVATE" -> {
+                    PrivateChatMessage privateChatMessage = (PrivateChatMessage) message;
+                    server.takePrivateMessage(privateChatMessage);
                 }
 
                 default -> System.out.println("invalid message");

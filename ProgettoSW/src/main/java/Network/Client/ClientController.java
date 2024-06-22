@@ -88,7 +88,7 @@ public class ClientController {
         ui.printIsMyTurnMenu();
     }
 
-    public void playCardOnPS_UI(Integer[] answer , CardResource cardchoosen , int cardId) {
+    public void playCardOnPlayngStation_UI(Integer[] answer , CardResource cardchoosen , int cardId) {
 
         clientToServerCommunication.addCardToStation(clientModel.getMyplayer().getNickname(), cardId, answer[1] == 2, answer[2], answer[3]);    //try to add the card to local model
     }
@@ -282,7 +282,6 @@ public class ClientController {
                     clientModel.setBackOfResourceDeck(backOfFirstCardOfDeckMessage.getBackOfCard());
                 }
                 break;
-            default: System.err.println("Invalid message type");
         }
 
     }

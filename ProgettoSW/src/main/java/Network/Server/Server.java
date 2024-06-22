@@ -1,6 +1,8 @@
 package Network.Server;
 
 import Network.Client.RMI.VirtualView;
+import Socket.Messages.Chat.GlobalChatMessage;
+import Socket.Messages.Chat.PrivateChatMessage;
 import Socket.Messages.Message;
 import Socket.Messages.ServerToClient.ActionMessage;
 import Socket.Messages.ServerToClient.ResultOfCardAddedToStationMessage;
@@ -527,13 +529,13 @@ public class Server {
 
 
 
-    public synchronized void sendGlobalMessage(String nickname, String message) throws RemoteException {
-        gameController.addMessageToGlobalChat(nickname, message);
+    public synchronized void takeGlobalMessage(GlobalChatMessage message){
+        gameController.addMessageToGlobalChat(message.getNickname(), message.getMessage());
     }
 
 
-    public void sendPrivateMessage(String nickname, String nickname1, String message2) {
-        gameController.addMessageToPrivateChat(nickname, nickname1, message2);
+    public void takePrivateMessage(PrivateChatMessage message) {
+        gameController.addMessageToPrivateChat(message.getNicknameReceiver(), message.getNicknameSender(), message.getMessage());
     }
 
 

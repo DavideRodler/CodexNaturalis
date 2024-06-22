@@ -4,6 +4,8 @@ import Network.Client.ClientToServerCommunication;
 import Network.Client.ClientController;
 import Network.Server.VirtualServer;
 
+import Socket.Messages.Chat.GlobalChatMessage;
+import Socket.Messages.Chat.PrivateChatMessage;
 import Socket.Messages.ClientToServer.*;
 import Socket.Messages.Message;
 import model.enums.TokenEnum;
@@ -83,6 +85,14 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
                 }
                 case "StartTurn" -> {
                     server.startTurn();
+                }
+                case "GLOBAL" -> {
+                    GlobalChatMessage globalChatMessage = (GlobalChatMessage) actionMessage;
+                    server.takeGlobalMessage(globalChatMessage);
+                }
+                case "PRIVATE" -> {
+                    PrivateChatMessage privateChatMessage = (PrivateChatMessage) actionMessage;
+                    server.takePrivateMessage(privateChatMessage);
                 }
                 default -> throw new RuntimeException("Invalid message type");
             }
@@ -190,6 +200,27 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
         try {
             queue.put(setPlayerNumberMessage);
         } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void sendGlobalMessage(GlobalChatMessage global) {
+        try {
+            queue.put(global);
+        }
+        catch (InterruptedException e){
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+    public void sendPrivateMessage(PrivateChatMessage privateMessage) {
+        try {
+            queue.put(privateMessage);
+        }
+        catch (InterruptedException e){
             throw new RuntimeException(e);
         }
     }
