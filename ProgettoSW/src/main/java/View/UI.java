@@ -7,16 +7,30 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public interface UI {
+
+
+    void askNickname();
+
+    void askPlayerNumber();
+
+    void askToken(ArrayList<TokenEnum> availableTokens);
+
+    void askStartingCardPlayedBack();
+
+    void askObjectiveCard();
+
     void showStartingCard();
 
     void showGameTitle();
 
-    String askNickname();
+    void printIsMyTurnMenu();
 
-    int askPlayerNumber();
+    void askWhichCardToDraw();
 
 
-    boolean askStartingCardPlayedBack();
+
+
+
 
     void printCommonObjectives();
 
@@ -24,7 +38,7 @@ public interface UI {
 
     void printSelectableObjectives();
 
-    int askObjectiveCard();
+
 
     //this method only shows the 4 Central cards at the beginning of the game
     void print4CentralCards();
@@ -38,7 +52,7 @@ public interface UI {
 
     Integer[] askCoordinatesOfCards();
 
-    Integer askWhichCardToDraw();
+
 
     //ToDo
 
@@ -53,7 +67,7 @@ public interface UI {
 
     void printFinalPoints(LinkedHashMap<String, ArrayList<Integer>> map);
 
-    TokenEnum askToken(ArrayList<TokenEnum> availableTokens);
+
 
     void printPlayerToken();
 
@@ -67,4 +81,6 @@ public interface UI {
     void printCardAddedSuccessfully();
 
     void printCardNotAdded(String message);
+
+
 }

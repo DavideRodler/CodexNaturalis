@@ -21,22 +21,22 @@ import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class ClientController {
-    private UI ui;
-    private ClientBoard clientModel;
-    private ClientToServerCommunication clientToServerCommunication;
+    private final UI ui;
+    private final ClientBoard clientModel;
+    private final ClientToServerCommunication clientToServerCommunication;
 
     public ClientController(ClientToServerCommunication clientToServerCommunication){
         this.clientModel = new ClientBoard(null, null, new ArrayList<>(), null, new ArrayList<>(), new ArrayList<>(), null);
         this.clientToServerCommunication = clientToServerCommunication;
-        ui = new Cli2(clientModel);
+        ui = new Cli2(clientModel, this);
         ui.showGameTitle();
     }
 
-    public void setupOfnickname() {
-        String nickname;
+    public void setupOfnickname(){
+        ui.askNickname();
+    }
 
-        nickname = ui.askNickname();
-
+    public void setupOfnickname_UI(String nickname){
         //adding player to client model
         Player myplayer = new Player(nickname, new PlayingStation(new HashMap<>()), 0, new ArrayList<>());
         clientModel.setMyplayer(myplayer);
@@ -50,11 +50,10 @@ public class ClientController {
     }
 
     public synchronized void setupOfStartingCard() {
+        ui.askStartingCardPlayedBack();
+    }
 
-        //asking starting card face
-        ui.showStartingCard();
-        boolean answer = ui.askStartingCardPlayedBack();
-
+    public synchronized void setupOfStartingCard_UI(boolean answer){
         //setting starting card face in server
         CardStarting cardStarting = (CardStarting) clientModel.getMyplayer().getStation().getCard(40,40);
         clientToServerCommunication.setStartingCardPlayedBack(answer, clientModel.getMyplayer().getNickname(),cardStarting.getId());
@@ -62,30 +61,22 @@ public class ClientController {
 
 
 
-    public synchronized void setupOfSecretObjective(){
-        //printing selectible objectives
-        ui.printSelectableObjectives();
+    public synchronized void setupOfSecretObjective() {
+        ui.askObjectiveCard();
+    }
 
-        //asking secret objective
-        int answer = ui.askObjectiveCard();
+    public synchronized void setupOfSecretObjective_UI(int answer){
 
         clientToServerCommunication.setSecretObjective(clientModel.getMyplayer().getNickname(), clientModel.getMyplayer().getSelectibleObjectives().get(answer).getId());
 
     }
 
     public void notifyItIsYourTurn() {
-        //showing the board
-        ui.printStartOfPlayerTurn();
-        //the answer to where to put the card
-        Integer[] answer;
 
-        //the card i want to put in the station
-        CardResource cardchoosen;
-        int cardId;
+        ui.printIsMyTurnMenu();
+    }
 
-        answer = ui.askCoordinatesOfCards();
-        cardchoosen = clientModel.getMyplayer().getHand().get(answer[0]);
-        cardId = cardchoosen.getId();
+    public void playCardOnPS_UI(Integer[] answer , CardResource cardchoosen , int cardId) {
 
         clientToServerCommunication.addCardToStation(clientModel.getMyplayer().getNickname(), cardId, answer[1] == 2, answer[2], answer[3]);    //try to add the card to local model
     }
@@ -97,18 +88,20 @@ public class ClientController {
         }
         else {
             ui.printCardNotAdded(message);
-            notifyItIsYourTurn();
         }
     }
 
 
-    public void startAfterCardHasBeenAddedToStation() {
-        ui.printStationAfterCardHasBeenAdded();
+    public void startAfterCardHasBeenAddedToStation(){
 
-        ui.print4CentralCards();
-        int selection = ui.askWhichCardToDraw();
+        ui.askWhichCardToDraw();
+    }
 
-        CardResource card = null;
+
+    public void startAfterCardHasBeenAddedToStation_UI(Integer choice) {
+
+        int selection = choice;
+        CardResource card;
         if(selection>=1 && selection<=4){
             if(selection>=3) {
                 ArrayList<CardResource> centralCardsResource = clientModel.getCentralCardsResource();
@@ -123,7 +116,6 @@ public class ClientController {
         else {
                 clientToServerCommunication.addCardFromDeckToPlayerHand(clientModel.getMyplayer().getNickname(), selection);
         }
-        clientToServerCommunication.finishTurn();
     }
 
 
@@ -272,7 +264,11 @@ public class ClientController {
     }
 
     public void setupOfPlayersNumber() {
-        clientToServerCommunication.setPlayerNumber(ui.askPlayerNumber());
+        ui.askPlayerNumber();
+    }
+
+    public void setupOfPlayersNumber_CLI(int number){
+        clientToServerCommunication.setPlayerNumber(number);
     }
 
     public void notifyAnotherPlayerSettingNumOfPlayers() {
@@ -321,7 +317,10 @@ public class ClientController {
     }
 
     public void setupOfToken() {
-        TokenEnum token = ui.askToken(clientModel.getAvailableTokens());
+        ui.askToken(clientModel.getAvailableTokens());
+    }
+
+    public void setupOfToken_CLI(TokenEnum token){
         clientToServerCommunication.setToken(clientModel.getMyplayer().getNickname(), token);
     }
 

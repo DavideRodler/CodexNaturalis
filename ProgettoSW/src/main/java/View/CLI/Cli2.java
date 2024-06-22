@@ -1,13 +1,14 @@
 package View.CLI;
 
+import Network.Client.ClientController;
 import View.UI;
 import model.PlayingStation;
+import model.cards.CardResource;
 import model.client.ClientBoard;
 import model.enums.TokenEnum;
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
@@ -27,10 +28,11 @@ public class Cli2 implements UI {
     private final String manuscript;
     private final String inkwell;
     private ClientBoard clientBoard;
+    private ClientController clientController;
 
 
     //constructor with clientboard
-    public Cli2(ClientBoard clientBoard) {
+    public Cli2(ClientBoard clientBoard, ClientController clientController) {
         blue = "\033[0;34m";
         green = "\033[0;32m";
         yellow = "\033[0;33m";
@@ -45,6 +47,7 @@ public class Cli2 implements UI {
         quill = gold + "Q";
 
         this.clientBoard = clientBoard;
+        this.clientController = clientController;
 
     }
 
@@ -87,23 +90,109 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public String askNickname() {
+    public void printIsMyTurnMenu() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("It's your turn");
+        System.out.println("---------------------------------------------");
+        System.out.println("/    1. Play a card                         /");
+        System.out.println("/    2. Show my playing station             /");
+        System.out.println("/    3. Show other playing station          /");
+        System.out.println("/    4. Show central cards and decks        /");
+        System.out.println("/    5. Show hand and secret objectives     /");
+        System.out.println("/    6. Show Points                         /");
+        System.out.println("/    7. Open Chat                           /");
+        System.out.println("/    8. End turn                            /");
+        System.out.println("---------------------------------------------");
+        for(int i = 0; i < 17; i++) {
+            System.out.println();
+        }
+
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        String choice;
+        do {
+            System.out.println("Choose an option: ");
+            choice = scanner.nextLine();
+        } while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4") && !choice.equals("5") && !choice.equals("6") && !choice.equals("7") && !choice.equals("8"));
+
+        switch (choice) {
+            case "1":
+                Integer[] answer = this.askCoordinatesOfCards();
+                CardResource cardchoosen = this.clientBoard.getMyplayer().getHand().get(answer[0]);
+                int cardId = cardchoosen.getId();
+                this.clientController.playCardOnPS_UI(answer, cardchoosen, cardId);
+                break;
+            case "2":
+                printPlayerStation(clientBoard.getMyplayer().getStation());
+                break;
+            case "3":
+                System.out.println("Insert the nickname of the player you want to see the station of: ");
+                String nickname = getValidNickname();
+                printOtherPlayersStation(nickname);
+                break;
+            case "4":
+                print4CentralCards();
+                break;
+            case "5":
+                printPlayerHand();
+                break;
+            case "6":
+                printAllPlayersPoints();
+                break;
+            case "7":
+                System.out.println("Chat is not implemented yet");
+                break;
+            case "8":
+                //this.clientController.endTurn_CLI();
+                break;
+        }
+    }
+
+    private void printAllPlayersPoints() {
+        System.out.println("Your points are: " + clientBoard.getMyplayer().getPoints());
+        for (int i = 0; i < clientBoard.getOtherplayers().size(); i++) {
+            System.out.println(clientBoard.getOtherplayers().get(i).getNickname() + " points are: " + clientBoard.getOtherplayers().get(i).getPoints());
+        }
+
+    }
+
+    private String getValidNickname() {
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        String nickname="";
+        boolean valid = false;
+        do {
+            try{
+                nickname = scanner.nextLine();
+                if (clientBoard.getOtherPlayer(nickname) == null){
+                    throw new Exception();
+                }
+                valid = true;
+            } catch (Exception e) {
+                System.out.println("Invalid nickname, please try again.");
+            }
+        } while (!valid);
+         return nickname;
+    }
+
+    @Override
+    public void askNickname() {
         Scanner in = new Scanner(new InputStreamReader(System.in));
         String input;
         System.out.println("Insert your nickname: ");
         input = in.nextLine();
-        return input;
+        this.clientController.setupOfnickname_UI(input);
     }
 
     @Override
-    public int askPlayerNumber() {
+    public void askPlayerNumber() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         Integer input;
         do {
             System.out.println("You are the first player to join: insert number of players in your Lobby: ");
             input = scanner.nextInt();
         }while (input < 2 || input > 4);
-        return input;
+        this.clientController.setupOfPlayersNumber_CLI(input);
     }
 
     /**
@@ -111,7 +200,8 @@ public class Cli2 implements UI {
      * @return
      */
     @Override
-    public boolean askStartingCardPlayedBack() {
+    public void askStartingCardPlayedBack() {
+        this.showStartingCard();
         System.out.println("Select the front or the back of your starting card: ");
         Scanner in = new Scanner(new InputStreamReader(System.in));
         int choice;
@@ -122,7 +212,7 @@ public class Cli2 implements UI {
             System.out.println("Insert 1 for choose the front or insert 2 for choose back");
             choice = in.nextInt();
         }
-        return choice == 2;
+        this.clientController.setupOfStartingCard_UI( choice == 2);
     }
 
     /**
@@ -162,7 +252,8 @@ public class Cli2 implements UI {
      * @return
      */
     @Override
-    public int askObjectiveCard() {
+    public void askObjectiveCard() {
+        this.printSelectableObjectives();
         System.out.println("Select the Objective Card you want to keep:");
         Scanner in = new Scanner(new InputStreamReader(System.in));
         Integer choice;
@@ -170,7 +261,7 @@ public class Cli2 implements UI {
             System.out.println("1 for first, 2 for second");
             choice = in.nextInt();
         } while (choice != 1 && choice != 2);
-        return choice -1;
+        this.clientController.setupOfSecretObjective_UI(choice -1);
     }
 
     /**
@@ -275,14 +366,17 @@ public class Cli2 implements UI {
      * @return the choice of the player
      */
     @Override
-    public Integer askWhichCardToDraw() {
+    public void askWhichCardToDraw() {
+        this.printStationAfterCardHasBeenAdded();
+        this.print4CentralCards();
+
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         Integer choice;
         do {
             System.out.println("Which card do you want to draw? Insert 1 for up left card, 2 for up right card, 3 for down left card, 4 for down right card, 5 for resource Deck, 6 for gold Deck");
             choice = scanner.nextInt();
         } while (choice < 1 || choice > 6);
-        return choice;
+        clientController.startAfterCardHasBeenAddedToStation_UI(choice);
     }
 
     /**
@@ -317,70 +411,6 @@ public class Cli2 implements UI {
         printPlayerStation(clientBoard.getOtherPlayer(nickname).getStation());
     }
 
-    //    private void printCard(Card card) {
-//        if (card instanceof CardStarting) {
-//            System.out.println("This is the front of your starting card: \n");
-//            printStartingFront(card);
-//            System.out.println("\nThis is the back of your starting card: \n");
-//            printStartingBack(card);
-//        } else if (card instanceof CardResource) { //tutti hanno il back uguale! un metodo unico
-//            if (card instanceof CardGold) {
-//                //Stampo la carta oro. Deve mostrare i punti e il costo. colore variabile
-//                //per differenziare metto un quadrato oro nel centro
-//                System.out.println("This is the front of your gold card: \n");
-//                printGoldFront(card);
-//                System.out.println("This is the back of your gold card: \n");
-//                printResBack(card);
-//            } else{
-//                //Stampo la carta risorsa. può avere punti e non ha costo. colore variabile
-//                System.out.println("This is the front of your resource card: \n");
-//                printResourceFront(card);
-//                System.out.println("This is the back of your resource card: \n");
-//                printResBack(card);
-//            }
-//        } else if (card instanceof CardObjective) {
-//            System.out.println("This is the your objective card: \n");
-//            if(((CardObjective) card).getObjective() instanceof ObjectivePositioning){
-//                System.out.println("Your type of objective is: positioning");
-//                if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.FUNGI){
-//                    printFungiPositioning();
-//                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.PLANT) {
-//                    printPlantPositioning();
-//                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.ANIMAL){
-//                    printAnimalPositioning();
-//                } else if(((ObjectivePositioning) ((CardObjective) card).getObjective()).getColorTwoCards() == Suit.INSECT){
-//                    printInsectPositioning();
-//                }
-//            } else if (((CardObjective) card).getObjective() instanceof ObjectiveCountingGold) {
-//                System.out.println("Your type of objective is: counting gold");
-//                int countInkwell = ((ObjectiveCountingGold) ((CardObjective) card).getObjective()).getCountInkwell();
-//                int countManuscript = ((ObjectiveCountingGold) ((CardObjective) card).getObjective()).getCountManuscript();
-//                int countQuill = ((ObjectiveCountingGold) ((CardObjective) card).getObjective()).getCountQuill();
-//                if((countInkwell == countManuscript)&&(countInkwell == countQuill)&&(countInkwell == 1)){
-//                    printCountAll();
-//                }
-//                else if((countQuill != 0)&&(countInkwell == 0)&&(countManuscript==0)){
-//                    printCountGold(Suit.QUILL);
-//                }
-//                else if ((countQuill == 0)&&(countInkwell != 0)&&(countManuscript==0)) {
-//                    printCountGold(Suit.INKWELL);
-//                }
-//                else if ((countQuill == 0)&&(countInkwell == 0)&&(countManuscript!=0)){
-//                    printCountGold(Suit.MANUSCRIPT);
-//                }
-//            } else if (((CardObjective) card).getObjective() instanceof ObjectiveCountingResource) {
-//                System.out.println("Your type of objective is: counting resourses");
-//                Suit suit = ((ObjectiveCountingResource) ((CardObjective) card).getObjective()).getSymbol();
-//                printCountRes(suit);
-//            } else if (((CardObjective) card).getObjective() instanceof ObjectiveDiagonal) {
-//                System.out.println("Your type of objective is: ");
-//                Suit suit = ((ObjectiveDiagonal) ((CardObjective) card).getObjective()).getColor();
-//                printDiagonal(suit);
-//            }
-//        }
-//    }
-
-
 
     @Override
     public void printFinalPoints(LinkedHashMap<String, ArrayList<Integer>> map) {
@@ -402,7 +432,7 @@ public class Cli2 implements UI {
      * @return the token chosen
      */
     @Override
-    public TokenEnum askToken(ArrayList<TokenEnum> availableTokens) {
+    public void askToken(ArrayList<TokenEnum> availableTokens) {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
 
         Integer choice;
@@ -410,8 +440,8 @@ public class Cli2 implements UI {
             System.out.println("Use numbers to select one of the available tokens: " + availableTokens);
             choice = scanner.nextInt();
         }
-        while (choice < 0 && choice >= availableTokens.size());
-        return availableTokens.get(choice - 1);
+        while (choice < 0 || choice >= availableTokens.size());
+        this.clientController.setupOfToken_CLI(availableTokens.get(choice-1));
     }
 
     @Override
