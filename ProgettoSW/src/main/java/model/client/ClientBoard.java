@@ -1,6 +1,10 @@
 package model.client;
 
+import Socket.Messages.Chat.GlobalChatMessage;
+import Socket.Messages.Chat.PrivateChatMessage;
+import model.GlobalChat;
 import model.Player;
+import model.PrivateChat;
 import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
@@ -22,6 +26,8 @@ public class ClientBoard implements Serializable {
     private ArrayList<ReductPlayer> otherplayers;
     private SuitEnum backOfResourceDeck;
     private SuitEnum backOfGoldDeck;
+    private GlobalChat globalChat;
+    private ArrayList<PrivateChat> privateChats;
 
     public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, ArrayList<ReductPlayer> otherplayers, Player myplayer, ArrayList<CardResource> centralCardsResource, ArrayList<CardGold> centralCardsGold, GameState gameState) {
         this.firstObjective = firstObjective;
@@ -33,10 +39,10 @@ public class ClientBoard implements Serializable {
         this.gameState = gameState;
     }
 
-   // public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, GameState gameState) {
-   //     this.firstObjective = firstObjective;
-   //     this.secondObjective = secondObjective;
-   // }
+    // public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, GameState gameState) {
+    //     this.firstObjective = firstObjective;
+    //     this.secondObjective = secondObjective;
+    // }
 
     public ArrayList<CardGold> getCentralCardsGold() {
         return centralCardsGold;
@@ -61,6 +67,7 @@ public class ClientBoard implements Serializable {
     public CardObjective getSecondObjective() {
         return secondObjective;
     }
+
     public GameState getGameState() {
         return gameState;
     }
@@ -89,7 +96,7 @@ public class ClientBoard implements Serializable {
         this.otherplayers = otherplayers;
     }
 
-    public ReductPlayer getOtherPlayer(String nickname){
+    public ReductPlayer getOtherPlayer(String nickname) {
         return otherplayers.stream()
                 .filter(p -> p.getNickname().equals(nickname))
                 .findFirst()
@@ -97,10 +104,10 @@ public class ClientBoard implements Serializable {
     }
 
     //TODO: metodo giusto ma inutile perche' il messaggio dei giocatori arriva dopo
-    public ArrayList<TokenEnum> getAvailableTokens(){
+    public ArrayList<TokenEnum> getAvailableTokens() {
         ArrayList<TokenEnum> availableTokens = new ArrayList<>();
-        for(TokenEnum token : TokenEnum.values()){
-            if(otherplayers.stream().noneMatch(p -> p.getToken() ==token)){
+        for (TokenEnum token : TokenEnum.values()) {
+            if (otherplayers.stream().noneMatch(p -> p.getToken() == token)) {
                 availableTokens.add(token);
             }
         }
@@ -126,4 +133,27 @@ public class ClientBoard implements Serializable {
     public void setBackOfGoldDeck(SuitEnum backOfGoldDeck) {
         this.backOfGoldDeck = backOfGoldDeck;
     }
+
+    public void updatePrivateChat(String typeOfChat, String nicknameSender, String nicknameReceiver, String privateChatMessage) {
+
+        if (typeOfChat.equals("PRIVATE")) {
+
+
+        }
+    }
+
+        public void updateGlobalChat (String typeOfChat, String nickname, String globalChatMessage){
+            if (typeOfChat.equals("GLOBAL")) {
+                globalChat.addMessage(new GlobalChatMessage("GLOBAL", globalChatMessage, nickname));
+            }
+        }
+
+        public void addNewPrivateChat (String nickname1, String nickname2){
+
+
+            privateChats.add(new PrivateChat(nickname1, nickname2));
+        }
+
+
+
 }

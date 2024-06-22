@@ -454,5 +454,18 @@ public class GameController implements Serializable {
         }
     }
 
+    public void addNewPrivateChat(String nickname1, String nickname2) {
+        board.addNewPrivateChat(nickname1, nickname2);
+    }
+
+    public void addMessageToGlobalChat(String nickname, String message) {
+        board.addMessageToGlobalChat(nickname, message);
+    }
+
+    public void addMessageToPrivateChat(String nickname, String nickname1, String message2) {
+        board.addMessageToPrivateChat(nickname, nickname1, message2);
+    }
+
+
 }
 

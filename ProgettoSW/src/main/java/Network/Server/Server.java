@@ -464,6 +464,16 @@ public class Server {
                 p.getStation().addSpecificObserver(entry.getKey(), entry.getValue());
             }
         }
+        for (Map.Entry<String, VirtualView> entry : clientsMap.entrySet()) {
+            gameController.getBoard().addSpecificObserver(entry.getKey(), entry.getValue());
+        }
+        for(var c : gameController.getBoard().getPlayers()){
+            for(var d : gameController.getBoard().getPlayers()){
+                if(!c.getNickname().equals(d.getNickname())){
+                    gameController.addNewPrivateChat(c.getNickname(), d.getNickname());
+                }
+            }
+        }
         try {
             //initialize gameController
             gameController.InitializeGame();
@@ -513,6 +523,17 @@ public class Server {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+
+    public synchronized void sendGlobalMessage(String nickname, String message) throws RemoteException {
+        gameController.addMessageToGlobalChat(nickname, message);
+    }
+
+
+    public void sendPrivateMessage(String nickname, String nickname1, String message2) {
+        gameController.addMessageToPrivateChat(nickname, nickname1, message2);
     }
 
 

@@ -1,5 +1,8 @@
 package Network.Client;
 
+import Socket.Messages.Chat.AddPrivateChatMessage;
+import Socket.Messages.Chat.GlobalChatMessage;
+import Socket.Messages.Chat.PrivateChatMessage;
 import View.CLI.Cli2;
 import View.UI;
 import exception.InvalidPlacingCondition;
@@ -130,6 +133,18 @@ public class ClientController {
 
     public void updateModel(Message message) throws RemoteException {
         switch (message.getType()) {
+            case "PRIVATE":
+                PrivateChatMessage privateMessage = (PrivateChatMessage) message;
+                clientModel.updatePrivateChat( "PRIVATE", privateMessage.getNicknameSender(), privateMessage.getNicknameReceiver(), privateMessage.getMessage());
+                break;
+            case "GLOBAL":
+                GlobalChatMessage chatMessage = (GlobalChatMessage) message;
+                clientModel.updateGlobalChat("GLOBAL", chatMessage.getNickname(),chatMessage.getMessage());
+                break;
+            case "ADD_PRIVATE_CHAT":
+                AddPrivateChatMessage typeOfChatMessage = (AddPrivateChatMessage) message;
+                clientModel.addNewPrivateChat(typeOfChatMessage.getNickname1(), typeOfChatMessage.getNickname2());
+                break;
             case "ChangeState":
                 ChangeStateMessage changeStateMessage = (ChangeStateMessage) message;
                 clientModel.setGameState((changeStateMessage).getGameState());
