@@ -137,7 +137,7 @@ public class StationController implements Initializable {
     @FXML
     private Button turnCardButton;
 
-    private ImageView activeCard;
+    private ImageView cardToPlayOn;
 
     private boolean playedBack;
 
@@ -155,6 +155,8 @@ public class StationController implements Initializable {
 
     private ImageView cardToPlay;
 
+    private ImageView cardToBeReplaces;
+
     @FXML
     private ImageView startingCard;
 
@@ -169,7 +171,7 @@ public class StationController implements Initializable {
 
 
     /**
-     * this method handles when a cards gets clicked. It sets activeCard to the clicked card.
+     * this method handles when a cards gets clicked. It sets cardToPlayOn to the clicked card.
      * @param event the mouse click event
      * */
     private void handleCardClick(MouseEvent event){
@@ -180,7 +182,7 @@ public class StationController implements Initializable {
         //se lo è --> allora la gioco
         //--> mando messaggio che l'ho piazzata e la aggiungo allo stack pane
         if(imageToCardPlayingHashMap.containsKey(selectedCard)){
-            //activeCard = imageToCardPlayingHashMap.get(selectedCard);
+            //cardToPlayOn = imageToCardPlayingHashMap.get(selectedCard);
             turnCardButton.setVisible(true);
             selectCardButton.setVisible(true);
             chooseCard1.setOnMouseClicked(this::chooseStartingCard);
@@ -289,6 +291,7 @@ public class StationController implements Initializable {
             chooseCard1.setImage(secondCardInHand.getImage());
             chooseCard2.setImage(cL1.getBack(7, SuitEnum.FUNGI));
             cardChosen.setImage(secondCardInHand.getImage());
+            cardToBeReplaces = selectedCard;
             System.out.println("Scelta la seconda");
         } else if(selectedCard.equals(thirdCardInHand)) {
             chooseCard1.setImage(thirdCardInHand.getImage());
@@ -316,16 +319,19 @@ public class StationController implements Initializable {
 
     void chooseCardToPlayOn(MouseEvent event){
         ImageView selectedCard = (ImageView) event.getSource();
-        activeCard = selectedCard;
+        cardToPlayOn = selectedCard;
         System.out.println("Hai premuto una carta su cui scegliere");
-
+        instructionsLabel.setText("Choose where you want to play your cards using the buttons");
         cardPlacementBox.setVisible(true);
         placeCardDownRightButton.setOnMouseClicked(this::chooseCardPlacement);
+        //TODO aggiungere handler anche gli altri button
         selectedCard.getLayoutX();
         selectedCard.getLayoutY();
 
     }
 
+
+    //TODO non mi serve
     /**
      * this method handles the choice of the card to be played
      * @param event
@@ -345,7 +351,7 @@ public class StationController implements Initializable {
             //adesso tutte e sole le carte selezionabili devono essere quelle "in gioco"
             //mappa delle carte in gioco? così che puoi selezionare solo quelle per poter piazzarci
             //solo una volta premuta quella carta allora mostro i bottoni di piazzamento.
-            instructionsLabel.setText("Choose where you want to play your cards using the buttons");
+
             cardPlacementBox.setVisible(true);
             placeCardDownRightButton.setOnMouseClicked(this::chooseCardPlacement);
             placeCardDownLeftButton.setOnMouseClicked(this::chooseCardPlacement);
@@ -359,10 +365,10 @@ public class StationController implements Initializable {
      * @param event mouse click on the corresponding button
      */
     private void chooseCardPlacement(MouseEvent event){
-        //adesso mi metto nell'ipotesi che la carta si posso sempre giocare --> non considero caso in cui non possa giocarla
+            //adesso mi metto nell'ipotesi che la carta si posso sempre giocare --> non considero caso in cui non possa giocarla
             Button buttonPressed = (Button) event.getSource();
-            double x = activeCard.getLayoutX();
-            double y = activeCard.getLayoutY();
+            double x = cardToPlayOn.getLayoutX();
+            double y = cardToPlayOn.getLayoutY();
             if(buttonPressed.equals(placeCardDownLeftButton)){
 
                 //mando messaggio che voglio giocare in basso a sinistra
@@ -378,7 +384,30 @@ public class StationController implements Initializable {
             } else if((buttonPressed.equals(placeCardUpRightButton))) {
 
             }
+            //chooseCard1.setImage(null);
+            chooseCard2.setImage(null);
+            instructionsLabel.setText("Choose where you want to play your cards using the buttons");
+            //aggiungo gli handler alle carte centrali
+            centralGoldImage1.setOnMouseClicked(this::chooseCardToDraw);
+            centralGoldImage2.setOnMouseClicked(this::chooseCardToDraw);
+            centralResourceImage1.setOnMouseClicked(this::chooseCardToDraw);
+            centralResourceImage2.setOnMouseClicked(this::chooseCardToDraw);
+            deckResourceImage.setOnMouseClicked(this::chooseCardToDraw);
+            deckGoldImage.setOnMouseClicked(this::chooseCardToDraw);
+    }
+
+    private void chooseCardToDraw(MouseEvent event){
+        ImageView im = (ImageView) event.getSource();
+        System.out.println("hai scelto una carta da pescare");
+        if(cardToBeReplaces.equals(firstCardInHand)){
+            firstCardInHand.setImage(im.getImage());
+        } else if(cardToBeReplaces.equals(secondCardInHand)){
+            secondCardInHand.setImage(im.getImage());
         }
+        im.setImage(null);
+    }
+
+    //TODO:
 
         /**
          * this method shows the starting card to the player.
@@ -540,6 +569,16 @@ public class StationController implements Initializable {
         instructionsLabel.setText("Choose a card to play from your hand");
     }
 
+    public void testCardDrawing(){
+        CardLoader cl = new CardLoader();
+        deckGoldImage.setImage(cl.getTopDeckGold(SuitEnum.ANIMAL));
+        deckResourceImage.setImage(cl.getTopDeckResource(SuitEnum.FUNGI));
+        centralResourceImage1.setImage(cl.getFront(28, SuitEnum.ANIMAL));
+        centralResourceImage2.setImage(cl.getFront(27, SuitEnum.ANIMAL));
+        centralGoldImage1.setImage(cl.getFront(44, SuitEnum.FUNGI));
+        centralGoldImage2.setImage(cl.getFront(69, SuitEnum.ANIMAL));
+    }
+
     //metodo da chiamare ogni volta che si crea una carta
 
     /**
@@ -586,6 +625,7 @@ public class StationController implements Initializable {
 //        handPane.setVisible(false);
 //        cardPlacementBox.setVisible(false);
 //        stationPane.setVisible(true);
+            testCardDrawing();
         testCardStarting();
         //centerImage(stationPane, startingCardFront);
 //        startingCardFront.setLayoutX(500);
