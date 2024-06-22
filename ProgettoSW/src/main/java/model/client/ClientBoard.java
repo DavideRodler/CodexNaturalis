@@ -14,6 +14,7 @@ import model.enums.TokenEnum;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class ClientBoard implements Serializable {
 
@@ -138,6 +139,13 @@ public class ClientBoard implements Serializable {
 
         if (typeOfChat.equals("PRIVATE")) {
 
+            privateChats.stream()
+                    .filter(p -> (p.getNickname1().equals(nicknameSender) && p.getNickname2().equals(nicknameReceiver)) || (p.getNickname1().equals(nicknameReceiver) && p.getNickname2().equals(nicknameSender)))
+                    .findFirst()
+                    .ifPresentOrElse(
+                            p -> p.addMessage(new PrivateChatMessage( privateChatMessage,nicknameSender,nicknameReceiver)),
+                            () -> System.out.println("Chat not found")
+                    );
 
         }
     }
@@ -150,10 +158,21 @@ public class ClientBoard implements Serializable {
 
         public void addNewPrivateChat (String nickname1, String nickname2){
 
-
             privateChats.add(new PrivateChat(nickname1, nickname2));
         }
 
+
+    public GlobalChat getGlobalChat() {
+        return globalChat;
+    }
+
+    public ArrayList<PrivateChatMessage> getPrivateChat(String nickname, String nickname1) {
+        return privateChats.stream()
+                .filter(p -> (p.getNickname1().equals(nickname) && p.getNickname2().equals(nickname1)) || (p.getNickname1().equals(nickname1) && p.getNickname2().equals(nickname)))
+                .findFirst()
+                .map(PrivateChat::getMessage)
+                .orElse(null);
+    }
 
 
 }

@@ -349,5 +349,11 @@ public class ClientController {
     }
 
 
+    public void sendGlobalMessage(GlobalChatMessage global) {
+        clientToServerCommunication.sendGlobalMessage(global);
+    }
 
+    public void sendPrivateMessage(PrivateChatMessage privateMessage) {
+        clientToServerCommunication.sendPrivateMessage(privateMessage);
+    }
 }

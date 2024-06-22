@@ -1,13 +1,18 @@
 package View.CLI;
 
 import Network.Client.ClientController;
+import Socket.Messages.Chat.GlobalChatMessage;
+import Socket.Messages.Chat.PrivateChatMessage;
 import View.UI;
+import exception.InvalidPlacingCondition;
+import exception.NotMyTurnException;
 import model.PlayingStation;
 import model.cards.CardResource;
 import model.client.ClientBoard;
 import model.enums.TokenEnum;
-
+import model.client.ReductPlayer;
 import java.io.InputStreamReader;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
@@ -307,13 +312,105 @@ public class Cli2 implements UI {
                     break;
                 case "7":
                     printMenu7();
-                    System.out.println("Chat is not implemented yet");
+                    int typeOfChat = askTypeOfChat(clientBoard.getOtherplayers().size(), clientBoard.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
+                    startChat(typeOfChat);
                     break;
                 case "8":
                     this.clientController.imReadyForNextTurn();
                     break;
             }
         }while(!choice.equals("8"));
+    }
+
+    private void startChat(int typeOfChat) {
+        switch (typeOfChat) {
+            case 1:
+                printGloablChatInfo();
+                break;
+            case 2:
+                printPrivateChatInfo();
+                break;
+        }
+    }
+
+    public void printChatInfo() {
+        System.out.println();
+        System.out.println("Insert Message to send: ");
+        System.out.println("Insert EXIT to exit the chat");
+        System.out.println("Press enter to update the chat");
+        System.out.println();
+    }
+
+    public void printPrivateChat(String nickname, String nickname1) {
+        if(!clientBoard.getPrivateChat(nickname, nickname1).isEmpty()){
+            for(PrivateChatMessage message : clientBoard.getPrivateChat(nickname, nickname1)){
+                System.out.println(message.getNicknameSender() + ": " + message.getMessage());
+            }
+        }
+    }
+
+    public void printGlobalChat() {
+
+        if(!clientBoard.getGlobalChat().getMessage().isEmpty()){
+            for(GlobalChatMessage message : clientBoard.getGlobalChat().getMessage()){
+                System.out.println(message.getNickname() + ": " + message.getMessage());
+            }
+        }
+    }
+
+
+    private void printGloablChatInfo() {
+
+        String Message;
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        do{
+            globalChatTitlePrinter();
+            printChatInfo();
+            for(int i = 0; i < 10; i++){
+                System.out.println();
+            }
+            printGlobalChat();
+            Message = scanner.nextLine();
+            if(!Message.isEmpty() && !Message.equals("EXIT")) {
+                    clientController.sendGlobalMessage(new GlobalChatMessage("GLOBAL", Message, clientBoard.getMyplayer().getNickname()));
+            }
+            for(int i = 0; i < 10; i++){
+                System.out.println();
+            }
+        }while(!Message.equals("EXIT"));
+    }
+
+    public void printPrivateChatInfo() {
+        String Message;
+        String nickname = getValidNickname();
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        do{
+            globalChatTitlePrinter();
+            printChatInfo();
+            for(int i = 0; i < 10; i++){
+                System.out.println();
+            }
+            printPrivateChat(clientBoard.getMyplayer().getNickname(), nickname);
+            Message = scanner.nextLine();
+            if(!Message.isEmpty() && !Message.equals("EXIT")) {
+                clientController.sendPrivateMessage(new PrivateChatMessage(Message, clientBoard.getMyplayer().getNickname(), nickname));
+            }
+            for(int i = 0; i < 10; i++){
+                System.out.println();
+            }
+        }while(!Message.equals("EXIT"));
+    }
+
+    private int askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers) {
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        System.out.println("Insert the type of chat you want to open: ");
+        System.out.println("1. Global chat");
+        System.out.println("2. Private chat");
+        int choice;
+        do {
+            choice = scanner.nextInt();
+        } while (choice != 1 && choice != 2);
+        return choice;
     }
 
     private void printAllPlayersPoints() {
@@ -347,6 +444,8 @@ public class Cli2 implements UI {
         } while (!valid);
         return nickname;
     }
+
+   
 
     @Override
     public void askNickname() {
