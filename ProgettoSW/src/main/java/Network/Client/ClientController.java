@@ -27,7 +27,6 @@ public class ClientController {
     private final UI ui;
     private final ClientBoard clientModel;
     private final ClientToServerCommunication clientToServerCommunication;
-    private boolean readyForNextTurn = false;
 
     public ClientController(ClientToServerCommunication clientToServerCommunication){
         this.clientModel = new ClientBoard(null, null, new ArrayList<>(), null, new ArrayList<>(), new ArrayList<>(), null);
@@ -37,13 +36,7 @@ public class ClientController {
     }
 
     public void imReadyForNextTurn() {
-        readyForNextTurn = true;
-
         clientToServerCommunication.finishTurn();
-    }
-
-    public void imNotReadyForNextTurn() {
-        readyForNextTurn = false;
     }
 
     public void setupOfnickname(){
@@ -80,13 +73,14 @@ public class ClientController {
     }
 
     public synchronized void setupOfSecretObjective_UI(int answer){
-
         clientToServerCommunication.setSecretObjective(clientModel.getMyplayer().getNickname(), clientModel.getMyplayer().getSelectibleObjectives().get(answer).getId());
+    }
 
+    public void notifyItIsNotYourTurn() {
+        ui.printIsNotMyTurnMenu();
     }
 
     public void notifyItIsYourTurn() {
-        imNotReadyForNextTurn();
         ui.printIsMyTurnMenu();
     }
 
@@ -135,6 +129,10 @@ public class ClientController {
 
     public void updateModel(Message message) throws RemoteException {
         switch (message.getType()) {
+            case "CurrentPlayer":
+                CurrentPlayerMessage currentPlayerMessage = (CurrentPlayerMessage) message;
+                clientModel.setCurrentPlayer(currentPlayerMessage.getCurrentPlayer());
+                break;
             case "PRIVATE":
                 PrivateChatMessage privateMessage = (PrivateChatMessage) message;
                 clientModel.updatePrivateChat( "PRIVATE", privateMessage.getNicknameSender(), privateMessage.getNicknameReceiver(), privateMessage.getMessage());
@@ -357,4 +355,5 @@ public class ClientController {
     public void sendPrivateMessage(PrivateChatMessage privateMessage) {
         clientToServerCommunication.sendPrivateMessage(privateMessage);
     }
+
 }

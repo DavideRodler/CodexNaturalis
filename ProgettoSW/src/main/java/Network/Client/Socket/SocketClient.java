@@ -82,6 +82,10 @@ public class SocketClient implements ClientToServerCommunication{
                         clientController.notifyItIsYourTurn();
                 }).start();
 
+                case "notifyItIsNotYourTurn" -> new Thread(() -> {
+                        clientController.notifyItIsNotYourTurn();
+                }).start();
+
                 default -> clientController.updateModel(message);
             }
         }

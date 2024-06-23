@@ -302,8 +302,8 @@ public class Cli2 implements UI {
     }
 
     @Override
-    public void printIsNotMyTurnMenu(String currentPlayer) {
-        this.printMenuNotMyTurn( "currentPlayer"/*clientBoard.getCurrentPlayer()*/);
+    public void printIsNotMyTurnMenu() {
+        this.printMenuNotMyTurn(clientBoard.getCurrentPlayer());
 
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         String choice;
@@ -315,29 +315,29 @@ public class Cli2 implements UI {
 
             switch (choice) {
                 case "1":
-                    printMenu2and3NotMyTurn("currentPlayer"/*clientBoard.getCurrentPlayer()*/);
+                    printMenu2and3NotMyTurn(clientBoard.getCurrentPlayer());
                     printPlayerStation(clientBoard.getMyplayer().getStation());
                     break;
                 case "2":
                     System.out.println("Insert the nickname of the player you want to see the station of: ");
                     String nickname = getValidNickname();
-                    printMenu2and3NotMyTurn("currentPlayer"/*clientBoard.getCurrentPlayer()*/);
+                    printMenu2and3NotMyTurn(clientBoard.getCurrentPlayer());
                     printOtherPlayersStation(nickname);
                     break;
                 case "3":
-                    printMenu2and3NotMyTurn("currentPlayer"/*clientBoard.getCurrentPlayer()*/);
+                    printMenu2and3NotMyTurn(clientBoard.getCurrentPlayer());
                     print4CentralCards();
                     break;
                 case "4":
-                    printMenu2and3NotMyTurn("currentPlayer"/*clientBoard.getCurrentPlayer()*/);
+                    printMenu2and3NotMyTurn(clientBoard.getCurrentPlayer());
                     printPlayerHand();
                     break;
                 case "5":
-                    printMenu2and3NotMyTurn("currentPlayer"/*clientBoard.getCurrentPlayer()*/);
+                    printMenu2and3NotMyTurn(clientBoard.getCurrentPlayer());
                     printAllPlayersPoints();
                     break;
                 case "6":
-                    printMenu2and3NotMyTurn("currentPlayer"/*clientBoard.getCurrentPlayer()*/);
+                    printMenu2and3NotMyTurn(clientBoard.getCurrentPlayer());
                     int typeOfChat = askTypeOfChat(clientBoard.getOtherplayers().size(), clientBoard.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
                     startChat(typeOfChat);
                     break;

@@ -23,6 +23,7 @@ public class ClientBoard implements Serializable {
     private CardObjective firstObjective;
     private CardObjective secondObjective;
     private GameState gameState;
+    private String currentPlayer;
     private Player myplayer;
     private ArrayList<ReductPlayer> otherplayers;
     private SuitEnum backOfResourceDeck;
@@ -63,6 +64,10 @@ public class ClientBoard implements Serializable {
         return myplayer;
     }
 
+    public String getCurrentPlayer() {
+        return currentPlayer;
+    }
+
     public ArrayList<ReductPlayer> getOtherplayers() {
         return otherplayers;
     }
@@ -97,6 +102,10 @@ public class ClientBoard implements Serializable {
 
     public void setOtherplayers(ArrayList<ReductPlayer> otherplayers) {
         this.otherplayers = otherplayers;
+    }
+
+    public void setCurrentPlayer(String currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 
     public ReductPlayer getOtherPlayer(String nickname) {

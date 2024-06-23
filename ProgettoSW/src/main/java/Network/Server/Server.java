@@ -327,7 +327,7 @@ public class Server {
     }
     public void setPlayerNumber(int playerNumber){
         try {
-            this.readyForMenu = playerNumber;
+            this.readyForMenu = playerNumber - 1;
             gameController.setPlayerNumber(playerNumber);
         } catch (NotValidMoveException e) {
             throw new RuntimeException(e);
@@ -461,13 +461,11 @@ public class Server {
     public  void startTurn(){
         if (!gameController.getBoard().getGameState().equals(GameState.FINISHED)){
             try {
-
+                this.readyForMenu++;
                 if (this.readyForMenu == gameController.getBoard().getPlayernumber()){
                     this.readyForMenu = 0;
                     queue.put(new ActionMessage("startTurn"));
                 }
-                else
-                    this.readyForMenu++;
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

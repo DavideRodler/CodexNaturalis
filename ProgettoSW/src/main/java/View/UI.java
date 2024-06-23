@@ -23,7 +23,7 @@ public interface UI {
 
     void showGameTitle();
 
-    void printIsNotMyTurnMenu( String currentPlayer);
+    void printIsNotMyTurnMenu();
 
     void printIsMyTurnMenu();
 

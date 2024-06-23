@@ -319,4 +319,10 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
         clientController.setupOfToken();
     }
 
+    @Override
+    public void notifyItIsNotYourTurn() throws RemoteException {
+        clientController.notifyItIsNotYourTurn();
+
+    }
+
 }
