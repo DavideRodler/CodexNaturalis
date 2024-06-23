@@ -1,21 +1,30 @@
 package View.GUI;
 
-import javafx.event.Event;
+import Network.Client.ClientController;
+import Socket.Messages.NicknameMessage;
+import Socket.Messages.TokenMessage;
+import exception.InvalidPlacingCondition;
+import exception.NotMyTurnException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 
 
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ChooseNickAndTokenController{
+public class ChooseNickAndTokenController implements Initializable{
 //TODO: qua schermata con label + textBox per inserire il proprio nickname + tendina per scegliere il token
 // infine label che dice di attendere gli altri giocatori
     @FXML
@@ -25,25 +34,61 @@ public class ChooseNickAndTokenController{
     private ChoiceBox<TokenEnum> chooseToken;
 
     @FXML
-    private Button btnNickname;
+    private Button enterNicknameButton;
 
     @FXML
-    private Button btnToken;
+    private Button enterTokenButton;
 
     @FXML
     private Label label;
 
+    @FXML
+    private Label chooseTokenLbl;
 
     @FXML
-    public String enterNickname() {
-        String nickname = chooseNickname.getText();
-        return nickname;
+    private Label chooseNicknameLbl;
+
+    private String nick;
+
+    @FXML
+    private ImageView testCardLoaderFront;
+
+    @FXML
+    private ImageView testCardLoaderBack;
+
+    @FXML
+    private ImageView imgtest;
+
+    @FXML
+    private HBox nicknamePane;
+
+    @FXML
+    private HBox tokenPane;
+
+    private ClientController clientController;
+
+    public ChooseNickAndTokenController(){
+        this.clientController = new ClientController(null,null);
+    }
+
+    public void setClientController(ClientController clientController) {
+        this.clientController = clientController;
     }
 
     @FXML
-    public TokenEnum enterToken() { //TODO: per inizializzarlo possiamo al posto del meotodo initialize, dalla gui ci facciamo passare i token disponibili e diamo solo quelli come scelta
+    public void enterNickname() throws InvalidPlacingCondition, RemoteException, NotMyTurnException {
+        nick = chooseNickname.getText();
+        tokenPane.setVisible(true);
+        label.setText("Choose your token!");
+        this.clientController.messageToServerhandler(new NicknameMessage(nick));
+    }
+
+    @FXML
+    public void enterToken() { //TODO: gestire il fatto che un token potrebbe essere stato scelto da un altro giocatore
         TokenEnum token = chooseToken.getValue();
-        return token;
+        //clientController.messageToServerhandler(new TokenMessage(clientController.getClientModel().getMyplayer().getNickname(), token));
+        label.setText("Waiting for other players...");
+        //cambio di scena quanto tutti i players sono connessi --> dall'esterno
     }
 
 
@@ -52,6 +97,16 @@ public class ChooseNickAndTokenController{
         for(TokenEnum token: tokens){
             chooseToken.getItems().add(token);
         }
+
     }
+
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        label.setText("Enter your nickname!");
+        tokenPane.setVisible(false);
+    }
+
 
 }

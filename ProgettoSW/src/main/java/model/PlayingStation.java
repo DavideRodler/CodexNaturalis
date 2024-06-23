@@ -1,6 +1,7 @@
 package model;
 
 import exception.InvalidPlacingCondition;
+import exception.NonePlayerFoundException;
 import exception.NotValidMoveException;
 import model.cards.*;
 //import model.cards.face.Corner;
@@ -88,6 +89,8 @@ public class PlayingStation extends ObservableModel implements Serializable {
             notifyObservers(new CardStartingMessage(nickname,card));
         } catch (RemoteException e) {
             throw new RuntimeException(e);
+        } catch (NonePlayerFoundException e) {
+            throw new RuntimeException(e);
         }
     }
     public void setCardStartingPlayedBack(String nickname, boolean playedback){
@@ -99,6 +102,8 @@ public class PlayingStation extends ObservableModel implements Serializable {
         try {
             notifyObservers(new CardStartingPlayedBackMessage(nickname,playedback));
         } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        } catch (NonePlayerFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -122,14 +127,14 @@ public class PlayingStation extends ObservableModel implements Serializable {
      */
 
 //    TODO: passare id della carta e non la carta
-    public Integer getXCoordinate(CardPlaying card) {
+ /**   public Integer getXCoordinate(CardPlaying card) {
         for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : map.entrySet()) {
             if (entry.getValue().equals(card)) {
                 return entry.getKey().get(0);
             }
         }
         return null; // Return null if the card is not found
-    }
+    }**/
 
 
     /**
@@ -139,14 +144,14 @@ public class PlayingStation extends ObservableModel implements Serializable {
      * @return the y coordinate of the given card or null if the card is not found
      */
 //    TODO: passare id della carta e non la carta
-    public Integer getYCoordinate(CardPlaying card) {
+/**    public Integer getYCoordinate(CardPlaying card) {
         for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : map.entrySet()) {
             if (entry.getValue().equals(card)) {
                 return entry.getKey().get(1);
             }
         }
         return null; // Return null if the card is not found
-    }
+    }**/
 
 
     /**
@@ -392,7 +397,7 @@ public class PlayingStation extends ObservableModel implements Serializable {
 
             try {
                 notifyObservers(new CardAddedToStationMessage(card, nickname, X, Y, playedback));
-            } catch (RemoteException e) {
+            } catch (RemoteException | NonePlayerFoundException e) {
                 throw new RuntimeException(e);
             }
 

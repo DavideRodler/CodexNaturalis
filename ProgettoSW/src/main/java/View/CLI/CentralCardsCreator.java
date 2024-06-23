@@ -2,8 +2,11 @@ package View.CLI;
 
 import model.cards.CardGold;
 import model.cards.CardResource;
+import model.enums.SuitEnum;
 
-import static View.CLI.CardMatrixCreator.createFrontPlayingCard;
+import java.util.Arrays;
+
+import static View.CLI.CardMatrixCreator.*;
 
 /**
  * this class creates and prints the centrals card.
@@ -11,7 +14,13 @@ import static View.CLI.CardMatrixCreator.createFrontPlayingCard;
 public class CentralCardsCreator {
     // in questa classe creo la matrice per le carte centrali
 
-    private String[][] centralCards = new String[6][16];
+    private String[][] centralCards = new String[6][25];
+
+    public void initializeMatrix(){
+        for (String[] matrix : centralCards) {
+            Arrays.fill(matrix, " ");
+        }
+    }
 
     public void addCentralCardGold(CardGold card, int pos) {
         String[][] tmp = createFrontPlayingCard(card);
@@ -21,10 +30,10 @@ public class CentralCardsCreator {
             for(int i = 0; i < tmp.length; i++) {
                 System.arraycopy(tmp[i], 0, centralCards[i], 0, tmp[0].length);
             }
-            for(int i = 0; i < 3; i++) { //aggiungo spazi tra carta in alto a destra e in alto a sinistra
-                centralCards[i][7] = " ";
-                centralCards[i][8] = " ";
-            }
+//            for(int i = 0; i < 3; i++) { //aggiungo spazi tra carta in alto a destra e in alto a sinistra
+//                centralCards[i][7] = " ";
+//                centralCards[i][8] = " ";
+//            }
         } else if (pos == 1) { //aggiungo la carta in alto a destra
             for(int i = 0; i < 3; i++) {
                 for(int j = 0; j < 7; j++) {
@@ -41,10 +50,10 @@ public class CentralCardsCreator {
                 l = 0;
                 m++;
             }
-            for(int i = 3; i < 6; i++) { //aggiungo spazi tra carta in basso a destra e in basso a sinistra.
-                centralCards[i][7] = " ";
-                centralCards[i][8] = " ";
-            }
+//            for(int i = 3; i < 6; i++) { //aggiungo spazi tra carta in basso a destra e in basso a sinistra.
+//                centralCards[i][7] = " ";
+//                centralCards[i][8] = " ";
+//            }
         } else if(pos == 3) { //in basso a destra.
             for(int i = 3; i < 6; i++) {
                 for(int j = 0; j < 7; j++) {
@@ -96,10 +105,7 @@ public class CentralCardsCreator {
                 l = 0;
                 m++;
             }
-            for(int i = 3; i < 6; i++) { //aggiungo spazi tra carta in basso a destra e in basso a sinistra.
-                centralCards[i][7] = " ";
-                centralCards[i][8] = " ";
-            }
+
         } else if(pos == 3) { //in basso a destra.
             for(int i = 3; i < 6; i++) {
                 for(int j = 0; j < 7; j++) {
@@ -109,6 +115,40 @@ public class CentralCardsCreator {
                 l = 0;
                 m++;
             }
+        }
+    }
+
+    //TODO: aggiungo un metodo per la stampa delle del back delle carte
+    /** this method add the decks next to the central cards
+     *
+     */
+    public void addDeckResToBoard(SuitEnum suit){
+        //chiamo la add central card res in posizione 4
+        int m = 3;
+        int l = 18;
+        String [][] deckRes = createBackResCardDeck(suit);
+        for(int i = 0; i < deckRes.length; i++){
+            for(int j = 0; j < deckRes[0].length; j++){
+                centralCards[m][l] = deckRes[i][j];
+                l++;
+            }
+            l = 18;
+            m++;
+        }
+    }
+
+    public void addDeckGoldToBoard(SuitEnum suit){
+        //chiamo la add central card gold in posizione 5
+        int m = 0;
+        int l = 18;
+        String[][] deckGold = createBackGoldCardDeck(suit);
+        for(int i = 0; i < deckGold.length; i++){
+            for(int j = 0; j < deckGold[0].length; j++){
+                centralCards[m][l] = deckGold[i][j];
+                l++;
+            }
+            l = 18;
+            m++;
         }
     }
 

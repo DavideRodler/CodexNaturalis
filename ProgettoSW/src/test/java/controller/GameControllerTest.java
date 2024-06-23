@@ -5,7 +5,7 @@ import exception.ChangedStateException;
 import model.PlayingStation;
 import model.cards.CardResource;
 import model.enums.*;
-import model.testsTemplate.PlayingStationTemplate;
+import model.testTemplates.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
 import exception.NotValidMoveException;
 

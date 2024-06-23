@@ -3,8 +3,8 @@ package model.client;
 import model.PlayingStation;
 import model.enums.SuitEnum;
 import model.enums.TokenEnum;
-import model.testsTemplate.ClientBoardTemplate;
-import model.testsTemplate.PlayingStationTemplate;
+import model.testTemplates.ClientBoardTemplate;
+import model.testTemplates.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

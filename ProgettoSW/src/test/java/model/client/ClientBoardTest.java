@@ -1,7 +1,11 @@
 package model.client;
 
+import Socket.Messages.PrivateChatMessage;
+import exception.NonePlayerFoundException;
+import model.Chat;
 import model.Player;
 import model.PlayingStation;
+import model.PrivateChat;
 import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
@@ -10,8 +14,8 @@ import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 import model.objectives.Objective;
 import model.objectives.ObjectiveCountingGold;
-import model.testsTemplate.ClientBoardTemplate;
-import model.testsTemplate.PlayingStationTemplate;
+import model.testTemplates.ClientBoardTemplate;
+import model.testTemplates.PlayingStationTemplate;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -82,7 +86,7 @@ ClientBoard board = ClientBoardTemplate.createClientBoard();
     }
 
     @Test
-    void getOtherPlayer() {
+    void getOtherPlayer() throws NonePlayerFoundException {
         PlayingStation stationtommy = PlayingStationTemplate.test_3Cards_1Positioning();
         ArrayList<SuitEnum> handtommy = new ArrayList<>();
         PlayingStation stationgiorgio= PlayingStationTemplate.test_3Cards_1Positioning();
@@ -96,4 +100,51 @@ ClientBoard board = ClientBoardTemplate.createClientBoard();
         assertEquals(tommy, board.getOtherPlayer("tommy"));
 
     }
+
+
+    @Test
+    void getGlobalChat() {
+        Chat globalChat = new Chat();
+        board.setGlobalChat(globalChat);
+        assertEquals(globalChat, board.getGlobalChat());
+
+    }
+
+        @Test
+   void getPrivateChat() {
+        //ArrayList<PrivateChat> privateChatArrayList = new ArrayList<>();
+        PrivateChatMessage mex = new PrivateChatMessage("ciao", "tommy", "isa");
+        PrivateChat chat = new PrivateChat("isa", "tommy");
+        chat.addMessage(mex);
+       // privateChatArrayList.add(chat);
+        board.addNewPrivateChat("isa", "tommy");
+        board.updateChat("PRIVATE", "tommy", "isa", "ciao");
+        assertEquals(chat.getMessage().size(), board.getPrivateChat("isa", "tommy").size());
+        //assertEquals(chat.getMessage(), board.getPrivateChat("isa", "tommy"));
+        // return ArrayList<PrivateChatMessage>
+            // scorre ArrayList<PrivateChat> privateChatArrayList
+    }
+
+
+    @Test
+    void getCurrentPlayer() {
+        board.setCurrentPlayer("isa");
+        assertEquals("isa", board.getCurrentPlayer());
+    }
+
+
+    @Test
+    void getBackOfResourceDeck() {
+        board.setBackOfResourceDeck(SuitEnum.ANIMAL);
+        assertEquals(SuitEnum.ANIMAL, board.getBackOfResourceDeck());
+    }
+
+    @Test
+    void getBackOfGoldDeck() {
+        board.setBackOfGoldDeck(SuitEnum.INSECT);
+        assertEquals(SuitEnum.INSECT, board.getBackOfGoldDeck());
+    }
+
+
+
 }

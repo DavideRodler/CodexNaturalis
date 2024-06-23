@@ -1,14 +1,17 @@
 package model.objectives;
 
 import model.PlayingStation;
+import model.cards.CardPlaying;
 import model.cards.CardResource;
+import model.cards.CardStarting;
+import model.cards.face.Corner;
+import model.cards.face.Face;
 import model.enums.SuitEnum;
 import model.enums.DirectionEnum;
 import model.enums.PositionEnum;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class ObjectivePositioning implements Objective, Serializable {
     public SuitEnum colorOneCard;
@@ -41,6 +44,120 @@ public class ObjectivePositioning implements Objective, Serializable {
     }
 
 
+    /**
+     * Conta i punti ottenuti completando le posizioni specificate dall'obiettivo
+     * @param station la PlayingStation
+     * @return i punti dell'obiettivo
+     */
+    @Override
+    public int countObjectivePoints(PlayingStation station) {
+        List<List<PatternCard>> patterns = Arrays.asList(
+                Arrays.asList(
+                        new PatternCard(0, 0, SuitEnum.FUNGI),
+                        new PatternCard(2, 0, SuitEnum.FUNGI),
+                        new PatternCard(3, 1, SuitEnum.PLANT)
+                ),
+                Arrays.asList(
+                        new PatternCard(0, 0, SuitEnum.ANIMAL),
+                        new PatternCard(2, 0, SuitEnum.ANIMAL),
+                        new PatternCard(-1, 1, SuitEnum.FUNGI)
+                ),
+                Arrays.asList(
+                        new PatternCard(0, 0, SuitEnum.INSECT),
+                        new PatternCard(2, 0, SuitEnum.INSECT),
+                        new PatternCard(-1, -1, SuitEnum.ANIMAL)
+                ),
+                Arrays.asList(
+                        new PatternCard(0, 0, SuitEnum.PLANT),
+                        new PatternCard(2, 0, SuitEnum.PLANT),
+                        new PatternCard(3, -1, SuitEnum.INSECT)
+                )
+        );
+
+        int points = 0;
+
+        HashMap<ArrayList<Integer>, CardPlaying> patternMap = station.getMap();
+        patternMap.remove(new ArrayList<>(Arrays.asList(40, 40)));
+        Set<ArrayList<Integer>> keys = new HashSet<>(patternMap.keySet());
+        for (ArrayList<Integer> key : keys) {
+            for (List<PatternCard> pattern : patterns) {
+                if (matchesPattern(station, key, pattern)) {
+                    points++;
+                    removePattern(station, key, pattern);
+                }
+            }
+        }
+
+        return points;
+    }
+
+
+    /**
+     * Controlla se il pattern corrisponde alla PlayingStation
+     * @param station la PlayingStation
+     * @param start la posizione di partenza del pattern
+     * @param pattern il pattern da controllare
+     * @return true se il pattern corrisponde, false altrimenti
+     */
+    private boolean matchesPattern(PlayingStation station, ArrayList<Integer> start, List<PatternCard> pattern) {
+        for (PatternCard patternCard : pattern) {
+            ArrayList<Integer> key = new ArrayList<>();
+            key.add(start.get(0) + patternCard.getDx());
+            key.add(start.get(1) + patternCard.getDy());
+            CardResource card = (CardResource) station.getMap().get(key);
+            if (card == null || card.getSymbol() != patternCard.getSuit()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    /**
+     * Rimuove le carte corrispondenti al pattern dal pattern
+     * @param station la PlayingStation
+     * @param start la posizione di partenza del pattern
+     * @param pattern il pattern da rimuovere
+     */
+    private void removePattern(PlayingStation station, ArrayList<Integer> start, List<PatternCard> pattern) {
+        for (PatternCard patternCard : pattern) {
+            ArrayList<Integer> key = new ArrayList<>();
+            key.add(start.get(0) + patternCard.getDx());
+            key.add(start.get(1) + patternCard.getDy());
+            station.getMap().remove(key);
+        }
+    }
+
+    //MAIN DA TOGLIERE L'HO USATO COME TESTER
+ /**   public static void main(String[] args){
+        HashMap<ArrayList<Integer>, CardPlaying> map = new HashMap<>();
+        PlayingStation station = new PlayingStation(map);
+        Face front = new Face(new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI));
+        Face back = new Face(new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI), new Corner(SuitEnum.FUNGI));
+        CardPlaying card1 = new CardResource(0, front, back, SuitEnum.FUNGI, 1, null);
+        CardPlaying card2 = new CardResource(1, front, back, SuitEnum.ANIMAL, 1, null);
+        CardPlaying card3 = new CardResource(2, front, back, SuitEnum.ANIMAL, 1, null);
+        CardPlaying card4 = new CardResource(3, front, back, SuitEnum.PLANT, 1, null);
+        CardPlaying card5 = new CardResource(4, front, back, SuitEnum.PLANT, 1, null);
+        CardPlaying card6 = new CardResource(5, front, back, SuitEnum.INSECT, 1, null);
+        ArrayList<SuitEnum> suits = new ArrayList<>();
+        suits.add(SuitEnum.FUNGI);
+        suits.add(SuitEnum.FUNGI);
+        CardStarting cardS = new CardStarting(6, front, back, suits);
+        station.getMap().put(new ArrayList<>(Arrays.asList(40, 40)), cardS);
+        station.getMap().put(new ArrayList<>(Arrays.asList(41, 41)), card1);
+        station.getMap().put(new ArrayList<>(Arrays.asList(42, 40)), card2);
+        station.getMap().put(new ArrayList<>(Arrays.asList(44, 40)), card3);
+        station.getMap().put(new ArrayList<>(Arrays.asList(50, 50)), card4);
+        station.getMap().put(new ArrayList<>(Arrays.asList(52, 50)), card5);
+        station.getMap().put(new ArrayList<>(Arrays.asList(53, 49)), card6);
+
+
+        ObjectivePositioning objective = new ObjectivePositioning(SuitEnum.FUNGI, SuitEnum.ANIMAL, DirectionEnum.RIGHT, PositionEnum.TOP);
+        System.out.println(objective.countObjectivePoints(station)); // 1
+    }**/
+
+    /*
     @Override
     public int countObjectivePoints(PlayingStation station) {
         Boolean[][] flags = new Boolean[81][81];
@@ -274,5 +391,5 @@ public class ObjectivePositioning implements Objective, Serializable {
             }//end for i
         }
         return points;
-    }
+    }*/
 }

@@ -180,6 +180,36 @@ public class CardMatrixCreator {
         }
         return startingCard;
     }
+
+    public static String[][] createBackResCardDeck(SuitEnum suit){
+        String[][] resCard = new String[3][7];
+        int rows = resCard.length;
+        int cols = resCard[0].length;
+
+        String color = switch(suit){
+            case INSECT -> purple;
+            case ANIMAL -> lightBlue;
+            case FUNGI -> red;
+            case PLANT -> green;
+            default -> "_";
+        };
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                resCard[i][j] = color + "█";
+            }
+        }
+        resCard[0][0] = reset + "E"; //setto gli angoli a empty
+        resCard[0][6] = reset + "E";
+        resCard[2][0] = reset + "E";
+        resCard[2][6] = reset + "E";
+        return resCard;
+    }
+
+    public static String[][] createBackGoldCardDeck(SuitEnum suit){
+        String[][] resCard = createBackResCardDeck(suit);
+        resCard[1][3] = gold + "G";
+        return resCard;
+    }
     
     private static boolean isUpLeftCorner(int row, int col, int rows, int cols) {
         return (row == 0 && col == 0);
@@ -281,6 +311,7 @@ public class CardMatrixCreator {
     public static void hasPoints(CardResource card, String[][] mat) {
         int points = card.getPoints();
         if(points != 0) {
+            mat[0][2] = " ";
             mat[0][3] = Integer.toString(points);
             if(card.getObjective() instanceof ObjectiveCountingGold && ((ObjectiveCountingGold) card.getObjective()).getCountInkwell() != 0){ // se ob è inkwell
                 mat[0][4] = inkwell;
@@ -293,13 +324,12 @@ public class CardMatrixCreator {
                 mat[0][5] = " ";
             } else if(card.getObjective() instanceof ObjectiveGoldCorners) {
                 mat[0][4] = gold + "C" + reset;
-                mat[0][5] = "  ";
+                mat[0][5] = " ";
             } else {
                 mat[0][4] = gold + "P" + reset;
                 mat[0][5] = " ";
             }
         }
-        //return mat;
     }
     
     public static void printMatrix(String[][] mat){
