@@ -124,15 +124,6 @@ public class Gui extends Application implements UI {
 
     }
 
-    @Override
-    public void printStartOfMenu() {
-
-    }
-
-    @Override
-    public void printStartOfPlayerTurn() {
-
-    }
 
     @Override
     public void printStationAfterCardHasBeenAdded() {
@@ -154,25 +145,6 @@ public class Gui extends Application implements UI {
 
     }
 
-    @Override
-    public void printPlayerToken() {
-
-    }
-
-    @Override
-    public void waitingForOtherPlayers() {
-
-    }
-
-    @Override
-    public void showErrorMessage(String message) {
-
-    }
-
-    @Override
-    public void printAvailableTokens(ArrayList<TokenEnum> availableTokens) {
-
-    }
 
     @Override
     public void printCardAddedSuccessfully() {

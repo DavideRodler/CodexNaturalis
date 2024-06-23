@@ -22,25 +22,17 @@ public class ObservableModel {
 
 
     public void notifyObservers(Message message) throws RemoteException {
-        for (Observer observer : observers){
-            new Thread(() -> {
-                try {
-                    observer.update(message);
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-            }).start();
+        synchronized (observers) {
+            for (Observer observer : observers) {
+                observer.update(message);
+            }
         }
     }
 
     public void notifySpecificObserver(String key, Message message) throws RemoteException {
-        new Thread(() -> {
-            try {
-                observerHashMap.get(key).update(message);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }).start();
+        synchronized (observerHashMap.get(key)) {
+            observerHashMap.get(key).update(message);
+        }
     }
 
     public void notifyAllObserversExceptOne(String key, Message message) throws RemoteException {

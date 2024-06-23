@@ -191,10 +191,17 @@ public class Server {
                     break;
 
                 case "startTurn":
-                    try {
-                        clientsMap.get(gameController.getBoard().getCurrentPlayer()).notifyItIsYourTurn();
-                    } catch (RemoteException e) {
-                        throw new RuntimeException(e);
+                    synchronized (this.clients) {
+                        for (VirtualView client : clients) {
+                            new Thread(() -> {
+                                try {
+                                    if (clientsMap.get(gameController.getBoard().getCurrentPlayer()).equals(client))
+                                        client.notifyItIsYourTurn();
+                                } catch (RemoteException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }).start();
+                        }
                     }
                     break;
                 case "QueueResultOfCardAddedToStation":

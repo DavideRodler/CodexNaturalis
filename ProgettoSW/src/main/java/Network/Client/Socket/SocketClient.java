@@ -30,7 +30,7 @@ public class SocketClient implements ClientToServerCommunication{
     public void setClientController(ClientController clientController) {
         this.clientController = clientController;
     }
-    public void run() throws RemoteException{
+    public void run() {
         new Thread( () -> {
             try {
                 runVirtualServer();
@@ -78,7 +78,9 @@ public class SocketClient implements ClientToServerCommunication{
                     clientController.notifyGameFinished(gameFinishedMessage.getScoreBoard());
                 }
 
-                case "notifyItIsYourTurn" -> clientController.notifyItIsYourTurn();
+                case "notifyItIsYourTurn" -> new Thread(() -> {
+                        clientController.notifyItIsYourTurn();
+                }).start();
 
                 default -> clientController.updateModel(message);
             }

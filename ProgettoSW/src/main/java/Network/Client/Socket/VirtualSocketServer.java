@@ -5,7 +5,6 @@ import Network.Server.VirtualServer;
 import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
 import Socket.Messages.ClientToServer.*;
-import model.enums.GameState;
 import model.enums.TokenEnum;
 
 import java.io.IOException;

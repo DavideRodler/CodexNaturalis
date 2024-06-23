@@ -56,11 +56,8 @@ public interface UI {
 
     //ToDo
 
-    void printStartOfMenu();
-
     // this method print the 4 central cards, the hand , the playingstation, the common and private objectives
     // and the other players name and points;
-   void printStartOfPlayerTurn();
 
    // printa solo la staion aggiornata più risorse e più punti
    void printStationAfterCardHasBeenAdded();
@@ -68,16 +65,6 @@ public interface UI {
    void printOtherPlayersStation(String nickname);
 
     void printFinalPoints(LinkedHashMap<String, ArrayList<Integer>> map);
-
-
-
-    void printPlayerToken();
-
-    void waitingForOtherPlayers();
-
-    void showErrorMessage(String message);
-
-    void printAvailableTokens(ArrayList<TokenEnum> availableTokens);
 
 
     void printCardAddedSuccessfully();

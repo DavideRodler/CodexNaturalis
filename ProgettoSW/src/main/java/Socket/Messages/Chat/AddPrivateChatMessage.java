@@ -9,6 +9,8 @@ public class AddPrivateChatMessage extends Message {
 
     public AddPrivateChatMessage(String nickname1, String nickname2) {
         super("ADD_PRIVATE_CHAT");
+        this.nickname1 = nickname1;
+        this.nickname2 = nickname2;
     }
 
     public String getNickname1() {

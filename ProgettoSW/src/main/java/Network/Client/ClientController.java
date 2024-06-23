@@ -38,6 +38,7 @@ public class ClientController {
 
     public void imReadyForNextTurn() {
         readyForNextTurn = true;
+        clientToServerCommunication.finishTurn();
     }
 
     public void imNotReadyForNextTurn() {
@@ -101,11 +102,11 @@ public class ClientController {
         else {
             ui.printCardNotAdded(message);
         }
+        ui.printIsMyTurnMenu();
     }
 
 
     public void startAfterCardHasBeenAddedToStation(){
-
         ui.askWhichCardToDraw();
     }
 

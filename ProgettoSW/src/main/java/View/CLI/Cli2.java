@@ -269,7 +269,6 @@ public class Cli2 implements UI {
 
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         String choice;
-        do {
             do {
                 System.out.println("Choose an option: ");
                 choice = scanner.nextLine();
@@ -285,38 +284,40 @@ public class Cli2 implements UI {
                 case "2":
                     printMenu2();
                     printPlayerStation(clientBoard.getMyplayer().getStation());
+                    printIsMyTurnMenu();
                     break;
                 case "3":
                     System.out.println("Insert the nickname of the player you want to see the station of: ");
                     String nickname = getValidNickname();
                     printMenu3();
                     printOtherPlayersStation(nickname);
+                    printIsMyTurnMenu();
                     break;
                 case "4":
                     printMenu4();
                     print4CentralCards();
-
+                    printIsMyTurnMenu();
                     break;
                 case "5":
                     printMenu5();
                     printPlayerHand();
-
+                    printIsMyTurnMenu();
                     break;
                 case "6":
                     printMenu6();
                     printAllPlayersPoints();
-
+                    printIsMyTurnMenu();
                     break;
                 case "7":
                     printMenu7();
                     int typeOfChat = askTypeOfChat(clientBoard.getOtherplayers().size(), clientBoard.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
                     startChat(typeOfChat);
+                    printIsMyTurnMenu();
                     break;
                 case "8":
                     this.clientController.imReadyForNextTurn();
                     break;
             }
-        }while(!choice.equals("8"));
     }
 
     private void startChat(int typeOfChat) {
@@ -629,10 +630,6 @@ public class Cli2 implements UI {
         return Choice;
     }
 
-    @Override
-    public void printStartOfMenu() {
-
-    }
 
     /**
      * this method asks the player which card they would like to draw, whether onr of the central cards or from
@@ -653,19 +650,7 @@ public class Cli2 implements UI {
         clientController.startAfterCardHasBeenAddedToStation_UI(choice);
     }
 
-    /**
-     * this method prints everything needed for the start of the player's turn: the central cards, the
-     * common objectives, the secret objective, the hand and the station.
-     */
-    @Override
-    public void printStartOfPlayerTurn() {
-        print4CentralCards();
-        System.out.println();
-        printCommonObjectives();
-        printSecretObjective();
-        printSetupPlayerHand();
-        printPlayerStation(clientBoard.getMyplayer().getStation());
-    }
+
 
     /**
      * this method prints the station of the player after they place a card
@@ -718,28 +703,6 @@ public class Cli2 implements UI {
         this.clientController.setupOfToken_CLI(availableTokens.get(choice-1));
     }
 
-    @Override
-    public void waitingForOtherPlayers() {
-
-    }
-
-    @Override
-    public void showErrorMessage(String message) {
-        System.out.println(message);
-    }
-
-    /**
-     * this method shows the available tokens to the player
-     * @param availableTokens
-     */
-    @Override
-    public void printAvailableTokens(ArrayList<TokenEnum> availableTokens) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Available tokens are: " + availableTokens);
-        System.out.println("Choose one of the available tokens");
-
-
-    }
 
     @Override
     public void printCardAddedSuccessfully() {
@@ -750,11 +713,6 @@ public class Cli2 implements UI {
     public void printCardNotAdded(String message) {
         System.out.println(message);
 
-    }
-
-    @Override
-    public void printPlayerToken(){
-        System.out.println("Your token is: " + clientBoard.getMyplayer().getToken());
     }
 
     private void printMatrix(String[][] mat){
