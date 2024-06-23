@@ -657,7 +657,8 @@ public class Cli2 implements UI {
     public void print4CentralCards() {
         int pos = 0;
         CentralCardsCreator centralCards = new CentralCardsCreator();
-        System.out.println("Central cards are: ");
+        centralCards.initializeMatrix();
+        System.out.println("Central cards and decks: ");
         for(int i = 0; i < clientBoard.getCentralCardsGold().size(); i++){
             centralCards.addCentralCardGold(clientBoard.getCentralCardsGold().get(i), pos);
             pos++;
@@ -666,6 +667,8 @@ public class Cli2 implements UI {
             centralCards.addCentralCardRes(clientBoard.getCentralCardsResource().get(i), pos);
             pos++;
         }
+        centralCards.addDeckResToBoard(clientBoard.getBackOfResourceDeck());
+        centralCards.addDeckGoldToBoard(clientBoard.getBackOfGoldDeck());
         centralCards.printCentral();
     }
 

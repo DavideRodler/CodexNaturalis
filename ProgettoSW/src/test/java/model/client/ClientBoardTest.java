@@ -1,7 +1,6 @@
 package model.client;
 
 import Socket.Messages.PrivateChatMessage;
-import exception.NonePlayerFoundException;
 import model.Chat;
 import model.Player;
 import model.PlayingStation;

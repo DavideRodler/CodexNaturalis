@@ -1,12 +1,9 @@
 package model;
 
 import exception.InvalidPlacingCondition;
-import exception.NonePlayerFoundException;
-import exception.NotValidMoveException;
 import model.cards.*;
 //import model.cards.face.Corner;
 import model.cards.face.Corner;
-import model.enums.GameState;
 import model.enums.SuitEnum;
 import observers.ObservableModel;
 import Socket.Messages.*;
@@ -89,8 +86,6 @@ public class PlayingStation extends ObservableModel implements Serializable {
             notifyObservers(new CardStartingMessage(nickname,card));
         } catch (RemoteException e) {
             throw new RuntimeException(e);
-        } catch (NonePlayerFoundException e) {
-            throw new RuntimeException(e);
         }
     }
     public void setCardStartingPlayedBack(String nickname, boolean playedback){
@@ -102,8 +97,6 @@ public class PlayingStation extends ObservableModel implements Serializable {
         try {
             notifyObservers(new CardStartingPlayedBackMessage(nickname,playedback));
         } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        } catch (NonePlayerFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -397,7 +390,7 @@ public class PlayingStation extends ObservableModel implements Serializable {
 
             try {
                 notifyObservers(new CardAddedToStationMessage(card, nickname, X, Y, playedback));
-            } catch (RemoteException | NonePlayerFoundException e) {
+            } catch (RemoteException e) {
                 throw new RuntimeException(e);
             }
 

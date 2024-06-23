@@ -68,7 +68,7 @@ public class ChooseNickAndTokenController implements Initializable{
     private ClientController clientController;
 
     public ChooseNickAndTokenController(){
-        this.clientController = new ClientController(null,null);
+
     }
 
     public void setClientController(ClientController clientController) {
@@ -76,11 +76,11 @@ public class ChooseNickAndTokenController implements Initializable{
     }
 
     @FXML
-    public void enterNickname() throws InvalidPlacingCondition, RemoteException, NotMyTurnException {
+    public void enterNickname() {
         nick = chooseNickname.getText();
         tokenPane.setVisible(true);
         label.setText("Choose your token!");
-        this.clientController.messageToServerhandler(new NicknameMessage(nick));
+        this.clientController.setupOfnickname_UI(nick);
     }
 
     @FXML

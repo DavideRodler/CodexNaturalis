@@ -28,6 +28,10 @@ public class ClientController {
     private final ClientBoard clientModel;
     private final ClientToServerCommunication clientToServerCommunication;
 
+    public ClientBoard getClientModel() {
+        return clientModel;
+    }
+
     public ClientController(ClientToServerCommunication clientToServerCommunication){
         this.clientModel = new ClientBoard(null, null, new ArrayList<>(), null, new ArrayList<>(), new ArrayList<>(), null);
         this.clientToServerCommunication = clientToServerCommunication;

@@ -1,6 +1,7 @@
 package View;
 
 import model.PlayingStation;
+import model.client.ClientBoard;
 import model.enums.TokenEnum;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public interface UI {
     void askStartingCardPlayedBack();
 
     void askObjectiveCard();
+
 
     void showStartingCard();
 

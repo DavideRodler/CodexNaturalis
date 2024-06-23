@@ -1,11 +1,7 @@
 package model;
 
 import Network.Client.RMI.RmiClient;
-import Network.Client.RMI.VirtualView;
 import Network.Server.RmiServer;
-import Network.Server.VirtualServer;
-import Socket.Messages.Message;
-import exception.NonePlayerFoundException;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.face.Corner;
@@ -13,19 +9,12 @@ import model.cards.face.Face;
 import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 import model.objectives.Objective;
-import model.objectives.ObjectiveAssign;
 import model.objectives.ObjectiveCountingGold;
-import model.objectives.Points;
 import model.testTemplates.PlayingBoardTemplate;
 import model.testTemplates.PlayingStationTemplate;
-import observers.ObservableModel;
-import observers.Observer;
 import org.junit.jupiter.api.Test;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

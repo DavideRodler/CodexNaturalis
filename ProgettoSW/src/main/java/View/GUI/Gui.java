@@ -1,7 +1,9 @@
 package View.GUI;
 
+import Network.Client.ClientController;
 import View.UI;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,6 +23,9 @@ public class Gui extends Application implements UI {
     private StationController stationController;
     private ChooseNickAndTokenController chooseNickAndTokenController;
     private ClientBoard clientBoard;
+    private ClientController clientController;
+
+    private ScoreBoardController scoreBoardController;
 
 
 
@@ -41,15 +46,22 @@ public class Gui extends Application implements UI {
         stage.show();
     }
 
-
-    public static void main(String[] args) {
+    public void launchGui(ClientBoard clientBoard, ClientController clientController){
+        this.clientBoard = clientBoard;
+        this.clientController = clientController;
+        this.startSceneController = new StartSceneController(this.clientController);
+        this.stationController = new StationController(this.clientController);
+        this.chooseNickAndTokenController = new ChooseNickAndTokenController();
+        this.scoreBoardController = new ScoreBoardController();
+        this.chooseNickAndTokenController.setClientController(this.clientController);
+        this.scoreBoardController.setClientController(this.clientController);
         launch();
     }
 
 
     @Override
     public void showStartingCard() {
-        stationController.showStartingCard(clientBoard.getMyplayer().getStation().getCardStarting());
+        Platform.runLater(() -> stationController.showStartingCard());
     }
 
     @Override
@@ -82,17 +94,22 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printCommonObjectives() {
-
+        //stationController.show2CommonObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
+        Platform.runLater(() -> stationController.showCommonObjectives());
     }
 
     @Override
     public void printSecretObjective() {
+        Platform.runLater(() -> stationController.showStartingCard());
     }
 
     @Override
     public void printSelectableObjectives() {
-        stationController.showSelectableObjectives(clientBoard.getMyplayer().getSelectibleObjectives().get(0), clientBoard.getMyplayer().getSelectibleObjectives().get(1));
+        //stationController.showSelectableObjectives(clientBoard.getMyplayer().getSelectibleObjectives().get(0), clientBoard.getMyplayer().getSelectibleObjectives().get(1));
+        Platform.runLater(() -> stationController.showSelectableObjectives());
     }
+
+
 
     @Override
     public void askObjectiveCard() {
@@ -101,7 +118,8 @@ public class Gui extends Application implements UI {
 
     @Override
     public void print4CentralCards() {
-        stationController.show4CentralCards(clientBoard.getCentralCardsGold().get(0), clientBoard.getCentralCardsGold().get(1),clientBoard.getCentralCardsResource().get(0), clientBoard.getCentralCardsResource().get(1));
+        //stationController.show4CentralCards(clientBoard.getCentralCardsGold().get(0), clientBoard.getCentralCardsGold().get(1),clientBoard.getCentralCardsResource().get(0), clientBoard.getCentralCardsResource().get(1));
+        Platform.runLater(() -> stationController.showCentralCardsAndDecks());
     }
 
     @Override
@@ -116,8 +134,10 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printPlayerHand() {
-        stationController.showPlayerHand(clientBoard.getMyplayer().getHand().get(0),clientBoard.getMyplayer().getHand().get(1), clientBoard.getMyplayer().getHand().get(2),clientBoard.getMyplayer().getSecretObjective());
+        //stationController.showPlayerHand(clientBoard.getMyplayer().getHand().get(0),clientBoard.getMyplayer().getHand().get(1), clientBoard.getMyplayer().getHand().get(2),clientBoard.getMyplayer().getSecretObjective());
+        Platform.runLater(() -> stationController.showPlayerHand());
     }
+
 
     @Override
     public Integer[] askCoordinatesOfCards() {
@@ -147,6 +167,8 @@ public class Gui extends Application implements UI {
 
     @Override
     public void askToken(ArrayList<TokenEnum> availableTokens) { //TODO: passare per al controller l'arraylist
+        System.out.println("ciaooo");
+        Platform.runLater(() -> chooseNickAndTokenController.setAvailableTokens(availableTokens));
 
     }
 
