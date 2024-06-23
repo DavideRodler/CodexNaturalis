@@ -23,6 +23,8 @@ public interface UI {
 
     void showGameTitle();
 
+    void printIsNotMyTurnMenu( String currentPlayer);
+
     void printIsMyTurnMenu();
 
     void askWhichCardToDraw();

@@ -31,6 +31,8 @@ public class Server {
     private final List<VirtualView> clients;
     private HashMap<String, VirtualView> clientsMap;
     private BlockingQueue<Message> queue = new ArrayBlockingQueue<>(100);
+    private int readyForMenu = 0;
+
 
     public void serverToClientCall() throws RemoteException {
         while (true) {
@@ -192,15 +194,28 @@ public class Server {
 
                 case "startTurn":
                     synchronized (this.clients) {
-                        for (VirtualView client : clients) {
-                            new Thread(() -> {
-                                try {
-                                    if (clientsMap.get(gameController.getBoard().getCurrentPlayer()).equals(client))
-                                        client.notifyItIsYourTurn();
-                                } catch (RemoteException e) {
-                                    throw new RuntimeException(e);
-                                }
-                            }).start();
+                        for (var c : clientsMap.keySet()) {
+                            if(clientsMap.get(gameController.getBoard().getCurrentPlayer()).equals(clientsMap.get(c))) {
+                                new Thread(() -> {
+                                    try {
+                                        if (clientsMap.get(gameController.getBoard().getCurrentPlayer()).equals(clientsMap.get(c)))
+                                            clientsMap.get(c).notifyItIsYourTurn();
+                                    } catch (RemoteException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }).start();
+                            }
+                            else
+                            {
+                                new Thread(() -> {
+                                    try {
+                                        clientsMap.get(c).notifyItIsNotYourTurn();
+                                    } catch (RemoteException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }).start();
+
+                            }
                         }
                     }
                     break;
@@ -312,6 +327,7 @@ public class Server {
     }
     public void setPlayerNumber(int playerNumber){
         try {
+            this.readyForMenu = playerNumber;
             gameController.setPlayerNumber(playerNumber);
         } catch (NotValidMoveException e) {
             throw new RuntimeException(e);
@@ -445,7 +461,13 @@ public class Server {
     public  void startTurn(){
         if (!gameController.getBoard().getGameState().equals(GameState.FINISHED)){
             try {
-                queue.put(new ActionMessage("startTurn"));
+
+                if (this.readyForMenu == gameController.getBoard().getPlayernumber()){
+                    this.readyForMenu = 0;
+                    queue.put(new ActionMessage("startTurn"));
+                }
+                else
+                    this.readyForMenu++;
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

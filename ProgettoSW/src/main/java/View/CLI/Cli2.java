@@ -262,6 +262,95 @@ public class Cli2 implements UI {
         }
     }
 
+
+    private void printMenuNotMyTurn(String currentPlayer) {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("It's " + currentPlayer + "'s turn");
+        System.out.println("---------------------------------------------");
+        System.out.println("/    1. Show my playing station             /");
+        System.out.println("/    2. Show other playing station          /");
+        System.out.println("/    3. Show central cards and decks        /");
+        System.out.println("/    4. Show hand and secret objectives     /");
+        System.out.println("/    5. Show Points                         /");
+        System.out.println("/    6. Open Chat                           /");
+        System.out.println("/    7. Ready for next turn                 /");
+        System.out.println("---------------------------------------------");
+        for(int i = 0; i < 17; i++) {
+            System.out.println();
+        }
+    }
+
+    private void printMenu2and3NotMyTurn(String currentPlayer) {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("It's " + currentPlayer + "'s turn");
+        System.out.println("---------------------------------------------");
+        System.out.println("/    1. Show my playing station             /");
+        System.out.println("/    2. Show other playing station          /");
+        System.out.println("/    3. Show central cards and decks        /");
+        System.out.println("/    4. Show hand and secret objectives     /");
+        System.out.println("/    5. Show Points                         /");
+        System.out.println("/    6. Open Chat                           /");
+        System.out.println("/    7. Ready for next turn                 /");
+        System.out.println("---------------------------------------------");
+        for(int i = 0; i < 6; i++) {
+            System.out.println();
+        }
+    }
+
+    @Override
+    public void printIsNotMyTurnMenu(String currentPlayer) {
+        this.printMenuNotMyTurn( "currentPlayer"/*clientBoard.getCurrentPlayer()*/);
+
+        Scanner scanner = new Scanner(new InputStreamReader(System.in));
+        String choice;
+        do {
+            do {
+                System.out.println("Choose an option: ");
+                choice = scanner.nextLine();
+            } while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4") && !choice.equals("5") && !choice.equals("6") && !choice.equals("7") && !choice.equals("8"));
+
+            switch (choice) {
+                case "1":
+                    printMenu2and3NotMyTurn("currentPlayer"/*clientBoard.getCurrentPlayer()*/);
+                    printPlayerStation(clientBoard.getMyplayer().getStation());
+                    break;
+                case "2":
+                    System.out.println("Insert the nickname of the player you want to see the station of: ");
+                    String nickname = getValidNickname();
+                    printMenu2and3NotMyTurn("currentPlayer"/*clientBoard.getCurrentPlayer()*/);
+                    printOtherPlayersStation(nickname);
+                    break;
+                case "3":
+                    printMenu2and3NotMyTurn("currentPlayer"/*clientBoard.getCurrentPlayer()*/);
+                    print4CentralCards();
+                    break;
+                case "4":
+                    printMenu2and3NotMyTurn("currentPlayer"/*clientBoard.getCurrentPlayer()*/);
+                    printPlayerHand();
+                    break;
+                case "5":
+                    printMenu2and3NotMyTurn("currentPlayer"/*clientBoard.getCurrentPlayer()*/);
+                    printAllPlayersPoints();
+                    break;
+                case "6":
+                    printMenu2and3NotMyTurn("currentPlayer"/*clientBoard.getCurrentPlayer()*/);
+                    int typeOfChat = askTypeOfChat(clientBoard.getOtherplayers().size(), clientBoard.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
+                    startChat(typeOfChat);
+                    break;
+                case "7":
+                    this.clientController.imReadyForNextTurn();
+                    break;
+            }
+        }while(!choice.equals("7"));
+    }
+
+
+
+
     @Override
     public void printIsMyTurnMenu() {
 
@@ -383,7 +472,7 @@ public class Cli2 implements UI {
         String nickname = getValidNickname();
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         do{
-            globalChatTitlePrinter();
+            privateChatTitlePrinter();
             printChatInfo();
             for(int i = 0; i < 10; i++){
                 System.out.println();

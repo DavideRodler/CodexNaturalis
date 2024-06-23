@@ -38,6 +38,7 @@ public class ClientController {
 
     public void imReadyForNextTurn() {
         readyForNextTurn = true;
+
         clientToServerCommunication.finishTurn();
     }
 
