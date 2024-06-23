@@ -6,7 +6,6 @@ import Socket.Messages.Chat.PrivateChatMessage;
 import model.cards.*;
 import model.enums.GameState;
 import model.enums.SuitEnum;
-import model.enums.TokenEnum;
 import observers.ObservableModel;
 import Socket.Messages.*;
 //import socket.Messages.CommonObjectivesMessage;
@@ -314,11 +313,11 @@ public class PlayingBoard extends ObservableModel {
         }
     }
 
-    public void addMessageToPrivateChat(String nickname, String nickname1, String message2) {
+    public void addMessageToPrivateChat(String sender, String receiver, String message) {
         try {
-            getPrivateChat(nickname, nickname1).addMessage(new PrivateChatMessage(message2, nickname, nickname1));
-            notifySpecificObserver(nickname, new PrivateChatMessage(message2, nickname, nickname1));
-            notifySpecificObserver(nickname1, new PrivateChatMessage(message2, nickname, nickname1));
+            getPrivateChat(sender, receiver).addMessage(new PrivateChatMessage(message, sender, receiver));
+            notifySpecificObserver(sender, new PrivateChatMessage(message, sender, receiver));
+            notifySpecificObserver(receiver, new PrivateChatMessage(message, sender, receiver));
         } catch (IllegalStateException | RemoteException e) {
             throw new RuntimeException(e);
         }

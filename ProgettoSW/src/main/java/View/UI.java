@@ -74,4 +74,5 @@ public interface UI {
     void printCardNotAdded(String message);
 
 
+    void printMenu();
 }

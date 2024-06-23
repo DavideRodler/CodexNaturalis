@@ -122,6 +122,7 @@ public class Cli2 implements UI {
 
     }
 
+    @Override
     public void printMenu(){
         for(int i = 0; i < 50; i++) {
             System.out.println();
@@ -157,7 +158,7 @@ public class Cli2 implements UI {
         System.out.println("/    7. Open Chat                           /");
         System.out.println("/    8. End turn                            /");
         System.out.println("---------------------------------------------");
-        for(int i = 0; i < 16; i++) {
+        for(int i = 0; i < 8; i++) {
             System.out.println();
         }
     }
@@ -177,7 +178,7 @@ public class Cli2 implements UI {
         System.out.println("/    7. Open Chat                           /");
         System.out.println("/    8. End turn                            /");
         System.out.println("---------------------------------------------");
-        for(int i = 0; i < 15; i++) {
+        for(int i = 0; i < 3; i++) {
             System.out.println();
         }
     }
@@ -197,7 +198,7 @@ public class Cli2 implements UI {
         System.out.println("/    7. Open Chat                           /");
         System.out.println("/    8. End turn                            /");
         System.out.println("---------------------------------------------");
-        for(int i = 0; i < 15; i++) {
+        for(int i = 0; i < 10; i++) {
             System.out.println();
         }
     }
@@ -340,6 +341,7 @@ public class Cli2 implements UI {
                     printMenu2and3NotMyTurn(clientBoard.getCurrentPlayer());
                     int typeOfChat = askTypeOfChat(clientBoard.getOtherplayers().size(), clientBoard.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
                     startChat(typeOfChat);
+                    printMenuNotMyTurn(clientBoard.getCurrentPlayer());
                     break;
                 case "7":
                     this.clientController.imReadyForNextTurn();
@@ -354,17 +356,18 @@ public class Cli2 implements UI {
     @Override
     public void printIsMyTurnMenu() {
 
-        this.printMenu();
-
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         String choice;
-            do {
-                System.out.println("Choose an option: ");
-                choice = scanner.nextLine();
-            } while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4") && !choice.equals("5") && !choice.equals("6") && !choice.equals("7") && !choice.equals("8"));
+        do {
+            System.out.println("Choose an option: ");
+            choice = scanner.nextLine();
+        } while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4") && !choice.equals("5") && !choice.equals("6") && !choice.equals("7") && !choice.equals("8"));
 
-            switch (choice) {
+        switch (choice) {
                 case "1":
+                    printMenu1();
+                    this.printPlayerStation(clientBoard.getMyplayer().getStation());
+                    this.printPlayerHand();
                     Integer[] answer = this.askCoordinatesOfCards();
                     CardResource cardchoosen = this.clientBoard.getMyplayer().getHand().get(answer[0]);
                     int cardId = cardchoosen.getId();
@@ -401,12 +404,34 @@ public class Cli2 implements UI {
                     printMenu7();
                     int typeOfChat = askTypeOfChat(clientBoard.getOtherplayers().size(), clientBoard.getOtherplayers().stream().map(ReductPlayer::getNickname).toArray(String[]::new));
                     startChat(typeOfChat);
+                    printMenu();
                     printIsMyTurnMenu();
                     break;
                 case "8":
+                    System.out.println("Waiting for other players to be ready");
                     this.clientController.imReadyForNextTurn();
                     break;
             }
+    }
+
+    private void printMenu1() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("It's your turn");
+        System.out.println("---------------------------------------------");
+        System.out.println("/    1. Play a card                         /");
+        System.out.println("/    2. Show my playing station             /");
+        System.out.println("/    3. Show other playing station          /");
+        System.out.println("/    4. Show central cards and decks        /");
+        System.out.println("/    5. Show hand and secret objectives     /");
+        System.out.println("/    6. Show Points                         /");
+        System.out.println("/    7. Open Chat                           /");
+        System.out.println("/    8. End turn                            /");
+        System.out.println("---------------------------------------------");
+        for(int i = 0; i < 2; i++) {
+            System.out.println();
+        }
     }
 
     private void startChat(int typeOfChat) {
@@ -429,10 +454,12 @@ public class Cli2 implements UI {
     }
 
     public void printPrivateChat(String nickname, String nickname1) {
+        synchronized (clientBoard.getPrivateChats()){
         if(!clientBoard.getPrivateChat(nickname, nickname1).isEmpty()){
             for(PrivateChatMessage message : clientBoard.getPrivateChat(nickname, nickname1)){
-                System.out.println(message.getNicknameSender() + ": " + message.getMessage());
+                System.out.println(message.getNicknameReceiver() + ": " + message.getMessage());
             }
+        }
         }
     }
 
@@ -664,7 +691,7 @@ public class Cli2 implements UI {
         StationMatrix stationMatrix= new StationMatrix();
         stationMatrix.printStation(playingStation.getMap());
         stationMatrix.printResources(fungi, plant, animal, insect, quill, manuscript, inkwell);
-        stationMatrix.printPoints(clientBoard);
+        //stationMatrix.printPoints(clientBoard);
     }
 
     /**
@@ -727,6 +754,7 @@ public class Cli2 implements UI {
      */
     @Override
     public void askWhichCardToDraw() {
+        this.printMenu2();
         this.printStationAfterCardHasBeenAdded();
         this.print4CentralCards();
 
@@ -736,6 +764,7 @@ public class Cli2 implements UI {
             System.out.println("Which card do you want to draw? Insert 1 for up left card, 2 for up right card, 3 for down left card, 4 for down right card, 5 for resource Deck, 6 for gold Deck");
             choice = scanner.nextInt();
         } while (choice < 1 || choice > 6);
+        this.printMenu();
         clientController.startAfterCardHasBeenAddedToStation_UI(choice);
     }
 
@@ -746,7 +775,7 @@ public class Cli2 implements UI {
      */
     @Override
     public void printStationAfterCardHasBeenAdded() {
-        printPlayerStation(clientBoard.getMyplayer().getStation());
+        //printPlayerStation(clientBoard.getMyplayer().getStation());
     }
 
     /**
@@ -800,8 +829,8 @@ public class Cli2 implements UI {
 
     @Override
     public void printCardNotAdded(String message) {
+        printMenu();
         System.out.println(message);
-
     }
 
     private void printMatrix(String[][] mat){

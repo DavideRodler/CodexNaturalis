@@ -7,14 +7,10 @@
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="modifica server per client connected">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/VirtualView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,7 +81,7 @@
     "Application.ClientApp.executor": "Run",
     "Application.Gui.executor": "Run",
     "Application.RmiClient.executor": "Run",
-    "Application.ServerApp.executor": "Debug",
+    "Application.ServerApp.executor": "Run",
     "Application.deckconstructor.executor": "Run",
     "Application.decktameplatetom.executor": "Run",
     "Application.playngstationTameplate.executor": "Run",
@@ -845,18 +841,8 @@
           <option name="timeStamp" value="352" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java</url>
-          <line>92</line>
-          <option name="timeStamp" value="355" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java</url>
-          <line>88</line>
-          <option name="timeStamp" value="356" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/model/PlayingBoard.java</url>
-          <line>310</line>
+          <line>309</line>
           <option name="timeStamp" value="368" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

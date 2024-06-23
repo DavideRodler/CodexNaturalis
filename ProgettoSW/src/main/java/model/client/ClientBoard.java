@@ -15,6 +15,7 @@ import model.enums.TokenEnum;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class ClientBoard implements Serializable {
 
@@ -29,7 +30,7 @@ public class ClientBoard implements Serializable {
     private SuitEnum backOfResourceDeck;
     private SuitEnum backOfGoldDeck;
     private GlobalChat globalChat;
-    private ArrayList<PrivateChat> privateChats;
+    private final ArrayList<PrivateChat> privateChats;
 
     public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, ArrayList<ReductPlayer> otherplayers, Player myplayer, ArrayList<CardResource> centralCardsResource, ArrayList<CardGold> centralCardsGold, GameState gameState) {
         this.firstObjective = firstObjective;
@@ -148,16 +149,19 @@ public class ClientBoard implements Serializable {
 
     public void updatePrivateChat(String typeOfChat, String nicknameSender, String nicknameReceiver, String privateChatMessage) {
 
-        if (typeOfChat.equals("PRIVATE")) {
+        synchronized (privateChats) {
+            if (typeOfChat.equals("PRIVATE")) {
+                for (PrivateChat p : privateChats) {
+                    if ((p.getNickname1().equals(nicknameSender) && p.getNickname2().equals(nicknameReceiver))) {
+                        p.addMessage(new PrivateChatMessage(privateChatMessage, nicknameSender, nicknameReceiver));
+                        return;
+                    } else if ((p.getNickname1().equals(nicknameReceiver) && p.getNickname2().equals(nicknameSender))) {
+                        p.addMessage(new PrivateChatMessage(privateChatMessage, nicknameSender, nicknameReceiver));
+                        return;
+                    }
+                }
 
-            privateChats.stream()
-                    .filter(p -> (p.getNickname1().equals(nicknameSender) && p.getNickname2().equals(nicknameReceiver)) || (p.getNickname1().equals(nicknameReceiver) && p.getNickname2().equals(nicknameSender)))
-                    .findFirst()
-                    .ifPresentOrElse(
-                            p -> p.addMessage(new PrivateChatMessage( privateChatMessage,nicknameSender,nicknameReceiver)),
-                            () -> System.out.println("Chat not found")
-                    );
-
+            }
         }
     }
 
@@ -186,4 +190,7 @@ public class ClientBoard implements Serializable {
     }
 
 
+    public List<PrivateChat> getPrivateChats() {
+        return this.privateChats;
+    }
 }

@@ -160,6 +160,11 @@ public class Gui extends Application implements UI {
     public void printCardNotAdded(String message) {
 
     }
+
+    @Override
+    public void printMenu() {
+
+    }
 }
 
 //TODO:

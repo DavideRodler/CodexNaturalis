@@ -81,6 +81,7 @@ public class ClientController {
     }
 
     public void notifyItIsYourTurn() {
+        ui.printMenu();
         ui.printIsMyTurnMenu();
     }
 
@@ -238,7 +239,7 @@ public class ClientController {
                             }
 
 
-                            ui.printOtherPlayersStation(cardAddedToStationMessage.getNickname());
+                            //ui.printOtherPlayersStation(cardAddedToStationMessage.getNickname());
                         }
                     }
                 }
