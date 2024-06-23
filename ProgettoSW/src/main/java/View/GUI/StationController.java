@@ -322,10 +322,13 @@ public class StationController implements Initializable {
     void chooseCardToPlayOn(MouseEvent event){
         ImageView selectedCard = (ImageView) event.getSource();
         cardToPlayOn = selectedCard;
-        System.out.println("Hai premuto una carta su cui scegliere");
+        System.out.println("Hai premuto una carta su cui piazzare");
         instructionsLabel.setText("Choose where you want to play your cards using the buttons");
         cardPlacementBox.setVisible(true);
         placeCardDownRightButton.setOnMouseClicked(this::chooseCardPlacement);
+        placeCardDownLeftButton.setOnMouseClicked(this::chooseCardPlacement);
+        placeCardUpLeftButton.setOnMouseClicked(this::chooseCardPlacement);
+        placeCardUpRightButton.setOnMouseClicked(this::chooseCardPlacement);
         //TODO aggiungere handler anche gli altri button
         selectedCard.getLayoutX();
         selectedCard.getLayoutY();
@@ -371,7 +374,13 @@ public class StationController implements Initializable {
             Button buttonPressed = (Button) event.getSource();
             double x = cardToPlayOn.getLayoutX();
             double y = cardToPlayOn.getLayoutY();
+            System.out.println("Bottone premuto");
             if(buttonPressed.equals(placeCardDownLeftButton)){
+                System.out.println("Scelto bottone in basso a sinistra");
+                cardToPlay.setLayoutX(x-85);
+                cardToPlay.setLayoutY(y+40);
+                setCardDimensions(cardToPlay);
+                stationPane.getChildren().add(cardToPlay);
 
                 //mando messaggio che voglio giocare in basso a sinistra
             } else if(buttonPressed.equals(placeCardDownRightButton)){
@@ -382,9 +391,18 @@ public class StationController implements Initializable {
                 stationPane.getChildren().add(cardToPlay);
 
             } else if(buttonPressed.equals(placeCardUpLeftButton)) {
+                System.out.println("Scelto bottone in alto a sinistra");
+                cardToPlay.setLayoutX(x-85);
+                cardToPlay.setLayoutY(y-40);
+                setCardDimensions(cardToPlay);
+                stationPane.getChildren().add(cardToPlay);
 
             } else if((buttonPressed.equals(placeCardUpRightButton))) {
-
+                System.out.println("Scelto bottone in alto a destra");
+                cardToPlay.setLayoutX(x+85);
+                cardToPlay.setLayoutY(y-40);
+                setCardDimensions(cardToPlay);
+                stationPane.getChildren().add(cardToPlay);
             }
             //chooseCard1.setImage(null);
             chooseCard2.setImage(null);
