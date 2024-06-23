@@ -18,6 +18,7 @@ public class GameController implements Serializable {
     private PlayingBoard board;
     private int NumberOfPlayerThatHasSettedTheStartingCardFace = 0;
     private  int NumberOfPlayerThatHasSettedToken = 0;
+    private boolean lastTurn = false;
     //getter
     public PlayingBoard getBoard() {
         return board;
@@ -341,17 +342,33 @@ public class GameController implements Serializable {
         board.setGameState(GameState.ADDING_CARD_TO_HAND);
     }
 
+    /**
+     * This method is used to see if the game is finished
+     * It checks if a player has more than 20 points, then it lets other player finish their turn
+     * then another last turn for all players is played
+     * and finally returns true if you are in the last turn and the last player.
+     *
+     * @return if a game is finished
+     */
     public boolean isGamefinished() {
-        //controllo che sia il turno dell'ultimo player ad aver giocato
-        if (board.getPlayers().get(board.getPlayernumber()-1).getNickname().equals(board.getCurrentPlayer())) {
-            //controllo ci sia almeno un player che ha fatto piu' di 20 punti
-            for (Player player : board.getPlayers()) {
-                if (player.getPoints() >= 20) {
-                    return true;
+        //if i am in the last turn
+        if (lastTurn) {
+            //if i am in the last turn and the last player i return true
+            return board.getPlayers().get(board.getPlayernumber() - 1).getNickname().equals(board.getCurrentPlayer());
+        }
+        else {
+            //if i am not in the last turn i check if i am the last player
+            if (board.getPlayers().get(board.getPlayernumber() - 1).getNickname().equals(board.getCurrentPlayer())) {
+                // and if there is a player with more than 20 points
+                for (Player player : board.getPlayers()) {
+                    if (player.getPoints() >= 20) {
+                        lastTurn = true;
+                        return false;
+                    }
                 }
             }
+            return false;
         }
-        return false;
     }
 
 
