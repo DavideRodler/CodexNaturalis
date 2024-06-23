@@ -286,6 +286,7 @@ public class StationController implements Initializable {
             chooseCard1.setImage(firstCardInHand.getImage());
             chooseCard2.setImage(cL1.getBack(1, SuitEnum.FUNGI));
             cardChosen.setImage(firstCardInHand.getImage());
+            cardToBeReplaces = selectedCard;
             System.out.println("Scelta la prima");
         } else if(selectedCard.equals(secondCardInHand)) {
             chooseCard1.setImage(secondCardInHand.getImage());
@@ -296,6 +297,7 @@ public class StationController implements Initializable {
         } else if(selectedCard.equals(thirdCardInHand)) {
             chooseCard1.setImage(thirdCardInHand.getImage());
             chooseCard2.setImage(cL1.getBack(62, SuitEnum.ANIMAL));
+            cardToBeReplaces = selectedCard;
             cardChosen.setImage(thirdCardInHand.getImage());
             System.out.println("Scelta la terza");
         }
@@ -386,7 +388,7 @@ public class StationController implements Initializable {
             }
             //chooseCard1.setImage(null);
             chooseCard2.setImage(null);
-            instructionsLabel.setText("Choose where you want to play your cards using the buttons");
+            instructionsLabel.setText("Choose a card to draw");
             //aggiungo gli handler alle carte centrali
             centralGoldImage1.setOnMouseClicked(this::chooseCardToDraw);
             centralGoldImage2.setOnMouseClicked(this::chooseCardToDraw);
@@ -404,6 +406,7 @@ public class StationController implements Initializable {
         } else if(cardToBeReplaces.equals(secondCardInHand)){
             secondCardInHand.setImage(im.getImage());
         }
+        instructionsLabel.setText("End your turn");
         im.setImage(null);
     }
 
@@ -459,7 +462,7 @@ public class StationController implements Initializable {
             chooseCard2.setImage(cardLoader.getFront(selectableObj2.getId()));
             //dovrei avere un qualcosa del tipo:
             chooseCard1.setOnMouseClicked(this::objectiveChosen);
-        }
+    }
 
 
     /**

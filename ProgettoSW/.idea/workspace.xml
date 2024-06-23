@@ -4,22 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="CORRETTO DIAGONAL">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/scoreboard/scoreboard.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/View/GUI/ScoreBoardControllerTest.java" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="azioni di base del turno gui senza messaggi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ScoreBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ScoreBoardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/ScoreBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/ScoreBoard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/scoreboard/scoreboard.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/BLACK_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tokens/BLACK_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/BLUE_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tokens/BLUE_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/GREEN_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tokens/GREEN_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/RED_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tokens/RED_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/YELLOW_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tokens/YELLOW_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/View/TestStationGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/View/TestStationGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/testTemplates/ClientBoardTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/testTemplates/ClientBoardTemplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,144 +71,144 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ClientApp.executor": "Run",
-    "Application.Gui.executor": "Run",
-    "Application.ObjectiveDiagonal.executor": "Run",
-    "Application.ObjectivePositioning.executor": "Run",
-    "Application.RmiClient.executor": "Run",
-    "Application.ServerApp.executor": "Run",
-    "Application.deckconstructor.executor": "Run",
-    "Application.decktameplatetom.executor": "Run",
-    "Application.playngstationTameplate.executor": "Run",
-    "Application.startGui.executor": "Run",
-    "JUnit.CardGoldTest.getInformation.executor": "Coverage",
-    "JUnit.CardObjectiveTest.getInformation.executor": "Coverage",
-    "JUnit.CardPlayingTest.executor": "Coverage",
-    "JUnit.CardResourceTest.countResource.executor": "Run",
-    "JUnit.CardResourceTest.executor": "Coverage",
-    "JUnit.CardStartingTest.countResource.executor": "Run",
-    "JUnit.CardStartingTest.executor": "Coverage",
-    "JUnit.CardStartingTest.getSymbols.executor": "Run",
-    "JUnit.CardTest.getId.executor": "Coverage",
-    "JUnit.ChatMessageTest.executor": "Coverage",
-    "JUnit.ChatTest.addMessage.executor": "Run",
-    "JUnit.ChatTest.executor": "Coverage",
-    "JUnit.ClientBoardTest.executor": "Run",
-    "JUnit.ClientBoardTest.getGlobalChat.executor": "Run",
-    "JUnit.ClientBoardTest.getPrivateChat.executor": "Run",
-    "JUnit.CornerTest.executor": "Coverage",
-    "JUnit.DeckConstructorTest.executor": "Coverage",
-    "JUnit.DeckConstructorTest.printcards.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckGold.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckObjective.executor": "Run",
-    "JUnit.DeckConstructorTest.testDeckResource.executor": "Debug",
-    "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
-    "JUnit.FaceTest.executor": "Run",
-    "JUnit.FaceTest.getEachCorner.executor": "Coverage",
-    "JUnit.GameControllerTest.GivingCardToPlayersTest.executor": "Run",
-    "JUnit.GameControllerTest.TestOfFourTurns.executor": "Run",
-    "JUnit.GameControllerTest.executor": "Run",
-    "JUnit.GameControllerTest.getAvailableToken.executor": "Coverage",
-    "JUnit.GameControllerTest.getCurrentPlayer.executor": "Run",
-    "JUnit.GameControllerTest.getObjectiveToChoose.executor": "Coverage",
-    "JUnit.GameControllerTest.getPlayerHand.executor": "Coverage",
-    "JUnit.GameControllerTest.getPlayerNumber.executor": "Run",
-    "JUnit.GameControllerTest.getStartingCard.executor": "Coverage",
-    "JUnit.GameControllerTest.isGamefinished.executor": "Run",
-    "JUnit.GameControllerTest.setCentralCardPlayedBack.executor": "Run",
-    "JUnit.GameControllerTest.setStartingCardForPlayers.executor": "Run",
-    "JUnit.GameControllerTest.setupOfTheGameTest.executor": "Debug",
-    "JUnit.GameControllerTest.testChecknickname.executor": "Run",
-    "JUnit.GameControllerTest.testTokenAvailability.executor": "Run",
-    "JUnit.GameControllerTest.win.executor": "Run",
-    "JUnit.GameTest.testChecknickname.executor": "Run",
-    "JUnit.GameTest.testPlayers.executor": "Run",
-    "JUnit.GameTest.testStations.executor": "Run",
-    "JUnit.ObjectiveAssignTest.countObjectivePoints.executor": "Run",
-    "JUnit.ObjectiveAssignTest.executor": "Coverage",
-    "JUnit.ObjectiveCountingGoldTest.countObjectivePoints.executor": "Coverage",
-    "JUnit.ObjectiveCountingGoldTest.executor": "Coverage",
-    "JUnit.ObjectiveCountingGoldTest.getCounters.executor": "Run",
-    "JUnit.ObjectiveCountingResourceTest.countObjectivePoints.executor": "Run",
-    "JUnit.ObjectiveCountingResourceTest.executor": "Coverage",
-    "JUnit.ObjectiveDiagonalTest.executor": "Run",
-    "JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor": "Run",
-    "JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor": "Run",
-    "JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal.executor": "Run",
-    "JUnit.ObjectiveGoldCornersTest.countObjectivePoints.executor": "Run",
-    "JUnit.ObjectivePositioningTest.executor": "Run",
-    "JUnit.ObjectivePositioningTest.getInformation.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test_Positioning.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test_Positioning1_down.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test_Positioning2.executor": "Run",
-    "JUnit.ObjectivePositioningTest.test_Positioning2_down.executor": "Run",
-    "JUnit.PlacingConditionTest (1).executor": "Run",
-    "JUnit.PlacingConditionTest.executor": "Run",
-    "JUnit.PlacingConditionTest.test_goldCard_cost.executor": "Run",
-    "JUnit.PlacingConditionTest.test_null_corner.executor": "Run",
-    "JUnit.PlayerTest.addCardToHand.executor": "Run",
-    "JUnit.PlayerTest.executor": "Coverage",
-    "JUnit.PlayerTest.getHand.executor": "Run",
-    "JUnit.PlayerTest.getNumberOfCardInHand.executor": "Run",
-    "JUnit.PlayerTest.getSecretObjective.executor": "Run",
-    "JUnit.PlayerTest.getSelectibleObjectives.executor": "Run",
-    "JUnit.PlayerTest.getToken.executor": "Run",
-    "JUnit.PlayerTest.removeCardFromHand.executor": "Run",
-    "JUnit.PlayerTest.setSelectibleObjectivesWithObserver.executor": "Debug",
-    "JUnit.PlayingBoardTest.addMessageToPrivateChat.executor": "Run",
-    "JUnit.PlayingBoardTest.addNewPrivateChat.executor": "Run",
-    "JUnit.PlayingBoardTest.addPlayer.executor": "Run",
-    "JUnit.PlayingBoardTest.executor": "Coverage",
-    "JUnit.PlayingBoardTest.getCardFromGoldDeck.executor": "Debug",
-    "JUnit.PlayingBoardTest.getDeckCardGold.executor": "Run",
-    "JUnit.PlayingBoardTest.getPlayers.executor": "Run",
-    "JUnit.PlayingBoardTest.removeCentralCard.executor": "Run",
-    "JUnit.PlayingStationTest.addCard.executor": "Run",
-    "JUnit.PlayingStationTest.checkCounters.executor": "Run",
-    "JUnit.PlayingStationTest.enoughResources.executor": "Coverage",
-    "JUnit.PlayingStationTest.executor": "Coverage",
-    "JUnit.PlayingStationTest.getCardStarting.executor": "Run",
-    "JUnit.PlayingStationTest.getCountManuscript.executor": "Run",
-    "JUnit.PlayingStationTest.isPlayable.executor": "Run",
-    "JUnit.PlayingStationTest.isPlayable_2cornersamecard.executor": "Run",
-    "JUnit.PlayingStationTest.isPlayable_downleftnull.executor": "Run",
-    "JUnit.PlayingStationTest.isPlayable_downrightnull.executor": "Run",
-    "JUnit.PlayingStationTest.isPlayable_upleftnull.executor": "Run",
-    "JUnit.PlayingStationTest.isPlayable_uprightnull.executor": "Run",
-    "JUnit.PlayingStationTest.setCardStartingPlayedBack.executor": "Run",
-    "JUnit.PrivateChatTest.addMessage.executor": "Run",
-    "JUnit.PrivateChatTest.executor": "Coverage",
-    "JUnit.ReductPlayerTest.executor": "Coverage",
-    "JUnit.TestStationGUI.startGUI.executor": "Run",
-    "JUnit.deckconstructorTest.deckResource.executor": "Run",
-    "JUnit.java in ProgettoSW.executor": "Coverage",
-    "JUnit.model in ProgettoSW.executor": "Coverage",
-    "JUnit.objectives in ProgettoSW.executor": "Coverage",
-    "Maven.ProgettoSW [clean].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "Rebasing ericscemo",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/isabellaponzani/Documents/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW/src/main/resources/tokens",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ClientApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Gui.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ObjectiveDiagonal.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ObjectivePositioning.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RmiClient.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ServerApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.deckconstructor.executor&quot;: &quot;Run&quot;,
+    &quot;Application.decktameplatetom.executor&quot;: &quot;Run&quot;,
+    &quot;Application.playngstationTameplate.executor&quot;: &quot;Run&quot;,
+    &quot;Application.startGui.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CardGoldTest.getInformation.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.CardObjectiveTest.getInformation.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.CardPlayingTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.CardResourceTest.countResource.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CardResourceTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.CardStartingTest.countResource.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CardStartingTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.CardStartingTest.getSymbols.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CardTest.getId.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ChatMessageTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ChatTest.addMessage.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChatTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ClientBoardTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ClientBoardTest.getGlobalChat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ClientBoardTest.getPrivateChat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CornerTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.DeckConstructorTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.DeckConstructorTest.printcards.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testDeckGold.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testDeckObjective.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DeckConstructorTest.testDeckResource.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DeckConstructorTest.testStartingCardDeck.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FaceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FaceTest.getEachCorner.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.GameControllerTest.GivingCardToPlayersTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameControllerTest.TestOfFourTurns.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameControllerTest.getAvailableToken.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.GameControllerTest.getCurrentPlayer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameControllerTest.getObjectiveToChoose.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.GameControllerTest.getPlayerHand.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.GameControllerTest.getPlayerNumber.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameControllerTest.getStartingCard.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.GameControllerTest.isGamefinished.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameControllerTest.setCentralCardPlayedBack.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameControllerTest.setStartingCardForPlayers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameControllerTest.setupOfTheGameTest.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.GameControllerTest.testChecknickname.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameControllerTest.testTokenAvailability.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameControllerTest.win.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameTest.testChecknickname.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameTest.testPlayers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameTest.testStations.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectiveAssignTest.countObjectivePoints.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectiveAssignTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ObjectiveCountingGoldTest.countObjectivePoints.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ObjectiveCountingGoldTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ObjectiveCountingGoldTest.getCounters.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectiveCountingResourceTest.countObjectivePoints.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectiveCountingResourceTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ObjectiveDiagonalTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectiveGoldCornersTest.countObjectivePoints.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectivePositioningTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectivePositioningTest.getInformation.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectivePositioningTest.test_Positioning.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectivePositioningTest.test_Positioning1_down.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectivePositioningTest.test_Positioning2.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ObjectivePositioningTest.test_Positioning2_down.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlacingConditionTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlacingConditionTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlacingConditionTest.test_goldCard_cost.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlacingConditionTest.test_null_corner.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayerTest.addCardToHand.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayerTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.PlayerTest.getHand.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayerTest.getNumberOfCardInHand.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayerTest.getSecretObjective.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayerTest.getSelectibleObjectives.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayerTest.getToken.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayerTest.removeCardFromHand.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayerTest.setSelectibleObjectivesWithObserver.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.PlayingBoardTest.addMessageToPrivateChat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingBoardTest.addNewPrivateChat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingBoardTest.addPlayer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingBoardTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.PlayingBoardTest.getCardFromGoldDeck.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.PlayingBoardTest.getDeckCardGold.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingBoardTest.getPlayers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingBoardTest.removeCentralCard.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingStationTest.addCard.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingStationTest.checkCounters.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingStationTest.enoughResources.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.PlayingStationTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.PlayingStationTest.getCardStarting.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingStationTest.getCountManuscript.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingStationTest.isPlayable.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingStationTest.isPlayable_2cornersamecard.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingStationTest.isPlayable_downleftnull.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingStationTest.isPlayable_downrightnull.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingStationTest.isPlayable_upleftnull.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingStationTest.isPlayable_uprightnull.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayingStationTest.setCardStartingPlayedBack.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PrivateChatTest.addMessage.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PrivateChatTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ReductPlayerTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.TestStationGUI.startGUI.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.deckconstructorTest.deckResource.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in ProgettoSW.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.model in ProgettoSW.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.objectives in ProgettoSW.executor&quot;: &quot;Coverage&quot;,
+    &quot;Maven.ProgettoSW [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ericscemo&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/isabellaponzani/Documents/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW/src/main/resources/tokens&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/tokens" />
@@ -335,8 +323,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
       </set>
     </attachedChunks>
   </component>
@@ -370,6 +358,7 @@
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
       <workItem from="1718976202647" duration="1245000" />
+      <workItem from="1719085053619" duration="2444000" />
     </task>
     <task id="LOCAL-00018" summary="Da classe a interfaccia">
       <option name="closed" value="true" />
@@ -917,7 +906,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java</url>
           <line>113</line>
-          <properties class="model.client.ClientBoardTest">
+          <properties class="model.client.ClientBoardTest" method="getPrivateChat">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
