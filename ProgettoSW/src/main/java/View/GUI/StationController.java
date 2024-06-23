@@ -423,9 +423,16 @@ public class StationController implements Initializable {
             firstCardInHand.setImage(im.getImage());
         } else if(cardToBeReplaces.equals(secondCardInHand)){
             secondCardInHand.setImage(im.getImage());
+        } else if(cardToBeReplaces.equals(thirdCardInHand)) {
+            thirdCardInHand.setImage(im.getImage());
         }
         instructionsLabel.setText("End your turn");
         im.setImage(null);
+        endTurnButton.setOnMouseClicked(this::endTurn);
+    }
+
+    private void endTurn(MouseEvent event){
+        //finire il turno
     }
 
     //TODO:

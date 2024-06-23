@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="turno finito">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="tutti i bottoni funzionano">
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -357,15 +356,7 @@
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
       <workItem from="1718976202647" duration="1245000" />
-      <workItem from="1719085053619" duration="3586000" />
-    </task>
-    <task id="LOCAL-00019" summary="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning">
-      <option name="closed" value="true" />
-      <created>1711664037867</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1711664037867</updated>
+      <workItem from="1719085053619" duration="4050000" />
     </task>
     <task id="LOCAL-00020" summary="Aggiunta metodi e test per piazzare nuove carte sulla board">
       <option name="closed" value="true" />
@@ -751,7 +742,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719150671753</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="tutti i bottoni funzionano">
+      <option name="closed" value="true" />
+      <created>1719151508540</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1719151508540</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -819,7 +818,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Client model viene aggiornato con observer." />
     <MESSAGE value="messo idea nel gitingoore" />
     <MESSAGE value="CardStarting funzionanti con observer, il GameController non passa piu' da uno stato all'altro in modo automatico" />
     <MESSAGE value="Correzione Test Objective" />
@@ -844,7 +842,8 @@
     <MESSAGE value="OBJ CORREZIONE" />
     <MESSAGE value="CORRETTO DIAGONAL" />
     <MESSAGE value="turno finito" />
-    <option name="LAST_COMMIT_MESSAGE" value="turno finito" />
+    <MESSAGE value="tutti i bottoni funzionano" />
+    <option name="LAST_COMMIT_MESSAGE" value="tutti i bottoni funzionano" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
