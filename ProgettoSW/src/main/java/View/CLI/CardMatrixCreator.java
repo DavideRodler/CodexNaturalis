@@ -350,7 +350,7 @@ public class CardMatrixCreator {
                 fungiPos[i][j] = beige + "█" + reset;
             }
         }
-        fungiPos[0][3] = "2";
+        fungiPos[0][3] = "3";
         fungiPos[0][2] = red + "█" + reset;
         fungiPos[1][2] = red + "█" + reset;
         fungiPos[2][3] = green + "█" + reset;
@@ -366,7 +366,7 @@ public class CardMatrixCreator {
                 plantPos[i][j] = beige + "█" + reset;
             }
         }
-        plantPos[0][3] = "2";
+        plantPos[0][3] = "3";
         plantPos[0][4] = green + "█" + reset;
         plantPos[1][4] = green + "█" + reset;
         plantPos[2][3] = purple + "█" + reset;
@@ -382,7 +382,7 @@ public class CardMatrixCreator {
                 animalPos[i][j] = beige + "█" + reset;
             }
         }
-        animalPos[2][3] = "2";
+        animalPos[2][3] = "3";
         animalPos[2][2] = lightBlue + "█" + reset;
         animalPos[1][2] = lightBlue + "█" + reset;
         animalPos[0][3] = red + "█" + reset;
@@ -398,7 +398,7 @@ public class CardMatrixCreator {
                 insPos[i][j] = beige + "█" + reset;
             }
         }
-        insPos[2][3] = "2";
+        insPos[2][3] = "3";
         insPos[2][4] = purple + "█" + reset;
         insPos[1][4] = purple + "█" + reset;
         insPos[0][3] = lightBlue + "█" + reset;
