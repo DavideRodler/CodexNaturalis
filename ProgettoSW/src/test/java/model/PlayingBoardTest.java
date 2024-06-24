@@ -1,7 +1,5 @@
 package model;
 
-import Socket.Messages.ChatMessage;
-import Socket.Messages.PrivateChatMessage;
 import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;

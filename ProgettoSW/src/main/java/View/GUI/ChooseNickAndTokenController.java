@@ -1,10 +1,6 @@
 package View.GUI;
 
 import Network.Client.ClientController;
-import Socket.Messages.NicknameMessage;
-import Socket.Messages.TokenMessage;
-import exception.InvalidPlacingCondition;
-import exception.NotMyTurnException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

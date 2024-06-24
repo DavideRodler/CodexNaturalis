@@ -6,15 +6,27 @@
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="modifica server per client connected">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/CardToHandMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ChatChoiceMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ChatMessageMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ChooseObjectives.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/CliGuiChoiceMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/CurrentPlayerInfoMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/DrawCardMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/DrawDeckMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/NicknameMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/PlaceCardMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/PrivateChatMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/PrivateChatNicknameMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/SecretObjMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ServerToClient/AddCardResultMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/StartingCardMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/TokenMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/TypeOfChatMessage.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/exception/NonePlayerFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/observers/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/observers/Observer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/ChatTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/ChatTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/PlayingBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PlayingBoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/PrivateChatTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PrivateChatTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -204,7 +216,7 @@
       <recent name="Socket.Messages.queqe" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientApp">
+  <component name="RunManager" selected="JUnit.GameControllerTest">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
       <module name="ProgettoSW" />
@@ -231,16 +243,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjectivePositioningTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -279,17 +291,17 @@
     <list>
       <item itemvalue="Application.ClientApp" />
       <item itemvalue="Application.ServerApp" />
-      <item itemvalue="JUnit.ObjectivePositioningTest" />
+      <item itemvalue="JUnit.GameControllerTest" />
       <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning1_down" />
       <item itemvalue="JUnit.model.objectives in ProgettoSW" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GameControllerTest" />
         <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.ServerApp" />
         <item itemvalue="JUnit.model.objectives in ProgettoSW" />
         <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning1_down" />
-        <item itemvalue="JUnit.ObjectivePositioningTest" />
       </list>
     </recent_temporary>
   </component>
@@ -838,11 +850,6 @@
           <url>file://$PROJECT_DIR$/src/test/java/model/PlayerTest.java</url>
           <line>214</line>
           <option name="timeStamp" value="346" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Network/Server/Server.java</url>
-          <line>461</line>
-          <option name="timeStamp" value="371" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/main/java/model/enums/DeckEnum.java</url>

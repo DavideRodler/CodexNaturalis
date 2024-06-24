@@ -1,0 +1,56 @@
+Index: src/main/java/observers/ObservableModel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package observers;\n\nimport View.VirtualUI;\nimport socket.Messages.Message;\n\nimport java.rmi.RemoteException;\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class ObservableModel {\n    private List<Observer> observers = new ArrayList<>();\n\n    public void addObserver(Observer observer){\n        this.observers.add(observer);\n    }\n\n    public void notifyObservers(Message message) throws RemoteException {\n        for (Observer observer : observers){\n            observer.update(message);\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/observers/ObservableModel.java b/src/main/java/observers/ObservableModel.java
+--- a/src/main/java/observers/ObservableModel.java	(revision 23b211e7020742ae9fc6409a2984e1e2b44dd1b6)
++++ b/src/main/java/observers/ObservableModel.java	(date 1715615595609)
+@@ -1,22 +1,44 @@
+ package observers;
+ 
+ import View.VirtualUI;
++import model.enums.TokenEnum;
+ import socket.Messages.Message;
+ 
+ import java.rmi.RemoteException;
+ import java.util.ArrayList;
++import java.util.Collections;
++import java.util.HashMap;
+ import java.util.List;
+ 
+ public class ObservableModel {
+     private List<Observer> observers = new ArrayList<>();
++    private List<String> nicknames = new ArrayList<>();
++    private HashMap<String, Observer> nicknameToObserver  = new HashMap<>();
+ 
+-    public void addObserver(Observer observer){
++    public void addObserver(Observer observer, String nickname){
+         this.observers.add(observer);
++        this.nicknames.add(nickname);
++
+     }
+ 
+     public void notifyObservers(Message message) throws RemoteException {
++        int i = 0;
+         for (Observer observer : observers){
+             observer.update(message);
+         }
+     }
++
++    public void notifySpecificObserver(String nickname, Message message) throws RemoteException {
++        nicknameToObserver.get(nickname).update(message);
++    }
++
++    public void newOrderObserver(List<String> newOrder){
++        for (int j = 0; j < newOrder.size(); j++) {
++            int i = this.nicknames.indexOf(newOrder.get(j));
++            Collections.swap(this.observers, i, j);
++        }
++        for (int i = 0; i < observers.size(); i++) {
++            nicknameToObserver.put(newOrder.get(i), observers.get(i));
++        }
++    }
+ }

@@ -1,6 +1,5 @@
 package model.client;
 
-import Socket.Messages.PrivateChatMessage;
 import model.Chat;
 import model.Player;
 import model.PlayingStation;

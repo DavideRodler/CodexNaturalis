@@ -1,0 +1,1399 @@
+Index: src/main/java/Network/Client/ClientController.java
+===================================================================
+diff --git a/src/main/java/Network/Client/ClientController.java b/src/main/java/Network/Client/ClientController.java
+deleted file mode 100644
+--- a/src/main/java/Network/Client/ClientController.java	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
++++ /dev/null	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
+@@ -1,9 +0,0 @@
+-package Network.Client;
+-
+-import model.ReducedBoard;
+-
+-public class ClientController {
+-    private ReducedBoard ClientModel;
+-
+-
+-}
+Index: src/main/java/Observers/ModelObserver.java
+===================================================================
+diff --git a/src/main/java/Observers/ModelObserver.java b/src/main/java/Observers/ModelObserver.java
+deleted file mode 100644
+--- a/src/main/java/Observers/ModelObserver.java	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
++++ /dev/null	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
+@@ -1,5 +0,0 @@
+-package Observers;
+-
+-public class ModelObserver {
+-
+-}
+Index: src/main/java/model/ReducedBoard.java
+===================================================================
+diff --git a/src/main/java/model/ReducedBoard.java b/src/main/java/model/ReducedBoard.java
+deleted file mode 100644
+--- a/src/main/java/model/ReducedBoard.java	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
++++ /dev/null	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
+@@ -1,47 +0,0 @@
+-package model;
+-
+-import model.cards.CardObjective;
+-import model.cards.CardPlaying;
+-import model.cards.CardResource;
+-
+-import java.io.Serializable;
+-import java.util.ArrayList;
+-import java.util.Map;
+-
+-public class ReducedBoard implements Serializable {
+-    private final String nickName;
+-    private ArrayList<CardPlaying> hand ;
+-    private Map<ArrayList<Integer>, CardPlaying> playingStation;
+-    private final CardObjective secretObjective;
+-
+-    public ReducedBoard(String nickName, ArrayList<CardPlaying> hand, Map<ArrayList<Integer>, CardPlaying> playingStation, CardObjective secretObjective) {
+-        this.nickName = nickName;
+-        this.hand = hand;
+-        this.playingStation = playingStation;
+-        this.secretObjective = secretObjective;
+-    }
+-
+-    public String getNickName() {
+-        return nickName;
+-    }
+-
+-    public ArrayList<CardPlaying> getHand() {
+-        return hand;
+-    }
+-
+-    public Map<ArrayList<Integer>, CardPlaying> getPlayingStation() {
+-        return playingStation;
+-    }
+-
+-    public void addCardToPlayingStation( CardPlaying card, Integer X, Integer Y) {
+-        ArrayList<Integer> coordinates = new ArrayList<>();
+-        coordinates.add(X);
+-        coordinates.add(Y);
+-        playingStation.put(coordinates, card);
+-        hand.remove(card);
+-    }
+-
+-    public void addCardToHand(CardPlaying card) {
+-        hand.add(card);
+-    }
+-}
+\ No newline at end of file
+Index: src/main/java/Observers/ViewObservable.java
+===================================================================
+diff --git a/src/main/java/Observers/ViewObservable.java b/src/main/java/Observers/ViewObservable.java
+deleted file mode 100644
+--- a/src/main/java/Observers/ViewObservable.java	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
++++ /dev/null	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
+@@ -1,21 +0,0 @@
+-package Observers;
+-
+-import View.VirtualUI;
+-
+-import java.util.ArrayList;
+-import java.util.List;
+-
+-public class ViewObservable {
+-
+-    private List<VirtualUI> viewObserver = new ArrayList<>();
+-
+-    public void addObserver(VirtualUI viewObserver){
+-        this.viewObserver.add(viewObserver);
+-    }
+-
+-    public void notifyObservers(String message){
+-        for (VirtualUI viewObserver : viewObserver){
+-            viewObserver.update(message);
+-        }
+-    }
+-}
+Index: src/main/java/model/client/ReductPlayer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/model/client/ReductPlayer.java b/src/main/java/model/client/ReductPlayer.java
+new file mode 100644
+--- /dev/null	(date 1715508913691)
++++ b/src/main/java/model/client/ReductPlayer.java	(date 1715508913691)
+@@ -0,0 +1,61 @@
++package model.client;
++
++import model.PlayingStation;
++import model.enums.SuitEnum;
++import model.enums.TokenEnum;
++
++import java.util.ArrayList;
++
++public class ReductPlayer {
++    private final String nickname;
++    private int points;
++    private final TokenEnum token;
++    private PlayingStation station;
++    private ArrayList<SuitEnum> hand;
++
++
++    public ReductPlayer(int points, ArrayList<SuitEnum> hand, String nickname, PlayingStation station, TokenEnum token) {
++        this.points = points;
++        this.hand = hand;
++        this.nickname = nickname;
++        this.station = station;
++        this.token = token;
++    }
++
++    public ReductPlayer(String nickname, TokenEnum token) {
++        this.nickname = nickname;
++        this.token = token;
++    }
++
++    public ArrayList<SuitEnum> getHand() {
++        return hand;
++    }
++
++    public String getNickname() {
++        return nickname;
++    }
++
++    public int getPoints() {
++        return points;
++    }
++
++    public PlayingStation getStation() {
++        return station;
++    }
++
++    public TokenEnum getToken() {
++        return token;
++    }
++
++    public void setHand(ArrayList<SuitEnum> hand) {
++        this.hand = hand;
++    }
++
++    public void setPoints(int points) {
++        this.points = points;
++    }
++
++    public void setStation(PlayingStation station) {
++        this.station = station;
++    }
++}
+Index: src/main/java/Observers/Observer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Observers/Observer.java b/src/main/java/Observers/Observer.java
+new file mode 100644
+--- /dev/null	(date 1715508913714)
++++ b/src/main/java/Observers/Observer.java	(date 1715508913714)
+@@ -0,0 +1,7 @@
++package Observers;
++
++import socket.Messages.Message;
++
++public interface Observer {
++   void update(Message message);
++}
+Index: src/main/java/socket/Messages/ChangeStateMessage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/socket/Messages/ChangeStateMessage.java b/src/main/java/socket/Messages/ChangeStateMessage.java
+new file mode 100644
+--- /dev/null	(date 1715509317643)
++++ b/src/main/java/socket/Messages/ChangeStateMessage.java	(date 1715509317643)
+@@ -0,0 +1,16 @@
++package socket.Messages;
++
++import model.enums.GameState;
++
++public class ChangeStateMessage extends Message{
++
++    private GameState gameState;
++
++    public ChangeStateMessage(String type, GameState gameState) {
++        super("ChangeState");
++        this.gameState = gameState;
++    }
++    public GameState getGameState() {
++        return gameState;
++    }
++}
+Index: src/main/java/Network/Client/RmiClient.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Network.Client;\n\nimport Network.Cli2;\nimport Network.Server.VirtualServer;\n\nimport View.UI;\nimport exception.NotValidMoveException;\nimport model.PlayingBoard;\nimport model.ReducedBoard;\nimport model.cards.CardObjective;\nimport model.cards.CardPlaying;\nimport model.cards.CardResource;\nimport model.cards.CardStarting;\nimport java.rmi.RemoteException;\nimport java.rmi.server.UnicastRemoteObject;\nimport java.util.ArrayList;\nimport java.util.Map;\n\npublic class RmiClient extends UnicastRemoteObject implements VirtualView {\n\n    final VirtualServer server;\n    private UI cli;\n    private ReducedBoard clientModel;\n    private final Object lock;\n    int i=0;\n\n    public RmiClient(VirtualServer server) throws RemoteException {\n        this.server = server;\n        lock = new Object();\n    }\n\n    public ReducedBoard getClientModel() {\n        return clientModel;\n    }\n\n    public void ClientSetup() throws RemoteException, NotValidMoveException {\n        this.server.connectClient(this);\n\n        cli = new Cli2(server, this);\n\n        cli.showGameTitle();\n\n        if (server.numberOfPlayer() == 0) {\n            Integer playerNumber = cli.askPlayerNumber();\n            server.inizializeLobby(playerNumber);\n        }\n\n        String nickname;\n        do {\n            nickname = cli.askNickname(); // ask for nickname\n        } while (server.nicknameCheck(nickname));\n\n        server.addNewPlayer(nickname);\n\n        System.out.println(\"Waiting for other players to connect...\");\n    }\n\n    public void ClientGameSetup () throws RemoteException, InterruptedException{\n        CardPlaying startingCard;\n        CardObjective[] cardObjective;\n        synchronized (this.server){\n            String name = server.getClientNickname(this);\n            startingCard = server.getStartingCard(name);\n            cardObjective = server.getObjectiveCards(name);\n        }\n        Integer choice = cli.askStartingCardFront();\n        synchronized (this.server){\n            if (choice == 2) {\n                startingCard.setPlayingBack(true);\n            }\n        }\n\n        Integer choiceObjective = cli.askObjectiveCard();\n\n        synchronized (this.server){\n            inizializePlayingStation(this, startingCard, choice, cardObjective[choiceObjective-1]);\n        }\n\n        System.out.println(\"\\nGame is starting, please wait for your turn\\n\");\n        server.allPlayerReady();\n    }\n\n    @Override\n    public void StartGameTurns() throws RemoteException, InterruptedException {\n        server.startTurnNotify();\n    }\n\n    @Override\n    public void gameSituationUpdate() throws RemoteException {\n        synchronized (this){\n        String nickName = server.getClientNickname(this);\n        PlayingBoard board = server.getServerModel();\n        cli.showUpdatedBoard ( board );\n        cli.showUpdatedStation( this.clientModel.getPlayingStation() );\n//        cli.showUpdatedHand( this.clientModel.getHand() );\n        }\n    }\n\n    @Override\n    public void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String name) throws RemoteException {\n        cli.showMyUpdatedBoard(playingStation, name);\n        server.showedMyBoardNotify();\n    }\n\n    private  void inizializePlayingStation(VirtualView rmiClient, CardPlaying startingCard, Integer choice, CardObjective cardObjective) throws RemoteException {\n        String name = server.getClientNickname(rmiClient);\n        server.inizializePlayingStation(name, startingCard, choice, cardObjective);\n        this.clientModel = server.getReducedBoard(rmiClient);\n    }\n\n    @Override\n    public synchronized void showStartingCard(CardStarting cardStarting) throws RemoteException {\n        cli.showStartingCard(cardStarting);\n    }\n\n    @Override\n    public void Loginupdate() {\n        System.out.println(\"Lobby is full, starting game...\");\n        try {\n            this.ClientGameSetup();\n        } catch (RemoteException e) {\n            e.printStackTrace();\n        } catch (InterruptedException e) {\n            throw new RuntimeException(e);\n        }\n    }\n\n    @Override\n    public synchronized void showObjectiveCards(CardObjective[] cardObjective) {\n//        cli.showObjectiveCards(cardObjective);\n    }\n\n    @Override\n    public void playerTurn() throws RemoteException, InterruptedException {\n        synchronized (this) {\n            System.out.println(\"It's your turn!\");\n            CardPlaying card;\n            Integer[] cardInformation;\n            do {\n                cli.askCoordinatesOfCards();\n                cardInformation = cli.askCoordinatesOfCards();\n                card = this.clientModel.getHand().get(cardInformation[0]);\n            } while (!server.addCard(card, cardInformation[1], cardInformation[2], cardInformation[3]));\n\n            this.clientModel.getHand().remove(card);\n            this.clientModel.addCardToPlayingStation(card, cardInformation[2], cardInformation[3]);\n\n            Integer drawignChoice = cli.askDrawingCard();\n\n            this.clientModel.addCardToHand(server.drawCard(drawignChoice));\n\n        }\n        server.notifyMyUpdatedBoard(this, this.clientModel.getPlayingStation());\n        server.nextTurn();\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Network/Client/RmiClient.java b/src/main/java/Network/Client/RmiClient.java
+--- a/src/main/java/Network/Client/RmiClient.java	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
++++ b/src/main/java/Network/Client/RmiClient.java	(date 1715510072885)
+@@ -3,154 +3,53 @@
+ import Network.Cli2;
+ import Network.Server.VirtualServer;
+ 
++import Observers.Observer;
+ import View.UI;
+-import exception.NotValidMoveException;
+-import model.PlayingBoard;
+-import model.ReducedBoard;
+-import model.cards.CardObjective;
+-import model.cards.CardPlaying;
+-import model.cards.CardResource;
+-import model.cards.CardStarting;
++import model.ClientBoard;
++import socket.Messages.Message;
++
+ import java.rmi.RemoteException;
+ import java.rmi.server.UnicastRemoteObject;
+-import java.util.ArrayList;
+-import java.util.Map;
+ 
+-public class RmiClient extends UnicastRemoteObject implements VirtualView {
++public class RmiClient extends UnicastRemoteObject implements VirtualView, Observer {
+ 
+     final VirtualServer server;
+-    private UI cli;
+-    private ReducedBoard clientModel;
+-    private final Object lock;
+-    int i=0;
++    private UI ui;
++    private ClientBoard clientBoard;
+ 
+     public RmiClient(VirtualServer server) throws RemoteException {
+         this.server = server;
+-        lock = new Object();
++        this.ui = new Cli2(server, this);
+     }
+ 
+-    public ReducedBoard getClientModel() {
+-        return clientModel;
++    public ClientBoard getClientModel() {
++        return clientBoard;
+     }
+ 
+-    public void ClientSetup() throws RemoteException, NotValidMoveException {
++    public void run() throws RemoteException, InterruptedException {
+         this.server.connectClient(this);
+-
+-        cli = new Cli2(server, this);
+-
+-        cli.showGameTitle();
+-
+-        if (server.numberOfPlayer() == 0) {
+-            Integer playerNumber = cli.askPlayerNumber();
+-            server.inizializeLobby(playerNumber);
+-        }
+-
+-        String nickname;
+-        do {
+-            nickname = cli.askNickname(); // ask for nickname
+-        } while (server.nicknameCheck(nickname));
+-
+-        server.addNewPlayer(nickname);
+-
+-        System.out.println("Waiting for other players to connect...");
+-    }
++        ui = new Cli2(server, this);
++        ui.showGameTitle();
++clientBoard = new ClientBoard();
+ 
+-    public void ClientGameSetup () throws RemoteException, InterruptedException{
+-        CardPlaying startingCard;
+-        CardObjective[] cardObjective;
+-        synchronized (this.server){
+-            String name = server.getClientNickname(this);
+-            startingCard = server.getStartingCard(name);
+-            cardObjective = server.getObjectiveCards(name);
+-        }
+-        Integer choice = cli.askStartingCardFront();
+-        synchronized (this.server){
+-            if (choice == 2) {
+-                startingCard.setPlayingBack(true);
++        while (true) {
++            switch (server.getGameState()) {
++                case SELECTNUMBEROFPLAYERS:
++                    ui.askPlayerNumber();
++                    break;
++                case LOGIN:
++                    ui.loginMenu();
++                    break;
++                case SELECTSTARTINGCARD:
++                    ui.setupStartingCardMenu();
++                    break;
+             }
+         }
+-
+-        Integer choiceObjective = cli.askObjectiveCard();
+-
+-        synchronized (this.server){
+-            inizializePlayingStation(this, startingCard, choice, cardObjective[choiceObjective-1]);
+-        }
++    }
+ 
+-        System.out.println("\nGame is starting, please wait for your turn\n");
+-        server.allPlayerReady();
+-    }
+-
+-    @Override
+-    public void StartGameTurns() throws RemoteException, InterruptedException {
+-        server.startTurnNotify();
+-    }
+-
+-    @Override
+-    public void gameSituationUpdate() throws RemoteException {
+-        synchronized (this){
+-        String nickName = server.getClientNickname(this);
+-        PlayingBoard board = server.getServerModel();
+-        cli.showUpdatedBoard ( board );
+-        cli.showUpdatedStation( this.clientModel.getPlayingStation() );
+-//        cli.showUpdatedHand( this.clientModel.getHand() );
+-        }
+-    }
+-
+-    @Override
+-    public void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String name) throws RemoteException {
+-        cli.showMyUpdatedBoard(playingStation, name);
+-        server.showedMyBoardNotify();
+-    }
+-
+-    private  void inizializePlayingStation(VirtualView rmiClient, CardPlaying startingCard, Integer choice, CardObjective cardObjective) throws RemoteException {
+-        String name = server.getClientNickname(rmiClient);
+-        server.inizializePlayingStation(name, startingCard, choice, cardObjective);
+-        this.clientModel = server.getReducedBoard(rmiClient);
+-    }
+-
+-    @Override
+-    public synchronized void showStartingCard(CardStarting cardStarting) throws RemoteException {
+-        cli.showStartingCard(cardStarting);
+-    }
+ 
+     @Override
+-    public void Loginupdate() {
+-        System.out.println("Lobby is full, starting game...");
+-        try {
+-            this.ClientGameSetup();
+-        } catch (RemoteException e) {
+-            e.printStackTrace();
+-        } catch (InterruptedException e) {
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    @Override
+-    public synchronized void showObjectiveCards(CardObjective[] cardObjective) {
+-//        cli.showObjectiveCards(cardObjective);
+-    }
+-
+-    @Override
+-    public void playerTurn() throws RemoteException, InterruptedException {
+-        synchronized (this) {
+-            System.out.println("It's your turn!");
+-            CardPlaying card;
+-            Integer[] cardInformation;
+-            do {
+-                cli.askCoordinatesOfCards();
+-                cardInformation = cli.askCoordinatesOfCards();
+-                card = this.clientModel.getHand().get(cardInformation[0]);
+-            } while (!server.addCard(card, cardInformation[1], cardInformation[2], cardInformation[3]));
+-
+-            this.clientModel.getHand().remove(card);
+-            this.clientModel.addCardToPlayingStation(card, cardInformation[2], cardInformation[3]);
+-
+-            Integer drawignChoice = cli.askDrawingCard();
+-
+-            this.clientModel.addCardToHand(server.drawCard(drawignChoice));
+-
+-        }
+-        server.notifyMyUpdatedBoard(this, this.clientModel.getPlayingStation());
+-        server.nextTurn();
++    public void update(Message message) {
++        clientBoard.update(message);
+     }
+ }
+Index: src/main/java/Network/Client/VirtualView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Network.Client;\n\nimport model.cards.CardObjective;\nimport model.cards.CardPlaying;\nimport model.cards.CardStarting;\n\nimport java.rmi.Remote;\nimport java.rmi.RemoteException;\nimport java.util.ArrayList;\nimport java.util.Map;\n\npublic interface VirtualView extends Remote {\n\n\n    void showStartingCard(CardStarting cardStarting) throws RemoteException;\n\n    void Loginupdate() throws RemoteException ;\n\n    void showObjectiveCards(CardObjective[] cardObjective) throws RemoteException;\n\n    void StartGameTurns() throws RemoteException, InterruptedException;\n\n    void gameSituationUpdate() throws RemoteException;\n\n    void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String name) throws RemoteException;\n\n    void playerTurn() throws RemoteException, InterruptedException;\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Network/Client/VirtualView.java b/src/main/java/Network/Client/VirtualView.java
+--- a/src/main/java/Network/Client/VirtualView.java	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
++++ b/src/main/java/Network/Client/VirtualView.java	(date 1715508913708)
+@@ -12,17 +12,5 @@
+ public interface VirtualView extends Remote {
+ 
+ 
+-    void showStartingCard(CardStarting cardStarting) throws RemoteException;
+-
+-    void Loginupdate() throws RemoteException ;
+ 
+-    void showObjectiveCards(CardObjective[] cardObjective) throws RemoteException;
+-
+-    void StartGameTurns() throws RemoteException, InterruptedException;
+-
+-    void gameSituationUpdate() throws RemoteException;
+-
+-    void showMyUpdatedBoard(Map<ArrayList<Integer>, CardPlaying> playingStation, String name) throws RemoteException;
+-
+-    void playerTurn() throws RemoteException, InterruptedException;
+ }
+Index: src/main/java/Network/Server/RmiServer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Network.Server;\n\nimport Network.Client.VirtualView;\nimport Observers.Observable;\nimport controller.GameController;\nimport exception.NotValidMoveException;\nimport model.PlayingBoard;\nimport model.ReducedBoard;\nimport model.cards.CardObjective;\nimport model.cards.CardPlaying;\nimport model.cards.CardStarting;\n\nimport java.rmi.RemoteException;\nimport java.util.*;\nimport java.util.concurrent.*;\n\npublic class RmiServer extends Observable implements VirtualServer {\n\n    final GameController gameController;\n    final BlockingQueue<VirtualView> blockingQueue = new ArrayBlockingQueue<>(100);\n    private List<VirtualView> clients;\n    private Map<String, VirtualView> clientsMapNicknamesKey;\n    private Map<VirtualView, String> clientsMapClientsKey;\n    private Integer CurrentTurn;\n    private Integer playerReady;\n    private Boolean showedBoard = false;\n\n\n    public RmiServer(GameController gameController) {\n        this.gameController = gameController;\n        clients = new ArrayList<>();\n        clientsMapNicknamesKey = new HashMap<>();\n        clientsMapClientsKey = new HashMap<>();\n        this.CurrentTurn = 0;\n        this.playerReady = 0;\n    }\n\n    private void broadcastUpdateThread() throws InterruptedException, RemoteException {\n\n        while(true)\n        {\n            VirtualView client = blockingQueue.take();\n            client.StartGameTurns();\n        }\n    }\n\n    @Override\n    public synchronized void connectClient(VirtualView client) {\n\n            this.clients.add(client);\n            System.err.println(\"new client connected\");\n            try{\n                this.addLoginObserver(client);\n                this.addMyBoardObserver(client);\n            } catch (Exception e) {\n                e.printStackTrace();\n            }\n    }\n\n    @Override\n    public boolean addCard(CardPlaying card, Integer side, Integer X, Integer Y) {\n//        return gameController.addCard(card, side, X, Y, this.getClientNickname(clients.get(CurrentTurn)));\n        return true;\n    }\n\n    @Override\n    public synchronized CardPlaying drawCard(Integer number) {\n//        return gameController.drawCard(number, this.getClientNickname(clients.get(CurrentTurn)));\n        return null;\n    }\n\n\n    /**\n     * Add a new player to the game\n     * @param name the nickname of the player\n     *Add new player to the model and also add clients with theirs nickname to server\n     */\n    @Override\n   public synchronized void addNewPlayer(String name) {\n//        gameController.addPlayer(name);\n//        switch(this.clients.size())\n//        {\n//            case 1:\n//                clientsMapNicknamesKey.put(name, clients.get(0));\n//                clientsMapClientsKey.put(clients.get(0), name);\n//                break;\n//            case 2:\n//                clientsMapNicknamesKey.put(name, clients.get(1));\n//                clientsMapClientsKey.put(clients.get(1), name);\n//                break;\n//            case 3:\n//                clientsMapNicknamesKey.put(name, clients.get(2));\n//                clientsMapClientsKey.put(clients.get(2), name);\n//                break;\n//            case 4:\n//                clientsMapNicknamesKey.put(name, clients.get(3));\n//                clientsMapClientsKey.put(clients.get(3), name);\n//                break;\n//        }\n//        System.err.println(\"New player added\" + name);\n//        try{\n//            if(this.allPlayerConnected()){\n////                List<String> playersNickname = gameController.getBoard().PlayerTurnOrder();\n//                // Crea nuove strutture dati\n//                List<VirtualView> newClients = new ArrayList<>();\n//                Map<String, VirtualView> newClientsMapNicknamesKey = new HashMap<>();\n//                Map<VirtualView, String> newClientsMapClientsKey = new HashMap<>();\n//\n//                // Popola le nuove strutture dati nell'ordine corretto\n//                for (String nickname : playersNickname) {\n//                    VirtualView client = clientsMapNicknamesKey.get(nickname);\n//                    newClients.add(client);\n//                    newClientsMapNicknamesKey.put(nickname, client);\n//                    newClientsMapClientsKey.put(client, nickname);\n//                }\n//\n//                // Sostituisci le vecchie strutture dati con le nuove\n//                clients = newClients;\n//                clientsMapNicknamesKey = newClientsMapNicknamesKey;\n//                clientsMapClientsKey = newClientsMapClientsKey;\n//                this.notifyLoginObservers();\n//            }\n//        } catch (RemoteException e) {\n//            e.printStackTrace();\n//        }\n   }\n\n    @Override\n    public synchronized boolean nicknameCheck(String name) {\n\n//        return gameController.takenNickname(name);\n        return true;\n    }\n\n    @Override\n    public synchronized Integer numberOfPlayer() throws RemoteException {\n//        return gameController.numberOfPlayer();\n        return null;\n    }\n\n    @Override\n    public synchronized void initializeBoard() throws RemoteException {\n        gameController.initGameController();\n    }\n\n    @Override\n    public synchronized void inizializeLobby(Integer playerNumber) throws RemoteException, NotValidMoveException {\n        gameController.setPlayerNumber(playerNumber);\n    }\n\n    public synchronized Integer getPlayerNumber() throws NotValidMoveException {\n        return gameController.getPlayerNumber();\n    }\n\n    public synchronized Integer getCurrentTurn() {\n        return CurrentTurn;\n    }\n\n    public synchronized void setCurrentTurn(Integer currentTurn) {\n        CurrentTurn = currentTurn;\n    }\n\n    /**\n     * Add a starting card to the player\n     * @param nickname the nickname of the player\n     * @throws RemoteException\n     */\n\n    @Override\n    public synchronized CardStarting getStartingCard(String nickname) throws RemoteException {\n        CardStarting cardStarting = null;\n        try {\n            cardStarting = gameController.getStartingCard(nickname);\n        } catch (NotValidMoveException e) {\n            throw new RuntimeException(e);\n        }\n        clientsMapNicknamesKey.get(nickname).showStartingCard(cardStarting);\n        return cardStarting;\n    }\n\n    @Override\n    public synchronized boolean allPlayerConnected() throws RemoteException, NotValidMoveException {\n        return Objects.equals(this.numberOfPlayer(), this.getPlayerNumber());\n    }\n\n    @Override\n    public synchronized PlayingBoard getServerModel() throws RemoteException {\n//        return gameController.getBoard();\n        return null;\n    }\n\n    @Override\n    public synchronized VirtualView getClientIstance(String nickname) {\n            return clientsMapNicknamesKey.get(nickname);\n    }\n\n    @Override\n    public synchronized ReducedBoard getReducedBoard(VirtualView rmiClient) {\n//        return this.gameController.getReducedBoard(this.getClientNickname(rmiClient));\n        return null;\n    }\n\n    @Override\n    public synchronized CardObjective[] getObjectiveCards(String nickname) throws RemoteException {\n//        CardObjective[] cardObjective = gameController.getObjectiveCards(nickname);\n//        clientsMapNicknamesKey.get(nickname).showObjectiveCards(cardObjective);\n//        return cardObjective;\n        return null;\n    }\n\n    @Override\n    public synchronized void inizializePlayingStation(String clientNickname, CardPlaying startingCard, Integer choice, CardObjective cardObjective) {\n//        gameController.inizializePlayingStation(clientNickname,startingCard,choice,cardObjective);\n    }\n\n    @Override\n    public synchronized boolean isGameFinished() throws RemoteException {\n        return false;\n    }\n\n    @Override\n    public synchronized String getClientNickname(VirtualView client) {\n            return clientsMapClientsKey.get(client);\n\n    }\n\n    @Override\n    public synchronized void loginThreadsStopper() throws RemoteException, InterruptedException {\n        stopAllLoginThreads();\n        playerToNextTurn(0);\n\n        new Thread(() -> {\n            try {\n                broadcastUpdateThread();\n            } catch (InterruptedException | RemoteException e) {\n                e.printStackTrace();\n            }\n        }).start();\n\n    }\n\n    @Override\n    public void startTurnNotify() throws RemoteException, InterruptedException {\n\n        for(var c: clients){\n            c.gameSituationUpdate();\n        }\n\n        this.clients.get(getCurrentTurn()).playerTurn();\n    }\n\n    @Override\n    public synchronized void allPlayerReady() throws RemoteException, InterruptedException {\n        addingPlayerReady();\n\n        if(getPlayerReady() == clients.size()){\n            this.loginThreadsStopper();\n        }\n    }\n\n    @Override\n    public void notifyMyUpdatedBoard(VirtualView rmiClient, Map<ArrayList<Integer>, CardPlaying> playingStation) {\n        synchronized (this){\n            notifyMyBoardObservers(playingStation, getClientNickname(rmiClient));\n        }\n    }\n\n    @Override\n    public synchronized void showedMyBoardNotify() throws RemoteException {\n        stopAllMyBoardThreads();\n    }\n\n    @Override\n    public void nextTurn() throws RemoteException, InterruptedException {\n        synchronized (this){\n            if(getCurrentTurn()< (clients.size()-1))\n                setCurrentTurn(getCurrentTurn()+1);\n            else\n                setCurrentTurn(0);\n            playerToNextTurn(getCurrentTurn());\n        }\n\n    }\n\n    private synchronized void addingPlayerReady() {\n        this.playerReady ++;\n    }\n\n    public synchronized Integer getPlayerReady() {\n        return this.playerReady;\n    }\n\n    public synchronized void playerToNextTurn(Integer index) throws InterruptedException {\n        blockingQueue.put(clients.get(index));\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Network/Server/RmiServer.java b/src/main/java/Network/Server/RmiServer.java
+--- a/src/main/java/Network/Server/RmiServer.java	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
++++ b/src/main/java/Network/Server/RmiServer.java	(date 1715508913728)
+@@ -5,43 +5,24 @@
+ import controller.GameController;
+ import exception.NotValidMoveException;
+ import model.PlayingBoard;
+-import model.ReducedBoard;
++import model.ClientBoard;
+ import model.cards.CardObjective;
+ import model.cards.CardPlaying;
+ import model.cards.CardStarting;
+ 
+ import java.rmi.RemoteException;
+ import java.util.*;
+-import java.util.concurrent.*;
+ 
+-public class RmiServer extends Observable implements VirtualServer {
++public class RmiServer implements VirtualServer{
+ 
+     final GameController gameController;
+-    final BlockingQueue<VirtualView> blockingQueue = new ArrayBlockingQueue<>(100);
+-    private List<VirtualView> clients;
+-    private Map<String, VirtualView> clientsMapNicknamesKey;
+-    private Map<VirtualView, String> clientsMapClientsKey;
+-    private Integer CurrentTurn;
+-    private Integer playerReady;
+-    private Boolean showedBoard = false;
+-
++    final List<VirtualView> clients;
+ 
+     public RmiServer(GameController gameController) {
+         this.gameController = gameController;
++        gameController.initGameController();
+         clients = new ArrayList<>();
+-        clientsMapNicknamesKey = new HashMap<>();
+-        clientsMapClientsKey = new HashMap<>();
+-        this.CurrentTurn = 0;
+-        this.playerReady = 0;
+-    }
+ 
+-    private void broadcastUpdateThread() throws InterruptedException, RemoteException {
+-
+-        while(true)
+-        {
+-            VirtualView client = blockingQueue.take();
+-            client.StartGameTurns();
+-        }
+     }
+ 
+     @Override
+@@ -49,249 +30,6 @@
+ 
+             this.clients.add(client);
+             System.err.println("new client connected");
+-            try{
+-                this.addLoginObserver(client);
+-                this.addMyBoardObserver(client);
+-            } catch (Exception e) {
+-                e.printStackTrace();
+-            }
+-    }
+-
+-    @Override
+-    public boolean addCard(CardPlaying card, Integer side, Integer X, Integer Y) {
+-//        return gameController.addCard(card, side, X, Y, this.getClientNickname(clients.get(CurrentTurn)));
+-        return true;
+-    }
+-
+-    @Override
+-    public synchronized CardPlaying drawCard(Integer number) {
+-//        return gameController.drawCard(number, this.getClientNickname(clients.get(CurrentTurn)));
+-        return null;
+-    }
+-
+-
+-    /**
+-     * Add a new player to the game
+-     * @param name the nickname of the player
+-     *Add new player to the model and also add clients with theirs nickname to server
+-     */
+-    @Override
+-   public synchronized void addNewPlayer(String name) {
+-//        gameController.addPlayer(name);
+-//        switch(this.clients.size())
+-//        {
+-//            case 1:
+-//                clientsMapNicknamesKey.put(name, clients.get(0));
+-//                clientsMapClientsKey.put(clients.get(0), name);
+-//                break;
+-//            case 2:
+-//                clientsMapNicknamesKey.put(name, clients.get(1));
+-//                clientsMapClientsKey.put(clients.get(1), name);
+-//                break;
+-//            case 3:
+-//                clientsMapNicknamesKey.put(name, clients.get(2));
+-//                clientsMapClientsKey.put(clients.get(2), name);
+-//                break;
+-//            case 4:
+-//                clientsMapNicknamesKey.put(name, clients.get(3));
+-//                clientsMapClientsKey.put(clients.get(3), name);
+-//                break;
+-//        }
+-//        System.err.println("New player added" + name);
+-//        try{
+-//            if(this.allPlayerConnected()){
+-////                List<String> playersNickname = gameController.getBoard().PlayerTurnOrder();
+-//                // Crea nuove strutture dati
+-//                List<VirtualView> newClients = new ArrayList<>();
+-//                Map<String, VirtualView> newClientsMapNicknamesKey = new HashMap<>();
+-//                Map<VirtualView, String> newClientsMapClientsKey = new HashMap<>();
+-//
+-//                // Popola le nuove strutture dati nell'ordine corretto
+-//                for (String nickname : playersNickname) {
+-//                    VirtualView client = clientsMapNicknamesKey.get(nickname);
+-//                    newClients.add(client);
+-//                    newClientsMapNicknamesKey.put(nickname, client);
+-//                    newClientsMapClientsKey.put(client, nickname);
+-//                }
+-//
+-//                // Sostituisci le vecchie strutture dati con le nuove
+-//                clients = newClients;
+-//                clientsMapNicknamesKey = newClientsMapNicknamesKey;
+-//                clientsMapClientsKey = newClientsMapClientsKey;
+-//                this.notifyLoginObservers();
+-//            }
+-//        } catch (RemoteException e) {
+-//            e.printStackTrace();
+-//        }
+-   }
+-
+-    @Override
+-    public synchronized boolean nicknameCheck(String name) {
+-
+-//        return gameController.takenNickname(name);
+-        return true;
+-    }
+-
+-    @Override
+-    public synchronized Integer numberOfPlayer() throws RemoteException {
+-//        return gameController.numberOfPlayer();
+-        return null;
+-    }
+-
+-    @Override
+-    public synchronized void initializeBoard() throws RemoteException {
+-        gameController.initGameController();
+-    }
+-
+-    @Override
+-    public synchronized void inizializeLobby(Integer playerNumber) throws RemoteException, NotValidMoveException {
+-        gameController.setPlayerNumber(playerNumber);
+-    }
+-
+-    public synchronized Integer getPlayerNumber() throws NotValidMoveException {
+-        return gameController.getPlayerNumber();
+-    }
+-
+-    public synchronized Integer getCurrentTurn() {
+-        return CurrentTurn;
+-    }
+-
+-    public synchronized void setCurrentTurn(Integer currentTurn) {
+-        CurrentTurn = currentTurn;
+-    }
+-
+-    /**
+-     * Add a starting card to the player
+-     * @param nickname the nickname of the player
+-     * @throws RemoteException
+-     */
+-
+-    @Override
+-    public synchronized CardStarting getStartingCard(String nickname) throws RemoteException {
+-        CardStarting cardStarting = null;
+-        try {
+-            cardStarting = gameController.getStartingCard(nickname);
+-        } catch (NotValidMoveException e) {
+-            throw new RuntimeException(e);
+-        }
+-        clientsMapNicknamesKey.get(nickname).showStartingCard(cardStarting);
+-        return cardStarting;
+-    }
+-
+-    @Override
+-    public synchronized boolean allPlayerConnected() throws RemoteException, NotValidMoveException {
+-        return Objects.equals(this.numberOfPlayer(), this.getPlayerNumber());
+-    }
+-
+-    @Override
+-    public synchronized PlayingBoard getServerModel() throws RemoteException {
+-//        return gameController.getBoard();
+-        return null;
+-    }
+-
+-    @Override
+-    public synchronized VirtualView getClientIstance(String nickname) {
+-            return clientsMapNicknamesKey.get(nickname);
+-    }
+-
+-    @Override
+-    public synchronized ReducedBoard getReducedBoard(VirtualView rmiClient) {
+-//        return this.gameController.getReducedBoard(this.getClientNickname(rmiClient));
+-        return null;
+-    }
+-
+-    @Override
+-    public synchronized CardObjective[] getObjectiveCards(String nickname) throws RemoteException {
+-//        CardObjective[] cardObjective = gameController.getObjectiveCards(nickname);
+-//        clientsMapNicknamesKey.get(nickname).showObjectiveCards(cardObjective);
+-//        return cardObjective;
+-        return null;
+-    }
+-
+-    @Override
+-    public synchronized void inizializePlayingStation(String clientNickname, CardPlaying startingCard, Integer choice, CardObjective cardObjective) {
+-//        gameController.inizializePlayingStation(clientNickname,startingCard,choice,cardObjective);
+-    }
+-
+-    @Override
+-    public synchronized boolean isGameFinished() throws RemoteException {
+-        return false;
+-    }
+-
+-    @Override
+-    public synchronized String getClientNickname(VirtualView client) {
+-            return clientsMapClientsKey.get(client);
+-
+-    }
+-
+-    @Override
+-    public synchronized void loginThreadsStopper() throws RemoteException, InterruptedException {
+-        stopAllLoginThreads();
+-        playerToNextTurn(0);
+-
+-        new Thread(() -> {
+-            try {
+-                broadcastUpdateThread();
+-            } catch (InterruptedException | RemoteException e) {
+-                e.printStackTrace();
+-            }
+-        }).start();
+-
+-    }
+-
+-    @Override
+-    public void startTurnNotify() throws RemoteException, InterruptedException {
+-
+-        for(var c: clients){
+-            c.gameSituationUpdate();
+-        }
+-
+-        this.clients.get(getCurrentTurn()).playerTurn();
+-    }
+-
+-    @Override
+-    public synchronized void allPlayerReady() throws RemoteException, InterruptedException {
+-        addingPlayerReady();
+-
+-        if(getPlayerReady() == clients.size()){
+-            this.loginThreadsStopper();
+-        }
+-    }
+-
+-    @Override
+-    public void notifyMyUpdatedBoard(VirtualView rmiClient, Map<ArrayList<Integer>, CardPlaying> playingStation) {
+-        synchronized (this){
+-            notifyMyBoardObservers(playingStation, getClientNickname(rmiClient));
+-        }
+-    }
+-
+-    @Override
+-    public synchronized void showedMyBoardNotify() throws RemoteException {
+-        stopAllMyBoardThreads();
+-    }
+-
+-    @Override
+-    public void nextTurn() throws RemoteException, InterruptedException {
+-        synchronized (this){
+-            if(getCurrentTurn()< (clients.size()-1))
+-                setCurrentTurn(getCurrentTurn()+1);
+-            else
+-                setCurrentTurn(0);
+-            playerToNextTurn(getCurrentTurn());
+-        }
+-
+-    }
+-
+-    private synchronized void addingPlayerReady() {
+-        this.playerReady ++;
+-    }
+-
+-    public synchronized Integer getPlayerReady() {
+-        return this.playerReady;
+-    }
+-
+-    public synchronized void playerToNextTurn(Integer index) throws InterruptedException {
+-        blockingQueue.put(clients.get(index));
+     }
+ 
+ }
+Index: src/main/java/model/PlayingBoard.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model;\n\nimport Observers.ModelObserver;\nimport model.cards.*;\nimport model.enums.GameState;\n\nimport java.io.Serializable;\nimport java.util.*;\n\npublic class PlayingBoard extends ModelObserver implements Serializable {\n\n    private LinkedList<CardGold> deckCardGold;\n    private LinkedList<CardResource> deckCardResource;\n    private LinkedList<CardObjective> deckCardObjective;\n    private LinkedList<CardStarting> deckCardStarting;\n    private ArrayList<CardGold> centralCardsGold;\n    private ArrayList<CardResource> centralCardsResource;\n    private final CardObjective firstObjective;\n    private final CardObjective secondObjective;\n\n\n    //the current player playing\n    private String currentPlayer;\n    //saving the number of player\n    private int playernumber;\n    //the player map that for each nickname has a player\n    private ArrayList<Player> players;\n    //gameState\n    private GameState gameState;\n\n    public PlayingBoard(CardObjective firstObjective, CardObjective secondObjective, int playernumber, ArrayList<Player> playerList, LinkedList<CardStarting> deckCardStarting, LinkedList<CardResource> deckCardResource, LinkedList<CardObjective> deckCardObjective, LinkedList<CardGold> deckCardGold, String currentPlayer, ArrayList<CardResource> centralCardsResource, ArrayList<CardGold> centralCardsGold, GameState gameState){\n        this.firstObjective = firstObjective;\n        this.secondObjective = secondObjective;\n        this.playernumber = playernumber;\n        this.players = playerList;\n        this.deckCardStarting = deckCardStarting;\n        this.deckCardResource = deckCardResource;\n        this.deckCardObjective = deckCardObjective;\n        this.deckCardGold = deckCardGold;\n        this.currentPlayer = currentPlayer;\n        this.centralCardsResource = centralCardsResource;\n        this.centralCardsGold = centralCardsGold;\n        this.gameState = gameState;\n    }\n\n    public PlayingBoard(CardObjective firstObjective, CardObjective secondObjective) {\n        this.firstObjective = firstObjective;\n        this.secondObjective = secondObjective;\n    }\n\n\n    //-------------------GETTER-----------------------------\n    public LinkedList<CardGold> getDeckCardGold() {\n        return deckCardGold;\n    }\n\n    public CardObjective getFirstObjective() {\n        return firstObjective;\n    }\n\n    public CardObjective getSecondObjective() {\n        return secondObjective;\n    }\n\n    public int getPlayernumber() {\n        return playernumber;\n    }\n\n    public ArrayList<CardGold> getCentralCardsGold() {\n        return centralCardsGold;\n    }\n\n    public ArrayList<CardResource> getCentralCardsResource() {\n        return centralCardsResource;\n    }\n\n    public String getCurrentPlayer() {\n        return currentPlayer;\n    }\n\n    public LinkedList<CardObjective> getDeckCardObjective() {\n        return deckCardObjective;\n    }\n\n    public LinkedList<CardResource> getDeckCardResource() {\n        return deckCardResource;\n    }\n\n    public LinkedList<CardStarting> getDeckCardStarting() {\n        return deckCardStarting;\n    }\n\n    public ArrayList<Player> getPlayers() {\n        return players;\n    }\n\n    public GameState getGameState() {\n        return gameState;\n    }\n    //--------------------SETTER----------------------------\n\n\n    public void addPlayer(Player p) {\n        players.add(p);\n    }\n\n    public void setPlayernumber(int playernumber) {\n        this.playernumber = playernumber;\n    }\n\n    public void setCentralCardsGold(ArrayList<CardGold> centralCardsGold) {\n        this.centralCardsGold = centralCardsGold;\n    }\n\n    public void setCentralCardsResource(ArrayList<CardResource> centralCardsResource) {\n        this.centralCardsResource = centralCardsResource;\n    }\n\n    public void setCurrentPlayer(String currentPlayer) {\n        this.currentPlayer = currentPlayer;\n    }\n\n    public void setDeckCardGold(LinkedList<CardGold> deckCardGold) {\n        this.deckCardGold = deckCardGold;\n    }\n\n    public void setDeckCardObjective(LinkedList<CardObjective> deckCardObjective) {\n        this.deckCardObjective = deckCardObjective;\n    }\n\n    public void setDeckCardResource(LinkedList<CardResource> deckCardResource) {\n        this.deckCardResource = deckCardResource;\n    }\n\n    public void setDeckCardStarting(LinkedList<CardStarting> deckCardStarting) {\n        this.deckCardStarting = deckCardStarting;\n    }\n\n    public void setPlayers(ArrayList<Player> players) {\n        this.players = players;\n    }\n    public void setGameState(GameState gameState) {\n        this.gameState = gameState;\n    }\n\n\n\n//--------------------SETTING FASE ENDED----------------------------\n\n\n    public Player getPlayer(String nickname) throws IllegalStateException {\n        return players.stream()\n                .filter(p -> p.getNickname().equals(nickname))\n                .findFirst()\n                .orElseThrow(() -> new IllegalStateException(\"Player \" + nickname + \" not found\"));\n    }\n    private int getPlayerPositon(String nickname){\n        for (int i = 0; i < players.size(); i++) {\n            if (players.get(i).getNickname().equals(nickname)){\n                return i;\n            }\n        }\n        return -1;\n    }\n\n\n    public Optional<CardResource> getCardResource(int id) {\n        return centralCardsResource\n                .stream()\n                .filter(c -> c.getId().equals(id))\n                .findFirst();\n    }\n\n    public Optional<CardGold> getCardGold(int id) {\n        return centralCardsGold\n                .stream()\n                .filter(c -> c.getId().equals(id))\n                .findFirst();\n    }\n\n    // shuffle players\n    public void shufflePlayer() {\n        Collections.shuffle(players);\n    }\n    public String getnextPlayer(){\n        int indexOfCurrentPlayer = players.indexOf(getPlayer(currentPlayer));\n        if (indexOfCurrentPlayer == players.size()-1){\n            return players.get(0).getNickname();\n        }\n        else {\n            return players.get(indexOfCurrentPlayer+1).getNickname();\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/model/PlayingBoard.java b/src/main/java/model/PlayingBoard.java
+--- a/src/main/java/model/PlayingBoard.java	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
++++ b/src/main/java/model/PlayingBoard.java	(date 1715508913744)
+@@ -1,13 +1,12 @@
+ package model;
+ 
+-import Observers.ModelObserver;
+ import model.cards.*;
+ import model.enums.GameState;
+ 
+ import java.io.Serializable;
+ import java.util.*;
+ 
+-public class PlayingBoard extends ModelObserver implements Serializable {
++public class PlayingBoard implements Serializable {
+ 
+     private LinkedList<CardGold> deckCardGold;
+     private LinkedList<CardResource> deckCardResource;
+Index: src/main/java/Network/Server/VirtualServer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Network.Server;\n\nimport Network.Client.RmiClient;\nimport Network.Client.VirtualView;\nimport exception.NotValidMoveException;\nimport model.PlayingBoard;\nimport model.PlayingStation;\nimport model.ReducedBoard;\nimport model.cards.CardObjective;\nimport model.cards.CardPlaying;\nimport model.cards.CardResource;\n\nimport java.rmi.Remote;\nimport java.rmi.RemoteException;\nimport java.util.ArrayList;\nimport java.util.Map;\n\npublic interface VirtualServer extends Remote {\n    void connectClient(VirtualView client) throws RemoteException;\n\n\n    boolean addCard(CardPlaying card, Integer side, Integer X, Integer Y) throws RemoteException;\n\n    CardPlaying drawCard(Integer number) throws RemoteException;\n\n    void addNewPlayer(String name) throws RemoteException;\n\n    boolean nicknameCheck(String name) throws RemoteException;\n\n    Integer numberOfPlayer() throws RemoteException;\n\n    void initializeBoard() throws RemoteException;\n    \n    void inizializeLobby(Integer playernumber) throws RemoteException, NotValidMoveException;\n\n    Integer getPlayerNumber() throws RemoteException, NotValidMoveException;\n\n    CardPlaying getStartingCard(String nickname) throws RemoteException;\n\n    PlayingBoard getServerModel() throws RemoteException;\n\n    boolean allPlayerConnected() throws RemoteException, NotValidMoveException;\n\n\n    String getClientNickname(VirtualView client) throws RemoteException;\n\n    VirtualView getClientIstance(String nickname) throws RemoteException;\n\n    ReducedBoard getReducedBoard(VirtualView rmiClient) throws RemoteException;\n\n    CardObjective[] getObjectiveCards(String clientNickname) throws RemoteException;\n\n    void inizializePlayingStation(String clientNickname, CardPlaying startingCard, Integer choice, CardObjective cardObjective) throws RemoteException;\n\n    boolean isGameFinished() throws RemoteException;\n\n    void loginThreadsStopper() throws RemoteException, InterruptedException;\n\n    void startTurnNotify() throws RemoteException, InterruptedException;\n\n    void allPlayerReady() throws RemoteException, InterruptedException;\n\n\n    void notifyMyUpdatedBoard(VirtualView rmiClient, Map<ArrayList<Integer>, CardPlaying> playingStation) throws RemoteException;\n\n    void showedMyBoardNotify() throws RemoteException;\n\n    void nextTurn() throws RemoteException, InterruptedException;\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Network/Server/VirtualServer.java b/src/main/java/Network/Server/VirtualServer.java
+--- a/src/main/java/Network/Server/VirtualServer.java	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
++++ b/src/main/java/Network/Server/VirtualServer.java	(date 1715508913751)
+@@ -1,14 +1,11 @@
+ package Network.Server;
+ 
+-import Network.Client.RmiClient;
+ import Network.Client.VirtualView;
+ import exception.NotValidMoveException;
+ import model.PlayingBoard;
+-import model.PlayingStation;
+-import model.ReducedBoard;
++import model.ClientBoard;
+ import model.cards.CardObjective;
+ import model.cards.CardPlaying;
+-import model.cards.CardResource;
+ 
+ import java.rmi.Remote;
+ import java.rmi.RemoteException;
+@@ -17,54 +14,4 @@
+ 
+ public interface VirtualServer extends Remote {
+     void connectClient(VirtualView client) throws RemoteException;
+-
+-
+-    boolean addCard(CardPlaying card, Integer side, Integer X, Integer Y) throws RemoteException;
+-
+-    CardPlaying drawCard(Integer number) throws RemoteException;
+-
+-    void addNewPlayer(String name) throws RemoteException;
+-
+-    boolean nicknameCheck(String name) throws RemoteException;
+-
+-    Integer numberOfPlayer() throws RemoteException;
+-
+-    void initializeBoard() throws RemoteException;
+-    
+-    void inizializeLobby(Integer playernumber) throws RemoteException, NotValidMoveException;
+-
+-    Integer getPlayerNumber() throws RemoteException, NotValidMoveException;
+-
+-    CardPlaying getStartingCard(String nickname) throws RemoteException;
+-
+-    PlayingBoard getServerModel() throws RemoteException;
+-
+-    boolean allPlayerConnected() throws RemoteException, NotValidMoveException;
+-
+-
+-    String getClientNickname(VirtualView client) throws RemoteException;
+-
+-    VirtualView getClientIstance(String nickname) throws RemoteException;
+-
+-    ReducedBoard getReducedBoard(VirtualView rmiClient) throws RemoteException;
+-
+-    CardObjective[] getObjectiveCards(String clientNickname) throws RemoteException;
+-
+-    void inizializePlayingStation(String clientNickname, CardPlaying startingCard, Integer choice, CardObjective cardObjective) throws RemoteException;
+-
+-    boolean isGameFinished() throws RemoteException;
+-
+-    void loginThreadsStopper() throws RemoteException, InterruptedException;
+-
+-    void startTurnNotify() throws RemoteException, InterruptedException;
+-
+-    void allPlayerReady() throws RemoteException, InterruptedException;
+-
+-
+-    void notifyMyUpdatedBoard(VirtualView rmiClient, Map<ArrayList<Integer>, CardPlaying> playingStation) throws RemoteException;
+-
+-    void showedMyBoardNotify() throws RemoteException;
+-
+-    void nextTurn() throws RemoteException, InterruptedException;
+-
+ }
+Index: src/main/java/model/Player.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model;\n\n\nimport Observers.ModelObserver;\nimport model.cards.*;\nimport model.enums.TokenEnum;\n\nimport java.io.Serializable;\nimport java.util.ArrayList;\n\n\npublic class Player extends ModelObserver implements Serializable {\n    private final String nickname;\n    private int points;\n    private final TokenEnum token;\n    private PlayingStation station;\n    private ArrayList<CardResource> hand;\n    private ArrayList<CardObjective> selectibleObjectives;\n\n\n    // Costruttore\n\n    public Player(String nickname, TokenEnum token, PlayingStation station, int points, ArrayList<CardResource> hand) {\n        this.nickname = nickname;\n        this.token = token;\n        this.station = station;\n        this.points = points;\n        this.hand = hand;\n    }\n\n\n    //setter\n    public void setPoints(int points) {\n        this.points = points;\n    }\n    public void setStation(PlayingStation station) {\n        this.station = station;\n    }\n    public void setSelectibleObjectives(ArrayList<CardObjective> selectibleObjectives) {\n        this.selectibleObjectives = selectibleObjectives;\n    }\n\n    //getter\n    public ArrayList<CardResource> getHand() {\n        return hand;\n    }\n    public TokenEnum getToken() {\n        return token;\n    }\n    public String getNickname() {\n        return nickname;\n    }\n    public Integer getPoints() {\n        return points;\n    }\n    public ArrayList<CardObjective> getSelectibleObjectives() {\n        return selectibleObjectives;\n    }\n    public PlayingStation getStation(){return station;}\n\n\n    /**\n     * This method removes a card from the player's hand, given the card instance, using functional programming,\n     * returning exception if not present\n     *\n     * @param cardToRemove the card to remove\n     * @return\n     */\n    public void removeCardFromHand(int cardId)throws Exception {\n         hand.remove(hand.stream()\n                .filter(card -> card.getId().equals(cardId))\n                .findFirst()\n                .orElseThrow(() -> new Exception(\"Card not found in hand\")));\n\n    }\n    public int getNumberOfCardInHand(){\n        return hand.size();\n    }\n    public void addCardToHand(CardResource card){\n        hand.add(card);\n    }\n\n\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/model/Player.java b/src/main/java/model/Player.java
+--- a/src/main/java/model/Player.java	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
++++ b/src/main/java/model/Player.java	(date 1715508913758)
+@@ -1,7 +1,6 @@
+ package model;
+ 
+ 
+-import Observers.ModelObserver;
+ import model.cards.*;
+ import model.enums.TokenEnum;
+ 
+@@ -9,7 +8,7 @@
+ import java.util.ArrayList;
+ 
+ 
+-public class Player extends ModelObserver implements Serializable {
++public class Player implements Serializable {
+     private final String nickname;
+     private int points;
+     private final TokenEnum token;
+Index: src/main/java/model/ClientBoard.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/model/ClientBoard.java b/src/main/java/model/ClientBoard.java
+new file mode 100644
+--- /dev/null	(date 1715509351363)
++++ b/src/main/java/model/ClientBoard.java	(date 1715509351363)
+@@ -0,0 +1,88 @@
++package model;
++
++import model.cards.CardGold;
++import model.cards.CardObjective;
++import model.cards.CardResource;
++import model.client.ReductPlayer;
++import model.enums.GameState;
++import socket.Messages.ChangeStateMessage;
++import socket.Messages.Message;
++
++import java.io.Serializable;
++import java.util.ArrayList;
++
++public class ClientBoard implements Serializable {
++
++    private ArrayList<CardGold> centralCardsGold;
++    private ArrayList<CardResource> centralCardsResource;
++    private final CardObjective firstObjective;
++    private final CardObjective secondObjective;
++    private GameState gameState;
++    private Player myplayer;
++    private ArrayList<ReductPlayer> otherplayers;
++
++    public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, ArrayList<ReductPlayer> otherplayers, Player myplayer, ArrayList<CardResource> centralCardsResource, ArrayList<CardGold> centralCardsGold, GameState gameState) {
++        this.firstObjective = firstObjective;
++        this.secondObjective = secondObjective;
++        this.otherplayers = otherplayers;
++        this.myplayer = myplayer;
++        this.centralCardsResource = centralCardsResource;
++        this.centralCardsGold = centralCardsGold;
++        this.gameState = gameState;
++    }
++
++    public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, GameState gameState) {
++        this.firstObjective = firstObjective;
++        this.secondObjective = secondObjective;
++    }
++
++    public ArrayList<CardGold> getCentralCardsGold() {
++        return centralCardsGold;
++    }
++
++    public ArrayList<CardResource> getCentralCardsResource() {
++        return centralCardsResource;
++    }
++
++    public CardObjective getFirstObjective() {
++        return firstObjective;
++    }
++
++    public Player getMyplayer() {
++        return myplayer;
++    }
++
++    public ArrayList<ReductPlayer> getOtherplayers() {
++        return otherplayers;
++    }
++
++    public CardObjective getSecondObjective() {
++        return secondObjective;
++    }
++
++    public void setCentralCardsGold(ArrayList<CardGold> centralCardsGold) {
++        this.centralCardsGold = centralCardsGold;
++    }
++
++    public void setCentralCardsResource(ArrayList<CardResource> centralCardsResource) {
++        this.centralCardsResource = centralCardsResource;
++    }
++
++    public void setMyplayer(Player myplayer) {
++        this.myplayer = myplayer;
++    }
++
++    public void setOtherplayers(ArrayList<ReductPlayer> otherplayers) {
++        this.otherplayers = otherplayers;
++    }
++
++    public void update(Message message) {
++        switch (message.getType()){
++            case "ChangeState":
++                gameState = ((ChangeStateMessage) message).getGameState();
++                break;
++            default:
++                break;
++        }
++    }
++}
+\ No newline at end of file
+Index: src/main/java/Observers/Observable.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Observers;\n\n\nimport Network.Client.VirtualView;\nimport model.cards.CardPlaying;\n\nimport java.util.ArrayList;\nimport java.util.List;\nimport java.util.Map;\n\npublic class Observable {\n    private List<VirtualView> LoginObservers = new ArrayList<>();\n    private List<VirtualView> MyBoardObservers = new ArrayList<>();\n\n    private List<Thread> loginThreads = new ArrayList<>();\n    private List<Thread> myBoardThreads = new ArrayList<>();\n\n\n    public void addLoginObserver(VirtualView observer){\n        this.LoginObservers.add(observer);\n    }\n\n    public void addMyBoardObserver(VirtualView observer){\n        this.MyBoardObservers.add(observer);\n    }\n\n    public void notifyLoginObservers(){\n        for (VirtualView observer: LoginObservers){\n            Thread loginThread = new  Thread(() -> {\n                try{\n                    observer.Loginupdate();\n                } catch (Exception e) {\n                    e.printStackTrace();\n                }\n            });\n            loginThreads.add(loginThread); // Aggiungi questa linea\n            loginThread.start();\n        }\n    }\n\n    public void notifyMyBoardObservers(Map<ArrayList<Integer>, CardPlaying> playingStation, String name){\n        for (VirtualView observer: MyBoardObservers){\n            Thread myBoardThread = new  Thread(() -> {\n                try{\n                    observer.showMyUpdatedBoard(playingStation, name);\n                    System.out.println(\"FLAG-OBS\");\n                } catch (Exception e) {\n                    e.printStackTrace();\n                }\n            });\n            myBoardThreads.add(myBoardThread); // Aggiungi questa linea\n            myBoardThread.start();\n        }\n    }\n\n    public void stopAllLoginThreads() {\n        for (Thread loginThread :  loginThreads) {\n            loginThread.interrupt();\n        }\n        loginThreads.clear(); // Rimuovi i riferimenti ai thread interrotti\n    }\n\n    public void stopAllMyBoardThreads() {\n        for (Thread myBoardThread :  myBoardThreads) {\n            myBoardThread.interrupt();\n        }\n        myBoardThreads.clear(); // Rimuovi i riferimenti ai thread interrotti\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Observers/Observable.java b/src/main/java/Observers/Observable.java
+--- a/src/main/java/Observers/Observable.java	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
++++ b/src/main/java/Observers/Observable.java	(date 1715508913768)
+@@ -1,70 +1,21 @@
+ package Observers;
+ 
+-
+-import Network.Client.VirtualView;
+-import model.cards.CardPlaying;
++import View.VirtualUI;
+ 
+ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Map;
+ 
+ public class Observable {
+-    private List<VirtualView> LoginObservers = new ArrayList<>();
+-    private List<VirtualView> MyBoardObservers = new ArrayList<>();
+-
+-    private List<Thread> loginThreads = new ArrayList<>();
+-    private List<Thread> myBoardThreads = new ArrayList<>();
+-
+-
+-    public void addLoginObserver(VirtualView observer){
+-        this.LoginObservers.add(observer);
+-    }
+-
+-    public void addMyBoardObserver(VirtualView observer){
+-        this.MyBoardObservers.add(observer);
+-    }
+-
+-    public void notifyLoginObservers(){
+-        for (VirtualView observer: LoginObservers){
+-            Thread loginThread = new  Thread(() -> {
+-                try{
+-                    observer.Loginupdate();
+-                } catch (Exception e) {
+-                    e.printStackTrace();
+-                }
+-            });
+-            loginThreads.add(loginThread); // Aggiungi questa linea
+-            loginThread.start();
+-        }
+-    }
+-
+-    public void notifyMyBoardObservers(Map<ArrayList<Integer>, CardPlaying> playingStation, String name){
+-        for (VirtualView observer: MyBoardObservers){
+-            Thread myBoardThread = new  Thread(() -> {
+-                try{
+-                    observer.showMyUpdatedBoard(playingStation, name);
+-                    System.out.println("FLAG-OBS");
+-                } catch (Exception e) {
+-                    e.printStackTrace();
+-                }
+-            });
+-            myBoardThreads.add(myBoardThread); // Aggiungi questa linea
+-            myBoardThread.start();
+-        }
+-    }
++    private List<VirtualUI> viewObserver = new ArrayList<>();
+ 
+-    public void stopAllLoginThreads() {
+-        for (Thread loginThread :  loginThreads) {
+-            loginThread.interrupt();
+-        }
+-        loginThreads.clear(); // Rimuovi i riferimenti ai thread interrotti
++    public void addObserver(VirtualUI viewObserver){
++        this.viewObserver.add(viewObserver);
+     }
+ 
+-    public void stopAllMyBoardThreads() {
+-        for (Thread myBoardThread :  myBoardThreads) {
+-            myBoardThread.interrupt();
++    public void notifyObservers(String message){
++        for (VirtualUI viewObserver : viewObserver){
++            viewObserver.update(message);
+         }
+-        myBoardThreads.clear(); // Rimuovi i riferimenti ai thread interrotti
+     }
+-
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"850a39f4-763d-4788-a2e8-adf1cb1b8c97\" name=\"Changes\" comment=\"Test di gioco funzionante\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/model/deck/Decktemplates.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/model/deck/Decktemplates.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Interface\" />\n        <option value=\"JUnit5 Test Class\" />\n        <option value=\"Class\" />\n        <option value=\"Enum\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Merge.Settings\">\n    <option name=\"BRANCH\" value=\"origin/main\" />\n  </component>\n  <component name=\"Git.Rebase.Settings\">\n    <option name=\"NEW_BASE\" value=\"origin/main\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$/..\" value=\"New-Model\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\n    <option name=\"RESET_MODE\" value=\"MIXED\" />\n    <option name=\"SWAP_SIDES_IN_COMPARE_BRANCHES\" value=\"true\" />\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;tommypic&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://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@github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler&quot;,\n    &quot;accountId&quot;: &quot;77d1be0f-1935-4da1-bed4-002b7d7b8169&quot;\n  }\n}</component>\n  <component name=\"MavenImportPreferences\">\n    <option name=\"generalSettings\">\n      <MavenGeneralSettings>\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\n      </MavenGeneralSettings>\n    </option>\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 2\n}</component>\n  <component name=\"ProjectId\" id=\"2dahV6rdOfQ8JesgSo6bQBB1S9B\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"Application.ClientApp.executor\": \"Run\",\n    \"Application.RmiClient.executor\": \"Run\",\n    \"Application.ServerApp.executor\": \"Run\",\n    \"Application.deckconstructor.executor\": \"Run\",\n    \"Application.decktameplatetom.executor\": \"Run\",\n    \"Application.playngstationTameplate.executor\": \"Run\",\n    \"JUnit.DeckConstructorTest.printcards.executor\": \"Run\",\n    \"JUnit.DeckConstructorTest.testDeckGold.executor\": \"Run\",\n    \"JUnit.DeckConstructorTest.testDeckObjective.executor\": \"Run\",\n    \"JUnit.DeckConstructorTest.testDeckResource.executor\": \"Debug\",\n    \"JUnit.DeckConstructorTest.testStartingCardDeck.executor\": \"Run\",\n    \"JUnit.GameControllerTest.GivingCardToPlayersTest.executor\": \"Run\",\n    \"JUnit.GameControllerTest.TestOfFourTurns.executor\": \"Debug\",\n    \"JUnit.GameControllerTest.setCentralCardPlayedBack.executor\": \"Run\",\n    \"JUnit.GameControllerTest.setStartingCardForPlayers.executor\": \"Run\",\n    \"JUnit.GameControllerTest.testChecknickname.executor\": \"Run\",\n    \"JUnit.GameControllerTest.testTokenAvailability.executor\": \"Run\",\n    \"JUnit.GameTest.testChecknickname.executor\": \"Run\",\n    \"JUnit.GameTest.testPlayers.executor\": \"Run\",\n    \"JUnit.GameTest.testStations.executor\": \"Run\",\n    \"JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor\": \"Run\",\n    \"JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor\": \"Run\",\n    \"JUnit.ObjectivePositioningTest.executor\": \"Run\",\n    \"JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor\": \"Run\",\n    \"JUnit.ObjectivePositioningTest.test_Positioning.executor\": \"Run\",\n    \"JUnit.ObjectivePositioningTest.test_Positioning2.executor\": \"Run\",\n    \"JUnit.PlacingConditionTest (1).executor\": \"Run\",\n    \"JUnit.PlacingConditionTest.test_null_corner.executor\": \"Run\",\n    \"JUnit.deckconstructorTest.deckResource.executor\": \"Run\",\n    \"JUnit.java in ProgettoSW.executor\": \"Debug\",\n    \"Maven.ProgettoSW [clean].executor\": \"Run\",\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"WebServerToolWindowFactoryState\": \"false\",\n    \"com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary\": \"JUnit5\",\n    \"com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5\": \"\",\n    \"git-widget-placeholder\": \"Con-Contatori\",\n    \"ignore.virus.scanning.warn.message\": \"true\",\n    \"kotlin-language-version-configured\": \"true\",\n    \"last_opened_file_path\": \"C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"project.structure.last.edited\": \"Project\",\n    \"project.structure.proportion\": \"0.15\",\n    \"project.structure.side.proportion\": \"0.0\",\n    \"settings.editor.selected.configurable\": \"com.maddyhome.idea.vim.ui.VimEmulationConfigurable\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CreateTestDialog.Recents.Supers\">\n      <recent name=\"\" />\n    </key>\n    <key name=\"MoveInnerDialog.RECENTS_KEY\">\n      <recent name=\"controller\" />\n    </key>\n    <key name=\"CreateTestDialog.RecentsKey\">\n      <recent name=\"model\" />\n      <recent name=\"controller\" />\n      <recent name=\"model.objectives\" />\n      <recent name=\"model.decktameplate\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"JUnit.GameControllerTest.TestOfFourTurns\">\n    <configuration name=\"DeckConstructorTest.testDeckResource\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"ProgettoSW\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"model.deck.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"model.deck\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"model.deck.DeckConstructorTest\" />\n      <option name=\"METHOD_NAME\" value=\"testDeckResource\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"GameControllerTest.GivingCardToPlayersTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"ProgettoSW\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"controller.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"controller\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"controller.GameControllerTest\" />\n      <option name=\"METHOD_NAME\" value=\"GivingCardToPlayersTest\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"GameControllerTest.TestOfFourTurns\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"ProgettoSW\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"controller.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"controller\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"controller.GameControllerTest\" />\n      <option name=\"METHOD_NAME\" value=\"TestOfFourTurns\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"GameControllerTest.testTokenAvailability\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"ProgettoSW\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"controller.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"controller\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"controller.GameControllerTest\" />\n      <option name=\"METHOD_NAME\" value=\"testTokenAvailability\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"ObjectivePositioningTest.test_Positioning2\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"ProgettoSW\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"model.objectives.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"model.objectives\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"model.objectives.ObjectivePositioningTest\" />\n      <option name=\"METHOD_NAME\" value=\"test_Positioning2\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <list>\n      <item itemvalue=\"JUnit.DeckConstructorTest.testDeckResource\" />\n      <item itemvalue=\"JUnit.GameControllerTest.TestOfFourTurns\" />\n      <item itemvalue=\"JUnit.GameControllerTest.testTokenAvailability\" />\n      <item itemvalue=\"JUnit.ObjectivePositioningTest.test_Positioning2\" />\n      <item itemvalue=\"JUnit.GameControllerTest.GivingCardToPlayersTest\" />\n    </list>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"JUnit.GameControllerTest.TestOfFourTurns\" />\n        <item itemvalue=\"JUnit.DeckConstructorTest.testDeckResource\" />\n        <item itemvalue=\"JUnit.GameControllerTest.GivingCardToPlayersTest\" />\n        <item itemvalue=\"JUnit.GameControllerTest.testTokenAvailability\" />\n        <item itemvalue=\"JUnit.ObjectivePositioningTest.test_Positioning2\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240\" />\n        <option value=\"bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"850a39f4-763d-4788-a2e8-adf1cb1b8c97\" name=\"Changes\" comment=\"\" />\n      <created>1710252116188</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1710252116188</updated>\n      <workItem from=\"1710252117190\" duration=\"597000\" />\n      <workItem from=\"1711112319386\" duration=\"21377000\" />\n      <workItem from=\"1711529247498\" duration=\"8043000\" />\n      <workItem from=\"1711710882115\" duration=\"33661000\" />\n      <workItem from=\"1713537338424\" duration=\"4776000\" />\n      <workItem from=\"1713634892299\" duration=\"1477000\" />\n      <workItem from=\"1713702746015\" duration=\"1730000\" />\n      <workItem from=\"1713710108899\" duration=\"34383000\" />\n      <workItem from=\"1713858148446\" duration=\"6962000\" />\n      <workItem from=\"1713873686858\" duration=\"4854000\" />\n      <workItem from=\"1713888131863\" duration=\"8755000\" />\n      <workItem from=\"1714033515681\" duration=\"31071000\" />\n      <workItem from=\"1714236302614\" duration=\"1485000\" />\n      <workItem from=\"1714249020629\" duration=\"771000\" />\n      <workItem from=\"1714317124791\" duration=\"17270000\" />\n      <workItem from=\"1714383026397\" duration=\"8112000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"new deckconstructor and card modifications\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1710861158555</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1710861158555</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"changes of packages\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1710861621571</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1710861621571</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"aggiunta robe eliminate da eric\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1710863315320</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1710863315320</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"COMMIT CON NUOVO DECK GOLD E PATTERN DI CREAZIONE FILE JSON\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711025725730</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711025725730</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"Commit con aggiunte parziali dei deck starting card e objective card, modifica table come Mappa con key=ArrayList\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711098499004</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711098499004</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"fix objective\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711099572921</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711099572921</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"put void instead of objective in method StartingCardDeck\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711099931919</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711099931919</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"Prova costruttoti file Json\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711190691826</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711190691826</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"Costruttori dei deck FINITI, MANCA DA TESTARE E DA FARE QUELLO CHE COSTRUSICE GLI OBBIETTIVI\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711195392367</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711195392367</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"fixato deck gold e metodo assegna obiettivi\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711203986247</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711203986247</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"aggiunta dell'attributo objective in cardobjective&#10;in deckconstructor cambiato metodo per il mazzo di cardobjective&#10;cambiato costruttore objective counting gold&#10;cambiato metodo checkobjective\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711374352903</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711374352903</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"prova JSONArray e JSONParser\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711470938933</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711470938933</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"Aggiunta dei costruttori dei deck + test nel main, da sistemare gli obbiettivi\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711529583318</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711529583318</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"aggiornamento path&#10; file lettura\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711530007480</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711530007480</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"Aggiunta di tutti i deck e dei deck alla playing board\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711536467666</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711536467666</updated>\n    </task>\n    <task id=\"LOCAL-00016\" summary=\"TEST DELLA CREAZIONE DELLA PLAYINGBOARD, DA RIVEDERE L'UTILITA DI DECKCONSTRUCTOR\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711537929192</created>\n      <option name=\"number\" value=\"00016\" />\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711537929192</updated>\n    </task>\n    <task id=\"LOCAL-00017\" summary=\"Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711553758036</created>\n      <option name=\"number\" value=\"00017\" />\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711553758036</updated>\n    </task>\n    <task id=\"LOCAL-00018\" summary=\"Da classe a interfaccia\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711554924633</created>\n      <option name=\"number\" value=\"00018\" />\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711554924633</updated>\n    </task>\n    <task id=\"LOCAL-00019\" summary=\"Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711664037867</created>\n      <option name=\"number\" value=\"00019\" />\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711664037867</updated>\n    </task>\n    <task id=\"LOCAL-00020\" summary=\"Aggiunta metodi e test per piazzare nuove carte sulla board\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711819687498</created>\n      <option name=\"number\" value=\"00020\" />\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711819687500</updated>\n    </task>\n    <task id=\"LOCAL-00021\" summary=\"Introduzione a CLI+Observer\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1713525117286</created>\n      <option name=\"number\" value=\"00021\" />\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1713525117286</updated>\n    </task>\n    <task id=\"LOCAL-00022\" summary=\"Cantiere in corso RMI\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1713773004063</created>\n      <option name=\"number\" value=\"00022\" />\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1713773004063</updated>\n    </task>\n    <task id=\"LOCAL-00023\" summary=\"Aggiunta di Client, Server Rmi, e della logica Rmi.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1713808423438</created>\n      <option name=\"number\" value=\"00023\" />\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1713808423438</updated>\n    </task>\n    <task id=\"LOCAL-00024\" summary=\"Aggiunto display cardStarting\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1713865523143</created>\n      <option name=\"number\" value=\"00024\" />\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1713865523143</updated>\n    </task>\n    <task id=\"LOCAL-00025\" summary=\"aggiunta colori\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1713878558957</created>\n      <option name=\"number\" value=\"00025\" />\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1713878558958</updated>\n    </task>\n    <task id=\"LOCAL-00026\" summary=\"aggiunta local clientController\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1713894085806</created>\n      <option name=\"number\" value=\"00026\" />\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1713894085806</updated>\n    </task>\n    <task id=\"LOCAL-00027\" summary=\"Settaggio gioco iniziale con observer in modo reattivo\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1714081410216</created>\n      <option name=\"number\" value=\"00027\" />\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1714081410217</updated>\n    </task>\n    <task id=\"LOCAL-00028\" summary=\"Settaggio gioco iniziale con observer in modo reattivo\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1714082495256</created>\n      <option name=\"number\" value=\"00028\" />\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1714082495256</updated>\n    </task>\n    <task id=\"LOCAL-00029\" summary=\"cli 2 commentata\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1714082765430</created>\n      <option name=\"number\" value=\"00029\" />\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1714082765430</updated>\n    </task>\n    <task id=\"LOCAL-00030\" summary=\"esempio Socket per capire il funzionamento e per poter fare un pull\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1714226826749</created>\n      <option name=\"number\" value=\"00030\" />\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1714226826749</updated>\n    </task>\n    <task id=\"LOCAL-00031\" summary=\"Aggiunta delle carte alla mano dei Players\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1714237739149</created>\n      <option name=\"number\" value=\"00031\" />\n      <option name=\"presentableId\" value=\"LOCAL-00031\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1714237739149</updated>\n    </task>\n    <task id=\"LOCAL-00032\" summary=\"Fixati bug che c'erano con le stampe dei thread e codice semplificato\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1714335675462</created>\n      <option name=\"number\" value=\"00032\" />\n      <option name=\"presentableId\" value=\"LOCAL-00032\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1714335675462</updated>\n    </task>\n    <task id=\"LOCAL-00033\" summary=\"Fixato bug nel metodo di Cli2 che lanciava CastException sulla stampa delle carte oro\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1714336222819</created>\n      <option name=\"number\" value=\"00033\" />\n      <option name=\"presentableId\" value=\"LOCAL-00033\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1714336222819</updated>\n    </task>\n    <task id=\"LOCAL-00034\" summary=\"Implementato RmiCompleto tranne controllo fine partita. Da controllare se il piazzamento delle carte è corretto.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1714391488988</created>\n      <option name=\"number\" value=\"00034\" />\n      <option name=\"presentableId\" value=\"LOCAL-00034\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1714391488988</updated>\n    </task>\n    <task id=\"LOCAL-00035\" summary=\"Inizio creazione del nuovo model e controller\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1714566178720</created>\n      <option name=\"number\" value=\"00035\" />\n      <option name=\"presentableId\" value=\"LOCAL-00035\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1714566178720</updated>\n    </task>\n    <task id=\"LOCAL-00036\" summary=\"Controller quasi terminato\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1714683948258</created>\n      <option name=\"number\" value=\"00036\" />\n      <option name=\"presentableId\" value=\"LOCAL-00036\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1714683948258</updated>\n    </task>\n    <task id=\"LOCAL-00037\" summary=\"Aggiunta contatori e nuovi metodi controller(manca il controllo del vincitore)\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1715103260041</created>\n      <option name=\"number\" value=\"00037\" />\n      <option name=\"presentableId\" value=\"LOCAL-00037\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1715103260041</updated>\n    </task>\n    <task id=\"LOCAL-00038\" summary=\"rimesso corner\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1715263688477</created>\n      <option name=\"number\" value=\"00038\" />\n      <option name=\"presentableId\" value=\"LOCAL-00038\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1715263688477</updated>\n    </task>\n    <task id=\"LOCAL-00039\" summary=\"Test di gioco funzionante\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1715281182049</created>\n      <option name=\"number\" value=\"00039\" />\n      <option name=\"presentableId\" value=\"LOCAL-00039\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1715281182049</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"40\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"RECENT_FILTERS\">\n      <map>\n        <entry key=\"Branch\">\n          <value>\n            <list>\n              <RecentGroup>\n                <option name=\"FILTER_VALUES\">\n                  <option value=\"origin/Con-Contatori\" />\n                </option>\n              </RecentGroup>\n              <RecentGroup>\n                <option name=\"FILTER_VALUES\">\n                  <option value=\"origin/New-Model\" />\n                </option>\n              </RecentGroup>\n              <RecentGroup>\n                <option name=\"FILTER_VALUES\">\n                  <option value=\"prova-RMI\" />\n                </option>\n              </RecentGroup>\n              <RecentGroup>\n                <option name=\"FILTER_VALUES\">\n                  <option value=\"origin/prova-RMI\" />\n                </option>\n              </RecentGroup>\n              <RecentGroup>\n                <option name=\"FILTER_VALUES\">\n                  <option value=\"main\" />\n                </option>\n              </RecentGroup>\n              <RecentGroup>\n                <option name=\"FILTER_VALUES\">\n                  <option value=\"origin/main\" />\n                </option>\n              </RecentGroup>\n              <RecentGroup>\n                <option name=\"FILTER_VALUES\">\n                  <option value=\"HEAD\" />\n                </option>\n              </RecentGroup>\n            </list>\n          </value>\n        </entry>\n      </map>\n    </option>\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"origin/Con-Contatori\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"Aggiunta di tutti i deck e dei deck alla playing board\" />\n    <MESSAGE value=\"TEST DELLA CREAZIONE DELLA PLAYINGBOARD, DA RIVEDERE L'UTILITA DI DECKCONSTRUCTOR\" />\n    <MESSAGE value=\"Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station\" />\n    <MESSAGE value=\"Da classe a interfaccia\" />\n    <MESSAGE value=\"Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning\" />\n    <MESSAGE value=\"Aggiunta metodi e test per piazzare nuove carte sulla board\" />\n    <MESSAGE value=\"modificato testo exception\" />\n    <MESSAGE value=\"Introduzione a CLI+Observer\" />\n    <MESSAGE value=\"Cantiere in corso RMI\" />\n    <MESSAGE value=\"Aggiunta di Client, Server Rmi, e della logica Rmi.\" />\n    <MESSAGE value=\"Aggiunto display cardStarting\" />\n    <MESSAGE value=\"aggiunta colori\" />\n    <MESSAGE value=\"aggiunta local clientController\" />\n    <MESSAGE value=\"Settaggio gioco iniziale con observer in modo reattivo\" />\n    <MESSAGE value=\"cli 2 commentata\" />\n    <MESSAGE value=\"esempio Socket per capire il funzionamento e per poter fare un pull\" />\n    <MESSAGE value=\"Aggiunta delle carte alla mano dei Players\" />\n    <MESSAGE value=\"Fixati bug che c'erano con le stampe dei thread e codice semplificato\" />\n    <MESSAGE value=\"Fixato bug nel metodo di Cli2 che lanciava CastException sulla stampa delle carte oro\" />\n    <MESSAGE value=\"Implementato RmiCompleto tranne controllo fine partita. Da controllare se il piazzamento delle carte è corretto.\" />\n    <MESSAGE value=\"Inizio creazione del nuovo model e controller\" />\n    <MESSAGE value=\"Controller quasi terminato\" />\n    <MESSAGE value=\"Aggiunta contatori e nuovi metodi controller(manca il controllo del vincitore)\" />\n    <MESSAGE value=\"rimesso corner\" />\n    <MESSAGE value=\"Test di gioco funzionante\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Test di gioco funzionante\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <breakpoint enabled=\"true\" type=\"java-exception\">\n          <properties class=\"java.lang.IllegalStateException\" package=\"java.lang\" />\n          <option name=\"timeStamp\" value=\"2\" />\n        </breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>\n          <line>86</line>\n          <option name=\"timeStamp\" value=\"25\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>\n          <line>137</line>\n          <option name=\"timeStamp\" value=\"30\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>\n          <line>132</line>\n          <option name=\"timeStamp\" value=\"31\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>\n          <line>279</line>\n          <option name=\"timeStamp\" value=\"33\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/src/test/java/model/deck/DeckConstructorTest.java</url>\n          <line>19</line>\n          <option name=\"timeStamp\" value=\"35\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"java-method\">\n          <url>file://$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java</url>\n          <line>95</line>\n          <properties class=\"controller.GameControllerTest\">\n            <option name=\"EMULATED\" value=\"true\" />\n            <option name=\"WATCH_EXIT\" value=\"false\" />\n          </properties>\n          <option name=\"timeStamp\" value=\"27\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n    <pin-to-top-manager>\n      <pinned-members>\n        <PinnedItemInfo parentTag=\"controller.GameController\" memberName=\"board\" />\n      </pinned-members>\n    </pin-to-top-manager>\n    <watches-manager>\n      <configuration name=\"Application\">\n        <watch expression=\"X - 1\" />\n        <watch expression=\"table\" />\n        <watch expression=\"countInsect\" />\n        <watch expression=\" countAnimal\" />\n        <watch expression=\"countPlant\" />\n        <watch expression=\"countFungi\" />\n        <watch expression=\"corner\" />\n        <watch expression=\"nickname\" />\n        <watch expression=\"clientsMap\" />\n        <watch expression=\"observers\" />\n        <watch expression=\"observers\" />\n        <watch expression=\"clientsMapNicknamesKey\" />\n        <watch expression=\"semaphore\" />\n      </configuration>\n    </watches-manager>\n  </component>\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\n    <SUITE FILE_PATH=\"coverage/ProgettoSW$java_in_ProgettoSW.ic\" NAME=\"java in ProgettoSW Coverage Results\" MODIFIED=\"1713876265206\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" />\n    <SUITE FILE_PATH=\"coverage/ProgettoSW$ObjectivePositioningTest_test_Positioning.ic\" NAME=\"ObjectivePositioningTest.test_Positioning Coverage Results\" MODIFIED=\"1713276818760\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\">\n      <FILTER>model.objectives.*</FILTER>\n    </SUITE>\n    <SUITE FILE_PATH=\"coverage/ProgettoSW$ClientApp.ic\" NAME=\"ClientApp Coverage Results\" MODIFIED=\"1714141966006\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\">\n      <FILTER>StartApplication.*</FILTER>\n    </SUITE>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
++++ b/.idea/workspace.xml	(date 1715509317993)
+@@ -4,9 +4,24 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Test di gioco funzionante">
++    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="aGGIUNTA model del client">
++      <change afterPath="$PROJECT_DIR$/src/main/java/Observers/Observer.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/model/ClientBoard.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/model/client/ReductPlayer.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/socket/Messages/ChangeStateMessage.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/model/deck/Decktemplates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/deck/Decktemplates.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RmiClient.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/VirtualView.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RmiServer.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/ModelObserver.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/Observable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Observers/Observable.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Observers/ViewObservable.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/model/ReducedBoard.java" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -16,10 +31,10 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
+-        <option value="Interface" />
+         <option value="JUnit5 Test Class" />
+-        <option value="Class" />
+         <option value="Enum" />
++        <option value="Interface" />
++        <option value="Class" />
+       </list>
+     </option>
+   </component>
+@@ -67,60 +82,60 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.ClientApp.executor": "Run",
+-    "Application.RmiClient.executor": "Run",
+-    "Application.ServerApp.executor": "Run",
+-    "Application.deckconstructor.executor": "Run",
+-    "Application.decktameplatetom.executor": "Run",
+-    "Application.playngstationTameplate.executor": "Run",
+-    "JUnit.DeckConstructorTest.printcards.executor": "Run",
+-    "JUnit.DeckConstructorTest.testDeckGold.executor": "Run",
+-    "JUnit.DeckConstructorTest.testDeckObjective.executor": "Run",
+-    "JUnit.DeckConstructorTest.testDeckResource.executor": "Debug",
+-    "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
+-    "JUnit.GameControllerTest.GivingCardToPlayersTest.executor": "Run",
+-    "JUnit.GameControllerTest.TestOfFourTurns.executor": "Debug",
+-    "JUnit.GameControllerTest.setCentralCardPlayedBack.executor": "Run",
+-    "JUnit.GameControllerTest.setStartingCardForPlayers.executor": "Run",
+-    "JUnit.GameControllerTest.testChecknickname.executor": "Run",
+-    "JUnit.GameControllerTest.testTokenAvailability.executor": "Run",
+-    "JUnit.GameTest.testChecknickname.executor": "Run",
+-    "JUnit.GameTest.testPlayers.executor": "Run",
+-    "JUnit.GameTest.testStations.executor": "Run",
+-    "JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor": "Run",
+-    "JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor": "Run",
+-    "JUnit.ObjectivePositioningTest.executor": "Run",
+-    "JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor": "Run",
+-    "JUnit.ObjectivePositioningTest.test_Positioning.executor": "Run",
+-    "JUnit.ObjectivePositioningTest.test_Positioning2.executor": "Run",
+-    "JUnit.PlacingConditionTest (1).executor": "Run",
+-    "JUnit.PlacingConditionTest.test_null_corner.executor": "Run",
+-    "JUnit.deckconstructorTest.deckResource.executor": "Run",
+-    "JUnit.java in ProgettoSW.executor": "Debug",
+-    "Maven.ProgettoSW [clean].executor": "Run",
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "WebServerToolWindowFactoryState": "false",
+-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+-    "git-widget-placeholder": "Con-Contatori",
+-    "ignore.virus.scanning.warn.message": "true",
+-    "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "project.structure.last.edited": "Project",
+-    "project.structure.proportion": "0.15",
+-    "project.structure.side.proportion": "0.0",
+-    "settings.editor.selected.configurable": "com.maddyhome.idea.vim.ui.VimEmulationConfigurable",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Application.ClientApp.executor&quot;: &quot;Run&quot;,
++    &quot;Application.RmiClient.executor&quot;: &quot;Run&quot;,
++    &quot;Application.ServerApp.executor&quot;: &quot;Run&quot;,
++    &quot;Application.deckconstructor.executor&quot;: &quot;Run&quot;,
++    &quot;Application.decktameplatetom.executor&quot;: &quot;Run&quot;,
++    &quot;Application.playngstationTameplate.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.DeckConstructorTest.printcards.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.DeckConstructorTest.testDeckGold.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.DeckConstructorTest.testDeckObjective.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.DeckConstructorTest.testDeckResource.executor&quot;: &quot;Debug&quot;,
++    &quot;JUnit.DeckConstructorTest.testStartingCardDeck.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.GameControllerTest.GivingCardToPlayersTest.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.GameControllerTest.TestOfFourTurns.executor&quot;: &quot;Debug&quot;,
++    &quot;JUnit.GameControllerTest.setCentralCardPlayedBack.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.GameControllerTest.setStartingCardForPlayers.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.GameControllerTest.testChecknickname.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.GameControllerTest.testTokenAvailability.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.GameTest.testChecknickname.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.GameTest.testPlayers.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.GameTest.testStations.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.ObjectivePositioningTest.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.ObjectivePositioningTest.test_Positioning.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.ObjectivePositioningTest.test_Positioning2.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.PlacingConditionTest (1).executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.PlacingConditionTest.test_null_corner.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.deckconstructorTest.deckResource.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.java in ProgettoSW.executor&quot;: &quot;Debug&quot;,
++    &quot;Maven.ProgettoSW [clean].executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
++    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;Con-Contatori&quot;,
++    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/david/OneDrive - Politecnico di Milano/Documenti/GitHub/ing-sw-2024-piccoli-ponzani-piotti-rodler/ProgettoSW&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;com.maddyhome.idea.vim.ui.VimEmulationConfigurable&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CreateTestDialog.Recents.Supers">
+       <recent name="" />
+@@ -135,7 +150,7 @@
+       <recent name="model.decktameplate" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="JUnit.GameControllerTest.TestOfFourTurns">
++  <component name="RunManager" selected="JUnit.ObjectivePositioningTest.test_Positioning2">
+     <configuration name="DeckConstructorTest.testDeckResource" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="ProgettoSW" />
+       <extension name="coverage">
+@@ -184,17 +199,17 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="GameControllerTest.testTokenAvailability" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="ObjectivePositioningTest.test_Positioning" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="ProgettoSW" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="controller.*" />
++          <option name="PATTERN" value="model.objectives.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+-      <option name="PACKAGE_NAME" value="controller" />
+-      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
+-      <option name="METHOD_NAME" value="testTokenAvailability" />
++      <option name="PACKAGE_NAME" value="model.objectives" />
++      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
++      <option name="METHOD_NAME" value="test_Positioning" />
+       <option name="TEST_OBJECT" value="method" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+@@ -219,17 +234,17 @@
+     <list>
+       <item itemvalue="JUnit.DeckConstructorTest.testDeckResource" />
+       <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
+-      <item itemvalue="JUnit.GameControllerTest.testTokenAvailability" />
++      <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
+       <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
+       <item itemvalue="JUnit.GameControllerTest.GivingCardToPlayersTest" />
+     </list>
+     <recent_temporary>
+       <list>
++        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
++        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning" />
+         <item itemvalue="JUnit.GameControllerTest.TestOfFourTurns" />
+         <item itemvalue="JUnit.DeckConstructorTest.testDeckResource" />
+         <item itemvalue="JUnit.GameControllerTest.GivingCardToPlayersTest" />
+-        <item itemvalue="JUnit.GameControllerTest.testTokenAvailability" />
+-        <item itemvalue="JUnit.ObjectivePositioningTest.test_Positioning2" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -578,7 +593,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1715281182049</updated>
+     </task>
+-    <option name="localTasksCounter" value="40" />
++    <task id="LOCAL-00040" summary="ID fissi per tutte le carte">
++      <option name="closed" value="true" />
++      <created>1715282312662</created>
++      <option name="number" value="00040" />
++      <option name="presentableId" value="LOCAL-00040" />
++      <option name="project" value="LOCAL" />
++      <updated>1715282312662</updated>
++    </task>
++    <option name="localTasksCounter" value="41" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -592,22 +615,22 @@
+             <list>
+               <RecentGroup>
+                 <option name="FILTER_VALUES">
+-                  <option value="origin/Con-Contatori" />
++                  <option value="origin/prova-RMI" />
+                 </option>
+               </RecentGroup>
+               <RecentGroup>
+                 <option name="FILTER_VALUES">
+-                  <option value="origin/New-Model" />
++                  <option value="origin/Con-Contatori" />
+                 </option>
+               </RecentGroup>
+               <RecentGroup>
+                 <option name="FILTER_VALUES">
+-                  <option value="prova-RMI" />
++                  <option value="origin/New-Model" />
+                 </option>
+               </RecentGroup>
+               <RecentGroup>
+                 <option name="FILTER_VALUES">
+-                  <option value="origin/prova-RMI" />
++                  <option value="prova-RMI" />
+                 </option>
+               </RecentGroup>
+               <RecentGroup>
+@@ -640,7 +663,7 @@
+                   <entry key="branch">
+                     <value>
+                       <list>
+-                        <option value="origin/Con-Contatori" />
++                        <option value="origin/prova-RMI" />
+                       </list>
+                     </value>
+                   </entry>
+@@ -653,8 +676,6 @@
+     </option>
+   </component>
+   <component name="VcsManagerConfiguration">
+-    <MESSAGE value="Aggiunta di tutti i deck e dei deck alla playing board" />
+-    <MESSAGE value="TEST DELLA CREAZIONE DELLA PLAYINGBOARD, DA RIVEDERE L'UTILITA DI DECKCONSTRUCTOR" />
+     <MESSAGE value="Aggiunta tamplate per test objectiveDiagonal e cambio costruttore Station" />
+     <MESSAGE value="Da classe a interfaccia" />
+     <MESSAGE value="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning" />
+@@ -678,7 +699,9 @@
+     <MESSAGE value="Aggiunta contatori e nuovi metodi controller(manca il controllo del vincitore)" />
+     <MESSAGE value="rimesso corner" />
+     <MESSAGE value="Test di gioco funzionante" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Test di gioco funzionante" />
++    <MESSAGE value="ID fissi per tutte le carte" />
++    <MESSAGE value="aGGIUNTA model del client" />
++    <option name="LAST_COMMIT_MESSAGE" value="aGGIUNTA model del client" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+@@ -704,7 +727,7 @@
+         </line-breakpoint>
+         <line-breakpoint enabled="true" type="java-line">
+           <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>
+-          <line>279</line>
++          <line>278</line>
+           <option name="timeStamp" value="33" />
+         </line-breakpoint>
+         <line-breakpoint enabled="true" type="java-line">
+Index: src/main/java/controller/GameController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controller;\n\nimport Network.Client.ClientController;\nimport model.Player;\nimport model.PlayingBoard;\nimport model.PlayingStation;\nimport model.cards.*;\nimport model.deck.Decktemplates;\nimport model.enums.DeckEnum;\nimport model.enums.TokenEnum;\nimport model.enums.GameState;\nimport exception.*;\n\n\nimport java.io.Serializable;\nimport java.util.*;\nimport java.util.List;\n\npublic class GameController extends ClientController implements Serializable {\n    private PlayingBoard board;\n\n    //getter\n    public PlayingBoard getBoard() {\n        return board;\n    }\n\n\n    //costructor\n    public GameController(PlayingBoard board, GameState gameState) {\n        this.board = board;\n    }\n\n\n    /**\n     * this method is used to generate the board of a game after that we can add players to the board\n     */\n    public void initGameController() {\n        // creating decks\n        LinkedList<CardStarting> deckStarting = Decktemplates.StartingCardDeck(); //ID : 0 -> 5\n        LinkedList<CardObjective> deckObjective = Decktemplates.ObjectiveCardDeck(); //ID : 6 -> 21\n        LinkedList<CardResource> deckResource = Decktemplates.ResourceCardDeck(); //ID : 22 -> 61\n        LinkedList<CardGold> deckGold = Decktemplates.GoldCardDeck(); //ID : 62 -> 101\n\n\n        //shuffleing the decks\n        Collections.shuffle(deckGold);\n        Collections.shuffle(deckResource);\n        Collections.shuffle(deckStarting);\n        Collections.shuffle(deckObjective);\n\n        // popping objective\n        CardObjective firstCardObj = deckObjective.pop();\n        CardObjective secondCardObj = deckObjective.pop();\n\n        //creating the board\n        this.board = new PlayingBoard(firstCardObj, secondCardObj, 0, new ArrayList<Player>(), deckStarting, deckResource, deckObjective, deckGold, null, new ArrayList<CardResource>(), new ArrayList<CardGold>(),null);\n\n        board.getCentralCardsGold().add(board.getDeckCardGold().pop());\n        board.getCentralCardsGold().add(board.getDeckCardGold().pop());\n\n        board.getCentralCardsResource().add(board.getDeckCardResource().pop());\n        board.getCentralCardsResource().add(board.getDeckCardResource().pop());\n\n        board.setGameState(GameState.SET_PLAYER_NUMBER);\n    }\n\n    public void setPlayerNumber(int playernumber) throws NotValidMoveException {\n        //check right time of the game\n        if(playernumber<1) throw new NotValidMoveException(\"player must be at least two\");\n        if(playernumber>4) throw new NotValidMoveException(\"player must be at least four\");\n        assertGameState(GameState.SET_PLAYER_NUMBER);\n        board.setPlayernumber(playernumber);\n        board.setGameState(GameState.SET_NAME_AND_TOKEN);\n    }\n\n    public int getPlayerNumber() throws NotValidMoveException {\n        return board.getPlayernumber();\n    }\n\n    /**\n     * @return the list of token that are not already been choosen\n     * @throws NotValidMoveException if i am in another state of the game\n     */\n    public List<TokenEnum> getAvailableToken() throws NotValidMoveException {\n        return Arrays.stream(TokenEnum.values())\n                .filter(t -> board.getPlayers()\n                        .stream()\n                        .noneMatch(p -> p.getToken().equals(t)))\n                .toList();\n    }\n\n    public boolean checkTokenAvailability(TokenEnum token) throws NotValidMoveException {\n        return getAvailableToken().contains(token);\n    }\n\n\n    /**\n     * @param nickname that i want to set\n     * @return if the name has already been choosen\n     * @throws NotValidMoveException if i am in another state of the game\n     */\n    public boolean checkNicknameAvailability(String nickname) throws NotValidMoveException {\n        return board.getPlayers()\n                .stream()\n                .filter(p -> p.getNickname().equals(nickname))\n                .toList()\n                .isEmpty();\n    }\n\n    /**\n     * it add a player to the game and its token\n     *\n     * @param nickname\n     * @param token\n     * @throws NotValidMoveException if i am in another state of the game\n     */\n    public void addPlayer(String nickname, TokenEnum token) throws NotValidMoveException {\n        assertGameState(GameState.SET_NAME_AND_TOKEN);\n        if(board.getPlayernumber() < board.getPlayers().size()) throw new NotValidMoveException(\"numero di player massimo raggiunto\");\n        if(!checkNicknameAvailability(nickname)) throw new NotValidMoveException(\"nickname already been choosen\");\n        if(!checkTokenAvailability(token)) throw new NotValidMoveException(\"token already been choosen\");\n        this.board.addPlayer(new Player(nickname, token, new PlayingStation(null, new HashMap<>()), 0, new ArrayList<>()));\n        if(board.getPlayers().size() == board.getPlayernumber()){\n            shufflePlayerAndPopulateHands();\n        }\n    }\n\n    /**\n     * it shuffle the player and set the game state to the selection of the Starting card face and the Objectives\n     *\n     * @throws NotValidMoveException\n     */\n    public void shufflePlayerAndPopulateHands() throws NotValidMoveException {\n        assertGameState(GameState.SET_NAME_AND_TOKEN);\n        board.shufflePlayer();\n        board.setCurrentPlayer(board.getPlayers().getFirst().getNickname());\n        board.getPlayers().stream().forEach(player -> {\n            player.getHand().add(board.getDeckCardResource().pop());\n            player.getHand().add(board.getDeckCardResource().pop());\n            player.getHand().add(board.getDeckCardGold().pop());\n        });\n        board.setGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);\n        setupOfStartingCardAndPersonalObjectives();\n    }\n\n\n    /**\n     * It is used after setStartingCardForPlayers() for selecting the face of the StartingCard\n     *\n     * @param playedback\n     * @param nickname\n     * @throws NotValidMoveException\n     */\n    public void setCentralCardPlayedBack(boolean playedback, String nickname) throws NotValidMoveException {\n        assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);\n        Player player = board.getPlayers().stream()\n                .filter(x -> x.getNickname().equals(nickname))\n                .findFirst()\n                .orElseThrow(() -> new IllegalStateException(\"player \" + nickname + \" not found\"));\n    }\n\n\n    /**\n     * The getter for displaying the starting card\n     *\n     * @param nickname\n     * @return\n     */\n    public CardStarting getStartingCard(String nickname) throws NotValidMoveException {\n        assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);\n        return (CardStarting) board.getPlayer(nickname).getStation().getMap().get(creatingCordinatesArray(40,40));\n    }\n\n    /**\n     * Set the personal objectives and the starting card for each player\n     * @throws NotValidMoveException\n     */\n    public void setupOfStartingCardAndPersonalObjectives() throws NotValidMoveException {\n        //giving each player his two personal objectives\n        assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);\n        ArrayList<CardObjective> cardObjectives = new ArrayList<>();\n        board.getPlayers().forEach(p -> {\n            ArrayList<CardObjective> secretObjectivesToChoose = new ArrayList<CardObjective>();\n            secretObjectivesToChoose.add(board.getDeckCardObjective().pop());\n            secretObjectivesToChoose.add(board.getDeckCardObjective().pop());\n            p.setSelectibleObjectives(secretObjectivesToChoose);\n        });\n        //now i give for each player its Starting card\n        for (Player player: board.getPlayers()){\n            player.getStation().setCardStarting(board.getDeckCardStarting().pop());\n        };\n    }\n    public ArrayList<CardObjective> getObjectiveToChoose(String nickname) {\n        return board.getPlayer(nickname).getSelectibleObjectives();\n    }\n\n    /**\n     * Sets the PlayerObjective\n     * @param nickname\n     * @throws NotValidMoveException\n     */\n    public void setObjectiveOfPlayer(String nickname,int id) throws NotValidMoveException {\n\n        //check if i am in the right state\n        assertGameState(GameState.SELECT_STARTINGCARDFACE_AND_OBJECTIVE);\n        Player p = board.getPlayer(nickname);\n\n        //i check if the objective is selectible\n        if (p.getSelectibleObjectives().stream()\n                .map(card -> card.getId())\n                .filter(idcardobjectivetochoose -> idcardobjectivetochoose.equals(id))\n                .findFirst()\n                .isEmpty()) throw  new NotValidMoveException(\"the objective is not selectible\");\n        ArrayList<CardObjective> selectibleObjectives = p.getSelectibleObjectives();\n        p.getStation().setSecretObjective(selectibleObjectives.stream()\n                .filter(card -> card.getId().equals(id))\n                .findFirst()\n                .orElseThrow());\n\n        //if all player has setted the objective i can start the game\n        if( board.getPlayers().stream()\n                .map(player -> player.getStation())\n                .filter(station -> station.getSecretObjective() == null)\n                .findFirst()\n                .isEmpty()){\n            board.setGameState(GameState.PLACING_CARD);\n        }\n    }\n\n    /**\n     * this method returns the hand of a player\n     * @param nickname of the player we want to see the hand\n     * @return\n     * @throws NotValidMoveException\n     */\n    public ArrayList<CardResource> getPlayerHand(String nickname) throws NotValidMoveException {\n        return board.getPlayer(nickname).getHand();\n    }\n\n    public synchronized void addCardFromCentralCardsToPlayerHand(String nickname, int cardId) throws NotValidMoveException, NotMyTurnException {\n        assertGameState(GameState.ADDING_CARD_TO_HAND);\n        assertIsMyTurn(nickname);\n        CardResource card = board.getCardResource(cardId)\n                .orElse(board.getCardGold(cardId)\n                        .orElseThrow(() -> new IllegalStateException(\"Central card \" + cardId + \" not found\")));\n        Player player = board.getPlayer(nickname);\n        if(player.getNumberOfCardInHand() == 2) {\n            player.addCardToHand(card);\n        }\n        else throw new NotValidMoveException(\"you can't have another card\");\n        board.setGameState(GameState.CHANGING_TURN);\n        changeTurn();\n    }\n    public synchronized void addCardFromDeckToPlayerHand(String nickname, DeckEnum deck)throws NotValidMoveException, NotMyTurnException{\n        assertGameState(GameState.ADDING_CARD_TO_HAND);\n        assertIsMyTurn(nickname);\n        Player p = board.getPlayer(nickname);\n        if(p.getNumberOfCardInHand() == 2) {\n            if(deck.equals(DeckEnum.DECK_GOLD)){\n                p.addCardToHand(board.getDeckCardGold().pop());\n            }\n            else p.addCardToHand(board.getDeckCardResource().pop());\n        }\n        else throw new NotValidMoveException(\"you can't have another card\");\n        board.setGameState(GameState.CHANGING_TURN);\n        changeTurn();\n    }\n\n\n    public String getCurrentPlayer() throws NotValidMoveException {\n        return board.getCurrentPlayer();\n    }\n\n\n    public synchronized void changeTurn() throws NotValidMoveException {\n        assertGameState(GameState.CHANGING_TURN);\n        if (!isGamefinished()){\n            board.setCurrentPlayer(board.getnextPlayer());\n            board.setGameState(GameState.PLACING_CARD);\n        }\n        else {\n            board.setGameState(GameState.FINISHED);\n        }\n    }\n\n\n\n    /**\n     * This method adds a card to the playing station\n     *\n     * @param card the card to add\n     * @param X    the x coordinate\n     * @param Y    the y coordinate\n     */\n    public synchronized void addCardToPlayingStation(String nickname, int id, Integer X, Integer Y) throws Exception {\n        assertGameState(GameState.PLACING_CARD);\n        assertIsMyTurn(nickname);\n        int points = 0;\n        Player player = board.getPlayer(nickname);\n\n        //check if the card is in your hand\n        CardResource card = player.getHand().stream()\n                .filter(c -> c.getId().equals(id))\n                .findFirst()\n                .orElseThrow(()-> new NotValidMoveException(\"card not in your hand\"));\n        //check if the card is Playable\n        player.getStation().isPlayable(card, X, Y);\n\n        // Check if the card can be placed\n        player.removeCardFromHand(id);\n\n        //putting the card in the map\n        ArrayList<Integer> coordinates = new ArrayList<>();\n        coordinates.add(0, X);\n        coordinates.add(1, Y);\n        player.getStation().getMap().put(coordinates, card);\n\n        //updating the counters\n        //TODO: non va fatto cosi' devo cambiare metodo\n        player.getStation().updateCounters(card);\n\n\n        //calculating the points that the card generates\n        if (!(card.getPlayingBack())) {\n            points = card.getObjective().countObjectivePoints(player.getStation(), card, X, Y);\n        } else points = 0;\n\n        player.setPoints(player.getPoints() + points);\n        repopulatePlayingBoard();\n        board.setGameState(GameState.ADDING_CARD_TO_HAND);\n    }\n\n    public boolean isGamefinished() {\n        //controllo che sia il turno dell'ultimo player ad aver giocato\n        if (board.getPlayers().get(board.getPlayernumber()-1).getNickname().equals(board.getCurrentPlayer())) {\n            //controllo ci sia almeno un player che ha fatto piu' di 20 punti\n            for (Player player : board.getPlayers()) {\n                if (board.getPlayers().get(1).equals(player) && player.getPoints() > 20) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n\n    public String winner() {\n        int maxpoint = 0;\n        String maxpointHolder = \"\";\n        for (Player player : board.getPlayers()) {\n            if (maxpoint < player.getPoints()) {\n                maxpoint = player.getPoints();\n                maxpointHolder = player.getNickname();\n            }\n        }\n        return maxpointHolder;\n    }\n\n\n    public void assertGameState(GameState gameState) throws NotValidMoveException {\n        if (board.getGameState() != gameState) {\n            throw new NotValidMoveException(\"not valid move, game state is \" + board.getGameState() + \" but expected \" + gameState );\n        }\n    }\n\n    public void assertIsMyTurn(String nickname) throws NotMyTurnException{\n        if (!board.getCurrentPlayer().equals(nickname)) throw new NotMyTurnException();\n    }\n\n\n    private ArrayList<Integer> creatingCordinatesArray(int x, int y) {\n        ArrayList<Integer> coordinates = new ArrayList<Integer>();\n        coordinates.add(x);\n        coordinates.add(y);\n        return coordinates;\n    }\n\n    private void repopulatePlayingBoard(){\n        for (int i = 0; i < 2; i++) {\n            if (board.getCentralCardsResource().get(i) == null){\n                board.getCentralCardsResource().add(i, board.getDeckCardResource().pop());\n            }\n        }\n        for (int i = 0; i < 2; i++) {\n            if (board.getCentralCardsGold().get(i) == null){\n                board.getCentralCardsGold().add(i, board.getDeckCardGold().pop());\n            }\n        }\n    }\n\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/controller/GameController.java b/src/main/java/controller/GameController.java
+--- a/src/main/java/controller/GameController.java	(revision 149b8b6ef6ee302e1f42c156011facb8d467aabf)
++++ b/src/main/java/controller/GameController.java	(date 1715508930424)
+@@ -1,6 +1,5 @@
+ package controller;
+ 
+-import Network.Client.ClientController;
+ import model.Player;
+ import model.PlayingBoard;
+ import model.PlayingStation;
+@@ -16,7 +15,7 @@
+ import java.util.*;
+ import java.util.List;
+ 
+-public class GameController extends ClientController implements Serializable {
++public class GameController implements Serializable {
+     private PlayingBoard board;
+ 
+     //getter
