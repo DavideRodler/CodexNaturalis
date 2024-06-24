@@ -820,7 +820,7 @@ public class Cli2 implements UI {
             System.out.println("Use numbers to select one of the available tokens: " + availableTokens);
             choice = scanner.nextInt();
         }
-        while (choice < 0 || choice >= availableTokens.size());
+        while (choice < 0 || choice > availableTokens.size());
         this.clientController.setupOfToken_CLI(availableTokens.get(choice-1));
     }
 
