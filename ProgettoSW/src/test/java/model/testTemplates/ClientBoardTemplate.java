@@ -36,7 +36,7 @@ public class ClientBoardTemplate {
         players.add(1, giorgio);
         ArrayList<CardResource> centralCardsResource = new ArrayList<>();
         ArrayList<CardGold> centralCardsGold = new ArrayList<>();
-        ClientBoard board = new ClientBoard(objcard1, objcard2, players, isa, centralCardsResource, centralCardsGold, gameState );
+        ClientBoard board = new ClientBoard(objcard1, objcard2, players, isa, centralCardsResource, centralCardsGold, gameState);
         return board;
     }
 

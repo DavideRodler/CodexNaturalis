@@ -1,5 +1,7 @@
 package model;
 
+import Socket.Messages.Chat.GlobalChatMessage;
+import Socket.Messages.Chat.PrivateChatMessage;
 import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
@@ -246,25 +248,65 @@ class PlayingBoardTest {
     }
     @Test
     void shufflePlayer(){
+        PlayingStation station = PlayingStationTemplate.test_7Cards_2Diagonal_c();
+        Player isa = new Player("isa", TokenEnum.RED, station , 2, new ArrayList<>());
+        Player tommy = new Player("tommy", TokenEnum.YELLOW, station, 3,  new ArrayList<>());
+        Player dave = new Player("dave", TokenEnum.GREEN, station , 2, new ArrayList<>());
+        Player eric = new Player("eric", TokenEnum.BLUE, station, 3,  new ArrayList<>());
+        ArrayList<Player> players = new ArrayList<>();
+        players.add(0, isa);
+        players.add(1, tommy);
+        players.add(2, dave);
+        players.add(3, eric);
+        board.addPlayer(isa);
+        board.addPlayer(tommy);
+        board.addPlayer(dave);
+        board.addPlayer(eric);
+        board.shufflePlayer();
+        assertFalse(players.get(0).equals(board.getPlayers().get(0)));
+        assertFalse(players.get(1).equals(board.getPlayers().get(1)));
+        assertFalse(players.get(2).equals(board.getPlayers().get(2)));
+        assertFalse(players.get(3).equals(board.getPlayers().get(3)));
 
     }
-    /**    @Test
+
+/*        @Test
    void addNewPrivateChat() {
         PrivateChat chat = new PrivateChat("isa", "tommy");
         board.addNewPrivateChat("isa", "tommy");
-        assertEquals(chat, board.getPrivateChat("isa", "tommy"));
-    }
+        assertEquals(chat.getNickname1(), board.getPrivateChat("isa", "tommy").getNickname1());
+            assertEquals(chat.getNickname2(), board.getPrivateChat("isa", "tommy").getNickname2());
+    }*/
 
-    @Test
+/*    @Test
     void addMessageToPrivateChat(){
         PrivateChat chat = new PrivateChat("isa", "tommy");
         PrivateChatMessage mex = new PrivateChatMessage("ciaoo", "tommy", "isa");
         chat.addMessage(mex);
         board.addNewPrivateChat("isa", "tommy");
         board.addMessageToPrivateChat("isa", "tommy", "ciaoo");
-        assertEquals(mex, board.getPrivateChat("isa", "tommy").getMessage());
+        assertEquals(mex.getMessage(), board.getPrivateChat("isa", "tommy").getMessage().getFirst().getMessage());
 
-    } **/
+    }*/
+
+ /*   @Test
+   void getPrivateChat(){
+        PrivateChat chat = new PrivateChat("isa", "tommy");
+        PrivateChatMessage mex = new PrivateChatMessage("ciaoo", "tommy", "isa");
+        chat.addMessage(mex);
+        board.addNewPrivateChat("isa", "tommy");
+        assertEquals(chat.getNickname1(), board.getPrivateChat("isa", "tommy").getNickname1());
+    }*/
+    @Test
+    void addMessageToGlobalChat(){
+        GlobalChat chat = new GlobalChat();
+        GlobalChatMessage mex = new GlobalChatMessage("GLOBAL", "ciao", "tommy");
+        chat.addMessage(mex);
+        board.setGlobalChat(new GlobalChat());
+        board.addMessageToGlobalChat("tommy", "ciao");
+        assertEquals(chat.getMessage().getFirst().getMessage(), board.getGlobalChat().getMessage().getFirst().getMessage());
+    }
+
 
 }
 

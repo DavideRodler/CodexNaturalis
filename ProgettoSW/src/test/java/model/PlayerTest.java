@@ -1,7 +1,7 @@
 package model;
 
-import Network.Client.RMI.RmiClient;
-import Network.Server.RmiServer;
+import Network.Client.RMI.RmiClientToServer;
+import Network.Server.RMI.RmiServer;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.face.Corner;

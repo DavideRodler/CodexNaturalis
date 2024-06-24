@@ -2,6 +2,7 @@ package model.client;
 
 import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
+import model.Chat;
 import model.GlobalChat;
 import model.Player;
 import model.PrivateChat;
@@ -192,5 +193,9 @@ public class ClientBoard implements Serializable {
 
     public List<PrivateChat> getPrivateChats() {
         return this.privateChats;
+    }
+
+    public void setGlobalChat(GlobalChat globalChat) {
+        this.globalChat = globalChat;
     }
 }

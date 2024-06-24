@@ -484,5 +484,8 @@ public class GameController implements Serializable {
     }
 
 
+    public void setBoard(PlayingBoard board) {
+        this.board = board;
+    }
 }
 

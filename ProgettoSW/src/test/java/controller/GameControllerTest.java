@@ -20,10 +20,10 @@ class GameControllerTest {
     public void testChecknickname() throws NotValidMoveException, ChangedStateException {
         GameController game = new GameController();
         game.setPlayerNumber(4);
-        game.addPlayer("tommy", TokenEnum.BLACK);
-        game.addPlayer("davide", TokenEnum.BLUE);
+        game.addPlayer("tommy");
+        game.addPlayer("davide");
         assertEquals(true ,game.checkNicknameAvailability("isa"));
-        game.addPlayer("isa", TokenEnum.YELLOW);
+        game.addPlayer("isa");
         assertEquals(true ,game.checkNicknameAvailability("giorgio"));
         assertEquals(false ,game.checkNicknameAvailability("isa"));
 
@@ -33,7 +33,7 @@ class GameControllerTest {
         GameController game = new GameController();
         System.out.println(game.getAvailableToken());
         game.setPlayerNumber(4);
-        game.addPlayer("eric", TokenEnum.BLACK);
+        game.addPlayer("eric");
         System.out.println(game.getAvailableToken());
     }
 
@@ -44,13 +44,13 @@ class GameControllerTest {
 
         assertEquals(true, game.checkNicknameAvailability("tommy"));
         System.out.println(game.getAvailableToken());
-        assertEquals(true, game.checkTokenAvailability(TokenEnum.BLACK));
-        game.addPlayer("tommy", TokenEnum.BLACK);
+        assertEquals(true, game.checkTokenAvailability(TokenEnum.BLUE));
+        game.addPlayer("tommy");
 
         assertEquals(true, game.checkNicknameAvailability("isa"));
         System.out.println(game.getAvailableToken());
         assertEquals(true, game.checkTokenAvailability(TokenEnum.YELLOW));
-        game.addPlayer("isa", TokenEnum.YELLOW);
+        game.addPlayer("isa");
 
         Cli2 cli = new Cli2();
     //    cli.showStartingCard(game.getBoard().getPlayer("tommy").getStation().getCardStarting());
@@ -66,13 +66,13 @@ class GameControllerTest {
 
         assertEquals(true, game.checkNicknameAvailability("tommy"));
         System.out.println(game.getAvailableToken());
-        assertEquals(true, game.checkTokenAvailability(TokenEnum.BLACK));
-        game.addPlayer("tommy", TokenEnum.BLACK);
+        assertEquals(true, game.checkTokenAvailability(TokenEnum.BLUE));
+        game.addPlayer("tommy");
 
         assertEquals(true, game.checkNicknameAvailability("isa"));
         System.out.println(game.getAvailableToken());
         assertEquals(true, game.checkTokenAvailability(TokenEnum.YELLOW));
-        game.addPlayer("isa", TokenEnum.YELLOW);
+        game.addPlayer("isa");
 
         //tutti i giocatori sono salvati, gli obiettivi e le carte Starting sono distribuite in automatico
 
@@ -102,13 +102,13 @@ class GameControllerTest {
 
         assertEquals(true, game.checkNicknameAvailability("tommy"));
         System.out.println(game.getAvailableToken());
-        assertEquals(true, game.checkTokenAvailability(TokenEnum.BLACK));
-        game.addPlayer("tommy", TokenEnum.BLACK);
+        assertEquals(true, game.checkTokenAvailability(TokenEnum.BLUE));
+        game.addPlayer("tommy");
 
         assertEquals(true, game.checkNicknameAvailability("isa"));
         System.out.println(game.getAvailableToken());
         assertEquals(true, game.checkTokenAvailability(TokenEnum.YELLOW));
-        game.addPlayer("isa", TokenEnum.YELLOW);
+        game.addPlayer("isa");
         game.InitializeGame();
 
         //tutti i giocatori sono salvati, gli obiettivi e le carte Starting sono distribuite in automatico
@@ -151,9 +151,9 @@ class GameControllerTest {
     void getAvailableToken() throws ChangedStateException, NotValidMoveException {
         GameController game = new GameController();
         game.setPlayerNumber(3);
-        game.addPlayer("tommy", TokenEnum.BLACK);
-        game.addPlayer("isa", TokenEnum.YELLOW);
-        game.addPlayer("eric", TokenEnum.BLUE);
+        game.addPlayer("tommy");
+        game.addPlayer("isa");
+        game.addPlayer("eric");
         System.out.println(game.getAvailableToken());
     }
 
@@ -162,8 +162,8 @@ class GameControllerTest {
     void getStartingCard() throws ChangedStateException, NotValidMoveException {
         GameController game = new GameController();
         game.setPlayerNumber(2);
-        game.addPlayer("isa", TokenEnum.YELLOW);
-        game.addPlayer("dave", TokenEnum.BLUE);
+        game.addPlayer("isa");
+        game.addPlayer("dave");
         PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
         game.getBoard().getPlayer("isa").setStation(station);
         assertEquals(3,game.getBoard().getPlayer("isa").getStation().getCardStarting().getId());
@@ -174,8 +174,8 @@ class GameControllerTest {
     void getObjectiveToChoose() throws ChangedStateException, NotValidMoveException {
         GameController game = new GameController();
         game.setPlayerNumber(2);
-        game.addPlayer("isa", TokenEnum.YELLOW);
-        game.addPlayer("dave", TokenEnum.BLUE);
+        game.addPlayer("isa");
+        game.addPlayer("dave");
         Cli2 cli = new Cli2();
     //    System.out.println(game.getObjectiveToChoose("isa"));
     //    cli.showObjectiveCards(game.getObjectiveToChoose("isa"));
@@ -185,8 +185,8 @@ class GameControllerTest {
     void getPlayerHand() throws ChangedStateException, NotValidMoveException {
         GameController game = new GameController();
         game.setPlayerNumber(2);
-        game.addPlayer("tommy", TokenEnum.BLACK);
-        game.addPlayer("isa", TokenEnum.YELLOW);
+        game.addPlayer("tommy");
+        game.addPlayer("isa");
         Cli2 cli = new Cli2();
         System.out.println(game.getPlayerHand("isa"));
         //cli.showUpdatedHand(game.getPlayerHand("isa"));
@@ -197,8 +197,8 @@ class GameControllerTest {
     void getCurrentPlayer() throws ChangedStateException, NotValidMoveException {
         GameController game = new GameController();
         game.setPlayerNumber(2);
-        game.addPlayer("tommy", TokenEnum.BLACK);
-        game.addPlayer("isa", TokenEnum.YELLOW);
+        game.addPlayer("tommy");
+        game.addPlayer("isa");
         game.getBoard().setCurrentPlayer("isa");
         assertEquals("isa", game.getCurrentPlayer());
 
@@ -210,8 +210,8 @@ class GameControllerTest {
     void gamefinishCondition() throws ChangedStateException, NotValidMoveException {
         GameController game = new GameController();
         game.setPlayerNumber(2);
-        game.addPlayer("isa", TokenEnum.BLACK);
-        game.addPlayer("tommy", TokenEnum.YELLOW);
+        game.addPlayer("isa");
+        game.addPlayer("tommy");
         game.getBoard().setGameState(GameState.FINISHED);
 
         game.getBoard().getPlayer("isa").setPoints(12);

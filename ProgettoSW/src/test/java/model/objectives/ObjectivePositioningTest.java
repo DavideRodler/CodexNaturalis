@@ -21,17 +21,9 @@ class ObjectivePositioningTest {
     public void test_Positioning() throws ChangedStateException, NotValidMoveException {
         // Creating the PlayingStation
         PlayingStation station = PlayingStationTemplate.test_3Cards_1Positioning();
-        GameController game = new GameController();
-        game.setPlayerNumber(2);
-        game.addPlayer("isa");
-        game.selectToken("isa", TokenEnum.GREEN);
-        game.addPlayer("tommy");
-        game.selectToken("tommy", TokenEnum.GREEN);
-        game.getBoard().getPlayer("isa").setStation(station);
         ObjectivePositioning objectivetmp = new ObjectivePositioning(SuitEnum.PLANT, SuitEnum.ANIMAL, DirectionEnum.LEFT, PositionEnum.TOP);
         CardObjective cardObjectiveTmp = new CardObjective(5, 3, objectivetmp);
-        game.getBoard().getPlayer("isa").setSecretObjective(cardObjectiveTmp);
-        int punti = game.getBoard().getPlayer("isa").getSecretObjective().getObjective().countObjectivePoints(station);
+        int punti = cardObjectiveTmp.getObjective().countObjectivePoints(station);
 
         // Checking the result
         assertEquals(1, punti, "Test failed. You scored " + punti + " points.");
@@ -43,17 +35,9 @@ class ObjectivePositioningTest {
     public void test_Positioning2() throws ChangedStateException, NotValidMoveException {
         // Creating the PlayingStation
         PlayingStation station = PlayingStationTemplate.test_6Cards_2Positioning();
-        GameController game = new GameController();
-        game.setPlayerNumber(2);
-        game.addPlayer("isa");
-        game.selectToken("isa", TokenEnum.GREEN);
-        game.addPlayer("tommy");
-        game.selectToken("tommy", TokenEnum.GREEN);
-        game.getBoard().getPlayer("isa").setStation(station);
         ObjectivePositioning objectivetmp = new ObjectivePositioning(SuitEnum.FUNGI, SuitEnum.ANIMAL, DirectionEnum.RIGHT, PositionEnum.TOP);
         CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
-        game.getBoard().getPlayer("isa").setSecretObjective(cardObjectiveTmp);
-        int punti = game.getBoard().getPlayer("isa").getSecretObjective().getObjective().countObjectivePoints(station);
+        int punti = cardObjectiveTmp.getObjective().countObjectivePoints(station);
 
         // Checking the result
         assertEquals(0, punti, "Test failed. You scored " + punti + " points.");
@@ -63,17 +47,9 @@ class ObjectivePositioningTest {
     public void test_Positioning1_down() throws ChangedStateException, NotValidMoveException {
         // Creating the PlayingStation
         PlayingStation station = PlayingStationTemplate.test_3Cards_1Positioning_down();
-        GameController game = new GameController();
-        game.setPlayerNumber(2);
-        game.addPlayer("isa");
-        game.selectToken("isa", TokenEnum.GREEN);
-        game.addPlayer("tommy");
-        game.selectToken("tommy", TokenEnum.GREEN);
-        game.getBoard().getPlayer("isa").setStation(station);
         ObjectivePositioning objectivetmp = new ObjectivePositioning(SuitEnum.ANIMAL, SuitEnum.INSECT, DirectionEnum.RIGHT, PositionEnum.BOTTOM);
         CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
-        game.getBoard().getPlayer("isa").setSecretObjective(cardObjectiveTmp);
-        int punti = game.getBoard().getPlayer("isa").getSecretObjective().getObjective().countObjectivePoints(station);
+        int punti = cardObjectiveTmp.getObjective().countObjectivePoints(station);
 
         // Checking the result
         assertEquals(1, punti, "Test failed. You scored " + punti + " points.");
@@ -82,17 +58,9 @@ class ObjectivePositioningTest {
     public void test_Positioning2_down() throws ChangedStateException, NotValidMoveException {
         // Creating the PlayingStation
         PlayingStation station = PlayingStationTemplate.test_6Cards_2Positioning_down();
-        GameController game = new GameController();
-        game.setPlayerNumber(2);
-        game.addPlayer("isa");
-        game.selectToken("isa", TokenEnum.GREEN);
-        game.addPlayer("tommy");
-        game.selectToken("tommy", TokenEnum.GREEN);
-        game.getBoard().getPlayer("isa").setStation(station);
         ObjectivePositioning objectivetmp = new ObjectivePositioning(SuitEnum.FUNGI, SuitEnum.ANIMAL, DirectionEnum.LEFT, PositionEnum.BOTTOM);
         CardObjective cardObjectiveTmp = new CardObjective(4, 3, objectivetmp);
-        game.getBoard().getPlayer("isa").setSecretObjective(cardObjectiveTmp);
-        int punti = game.getBoard().getPlayer("isa").getSecretObjective().getObjective().countObjectivePoints(station);
+        int punti = cardObjectiveTmp.getObjective().countObjectivePoints(station);
 
         // Checking the result
         assertEquals(2, punti, "Test failed. You scored " + punti + " points.");

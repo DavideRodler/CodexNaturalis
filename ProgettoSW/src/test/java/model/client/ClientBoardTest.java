@@ -1,9 +1,8 @@
 package model.client;
 
-import model.Chat;
-import model.Player;
-import model.PlayingStation;
-import model.PrivateChat;
+import Socket.Messages.Chat.GlobalChatMessage;
+import Socket.Messages.Chat.PrivateChatMessage;
+import model.*;
 import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
@@ -84,7 +83,7 @@ ClientBoard board = ClientBoardTemplate.createClientBoard();
     }
 
     @Test
-    void getOtherPlayer() throws NonePlayerFoundException {
+    void getOtherPlayer(){
         PlayingStation stationtommy = PlayingStationTemplate.test_3Cards_1Positioning();
         ArrayList<SuitEnum> handtommy = new ArrayList<>();
         PlayingStation stationgiorgio= PlayingStationTemplate.test_3Cards_1Positioning();
@@ -102,7 +101,7 @@ ClientBoard board = ClientBoardTemplate.createClientBoard();
 
     @Test
     void getGlobalChat() {
-        Chat globalChat = new Chat();
+        GlobalChat globalChat = new GlobalChat();
         board.setGlobalChat(globalChat);
         assertEquals(globalChat, board.getGlobalChat());
 
@@ -110,17 +109,13 @@ ClientBoard board = ClientBoardTemplate.createClientBoard();
 
         @Test
    void getPrivateChat() {
-        //ArrayList<PrivateChat> privateChatArrayList = new ArrayList<>();
         PrivateChatMessage mex = new PrivateChatMessage("ciao", "tommy", "isa");
         PrivateChat chat = new PrivateChat("isa", "tommy");
         chat.addMessage(mex);
-       // privateChatArrayList.add(chat);
         board.addNewPrivateChat("isa", "tommy");
-        board.updateChat("PRIVATE", "tommy", "isa", "ciao");
+        board.updatePrivateChat("PRIVATE", "tommy", "isa", "ciao");
         assertEquals(chat.getMessage().size(), board.getPrivateChat("isa", "tommy").size());
-        //assertEquals(chat.getMessage(), board.getPrivateChat("isa", "tommy"));
-        // return ArrayList<PrivateChatMessage>
-            // scorre ArrayList<PrivateChat> privateChatArrayList
+
     }
 
 
@@ -144,5 +139,34 @@ ClientBoard board = ClientBoardTemplate.createClientBoard();
     }
 
 
+    @Test
+    void getAvailableTokens() {
+        ArrayList<TokenEnum> tokens = new ArrayList<>();
+        tokens.add(TokenEnum.RED);
+        tokens.add(TokenEnum.GREEN);
+        assertEquals(tokens, board.getAvailableTokens());
+    }
+
+    @Test
+    void updatePrivateChat() {
+        PrivateChat chat = new PrivateChat("isa", "tommy");
+        PrivateChatMessage mex = new PrivateChatMessage("ciao", "isa", "tommy");
+        chat.addMessage(mex);
+        board.addNewPrivateChat("isa", "tommy");
+        board.updatePrivateChat("PRIVATE", "isa", "tommy", "ciao");;
+        assertEquals(chat.getNickname1(), board.getPrivateChats().getFirst().getNickname1());
+        assertEquals(chat.getNickname2(), board.getPrivateChats().getFirst().getNickname2());
+        assertEquals(chat.getMessage().getFirst().getMessage(), board.getPrivateChat("isa", "tommy").getFirst().getMessage());
+    }
+
+    @Test
+    void updateGlobalChat(){
+        GlobalChat chat = new GlobalChat();
+        GlobalChatMessage mex = new GlobalChatMessage("GLOBAL", "ciao", "tommy");
+        chat.addMessage(mex);
+        board.setGlobalChat(new GlobalChat());
+        board.updateGlobalChat("GLOBAL", "tommy", "ciao");
+        assertEquals(chat.getMessage().getFirst().getMessage(), board.getGlobalChat().getMessage().getFirst().getMessage());
+    }
 
 }

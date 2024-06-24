@@ -324,4 +324,11 @@ public class PlayingBoard extends ObservableModel {
     }
 
 
+    public void setGlobalChat(GlobalChat globalChat) {
+       this.globalChat = globalChat;
+    }
+
+    public GlobalChat getGlobalChat() {
+        return globalChat;
+    }
 }
