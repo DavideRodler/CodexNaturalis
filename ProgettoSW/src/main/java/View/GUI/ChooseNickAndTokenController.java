@@ -64,7 +64,6 @@ public class ChooseNickAndTokenController implements Initializable{
     private ClientController clientController;
 
     public ChooseNickAndTokenController() {
-
     }
 
     public void setClientController(ClientController clientController) {
@@ -92,9 +91,10 @@ public class ChooseNickAndTokenController implements Initializable{
 
     @FXML
     public void setNickname(){
-        nicknamePane.setVisible(true);
         label.setText("Choose your nickname!");
+        enterNicknameButton.setVisible(true);
     }
+
 
     @FXML
     public void setAvailableTokens(ArrayList<TokenEnum> tokens){
@@ -109,9 +109,8 @@ public class ChooseNickAndTokenController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nicknamePane.setVisible(false);
-        label.setText(" ");
         tokenPane.setVisible(false);
+        enterNicknameButton.setVisible(false);
     }
 
 

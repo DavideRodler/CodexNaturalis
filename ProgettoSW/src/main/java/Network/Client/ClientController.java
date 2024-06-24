@@ -31,15 +31,21 @@ import java.util.Scanner;
 public class ClientController {
     private UI ui;
     private final ClientBoard clientModel;
-    private final ClientToServerCommunication clientToServerCommunication;
+    private ClientToServerCommunication clientToServerCommunication;
 
     public ClientBoard getClientModel() {
         return clientModel;
     }
 
-    public ClientController(ClientToServerCommunication clientToServerCommunication){
-        this.clientModel = new ClientBoard(null, null, new ArrayList<>(), null, new ArrayList<>(), new ArrayList<>(), null);
+    public void setClientToServerCommunication(ClientToServerCommunication clientToServerCommunication) {
         this.clientToServerCommunication = clientToServerCommunication;
+    }
+    public void setUi(UI ui) {
+        this.ui = ui;
+    }
+
+    public ClientController(){
+        this.clientModel = new ClientBoard(null, null, new ArrayList<>(), null, new ArrayList<>(), new ArrayList<>(), null);
         showGameTitle();
     }
 

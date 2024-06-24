@@ -33,21 +33,17 @@ public class Gui extends Application implements UI {
 
     public void setClientController(ClientController clientController) {
         this.clientController = clientController;
-        /*this.startSceneController = new StartSceneController();
+        this.startSceneController = new StartSceneController();
         this.stationController = new StationController();
         this.chooseNickAndTokenController = new ChooseNickAndTokenController();
         this.scoreBoardController = new ScoreBoardController();
-        this.startSceneController.setClientController(getClientController());
-        this.stationController.setClientController(getClientController());
-        this.chooseNickAndTokenController.setClientController(getClientController());
-        this.scoreBoardController.setClientController(getClientController());*/
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChooseNicknameAndToken.fxml"));
         Parent root = loader.load();
-        ChooseNickAndTokenController chooseNickAndTokenController = loader.getController();
+        chooseNickAndTokenController = loader.getController();
         chooseNickAndTokenController.setClientController(getClientController());
         Scene scene = new Scene(root);
         stage.setScene(scene);

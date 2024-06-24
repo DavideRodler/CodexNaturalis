@@ -38,6 +38,28 @@ public class ClientApp implements Remote {
         } while (true);
 
 
+        System.out.println("Do you want to play with 1.GUI or 2.CLI?");
+        Scanner scanner = new Scanner(System.in);
+        String answer;
+        ClientController clientController = new ClientController();
+        UI ui ;
+        do {
+            answer = scanner.nextLine();
+        } while (!answer.equals("1") && !answer.equals("2"));
+        if (answer.equals("1")) {
+            ui = new Gui();
+            clientController.setUi(ui);
+            new Thread(() -> {
+
+                ((Gui) ui).launchGui(clientController);
+
+            }).start();
+        }
+        else {
+            ui = new Cli2(clientController);
+            clientController.setUi(ui);
+        }
+
 
         while (true) {
             System.out.println("Select Communication Type: 1. RMI 2. Socket");
@@ -51,28 +73,11 @@ public class ClientApp implements Remote {
 
                     //creating my client with RMI and a client controller
                     RmiClientToServer client = new RmiClientToServer(server);
-                    ClientController clientController = new ClientController(client);
                     client.setClientController(clientController);
+                    clientController.setClientToServerCommunication(client);
                     client.connectToServer();
 
-                    System.out.println("Do you want to play with 1.GUI or 2.CLI?");
-                    Scanner scanner = new Scanner(System.in);
-                    String answer;
-                    UI ui ;
-                    do {
-                        answer = scanner.nextLine();
-                    } while (!answer.equals("1") && !answer.equals("2"));
-                    if (answer.equals("1")) {
-                        ui = new Gui();
-                        new Thread(() -> {
 
-                            ((Gui) ui).launchGui(clientController);
-
-                        }).start();
-                    }
-                    else {
-                        ui = new Cli2(clientController);
-                    }
 
                 } catch (RemoteException r) {
                     System.out.println("Error: " + r);
@@ -91,32 +96,13 @@ public class ClientApp implements Remote {
                 SocketClient client = new  SocketClient(new ObjectInputStream(socketRx), new ObjectOutputStream(socketTx));
 
                 //creating the client controller
-                ClientController clientController = new ClientController(client);
                 client.setClientController(clientController);
+                clientController.setClientToServerCommunication(client);
                 client.run();
                 try {
                     client.connectToServer();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
-                }
-
-                System.out.println("Do you want to play with 1.GUI or 2.CLI?");
-                Scanner scanner = new Scanner(System.in);
-                String answer;
-                UI ui ;
-                do {
-                    answer = scanner.nextLine();
-                } while (!answer.equals("1") && !answer.equals("2"));
-                if (answer.equals("1")) {
-                    ui = new Gui();
-                    new Thread(() -> {
-
-                        ((Gui) ui).launchGui(clientController);
-
-                    }).start();
-                }
-                else {
-                    ui = new Cli2(clientController);
                 }
 
                 break;

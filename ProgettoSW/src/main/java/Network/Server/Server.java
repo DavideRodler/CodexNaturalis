@@ -5,6 +5,7 @@ import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
 import Socket.Messages.Message;
 import Socket.Messages.ServerToClient.ActionMessage;
+import Socket.Messages.ServerToClient.GameFinishedMessage;
 import Socket.Messages.ServerToClient.ResultOfCardAddedToStationMessage;
 import Socket.Messages.queqe.QueueActionWithClientMessage;
 import Socket.Messages.queqe.QueueResultOfCardAddedToStationMessage;
@@ -231,11 +232,12 @@ public class Server {
                         }).start();
                     }
                     break;
-                case "gameFinished":
+                case "GameFinished":
                     synchronized (this.clients) {
+                        GameFinishedMessage gameFinishedMessage = (GameFinishedMessage) actionMessage;
                         for (VirtualView client : clients) {
                             try {
-                                client.notifyGameFinished(gameController.getScoreBoard());
+                                client.notifyGameFinished(gameFinishedMessage.getScoreBoard());
                             } catch (RemoteException e) {
                                 throw new RuntimeException(e);
                             }
@@ -472,7 +474,7 @@ public class Server {
         }
         else {
             try {
-                queue.put(new ActionMessage("gameFinished"));
+                queue.put(new GameFinishedMessage(gameController.getScoreBoard()));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
