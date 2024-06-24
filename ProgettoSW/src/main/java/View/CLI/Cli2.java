@@ -34,7 +34,7 @@ public class Cli2 implements UI {
 
 
     //constructor with clientboard
-    public Cli2(ClientBoard clientBoard, ClientController clientController) {
+    public Cli2(ClientController clientController) {
         blue = "\033[0;34m";
         green = "\033[0;32m";
         yellow = "\033[0;33m";
@@ -48,8 +48,8 @@ public class Cli2 implements UI {
         manuscript = gold + "M";
         quill = gold + "Q";
 
-        this.clientBoard = clientBoard;
         this.clientController = clientController;
+        this.clientBoard = clientController.getClientModel();
 
     }
 
@@ -79,17 +79,7 @@ public class Cli2 implements UI {
         StartingCardPrinter startingCardPrinter = new StartingCardPrinter();
         startingCardPrinter.cardStartingPrinter(clientBoard.getMyplayer().getStation().getCardStarting());
     }
-   @Override
-    public void showGameTitle(){
 
-        System.out.println("" + red +
-                "oooooooo8                  oooo                              oooo   oooo            o8                                     o888\n" +
-                "o888        ooooooo     ooooo888   ooooooooo8 oooo   oooo       8888o  88   ooooooo o888oo oooo  oooo  oo oooooo   ooooooo    888  oooo   oooooooo8\n" +
-                "888        888   888  888    888  888oooooo8    888o888         88 888o88   ooooo888 888    888   888   888        ooooo888   888   888  888ooooooo\n" +
-                "888o       888   888  888    888  888           o88 88o         88   8888 888    888 888    888   888   888      888    888   888   888          888\n" +
-                "888oooo88   88ooo88     88ooo888o  88oooo888 o88o   o88o      o88o    88  88ooo88 8o 888o   888o88 8o o888o      88ooo88 8o o888o o888o 88oooooo88\n\n" + reset);
-
-    }
 
 
 
@@ -302,6 +292,10 @@ public class Cli2 implements UI {
         }
     }
 
+
+    /**
+     * this method prints the hand of the player
+     */
     @Override
     public void printIsNotMyTurnMenu() {
         this.printMenuNotMyTurn(clientBoard.getCurrentPlayer());

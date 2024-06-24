@@ -160,15 +160,6 @@ public class StationController implements Initializable {
     @FXML
     private ImageView startingCard;
 
-    public StationController(){
-
-    }
-
-    public StationController(ClientController clientController) {
-        this.clientController = clientController;
-        cardLoader = new CardLoader();
-    }
-
 
     /**
      * this method handles when a cards gets clicked. It sets cardToPlayOn to the clicked card.
@@ -701,5 +692,9 @@ public class StationController implements Initializable {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setClientController(ClientController clientController) {
+        this.clientController = clientController;
     }
 }

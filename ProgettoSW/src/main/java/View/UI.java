@@ -23,8 +23,6 @@ public interface UI {
 
     void showStartingCard();
 
-    void showGameTitle();
-
     void printIsNotMyTurnMenu();
 
     void printIsMyTurnMenu();

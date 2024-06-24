@@ -63,7 +63,7 @@ public class ChooseNickAndTokenController implements Initializable{
 
     private ClientController clientController;
 
-    public ChooseNickAndTokenController(){
+    public ChooseNickAndTokenController() {
 
     }
 
@@ -71,12 +71,14 @@ public class ChooseNickAndTokenController implements Initializable{
         this.clientController = clientController;
     }
 
+    public ClientController getClientController() {
+        return clientController;
+    }
+
     @FXML
     public void enterNickname() {
         nick = chooseNickname.getText();
-        tokenPane.setVisible(true);
-        label.setText("Choose your token!");
-        this.clientController.setupOfnickname_UI(nick);
+        this.getClientController().setupOfnickname_UI(nick);
     }
 
     @FXML
@@ -89,18 +91,26 @@ public class ChooseNickAndTokenController implements Initializable{
 
 
     @FXML
+    public void setNickname(){
+        nicknamePane.setVisible(true);
+        label.setText("Choose your nickname!");
+    }
+
+    @FXML
     public void setAvailableTokens(ArrayList<TokenEnum> tokens){
+        tokenPane.setVisible(true);
+        label.setText("Choose your token!");
         for(TokenEnum token: tokens){
             chooseToken.getItems().add(token);
         }
-
     }
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        label.setText("Enter your nickname!");
+        nicknamePane.setVisible(false);
+        label.setText(" ");
         tokenPane.setVisible(false);
     }
 

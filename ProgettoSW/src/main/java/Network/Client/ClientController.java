@@ -4,8 +4,13 @@ import Socket.Messages.Chat.AddPrivateChatMessage;
 import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
 import View.CLI.Cli2;
+import View.GUI.ChooseNickAndTokenController;
+import View.GUI.Gui;
+import View.GUI.StartSceneController;
+import View.GUI.StationController;
 import View.UI;
 import exception.InvalidPlacingCondition;
+import javafx.application.Platform;
 import model.Player;
 import model.PlayingStation;
 import model.cards.CardGold;
@@ -24,7 +29,7 @@ import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class ClientController {
-    private final UI ui;
+    private UI ui;
     private final ClientBoard clientModel;
     private final ClientToServerCommunication clientToServerCommunication;
 
@@ -35,8 +40,18 @@ public class ClientController {
     public ClientController(ClientToServerCommunication clientToServerCommunication){
         this.clientModel = new ClientBoard(null, null, new ArrayList<>(), null, new ArrayList<>(), new ArrayList<>(), null);
         this.clientToServerCommunication = clientToServerCommunication;
-        ui = new Cli2(clientModel, this);
-        ui.showGameTitle();
+        showGameTitle();
+    }
+
+    private void showGameTitle(){
+
+        System.out.println("" + "\033[0;31m" +
+                "oooooooo8                  oooo                              oooo   oooo            o8                                     o888\n" +
+                "o888        ooooooo     ooooo888   ooooooooo8 oooo   oooo       8888o  88   ooooooo o888oo oooo  oooo  oo oooooo   ooooooo    888  oooo   oooooooo8\n" +
+                "888        888   888  888    888  888oooooo8    888o888         88 888o88   ooooo888 888    888   888   888        ooooo888   888   888  888ooooooo\n" +
+                "888o       888   888  888    888  888           o88 88o         88   8888 888    888 888    888   888   888      888    888   888   888          888\n" +
+                "888oooo88   88ooo88     88ooo888o  88oooo888 o88o   o88o      o88o    88  88ooo88 8o 888o   888o88 8o o888o      88ooo88 8o o888o o888o 88oooooo88\n\n" + "\033[0m");
+
     }
 
     public void imReadyForNextTurn() {
@@ -45,6 +60,13 @@ public class ClientController {
 
     public void setupOfnickname(){
         ui.askNickname();
+    }
+
+    /**
+     * this method is used to setup the token of the player
+     */
+    private void askGuiOrCli() {
+
     }
 
     public void setupOfnickname_UI(String nickname){
@@ -71,11 +93,15 @@ public class ClientController {
     }
 
 
-
     public synchronized void setupOfSecretObjective() {
         ui.askObjectiveCard();
     }
 
+
+    /**
+     * this method is used to ask the player which secret objective he wants to choose
+     * @param answer the answer of the player
+     */
     public synchronized void setupOfSecretObjective_UI(int answer){
         clientToServerCommunication.setSecretObjective(clientModel.getMyplayer().getNickname(), clientModel.getMyplayer().getSelectibleObjectives().get(answer).getId());
     }
@@ -89,6 +115,10 @@ public class ClientController {
         ui.printIsMyTurnMenu();
     }
 
+
+    /**
+     * this method is used to ask the player which card he wants to draw
+     */
     public void playCardOnPlayngStation_UI(Integer[] answer , CardResource cardchoosen , int cardId) {
 
         clientToServerCommunication.addCardToStation(clientModel.getMyplayer().getNickname(), cardId, answer[1] == 2, answer[2], answer[3]);    //try to add the card to local model
@@ -132,6 +162,10 @@ public class ClientController {
     }
 
 
+    /**
+     * this method is used to ask the player the coordinates where he wants to put the card
+     * @param message message to send to the player
+     */
     public void updateModel(Message message) throws RemoteException {
         switch (message.getType()) {
             case "CurrentPlayer":
@@ -292,7 +326,13 @@ public class ClientController {
     }
 
     public void setupOfPlayersNumber() {
-        ui.askPlayerNumber();
+        System.out.println("How many players do you want to play with?");
+        Scanner scanner = new Scanner(System.in);
+        String number;
+        do {
+            number = scanner.nextLine();
+        } while (!number.equals("2") && !number.equals("3") && !number.equals("4"));
+        setupOfPlayersNumber_CLI(Integer.parseInt(number));
     }
 
     public void setupOfPlayersNumber_CLI(int number){

@@ -4,6 +4,9 @@ import Network.Client.ClientController;
 import Network.Client.RMI.RmiClientToServer;
 import Network.Client.Socket.SocketClient;
 import Network.Server.VirtualServer;
+import View.CLI.Cli2;
+import View.GUI.Gui;
+import View.UI;
 
 import java.io.*;
 import java.rmi.NotBoundException;
@@ -34,6 +37,8 @@ public class ClientApp implements Remote {
             }
         } while (true);
 
+
+
         while (true) {
             System.out.println("Select Communication Type: 1. RMI 2. Socket");
             int selection = in.nextInt();
@@ -49,6 +54,25 @@ public class ClientApp implements Remote {
                     ClientController clientController = new ClientController(client);
                     client.setClientController(clientController);
                     client.connectToServer();
+
+                    System.out.println("Do you want to play with 1.GUI or 2.CLI?");
+                    Scanner scanner = new Scanner(System.in);
+                    String answer;
+                    UI ui ;
+                    do {
+                        answer = scanner.nextLine();
+                    } while (!answer.equals("1") && !answer.equals("2"));
+                    if (answer.equals("1")) {
+                        ui = new Gui();
+                        new Thread(() -> {
+
+                            ((Gui) ui).launchGui(clientController);
+
+                        }).start();
+                    }
+                    else {
+                        ui = new Cli2(clientController);
+                    }
 
                 } catch (RemoteException r) {
                     System.out.println("Error: " + r);
@@ -76,10 +100,31 @@ public class ClientApp implements Remote {
                     throw new RuntimeException(e);
                 }
 
+                System.out.println("Do you want to play with 1.GUI or 2.CLI?");
+                Scanner scanner = new Scanner(System.in);
+                String answer;
+                UI ui ;
+                do {
+                    answer = scanner.nextLine();
+                } while (!answer.equals("1") && !answer.equals("2"));
+                if (answer.equals("1")) {
+                    ui = new Gui();
+                    new Thread(() -> {
+
+                        ((Gui) ui).launchGui(clientController);
+
+                    }).start();
+                }
+                else {
+                    ui = new Cli2(clientController);
+                }
+
                 break;
             } else {
                 System.out.println("Invalid Input");
             }
         }
+
+
     }
 }

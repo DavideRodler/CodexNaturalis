@@ -4,6 +4,7 @@ import Network.Client.ClientController;
 import View.UI;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,39 +23,40 @@ public class Gui extends Application implements UI {
     private StartSceneController startSceneController;
     private StationController stationController;
     private ChooseNickAndTokenController chooseNickAndTokenController;
-    private ClientBoard clientBoard;
-    private ClientController clientController;
+    private static ClientController clientController;
 
     private ScoreBoardController scoreBoardController;
 
+    public ClientController getClientController() {
+        return clientController;
+    }
 
-
-    public Gui(StartSceneController startSceneController, StationController stationController, ChooseNickAndTokenController chooseNickAndTokenController, ClientBoard clientBoard){
-        this.startSceneController = startSceneController;
-        this.stationController = stationController;
-        this.chooseNickAndTokenController = chooseNickAndTokenController;
-        this.clientBoard = clientBoard;
+    public void setClientController(ClientController clientController) {
+        this.clientController = clientController;
+        /*this.startSceneController = new StartSceneController();
+        this.stationController = new StationController();
+        this.chooseNickAndTokenController = new ChooseNickAndTokenController();
+        this.scoreBoardController = new ScoreBoardController();
+        this.startSceneController.setClientController(getClientController());
+        this.stationController.setClientController(getClientController());
+        this.chooseNickAndTokenController.setClientController(getClientController());
+        this.scoreBoardController.setClientController(getClientController());*/
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChooseNicknameAndToken.fxml"));
+        Parent root = loader.load();
+        ChooseNickAndTokenController chooseNickAndTokenController = loader.getController();
+        chooseNickAndTokenController.setClientController(getClientController());
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Codex");
-        //stage.setFullScreen(true);
         stage.show();
     }
 
-    public void launchGui(ClientBoard clientBoard, ClientController clientController){
-        this.clientBoard = clientBoard;
-        this.clientController = clientController;
-        this.startSceneController = new StartSceneController(this.clientController);
-        this.stationController = new StationController(this.clientController);
-        this.chooseNickAndTokenController = new ChooseNickAndTokenController();
-        this.scoreBoardController = new ScoreBoardController();
-        this.chooseNickAndTokenController.setClientController(this.clientController);
-        this.scoreBoardController.setClientController(this.clientController);
+    public void launchGui(ClientController clientController){
+        setClientController(clientController);
         launch();
     }
 
@@ -64,9 +66,6 @@ public class Gui extends Application implements UI {
         Platform.runLater(() -> stationController.showStartingCard());
     }
 
-    @Override
-    public void showGameTitle() {
-    }
 
     @Override
     public void printIsNotMyTurnMenu() {
@@ -80,6 +79,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public void askNickname() {
+        Platform.runLater(() -> chooseNickAndTokenController.setNickname());
     }
 
     @Override

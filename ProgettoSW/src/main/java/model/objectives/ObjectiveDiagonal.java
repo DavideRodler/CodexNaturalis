@@ -77,7 +77,7 @@ private SuitEnum color;
             }
         }
 
-        return points;
+        return points*2;
     }
 
     /**

@@ -47,6 +47,6 @@ public class ObjectiveGoldCorners implements Points, Serializable {
         if (station.getMap().containsKey(key4)){
             points = points + 1;
         }
-        return points;
+        return points*2;
     }
 }

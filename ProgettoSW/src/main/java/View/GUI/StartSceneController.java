@@ -35,9 +35,6 @@ public class StartSceneController {
     private ClientController clientController;
 
 
-    public StartSceneController(ClientController clientController) {
-        this.clientController = clientController;
-    }
 
     public void makeImageDisappear(){
         coverImage.setVisible(false);
@@ -48,5 +45,9 @@ public class StartSceneController {
         Stage stage = (Stage) button.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseNicknameAndToken.fxml"));
         stage.setScene(new Scene(root));
+    }
+
+    public void setClientController(ClientController clientController) {
+        this.clientController = clientController;
     }
 }

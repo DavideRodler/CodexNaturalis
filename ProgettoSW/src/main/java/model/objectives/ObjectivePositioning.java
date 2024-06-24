@@ -88,7 +88,7 @@ public class ObjectivePositioning implements Objective, Serializable {
             }
         }
 
-        return points;
+        return points*3;
     }
 
 
