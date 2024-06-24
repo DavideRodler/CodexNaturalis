@@ -44,6 +44,9 @@ public class ChooseNickAndTokenController implements Initializable{
     @FXML
     private Label chooseNicknameLbl;
 
+    @FXML
+    private Label AlreadyTakenNickTok;
+
     private String nick;
 
     @FXML
@@ -81,7 +84,12 @@ public class ChooseNickAndTokenController implements Initializable{
     @FXML
     public void enterNickname() {
         nick = chooseNickname.getText();
+        label.setText("Waiting for other players to set nickname...");
         this.getClientController().setupOfnickname_UI(nick);
+        enterNicknameButton.setVisible(false);
+        chooseNickname.setVisible(false);
+        chooseNicknameLbl.setVisible(false);
+
     }
 
     @FXML
@@ -96,6 +104,8 @@ public class ChooseNickAndTokenController implements Initializable{
     public void setNickname(){
         label.setText("Choose your nickname!");
         enterNicknameButton.setVisible(true);
+        chooseNickname.setVisible(true);
+        chooseNicknameLbl.setVisible(true);
     }
 
 
@@ -103,6 +113,11 @@ public class ChooseNickAndTokenController implements Initializable{
     public void setAvailableTokens(ArrayList<TokenEnum> tokens){
         tokenPane.setVisible(true);
         label.setText("Choose your token!");
+
+        ArrayList<TokenEnum> itemsToRemove = new ArrayList<>(chooseToken.getItems());
+        for (TokenEnum token: itemsToRemove){
+            chooseToken.getItems().remove(token);
+        }
         for(TokenEnum token: tokens){
             chooseToken.getItems().add(token);
         }
@@ -112,9 +127,21 @@ public class ChooseNickAndTokenController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        AlreadyTakenNickTok.setVisible(false);
         tokenPane.setVisible(false);
         enterNicknameButton.setVisible(false);
     }
 
 
+    @FXML
+    public void printNicknameAlreadyTaken() {
+        AlreadyTakenNickTok.setVisible(true);
+        AlreadyTakenNickTok.setText("Nickname already taken, choose another one!");
+    }
+
+    @FXML
+    public void printTokenAlreadyTaken() {
+        AlreadyTakenNickTok.setVisible(true);
+        AlreadyTakenNickTok.setText("Token already taken, choose another one!");
+    }
 }

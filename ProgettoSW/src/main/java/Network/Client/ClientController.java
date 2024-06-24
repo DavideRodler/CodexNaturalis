@@ -381,12 +381,12 @@ public class ClientController {
     }
 
     public void notifyNicknameAlreadyTaken() {
-        System.out.println("The nickname is already taken, please choose another one");
+        ui.printNicknameAlreadyTaken();
         setupOfnickname();
     }
 
     public void notifyTokenAlreadyTaken() {
-        System.out.println("The token is already taken, please choose another one");
+        ui.printTokenAlreadyTaken();
         setupOfToken();
     }
 

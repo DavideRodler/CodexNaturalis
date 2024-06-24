@@ -133,6 +133,16 @@ public class Cli2 implements UI {
         }
     }
 
+    @Override
+    public void printNicknameAlreadyTaken() {
+        System.out.println("Nickname already taken, please choose another one.");
+    }
+
+    @Override
+    public void printTokenAlreadyTaken() {
+        System.out.println("Token already taken, please choose another one.");
+    }
+
     private void printMenu2() {
         for(int i = 0; i < 50; i++) {
             System.out.println();

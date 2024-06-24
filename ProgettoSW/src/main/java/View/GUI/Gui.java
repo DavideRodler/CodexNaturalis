@@ -182,7 +182,6 @@ public class Gui extends Application implements UI {
 
     @Override
     public void askToken(ArrayList<TokenEnum> availableTokens) { //TODO: passare per al controller l'arraylist
-        System.out.println("ciaooo");
         Platform.runLater(() -> chooseNickAndTokenController.setAvailableTokens(availableTokens));
 
     }
@@ -201,6 +200,16 @@ public class Gui extends Application implements UI {
     @Override
     public void printMenu() {
 
+    }
+
+    @Override
+    public void printNicknameAlreadyTaken() {
+        Platform.runLater(() -> chooseNickAndTokenController.printNicknameAlreadyTaken());
+    }
+
+    @Override
+    public void printTokenAlreadyTaken() {
+        Platform.runLater(() -> chooseNickAndTokenController.printTokenAlreadyTaken());
     }
 }
 

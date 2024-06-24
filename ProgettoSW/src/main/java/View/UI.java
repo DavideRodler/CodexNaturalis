@@ -75,4 +75,8 @@ public interface UI {
 
 
     void printMenu();
+
+    void printNicknameAlreadyTaken();
+
+    void printTokenAlreadyTaken();
 }
