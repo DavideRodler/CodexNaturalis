@@ -22,6 +22,14 @@ public class ClientApp implements Remote {
     public static void main(String[] args) throws IOException {
         Scanner in = new Scanner(new InputStreamReader(System.in));
         String ip;
+
+        System.out.println("" + "\033[0;31m" +
+                "oooooooo8                  oooo                                oooo   oooo            o8                                     o888\n" +
+                "o888        ooooooo     ooooo888   ooooooooo8 oooo   oooo       8888o  88   ooooooo o888oo oooo  oooo  oo oooooo   ooooooo    888  oooo   oooooooo8\n" +
+                "888        888   888  888    888  888oooooo8    888o888         88 888o88   ooooo888 888    888   888   888        ooooo888   888   888  888ooooooo\n" +
+                "888o       888   888  888    888  888           o88 88o         88   8888 888    888 888    888   888   888      888    888   888   888          888\n" +
+                "888oooo88   88ooo88     88ooo888o  88oooo888 o88o   o88o      o88o    88  88ooo88 8o 888o   888o88 8o o888o      88ooo88 8o o888o o888o 88oooooo88\n\n" + "\033[0m");
+
         do {
             System.out.println("\uD83D\uDD35Insert ipAddress (press enter if using local machine): ");
             ip = in.nextLine();
@@ -66,24 +74,20 @@ public class ClientApp implements Remote {
             int selection = in.nextInt();
             if (selection == 1) {
                 VirtualServer server;
+                //locating the registry
+                Registry registry = LocateRegistry.getRegistry(ip, 16000);
                 try {
-                    //locating the registry
-                    Registry registry = LocateRegistry.getRegistry(ip, 16000);
                     server = (VirtualServer) registry.lookup("MyServer");
-
-                    //creating my client with RMI and a client controller
-                    RmiClientToServer client = new RmiClientToServer(server);
-                    client.setClientController(clientController);
-                    clientController.setClientToServerCommunication(client);
-                    client.connectToServer();
-
-
-
-                } catch (RemoteException r) {
-                    System.out.println("Error: " + r);
                 } catch (NotBoundException e) {
                     throw new RuntimeException(e);
+
                 }
+
+                //creating my client with RMI and a client controller
+                RmiClientToServer client = new RmiClientToServer(server);
+                client.setClientController(clientController);
+                clientController.setClientToServerCommunication(client);
+                client.connectToServer();
                 break;
 
             } else if (selection ==2) {

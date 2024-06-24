@@ -46,19 +46,9 @@ public class ClientController {
 
     public ClientController(){
         this.clientModel = new ClientBoard(null, null, new ArrayList<>(), null, new ArrayList<>(), new ArrayList<>(), null);
-        showGameTitle();
     }
 
-    private void showGameTitle(){
 
-        System.out.println("" + "\033[0;31m" +
-                "oooooooo8                  oooo                              oooo   oooo            o8                                     o888\n" +
-                "o888        ooooooo     ooooo888   ooooooooo8 oooo   oooo       8888o  88   ooooooo o888oo oooo  oooo  oo oooooo   ooooooo    888  oooo   oooooooo8\n" +
-                "888        888   888  888    888  888oooooo8    888o888         88 888o88   ooooo888 888    888   888   888        ooooo888   888   888  888ooooooo\n" +
-                "888o       888   888  888    888  888           o88 88o         88   8888 888    888 888    888   888   888      888    888   888   888          888\n" +
-                "888oooo88   88ooo88     88ooo888o  88oooo888 o88o   o88o      o88o    88  88ooo88 8o 888o   888o88 8o o888o      88ooo88 8o o888o o888o 88oooooo88\n\n" + "\033[0m");
-
-    }
 
     public void imReadyForNextTurn() {
         clientToServerCommunication.finishTurn();
@@ -68,12 +58,6 @@ public class ClientController {
         ui.askNickname();
     }
 
-    /**
-     * this method is used to setup the token of the player
-     */
-    private void askGuiOrCli() {
-
-    }
 
     public void setupOfnickname_UI(String nickname){
         //adding player to client model
@@ -328,11 +312,10 @@ public class ClientController {
                 }
                 break;
         }
-
     }
 
     public void setupOfPlayersNumber() {
-        System.out.println("How many players do you want to play with?");
+        System.out.println("You are the first player, select the number of players of the game");
         Scanner scanner = new Scanner(System.in);
         String number;
         do {

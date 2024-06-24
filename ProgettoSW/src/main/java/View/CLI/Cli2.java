@@ -532,11 +532,20 @@ public class Cli2 implements UI {
     }
 
     private void printAllPlayersPoints() {
-        System.out.println("Your points are: " + clientBoard.getMyplayer().getPoints());
+        System.out.println(getColorFromEnum(clientBoard.getMyplayer().getToken()) + "Your points are: " + reset + clientBoard.getMyplayer().getPoints());
         for (int i = 0; i < clientBoard.getOtherplayers().size(); i++) {
-            System.out.println(clientBoard.getOtherplayers().get(i).getNickname() + " points are: " + clientBoard.getOtherplayers().get(i).getPoints());
+            System.out.println(getColorFromEnum(clientBoard.getOtherplayers().get(i).getToken()) + clientBoard.getOtherplayers().get(i).getNickname() + reset+ " points are: " + clientBoard.getOtherplayers().get(i).getPoints());
         }
 
+    }
+
+   private String getColorFromEnum(TokenEnum token){
+       return switch (token) {
+           case YELLOW -> yellow;
+           case GREEN -> green;
+           case RED -> red;
+           case BLUE -> blue;
+       };
     }
 
     private String getValidNickname() {
@@ -574,16 +583,6 @@ public class Cli2 implements UI {
         this.clientController.setupOfnickname_UI(input);
     }
 
-    @Override
-    public void askPlayerNumber() {
-        Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        Integer input;
-        do {
-            System.out.println("You are the first player to join: insert number of players in your Lobby: ");
-            input = scanner.nextInt();
-        }while (input < 2 || input > 4);
-        this.clientController.setupOfPlayersNumber_CLI(input);
-    }
 
     /**
      * this method asks the player if they want to play the starting card in front or in back
@@ -821,7 +820,9 @@ public class Cli2 implements UI {
 
         Integer choice;
         do {
-            System.out.println("Use numbers to select one of the available tokens: " + availableTokens);
+            for (TokenEnum token : availableTokens) {
+                System.out.println(availableTokens.indexOf(token) + 1 + ". " + getColorFromEnum(token) + token + reset);
+            }
             choice = scanner.nextInt();
         }
         while (choice < 0 || choice > availableTokens.size());

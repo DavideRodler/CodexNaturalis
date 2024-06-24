@@ -74,11 +74,6 @@ public class Gui extends Application implements UI {
     }
 
     @Override
-    public void askPlayerNumber() {
-
-    }
-
-    @Override
     public void askStartingCardPlayedBack() {
         Platform.runLater(() -> stationController.showStartingCard());
     }
