@@ -13,6 +13,7 @@ import model.PlayingStation;
 import model.client.ClientBoard;
 import model.enums.TokenEnum;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
@@ -79,8 +80,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public void askStartingCardPlayedBack() {
-
-
+        Platform.runLater(() -> stationController.showStartingCard());
     }
 
     @Override
@@ -109,21 +109,32 @@ public class Gui extends Application implements UI {
 
     @Override
     public void print4CentralCards() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Station.fxml"));
-        Parent root = null;
-        try{
-            root = loader.load();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        stationController = loader.getController();
-        stationController.setClientController(clientController);
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-        //stationController.show4CentralCards(clientBoard.getCentralCardsGold().get(0), clientBoard.getCentralCardsGold().get(1),clientBoard.getCentralCardsResource().get(0), clientBoard.getCentralCardsResource().get(1));
-        Platform.runLater(() -> stationController.showCentralCardsAndDecks());
+        Platform.runLater(() -> {
+            try {
+                // Carica il file FXML per la nuova scena
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Station.fxml"));
+                Parent root = loader.load();
+
+                // Ottieni il controller per la nuova scena e imposta il ClientController
+                stationController = loader.getController();
+                stationController.setClientController(clientController);
+
+                // Crea la nuova scena
+                Scene scene = new Scene(root);
+
+                // Ottieni lo Stage corrente e imposta la nuova scena
+                Stage currentStage = (Stage) chooseNickAndTokenController.getNicknamePane().getScene().getWindow();
+                currentStage.setScene(scene);
+
+                // Mostra la nuova scena
+                currentStage.show();
+
+                // Aggiorna la visualizzazione delle carte centrali
+                stationController.showCentralCardsAndDecks();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override

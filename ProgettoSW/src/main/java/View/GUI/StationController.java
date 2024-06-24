@@ -141,6 +141,8 @@ public class StationController implements Initializable {
 
     private boolean playedBack;
 
+
+
     //una mappa per salvarmi le carte che ho nella station
     private Map<ImageView, Card> imageToCardPlayingHashMap = new HashMap<>();
 
@@ -159,6 +161,10 @@ public class StationController implements Initializable {
 
     @FXML
     private ImageView startingCard;
+
+    public StationController() {
+        cardLoader = new CardLoader();
+    }
 
 
     /**
@@ -449,8 +455,8 @@ public class StationController implements Initializable {
             //aggiungo alle immagini gli handler -> se immagine premuta viene scelta la carta corrispondente
             // mi tengo mappa (o comunque un riferimento dall'immagine alla carta)
             //mando messaggio al controller (con un thread a parte) che ho scelto la mia carta
-            startingCardBack.setOnMouseClicked(this::handleCardClick);
-            startingCardFront.setOnMouseClicked(this::handleCardClick);
+            chooseCard1.setOnMouseClicked(this::handleCardClick);
+            chooseCard2.setOnMouseClicked(this::handleCardClick);
             imageToCardPlayingHashMap.put(startingCardFront, cardStarting);
             //ho ottenuto l'immagine della carta --> devo metterla nel centro della station
             //questo lo faccio una volta che la carta viene premuta
@@ -639,14 +645,13 @@ public class StationController implements Initializable {
 //        setCardDimensions(testUpLeft);
 //        setCardDimensions(testDownLeft);
 
-//        centralCardsAndDecksPane.setVisible(false);
-//        endTurnButton.setVisible(false);
-//        handPane.setVisible(false);
-//        cardPlacementBox.setVisible(false);
-//        stationPane.setVisible(true);
-            testCardDrawing();
-        testCardStarting();
-        //centerImage(stationPane, startingCardFront);
+          centralCardsAndDecksPane.setVisible(false);
+          endTurnButton.setVisible(false);
+          handPane.setVisible(false);
+          cardPlacementBox.setVisible(false);
+          stationPane.setVisible(false);
+
+//        centerImage(stationPane, startingCardFront);
 //        startingCardFront.setLayoutX(500);
 //        startingCardFront.setLayoutY(375);
 //        stationPane.getChildren().add(startingCardFront);

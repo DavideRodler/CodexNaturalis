@@ -74,6 +74,10 @@ public class ChooseNickAndTokenController implements Initializable{
         return clientController;
     }
 
+    public HBox getNicknamePane() {
+        return nicknamePane;
+    }
+
     @FXML
     public void enterNickname() {
         nick = chooseNickname.getText();
