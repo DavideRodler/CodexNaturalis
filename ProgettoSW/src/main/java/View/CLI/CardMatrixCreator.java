@@ -21,13 +21,12 @@ public class CardMatrixCreator {
     private static final String quill = gold + "Q";
     private static final String manuscript = gold + "M";
     private static final String inkwell = gold + "W";
-    
-    public void createFrontPlayingCard(CardPlaying card){
-    }
-    
-    public void createBackPlayingCard(CardPlaying card){
-    }
 
+    /**
+     * this method creates the front of a resource card
+     * @param card is the card to be created
+     * @return a string matrix representing the card
+     */
     public static String[][] createFrontPlayingCard(CardResource card) {
         String[][] resCard = new String[3][7];
         int rows = resCard.length;
@@ -62,14 +61,24 @@ public class CardMatrixCreator {
         }
         return resCard;
     }
-    
+
+    /**
+     * this method creates the front of a gold card
+     * @param card is the card to be created
+     * @return a string matrix representing the card
+     */
     public static String[][] createFrontPlayingCard(CardGold card){
         String[][] goldCard = createFrontPlayingCard((CardResource) card);
         hasPoints(card, goldCard); //TODO: mettere hasPoints nella create Card Res e mettere tutti gli obiettivi possibili
         hasCost(card, goldCard);
         return goldCard;
     }
-    
+
+    /**
+     * this method creates the front of a starting card
+     * @param card is the card to be created
+     * @return a string matrix representing the card
+     */
     public static String[][] createFrontPlayingCard(CardStarting card) {
         String[][] startingCard = new String[3][7];
         int rows = startingCard.length;
@@ -113,7 +122,12 @@ public class CardMatrixCreator {
         }
         return startingCard;
     }
-    
+
+    /**
+     * this method creates the back of a resource card or gold card
+     * @param card is the card to be created
+     * @return a string matrix representing the card
+     */
     public static String[][] createBackPlayingCard(CardResource card){
         String[][] resCard = new String[3][7];
         int rows = resCard.length;
@@ -147,7 +161,12 @@ public class CardMatrixCreator {
         }
         return resCard;
     }
-    
+
+    /**
+     * this method creates the back of a starting card
+     * @param card is the card to be created
+     * @return a string matrix representing the card
+     */
     public static String[][] createBackPlayingCard(CardStarting card){
         String[][] startingCard = new String[3][7];
         int rows = startingCard.length;
@@ -205,6 +224,11 @@ public class CardMatrixCreator {
         return resCard;
     }
 
+    /**
+     * this method creates the back of the top card of the gold deck
+     * @param suit is the card to be created
+     * @return a string matrix representing the card
+     */
     public static String[][] createBackGoldCardDeck(SuitEnum suit){
         String[][] resCard = createBackResCardDeck(suit);
         resCard[1][3] = gold + "G";
@@ -226,7 +250,12 @@ public class CardMatrixCreator {
     private static boolean isDownRightCorner(int row, int col, int rows, int cols) {
         return (row == rows - 1 && col == cols-1);
     }
-    
+
+    /**
+     * this method gets the color from the suit of the card
+     * @param card is the card to get the color from
+     * @return is the color of the card
+     */
     public static String colorResource(CardResource card) {
         switch (card.getSymbol()) {
             case INSECT -> {
@@ -246,7 +275,12 @@ public class CardMatrixCreator {
             }
         }
     }
-    
+
+    /**
+     * this method gets the resources from a card
+     * @param suit is the suit of the resource
+     * @return the resource
+     */
     public static String cornerScanner(SuitEnum suit) {
         return switch (suit) {
             case ANIMAL -> lightBlue + "A" + reset;
@@ -260,7 +294,12 @@ public class CardMatrixCreator {
             default -> "N";
         };
     }
-    
+
+    /**
+     * this method adds the cost of a card if present
+     * @param card is the card to be checked
+     * @param mat is a matrix representing the card where the cost will be added
+     */
     private static void hasCost(Card card, String[][] mat) {
         String color = colorResource((CardResource) card);
         int costFungi = ((CardGold) card).getCostFungi();
@@ -307,7 +346,12 @@ public class CardMatrixCreator {
         }
         //return mat;
     }
-    
+
+    /**
+     * this method checks
+     * @param card
+     * @param mat
+     */
     public static void hasPoints(CardResource card, String[][] mat) {
         int points = card.getPoints();
         if(points != 0) {

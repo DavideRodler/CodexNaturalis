@@ -86,7 +86,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printSecretObjective() {
-        Platform.runLater(() -> stationController.showStartingCard());
+        Platform.runLater(() -> stationController.showSelectableObjectives());
     }
 
     @Override

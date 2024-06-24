@@ -97,6 +97,7 @@ public class ChooseNickAndTokenController implements Initializable{
         TokenEnum token = chooseToken.getValue();
         label.setText("Waiting for other players...");
         clientController.setupOfToken_CLI(token);
+        tokenPane.setVisible(false);
     }
 
 

@@ -216,21 +216,26 @@ public class StationController implements Initializable {
             System.out.println("Hai selezionato la carta 1");
 
             startingCard.setImage(chooseCard1.getImage());
+            //qua front
+            clientController.setupOfStartingCard_UI(false);
         } else if(selectedCard.equals(chooseCard2)) {
             startingCard.setImage(chooseCard2.getImage());
+            clientController.setupOfStartingCard_UI(true);
+            //qua back
             //invio al controller che ho giocato la carta in bakc
         }
             setCardDimensions(startingCard);
             stationPane.setVisible(true);
+            // 500 e 375 è il centro del pane
             startingCard.setLayoutX(500);
             startingCard.setLayoutY(375);
             startingCard.setOnMouseClicked(this::chooseCardToPlayOn);
             stationPane.getChildren().add(startingCard);
             chooseCard1.setVisible(false);
             chooseCard2.setVisible(false);
+            //tolgo handler
             chooseCard1.setOnMouseClicked(null);
             chooseCard2.setOnMouseClicked(null);
-            testChooseObjective();
 
             //potrei togliere dalla mappa la carta non giocata, ma non saprei come.
         //oppure aggiungo handler solo in starting card.
@@ -246,16 +251,15 @@ public class StationController implements Initializable {
         ImageView secretObjective = new ImageView();
 
         if(selectedCard.equals(chooseCard1)){
-            //mando messaggio che il giocatore ha scelto il primo obiettivo
-            //clientController.messageToServerhandler(new SelectionOfSecretObjMessage(0)); //cosa vuole la position??
+            clientController.setupOfSecretObjective_UI(1);
             secretObjective.setImage(chooseCard1.getImage());
             //setCardDimensions(secretObjective);
             secretObjectiveInHand.setImage(secretObjective.getImage());
         } else{
             secretObjective.setImage(chooseCard2.getImage());
+            clientController.setupOfSecretObjective_UI(2);
             //setCardDimensions(secretObjective);
             secretObjectiveInHand.setImage(secretObjective.getImage());
-            //clientController.messageToServerhandler(new SelectionOfSecretObjMessage(1));
         }
         //tolgo la carta dalla mappa
         //secretObjectiveInHand.setImage(selectedCard.getImage());
@@ -455,8 +459,8 @@ public class StationController implements Initializable {
             //aggiungo alle immagini gli handler -> se immagine premuta viene scelta la carta corrispondente
             // mi tengo mappa (o comunque un riferimento dall'immagine alla carta)
             //mando messaggio al controller (con un thread a parte) che ho scelto la mia carta
-            chooseCard1.setOnMouseClicked(this::handleCardClick);
-            chooseCard2.setOnMouseClicked(this::handleCardClick);
+            chooseCard1.setOnMouseClicked(this::chooseStartingCard);
+            chooseCard2.setOnMouseClicked(this::chooseStartingCard);
             imageToCardPlayingHashMap.put(startingCardFront, cardStarting);
             //ho ottenuto l'immagine della carta --> devo metterla nel centro della station
             //questo lo faccio una volta che la carta viene premuta
@@ -479,11 +483,18 @@ public class StationController implements Initializable {
     public void showSelectableObjectives(){
             CardObjective selectableObj1 = clientController.getClientModel().getMyplayer().getSelectibleObjectives().getFirst();
             CardObjective selectableObj2 = clientController.getClientModel().getMyplayer().getSelectibleObjectives().getLast();
+            CardObjective commonObj1 = clientController.getClientModel().getFirstObjective();
+            CardObjective commonObj2 = clientController.getClientModel().getSecondObjective();
 
+            commonObjectiveImage1.setImage(cardLoader.getFront(commonObj1.getId()));
+            commonObjectiveImage2.setImage(cardLoader.getFront(commonObj2.getId()));
+            //deckObjectivesImage.setImage(cardLoader.)
+            //TODO aggiungere metodo per ottenere back di una carta obiettivo
             chooseCard1.setImage(cardLoader.getFront(selectableObj1.getId()));
             chooseCard2.setImage(cardLoader.getFront(selectableObj2.getId()));
             //dovrei avere un qualcosa del tipo:
             chooseCard1.setOnMouseClicked(this::objectiveChosen);
+            chooseCard2.setOnMouseClicked(this::objectiveChosen);
     }
 
 
@@ -495,6 +506,7 @@ public class StationController implements Initializable {
             CardResource centralResourceCard2 = clientController.getClientModel().getCentralCardsResource().getLast();
             CardGold centralGoldCard1 = clientController.getClientModel().getCentralCardsGold().getFirst();
             CardGold centralGoldCard2 = clientController.getClientModel().getCentralCardsGold().getLast();
+            centralCardsAndDecksPane.setVisible(false);
 
             centralResourceImage1.setImage(cardLoader.getFront(centralResourceCard1.getId(), centralResourceCard1.getSymbol()));
             centralResourceImage2.setImage(cardLoader.getFront(centralResourceCard2.getId(), centralResourceCard2.getSymbol()));
@@ -650,6 +662,7 @@ public class StationController implements Initializable {
           handPane.setVisible(false);
           cardPlacementBox.setVisible(false);
           stationPane.setVisible(false);
+          menuPane.setVisible(false);
 
 //        centerImage(stationPane, startingCardFront);
 //        startingCardFront.setLayoutX(500);

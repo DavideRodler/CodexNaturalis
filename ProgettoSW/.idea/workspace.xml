@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="CAntiere GUI">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/background.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/background.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/CardMatrixCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/CardMatrixCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
@@ -49,12 +52,12 @@
     &quot;assignee&quot;: &quot;tommypic&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler.git",
-    "accountId": "ad3a3da8-fb67-4a71-8fdd-a0d917853f52"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler.git&quot;,
+    &quot;accountId&quot;: &quot;ad3a3da8-fb67-4a71-8fdd-a0d917853f52&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -183,6 +186,9 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/css" />
+    </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="controller" />
     </key>
@@ -197,7 +203,7 @@
       <recent name="Socket.Messages.queqe" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientApp">
+  <component name="RunManager" selected="Application.ServerApp">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
       <module name="ProgettoSW" />
@@ -840,29 +846,6 @@
           <url>file://$PROJECT_DIR$/src/test/java/model/PlayerTest.java</url>
           <line>214</line>
           <option name="timeStamp" value="346" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/GUI/Gui.java</url>
-          <line>190</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="379" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java</url>
-          <line>105</line>
-          <option name="timeStamp" value="380" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java</url>
-          <line>387</line>
-          <option name="timeStamp" value="381" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="383" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/main/java/model/enums/DeckEnum.java</url>
