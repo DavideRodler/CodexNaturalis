@@ -15,14 +15,15 @@ import model.enums.TokenEnum;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Scanner;
 
 import static javafx.application.Application.launch;
 
 public class Gui extends Application implements UI {
 
-    private StartSceneController startSceneController;
-    private StationController stationController;
-    private ChooseNickAndTokenController chooseNickAndTokenController;
+    private static StartSceneController startSceneController;
+    private static StationController stationController;
+    private static ChooseNickAndTokenController chooseNickAndTokenController;
     private static ClientController clientController;
 
     private ScoreBoardController scoreBoardController;
@@ -31,28 +32,21 @@ public class Gui extends Application implements UI {
         return clientController;
     }
 
-    public void setClientController(ClientController clientController) {
-        this.clientController = clientController;
-        this.startSceneController = new StartSceneController();
-        this.stationController = new StationController();
-        this.chooseNickAndTokenController = new ChooseNickAndTokenController();
-        this.scoreBoardController = new ScoreBoardController();
-    }
 
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChooseNicknameAndToken.fxml"));
         Parent root = loader.load();
         chooseNickAndTokenController = loader.getController();
-        chooseNickAndTokenController.setClientController(getClientController());
+        chooseNickAndTokenController.setClientController(clientController);
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Codex");
         stage.show();
     }
 
-    public void launchGui(ClientController clientController){
-        setClientController(clientController);
+    public void launchGui(ClientController ClientController){
+        clientController = ClientController;
         launch();
     }
 
@@ -86,6 +80,7 @@ public class Gui extends Application implements UI {
     @Override
     public void askStartingCardPlayedBack() {
 
+
     }
 
     @Override
@@ -114,6 +109,19 @@ public class Gui extends Application implements UI {
 
     @Override
     public void print4CentralCards() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Station.fxml"));
+        Parent root = null;
+        try{
+            root = loader.load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        stationController = loader.getController();
+        stationController.setClientController(clientController);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
         //stationController.show4CentralCards(clientBoard.getCentralCardsGold().get(0), clientBoard.getCentralCardsGold().get(1),clientBoard.getCentralCardsResource().get(0), clientBoard.getCentralCardsResource().get(1));
         Platform.runLater(() -> stationController.showCentralCardsAndDecks());
     }

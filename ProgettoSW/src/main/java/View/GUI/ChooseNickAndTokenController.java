@@ -61,7 +61,7 @@ public class ChooseNickAndTokenController implements Initializable{
     @FXML
     private HBox tokenPane;
 
-    private ClientController clientController;
+    private static ClientController clientController;
 
     public ChooseNickAndTokenController() {
     }
@@ -83,9 +83,8 @@ public class ChooseNickAndTokenController implements Initializable{
     @FXML
     public void enterToken() { //TODO: gestire il fatto che un token potrebbe essere stato scelto da un altro giocatore
         TokenEnum token = chooseToken.getValue();
-        //clientController.messageToServerhandler(new TokenMessage(clientController.getClientModel().getMyplayer().getNickname(), token));
         label.setText("Waiting for other players...");
-        //cambio di scena quanto tutti i players sono connessi --> dall'esterno
+        clientController.setupOfToken_CLI(token);
     }
 
 
