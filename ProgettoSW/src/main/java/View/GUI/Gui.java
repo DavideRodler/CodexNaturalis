@@ -87,7 +87,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printSecretObjective() {
-        Platform.runLater(() -> stationController.showSelectableObjectives());
+        //Platform.runLater(() -> stationController.showSelectableObjectives());
     }
 //TODO: questo da togliere da UI --> solo della cli
     @Override

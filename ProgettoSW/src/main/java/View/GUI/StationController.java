@@ -623,87 +623,9 @@ public class StationController implements Initializable {
         endTurnButton.setOnMouseClicked(this::endTurn);
     }
 
-
-
-    public void testCardStarting(){
-        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
-        Face frontTmp2 = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
-        ArrayList<SuitEnum> suitList = new ArrayList<SuitEnum>();
-        suitList.add(SuitEnum.ANIMAL);
-        suitList.add(SuitEnum.PLANT);
-        suitList.add(SuitEnum.INSECT);
-        CardStarting cardStarting = new CardStarting(86, frontTmp2, backTmp, suitList);
-        //creo le nuove immagini
-        CardLoader cardLoader1 = new CardLoader();
-        ImageView startingCardFront = new ImageView();
-        ImageView startingCardBack = new ImageView();
-        //load del front e back
-        startingCardFront.setImage(cardLoader1.getFront(cardStarting.getId()));
-        startingCardBack.setImage(cardLoader1.getBack(cardStarting.getId()));
-        //setto il front e il back della carta iniziale nelle posizioni da cui scegliere
-        chooseCard1.setImage(startingCardFront.getImage());
-        chooseCard2.setImage(startingCardBack.getImage());
-        chooseCard1.setVisible(true);
-        chooseCard2.setVisible(true);
-        imageToCardPlayingHashMap.put(startingCardFront, cardStarting);
-        imageToCardPlayingHashMap.put(startingCardBack, cardStarting);
-        // mi tengo mappa (o comunque un riferimento dall'immagine alla carta)
-        //mando messaggio al controller (con un thread a parte) che ho scelto la mia carta
-        cardsInStationMap.put(startingCardFront, cardStarting);
-        cardsInStationMap.put(startingCardBack, cardStarting);
-        //aggiungo alle immagini gli handler -> se immagine premuta viene scelta la carta corrispondente
-        chooseCard1.setOnMouseClicked(this::chooseStartingCard);
-        chooseCard2.setOnMouseClicked(this::chooseStartingCard);
-//        startingCardBack.setOnMouseClicked(this::handleCardClick);
-//        startingCardFront.setOnMouseClicked(this::handleCardClick);
-        imageToCardPlayingHashMap.put(startingCardFront, cardStarting);
-    }
-
-    public void testChooseObjective(){
-        ImageView obj1 = new ImageView();
-        ImageView obj2 = new ImageView();
-        CardLoader cardLoader1 = new CardLoader();
-        obj1.setImage(cardLoader1.getFront(87));
-        obj2.setImage(cardLoader1.getFront(88));
-        chooseCard1.setOnMouseClicked(this::objectiveChosen);
-        chooseCard2.setOnMouseClicked(this::objectiveChosen);
-        chooseCard1.setVisible(true);
-        chooseCard2.setVisible(true);
-        chooseCard1.setImage(obj1.getImage());
-        chooseCard2.setImage(obj2.getImage());
-        instructionsLabel.setText("Choose your secret objective");
-
-    }
-
-    public void testChooseAndPlayFromHand(){
-        CardLoader cl = new CardLoader();
-        firstCardInHand.setImage(cl.getFront(1));
-        secondCardInHand.setImage(cl.getFront(7));
-        thirdCardInHand.setImage(cl.getFront(62));
-        //Aggiungo immagini alla mappa--> così riesco a ottenere la carta dall'immagine --> se viene scelta
-        // posso estrarre il back della carta.
-        //playableCardsHashMap.put()
-        firstCardInHand.setOnMouseClicked(this::cardInHandChosen);
-        secondCardInHand.setOnMouseClicked(this::cardInHandChosen);
-        thirdCardInHand.setOnMouseClicked(this::cardInHandChosen);
-        instructionsLabel.setText("Choose a card to play from your hand");
-    }
-
-    public void testCardDrawing(){
-        CardLoader cl = new CardLoader();
-        deckGoldImage.setImage(cl.getTopDeckGold(SuitEnum.ANIMAL));
-        deckResourceImage.setImage(cl.getTopDeckResource(SuitEnum.FUNGI));
-        centralResourceImage1.setImage(cl.getFront(28));
-        centralResourceImage2.setImage(cl.getFront(27));
-        centralGoldImage1.setImage(cl.getFront(44));
-        centralGoldImage2.setImage(cl.getFront(69));
-    }
-
-    //metodo da chiamare ogni volta che si crea una carta
-
     /**
-     * this method sets the dimension of the imageView representing the card.
-     * @param card
+     * this method sets the dimension of the imageView representing a card.
+     * @param card the image of the card
      */
     private void setCardDimensions(ImageView card){
         card.setFitHeight(65);
@@ -762,7 +684,7 @@ public class StationController implements Initializable {
     //TODO quando si usa usare il getImage
     private Image getBackFromImage(ImageView front){
         CardResource card = imageToCardMap.get(front);
-        return cardLoader.getBack(card.getId(), card.getSymbol());
+        return cardLoader.getBack(card.getId());
 
     }
 }
