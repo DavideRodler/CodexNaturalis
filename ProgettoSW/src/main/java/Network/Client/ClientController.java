@@ -105,9 +105,9 @@ public class ClientController {
     /**
      * this method is used to ask the player which card he wants to draw
      */
-    public void playCardOnPlayngStation_UI(Integer[] answer , int cardId) {
+    public void playCardOnPlayngStation_UI(boolean playedbakck, int x, int y, int cardId) {
 
-        clientToServerCommunication.addCardToStation(clientModel.getMyplayer().getNickname(), cardId, answer[1] == 2, answer[2], answer[3]);    //try to add the card to local model
+        clientToServerCommunication.addCardToStation(clientModel.getMyplayer().getNickname(), cardId, playedbakck, x, y);    //try to add the card to local model
     }
 
     public void handleResultOfCardAdded(boolean result, String message) {

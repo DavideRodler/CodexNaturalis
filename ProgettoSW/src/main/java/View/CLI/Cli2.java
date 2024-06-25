@@ -232,10 +232,7 @@ public class Cli2 implements UI {
                         if(clientBoard.getGameState() == GameState.PLACING_CARD) {
                             this.printPlayerStation(clientBoard.getMyplayer().getStation());
                             this.printPlayerHand();
-                            Integer[] answer = this.askCoordinatesOfCards();
-                            CardResource cardchoosen = this.clientBoard.getMyplayer().getHand().get(answer[0]);
-                            int cardId = cardchoosen.getId();
-                            this.clientController.playCardOnPlayngStation_UI(answer, cardId);
+                            askCoordinatesOfCards();
                             try {
                                 menulock.wait();
                             } catch (InterruptedException e) {
@@ -584,14 +581,13 @@ public class Cli2 implements UI {
      * this method asks where the player which card he would like to play, if he wants to play it in front or in back and also where.
      * @return an array containing the choices of the player.
      */
-    private Integer[] askCoordinatesOfCards() {
+    private void askCoordinatesOfCards() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int cardChoice;
         do {
             System.out.println("Which card do you want to place? Insert the number of the card (1-3)");
             cardChoice = scanner.nextInt() -1;
         } while (cardChoice < 0 || cardChoice > 2);
-
         int cardSide;
         do {
             System.out.println("front (1) or back (2)");
@@ -603,8 +599,7 @@ public class Cli2 implements UI {
         int x = scanner.nextInt();
         System.out.println("Choose y coordinates");
         int y = scanner.nextInt();
-        Integer[] Choice = {cardChoice, cardSide, x, y};
-        return Choice;
+        clientController.playCardOnPlayngStation_UI(cardSide == 2,x,y,clientBoard.getMyplayer().getHand().get(cardChoice).getId());
     }
 
 
