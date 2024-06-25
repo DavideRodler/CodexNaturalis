@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="avanti con GUI">
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/CardLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/CardLoader.java" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="aggiunto metodo back obiettivi + background">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -325,14 +327,6 @@
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
       <workItem from="1719261691920" duration="2232000" />
-    </task>
-    <task id="LOCAL-00020" summary="Aggiunta metodi e test per piazzare nuove carte sulla board">
-      <option name="closed" value="true" />
-      <created>1711819687498</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1711819687500</updated>
     </task>
     <task id="LOCAL-00021" summary="Introduzione a CLI+Observer">
       <option name="closed" value="true" />
@@ -718,7 +712,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719271220492</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="aggiunto metodo back obiettivi + background">
+      <option name="closed" value="true" />
+      <created>1719322108245</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1719322108246</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -798,7 +800,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Correzione Test Objective" />
     <MESSAGE value="gitingnore e cambio delle exception nella addcard" />
     <MESSAGE value="Tutta fase di setup funzionante e con Cli(da rivedere)" />
     <MESSAGE value="Test Model" />
@@ -823,7 +824,8 @@
     <MESSAGE value="modifica server per client connected" />
     <MESSAGE value="CAntiere GUI" />
     <MESSAGE value="avanti con GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="avanti con GUI" />
+    <MESSAGE value="aggiunto metodo back obiettivi + background" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiunto metodo back obiettivi + background" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

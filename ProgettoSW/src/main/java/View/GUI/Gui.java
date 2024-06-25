@@ -43,6 +43,7 @@ public class Gui extends Application implements UI {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Codex");
+        scene.getStylesheets().add(getClass().getResource("/css/background.css").toExternalForm());
         stage.show();
     }
 
@@ -60,12 +61,12 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printIsNotMyTurnMenu() {
-
+        Platform.runLater(() -> stationController.notMyTurn());
     }
 
     @Override
     public void printIsMyTurnMenu() {
-
+        Platform.runLater(() -> stationController.startTurn());
     }
 
     @Override
@@ -88,18 +89,18 @@ public class Gui extends Application implements UI {
     public void printSecretObjective() {
         Platform.runLater(() -> stationController.showSelectableObjectives());
     }
-
+//TODO: questo da togliere da UI --> solo della cli
     @Override
     public void printSelectableObjectives() {
         //stationController.showSelectableObjectives(clientBoard.getMyplayer().getSelectibleObjectives().get(0), clientBoard.getMyplayer().getSelectibleObjectives().get(1));
-        Platform.runLater(() -> stationController.showSelectableObjectives());
+
     }
 
 
 
     @Override
     public void askObjectiveCard() {
-
+        Platform.runLater(() -> stationController.showSelectableObjectives());
     }
 
     @Override

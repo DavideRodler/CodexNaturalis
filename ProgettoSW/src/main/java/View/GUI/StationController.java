@@ -7,12 +7,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.scene.image.*;
 import model.Player;
 import model.PlayingStation;
 import model.cards.*;
@@ -54,6 +54,27 @@ public class StationController implements Initializable {
     private ImageView centralGoldImage1;
 
     @FXML
+    private VBox chatBox;
+
+    @FXML
+    private Button chatButton;
+
+    @FXML
+    private HBox chatChoiceBox;
+
+    @FXML
+    private ScrollPane chatPane;
+
+    @FXML
+    private Button chatSendTextButton;
+
+    @FXML
+    private TextArea chatTextArea;
+
+    @FXML
+    private TextField chatTextField;
+
+    @FXML
     private ImageView commonObjectiveImage1;
 
     @FXML
@@ -67,9 +88,6 @@ public class StationController implements Initializable {
 
     @FXML
     private ImageView deckResourceImage;
-
-    @FXML
-    private Button chatButton;
 
     @FXML
     private ImageView chooseCard1;
@@ -117,6 +135,16 @@ public class StationController implements Initializable {
     private Button player3StationButton;
 
     @FXML
+    private Button privateChatButton;
+
+    @FXML
+    private ChoiceBox<?> privateChatChoice;
+
+    @FXML
+    private Button publicChatButton;
+
+
+    @FXML
     private Button scoreboardButton;
 
     @FXML
@@ -139,8 +167,7 @@ public class StationController implements Initializable {
 
     private ImageView cardToPlayOn;
 
-    private boolean playedBack;
-
+    private Map<ImageView, CardResource> imageToCardMap= new HashMap<>();
 
 
     //una mappa per salvarmi le carte che ho nella station
@@ -253,7 +280,6 @@ public class StationController implements Initializable {
         if(selectedCard.equals(chooseCard1)){
             clientController.setupOfSecretObjective_UI(1);
             secretObjective.setImage(chooseCard1.getImage());
-            //setCardDimensions(secretObjective);
             secretObjectiveInHand.setImage(secretObjective.getImage());
         } else{
             secretObjective.setImage(chooseCard2.getImage());
@@ -263,17 +289,19 @@ public class StationController implements Initializable {
         }
         //tolgo la carta dalla mappa
         //secretObjectiveInHand.setImage(selectedCard.getImage());
+        handPane.setVisible(true);
         chooseCard1.setImage(null);
         chooseCard2.setImage(null);
         chooseCard1.setOnMouseClicked(null);
         chooseCard2.setOnMouseClicked(null);
-        testChooseAndPlayFromHand();
+        //testChooseAndPlayFromHand();
     }
 
     void cardInHandChosen(MouseEvent event){
         ImageView selectedCard = (ImageView) event.getSource();
         ImageView cardChosen = new ImageView();
         CardLoader cL1 = new CardLoader();
+        Image back = getBackFromImage(selectedCard);
         //TODO: possibile controllo che posso effettivamente scegliere la carta con la mappa:
         // a inizio turno popolo la mappa con le carte che ho in mano, a fine turno la svuoto
         // in questo modo non posso "usare" una carta se non è il mio turno.
@@ -433,7 +461,25 @@ public class StationController implements Initializable {
     }
 
     private void endTurn(MouseEvent event){
-        //finire il turno
+        instructionsLabel.setText("You ended your turn!");
+        clientController.imReadyForNextTurn();
+    }
+
+    private void openChat(MouseEvent event) {
+        chatButton.setOnMouseClicked(null);
+        chatBox.setVisible(true);
+        chatButton.setOnMouseClicked(this::closeChat);
+        chatSendTextButton.setVisible(true);
+        chatTextField.setVisible(true);
+
+    }
+
+    private void closeChat(MouseEvent event) {
+        chatButton.setOnMouseClicked(null);
+        chatBox.setVisible(false);
+        chatButton.setOnMouseClicked(this::openChat);
+        chatSendTextButton.setVisible(false);
+        chatTextField.setVisible(false);
     }
 
     //TODO:
@@ -486,15 +532,21 @@ public class StationController implements Initializable {
             CardObjective commonObj1 = clientController.getClientModel().getFirstObjective();
             CardObjective commonObj2 = clientController.getClientModel().getSecondObjective();
 
+            instructionsLabel.setText("Choose your secret objective");
+            centralCardsAndDecksPane.setVisible(true);
+
             commonObjectiveImage1.setImage(cardLoader.getFront(commonObj1.getId()));
             commonObjectiveImage2.setImage(cardLoader.getFront(commonObj2.getId()));
-            //deckObjectivesImage.setImage(cardLoader.)
-            //TODO aggiungere metodo per ottenere back di una carta obiettivo
+            deckObjectivesImage.setImage(cardLoader.getTopDeckObjectives());
             chooseCard1.setImage(cardLoader.getFront(selectableObj1.getId()));
             chooseCard2.setImage(cardLoader.getFront(selectableObj2.getId()));
-            //dovrei avere un qualcosa del tipo:
+
             chooseCard1.setOnMouseClicked(this::objectiveChosen);
             chooseCard2.setOnMouseClicked(this::objectiveChosen);
+            chooseCard1.setVisible(true);
+            chooseCard2.setVisible(true);
+
+            showPlayerHand();
     }
 
 
@@ -506,7 +558,7 @@ public class StationController implements Initializable {
             CardResource centralResourceCard2 = clientController.getClientModel().getCentralCardsResource().getLast();
             CardGold centralGoldCard1 = clientController.getClientModel().getCentralCardsGold().getFirst();
             CardGold centralGoldCard2 = clientController.getClientModel().getCentralCardsGold().getLast();
-            centralCardsAndDecksPane.setVisible(false);
+            centralCardsAndDecksPane.setVisible(true);
 
             centralResourceImage1.setImage(cardLoader.getFront(centralResourceCard1.getId()));
             centralResourceImage2.setImage(cardLoader.getFront(centralResourceCard2.getId()));
@@ -514,6 +566,7 @@ public class StationController implements Initializable {
             centralGoldImage2.setImage(cardLoader.getFront(centralGoldCard2.getId()));
             deckGoldImage.setImage(cardLoader.getTopDeckGold(clientController.getClientModel().getBackOfGoldDeck()));
             deckResourceImage.setImage(cardLoader.getTopDeckResource(clientController.getClientModel().getBackOfResourceDeck()));
+            showPlayerHand();
 
             //qua si deve usare il chooseCardToDrawClicked
         }
@@ -532,14 +585,44 @@ public class StationController implements Initializable {
             thirdCardInHand.setImage(cardLoader.getFront(cardInHand3.getId()));
             if(secretObjective!= null) {
                 secretObjectiveInHand.setImage(cardLoader.getFront(secretObjective.getId()));
-
             }
 
-            firstCardInHand.setOnMouseClicked(this::chooseCardToPlayCLicked);
-            secondCardInHand.setOnMouseClicked(this::chooseCardToPlayCLicked);
-            thirdCardInHand.setOnMouseClicked(this::chooseCardToPlayCLicked);
+            imageToCardMap.put(firstCardInHand, cardInHand1);
+            imageToCardMap.put(secondCardInHand, cardInHand2);
+            imageToCardMap.put(thirdCardInHand, cardInHand3);
 
+
+        //TODO --> questi in realtà devo aspettare a metterli --> solo quando è turno del giocatore
+
+//            firstCardInHand.setOnMouseClicked(this::chooseCardToPlayCLicked);
+//            secondCardInHand.setOnMouseClicked(this::chooseCardToPlayCLicked);
+//            thirdCardInHand.setOnMouseClicked(this::chooseCardToPlayCLicked);
+
+    }
+
+    public void startTurn(){
+        instructionsLabel.setText("It's your turn! Choose a card to play from your hand!");
+        chatButton.setOnMouseClicked(this::openChat);
+        menuPane.setVisible(true);
+        if(firstCardInHand != null){
+            firstCardInHand.setOnMouseClicked(this::cardInHandChosen);
         }
+        if(secondCardInHand != null){
+            secondCardInHand.setOnMouseClicked(this::cardInHandChosen);
+        }
+        if(thirdCardInHand != null){
+            thirdCardInHand.setOnMouseClicked(this::cardInHandChosen);
+        }
+
+        //TODO: ricordare di togliere gli handler appena non più necessari
+    }
+
+    public void notMyTurn(){
+        instructionsLabel.setText("It's not your turn. Wait for your turn");
+        menuPane.setVisible(true);
+        endTurnButton.setOnMouseClicked(this::endTurn);
+    }
+
 
 
     public void testCardStarting(){
@@ -629,62 +712,20 @@ public class StationController implements Initializable {
 
 
 //TODO: una volta che una carta viene giocata, toglierla dalla mappa! non deve più essere selezionabile e girata.
-        @Override
-        public void initialize(URL url, ResourceBundle resourceBundle) {
-//        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
-//        Face frontTmp2 = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.FUNGI));
-//        ArrayList<SuitEnum> suitList = new ArrayList<SuitEnum>();
-//        suitList.add(SuitEnum.ANIMAL);
-//        suitList.add(SuitEnum.PLANT);
-//        suitList.add(SuitEnum.INSECT);
-//        Points obj = new ObjectiveAssign();
-//        CardStarting cardStarting = new CardStarting(84, frontTmp2, backTmp, suitList);
-//        CardResource cardResource = new CardResource(21, frontTmp2, backTmp, SuitEnum.ANIMAL, 1, obj);
-//        CardLoader cardLoader1 = new CardLoader();
-//        ImageView startingCardFront = new ImageView();
-//        ImageView testDownRight = new ImageView();
-//        ImageView testUpRight = new ImageView();
-//        ImageView testUpLeft = new ImageView();
-//        ImageView testDownLeft = new ImageView();
-//        startingCardFront.setImage(cardLoader1.getFront(cardStarting.getId()));
-//        testDownRight.setImage(cardLoader1.getFront(cardResource.getId(), SuitEnum.ANIMAL));
-//        testUpRight.setImage(cardLoader1.getFront(cardResource.getId(), SuitEnum.ANIMAL));
-//        testUpLeft.setImage(cardLoader1.getFront(cardResource.getId(), SuitEnum.ANIMAL));
-//        testDownLeft.setImage(cardLoader1.getFront(cardResource.getId(), SuitEnum.ANIMAL));
-//        setCardDimensions(startingCardFront);
-//        setCardDimensions(testDownRight);
-//        setCardDimensions(testUpRight);
-//        setCardDimensions(testUpLeft);
-//        setCardDimensions(testDownLeft);
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
           centralCardsAndDecksPane.setVisible(false);
-          endTurnButton.setVisible(false);
           handPane.setVisible(false);
           cardPlacementBox.setVisible(false);
           stationPane.setVisible(false);
           menuPane.setVisible(false);
-
-//        centerImage(stationPane, startingCardFront);
-//        startingCardFront.setLayoutX(500);
-//        startingCardFront.setLayoutY(375);
-//        stationPane.getChildren().add(startingCardFront);
-//        double x = startingCardFront.getLayoutX();
-//        double y = startingCardFront.getLayoutY();
-//        testDownRight.setLayoutX(x+85);
-//        testDownRight.setLayoutY(y+40);
-//        stationPane.getChildren().add(testDownRight);
-//        testUpRight.setLayoutX(x+85);
-//        testUpRight.setLayoutY(y-40);
-//        stationPane.getChildren().add(testUpRight);
-//        testUpLeft.setLayoutX(x-85);
-//        testUpLeft.setLayoutY(y-40);
-//        stationPane.getChildren().add(testUpLeft);
-//        testDownLeft.setLayoutX(x-85);
-//        testDownLeft.setLayoutY(y+40);
-//        stationPane.getChildren().add(testDownLeft);
-        instructionsLabel.setText("Choose the side of your starting card starting card");
-        scoreboardButton.setOnMouseClicked(this::switchToScoreBoard);
-        }
+          //queste tre vanno sempre insieme
+          chatBox.setVisible(false);
+          chatSendTextButton.setVisible(false);
+          chatTextField.setVisible(false);
+          instructionsLabel.setText("Choose the side of your starting card starting card");
+          scoreboardButton.setOnMouseClicked(this::switchToScoreBoard);
+    }
 
     public void switchToScoreBoard(MouseEvent mouseEvent) {
         try {
@@ -714,5 +755,14 @@ public class StationController implements Initializable {
 
     public void setClientController(ClientController clientController) {
         this.clientController = clientController;
+    }
+
+    //mi faccio metodo che prende da mappa una immagine e restituisce la carta corrispondente in back.
+    //lo faccio per poter ottenre il back di una carta data l'immagine
+    //TODO quando si usa usare il getImage
+    private Image getBackFromImage(ImageView front){
+        CardResource card = imageToCardMap.get(front);
+        return cardLoader.getBack(card.getId(), card.getSymbol());
+
     }
 }
