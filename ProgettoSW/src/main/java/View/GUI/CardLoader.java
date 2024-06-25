@@ -51,7 +51,7 @@ public class CardLoader {
             stream = this.getClass().getClassLoader().getResourceAsStream("objective_back.png");
         }
         else{
-            System.out.println("Erroreeeee");
+            System.out.println("Erroreeeee back");
         }
         assert stream != null;
         return new Image(stream);
@@ -91,7 +91,7 @@ public class CardLoader {
             stream = this.getClass().getClassLoader().getResourceAsStream(id + "_objective_front.png");
         }
         else{
-            System.out.println("Erroreeeee");
+            System.out.println("Erroreeeee front");
         }
         assert stream != null;
         return new Image(stream);

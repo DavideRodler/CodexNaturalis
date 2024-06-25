@@ -24,7 +24,6 @@
             <Button fx:id="player1StationButton" mnemonicParsing="false" prefWidth="120.0" text="player1station" />
             <Button fx:id="player2StationButton" mnemonicParsing="false" prefWidth="120.0" text="player2Station" />
             <Button fx:id="player3StationButton" mnemonicParsing="false" prefWidth="120.0" text="player3Station" />
-            <Button fx:id="endTurnButton" mnemonicParsing="false" prefWidth="120.0" text="end turn" />
          </children>
       </VBox>
       <FlowPane fx:id="centralCardsAndDecksPane" alignment="CENTER" hgap="10.0" layoutX="-3.0" layoutY="7.0" prefHeight="265.0" prefWidth="380.0" vgap="10.0">
