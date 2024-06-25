@@ -80,4 +80,9 @@ public class CardLoader {
         assert stream != null;
         return new Image(stream);
     }
+
+    public Image getTopDeckObjectives(){
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream("objective_back.png");
+        return new Image(stream);
+    }
 }

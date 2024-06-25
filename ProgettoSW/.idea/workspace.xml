@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="CAntiere GUI">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/background.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/background.jpg" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="avanti con GUI">
+      <change afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseCommunicationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/ChooseCommunication.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/CardMatrixCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/CardMatrixCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ChooseNickAndTokenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/CardLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/CardLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/css/background.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/background.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/ChooseNicknameAndToken.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/ChooseNicknameAndToken.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +25,8 @@
       <list>
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
-        <option value="FxmlFile" />
         <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -330,14 +332,6 @@
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
       <workItem from="1719261691920" duration="2232000" />
-    </task>
-    <task id="LOCAL-00019" summary="Cambio schema per i test, aggiunto 2 tame plate per ObjectivePositioning">
-      <option name="closed" value="true" />
-      <created>1711664037867</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1711664037867</updated>
     </task>
     <task id="LOCAL-00020" summary="Aggiunta metodi e test per piazzare nuove carte sulla board">
       <option name="closed" value="true" />
@@ -723,7 +717,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719261833321</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="avanti con GUI">
+      <option name="closed" value="true" />
+      <created>1719271220490</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1719271220492</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -803,7 +805,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="CardStarting funzionanti con observer, il GameController non passa piu' da uno stato all'altro in modo automatico" />
     <MESSAGE value="Correzione Test Objective" />
     <MESSAGE value="gitingnore e cambio delle exception nella addcard" />
     <MESSAGE value="Tutta fase di setup funzionante e con Cli(da rivedere)" />
@@ -828,7 +829,8 @@
     <MESSAGE value="queue su client e server con messaggi" />
     <MESSAGE value="modifica server per client connected" />
     <MESSAGE value="CAntiere GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="CAntiere GUI" />
+    <MESSAGE value="avanti con GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="avanti con GUI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
