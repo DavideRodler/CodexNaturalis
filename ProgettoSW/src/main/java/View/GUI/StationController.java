@@ -285,19 +285,19 @@ public class StationController implements Initializable {
 
         if(selectedCard.equals(firstCardInHand)){
             chooseCard1.setImage(firstCardInHand.getImage());
-            chooseCard2.setImage(cL1.getBack(1, SuitEnum.FUNGI));
+            chooseCard2.setImage(cL1.getBack(1));
             cardChosen.setImage(firstCardInHand.getImage());
             cardToBeReplaces = selectedCard;
             System.out.println("Scelta la prima");
         } else if(selectedCard.equals(secondCardInHand)) {
             chooseCard1.setImage(secondCardInHand.getImage());
-            chooseCard2.setImage(cL1.getBack(7, SuitEnum.FUNGI));
+            chooseCard2.setImage(cL1.getBack(7));
             cardChosen.setImage(secondCardInHand.getImage());
             cardToBeReplaces = selectedCard;
             System.out.println("Scelta la seconda");
         } else if(selectedCard.equals(thirdCardInHand)) {
             chooseCard1.setImage(thirdCardInHand.getImage());
-            chooseCard2.setImage(cL1.getBack(62, SuitEnum.ANIMAL));
+            chooseCard2.setImage(cL1.getBack(62));
             cardToBeReplaces = selectedCard;
             cardChosen.setImage(thirdCardInHand.getImage());
             System.out.println("Scelta la terza");
@@ -508,10 +508,10 @@ public class StationController implements Initializable {
             CardGold centralGoldCard2 = clientController.getClientModel().getCentralCardsGold().getLast();
             centralCardsAndDecksPane.setVisible(false);
 
-            centralResourceImage1.setImage(cardLoader.getFront(centralResourceCard1.getId(), centralResourceCard1.getSymbol()));
-            centralResourceImage2.setImage(cardLoader.getFront(centralResourceCard2.getId(), centralResourceCard2.getSymbol()));
-            centralGoldImage1.setImage(cardLoader.getFront(centralGoldCard1.getId(), centralGoldCard1.getSymbol()));
-            centralGoldImage2.setImage(cardLoader.getFront(centralGoldCard2.getId(), centralGoldCard2.getSymbol()));
+            centralResourceImage1.setImage(cardLoader.getFront(centralResourceCard1.getId()));
+            centralResourceImage2.setImage(cardLoader.getFront(centralResourceCard2.getId()));
+            centralGoldImage1.setImage(cardLoader.getFront(centralGoldCard1.getId()));
+            centralGoldImage2.setImage(cardLoader.getFront(centralGoldCard2.getId()));
             deckGoldImage.setImage(cardLoader.getTopDeckGold(clientController.getClientModel().getBackOfGoldDeck()));
             deckResourceImage.setImage(cardLoader.getTopDeckResource(clientController.getClientModel().getBackOfResourceDeck()));
 
@@ -527,9 +527,9 @@ public class StationController implements Initializable {
             CardResource cardInHand3 = clientController.getClientModel().getMyplayer().getHand().get(2);
             CardObjective secretObjective = clientController.getClientModel().getMyplayer().getSecretObjective();
 
-            firstCardInHand.setImage(cardLoader.getFront(cardInHand1.getId(), cardInHand1.getSymbol()));
-            secondCardInHand.setImage(cardLoader.getFront(cardInHand2.getId(), cardInHand2.getSymbol()));
-            thirdCardInHand.setImage(cardLoader.getFront(cardInHand3.getId(), cardInHand3.getSymbol()));
+            firstCardInHand.setImage(cardLoader.getFront(cardInHand1.getId()));
+            secondCardInHand.setImage(cardLoader.getFront(cardInHand2.getId()));
+            thirdCardInHand.setImage(cardLoader.getFront(cardInHand3.getId()));
             if(secretObjective!= null) {
                 secretObjectiveInHand.setImage(cardLoader.getFront(secretObjective.getId()));
 
@@ -594,9 +594,9 @@ public class StationController implements Initializable {
 
     public void testChooseAndPlayFromHand(){
         CardLoader cl = new CardLoader();
-        firstCardInHand.setImage(cl.getFront(1, SuitEnum.FUNGI));
-        secondCardInHand.setImage(cl.getFront(7, SuitEnum.FUNGI));
-        thirdCardInHand.setImage(cl.getFront(62, SuitEnum.ANIMAL));
+        firstCardInHand.setImage(cl.getFront(1));
+        secondCardInHand.setImage(cl.getFront(7));
+        thirdCardInHand.setImage(cl.getFront(62));
         //Aggiungo immagini alla mappa--> così riesco a ottenere la carta dall'immagine --> se viene scelta
         // posso estrarre il back della carta.
         //playableCardsHashMap.put()
@@ -610,10 +610,10 @@ public class StationController implements Initializable {
         CardLoader cl = new CardLoader();
         deckGoldImage.setImage(cl.getTopDeckGold(SuitEnum.ANIMAL));
         deckResourceImage.setImage(cl.getTopDeckResource(SuitEnum.FUNGI));
-        centralResourceImage1.setImage(cl.getFront(28, SuitEnum.ANIMAL));
-        centralResourceImage2.setImage(cl.getFront(27, SuitEnum.ANIMAL));
-        centralGoldImage1.setImage(cl.getFront(44, SuitEnum.FUNGI));
-        centralGoldImage2.setImage(cl.getFront(69, SuitEnum.ANIMAL));
+        centralResourceImage1.setImage(cl.getFront(28));
+        centralResourceImage2.setImage(cl.getFront(27));
+        centralGoldImage1.setImage(cl.getFront(44));
+        centralGoldImage2.setImage(cl.getFront(69));
     }
 
     //metodo da chiamare ogni volta che si crea una carta
