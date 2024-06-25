@@ -96,21 +96,16 @@ public class ClientController {
         clientToServerCommunication.setSecretObjective(clientModel.getMyplayer().getNickname(), clientModel.getMyplayer().getSelectibleObjectives().get(answer).getId());
     }
 
-    public void notifyItIsNotYourTurn() {
-        ui.printIsNotMyTurnMenu();
-    }
 
     public void notifyItIsYourTurn() {
         ui.startGame();
-//        ui.printMenu();
-//        ui.printIsMyTurnMenu();
     }
 
 
     /**
      * this method is used to ask the player which card he wants to draw
      */
-    public void playCardOnPlayngStation_UI(Integer[] answer , CardResource cardchoosen , int cardId) {
+    public void playCardOnPlayngStation_UI(Integer[] answer , int cardId) {
 
         clientToServerCommunication.addCardToStation(clientModel.getMyplayer().getNickname(), cardId, answer[1] == 2, answer[2], answer[3]);    //try to add the card to local model
     }
@@ -160,6 +155,7 @@ public class ClientController {
             case "PRIVATE":
                 PrivateChatMessage privateMessage = (PrivateChatMessage) message;
                 clientModel.updatePrivateChat( "PRIVATE", privateMessage.getNicknameSender(), privateMessage.getNicknameReceiver(), privateMessage.getMessage());
+                ui.updatePrivateChat();
                 break;
             case "GLOBAL":
                 GlobalChatMessage chatMessage = (GlobalChatMessage) message;

@@ -58,15 +58,9 @@ public class Gui extends Application implements UI {
     }
 
 
-    @Override
-    public void printIsNotMyTurnMenu() {
 
-    }
 
-    @Override
-    public void printIsMyTurnMenu() {
 
-    }
 
     @Override
     public void askNickname() {
@@ -82,17 +76,6 @@ public class Gui extends Application implements UI {
     public void printCommonObjectives() {
         //stationController.show2CommonObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
         Platform.runLater(() -> stationController.showCommonObjectives());
-    }
-
-    @Override
-    public void printSecretObjective() {
-        Platform.runLater(() -> stationController.showSelectableObjectives());
-    }
-
-    @Override
-    public void printSelectableObjectives() {
-        //stationController.showSelectableObjectives(clientBoard.getMyplayer().getSelectibleObjectives().get(0), clientBoard.getMyplayer().getSelectibleObjectives().get(1));
-        Platform.runLater(() -> stationController.showSelectableObjectives());
     }
 
 
@@ -132,10 +115,7 @@ public class Gui extends Application implements UI {
         });
     }
 
-    @Override
-    public void printPlayerStation(PlayingStation playingStation) {
 
-    }
 
     @Override
     public void printSetupPlayerHand() {
@@ -149,26 +129,6 @@ public class Gui extends Application implements UI {
     }
 
 
-    @Override
-    public Integer[] askCoordinatesOfCards() {
-        return new Integer[0];
-    }
-
-    @Override
-    public void askWhichCardToDraw() {
-
-    }
-
-
-    @Override
-    public void printStationAfterCardHasBeenAdded() {
-
-    }
-
-    @Override
-    public void printOtherPlayersStation(String nickname) {
-
-    }
 
     @Override
     public void printFinalPoints(LinkedHashMap<String, ArrayList<Integer>> map) {
@@ -192,10 +152,6 @@ public class Gui extends Application implements UI {
 
     }
 
-    @Override
-    public void printMenu() {
-
-    }
 
     @Override
     public void printNicknameAlreadyTaken() {
@@ -219,6 +175,11 @@ public class Gui extends Application implements UI {
 
     @Override
     public void updateGlobalChat() {
+
+    }
+
+    @Override
+    public void updatePrivateChat() {
 
     }
 }

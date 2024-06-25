@@ -247,17 +247,6 @@ public class SocketClientHandler implements VirtualView {
     }
 
     @Override
-    public void notifyItIsNotYourTurn() throws RemoteException {
-        Message message = new ActionMessage("notifyItIsNotYourTurn");
-        try {
-            this.output.writeObject(message);
-            this.output.flush();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
     public void notifyItIsYourTurn() throws RemoteException {
         Message message = new ActionMessage("notifyItIsYourTurn");
         try {

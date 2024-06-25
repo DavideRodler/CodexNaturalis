@@ -5,6 +5,7 @@ import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
 import View.UI;
 import model.PlayingStation;
+import model.PrivateChat;
 import model.cards.CardResource;
 import model.client.ClientBoard;
 import model.enums.CliState;
@@ -15,7 +16,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
-import java.util.concurrent.locks.Lock;
 
 public class Cli2 implements UI {
 
@@ -39,7 +39,7 @@ public class Cli2 implements UI {
     private final Object chatlock = new Object();
 
     private CliState cliState = CliState.SETUP;
-    private ArrayList<String> nicknamesOfCurrentChat = new ArrayList<>();
+    private String playeNameCurrentChat;
 
 
     //constructor with clientboard
@@ -89,7 +89,6 @@ public class Cli2 implements UI {
         startingCardPrinter.cardStartingPrinter(clientBoard.getMyplayer().getStation().getCardStarting());
     }
 
-    @Override
     public void printIsNotMyTurnMenu() {
 
     }
@@ -124,7 +123,6 @@ public class Cli2 implements UI {
 
     }
 
-    @Override
     public void printMenu(){
         for(int i = 0; i < 50; i++) {
             System.out.println();
@@ -166,9 +164,9 @@ public class Cli2 implements UI {
                 System.out.println("Game is starting");
                 printMenu();
                 cliState = CliState.MAIN_MENU;
-                while (true) {
-                        //System in
-                        printIsMyTurnMenu();
+                while (!clientBoard.getGameState().equals(GameState.FINISHED)){
+                    //System in
+                    printIsMyTurnMenu();
                 }
             }).start();
         }
@@ -177,7 +175,7 @@ public class Cli2 implements UI {
     public void updateCurrentPlayer() {
         if (cliState.equals(CliState.MAIN_MENU)) {
             new Thread(() -> {
-                synchronized (this) {
+                synchronized (menulock) {
                     printMenu();
                 }
             }).start();
@@ -188,11 +186,27 @@ public class Cli2 implements UI {
     public void updateGlobalChat() {
         if(cliState.equals(CliState.GLOBAL_CHAT)) {
             new Thread(() -> {
-                    System.out.println(clientBoard.getGlobalChat().getMessage().get(clientBoard.getGlobalChat().getMessage().size()-1).getNickname() + ": " + clientBoard.getGlobalChat().getMessage().get(clientBoard.getGlobalChat().getMessage().size()-1).getMessage());
+                globalChatTitlePrinter();
+                printChatInfo();
+                for (int i = 0; i < 10; i++) {
+                    System.out.println();
+                }
+                printGlobalChat();
             }).start();
         }
-
-
+    }
+    @Override
+    public void updatePrivateChat(){
+        if(cliState.equals(CliState.PRIVATE_CHAT)) {
+            new Thread(() -> {
+                privateChatTitlePrinter();
+                printChatInfo();
+                for (int i = 0; i < 10; i++) {
+                    System.out.println();
+                }
+                printPrivateChat(clientBoard.getMyplayer().getNickname(), playeNameCurrentChat);
+            }).start();
+        }
     }
 
 
@@ -203,8 +217,7 @@ public class Cli2 implements UI {
 
 
 
-    @Override
-    public void printIsMyTurnMenu() {
+    private void printIsMyTurnMenu() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         String choice;
         do {
@@ -222,7 +235,7 @@ public class Cli2 implements UI {
                             Integer[] answer = this.askCoordinatesOfCards();
                             CardResource cardchoosen = this.clientBoard.getMyplayer().getHand().get(answer[0]);
                             int cardId = cardchoosen.getId();
-                            this.clientController.playCardOnPlayngStation_UI(answer, cardchoosen, cardId);
+                            this.clientController.playCardOnPlayngStation_UI(answer, cardId);
                             try {
                                 menulock.wait();
                             } catch (InterruptedException e) {
@@ -337,32 +350,33 @@ public class Cli2 implements UI {
             }
             printGlobalChat();
         }
-        do {
-            message = scanner.nextLine();
+        message = scanner.nextLine();
+        while (!message.equals("EXIT")){
             clientController.sendGlobalMessage(new GlobalChatMessage("GLOBAL", message, clientBoard.getMyplayer().getNickname()));
+            message = scanner.nextLine();
         }
-        while(!message.equals("EXIT"));
     }
 
     public void printPrivateChatInfo() {
-        String Message;
+        String message;
         String nickname = getValidNickname();
+        playeNameCurrentChat = nickname;
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        do{
+        synchronized (this) {
             privateChatTitlePrinter();
             printChatInfo();
-            for(int i = 0; i < 10; i++){
+            for (int i = 0; i < 10; i++) {
                 System.out.println();
             }
             printPrivateChat(clientBoard.getMyplayer().getNickname(), nickname);
-            Message = scanner.nextLine();
-            if(!Message.isEmpty() && !Message.equals("EXIT")) {
-                clientController.sendPrivateMessage(new PrivateChatMessage(Message, clientBoard.getMyplayer().getNickname(), nickname));
-            }
-            for(int i = 0; i < 10; i++){
-                System.out.println();
-            }
-        }while(!Message.equals("EXIT"));
+        }
+
+        message = scanner.nextLine();
+        while (!message.equals("EXIT")) {
+            clientController.sendPrivateMessage(new PrivateChatMessage(message, clientBoard.getMyplayer().getNickname(), nickname));
+            message = scanner.nextLine();
+        }
+        playeNameCurrentChat = "none";
     }
 
     private int askTypeOfChat(int numberOfOtherPlayers, String[] NamesOfOtherPlayers) {
@@ -464,7 +478,6 @@ public class Cli2 implements UI {
     /**
      * this method prints the secret objective of the player
      */
-    @Override
     public void printSecretObjective(){
         ObjectivePrinter objPrinter = new ObjectivePrinter();
         objPrinter.printSecretObjective(clientBoard.getMyplayer().getSecretObjective());
@@ -473,7 +486,6 @@ public class Cli2 implements UI {
     /**
      * this method prints the objectives to choose from
      */
-    @Override
     public void printSelectableObjectives(){
         ObjectivePrinter objPrinter = new ObjectivePrinter();
         System.out.println("These are the objectives you can choose from:");
@@ -531,8 +543,7 @@ public class Cli2 implements UI {
      * this method prints the station of the player.
      * @param playingStation is the playing station the player.
      */
-    @Override
-    public void printPlayerStation(PlayingStation playingStation) {
+    private void printPlayerStation(PlayingStation playingStation) {
         int fungi = playingStation.getCountFungi();
         int plant = playingStation.getCountPlant();
         int animal = playingStation.getCountAnimal();
@@ -560,7 +571,6 @@ public class Cli2 implements UI {
     /**
      * this method prints the hand of the player during the game. It also prints the secreto objective of the player
      */
-    @Override
     public void printPlayerHand(){
         System.out.println("Here is your hand and your secret objective:");
         HandPrinter playerHand = new HandPrinter();
@@ -574,8 +584,7 @@ public class Cli2 implements UI {
      * this method asks where the player which card he would like to play, if he wants to play it in front or in back and also where.
      * @return an array containing the choices of the player.
      */
-    @Override
-    public Integer[] askCoordinatesOfCards() {
+    private Integer[] askCoordinatesOfCards() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int cardChoice;
         do {
@@ -604,36 +613,26 @@ public class Cli2 implements UI {
      * one ot the two decks.
      * @return the choice of the player
      */
-    @Override
-    public synchronized void askWhichCardToDraw() {
-        this.print4CentralCards();
+    private void askWhichCardToDraw() {
+        synchronized (menulock) {
+            this.print4CentralCards();
 
-        Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        Integer choice;
-        do {
-            System.out.println("Which card do you want to draw? Insert 1 for up left card, 2 for up right card, 3 for down left card, 4 for down right card, 5 for resource Deck, 6 for gold Deck");
-            choice = scanner.nextInt();
-        } while (choice < 1 || choice > 6);
-        cliState = CliState.MAIN_MENU;
-        clientController.startAfterCardHasBeenAddedToStation_UI(choice);
-    }
-
-
-
-    /**
-     * this method prints the station of the player after they place a card
-     */
-    @Override
-    public void printStationAfterCardHasBeenAdded() {
-        //printPlayerStation(clientBoard.getMyplayer().getStation());
+            Scanner scanner = new Scanner(new InputStreamReader(System.in));
+            Integer choice;
+            do {
+                System.out.println("Which card do you want to draw? Insert 1 for up left card, 2 for up right card, 3 for down left card, 4 for down right card, 5 for resource Deck, 6 for gold Deck");
+                choice = scanner.nextInt();
+            } while (choice < 1 || choice > 6);
+            cliState = CliState.MAIN_MENU;
+            clientController.startAfterCardHasBeenAddedToStation_UI(choice);
+        }
     }
 
     /**
      * this method prints the station of the other player after their turn ended.
      * @param nickname is the nickname of the player of which the station is going to be printed
      */
-    @Override
-    public void printOtherPlayersStation(String nickname) {
+    private void printOtherPlayersStation(String nickname) {
         System.out.println(nickname + "'s station is: ");
         printPlayerStation(clientBoard.getOtherPlayer(nickname).getStation());
     }
@@ -675,27 +674,21 @@ public class Cli2 implements UI {
 
 
     @Override
-    public synchronized void printCardAddedSuccessfully() {
-        printMenu();
-        System.out.println("Card added successfully");
-        notify();
+    public void printCardAddedSuccessfully() {
+        synchronized (menulock) {
+            printMenu();
+            System.out.println("Card added successfully");
+            menulock.notify();
+        }
     }
 
     @Override
     public void printCardNotAdded(String message) {
-        cliState = CliState.MAIN_MENU;
-        printMenu();
-        System.out.println(message);
-        notify();
-    }
-
-    private void printMatrix(String[][] mat){
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 7; j++) {
-                System.out.print(mat[i][j]);
-            }
-            System.out.println();
+        synchronized (menulock) {
+            cliState = CliState.MAIN_MENU;
+            printMenu();
+            System.out.println(message);
+            menulock.notify();
         }
     }
-
 }

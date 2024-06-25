@@ -41,5 +41,4 @@ public interface VirtualView extends Remote, Observer {
 
     void setupOfToken() throws RemoteException;
 
-    void notifyItIsNotYourTurn() throws RemoteException;
 }
