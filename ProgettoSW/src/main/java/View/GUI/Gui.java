@@ -206,6 +206,21 @@ public class Gui extends Application implements UI {
     public void printTokenAlreadyTaken() {
         Platform.runLater(() -> chooseNickAndTokenController.printTokenAlreadyTaken());
     }
+
+    @Override
+    public void startGame() {
+
+    }
+
+    @Override
+    public void updateCurrentPlayer() {
+
+    }
+
+    @Override
+    public void updateGlobalChat() {
+
+    }
 }
 
 //TODO:

@@ -58,4 +58,10 @@ public interface UI {
     void printNicknameAlreadyTaken();
 
     void printTokenAlreadyTaken();
+
+    void startGame();
+
+    void updateCurrentPlayer();
+
+    void updateGlobalChat();
 }

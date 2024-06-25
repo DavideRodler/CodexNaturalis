@@ -196,27 +196,13 @@ public class Server {
                 case "startTurn":
                     synchronized (this.clients) {
                         for (var c : clientsMap.keySet()) {
-                            if(clientsMap.get(gameController.getBoard().getCurrentPlayer()).equals(clientsMap.get(c))) {
                                 new Thread(() -> {
                                     try {
-                                        if (clientsMap.get(gameController.getBoard().getCurrentPlayer()).equals(clientsMap.get(c)))
                                             clientsMap.get(c).notifyItIsYourTurn();
                                     } catch (RemoteException e) {
                                         throw new RuntimeException(e);
                                     }
                                 }).start();
-                            }
-                            else
-                            {
-                                new Thread(() -> {
-                                    try {
-                                        clientsMap.get(c).notifyItIsNotYourTurn();
-                                    } catch (RemoteException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }).start();
-
-                            }
                         }
                     }
                     break;

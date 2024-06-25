@@ -51,7 +51,7 @@ public class ClientController {
 
 
     public void imReadyForNextTurn() {
-        clientToServerCommunication.finishTurn();
+//        clientToServerCommunication.finishTurn();
     }
 
     public void setupOfnickname(){
@@ -101,8 +101,9 @@ public class ClientController {
     }
 
     public void notifyItIsYourTurn() {
-        ui.printMenu();
-        ui.printIsMyTurnMenu();
+        ui.startGame();
+//        ui.printMenu();
+//        ui.printIsMyTurnMenu();
     }
 
 
@@ -117,17 +118,10 @@ public class ClientController {
     public void handleResultOfCardAdded(boolean result, String message) {
         if(result) {
             ui.printCardAddedSuccessfully();
-            startAfterCardHasBeenAddedToStation();
         }
         else {
             ui.printCardNotAdded(message);
         }
-        ui.printIsMyTurnMenu();
-    }
-
-
-    public void startAfterCardHasBeenAddedToStation(){
-        ui.askWhichCardToDraw();
     }
 
 
@@ -161,6 +155,7 @@ public class ClientController {
             case "CurrentPlayer":
                 CurrentPlayerMessage currentPlayerMessage = (CurrentPlayerMessage) message;
                 clientModel.setCurrentPlayer(currentPlayerMessage.getCurrentPlayer());
+                ui.updateCurrentPlayer();
                 break;
             case "PRIVATE":
                 PrivateChatMessage privateMessage = (PrivateChatMessage) message;
@@ -169,6 +164,7 @@ public class ClientController {
             case "GLOBAL":
                 GlobalChatMessage chatMessage = (GlobalChatMessage) message;
                 clientModel.updateGlobalChat("GLOBAL", chatMessage.getNickname(),chatMessage.getMessage());
+                ui.updateGlobalChat();
                 break;
             case "ADD_PRIVATE_CHAT":
                 AddPrivateChatMessage typeOfChatMessage = (AddPrivateChatMessage) message;

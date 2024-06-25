@@ -62,7 +62,7 @@ public class SocketClientHandler implements VirtualView {
                         server.setToken(setTokenMessage.getNickname(), setTokenMessage.getToken());
                     }
                 case "StartTurn" ->{
-                    server.startTurn();
+//                    server.startTurn();
                 }
                 case "AddCardToStation" -> {
                     AddCardToStationMessage addCardToStationMessage = (AddCardToStationMessage) message;
