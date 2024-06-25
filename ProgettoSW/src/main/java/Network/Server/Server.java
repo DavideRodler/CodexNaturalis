@@ -32,7 +32,6 @@ public class Server {
     private final List<VirtualView> clients;
     private HashMap<String, VirtualView> clientsMap;
     private BlockingQueue<Message> queue = new ArrayBlockingQueue<>(100);
-    private int readyForMenu = 0;
 
 
     public void serverToClientCall() throws RemoteException {
@@ -196,27 +195,13 @@ public class Server {
                 case "startTurn":
                     synchronized (this.clients) {
                         for (var c : clientsMap.keySet()) {
-                            if(clientsMap.get(gameController.getBoard().getCurrentPlayer()).equals(clientsMap.get(c))) {
                                 new Thread(() -> {
                                     try {
-                                        if (clientsMap.get(gameController.getBoard().getCurrentPlayer()).equals(clientsMap.get(c)))
                                             clientsMap.get(c).notifyItIsYourTurn();
                                     } catch (RemoteException e) {
                                         throw new RuntimeException(e);
                                     }
                                 }).start();
-                            }
-                            else
-                            {
-                                new Thread(() -> {
-                                    try {
-                                        clientsMap.get(c).notifyItIsNotYourTurn();
-                                    } catch (RemoteException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }).start();
-
-                            }
                         }
                     }
                     break;
@@ -329,7 +314,6 @@ public class Server {
     }
     public void setPlayerNumber(int playerNumber){
         try {
-            this.readyForMenu = playerNumber - 1;
             gameController.setPlayerNumber(playerNumber);
         } catch (NotValidMoveException e) {
             throw new RuntimeException(e);
@@ -450,6 +434,13 @@ public class Server {
         } catch (ChangedStateException e) {
             throw new RuntimeException(e);
         }
+        if(gameController.getBoard().getGameState().equals(GameState.FINISHED)){
+            try {
+                queue.put(new GameFinishedMessage(gameController.getScoreBoard()));
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public void addCardFromCentralCardsToPlayerHand(String nickname, int cardId){
@@ -458,28 +449,21 @@ public class Server {
         } catch (NotValidMoveException | NotMyTurnException | ChangedStateException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public  void startTurn(){
-        if (!gameController.getBoard().getGameState().equals(GameState.FINISHED)){
-            try {
-                this.readyForMenu++;
-                if (this.readyForMenu == gameController.getBoard().getPlayernumber()){
-                    this.readyForMenu = 0;
-                    queue.put(new ActionMessage("startTurn"));
-                }
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        else {
+        if(gameController.getBoard().getGameState().equals(GameState.FINISHED)){
             try {
                 queue.put(new GameFinishedMessage(gameController.getScoreBoard()));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
+    }
 
+    public  void startTurn(){
+        try {
+            queue.put(new ActionMessage("startTurn"));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void initializeGame() {

@@ -62,7 +62,7 @@ public class SocketClientHandler implements VirtualView {
                         server.setToken(setTokenMessage.getNickname(), setTokenMessage.getToken());
                     }
                 case "StartTurn" ->{
-                    server.startTurn();
+//                    server.startTurn();
                 }
                 case "AddCardToStation" -> {
                     AddCardToStationMessage addCardToStationMessage = (AddCardToStationMessage) message;
@@ -238,17 +238,6 @@ public class SocketClientHandler implements VirtualView {
     @Override
     public void setupOfToken() throws RemoteException {
         Message message = new ActionMessage("setupOfToken");
-        try {
-            this.output.writeObject(message);
-            this.output.flush();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void notifyItIsNotYourTurn() throws RemoteException {
-        Message message = new ActionMessage("notifyItIsNotYourTurn");
         try {
             this.output.writeObject(message);
             this.output.flush();

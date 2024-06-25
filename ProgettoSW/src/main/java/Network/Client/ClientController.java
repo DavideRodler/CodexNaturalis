@@ -51,7 +51,7 @@ public class ClientController {
 
 
     public void imReadyForNextTurn() {
-        clientToServerCommunication.finishTurn();
+//        clientToServerCommunication.finishTurn();
     }
 
     public void setupOfnickname(){
@@ -96,20 +96,16 @@ public class ClientController {
         clientToServerCommunication.setSecretObjective(clientModel.getMyplayer().getNickname(), clientModel.getMyplayer().getSelectibleObjectives().get(answer).getId());
     }
 
-    public void notifyItIsNotYourTurn() {
-        ui.printIsNotMyTurnMenu();
-    }
 
     public void notifyItIsYourTurn() {
-        ui.printMenu();
-        ui.printIsMyTurnMenu();
+        ui.startGame();
     }
 
 
     /**
      * this method is used to ask the player which card he wants to draw
      */
-    public void playCardOnPlayngStation_UI(Integer[] answer , CardResource cardchoosen , int cardId) {
+    public void playCardOnPlayngStation_UI(Integer[] answer , int cardId) {
 
         clientToServerCommunication.addCardToStation(clientModel.getMyplayer().getNickname(), cardId, answer[1] == 2, answer[2], answer[3]);    //try to add the card to local model
     }
@@ -117,17 +113,10 @@ public class ClientController {
     public void handleResultOfCardAdded(boolean result, String message) {
         if(result) {
             ui.printCardAddedSuccessfully();
-            startAfterCardHasBeenAddedToStation();
         }
         else {
             ui.printCardNotAdded(message);
         }
-        ui.printIsMyTurnMenu();
-    }
-
-
-    public void startAfterCardHasBeenAddedToStation(){
-        ui.askWhichCardToDraw();
     }
 
 
@@ -161,14 +150,17 @@ public class ClientController {
             case "CurrentPlayer":
                 CurrentPlayerMessage currentPlayerMessage = (CurrentPlayerMessage) message;
                 clientModel.setCurrentPlayer(currentPlayerMessage.getCurrentPlayer());
+                ui.updateCurrentPlayer();
                 break;
             case "PRIVATE":
                 PrivateChatMessage privateMessage = (PrivateChatMessage) message;
                 clientModel.updatePrivateChat( "PRIVATE", privateMessage.getNicknameSender(), privateMessage.getNicknameReceiver(), privateMessage.getMessage());
+                ui.updatePrivateChat();
                 break;
             case "GLOBAL":
                 GlobalChatMessage chatMessage = (GlobalChatMessage) message;
                 clientModel.updateGlobalChat("GLOBAL", chatMessage.getNickname(),chatMessage.getMessage());
+                ui.updateGlobalChat();
                 break;
             case "ADD_PRIVATE_CHAT":
                 AddPrivateChatMessage typeOfChatMessage = (AddPrivateChatMessage) message;

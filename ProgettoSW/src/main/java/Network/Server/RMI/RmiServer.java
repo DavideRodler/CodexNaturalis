@@ -75,7 +75,7 @@ public class RmiServer implements VirtualServer {
 
     @Override
     public void startTurn() throws RemoteException {
-        server.startTurn();
+//        server.startTurn();
     }
 
     @Override
