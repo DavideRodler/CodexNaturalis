@@ -314,9 +314,9 @@ public class StationController implements Initializable {
         cardToPlay = new ImageView();
         cardToPlay.setImage(selectedCard.getImage());
 
-        if(cardToPlay.equals(chooseCard1)){
+        if(selectedCard.equals(chooseCard1)){
             playedBack = false;
-        } else if(cardToPlay.equals(chooseCard2)){
+        } else if(selectedCard.equals(chooseCard2)){
             playedBack = true;
         }
         //TODO: DA FARE DOPO?
@@ -549,6 +549,8 @@ public class StationController implements Initializable {
             chooseCard2.setOnMouseClicked(this::chooseStartingCard);
             //ho ottenuto l'immagine della carta --> devo metterla nel centro della station
             //questo lo faccio una volta che la carta viene premuta
+
+
         }
 
     /**
@@ -681,6 +683,11 @@ public class StationController implements Initializable {
         chatButton.setOnMouseClicked(this::openChat);
         menuPane.setVisible(true);
         scoreboardButton.setOnMouseClicked(this::switchToScoreBoard);
+        chooseCard1.setOnMouseClicked(null);
+        chooseCard2.setOnMouseClicked(null);
+        chooseCard1.setVisible(false);
+        chooseCard2.setVisible(false);
+        cardPlacementBox.setVisible(false);
     }
 
     /**
@@ -706,7 +713,6 @@ public class StationController implements Initializable {
           chatSendTextButton.setVisible(false);
           chatTextField.setVisible(false);
           instructionsLabel.setText("Choose the side of your starting card starting card");
-
     }
 
     public void switchToScoreBoard(MouseEvent mouseEvent) {
@@ -714,6 +720,7 @@ public class StationController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ScoreBoard.fxml"));
             Parent root = fxmlLoader.load();
             ScoreBoardController controller = fxmlLoader.getController();
+            controller.setClientController(clientController);
             controller.setPreScene(scoreboardButton.getScene());
             Stage stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));

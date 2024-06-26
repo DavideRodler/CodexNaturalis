@@ -2,10 +2,7 @@ package View.GUI;
 
 import Network.Client.ClientController;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,14 +12,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.client.ClientBoard;
 import model.client.ReductPlayer;
-import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -162,8 +155,7 @@ public class ScoreBoardController implements Initializable{
 
 
     public Image getImageToken(TokenEnum token){
-        InputStream stream = this.getClass().getClassLoader().getResourceAsStream(token +"_token.png");
-        assert stream != null;
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream(token.name()+"_token.png");
         return new Image(stream);
     }
 
