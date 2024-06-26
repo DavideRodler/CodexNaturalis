@@ -1,5 +1,6 @@
 package controller;
 
+import model.GlobalChat;
 import model.Player;
 import model.PlayingBoard;
 import model.PlayingStation;
@@ -28,7 +29,9 @@ public class GameController implements Serializable {
     public GameController() {
         initGameController();
     }
-
+public void setLastTurn(boolean turn){
+        this.lastTurn = turn;
+}
 
     /**
      * this method is used to generate the board of a game after that we can add players to the board
@@ -455,12 +458,12 @@ public class GameController implements Serializable {
     }
 
 
-    private ArrayList<Integer> creatingCordinatesArray(int x, int y) {
+/*    private ArrayList<Integer> creatingCordinatesArray(int x, int y) {
         ArrayList<Integer> coordinates = new ArrayList<Integer>();
         coordinates.add(x);
         coordinates.add(y);
         return coordinates;
-    }
+    } */
 
     private void repopulatePlayingBoard(){
         if (board.getCentralCardsResource().size() < 2){
@@ -487,5 +490,7 @@ public class GameController implements Serializable {
     public void setBoard(PlayingBoard board) {
         this.board = board;
     }
+
+
 }
 

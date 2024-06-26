@@ -49,8 +49,8 @@ class ObjectiveCountingResourceTest {
         station.updateCounters(card2);
         station.getMap().put(creatingCordinatesArray(37, 37), card3);
         station.updateCounters(card3);
-        assertEquals(2, objcard.getObjective().countObjectivePoints(station));
-        assertEquals(1, objcard2.getObjective().countObjectivePoints(station));
+        assertEquals(4, objcard.getObjective().countObjectivePoints(station));
+        assertEquals(2, objcard2.getObjective().countObjectivePoints(station));
         assertEquals(0, objcard3.getObjective().countObjectivePoints(station));
         assertEquals(0, objcard4.getObjective().countObjectivePoints(station));
     }

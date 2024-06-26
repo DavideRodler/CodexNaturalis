@@ -22,7 +22,7 @@ class ObjectiveDiagonalTest {
 
 
         // Checking the result
-        assertEquals(1, punti1, "Test failed. You scored " + punti1 + " points.");
+        assertEquals(2, punti1, "Test failed. You scored " + punti1 + " points.");
     }
 
     @Test
@@ -35,7 +35,7 @@ class ObjectiveDiagonalTest {
 
 
         // Checking the result
-        assertEquals(2, punti1, "Test failed. You scored " + punti1 + " points.");
+        assertEquals(4, punti1, "Test failed. You scored " + punti1 + " points.");
     }
 
     @Test

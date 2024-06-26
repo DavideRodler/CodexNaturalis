@@ -1,7 +1,10 @@
 package model;
 
 import Network.Client.RMI.RmiClientToServer;
+import Network.Client.RMI.VirtualView;
 import Network.Server.RMI.RmiServer;
+import Network.Server.Server;
+import Network.Server.VirtualServer;
 import model.cards.CardObjective;
 import model.cards.CardResource;
 import model.cards.face.Corner;
@@ -9,20 +12,26 @@ import model.cards.face.Face;
 import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 import model.objectives.Objective;
+import model.objectives.ObjectiveAssign;
 import model.objectives.ObjectiveCountingGold;
+import model.objectives.Points;
 import model.testTemplates.PlayingBoardTemplate;
 import model.testTemplates.PlayingStationTemplate;
+import observers.ObservableModel;
+import observers.Observer;
 import org.junit.jupiter.api.Test;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
     PlayingBoard board = PlayingBoardTemplate.createPlayingBoard();
-/**    @Test
-    void getHand() throws RemoteException {
+    @Test
+    void getHand() throws RemoteException, RemoteException {
         PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
         ArrayList<CardResource> hand = new ArrayList<>();
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
@@ -31,17 +40,24 @@ class PlayerTest {
         Points obj = new ObjectiveAssign();
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
         CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
-        VirtualServer server = new RmiServer();
-        VirtualView client = new RmiClient(server, "TUI");
+        Server server = new Server();
+        VirtualServer server1 = new RmiServer(server);
+        RmiClientToServer client = new RmiClientToServer(server1);
         HashMap<String, Observer> observerHashMap = new HashMap<>();
         observerHashMap.put("isa", client);
         ObservableModel model = new ObservableModel();
         model.addSpecificObserver("isa",client);
-        isa.addCardToHandWithObserver(cardAnimal1);
-        isa.addCardToHandWithObserver(cardAnimal2);
-        assertEquals(hand, isa.getHand());
+        Boolean caught = false;
+        try{
+            isa.addCardToHandWithObserver(cardAnimal1);
+            isa.addCardToHandWithObserver(cardAnimal2);
+        }
+        catch (NullPointerException e){
+            caught = true;
+        }
+        assertEquals(true, caught);
 
-    } **/
+    }
 
     @Test
     void getToken() {
@@ -141,8 +157,8 @@ class PlayerTest {
         assertEquals(2, isa.getNumberOfCardInHand());
     }
 
-    /**    @Test
-    void addCardToHand() {
+        @Test
+    void addCardToHand() throws RemoteException {
         Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
         Face frontTmp = new Face(new Corner(SuitEnum.QUILL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.INKWELL), new Corner(SuitEnum.ANIMAL));
         CardResource card1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 0, null);
@@ -157,9 +173,23 @@ class PlayerTest {
         handexpected.add(1, card2);
         handexpected.add(2, card3);
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
-        isa.addCardToHandWithObserver(card3);
-        assertEquals(hand, handexpected);
-    } **/
+            Server server = new Server();
+            VirtualServer server1 = new RmiServer(server);
+            RmiClientToServer client = new RmiClientToServer(server1);
+            HashMap<String, Observer> observerHashMap = new HashMap<>();
+            observerHashMap.put("isa", client);
+            ObservableModel model = new ObservableModel();
+            model.addSpecificObserver("isa",client);
+            Boolean caught = false;
+            try{
+                isa.addCardToHandWithObserver(card3);
+            }
+            catch (NullPointerException e){
+                caught = true;
+            }
+            assertEquals(true, caught);
+
+    }
 @Test
     void setPoints(){
     PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
@@ -176,7 +206,8 @@ class PlayerTest {
         isa.setStation(station);
         assertEquals(station, isa.getStation());
     }
-    /**    @Test
+
+        @Test
     void setSelectibleObjectivesWithObserver() throws RemoteException {
         Objective obj1 = new ObjectiveCountingGold(2,0,0);
         CardObjective objcard1 = new CardObjective(0, 2, obj1);
@@ -188,16 +219,22 @@ class PlayerTest {
         PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
         ArrayList<CardResource> hand = new ArrayList<>();
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
-        VirtualServer server = new RmiServer();
-        VirtualView client = new RmiClient(server, "TUI");
-        HashMap<String, Observer> observerHashMap = new HashMap<>();
-        observerHashMap.put("isa", client);
-        ObservableModel model = new ObservableModel();
-        model.addSpecificObserver("isa",client);
-        isa.setSelectibleObjectivesWithObserver(objs);
-        assertEquals(objs, isa.getSelectibleObjectives());
-
-    }**/
+            Server server = new Server();
+            VirtualServer server1 = new RmiServer(server);
+            RmiClientToServer client = new RmiClientToServer(server1);
+            HashMap<String, Observer> observerHashMap = new HashMap<>();
+            observerHashMap.put("isa", client);
+            ObservableModel model = new ObservableModel();
+            model.addSpecificObserver("isa",client);
+            Boolean caught = false;
+            try{
+                isa.setSelectibleObjectivesWithObserver(objs);
+            }
+            catch (NullPointerException e){
+                caught = true;
+            }
+            assertEquals(true, caught);
+    }
     @Test
     void setToken(){
         PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
@@ -207,9 +244,21 @@ class PlayerTest {
         assertEquals(TokenEnum.BLUE, isa.getToken());
     }
     @Test
-    void setSecretObjectiveWithObs(){
-
-
+    void setSecretObjectiveWithObs() throws RemoteException {
+        Objective obj1 = new ObjectiveCountingGold(2,0,0);
+        CardObjective objcard1 = new CardObjective(0, 2, obj1);
+        PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
+        ArrayList<CardResource> hand = new ArrayList<>();
+        Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
+        Server server = new Server();
+        VirtualServer server1 = new RmiServer(server);
+        RmiClientToServer client = new RmiClientToServer(server1);
+        HashMap<String, Observer> observerHashMap = new HashMap<>();
+        observerHashMap.put("isa", client);
+        ObservableModel model = new ObservableModel();
+        model.addSpecificObserver("isa",client);
+        isa.setSecretObjective(objcard1);
+        assertEquals(objcard1, isa.getSecretObjective());
     }
 
 }

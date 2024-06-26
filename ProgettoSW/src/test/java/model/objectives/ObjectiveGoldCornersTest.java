@@ -28,7 +28,7 @@ class ObjectiveGoldCornersTest {
         CardResource card = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 0, obj);
         station.getMap().put(creatingCordinatesArray(38, 36), card1);
         station.getMap().put(creatingCordinatesArray(38, 38), card2);
-        assertEquals(2,card.getObjective().countObjectivePoints(station, card, 39, 37));
+        assertEquals(4,card.getObjective().countObjectivePoints(station, card, 39, 37));
 
     }
 

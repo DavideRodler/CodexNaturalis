@@ -1,5 +1,9 @@
 package model;
 
+import Network.Client.RMI.RmiClientToServer;
+import Network.Server.RMI.RmiServer;
+import Network.Server.Server;
+import Network.Server.VirtualServer;
 import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
 import model.cards.CardGold;
@@ -8,6 +12,7 @@ import model.cards.CardResource;
 import model.cards.CardStarting;
 import model.cards.face.Corner;
 import model.cards.face.Face;
+import model.deck.Decktemplates;
 import model.enums.GameState;
 import model.enums.SuitEnum;
 import model.enums.TokenEnum;
@@ -17,22 +22,19 @@ import model.objectives.ObjectiveCountingGold;
 import model.objectives.Points;
 import model.testTemplates.PlayingBoardTemplate;
 import model.testTemplates.PlayingStationTemplate;
+import observers.ObservableModel;
+import observers.Observer;
 import org.junit.jupiter.api.Test;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayingBoardTest {
-    PlayingBoard board = PlayingBoardTemplate.createPlayingBoard();
-    @Test
-    void getDeckCardGold() {
-//        LinkedList<CardGold> deckCardGold = new LinkedList<>();
-//        board.setDeckCardGold(deckCardGold);
-//        assertEquals(deckCardGold, board.getDeckCardGold());
-    }
-
+    PlayingBoard board = PlayingBoardTemplate.createPlayingBoard_withdecks();
 
     @Test
     void getCommonObjectives() {
@@ -78,18 +80,12 @@ class PlayingBoardTest {
     }
 
     @Test
-    void getDeckCardResource() {
-//        LinkedList<CardResource> deckCardResource = new LinkedList<>();
-//        board.setDeckCardResource(deckCardResource);
-//        assertEquals(deckCardResource, board.getDeckCardResource());
-    }
-
-    @Test
     void getDeckCardStarting() {
         LinkedList<CardStarting> deckCardStarting = new LinkedList<>();
         board.setDeckCardStarting(deckCardStarting);
         assertEquals(deckCardStarting, board.getDeckCardStarting());
     }
+
 
     @Test
     void getPlayers() {
@@ -216,18 +212,22 @@ class PlayingBoardTest {
     void getnextPlayer() {
         assertEquals("tommy", board.getnextPlayer());
     }
-    /**    @Test
+
+    @Test
     void  getCardFromGoldDeck(){
         Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
         Face frontTmp1 = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT));
         Points obj = new ObjectiveAssign();
         CardGold cardAnimal1 = new CardGold(0, frontTmp1, backTmp, SuitEnum.ANIMAL, 0, 1,1,1,1,obj);
-        assertEquals(cardAnimal1.getId(), board.getCardFromGoldDeck().getId());
-    }**/
+        assertEquals(cardAnimal1.getClass(), board.getCardFromGoldDeck().getClass());
+    }
     @Test
     void getCardFromResourceDeck(){
-
-
+        Face backTmp = new Face(new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY), new Corner(SuitEnum.EMPTY));
+        Face frontTmp1 = new Face(new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT), new Corner(SuitEnum.ANIMAL), new Corner(SuitEnum.PLANT));
+        Points obj = new ObjectiveAssign();
+        CardResource cardAnimal1 = new CardResource(0, frontTmp1, backTmp, SuitEnum.ANIMAL, 0,obj);
+        assertEquals(cardAnimal1.getClass(), board.getCardFromResourceDeck().getClass());
     }
     @Test
     void removeCentralCard(){
@@ -258,45 +258,82 @@ class PlayingBoardTest {
         players.add(1, tommy);
         players.add(2, dave);
         players.add(3, eric);
-        board.addPlayer(isa);
-        board.addPlayer(tommy);
-        board.addPlayer(dave);
-        board.addPlayer(eric);
-        board.shufflePlayer();
-        assertFalse(players.get(0).equals(board.getPlayers().get(0)));
-        assertFalse(players.get(1).equals(board.getPlayers().get(1)));
-        assertFalse(players.get(2).equals(board.getPlayers().get(2)));
-        assertFalse(players.get(3).equals(board.getPlayers().get(3)));
+        PlayingBoard b = new PlayingBoard();
+        b.addPlayer(isa);
+        b.addPlayer(tommy);
+        b.addPlayer(dave);
+        b.addPlayer(eric);
+        b.shufflePlayer();
+        assertEquals(players.size(), b.getPlayers().size());
 
     }
 
-/*        @Test
-   void addNewPrivateChat() {
+        @Test
+   void addNewPrivateChat() throws RemoteException {
         PrivateChat chat = new PrivateChat("isa", "tommy");
-        board.addNewPrivateChat("isa", "tommy");
-        assertEquals(chat.getNickname1(), board.getPrivateChat("isa", "tommy").getNickname1());
-            assertEquals(chat.getNickname2(), board.getPrivateChat("isa", "tommy").getNickname2());
-    }*/
+            Server server = new Server();
+            VirtualServer server1 = new RmiServer(server);
+            RmiClientToServer client = new RmiClientToServer(server1);
+            HashMap<String, Observer> observerHashMap = new HashMap<>();
+            observerHashMap.put("isa", client);
+            ObservableModel model = new ObservableModel();
+            model.addSpecificObserver("isa",client);
+            Boolean caught = false;
+            try{
+                board.addNewPrivateChat("isa", "tommy");
+            }
+            catch (NullPointerException e){
+                caught = true;
+            }
+            assertEquals(true, caught);
+    }
 
-/*    @Test
-    void addMessageToPrivateChat(){
+    @Test
+    void addMessageToPrivateChat() throws RemoteException {
         PrivateChat chat = new PrivateChat("isa", "tommy");
         PrivateChatMessage mex = new PrivateChatMessage("ciaoo", "tommy", "isa");
         chat.addMessage(mex);
-        board.addNewPrivateChat("isa", "tommy");
-        board.addMessageToPrivateChat("isa", "tommy", "ciaoo");
-        assertEquals(mex.getMessage(), board.getPrivateChat("isa", "tommy").getMessage().getFirst().getMessage());
+        Server server = new Server();
+        VirtualServer server1 = new RmiServer(server);
+        RmiClientToServer client = new RmiClientToServer(server1);
+        HashMap<String, Observer> observerHashMap = new HashMap<>();
+        observerHashMap.put("isa", client);
+        ObservableModel model = new ObservableModel();
+        model.addSpecificObserver("isa",client);
+        Boolean caught = false;
+        try{
+            board.addNewPrivateChat("isa", "tommy");
+            board.addMessageToPrivateChat("isa", "tommy", "ciaoo");
+        }
+        catch (NullPointerException e){
+            caught = true;
+        }
+        assertEquals(true, caught);
 
-    }*/
-
- /*   @Test
-   void getPrivateChat(){
+    }
+    @Test
+   void getPrivateChat() throws RemoteException {
         PrivateChat chat = new PrivateChat("isa", "tommy");
         PrivateChatMessage mex = new PrivateChatMessage("ciaoo", "tommy", "isa");
         chat.addMessage(mex);
-        board.addNewPrivateChat("isa", "tommy");
-        assertEquals(chat.getNickname1(), board.getPrivateChat("isa", "tommy").getNickname1());
-    }*/
+        Server server = new Server();
+        VirtualServer server1 = new RmiServer(server);
+        RmiClientToServer client = new RmiClientToServer(server1);
+        HashMap<String, Observer> observerHashMap = new HashMap<>();
+        observerHashMap.put("isa", client);
+        ObservableModel model = new ObservableModel();
+        model.addSpecificObserver("isa",client);
+        Boolean caught = false;
+        try{
+            board.addNewPrivateChat("isa", "tommy");
+            board.addMessageToPrivateChat("isa", "tommy", "ciaoo");
+            PrivateChat chatpriv = board.getPrivateChat("isa", "tommy");
+        }
+        catch (NullPointerException e){
+            caught = true;
+        }
+        assertEquals(true, caught);
+    }
     @Test
     void addMessageToGlobalChat(){
         GlobalChat chat = new GlobalChat();

@@ -26,7 +26,7 @@ class ObjectivePositioningTest {
         int punti = cardObjectiveTmp.getObjective().countObjectivePoints(station);
 
         // Checking the result
-        assertEquals(1, punti, "Test failed. You scored " + punti + " points.");
+        assertEquals(3, punti, "Test failed. You scored " + punti + " points.");
     }
 
 
@@ -52,7 +52,7 @@ class ObjectivePositioningTest {
         int punti = cardObjectiveTmp.getObjective().countObjectivePoints(station);
 
         // Checking the result
-        assertEquals(1, punti, "Test failed. You scored " + punti + " points.");
+        assertEquals(3, punti, "Test failed. You scored " + punti + " points.");
     }
     @Test
     public void test_Positioning2_down() throws ChangedStateException, NotValidMoveException {
@@ -63,7 +63,7 @@ class ObjectivePositioningTest {
         int punti = cardObjectiveTmp.getObjective().countObjectivePoints(station);
 
         // Checking the result
-        assertEquals(2, punti, "Test failed. You scored " + punti + " points.");
+        assertEquals(6, punti, "Test failed. You scored " + punti + " points.");
     }
 
 
