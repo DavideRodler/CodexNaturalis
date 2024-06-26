@@ -268,6 +268,7 @@ public class ClientController {
             case "CardAddedToHand":
                CardAddedToHandMessage cardAddedToHandMessage = (CardAddedToHandMessage) message;
                clientModel.getMyplayer().getHand().add(cardAddedToHandMessage.getCardAdded());
+               ui.updateHand();
                break;
 
             case "CardRemovedFromHand":

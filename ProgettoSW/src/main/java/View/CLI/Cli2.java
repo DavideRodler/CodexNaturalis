@@ -209,6 +209,11 @@ public class Cli2 implements UI {
         }
     }
 
+    @Override
+    public void updateHand() {
+
+    }
+
 
     /**
      * this method prints the hand of the player

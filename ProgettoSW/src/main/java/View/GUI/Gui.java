@@ -11,8 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.PlayingStation;
 import model.client.ClientBoard;
-import model.enums.GameState;
-import model.enums.TokenEnum;
+import model.enums.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -188,6 +187,15 @@ public class Gui extends Application implements UI {
     @Override
     public void updatePrivateChat() {
 
+    }
+
+    @Override
+    public void updateHand() {
+        if (!clientController.getClientModel().getGameState().equals(GameState.SELECT_TOKEN) &&
+                !clientController.getClientModel().getGameState().equals(GameState.ADD_PLAYERS) &&
+                !clientController.getClientModel().getGameState().equals(GameState.INITIALIZE_GAME)) {
+            Platform.runLater(() -> stationController.updateHand());
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 package View;
 
 import model.PlayingStation;
+import model.cards.CardResource;
 import model.client.ClientBoard;
 import model.enums.TokenEnum;
 
@@ -44,4 +45,6 @@ public interface UI {
     void updateGlobalChat();
 
     void updatePrivateChat();
+
+    void updateHand();
 }
