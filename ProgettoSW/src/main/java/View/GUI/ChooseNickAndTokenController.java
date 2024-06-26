@@ -21,8 +21,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ChooseNickAndTokenController implements Initializable{
-//TODO: qua schermata con label + textBox per inserire il proprio nickname + tendina per scegliere il token
-// infine label che dice di attendere gli altri giocatori
+
     @FXML
     private TextField chooseNickname;
 
@@ -48,15 +47,6 @@ public class ChooseNickAndTokenController implements Initializable{
     private Label AlreadyTakenNickTok;
 
     private String nick;
-
-    @FXML
-    private ImageView testCardLoaderFront;
-
-    @FXML
-    private ImageView testCardLoaderBack;
-
-    @FXML
-    private ImageView imgtest;
 
     @FXML
     private HBox nicknamePane;
