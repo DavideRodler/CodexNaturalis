@@ -7,6 +7,19 @@ import java.io.Serializable;
 
 
 public class ObjectiveAssign implements Points, Serializable {
+
+
+
+    //TODO-> TOGLIERE CARTE DA 20 PUNTI
+
+    /**
+     * This method is used to count the points of a specific card
+     * @param station the station of the player
+     * @param card the card to count the points
+     * @param x the x coordinate of the card
+     * @param y the y coordinate of the card
+     * @return the points of the card
+     */
    @Override
     public int countObjectivePoints(PlayingStation station , CardResource card, Integer x, Integer y){
         return switch (card.getPoints()) {

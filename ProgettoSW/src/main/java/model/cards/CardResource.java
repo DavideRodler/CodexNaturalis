@@ -31,6 +31,12 @@ public class CardResource extends CardPlaying implements Serializable {
         return objective;
     }
 
+
+    /**
+     * This method counts the number of resources of a certain suit in the card
+     * @param suit the suit to count
+     * @return the number of resources of the suit in the card
+     */
     public int countResource(SuitEnum suit){
         int count = 0;
         if (!getPlayingBack()){

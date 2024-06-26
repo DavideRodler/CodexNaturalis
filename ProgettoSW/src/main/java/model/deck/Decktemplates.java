@@ -32,6 +32,14 @@ public class Decktemplates implements Serializable {
 
 //  there are 40 cards in the deck
 //  the id starts from 1 and goes to 40
+
+
+
+
+  /**
+   * This method creates a deck of resource cards (id from 1 to 40)
+   * @return a LinkedList of CardResource
+   */
   public static LinkedList<CardResource> ResourceCardDeck() {
     int id =1;
     LinkedList<CardResource> deck = new LinkedList<>();
@@ -64,8 +72,12 @@ public class Decktemplates implements Serializable {
     return deck;
   }
 
-//  there are 40 cards in the deck
-//  the id starts from 41 and goes to 80
+
+
+  /**
+   * This method creates a deck of gold cards ( id from 41 to 80)
+   * @return a LinkedList of CardGold
+   */
   public static LinkedList<CardGold> GoldCardDeck() {
     int id = 41;
     LinkedList<CardGold> deck = new LinkedList<>();
@@ -102,8 +114,15 @@ public class Decktemplates implements Serializable {
     shuffle(deck);
     return deck;
   }
-// there are 6 cards in the deck
-//  the ID starts from 81 and goes to 86
+
+
+
+
+
+  /**
+   * This method creates a deck of starting cards (id from 81 to 86)
+   * @return a LinkedList of CardStarting
+   */
   public static LinkedList<CardStarting> StartingCardDeck() {
     int id =81;
     LinkedList<CardStarting> deck = new LinkedList<>();
@@ -144,8 +163,10 @@ public class Decktemplates implements Serializable {
     return deck;
   }
 
-//  there are 16 cards in the deck
-//  the ID starts from 87 and goes to 102;
+  /**
+   * This method creates a deck of objective cards (id from 87 to 102)
+   * @return a LinkedList of CardObjective
+   */
   public static LinkedList<CardObjective> ObjectiveCardDeck() {
     int id =87;
     LinkedList<CardObjective> deck = new LinkedList<>();
@@ -204,7 +225,11 @@ public class Decktemplates implements Serializable {
   }
 
 
-
+  /**
+   * This method assign specific suite to the corners of a specific card
+   * @param s the suite of the corner
+   * @return the corner with the specific suite
+   */
   private static Corner AssignCorner(String s) {
     return switch (s) {
       case "empty" -> new Corner(SuitEnum.EMPTY);
@@ -219,6 +244,14 @@ public class Decktemplates implements Serializable {
     };
   }
 
+
+
+
+  /**
+   * This method assign specific suite to the card
+   * @param s the suite of the card
+   * @return the suite of the card
+   */
   private static SuitEnum AssignSuit(String s) {
     return switch (s) {
       case "fungi" -> SuitEnum.FUNGI;
@@ -231,6 +264,12 @@ public class Decktemplates implements Serializable {
     };
   }
 
+
+  /**
+   * This method assign specific direction to the objective
+   * @param s the direction of the objective
+   * @return the direction of the objective
+   */
   private static DirectionEnum AssignDirection(String s) {
     return switch (s) {
       case "left" -> DirectionEnum.LEFT;
@@ -239,6 +278,12 @@ public class Decktemplates implements Serializable {
     };
   }
 
+
+  /**
+   * This method assign specific position to the objective
+   * @param s the position of the objective
+   * @return the position of the objective
+   */
   private static PositionEnum AssignPosition(String s) {
     return switch (s) {
       case "top" -> PositionEnum.TOP.TOP;
@@ -247,12 +292,16 @@ public class Decktemplates implements Serializable {
     };
   }
 
-  // create a private method AssignOvbective that takes a string (null,corenrs or
-  // gold resource:manuscript,inkwell,quill) and create an object that is
-  // statically type Objective and dinamically type Objective,
-  // ObjectiveCountingResources or ObjectiveGoldCorners if the string is
-  // respectability null, corners or gold resource and return that objective
 
+  /**
+   * create a private method AssignOvbective that takes a string (null,corenrs or
+   *  gold resource:manuscript,inkwell,quill) and create an object that is
+   *   statically type Objective and dinamically type Objective,
+   *    ObjectiveCountingResources or ObjectiveGoldCorners if the string is
+   *    respectability null, corners or gold resource and return that objective
+   * @param s
+   * @return
+   */
   private static Points AssignObjective(String s) {
     Points obj;
     return switch (s) {
@@ -285,6 +334,12 @@ public class Decktemplates implements Serializable {
     };
   }
 
+
+  /**
+   * This method assign specific objective to the gold card
+   * @param goldType the type of the gold card
+   * @return the objective of the gold card
+   */
   private static Objective AssignObjectives(String goldType) {
     Objective obj;
     return switch (goldType) {

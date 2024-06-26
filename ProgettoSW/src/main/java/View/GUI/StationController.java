@@ -30,7 +30,7 @@ public class StationController implements Initializable {
     private HBox cardPlacementBox;
 
     @FXML
-    private TextField instrucionsTextField;
+    private TextField instructionsTextField;
 
     @FXML
     private FlowPane centralCardsAndDecksPane;

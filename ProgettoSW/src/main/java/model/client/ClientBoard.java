@@ -117,7 +117,11 @@ public class ClientBoard implements Serializable {
                 .orElse(null);
     }
 
-    //TODO: metodo giusto ma inutile perche' il messaggio dei giocatori arriva dopo
+
+    /**
+     * Get the available tokens for the player
+     * @return the available tokens for the player
+     */
     public ArrayList<TokenEnum> getAvailableTokens() {
         ArrayList<TokenEnum> availableTokens = new ArrayList<>();
         for (TokenEnum token : TokenEnum.values()) {
@@ -148,6 +152,14 @@ public class ClientBoard implements Serializable {
         this.backOfGoldDeck = backOfGoldDeck;
     }
 
+
+    /**
+     * Update a specific private chat between two players
+     * @param typeOfChat the type of chat
+     * @param nicknameSender the nickname of the sender
+     * @param nicknameReceiver the nickname of the receiver
+     * @param privateChatMessage the message of the private chat
+     */
     public void updatePrivateChat(String typeOfChat, String nicknameSender, String nicknameReceiver, String privateChatMessage) {
 
         synchronized (privateChats) {
@@ -166,13 +178,26 @@ public class ClientBoard implements Serializable {
         }
     }
 
+
+    /**
+     * Update the global chat
+     * @param typeOfChat the type of chat
+     * @param nickname the nickname of the player
+     * @param globalChatMessage     the message of the global chat
+     */
         public void updateGlobalChat (String typeOfChat, String nickname, String globalChatMessage){
             if (typeOfChat.equals("GLOBAL")) {
                 globalChat.addMessage(new GlobalChatMessage("GLOBAL", globalChatMessage, nickname));
             }
         }
 
-        public void addNewPrivateChat (String nickname1, String nickname2){
+
+    /**
+     * Add a new private chat between two players
+     * @param nickname1 the nickname of the first player
+     * @param nickname2 the nickname of the second player
+     */
+    public void addNewPrivateChat (String nickname1, String nickname2){
 
             privateChats.add(new PrivateChat(nickname1, nickname2));
         }
