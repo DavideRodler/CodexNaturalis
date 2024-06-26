@@ -172,8 +172,6 @@ public class StationController implements Initializable {
 
     private ImageView cardToPlay;
 
-    private ImageView cardToBeReplaced;
-
     private int indexOfCardToReplaced;
 
     private double firstCoordinate;
@@ -282,10 +280,6 @@ public class StationController implements Initializable {
     void cardInHandChosen(MouseEvent event){
         ImageView selectedCard = (ImageView) event.getSource();
         ImageView cardChosen = new ImageView();
-        //TODO: possibile controllo che posso effettivamente scegliere la carta con la mappa:
-        // a inizio turno popolo la mappa con le carte che ho in mano, a fine turno la svuoto
-        // in questo modo non posso "usare" una carta se non è il mio turno.
-        // oppure più semplicemente quando non è il mio turno non faccio vedere le carte che ho in mano
 
         //mappa mi serve lo stesso per ottenere il back (oppure fare in qualche altro modo)
         //qua per provare me le passo direttamente
@@ -296,20 +290,17 @@ public class StationController implements Initializable {
             chooseCard2.setImage(cardLoader.getBack(clientController.getClientModel().getMyplayer().getHand().getFirst().getId()));
             cardChosen.setImage(firstCardInHand.getImage());
             indexOfCardToReplaced = 0;
-            cardToBeReplaced = selectedCard;
             System.out.println("Scelta la prima");
         } else if(selectedCard.equals(secondCardInHand)) {
             chooseCard1.setImage(secondCardInHand.getImage());
             chooseCard2.setImage(cardLoader.getBack(clientController.getClientModel().getMyplayer().getHand().get(1).getId()));
             cardChosen.setImage(secondCardInHand.getImage());
             indexOfCardToReplaced = 1;
-            cardToBeReplaced = selectedCard;
             System.out.println("Scelta la seconda");
         } else if(selectedCard.equals(thirdCardInHand)) {
             chooseCard1.setImage(thirdCardInHand.getImage());
             chooseCard2.setImage(cardLoader.getBack(clientController.getClientModel().getMyplayer().getHand().get(2).getId()));
             indexOfCardToReplaced = 2;
-            cardToBeReplaced = selectedCard;
             cardChosen.setImage(thirdCardInHand.getImage());
             System.out.println("Scelta la terza");
         }
@@ -391,10 +382,19 @@ public class StationController implements Initializable {
                 clientController.playCardOnPlayngStation_UI(playedBack, firstCoordinate-1, secondCoordinate+1, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced).getId());
                 postion = 3;
             }
+
+            if(playedBack)
+                chooseCard1.setImage(null);
+            else
+                chooseCard2.setImage(null);
             //chooseCard1.setImage(null);
             //chooseCard2.setImage(null);
             //aggiungo gli handler alle carte centrali
 
+    }
+
+    public void updateCentralCardsAndDecks(){
+        showCentralCardsAndDecks();
     }
 
     public void cardPlacedCorrectly(){
@@ -456,26 +456,31 @@ public class StationController implements Initializable {
         secondCardInHand.setOnMouseClicked(this::cardInHandChosen);
         thirdCardInHand.setOnMouseClicked(this::cardInHandChosen);
     }
+
     private void chooseCardToDraw(MouseEvent event){
         ImageView choiceOfDraw = (ImageView) event.getSource();
         System.out.println("hai scelto una carta da pescare");
-        if(choiceOfDraw.equals(clientController.getClientModel().getCentralCardsGold().getFirst())){
-            clientController.startAfterCardHasBeenAddedToStation_UI(0);
-        } else if(choiceOfDraw.equals(clientController.getClientModel().getCentralCardsGold().get(1))){
+        if(choiceOfDraw.equals(centralGoldImage1)){
             clientController.startAfterCardHasBeenAddedToStation_UI(1);
-        } else if(choiceOfDraw.equals(clientController.getClientModel().getCentralCardsResource().getFirst())){
+        } else if(choiceOfDraw.equals(centralGoldImage2)){
             clientController.startAfterCardHasBeenAddedToStation_UI(2);
-        } else if(choiceOfDraw.equals(clientController.getClientModel().getCentralCardsResource().get(1))){
-            thirdCardInHand.setImage(choiceOfDraw.getImage());
+        } else if(choiceOfDraw.equals(centralResourceImage1)){
+            clientController.startAfterCardHasBeenAddedToStation_UI(3);
+        } else if(choiceOfDraw.equals(centralResourceImage2)){
+            clientController.startAfterCardHasBeenAddedToStation_UI(4);
+        }
+        else if(choiceOfDraw.equals(deckGoldImage))
+        {
+            clientController.startAfterCardHasBeenAddedToStation_UI(6);
+        }
+        else if(choiceOfDraw.equals(deckResourceImage))
+        {
+            clientController.startAfterCardHasBeenAddedToStation_UI(5);
         }
         instructionsLabel.setText("Your turn is finished.");
         choiceOfDraw.setImage(null);
     }
 
-    private void endTurn(MouseEvent event){
-        instructionsLabel.setText("You ended your turn!");
-        clientController.imReadyForNextTurn();
-    }
 
     private void openChat(MouseEvent event) {
         chatButton.setOnMouseClicked(null);
@@ -598,6 +603,13 @@ public class StationController implements Initializable {
             centralGoldImage2.setImage(cardLoader.getFront(centralGoldCard2.getId()));
             deckGoldImage.setImage(cardLoader.getTopDeckGold(clientController.getClientModel().getBackOfGoldDeck()));
             deckResourceImage.setImage(cardLoader.getTopDeckResource(clientController.getClientModel().getBackOfResourceDeck()));
+
+            imageToCardMap.put(centralResourceImage1, centralResourceCard1);
+            imageToCardMap.put(centralResourceImage2, centralResourceCard2);
+            imageToCardMap.put(centralGoldImage1, centralGoldCard1);
+            imageToCardMap.put(centralGoldImage2, centralGoldCard2);
+
+
             showPlayerHand();
 
             //qua si deve usare il chooseCardToDrawClicked
@@ -643,6 +655,7 @@ public class StationController implements Initializable {
 
     private void startTurn(){
         instructionsLabel.setText("It's your turn! Choose a card to play from your hand!");
+        updateCentralCardsAndDecks();
         chatButton.setOnMouseClicked(this::openChat);
         menuPane.setVisible(true);
         if(firstCardInHand != null){
@@ -660,6 +673,7 @@ public class StationController implements Initializable {
     }
 
     private void notMyTurn(String currentPlayer){
+        updateCentralCardsAndDecks();
         instructionsLabel.setText("It's " + currentPlayer + "'s turn. Wait for your turn to play");
         chatButton.setOnMouseClicked(this::openChat);
         menuPane.setVisible(true);
