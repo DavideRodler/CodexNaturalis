@@ -390,7 +390,7 @@ public class StationController implements Initializable {
             //chooseCard1.setImage(null);
             //chooseCard2.setImage(null);
             //aggiungo gli handler alle carte centrali
-
+            imageToCardMap.put(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
     }
 
     public void updateCentralCardsAndDecks(){
@@ -399,7 +399,7 @@ public class StationController implements Initializable {
 
     public void cardPlacedCorrectly(){
         //aggiungo carta alla mappa delle carte piazzate
-        imageToCardMap.put(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
+
         switch(postion){
             case 0 -> {
                 cardToPlay.setLayoutX(this.firstCoordinate -80);
@@ -443,6 +443,7 @@ public class StationController implements Initializable {
     }
 
     public void cardPlaceIncorrectly(String message){
+        imageToCardMap.remove(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
         instructionsLabel.setText(message);
         cardToPlay.setImage(null);
         cardPlacementBox.setVisible(false);
