@@ -46,6 +46,8 @@ class GameControllerTest {
 
     PlayingBoard board = new PlayingBoard();
     GameController game = new GameController();
+
+
     @Test
     void getBoard() {
         game.setBoard(board);
