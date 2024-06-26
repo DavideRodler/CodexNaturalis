@@ -1,6 +1,8 @@
 package View.GUI;
 
 import Network.Client.ClientController;
+import Socket.Messages.Chat.GlobalChatMessage;
+import Socket.Messages.Chat.PrivateChatMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,7 +14,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import model.PrivateChat;
 import model.cards.*;
+import model.client.ReductPlayer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,8 +33,6 @@ public class StationController implements Initializable {
     @FXML
     private HBox cardPlacementBox;
 
-    @FXML
-    private TextField instructionsTextField;
 
     @FXML
     private FlowPane centralCardsAndDecksPane;
@@ -127,10 +129,13 @@ public class StationController implements Initializable {
     private Button privateChatButton;
 
     @FXML
-    private ChoiceBox<?> privateChatChoice;
+    private ChoiceBox<String> privateChatChoice;
 
     @FXML
     private Button publicChatButton;
+
+    @FXML
+    private Label instructionsLabel;
 
 
     @FXML
@@ -151,8 +156,6 @@ public class StationController implements Initializable {
     @FXML
     private ImageView thirdCardInHand;
 
-    @FXML
-    private Button turnCardButton;
 
     @FXML
     private ImageView startingCard;
@@ -165,7 +168,7 @@ public class StationController implements Initializable {
 
     //private Map<ImageView, CardPlaying> cardsInStationMap = new HashMap<>();
 
-    private CardLoader cardLoader;
+    private final CardLoader cardLoader;
 
     private ImageView cardToPlay;
 
@@ -310,7 +313,7 @@ public class StationController implements Initializable {
             cardChosen.setImage(thirdCardInHand.getImage());
             System.out.println("Scelta la terza");
         }
-        instructionsTextField.setText("Choose front or back!");
+        instructionsLabel.setText("Choose front or back!");
         chooseCard1.setOnMouseClicked(this::chooseCardSide);
         chooseCard2.setOnMouseClicked(this::chooseCardSide);
     }
@@ -328,7 +331,7 @@ public class StationController implements Initializable {
 //        chooseCard1.setOnMouseClicked(this::chooseCardToPlayOn);
         //TODO: DA FARE DOPO?
         //imageToCardMap.put(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
-        instructionsTextField.setText("Choose a card on the station to play on!");
+        instructionsLabel.setText("Choose a card on the station to play on!");
         //potrei fare che per tutte le immagini che sono dentro la mappa di carte giocabili aggiungo handler
         for(ImageView image: imageToCardMap.keySet()){
             image.setOnMouseClicked(this::chooseCardToPlayOn);
@@ -341,7 +344,7 @@ public class StationController implements Initializable {
         ImageView selectedCard = (ImageView) event.getSource();
         cardToPlayOn = selectedCard;
         System.out.println("Hai premuto una carta su cui piazzare");
-        instructionsTextField.setText("Choose where you want to play your cards using the buttons");
+        instructionsLabel.setText("Choose where you want to play your cards using the buttons");
         cardPlacementBox.setVisible(true);
         placeCardDownRightButton.setOnMouseClicked(this::chooseCardPlacement);
         placeCardDownLeftButton.setOnMouseClicked(this::chooseCardPlacement);
@@ -427,7 +430,7 @@ public class StationController implements Initializable {
                 stationPane.getChildren().add(cardToPlay);
             }
         }
-        instructionsTextField.setText("Choose a card to draw");
+        instructionsLabel.setText("Choose a card to draw");
         System.out.println("hai piazzato la carta");
         //aggiungo handler alle carte da pescare
         centralGoldImage1.setOnMouseClicked(this::chooseCardToDraw);
@@ -444,7 +447,7 @@ public class StationController implements Initializable {
     }
 
     public void cardPlaceIncorrectly(String message){
-        instructionsTextField.setText(message);
+        instructionsLabel.setText(message);
         cardToPlay.setImage(null);
         //tolgo gli handler ai bottoni piazzamento perchè inizio nuovo ciclo di piazzamento
         placeCardDownRightButton.setOnMouseClicked(null);
@@ -468,12 +471,12 @@ public class StationController implements Initializable {
         } else if(choiceOfDraw.equals(clientController.getClientModel().getCentralCardsResource().get(1))){
             thirdCardInHand.setImage(choiceOfDraw.getImage());
         }
-        instructionsTextField.setText("Your turn is finished.");
+        instructionsLabel.setText("Your turn is finished.");
         choiceOfDraw.setImage(null);
     }
 
     private void endTurn(MouseEvent event){
-        instructionsTextField.setText("You ended your turn!");
+        instructionsLabel.setText("You ended your turn!");
         clientController.imReadyForNextTurn();
     }
 
@@ -485,7 +488,12 @@ public class StationController implements Initializable {
         chatTextField.setVisible(true);
         publicChatButton.setOnMouseClicked(this::showPublicChat);
         privateChatButton.setOnMouseClicked(this::showPrivateChat);
-        chatTextArea.appendText(clientController.getClientModel().getGlobalChat().getMessage().getFirst().getNickname() + ": " + clientController.getClientModel().getGlobalChat().getMessage().getFirst().getMessage());
+        for(ReductPlayer player: clientController.getClientModel().getOtherplayers()){
+            privateChatChoice.getItems().remove(player.getNickname());
+        }
+        for(ReductPlayer player: clientController.getClientModel().getOtherplayers()){
+            privateChatChoice.getItems().add(player.getNickname());
+        }
     }
 
     private void closeChat(MouseEvent event) {
@@ -494,6 +502,23 @@ public class StationController implements Initializable {
         chatButton.setOnMouseClicked(this::openChat);
         chatSendTextButton.setVisible(false);
         chatTextField.setVisible(false);
+    }
+
+    private void showPublicChat(MouseEvent event){
+        for(GlobalChatMessage globalMessage : clientController.getClientModel().getGlobalChat().getMessage()) {
+            chatTextArea.appendText(globalMessage.getNickname() + ": " + globalMessage.getMessage());
+        }
+    }
+
+    private void showPrivateChat(MouseEvent event){
+        for(PrivateChat privateChat : clientController.getClientModel().getPrivateChats()){
+            if(privateChatChoice.getValue().equals(privateChat.getNickname1()) || privateChatChoice.getValue().equals(privateChat.getNickname2()))
+            {
+                for(PrivateChatMessage privateChatMessage : privateChat.getMessage()){
+                    chatTextArea.appendText(privateChatMessage.getNicknameReceiver() + ": " + privateChatMessage.getMessage() + "/n");
+                }
+            }
+        }
     }
 
     //TODO:
@@ -542,7 +567,7 @@ public class StationController implements Initializable {
             CardObjective commonObj1 = clientController.getClientModel().getFirstObjective();
             CardObjective commonObj2 = clientController.getClientModel().getSecondObjective();
 
-            instructionsTextField.setText("Choose your secret objective");
+            instructionsLabel.setText("Choose your secret objective");
             centralCardsAndDecksPane.setVisible(true);
 
             commonObjectiveImage1.setImage(cardLoader.getFront(commonObj1.getId()));
@@ -620,7 +645,7 @@ public class StationController implements Initializable {
     }
 
     private void startTurn(){
-        instructionsTextField.setText("It's your turn! Choose a card to play from your hand!");
+        instructionsLabel.setText("It's your turn! Choose a card to play from your hand!");
         chatButton.setOnMouseClicked(this::openChat);
         menuPane.setVisible(true);
         if(firstCardInHand != null){
@@ -632,14 +657,16 @@ public class StationController implements Initializable {
         if(thirdCardInHand != null){
             thirdCardInHand.setOnMouseClicked(this::cardInHandChosen);
         }
+        scoreboardButton.setOnMouseClicked(this::switchToScoreBoard);
 
         //TODO: ricordare di togliere gli handler appena non più necessari
     }
 
     private void notMyTurn(String currentPlayer){
-        instructionsTextField.setText("It's " + currentPlayer + "'s turn. Wait for your turn to play");
+        instructionsLabel.setText("It's " + currentPlayer + "'s turn. Wait for your turn to play");
         chatButton.setOnMouseClicked(this::openChat);
         menuPane.setVisible(true);
+        scoreboardButton.setOnMouseClicked(this::switchToScoreBoard);
     }
 
     /**
@@ -664,8 +691,8 @@ public class StationController implements Initializable {
           chatBox.setVisible(false);
           chatSendTextButton.setVisible(false);
           chatTextField.setVisible(false);
-          instructionsTextField.setText("Choose the side of your starting card starting card");
-          scoreboardButton.setOnMouseClicked(this::switchToScoreBoard);
+          instructionsLabel.setText("Choose the side of your starting card starting card");
+
     }
 
     public void switchToScoreBoard(MouseEvent mouseEvent) {
