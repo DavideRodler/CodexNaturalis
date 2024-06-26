@@ -460,11 +460,11 @@ public class StationController implements Initializable {
         ImageView choiceOfDraw = (ImageView) event.getSource();
         System.out.println("hai scelto una carta da pescare");
         if(choiceOfDraw.equals(clientController.getClientModel().getCentralCardsGold().getFirst())){
-            clientController.startAfterCardHasBeenAddedToStation_UI(1);
+            clientController.startAfterCardHasBeenAddedToStation_UI(0);
         } else if(choiceOfDraw.equals(clientController.getClientModel().getCentralCardsGold().get(1))){
-            clientController.startAfterCardHasBeenAddedToStation_UI(2);
+            clientController.startAfterCardHasBeenAddedToStation_UI(1);
         } else if(choiceOfDraw.equals(clientController.getClientModel().getCentralCardsResource().getFirst())){
-            clientController.startAfterCardHasBeenAddedToStation_UI(3);
+            clientController.startAfterCardHasBeenAddedToStation_UI(2);
         } else if(choiceOfDraw.equals(clientController.getClientModel().getCentralCardsResource().get(1))){
             thirdCardInHand.setImage(choiceOfDraw.getImage());
         }
