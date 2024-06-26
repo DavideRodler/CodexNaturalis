@@ -47,7 +47,12 @@ public class SocketClient implements ClientToServerCommunication{
             try {
                 runVirtualServer();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                if (e.getMessage().equals("Connection reset")  || e.getMessage().equals("Connection reset by peer")) {
+                    System.out.println("Server disconnected");
+                }
+                else {
+                    throw new RuntimeException(e);
+                }
             }
         }).start();
     }
@@ -127,8 +132,12 @@ public class SocketClient implements ClientToServerCommunication{
      * @throws Exception if an error occurs
      */
     @Override
-    public void connectToServer() throws Exception {
-        server.connectClient(null);
+    public void connectToServer() {
+        try {
+            server.connectClient(null);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

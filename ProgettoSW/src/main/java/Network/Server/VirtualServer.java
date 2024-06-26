@@ -17,6 +17,8 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface VirtualServer extends Remote {
+    void ping() throws RemoteException;
+
     void connectClient(VirtualView client) throws RemoteException;
 
     void setPlayerNumber(int playerNumber) throws RemoteException;

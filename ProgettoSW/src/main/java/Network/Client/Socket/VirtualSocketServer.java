@@ -26,6 +26,11 @@ public class VirtualSocketServer implements VirtualServer {
         this.output = output;
     }
 
+    @Override
+    public void ping() throws RemoteException {
+
+    }
+
     /**
      * This method connect the client to the server
      * @throws RemoteException if a remote error occurs

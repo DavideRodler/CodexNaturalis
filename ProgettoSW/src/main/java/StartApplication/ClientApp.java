@@ -103,11 +103,7 @@ public class ClientApp implements Remote {
                 client.setClientController(clientController);
                 clientController.setClientToServerCommunication(client);
                 client.run();
-                try {
-                    client.connectToServer();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
+                client.connectToServer();
 
                 break;
             } else {

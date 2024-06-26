@@ -124,15 +124,33 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
      * @throws RemoteException
      */
     @Override
-    public void connectToServer() throws RemoteException{
+    public void connectToServer() throws RemoteException {
         ConnectToServerMessage message = new ConnectToServerMessage();
         try {
             queue.put(message);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
+        new Thread(() -> {
+            try {
+                startHeartbeat();
+            } catch (RemoteException e) {
+                System.out.println("Server disconnected");
+            }
+        }
+        ).start();
     }
+
+        public void startHeartbeat() throws RemoteException{
+                while (true) {
+                        server.ping();
+                        try {
+                        Thread.sleep(1000);  // Aspetta 1 secondo prima del prossimo ping
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+        }
 
 
     /**

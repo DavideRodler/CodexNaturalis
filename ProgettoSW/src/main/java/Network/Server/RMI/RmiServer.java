@@ -5,15 +5,10 @@ import Network.Server.Server;
 import Network.Server.VirtualServer;
 import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
-import exception.ChangedStateException;
-import exception.InvalidPlacingCondition;
-import exception.NotMyTurnException;
-import exception.NotValidMoveException;
 import model.enums.TokenEnum;
 //import socket.Messages.PlayersInfoMessage;
 
 import java.rmi.RemoteException;
-import java.util.*;
 
 public class RmiServer implements VirtualServer {
     private Server server;
@@ -22,6 +17,10 @@ public class RmiServer implements VirtualServer {
         this.server = server;
     }
 
+
+    @Override
+    public void ping() throws RemoteException {
+    }
 
     @Override
     public void connectClient(VirtualView client) throws RemoteException {
