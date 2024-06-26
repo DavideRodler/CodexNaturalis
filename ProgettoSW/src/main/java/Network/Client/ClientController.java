@@ -28,11 +28,19 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
+/**
+ * This class is the controller of the client
+ */
 public class ClientController {
+
     private UI ui;
     private final ClientBoard clientModel;
     private ClientToServerCommunication clientToServerCommunication;
 
+    /**
+     * This method is used to get the client model
+     * @return the client model
+     */
     public ClientBoard getClientModel() {
         return clientModel;
     }
@@ -40,6 +48,7 @@ public class ClientController {
     public void setClientToServerCommunication(ClientToServerCommunication clientToServerCommunication) {
         this.clientToServerCommunication = clientToServerCommunication;
     }
+
     public void setUi(UI ui) {
         this.ui = ui;
     }
@@ -50,13 +59,13 @@ public class ClientController {
 
 
 
-    public void imReadyForNextTurn() {
-//        clientToServerCommunication.finishTurn();
-    }
-
+    /**
+     * This method is used to set the nickname of the player
+     */
     public void setupOfnickname(){
         ui.askNickname();
     }
+
 
 
     public void setupOfnickname_UI(String nickname){

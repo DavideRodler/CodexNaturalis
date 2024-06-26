@@ -25,7 +25,7 @@ public interface VirtualView extends Remote, Observer {
 
     void notifyGameAlreadyStarted() throws RemoteException;
 
-    void notifyItIsYourTurn() throws RemoteException;
+    void StartGame() throws RemoteException;
 
     void notifyResultOfCardAddedToStation(boolean result, String message) throws RemoteException;
 

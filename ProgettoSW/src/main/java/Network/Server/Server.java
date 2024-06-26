@@ -6,7 +6,6 @@ import Socket.Messages.Chat.PrivateChatMessage;
 import Socket.Messages.Message;
 import Socket.Messages.ServerToClient.ActionMessage;
 import Socket.Messages.ServerToClient.GameFinishedMessage;
-import Socket.Messages.ServerToClient.ResultOfCardAddedToStationMessage;
 import Socket.Messages.queqe.QueueActionWithClientMessage;
 import Socket.Messages.queqe.QueueResultOfCardAddedToStationMessage;
 import controller.GameController;
@@ -192,12 +191,12 @@ public class Server {
                     }
                     break;
 
-                case "startTurn":
+                case "startGame":
                     synchronized (this.clients) {
                         for (var c : clientsMap.keySet()) {
                                 new Thread(() -> {
                                     try {
-                                            clientsMap.get(c).notifyItIsYourTurn();
+                                            clientsMap.get(c).StartGame();
                                     } catch (RemoteException e) {
                                         throw new RuntimeException(e);
                                     }
@@ -397,7 +396,7 @@ public class Server {
             }
         }
         if(gameController.getBoard().getGameState().equals(GameState.PLACING_CARD)){
-            startTurn();
+            startGame();
         }
     }
 
@@ -458,9 +457,9 @@ public class Server {
         }
     }
 
-    public  void startTurn(){
+    public  void startGame(){
         try {
-            queue.put(new ActionMessage("startTurn"));
+            queue.put(new ActionMessage("startGame"));
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

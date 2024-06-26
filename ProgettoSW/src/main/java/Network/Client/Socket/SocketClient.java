@@ -17,6 +17,10 @@ import java.io.*;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * This class is the implementation of the ClientToServerCommunication interface for the Socket connection
+ */
+
 public class SocketClient implements ClientToServerCommunication{
     final ObjectInputStream input;
     final VirtualSocketServer server;
@@ -27,9 +31,17 @@ public class SocketClient implements ClientToServerCommunication{
         this.server = new VirtualSocketServer(output);
     }
 
+    /**
+     * This method sets the clientController
+     * @param clientController the clientController to be set
+     */
     public void setClientController(ClientController clientController) {
         this.clientController = clientController;
     }
+
+    /**
+     * This method starts the virtual server
+     */
     public void run() {
         new Thread( () -> {
             try {
@@ -40,6 +52,13 @@ public class SocketClient implements ClientToServerCommunication{
         }).start();
     }
 
+    /**
+     * This method runs the virtual server
+     * If the message is an update of the model it sends it to a client controller update function
+     * else id performs the action requested by the message by
+     * calling the corresponding function in the client controller
+     * @throws IOException if an I/O error occurs
+     */
     private void runVirtualServer() throws IOException {
         Message message;
         // Read message type
@@ -78,7 +97,7 @@ public class SocketClient implements ClientToServerCommunication{
                     clientController.notifyGameFinished(gameFinishedMessage.getScoreBoard());
                 }
 
-                case "notifyItIsYourTurn" -> new Thread(() -> {
+                case "startGame" -> new Thread(() -> {
                         clientController.notifyItIsYourTurn();
                 }).start();
 
@@ -87,6 +106,12 @@ public class SocketClient implements ClientToServerCommunication{
         }
     }
 
+
+    /**
+     * This method sets the token of a player
+     * @param nickname the nickname of the player
+     * @param token the token to be set
+     */
     @Override
     public void setToken(String nickname, TokenEnum token) {
         try {
@@ -97,6 +122,10 @@ public class SocketClient implements ClientToServerCommunication{
 
     }
 
+    /**
+     * This method connects the client to the server
+     * @throws Exception if an error occurs
+     */
     @Override
     public void connectToServer() throws Exception {
         server.connectClient(null);
@@ -104,6 +133,10 @@ public class SocketClient implements ClientToServerCommunication{
 
 
 
+    /**
+     * This method adds a player to the game
+     * @param nickname the nickname of the player to be added
+     */
     @Override
     public void addPlayer(String nickname) {
         try {
@@ -114,6 +147,12 @@ public class SocketClient implements ClientToServerCommunication{
 
     }
 
+    /**
+     * This method sets the starting card played back
+     * @param playedBack the boolean value of the played back
+     * @param nickname the nickname of the player
+     * @param id the id of the card
+     */
     @Override
     public void setStartingCardPlayedBack(boolean playedBack, String nickname, int id) {
         try {
@@ -125,6 +164,11 @@ public class SocketClient implements ClientToServerCommunication{
 
 
 
+    /**
+     * This method sets the secret objective of a player
+     * @param nickname the nickname of the player
+     * @param id the id of the secret objective
+     */
     @Override
     public void setSecretObjective(String nickname, int id) {
         try {
@@ -135,6 +179,14 @@ public class SocketClient implements ClientToServerCommunication{
 
     }
 
+    /**
+     * This method adds a card to a station
+     * @param nickname the nickname of the player
+     * @param cardid the id of the card
+     * @param playedback the boolean value of the played back
+     * @param x the x coordinate of the card
+     * @param y the y coordinate of the card
+     */
     @Override
     public void addCardToStation(String nickname, int cardid, boolean playedback, int x, int y) {
         try {
@@ -145,6 +197,11 @@ public class SocketClient implements ClientToServerCommunication{
 
     }
 
+    /**
+     * This method adds a card from the central cards to the player hand
+     * @param nickname the nickname of the player
+     * @param cardid the id of the card
+     */
     @Override
     public void addCardFromCentralCardsToPlayerHand(String nickname, int cardid) {
         try {
@@ -155,6 +212,11 @@ public class SocketClient implements ClientToServerCommunication{
 
     }
 
+    /**
+     * This method adds a card from the deck to the player hand
+     * @param nickname the nickname of the player
+     * @param cardid the id of the card
+     */
     @Override
     public void addCardFromDeckToPlayerHand(String nickname, int cardid) {
         try {
@@ -164,16 +226,11 @@ public class SocketClient implements ClientToServerCommunication{
         }
     }
 
-    @Override
-    public void finishTurn() {
-        try {
-            server.startTurn();
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
-
+    /**
+     * This method sets the player number
+     * @param num the number of the player
+     */
     @Override
     public void setPlayerNumber(int num) {
         try {
@@ -183,11 +240,19 @@ public class SocketClient implements ClientToServerCommunication{
         }
     }
 
+    /**
+     * This method sends a global message
+     * @param global the global message to be sent
+     */
     @Override
     public void sendGlobalMessage(GlobalChatMessage global) {
         server.takeGlobalMessage(global);
     }
 
+    /**
+     * This method sends a private message
+     * @param privateMessage the private message to be sent
+     */
     @Override
     public void sendPrivateMessage(PrivateChatMessage privateMessage) {
         server.takePrivateMessage(privateMessage);

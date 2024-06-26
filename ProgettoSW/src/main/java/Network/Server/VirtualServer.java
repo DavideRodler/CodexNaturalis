@@ -35,8 +35,6 @@ public interface VirtualServer extends Remote {
 
     void addCardFromCentralCardsToPlayerHand(String nickname, int id) throws RemoteException;
 
-    void startTurn() throws RemoteException;
-
     void takeGlobalMessage(GlobalChatMessage globalChatMessage) throws RemoteException;
 
     void takePrivateMessage(PrivateChatMessage privateChatMessage) throws RemoteException;

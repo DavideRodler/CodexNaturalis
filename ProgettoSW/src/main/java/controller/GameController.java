@@ -15,6 +15,9 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * This class is the controller of the game
+ */
 public class GameController implements Serializable {
     private PlayingBoard board;
     private int NumberOfPlayerThatHasSettedTheStartingCardFace = 0;

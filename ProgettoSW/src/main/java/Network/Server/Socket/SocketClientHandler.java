@@ -247,8 +247,8 @@ public class SocketClientHandler implements VirtualView {
     }
 
     @Override
-    public void notifyItIsYourTurn() throws RemoteException {
-        Message message = new ActionMessage("notifyItIsYourTurn");
+    public void StartGame() throws RemoteException {
+        Message message = new ActionMessage("startGame");
         try {
             this.output.writeObject(message);
             this.output.flush();

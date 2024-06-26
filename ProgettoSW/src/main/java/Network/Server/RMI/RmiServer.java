@@ -73,10 +73,6 @@ public class RmiServer implements VirtualServer {
         server.addCardFromCentralCardsToPlayerHand(nickname, cardId);
     }
 
-    @Override
-    public void startTurn() throws RemoteException {
-//        server.startTurn();
-    }
 
     @Override
     public void takeGlobalMessage(GlobalChatMessage globalChatMessage) throws RemoteException{

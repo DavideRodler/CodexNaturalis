@@ -21,8 +21,6 @@ public interface ClientToServerCommunication {
 
     void addCardFromDeckToPlayerHand(String nickname, int cardid);
 
-    void finishTurn();
-
     void setPlayerNumber(int num);
 
     void sendGlobalMessage(GlobalChatMessage global);
