@@ -483,7 +483,9 @@ public class StationController implements Initializable {
         chatButton.setOnMouseClicked(this::closeChat);
         chatSendTextButton.setVisible(true);
         chatTextField.setVisible(true);
-
+        publicChatButton.setOnMouseClicked(this::showPublicChat);
+        privateChatButton.setOnMouseClicked(this::showPrivateChat);
+        chatTextArea.appendText(clientController.getClientModel().getGlobalChat().getMessage().getFirst().getNickname() + ": " + clientController.getClientModel().getGlobalChat().getMessage().getFirst().getMessage());
     }
 
     private void closeChat(MouseEvent event) {
