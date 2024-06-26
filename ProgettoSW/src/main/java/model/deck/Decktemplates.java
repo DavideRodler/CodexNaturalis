@@ -25,6 +25,10 @@ import static java.util.Collections.shuffle;
 
 // create a static class that has for each deck a static method that returns the List of all model.cards that need to be in that deck
 public class Decktemplates implements Serializable {
+  private final static String deckGoldJson = "src/main/resources/JarFile/GoldDeck.json";
+  private final static String deckresourceJson = "src/main/resources/JarFile/resourceDeck.json";
+  private final static String deckStarticgJson = "src/main/resources/JarFile/StartingDeck.json";
+  private final static String deckObjectiveJson = "src/main/resources/JarFile/ObjectiveCard.json";
   // creating the DeckResource Deck
   // each line in the text represent the card:
   // we have in order: suit of the card, the four corner(starting from upright)
@@ -47,7 +51,7 @@ public class Decktemplates implements Serializable {
       JSONArray resourceCard = null;
       try {
           resourceCard = (JSONArray) parser
-              .parse(new FileReader("src/main/java/model/deck/resourceDeck.json"));
+              .parse(new FileReader(deckresourceJson));
       } catch (IOException | ParseException e) {
           throw new RuntimeException(e);
       }
@@ -84,7 +88,7 @@ public class Decktemplates implements Serializable {
     JSONParser parser = new JSONParser();
       JSONArray goldCard = null;
       try {
-          goldCard = (JSONArray) parser.parse(new FileReader("src/main/java/model/deck/GoldDeck.json"));
+          goldCard = (JSONArray) parser.parse(new FileReader(deckGoldJson));
       } catch (IOException | ParseException e) {
           throw new RuntimeException(e);
       }
@@ -130,7 +134,7 @@ public class Decktemplates implements Serializable {
       JSONArray startingCard = null;
       try {
           startingCard = (JSONArray) parser
-              .parse(new FileReader("src/main/java/model/deck/StartingDeck.json"));
+              .parse(new FileReader(deckStarticgJson));
       } catch (IOException | ParseException e) {
           throw new RuntimeException(e);
       }
@@ -174,7 +178,7 @@ public class Decktemplates implements Serializable {
       JSONArray objectiveCard = null;
       try {
           objectiveCard = (JSONArray) parser
-              .parse(new FileReader("src/main/java/model/deck/ObjectiveCard.json"));
+              .parse(new FileReader(deckObjectiveJson));
       } catch (IOException | ParseException e) {
           throw new RuntimeException(e);
       }
