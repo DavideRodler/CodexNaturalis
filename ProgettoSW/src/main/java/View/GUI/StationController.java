@@ -353,11 +353,12 @@ public class StationController implements Initializable {
             System.out.println("Bottone premuto");
             int firstCoordinate = 0, secondCoordinate = 0;
             for(Map.Entry<ArrayList<Integer>, CardPlaying> entry : clientController.getClientModel().getMyplayer().getStation().getMap().entrySet()){
-            if(entry.getValue().equals(imageToCardMap.get(cardToPlayOn))) {
-                firstCoordinate = entry.getKey().getFirst();
-                secondCoordinate = entry.getKey().getLast();
+                if(entry.getValue().getId().equals((imageToCardMap.get(cardToPlayOn)).getId())) {
+                    firstCoordinate = entry.getKey().getFirst();
+                    secondCoordinate = entry.getKey().getLast();
                 }
             }
+            imageToCardMap.put(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
             if(buttonPressed.equals(placeCardDownLeftButton)){
                 System.out.println("Scelto bottone in basso a sinistra");
                 postion = 0;
@@ -386,10 +387,10 @@ public class StationController implements Initializable {
             }
 
 
+
             //chooseCard1.setImage(null);
             //chooseCard2.setImage(null);
             //aggiungo gli handler alle carte centrali
-            imageToCardMap.put(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
     }
 
     public void updateCentralCardsAndDecks(){
@@ -605,10 +606,10 @@ public class StationController implements Initializable {
             deckGoldImage.setImage(cardLoader.getTopDeckGold(clientController.getClientModel().getBackOfGoldDeck()));
             deckResourceImage.setImage(cardLoader.getTopDeckResource(clientController.getClientModel().getBackOfResourceDeck()));
 
-            imageToCardMap.put(centralResourceImage1, centralResourceCard1);
-            imageToCardMap.put(centralResourceImage2, centralResourceCard2);
-            imageToCardMap.put(centralGoldImage1, centralGoldCard1);
-            imageToCardMap.put(centralGoldImage2, centralGoldCard2);
+//            imageToCardMap.put(centralResourceImage1, centralResourceCard1);
+//            imageToCardMap.put(centralResourceImage2, centralResourceCard2);
+//            imageToCardMap.put(centralGoldImage1, centralGoldCard1);
+//            imageToCardMap.put(centralGoldImage2, centralGoldCard2);
 
 
             showPlayerHand();

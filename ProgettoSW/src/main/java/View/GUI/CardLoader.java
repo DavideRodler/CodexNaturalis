@@ -84,7 +84,7 @@ public class CardLoader {
         else if(id > 70 && id < 81){ //gold
             stream = this.getClass().getClassLoader().getResourceAsStream(id + "_INSECT_front.png");
         }
-        if(id > 80 && id < 87){ //starting
+        else if(id > 80 && id < 87){ //starting
             stream = this.getClass().getClassLoader().getResourceAsStream(id +"_starting_front.png");
         }
         else if(id > 86 && id < 103){
