@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="CHAT GUI + MODIFICHE ALLO STATION CONTROLLER">
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="cantiere gui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
     </list>
@@ -74,7 +74,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.ClientApp.executor": "Debug",
+    "Application.ClientApp.executor": "Run",
     "Application.Gui.executor": "Run",
     "Application.RmiClient.executor": "Run",
     "Application.ServerApp.executor": "Run",
@@ -223,7 +223,7 @@
       <recent name="Socket.Messages.queqe" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientApp">
+  <component name="RunManager" selected="Application.ServerApp">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
       <module name="ProgettoSW" />
@@ -352,14 +352,6 @@
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
       <workItem from="1719261691920" duration="2232000" />
-    </task>
-    <task id="LOCAL-00024" summary="Aggiunto display cardStarting">
-      <option name="closed" value="true" />
-      <created>1713865523143</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1713865523143</updated>
     </task>
     <task id="LOCAL-00025" summary="aggiunta colori">
       <option name="closed" value="true" />
@@ -745,7 +737,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719408742458</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="cantiere gui">
+      <option name="closed" value="true" />
+      <created>1719416421011</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1719416421011</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -825,8 +825,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Test Model" />
-    <MESSAGE value="Test corretti obj" />
     <MESSAGE value="uploadate risorse grafiche + tolti metodi print card nella cli" />
     <MESSAGE value="bozza struttura cli" />
     <MESSAGE value="inizio classi per gui" />
@@ -850,9 +848,9 @@
     <MESSAGE value="CardLoader" />
     <MESSAGE value="GUI OK MANCA FINE TURNO" />
     <MESSAGE value="CHAT GUI + MODIFICHE ALLO STATION CONTROLLER" />
-    <MESSAGE value="cantiere gui" />
     <MESSAGE value="modifiche station controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="modifiche station controller" />
+    <MESSAGE value="cantiere gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="cantiere gui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

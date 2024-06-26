@@ -279,38 +279,41 @@ public class StationController implements Initializable {
 
     void cardInHandChosen(MouseEvent event){
         ImageView selectedCard = (ImageView) event.getSource();
-        ImageView cardChosen = new ImageView();
+
 
         //mappa mi serve lo stesso per ottenere il back (oppure fare in qualche altro modo)
         //qua per provare me le passo direttamente
 
 
         if(selectedCard.equals(firstCardInHand)){
-            chooseCard1.setImage(firstCardInHand.getImage());
+            //
+            chooseCard1.setImage(cardLoader.getFront(clientController.getClientModel().getMyplayer().getHand().getFirst().getId()));
             chooseCard2.setImage(cardLoader.getBack(clientController.getClientModel().getMyplayer().getHand().getFirst().getId()));
-            cardChosen.setImage(firstCardInHand.getImage());
             indexOfCardToReplaced = 0;
             System.out.println("Scelta la prima");
         } else if(selectedCard.equals(secondCardInHand)) {
-            chooseCard1.setImage(secondCardInHand.getImage());
+            chooseCard1.setImage(cardLoader.getFront(clientController.getClientModel().getMyplayer().getHand().get(1).getId()));
             chooseCard2.setImage(cardLoader.getBack(clientController.getClientModel().getMyplayer().getHand().get(1).getId()));
-            cardChosen.setImage(secondCardInHand.getImage());
             indexOfCardToReplaced = 1;
             System.out.println("Scelta la seconda");
         } else if(selectedCard.equals(thirdCardInHand)) {
-            chooseCard1.setImage(thirdCardInHand.getImage());
+            chooseCard1.setImage(cardLoader.getFront(clientController.getClientModel().getMyplayer().getHand().get(2).getId()));
             chooseCard2.setImage(cardLoader.getBack(clientController.getClientModel().getMyplayer().getHand().get(2).getId()));
             indexOfCardToReplaced = 2;
-            cardChosen.setImage(thirdCardInHand.getImage());
             System.out.println("Scelta la terza");
         }
         instructionsLabel.setText("Choose front or back!");
+        chooseCard1.setVisible(true);
+        chooseCard2.setVisible(true);
         chooseCard1.setOnMouseClicked(this::chooseCardSide);
         chooseCard2.setOnMouseClicked(this::chooseCardSide);
     }
 
     void chooseCardSide(MouseEvent event){
-        cardToPlay = (ImageView) event.getSource();
+        ImageView selectedCard = (ImageView) event.getSource();
+        cardToPlay = new ImageView();
+        cardToPlay.setImage(selectedCard.getImage());
+
         if(cardToPlay.equals(chooseCard1)){
             playedBack = false;
         } else if(cardToPlay.equals(chooseCard2)){
@@ -328,8 +331,7 @@ public class StationController implements Initializable {
     //TODO: aggiungere le carte alle mappe!
 
     void chooseCardToPlayOn(MouseEvent event){
-        ImageView selectedCard = (ImageView) event.getSource();
-        cardToPlayOn = selectedCard;
+        cardToPlayOn = (ImageView) event.getSource();
         System.out.println("Hai premuto una carta su cui piazzare");
         instructionsLabel.setText("Choose where you want to play your cards using the buttons");
         cardPlacementBox.setVisible(true);
@@ -383,10 +385,7 @@ public class StationController implements Initializable {
                 postion = 3;
             }
 
-            if(playedBack)
-                chooseCard1.setImage(null);
-            else
-                chooseCard2.setImage(null);
+
             //chooseCard1.setImage(null);
             //chooseCard2.setImage(null);
             //aggiungo gli handler alle carte centrali
@@ -480,6 +479,7 @@ public class StationController implements Initializable {
         }
         instructionsLabel.setText("Your turn is finished.");
         choiceOfDraw.setImage(null);
+
     }
 
 
@@ -657,6 +657,7 @@ public class StationController implements Initializable {
     private void startTurn(){
         instructionsLabel.setText("It's your turn! Choose a card to play from your hand!");
         updateCentralCardsAndDecks();
+        cardPlacementBox.setVisible(false);
         chatButton.setOnMouseClicked(this::openChat);
         menuPane.setVisible(true);
         if(firstCardInHand != null){
