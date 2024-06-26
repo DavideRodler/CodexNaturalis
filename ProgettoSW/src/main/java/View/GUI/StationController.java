@@ -325,10 +325,6 @@ public class StationController implements Initializable {
         } else if(cardToPlay.equals(chooseCard2)){
             playedBack = true;
         }
-        //a questo punto le carte da cui scegliere non devono ancora poter fare niente.
-        //potranno fare qualcosa solo dopo che è stata scelta la carta su cui giocare.
-//        chooseCard1.setOnMouseClicked(this::chooseCardToPlayOn);
-//        chooseCard1.setOnMouseClicked(this::chooseCardToPlayOn);
         //TODO: DA FARE DOPO?
         //imageToCardMap.put(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
         instructionsLabel.setText("Choose a card on the station to play on!");
@@ -396,7 +392,7 @@ public class StationController implements Initializable {
                 postion = 3;
             }
             //chooseCard1.setImage(null);
-            chooseCard2.setImage(null);
+            //chooseCard2.setImage(null);
             //aggiungo gli handler alle carte centrali
 
     }
@@ -449,6 +445,7 @@ public class StationController implements Initializable {
     public void cardPlaceIncorrectly(String message){
         instructionsLabel.setText(message);
         cardToPlay.setImage(null);
+        cardPlacementBox.setVisible(false);
         //tolgo gli handler ai bottoni piazzamento perchè inizio nuovo ciclo di piazzamento
         placeCardDownRightButton.setOnMouseClicked(null);
         placeCardUpRightButton.setOnMouseClicked(null);
