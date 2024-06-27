@@ -5,6 +5,9 @@ import Socket.Messages.ChatMessage;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * This class represents a chat
+ */
 public class Chat implements Serializable {
     private ArrayList<ChatMessage> message;
 

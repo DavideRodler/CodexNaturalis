@@ -5,6 +5,9 @@ import Socket.Messages.Chat.PrivateChatMessage;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * This class represents a private chat
+ */
 public class PrivateChat implements Serializable {
     private ArrayList<PrivateChatMessage> message;
     private String nickname1;

@@ -2,6 +2,9 @@ package model.cards.face;
 
 import java.io.Serializable;
 
+/**
+ * this class represents a face of a card
+ */
 public class Face implements Serializable{
     private Corner UpRight;
     private Corner UpLeft;

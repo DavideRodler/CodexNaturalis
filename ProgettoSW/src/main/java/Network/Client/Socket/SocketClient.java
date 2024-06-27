@@ -7,15 +7,10 @@ import Socket.Messages.Chat.PrivateChatMessage;
 import Socket.Messages.Message;
 import Socket.Messages.ServerToClient.GameFinishedMessage;
 import Socket.Messages.ServerToClient.ResultOfCardAddedToStationMessage;
-import exception.ChangedStateException;
-import exception.InvalidPlacingCondition;
-import exception.NotMyTurnException;
-import exception.NotValidMoveException;
 import model.enums.TokenEnum;
 
 import java.io.*;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 /**
  * This class is the implementation of the ClientToServerCommunication interface for the Socket connection
@@ -104,7 +99,7 @@ public class SocketClient implements ClientToServerCommunication{
                 }
 
                 case "startGame" -> new Thread(() -> {
-                        clientController.notifyItIsYourTurn();
+                        clientController.startGameLoop();
                 }).start();
 
                 default -> clientController.updateModel(message);

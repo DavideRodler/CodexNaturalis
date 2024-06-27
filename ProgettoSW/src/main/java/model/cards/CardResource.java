@@ -7,6 +7,10 @@ import model.objectives.Points;
 
 import java.io.Serializable;
 
+/**
+ * This class represents a resource card.
+ * It has a symbol, a number of points and an objective.
+ */
 public class CardResource extends CardPlaying implements Serializable {
     private final SuitEnum symbol;
     private final Integer points;

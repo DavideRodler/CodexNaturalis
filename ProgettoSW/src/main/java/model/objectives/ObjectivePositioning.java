@@ -13,6 +13,9 @@ import model.enums.PositionEnum;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * This class represents the objective of the positioning
+ */
 public class ObjectivePositioning extends PatternUtils{
     public SuitEnum colorOneCard;
     public SuitEnum colorTwoCards;

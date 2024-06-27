@@ -2,6 +2,10 @@ package model.cards;
 
 import java.io.Serializable;
 
+/**
+ * This class represents a card.
+ * It has an ID.
+ */
 public abstract class Card implements Serializable {
     private Integer ID;
 

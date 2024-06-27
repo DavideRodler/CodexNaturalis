@@ -102,7 +102,6 @@ public class PlayingStation extends ObservableModel implements Serializable {
     }
 
 
-//    TODO: passare id della carta e non la carta, mettere exception se la carta non c'e'
     public ArrayList<Integer> getCoordinates(CardPlaying card) {
         for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : map.entrySet()) {
             if (entry.getValue().equals(card)) {
@@ -111,40 +110,6 @@ public class PlayingStation extends ObservableModel implements Serializable {
         }
         return null; // Return null if the card is not found
     }
-
-    /**
-     * This method returns the x coordinate of the given card
-     *
-     * @param card the card
-     * @return the x coordinate of the given card or null if the card is not found
-     */
-
-//    TODO: passare id della carta e non la carta
- /**   public Integer getXCoordinate(CardPlaying card) {
-        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : map.entrySet()) {
-            if (entry.getValue().equals(card)) {
-                return entry.getKey().get(0);
-            }
-        }
-        return null; // Return null if the card is not found
-    }**/
-
-
-    /**
-     * This method returns the y coordinate of the given card
-     *
-     * @param card the card
-     * @return the y coordinate of the given card or null if the card is not found
-     */
-//    TODO: passare id della carta e non la carta
-/**    public Integer getYCoordinate(CardPlaying card) {
-        for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : map.entrySet()) {
-            if (entry.getValue().equals(card)) {
-                return entry.getKey().get(1);
-            }
-        }
-        return null; // Return null if the card is not found
-    }**/
 
 
     /**
@@ -242,8 +207,6 @@ public class PlayingStation extends ObservableModel implements Serializable {
                     throw new InvalidPlacingCondition("You can't place a card above 2 corners of the same card");
 
 
-                //:Todo mettere un metodo che ritorna il lato della carta che gioco
-
                 if (getCard(X - 1, Y - 1) != null) { //checking if existing the down-right card adjacent with the card I want to play
                     if (!map.get(coordinates1).getPlayingBack()) { //checking if the card is played by front
                         if (map.get(coordinates1).getFront().getDownRight().getDrawing().equals(SuitEnum.NULL)) { //checking if there is a corner available
@@ -310,6 +273,16 @@ public class PlayingStation extends ObservableModel implements Serializable {
             return true;
         }
 
+    /**
+     * This method adds a card to the playing station
+     * @param card  the card to add
+     * @param X coordinated
+     * @param Y coordinated
+     * @param playedback
+     * @param nickname
+     * @return
+     * @throws InvalidPlacingCondition if the card cannot be placed with a message that says why
+     */
         public int addCard(CardResource card, Integer X, Integer Y,boolean playedback, String nickname) throws InvalidPlacingCondition {
             int points = 0;
             int counter = 0;
@@ -435,6 +408,9 @@ public class PlayingStation extends ObservableModel implements Serializable {
             }
         }
 
+    /** update the counters after placing a Starting card
+     * @param card  the card to update the counters
+     */
         public void updateCounters (CardStarting card){
             if (card.getPlayingBack()) {
                 updateCounters(card.getBack().getUpRight());
@@ -462,6 +438,10 @@ public class PlayingStation extends ObservableModel implements Serializable {
             }
         }
 
+    /**
+     * update counters of a ResourceCard
+     * @param card
+     */
         public void updateCounters (CardResource card){
             if (!card.getPlayingBack()) {
                 updateCounters(card.getFront().getUpRight());

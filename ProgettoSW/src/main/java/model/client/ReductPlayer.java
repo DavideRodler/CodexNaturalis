@@ -7,6 +7,9 @@ import model.enums.TokenEnum;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * This class represents a player in the reduct game
+ */
 public class ReductPlayer {
     private final String nickname;
     private int points;

@@ -1,21 +1,13 @@
 package Network.Client;
 
 import Network.Client.RMI.RmiClientToServer;
-import Network.Client.RMI.VirtualView;
 import Network.Client.Socket.SocketClient;
 import Network.Server.VirtualServer;
 import Socket.Messages.Chat.AddPrivateChatMessage;
 import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
-import View.CLI.CardMatrixCreator;
-import View.CLI.Cli2;
-import View.GUI.ChooseNickAndTokenController;
-import View.GUI.Gui;
-import View.GUI.StartSceneController;
-import View.GUI.StationController;
 import View.UI;
 import exception.InvalidPlacingCondition;
-import javafx.application.Platform;
 import model.Player;
 import model.PlayingStation;
 import model.cards.CardGold;
@@ -79,7 +71,10 @@ public class ClientController {
     }
 
 
-
+    /**
+     * This method is used to set the nickname of the player in the server
+     * @param nickname  is the name of the player to add
+     */
     public void setupOfnickname_UI(String nickname){
         //adding player to client model
         Player myplayer = new Player(nickname, new PlayingStation(new HashMap<>()), 0, new ArrayList<>());
@@ -89,14 +84,24 @@ public class ClientController {
         clientToServerCommunication.addPlayer(nickname);
     }
 
+    /**
+     * This method is used to display the central cards after the sever has distribuited
+     */
     public synchronized void showFourCentralCards() {
         ui.print4CentralCards();
     }
 
+    /**
+     * This method is start the setup of the starting card
+     */
     public synchronized void setupOfStartingCard() {
         ui.askStartingCardPlayedBack();
     }
 
+    /**
+     * This method is used to notify the server to set the starting card
+     * @param answer the answer of the player
+     */
     public synchronized void setupOfStartingCard_UI(boolean answer){
         //setting starting card face in server
         CardStarting cardStarting = (CardStarting) clientModel.getMyplayer().getStation().getCard(40,40);
@@ -104,13 +109,16 @@ public class ClientController {
     }
 
 
+    /**
+     * This method is start the setup of the private objective card
+     */
     public synchronized void setupOfSecretObjective() {
         ui.askObjectiveCard();
     }
 
 
     /**
-     * this method is used to ask the player which secret objective he wants to choose
+     * This method is used to notify the server to set the objective card
      * @param answer the answer of the player
      */
     public synchronized void setupOfSecretObjective_UI(int answer){
@@ -118,19 +126,33 @@ public class ClientController {
     }
 
 
-    public void notifyItIsYourTurn() {
+    /**
+     * This method is used to start the game loop
+     */
+    public void startGameLoop() {
         ui.startGame();
     }
 
 
     /**
-     * this method is used to ask the player which card he wants to draw
+     * notify the server to add a card
+     * @param playedbakck
+     * @param x
+     * @param y
+     * @param cardId
      */
     public void playCardOnPlayngStation_UI(boolean playedbakck, int x, int y, int cardId) {
 
         clientToServerCommunication.addCardToStation(clientModel.getMyplayer().getNickname(), cardId, playedbakck, x, y);    //try to add the card to local model
     }
 
+    /**
+     * this method is used to handle the result of the card added to the station
+     * after the server has tried to add it
+     *
+     * @param result
+     * @param message
+     */
     public void handleResultOfCardAdded(boolean result, String message) {
         if(result) {
             ui.printCardAddedSuccessfully();
@@ -141,6 +163,10 @@ public class ClientController {
     }
 
 
+    /**
+     * this method is used to Send to server which card the player has choosen to draw
+     * @param choice
+     */
     public void startAfterCardHasBeenAddedToStation_UI(Integer choice) {
 
         int selection = choice;
@@ -163,10 +189,11 @@ public class ClientController {
 
 
     /**
-     * this method is used to ask the player the coordinates where he wants to put the card
-     * @param message message to send to the player
+     * This method is used to update the model of a client
+     *
+     * @param message contains the update
      */
-    public void updateModel(Message message) throws RemoteException {
+    public void updateModel(Message message) {
         switch (message.getType()) {
             case "CurrentPlayer":
                 CurrentPlayerMessage currentPlayerMessage = (CurrentPlayerMessage) message;
@@ -269,8 +296,6 @@ public class ClientController {
                 else {
                     for (ReductPlayer player : clientModel.getOtherplayers()) {
                         if (player.getNickname().equals(cardAddedToStationMessage.getNickname())) {
-                            //the card is added to the station of other player
-                            //it is always possible to add it
                             try {
                                 int points = player.getStation().addCard(cardAddedToStationMessage.getCard(), cardAddedToStationMessage.getX(), cardAddedToStationMessage.getY(), cardAddedToStationMessage.getPlayedBack(), cardAddedToStationMessage.getNickname());
                                 player.setPoints(player.getPoints() + points);
@@ -278,7 +303,6 @@ public class ClientController {
                             } catch (InvalidPlacingCondition e) {
                                 throw new RuntimeException(e);
                             }
-                            //ui.printOtherPlayersStation(cardAddedToStationMessage.getNickname());
                         }
                     }
                 }
@@ -326,6 +350,9 @@ public class ClientController {
         }
     }
 
+    /**
+     * Used to ask the number of player of a game
+     */
     public void setupOfPlayersNumber() {
         System.out.println("You are the first player, select the number of players of the game");
         Scanner scanner = new Scanner(System.in);
@@ -336,10 +363,18 @@ public class ClientController {
         setupOfPlayersNumber_CLI(Integer.parseInt(number));
     }
 
+    /**
+     * Sends the number of player to the server
+     * @param number
+     */
     public void setupOfPlayersNumber_CLI(int number){
         clientToServerCommunication.setPlayerNumber(number);
     }
 
+
+    /**
+     * notify another player is selecting the number of players and tries again the connection
+     */
     public void notifyAnotherPlayerSettingNumOfPlayers() {
         System.out.println("Another is selecting the number of players, do you want to try again?");
         Scanner scanner = new Scanner(System.in);
@@ -401,6 +436,12 @@ public class ClientController {
         clientToServerCommunication.sendPrivateMessage(privateMessage);
     }
 
+
+    /**
+     * Method used after the server goes down
+     * It tries to reconnect to the server
+     * If there is not a sever available it waits for the user to press enter
+     */
     public synchronized void tryToReconnect() {
         System.out.println("Press enter to try to reconnect");
         Scanner scanner = new Scanner(System.in);

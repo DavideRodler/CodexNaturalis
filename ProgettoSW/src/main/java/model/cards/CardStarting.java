@@ -6,6 +6,12 @@ import model.enums.SuitEnum;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * This class represents a starting card.
+ * It has a front and a back face.
+ * It has a boolean to know if it is played back or not.
+ * It has a list of symbols.
+ */
 public class CardStarting extends CardPlaying implements Serializable{
     private ArrayList<SuitEnum> symbols;
 

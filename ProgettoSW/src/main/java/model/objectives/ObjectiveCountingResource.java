@@ -4,6 +4,9 @@ import model.enums.SuitEnum;
 
 import java.io.Serializable;
 
+/**
+ * This class an objective that requires to count the resources cards
+ */
 public class ObjectiveCountingResource implements Objective, Serializable {
     public SuitEnum symbol;
 

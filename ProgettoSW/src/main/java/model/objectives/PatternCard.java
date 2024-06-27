@@ -2,6 +2,9 @@ package model.objectives;
 
 import model.enums.SuitEnum;
 
+/**
+ * This class represents the pattern of an objective positioning or diagonal
+ */
 public class PatternCard {
     private int dx;
     private int dy;

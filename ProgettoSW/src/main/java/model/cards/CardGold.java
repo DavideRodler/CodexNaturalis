@@ -7,6 +7,10 @@ import model.objectives.Points;
 
 import java.io.Serializable;
 
+/**
+ * This class represents a gold card.
+ * It has a cost in animal, insect, fungi and plant to be placed.
+ */
 public class CardGold extends CardResource implements Serializable {
     private int costAnimal;
     private int costInsect;

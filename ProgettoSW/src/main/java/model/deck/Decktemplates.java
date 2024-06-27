@@ -22,8 +22,9 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import static java.util.Collections.shuffle;
-
-//This is a static class that for each deck has a static method that returns the List of all model.cards that need to be in that deck
+/**
+*This is a static class that for each deck has a static method that returns the List of all model.cards that need to be in that deck
+ **/
 public class Decktemplates implements Serializable {
   private final static String deckGoldJson = "src/main/resources/JarFile/GoldDeck.json";
   private final static String deckresourceJson = "src/main/resources/JarFile/resourceDeck.json";

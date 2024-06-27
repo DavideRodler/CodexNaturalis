@@ -418,7 +418,7 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
      */
     @Override
     public void StartGame() throws RemoteException{
-        clientController.notifyItIsYourTurn();
+        clientController.startGameLoop();
     }
 
     /**

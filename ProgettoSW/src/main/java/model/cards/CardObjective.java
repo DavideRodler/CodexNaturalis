@@ -4,6 +4,10 @@ import model.objectives.Objective;
 
 import java.io.Serializable;
 
+/**
+ * This class represents an objective card.
+ * It has a number of points and an objective.
+ */
 public class CardObjective extends Card implements Serializable {
   private int points;
   private Objective objective;

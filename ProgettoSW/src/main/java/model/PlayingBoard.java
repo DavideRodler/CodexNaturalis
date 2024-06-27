@@ -17,6 +17,9 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.*;
 
+/**
+ * This class represents the playing board of the game
+ */
 public class PlayingBoard extends ObservableModel implements Serializable {
 
     private LinkedList<CardGold> deckCardGold;
@@ -104,6 +107,10 @@ public class PlayingBoard extends ObservableModel implements Serializable {
         return deckCardStarting;
     }
 
+    /**
+     * Get the first card of the resource deck
+     * @return the first card of the resource deck
+     */
     public CardGold getCardFromGoldDeck() {
         CardGold card = deckCardGold.pop();
         try {
@@ -113,6 +120,10 @@ public class PlayingBoard extends ObservableModel implements Serializable {
         }
         return card;
     }
+    /**
+     * Get the first card of the resource deck
+     * @return the first card of the resource deck
+     */
     public CardResource getCardFromResourceDeck() {
         CardResource card = deckCardResource.pop();
         try {
@@ -202,14 +213,6 @@ public class PlayingBoard extends ObservableModel implements Serializable {
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("Player " + nickname + " not found"));
     }
-    private int getPlayerPositon(String nickname){
-        for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).getNickname().equals(nickname)){
-                return i;
-            }
-        }
-        return -1;
-    }
 
 
     public CardResource getCardResource(int id) {
@@ -261,7 +264,9 @@ public class PlayingBoard extends ObservableModel implements Serializable {
     }
 
 
-    // shuffle players
+    /**
+     * This method is used to shuffle the players
+     */
     public void shufflePlayer() {
         Collections.shuffle(players);
         ArrayList<String> playerslist = new ArrayList<>();
@@ -286,6 +291,9 @@ public class PlayingBoard extends ObservableModel implements Serializable {
         }
     }
 
+    /**
+     * This method is used to shuffle the deck of cards
+     */
     public void addNewPrivateChat(String nickname1, String nickname2) {
         try{
             getPrivateChat(nickname1, nickname2);
@@ -300,6 +308,9 @@ public class PlayingBoard extends ObservableModel implements Serializable {
         }
     }
 
+    /**
+     * This method to get a chat between two players
+     */
     public PrivateChat getPrivateChat(String nickname1, String nickname2) {
         return privateChat.stream()
                 .filter(p -> (p.getNickname1().equals(nickname1) && p.getNickname2().equals(nickname2)) || (p.getNickname1().equals(nickname2) && p.getNickname2().equals(nickname1)))

@@ -6,6 +6,9 @@ import model.cards.CardResource;
 import java.io.Serializable;
 
 
+/**
+ * Is a fake objective used for card resources that only give points
+ */
 public class ObjectiveAssign implements Points, Serializable {
 
 

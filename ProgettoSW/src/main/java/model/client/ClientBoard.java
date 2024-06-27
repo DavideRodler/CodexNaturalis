@@ -16,7 +16,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the model of a client
+ * has all the information that the client needs to know
+ * It has the central cards, the objectives, the players, the current player, the game state, the back of the decks and the chats
+ * It also has the player of the client
+ * it has a list of reduct players that are the other players
+ */
 public class ClientBoard implements Serializable {
+
 
     private ArrayList<CardGold> centralCardsGold;
     private ArrayList<CardResource> centralCardsResource;

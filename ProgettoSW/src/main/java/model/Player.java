@@ -10,6 +10,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 
+/**
+ * This class represents the player of the game
+ */
 public class Player extends ObservableModel implements Serializable{
     private final String nickname;
     private int points;

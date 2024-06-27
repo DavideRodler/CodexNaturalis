@@ -187,10 +187,6 @@ public class VirtualSocketServer implements VirtualServer {
         }
     }
 
-    /**
-     * This method starts the turn
-     * @throws RemoteException if a remote error occurs
-     */
 
     @Override
     public void takeGlobalMessage(GlobalChatMessage globalChatMessage) {

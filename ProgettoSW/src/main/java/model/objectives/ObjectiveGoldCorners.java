@@ -6,6 +6,9 @@ import model.cards.CardResource;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * represents the objective of the gold corners
+ */
 public class ObjectiveGoldCorners implements Points, Serializable {
 
 

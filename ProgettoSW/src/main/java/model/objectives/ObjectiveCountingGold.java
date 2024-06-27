@@ -6,6 +6,9 @@ import model.cards.*;
 import java.io.Serializable;
 
 
+/**
+ * This class an objective that requires to count the gold cards
+ */
 public class ObjectiveCountingGold implements Objective, Points ,Serializable {
 
   private int countInkwell;

@@ -11,6 +11,9 @@ import model.enums.DirectionEnum;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * This class represents the objective of the diagonal
+ */
 public class ObjectiveDiagonal extends PatternUtils {
     private DirectionEnum directionEnum;
     private SuitEnum color;
