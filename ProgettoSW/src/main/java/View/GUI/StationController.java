@@ -734,7 +734,7 @@ public class StationController implements Initializable {
                 player2StationButton.setVisible(true);
 
             } else if(i == 2) {
-                player3StationButton.setText(clientController.getClientModel().getOtherplayers().getFirst().getNickname() + "'s station");
+                player3StationButton.setText(clientController.getClientModel().getOtherplayers().get(2).getNickname() + "'s station");
                 player3StationButton.setOnMouseClicked(this::showOtherPlayerStation);
                 player3StationButton.setVisible(true);
 
