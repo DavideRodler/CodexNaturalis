@@ -47,8 +47,9 @@ public class SocketClient implements ClientToServerCommunication{
             try {
                 runVirtualServer();
             } catch (IOException e) {
-                if (e.getMessage().equals("Connection reset")  || e.getMessage().equals("Connection reset by peer")) {
+                if (e.getMessage() == null || e.getMessage().equals("Connection reset")  || e.getMessage().equals("Connection reset by peer")) {
                     System.out.println("Server disconnected");
+                    clientController.tryToReconnect();
                 }
                 else {
                     throw new RuntimeException(e);
@@ -265,5 +266,15 @@ public class SocketClient implements ClientToServerCommunication{
     @Override
     public void sendPrivateMessage(PrivateChatMessage privateMessage) {
         server.takePrivateMessage(privateMessage);
+    }
+
+    @Override
+    public void reconnectToServer(String nickname) {
+        try {
+            server.reconnect(nickname, null);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

@@ -61,9 +61,6 @@ public class SocketClientHandler implements VirtualView {
                     SetTokenMessage setTokenMessage = (SetTokenMessage) message;
                         server.setToken(setTokenMessage.getNickname(), setTokenMessage.getToken());
                     }
-                case "StartTurn" ->{
-//                    server.startTurn();
-                }
                 case "AddCardToStation" -> {
                     AddCardToStationMessage addCardToStationMessage = (AddCardToStationMessage) message;
                     server.addCardToStation(addCardToStationMessage.getNickname(), addCardToStationMessage.getCardId(), addCardToStationMessage.isPlayedBack(), addCardToStationMessage.getX(), addCardToStationMessage.getY());
@@ -83,6 +80,10 @@ public class SocketClientHandler implements VirtualView {
                 case "PRIVATE" -> {
                     PrivateChatMessage privateChatMessage = (PrivateChatMessage) message;
                     server.takePrivateMessage(privateChatMessage);
+                }
+                case "ReconnectMessage" -> {
+                    ReconnectMessage reconnectMessage = (ReconnectMessage) message;
+                    server.reconnect(this, reconnectMessage.getNickname());
                 }
 
                 default -> System.out.println("invalid message");

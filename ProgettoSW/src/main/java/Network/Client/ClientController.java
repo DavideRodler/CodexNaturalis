@@ -2,6 +2,7 @@ package Network.Client;
 
 import Network.Client.RMI.RmiClientToServer;
 import Network.Client.RMI.VirtualView;
+import Network.Client.Socket.SocketClient;
 import Network.Server.VirtualServer;
 import Socket.Messages.Chat.AddPrivateChatMessage;
 import Socket.Messages.Chat.GlobalChatMessage;
@@ -25,6 +26,8 @@ import model.enums.TokenEnum;
 import Socket.Messages.Message;
 import Socket.Messages.*;
 
+import java.io.*;
+import java.net.Socket;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -42,6 +45,7 @@ public class ClientController {
     private UI ui;
     private final ClientBoard clientModel;
     private ClientToServerCommunication clientToServerCommunication;
+    private final String ip;
 
     /**
      * This method is used to get the client model
@@ -59,8 +63,9 @@ public class ClientController {
         this.ui = ui;
     }
 
-    public ClientController(){
+    public ClientController(String ip){
         this.clientModel = new ClientBoard(null, null, new ArrayList<>(), null, new ArrayList<>(), new ArrayList<>(), null);
+        this.ip = ip;
     }
 
 
@@ -409,7 +414,7 @@ public class ClientController {
             Registry registry = null;
             while (true) {
                 try {
-                    registry = LocateRegistry.getRegistry("127.0.0.1", 16000);
+                    registry = LocateRegistry.getRegistry(ip, 16000);
                     server = (VirtualServer) registry.lookup("MyServer");
                     break;
                 } catch (RemoteException | NotBoundException e) {
@@ -425,13 +430,36 @@ public class ClientController {
                 throw new RuntimeException(e);
             }
             Newclient.setClientController(this);
-            this.clientToServerCommunication = Newclient;
 
-            try {
-                server.reconnect(clientModel.getMyplayer().getNickname(), (VirtualView) clientToServerCommunication);
-            } catch (RemoteException e) {
-                throw new RuntimeException(e);
+            this.clientToServerCommunication = Newclient;
+            clientToServerCommunication.reconnectToServer(clientModel.getMyplayer().getNickname());
+
+            System.out.println("Reconnected successfully");
+        } else if (clientToServerCommunication instanceof SocketClient) {
+            SocketClient client;
+            //creating the soket communication
+            while (true) {
+
+                try {
+
+                    Socket serverSocket = new Socket(ip, 16001);
+
+                    InputStream socketRx = serverSocket.getInputStream();
+                    OutputStream socketTx = serverSocket.getOutputStream();
+
+                    client = new SocketClient(new ObjectInputStream(socketRx), new ObjectOutputStream(socketTx));
+                    break;
+                } catch (IOException e) {
+                    System.out.println("Server is not available, press enter to try again");
+                    scanner.nextLine();
+                }
             }
+
+            client.setClientController(this);
+            client.run();
+            this.clientToServerCommunication = client;
+            client.reconnectToServer(clientModel.getMyplayer().getNickname());
+
             System.out.println("Reconnected successfully");
         }
 

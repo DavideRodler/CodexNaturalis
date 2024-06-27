@@ -312,6 +312,16 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
         }
     }
 
+    @Override
+    public void reconnectToServer(String nickname) {
+        try {
+            server.reconnect(nickname, this);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
     ///////////////////////////VIRTUAL VIEW METHODS//////////////////////////
 
     /**
