@@ -404,33 +404,36 @@ public class StationController implements Initializable {
 
     public void cardPlacedCorrectly(){
         //aggiungo carta alla mappa delle carte piazzate
-
-        switch(position){
-            case 0 -> {
-                cardToPlay.setLayoutX(this.firstCoordinate -80);
-                cardToPlay.setLayoutY(this.secondCoordinate +40);
-                setCardDimensions(cardToPlay);
-                stationPane.getChildren().add(cardToPlay);
+        do {
+            if (cardToPlay != null) {
+                switch (position) {
+                    case 0 -> {
+                        cardToPlay.setLayoutX(this.firstCoordinate - 80);
+                        cardToPlay.setLayoutY(this.secondCoordinate + 40);
+                        setCardDimensions(cardToPlay);
+                        stationPane.getChildren().add(cardToPlay);
+                    }
+                    case 1 -> {
+                        cardToPlay.setLayoutX(this.firstCoordinate + 80);
+                        cardToPlay.setLayoutY(this.secondCoordinate + 40);
+                        setCardDimensions(cardToPlay);
+                        stationPane.getChildren().add(cardToPlay);
+                    }
+                    case 2 -> {
+                        cardToPlay.setLayoutX(this.firstCoordinate - 80);
+                        cardToPlay.setLayoutY(this.secondCoordinate - 40);
+                        setCardDimensions(cardToPlay);
+                        stationPane.getChildren().add(cardToPlay);
+                    }
+                    case 3 -> {
+                        cardToPlay.setLayoutX(this.firstCoordinate + 80);
+                        cardToPlay.setLayoutY(this.secondCoordinate - 40);
+                        setCardDimensions(cardToPlay);
+                        stationPane.getChildren().add(cardToPlay);
+                    }
+                }
             }
-            case 1 -> {
-                cardToPlay.setLayoutX(this.firstCoordinate +80);
-                cardToPlay.setLayoutY(this.secondCoordinate +40);
-                setCardDimensions(cardToPlay);
-                stationPane.getChildren().add(cardToPlay);
-            }
-            case 2 -> {
-                cardToPlay.setLayoutX(this.firstCoordinate -80);
-                cardToPlay.setLayoutY(this.secondCoordinate -40);
-                setCardDimensions(cardToPlay);
-                stationPane.getChildren().add(cardToPlay);
-            }
-            case 3 -> {
-                cardToPlay.setLayoutX(this.firstCoordinate +80);
-                cardToPlay.setLayoutY(this.secondCoordinate -40);
-                setCardDimensions(cardToPlay);
-                stationPane.getChildren().add(cardToPlay);
-            }
-        }
+        }while (cardToPlay == null);
         instructionsLabel.setText("Choose a card to draw");
         System.out.println("hai piazzato la carta");
         //aggiungo handler alle carte da pescare
