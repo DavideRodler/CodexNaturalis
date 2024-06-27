@@ -327,6 +327,7 @@ public class StationController implements Initializable {
         for(ImageView image: imageToCardMap.keySet()){
             image.setOnMouseClicked(this::chooseCardToPlayOn);
         }
+        imageToCardMap.put(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
     }
 
     //TODO: aggiungere le carte alle mappe!
@@ -403,10 +404,11 @@ public class StationController implements Initializable {
     }
 
     public synchronized void cardPlacedCorrectly(){
-        boolean flag = false;
+        //boolean flag = false;
         //aggiungo carta alla mappa delle carte piazzate
         do {
             if(cardToPlay != null) {
+                /*
                 for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : clientController.getClientModel().getMyplayer().getStation().getMap().entrySet()) {
                     if (entry.getValue().getId().equals((imageToCardMap.get(cardToPlay)).getId())) {
                         flag = true;
@@ -414,7 +416,7 @@ public class StationController implements Initializable {
                     else
                         flag=false;
                 }
-                if (!flag) {
+                if (!flag) {*/
 
                     switch (position) {
                         case 0 -> {
@@ -443,11 +445,10 @@ public class StationController implements Initializable {
                         }
                     }
                 }
-            }
-        }while (cardToPlay == null && !flag);
+           // }
+        }while (cardToPlay == null/* && !flag*/);
         instructionsLabel.setText("Choose a card to draw");
         System.out.println("hai piazzato la carta");
-        imageToCardMap.put(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
         //aggiungo handler alle carte da pescare
         centralGoldImage1.setOnMouseClicked(this::chooseCardToDraw);
         centralGoldImage2.setOnMouseClicked(this::chooseCardToDraw);
@@ -463,7 +464,7 @@ public class StationController implements Initializable {
     }
 
     public void cardPlaceIncorrectly(String message){
-        //imageToCardMap.remove(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
+        imageToCardMap.remove(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
         instructionsLabel.setText(message);
         cardToPlay.setImage(null);
         cardPlacementBox.setVisible(false);
