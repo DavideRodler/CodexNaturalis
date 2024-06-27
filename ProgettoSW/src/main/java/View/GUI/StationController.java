@@ -403,33 +403,44 @@ public class StationController implements Initializable {
     }
 
     public void cardPlacedCorrectly(){
+        boolean flag = false;
         //aggiungo carta alla mappa delle carte piazzate
         do {
-            if (cardToPlay != null) {
-                switch (position) {
-                    case 0 -> {
-                        cardToPlay.setLayoutX(this.firstCoordinate - 80);
-                        cardToPlay.setLayoutY(this.secondCoordinate + 40);
-                        setCardDimensions(cardToPlay);
-                        stationPane.getChildren().add(cardToPlay);
+            if(cardToPlay != null) {
+                for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : clientController.getClientModel().getMyplayer().getStation().getMap().entrySet()) {
+                    if (entry.getValue().getId().equals((imageToCardMap.get(cardToPlay)).getId())) {
+                        flag = true;
                     }
-                    case 1 -> {
-                        cardToPlay.setLayoutX(this.firstCoordinate + 80);
-                        cardToPlay.setLayoutY(this.secondCoordinate + 40);
-                        setCardDimensions(cardToPlay);
-                        stationPane.getChildren().add(cardToPlay);
-                    }
-                    case 2 -> {
-                        cardToPlay.setLayoutX(this.firstCoordinate - 80);
-                        cardToPlay.setLayoutY(this.secondCoordinate - 40);
-                        setCardDimensions(cardToPlay);
-                        stationPane.getChildren().add(cardToPlay);
-                    }
-                    case 3 -> {
-                        cardToPlay.setLayoutX(this.firstCoordinate + 80);
-                        cardToPlay.setLayoutY(this.secondCoordinate - 40);
-                        setCardDimensions(cardToPlay);
-                        stationPane.getChildren().add(cardToPlay);
+                    else
+                        flag=false;
+                }
+                if (!flag) {
+
+                    switch (position) {
+                        case 0 -> {
+                            cardToPlay.setLayoutX(this.firstCoordinate - 80);
+                            cardToPlay.setLayoutY(this.secondCoordinate + 40);
+                            setCardDimensions(cardToPlay);
+                            stationPane.getChildren().add(cardToPlay);
+                        }
+                        case 1 -> {
+                            cardToPlay.setLayoutX(this.firstCoordinate + 80);
+                            cardToPlay.setLayoutY(this.secondCoordinate + 40);
+                            setCardDimensions(cardToPlay);
+                            stationPane.getChildren().add(cardToPlay);
+                        }
+                        case 2 -> {
+                            cardToPlay.setLayoutX(this.firstCoordinate - 80);
+                            cardToPlay.setLayoutY(this.secondCoordinate - 40);
+                            setCardDimensions(cardToPlay);
+                            stationPane.getChildren().add(cardToPlay);
+                        }
+                        case 3 -> {
+                            cardToPlay.setLayoutX(this.firstCoordinate + 80);
+                            cardToPlay.setLayoutY(this.secondCoordinate - 40);
+                            setCardDimensions(cardToPlay);
+                            stationPane.getChildren().add(cardToPlay);
+                        }
                     }
                 }
             }
