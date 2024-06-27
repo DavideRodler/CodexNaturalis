@@ -510,8 +510,8 @@ public class StationController implements Initializable {
         chatButton.setOnMouseClicked(null);
         chatBox.setVisible(true);
         chatButton.setOnMouseClicked(this::closeChat);
-        chatSendTextButton.setVisible(true);
-        chatTextField.setVisible(true);
+        chatSendTextButton.setVisible(false);
+        chatTextField.setVisible(false);
         publicChatButton.setOnMouseClicked(this::showPublicChat);
         privateChatButton.setOnMouseClicked(this::showPrivateChat);
         for(ReductPlayer player: clientController.getClientModel().getOtherplayers()){
@@ -531,6 +531,8 @@ public class StationController implements Initializable {
     }
 
     private void showPublicChat(MouseEvent event){
+        chatSendTextButton.setVisible(true);
+        chatTextField.setVisible(true);
         printGlobalChat();
         chatSendTextButton.setOnMouseClicked(this::sendMessage);
     }
@@ -538,6 +540,8 @@ public class StationController implements Initializable {
 
 
     private void showPrivateChat(MouseEvent event){
+        chatSendTextButton.setVisible(true);
+        chatTextField.setVisible(true);
         this.receiverNick = privateChatChoice.getValue();
         boolean resume = false;
         for(ReductPlayer player : clientController.getClientModel().getOtherplayers()){

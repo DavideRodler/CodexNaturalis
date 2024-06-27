@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="fixate le carte da pescare">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="tolto metodo gui inutile (ora tutti i metodi ui vengono utilizzati sua da gui che da cli)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,14 +350,6 @@
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
       <workItem from="1719261691920" duration="2232000" />
-    </task>
-    <task id="LOCAL-00026" summary="aggiunta local clientController">
-      <option name="closed" value="true" />
-      <created>1713894085806</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1713894085806</updated>
     </task>
     <task id="LOCAL-00027" summary="Settaggio gioco iniziale con observer in modo reattivo">
       <option name="closed" value="true" />
@@ -745,7 +735,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719490510767</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="tolto metodo gui inutile (ora tutti i metodi ui vengono utilizzati sua da gui che da cli)">
+      <option name="closed" value="true" />
+      <created>1719498752231</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1719498752231</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -825,7 +823,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="bozza struttura cli" />
     <MESSAGE value="inizio classi per gui" />
     <MESSAGE value="riordinato package view" />
     <MESSAGE value="buttons" />
@@ -850,7 +847,8 @@
     <MESSAGE value="cantiere gui" />
     <MESSAGE value="chat funzionante al 100%, gui cli e cli gui" />
     <MESSAGE value="fixate le carte da pescare" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixate le carte da pescare" />
+    <MESSAGE value="tolto metodo gui inutile (ora tutti i metodi ui vengono utilizzati sua da gui che da cli)" />
+    <option name="LAST_COMMIT_MESSAGE" value="tolto metodo gui inutile (ora tutti i metodi ui vengono utilizzati sua da gui che da cli)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
