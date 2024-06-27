@@ -8,7 +8,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model.ser" beforeDir="false" afterPath="$PROJECT_DIR$/model.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/OtherPlayerStationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/OtherPlayerStationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/OtherPlayerStation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/OtherPlayerStation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Station.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,136 +77,140 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.ClientApp.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Gui.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RmiClient.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ServerApp.executor&quot;: &quot;Run&quot;,
-    &quot;Application.deckconstructor.executor&quot;: &quot;Run&quot;,
-    &quot;Application.decktameplatetom.executor&quot;: &quot;Run&quot;,
-    &quot;Application.playngstationTameplate.executor&quot;: &quot;Run&quot;,
-    &quot;Application.startGui.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CardGoldTest.getInformation.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.CardObjectiveTest.getInformation.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.CardPlayingTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.CardResourceTest.countResource.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CardResourceTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.CardStartingTest.countResource.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CardStartingTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.CardStartingTest.getSymbols.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CardTest.getId.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.ClientBoardTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CornerTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.DeckConstructorTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.DeckConstructorTest.printcards.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DeckConstructorTest.testDeckGold.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DeckConstructorTest.testDeckObjective.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DeckConstructorTest.testDeckResource.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.DeckConstructorTest.testStartingCardDeck.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FaceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FaceTest.getEachCorner.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.GameControllerTest.GivingCardToPlayersTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.TestOfFourTurns.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.addCardFromCentralCardsToPlayerHand.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.addCardFromDeckToPlayerHand.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.addCardToPlayingStation.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.addMessageToGlobalChat.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.addMessageToPrivateChat.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.addNewPrivateChat.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.assertGameState.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.assertIsMyTurn.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.changeTurn.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.GameControllerTest.getAvailableToken.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.getCurrentPlayer.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.getObjectiveToChoose.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.GameControllerTest.getPlayerHand.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.getPlayerNumber.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.getScoreBoard.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.getStartingCard.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.GameControllerTest.initializeGame.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.GameControllerTest.isGamefinished.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.setCentralCardPlayedBack.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.setObjectiveOfPlayer.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.setStartingCardForPlayers.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.setupOfTheGameTest.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.GameControllerTest.testChecknickname.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.testTokenAvailability.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.win.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameTest.testChecknickname.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameTest.testPlayers.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameTest.testStations.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectiveAssignTest.countObjectivePoints.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectiveAssignTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.ObjectiveCountingGoldTest.countObjectivePoints.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectiveCountingGoldTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.ObjectiveCountingGoldTest.getCounters.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectiveCountingResourceTest.countObjectivePoints.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectiveCountingResourceTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.ObjectiveDiagonalTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectiveGoldCornersTest.countObjectivePoints.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectivePositioningTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectivePositioningTest.getInformation.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectivePositioningTest.test_Positioning.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectivePositioningTest.test_Positioning1_down.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectivePositioningTest.test_Positioning2.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ObjectivePositioningTest.test_Positioning2_down.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlacingConditionTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlacingConditionTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlacingConditionTest.test_goldCard_cost.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlacingConditionTest.test_null_corner.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayerTest.addCardToHand.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayerTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.PlayerTest.getHand.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayerTest.getNumberOfCardInHand.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayerTest.getSecretObjective.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayerTest.getSelectibleObjectives.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayerTest.getToken.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayerTest.removeCardFromHand.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayerTest.setSecretObjectiveWithObs.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayerTest.setSelectibleObjectivesWithObserver.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayingBoardTest.addNewPrivateChat.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayingBoardTest.addPlayer.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayingBoardTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.PlayingBoardTest.getCardFromGoldDeck.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayingBoardTest.getCardFromResourceDeck.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayingBoardTest.getDeckCardGold.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayingBoardTest.getPlayers.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayingBoardTest.getPrivateChat.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayingBoardTest.shufflePlayer.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ReductPlayerTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.deckconstructorTest.deckResource.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in ProgettoSW.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.model in ProgettoSW.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.objectives in ProgettoSW.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ProgettoSW [clean].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Socket-2&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/tomma/IdeaProjects/ing-sw-2023-saccani-spangaro-sanvito-pedersoli&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ClientApp.executor": "Run",
+    "Application.Gui.executor": "Run",
+    "Application.RmiClient.executor": "Run",
+    "Application.ServerApp.executor": "Run",
+    "Application.deckconstructor.executor": "Run",
+    "Application.decktameplatetom.executor": "Run",
+    "Application.playngstationTameplate.executor": "Run",
+    "Application.startGui.executor": "Run",
+    "JUnit.CardGoldTest.getInformation.executor": "Coverage",
+    "JUnit.CardObjectiveTest.getInformation.executor": "Coverage",
+    "JUnit.CardPlayingTest.executor": "Coverage",
+    "JUnit.CardResourceTest.countResource.executor": "Run",
+    "JUnit.CardResourceTest.executor": "Coverage",
+    "JUnit.CardStartingTest.countResource.executor": "Run",
+    "JUnit.CardStartingTest.executor": "Coverage",
+    "JUnit.CardStartingTest.getSymbols.executor": "Run",
+    "JUnit.CardTest.getId.executor": "Coverage",
+    "JUnit.ClientBoardTest.executor": "Run",
+    "JUnit.CornerTest.executor": "Coverage",
+    "JUnit.DeckConstructorTest.executor": "Coverage",
+    "JUnit.DeckConstructorTest.printcards.executor": "Run",
+    "JUnit.DeckConstructorTest.testDeckGold.executor": "Run",
+    "JUnit.DeckConstructorTest.testDeckObjective.executor": "Run",
+    "JUnit.DeckConstructorTest.testDeckResource.executor": "Debug",
+    "JUnit.DeckConstructorTest.testStartingCardDeck.executor": "Run",
+    "JUnit.FaceTest.executor": "Run",
+    "JUnit.FaceTest.getEachCorner.executor": "Coverage",
+    "JUnit.GameControllerTest.GivingCardToPlayersTest.executor": "Run",
+    "JUnit.GameControllerTest.TestOfFourTurns.executor": "Run",
+    "JUnit.GameControllerTest.addCardFromCentralCardsToPlayerHand.executor": "Run",
+    "JUnit.GameControllerTest.addCardFromDeckToPlayerHand.executor": "Run",
+    "JUnit.GameControllerTest.addCardToPlayingStation.executor": "Run",
+    "JUnit.GameControllerTest.addMessageToGlobalChat.executor": "Run",
+    "JUnit.GameControllerTest.addMessageToPrivateChat.executor": "Run",
+    "JUnit.GameControllerTest.addNewPrivateChat.executor": "Run",
+    "JUnit.GameControllerTest.assertGameState.executor": "Run",
+    "JUnit.GameControllerTest.assertIsMyTurn.executor": "Run",
+    "JUnit.GameControllerTest.changeTurn.executor": "Run",
+    "JUnit.GameControllerTest.executor": "Coverage",
+    "JUnit.GameControllerTest.getAvailableToken.executor": "Run",
+    "JUnit.GameControllerTest.getCurrentPlayer.executor": "Run",
+    "JUnit.GameControllerTest.getObjectiveToChoose.executor": "Coverage",
+    "JUnit.GameControllerTest.getPlayerHand.executor": "Run",
+    "JUnit.GameControllerTest.getPlayerNumber.executor": "Run",
+    "JUnit.GameControllerTest.getScoreBoard.executor": "Run",
+    "JUnit.GameControllerTest.getStartingCard.executor": "Coverage",
+    "JUnit.GameControllerTest.initializeGame.executor": "Coverage",
+    "JUnit.GameControllerTest.isGamefinished.executor": "Run",
+    "JUnit.GameControllerTest.setCentralCardPlayedBack.executor": "Run",
+    "JUnit.GameControllerTest.setObjectiveOfPlayer.executor": "Run",
+    "JUnit.GameControllerTest.setStartingCardForPlayers.executor": "Run",
+    "JUnit.GameControllerTest.setupOfTheGameTest.executor": "Debug",
+    "JUnit.GameControllerTest.testChecknickname.executor": "Run",
+    "JUnit.GameControllerTest.testTokenAvailability.executor": "Run",
+    "JUnit.GameControllerTest.win.executor": "Run",
+    "JUnit.GameTest.testChecknickname.executor": "Run",
+    "JUnit.GameTest.testPlayers.executor": "Run",
+    "JUnit.GameTest.testStations.executor": "Run",
+    "JUnit.ObjectiveAssignTest.countObjectivePoints.executor": "Run",
+    "JUnit.ObjectiveAssignTest.executor": "Coverage",
+    "JUnit.ObjectiveCountingGoldTest.countObjectivePoints.executor": "Run",
+    "JUnit.ObjectiveCountingGoldTest.executor": "Coverage",
+    "JUnit.ObjectiveCountingGoldTest.getCounters.executor": "Run",
+    "JUnit.ObjectiveCountingResourceTest.countObjectivePoints.executor": "Run",
+    "JUnit.ObjectiveCountingResourceTest.executor": "Coverage",
+    "JUnit.ObjectiveDiagonalTest.executor": "Run",
+    "JUnit.ObjectiveDiagonalTest.test_2Cards_0Diagonal.executor": "Run",
+    "JUnit.ObjectiveDiagonalTest.test_5Cards_1Diagonal.executor": "Coverage",
+    "JUnit.ObjectiveDiagonalTest.test_7Cards_2Diagonal.executor": "Run",
+    "JUnit.ObjectiveGoldCornersTest.countObjectivePoints.executor": "Run",
+    "JUnit.ObjectivePositioningTest.executor": "Run",
+    "JUnit.ObjectivePositioningTest.getInformation.executor": "Run",
+    "JUnit.ObjectivePositioningTest.test3Cards_1Positioning.executor": "Run",
+    "JUnit.ObjectivePositioningTest.test_Positioning.executor": "Run",
+    "JUnit.ObjectivePositioningTest.test_Positioning1_down.executor": "Run",
+    "JUnit.ObjectivePositioningTest.test_Positioning2.executor": "Run",
+    "JUnit.ObjectivePositioningTest.test_Positioning2_down.executor": "Run",
+    "JUnit.PlacingConditionTest (1).executor": "Run",
+    "JUnit.PlacingConditionTest.executor": "Run",
+    "JUnit.PlacingConditionTest.test_goldCard_cost.executor": "Run",
+    "JUnit.PlacingConditionTest.test_null_corner.executor": "Run",
+    "JUnit.PlayerTest.addCardToHand.executor": "Run",
+    "JUnit.PlayerTest.executor": "Coverage",
+    "JUnit.PlayerTest.getHand.executor": "Run",
+    "JUnit.PlayerTest.getNumberOfCardInHand.executor": "Run",
+    "JUnit.PlayerTest.getSecretObjective.executor": "Run",
+    "JUnit.PlayerTest.getSelectibleObjectives.executor": "Run",
+    "JUnit.PlayerTest.getToken.executor": "Run",
+    "JUnit.PlayerTest.removeCardFromHand.executor": "Run",
+    "JUnit.PlayerTest.setSecretObjectiveWithObs.executor": "Run",
+    "JUnit.PlayerTest.setSelectibleObjectivesWithObserver.executor": "Run",
+    "JUnit.PlayingBoardTest.addNewPrivateChat.executor": "Run",
+    "JUnit.PlayingBoardTest.addPlayer.executor": "Run",
+    "JUnit.PlayingBoardTest.executor": "Coverage",
+    "JUnit.PlayingBoardTest.getCardFromGoldDeck.executor": "Run",
+    "JUnit.PlayingBoardTest.getCardFromResourceDeck.executor": "Run",
+    "JUnit.PlayingBoardTest.getDeckCardGold.executor": "Run",
+    "JUnit.PlayingBoardTest.getPlayers.executor": "Run",
+    "JUnit.PlayingBoardTest.getPrivateChat.executor": "Run",
+    "JUnit.PlayingBoardTest.shufflePlayer.executor": "Run",
+    "JUnit.ReductPlayerTest.executor": "Coverage",
+    "JUnit.controller in ProgettoSW.executor": "Coverage",
+    "JUnit.deckconstructorTest.deckResource.executor": "Run",
+    "JUnit.java in ProgettoSW.executor": "Debug",
+    "JUnit.model in ProgettoSW (1).executor": "Coverage",
+    "JUnit.model in ProgettoSW.executor": "Coverage",
+    "JUnit.objectives in ProgettoSW.executor": "Run",
+    "Maven.ProgettoSW [clean].executor": "Run",
+    "Maven.ProgettoSW [install].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "Socket-2",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/tomma/IdeaProjects/ing-sw-2023-saccani-spangaro-sanvito-pedersoli",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -226,7 +233,7 @@
       <recent name="Socket.Messages.queqe" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientApp">
+  <component name="RunManager" selected="JUnit.controller in ProgettoSW">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
       <module name="ProgettoSW" />
@@ -253,47 +260,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="controller in ProgettoSW" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="controller" />
-      <option name="MAIN_CLASS_NAME" value="controller.GameControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/controller" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjectiveDiagonalTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="model in ProgettoSW (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectiveDiagonalTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/model" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjectivePositioningTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="model in ProgettoSW" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProgettoSW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.objectives.*" />
+          <option name="PATTERN" value="model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="model.objectives" />
-      <option name="MAIN_CLASS_NAME" value="model.objectives.ObjectivePositioningTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -301,24 +293,25 @@
     <list>
       <item itemvalue="Application.ClientApp" />
       <item itemvalue="Application.ServerApp" />
-      <item itemvalue="JUnit.ObjectiveDiagonalTest" />
-      <item itemvalue="JUnit.ObjectivePositioningTest" />
-      <item itemvalue="JUnit.GameControllerTest" />
+      <item itemvalue="JUnit.controller in ProgettoSW" />
+      <item itemvalue="JUnit.model in ProgettoSW" />
+      <item itemvalue="JUnit.model in ProgettoSW (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.controller in ProgettoSW" />
+        <item itemvalue="JUnit.model in ProgettoSW (1)" />
         <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.ServerApp" />
-        <item itemvalue="JUnit.ObjectivePositioningTest" />
-        <item itemvalue="JUnit.ObjectiveDiagonalTest" />
-        <item itemvalue="JUnit.GameControllerTest" />
+        <item itemvalue="JUnit.model in ProgettoSW" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -866,18 +859,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>
-          <line>343</line>
+          <line>341</line>
           <option name="timeStamp" value="391" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/GUI/StationController.java</url>
-          <line>410</line>
-          <option name="timeStamp" value="414" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/GUI/StationController.java</url>
-          <line>798</line>
-          <option name="timeStamp" value="415" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -906,122 +889,125 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ProgettoSW$ClientBoardTest.ic" NAME="ClientBoardTest Coverage Results" MODIFIED="1716837736266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.client.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$CardTest_getId.ic" NAME="CardTest.getId Coverage Results" MODIFIED="1716364496620" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.cards.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveCountingGoldTest_countObjectivePoints.ic" NAME="ObjectiveCountingGoldTest.countObjectivePoints Coverage Results" MODIFIED="1716371169973" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_isGamefinished.ic" NAME="GameControllerTest.isGamefinished Coverage Results" MODIFIED="1716111232885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>controller.*</FILTER>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ReductPlayerTest.ic" NAME="ReductPlayerTest Coverage Results" MODIFIED="1716838152299" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.client.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getScoreBoard.ic" NAME="GameControllerTest.getScoreBoard Coverage Results" MODIFIED="1719391383756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveAssignTest.ic" NAME="ObjectiveAssignTest Coverage Results" MODIFIED="1716839070554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveCountingGoldTest.ic" NAME="ObjectiveCountingGoldTest Coverage Results" MODIFIED="1716371493090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getAvailableToken.ic" NAME="GameControllerTest.getAvailableToken Coverage Results" MODIFIED="1715692588758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$CardStartingTest.ic" NAME="CardStartingTest Coverage Results" MODIFIED="1716838719500" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.cards.*</FILTER>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ClientApp.ic" NAME="ClientApp Coverage Results" MODIFIED="1716744281144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>StartApplication.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$DeckConstructorTest.ic" NAME="DeckConstructorTest Coverage Results" MODIFIED="1716366819845" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.deck.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveAssignTest_countObjectivePoints.ic" NAME="ObjectiveAssignTest.countObjectivePoints Coverage Results" MODIFIED="1716367203902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.objectives.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getStartingCard.ic" NAME="GameControllerTest.getStartingCard Coverage Results" MODIFIED="1716293555017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getObjectiveToChoose.ic" NAME="GameControllerTest.getObjectiveToChoose Coverage Results" MODIFIED="1715698653686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$PlacingConditionTest_test_null_corner.ic" NAME="PlacingConditionTest.test_null_corner Coverage Results" MODIFIED="1716288399310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>model.placingCondition.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$FaceTest_getEachCorner.ic" NAME="FaceTest.getEachCorner Coverage Results" MODIFIED="1716364316727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.cards.face.*</FILTER>
+    <SUITE FILE_PATH="coverage/ProgettoSW$PlayerTest.ic" NAME="PlayerTest Coverage Results" MODIFIED="1716745071557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$model_in_ProgettoSW.ic" NAME="model in ProgettoSW Coverage Results" MODIFIED="1719401318685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectivePositioningTest.ic" NAME="ObjectivePositioningTest Coverage Results" MODIFIED="1716372118923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$java_in_ProgettoSW.ic" NAME="java in ProgettoSW Coverage Results" MODIFIED="1719401169680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveDiagonalTest_test_5Cards_1Diagonal.ic" NAME="ObjectiveDiagonalTest.test_5Cards_1Diagonal Coverage Results" MODIFIED="1716366911138" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_testChecknickname.ic" NAME="GameControllerTest.testChecknickname Coverage Results" MODIFIED="1715690160254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/ProgettoSW$model_in_ProgettoSW.ic" NAME="model in ProgettoSW Coverage Results" MODIFIED="1719521095811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$PlayingBoardTest.ic" NAME="PlayingBoardTest Coverage Results" MODIFIED="1716747960716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$model_in_ProgettoSW__1_.ic" NAME="model in ProgettoSW (1) Coverage Results" MODIFIED="1719521647125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/ProgettoSW$PlayerTest_getHand.ic" NAME="PlayerTest.getHand Coverage Results" MODIFIED="1716375014505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$CornerTest.ic" NAME="CornerTest Coverage Results" MODIFIED="1716364382291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.cards.face.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$objectives_in_ProgettoSW.ic" NAME="objectives in ProgettoSW Coverage Results" MODIFIED="1716656541538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_isGamefinished.ic" NAME="GameControllerTest.isGamefinished Coverage Results" MODIFIED="1716111232885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$CardStartingTest_countResource.ic" NAME="CardStartingTest.countResource Coverage Results" MODIFIED="1716366690422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.cards.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveDiagonalTest.ic" NAME="ObjectiveDiagonalTest Coverage Results" MODIFIED="1716371771014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.objectives.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$PlayerTest_getHand.ic" NAME="PlayerTest.getHand Coverage Results" MODIFIED="1716375014505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$PlayerTest.ic" NAME="PlayerTest Coverage Results" MODIFIED="1716745071557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveGoldCornersTest_countObjectivePoints.ic" NAME="ObjectiveGoldCornersTest.countObjectivePoints Coverage Results" MODIFIED="1716373784352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.objectives.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest.ic" NAME="GameControllerTest Coverage Results" MODIFIED="1719394473822" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveDiagonalTest_test_5Cards_1Diagonal.ic" NAME="ObjectiveDiagonalTest.test_5Cards_1Diagonal Coverage Results" MODIFIED="1716366911138" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.objectives.*</FILTER>
+    <SUITE FILE_PATH="coverage/ProgettoSW$DeckConstructorTest.ic" NAME="DeckConstructorTest Coverage Results" MODIFIED="1716366819845" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.deck.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$TestMain.ic" NAME="TestMain Coverage Results" MODIFIED="1716363320275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>TEST.*</FILTER>
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_initializeGame.ic" NAME="GameControllerTest.initializeGame Coverage Results" MODIFIED="1719391291512" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ReductPlayerTest.ic" NAME="ReductPlayerTest Coverage Results" MODIFIED="1716838152299" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.client.*</FILTER>
+    <SUITE FILE_PATH="coverage/ProgettoSW$FaceTest_getEachCorner.ic" NAME="FaceTest.getEachCorner Coverage Results" MODIFIED="1716364316727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.cards.face.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$CardStartingTest.ic" NAME="CardStartingTest Coverage Results" MODIFIED="1716838719500" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.cards.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$CardResourceTest.ic" NAME="CardResourceTest Coverage Results" MODIFIED="1716838851226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.cards.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$CardGoldTest_getInformation.ic" NAME="CardGoldTest.getInformation Coverage Results" MODIFIED="1716364744164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$CardTest_getId.ic" NAME="CardTest.getId Coverage Results" MODIFIED="1716364496620" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.cards.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getPlayerHand.ic" NAME="GameControllerTest.getPlayerHand Coverage Results" MODIFIED="1715698739662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getCurrentPlayer.ic" NAME="GameControllerTest.getCurrentPlayer Coverage Results" MODIFIED="1715699049521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ClientApp.ic" NAME="ClientApp Coverage Results" MODIFIED="1716744281144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>StartApplication.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveCountingGoldTest.ic" NAME="ObjectiveCountingGoldTest Coverage Results" MODIFIED="1716371493090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveGoldCornersTest_countObjectivePoints.ic" NAME="ObjectiveGoldCornersTest.countObjectivePoints Coverage Results" MODIFIED="1716373784352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$CardPlayingTest.ic" NAME="CardPlayingTest Coverage Results" MODIFIED="1716365206445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.cards.*</FILTER>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveAssignTest_countObjectivePoints.ic" NAME="ObjectiveAssignTest.countObjectivePoints Coverage Results" MODIFIED="1716367203902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.objectives.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$CornerTest.ic" NAME="CornerTest Coverage Results" MODIFIED="1716364382291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.cards.face.*</FILTER>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ClientBoardTest.ic" NAME="ClientBoardTest Coverage Results" MODIFIED="1716837736266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.client.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getObjectiveToChoose.ic" NAME="GameControllerTest.getObjectiveToChoose Coverage Results" MODIFIED="1715698653686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$controller_in_ProgettoSW.ic" NAME="controller in ProgettoSW Coverage Results" MODIFIED="1719521774941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getScoreBoard.ic" NAME="GameControllerTest.getScoreBoard Coverage Results" MODIFIED="1719391383756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectivePositioningTest_test_Positioning.ic" NAME="ObjectivePositioningTest.test_Positioning Coverage Results" MODIFIED="1713276818760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.objectives.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveDiagonalTest.ic" NAME="ObjectiveDiagonalTest Coverage Results" MODIFIED="1716371771014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.objectives.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_testChecknickname.ic" NAME="GameControllerTest.testChecknickname Coverage Results" MODIFIED="1715690160254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveCountingResourceTest.ic" NAME="ObjectiveCountingResourceTest Coverage Results" MODIFIED="1716372539036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$controller_in_ProgettoSW.ic" NAME="controller in ProgettoSW Coverage Results" MODIFIED="1719400530739" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/ProgettoSW$objectives_in_ProgettoSW.ic" NAME="objectives in ProgettoSW Coverage Results" MODIFIED="1716656541538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/ProgettoSW$PlayingBoardTest.ic" NAME="PlayingBoardTest Coverage Results" MODIFIED="1716747960716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>model.*</FILTER>
+    <SUITE FILE_PATH="coverage/ProgettoSW$CardPlayingTest.ic" NAME="CardPlayingTest Coverage Results" MODIFIED="1716365206445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.cards.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectivePositioningTest.ic" NAME="ObjectivePositioningTest Coverage Results" MODIFIED="1716372118923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.objectives.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ProgettoSW$CardObjectiveTest_getInformation.ic" NAME="CardObjectiveTest.getInformation Coverage Results" MODIFIED="1716364937299" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.cards.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectivePositioningTest_test_Positioning.ic" NAME="ObjectivePositioningTest.test_Positioning Coverage Results" MODIFIED="1713276818760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getCurrentPlayer.ic" NAME="GameControllerTest.getCurrentPlayer Coverage Results" MODIFIED="1715699049521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$CardGoldTest_getInformation.ic" NAME="CardGoldTest.getInformation Coverage Results" MODIFIED="1716364744164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>model.cards.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getStartingCard.ic" NAME="GameControllerTest.getStartingCard Coverage Results" MODIFIED="1716293555017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$ObjectiveAssignTest.ic" NAME="ObjectiveAssignTest Coverage Results" MODIFIED="1716839070554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.objectives.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ProgettoSW$java_in_ProgettoSW.ic" NAME="java in ProgettoSW Coverage Results" MODIFIED="1719401169680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_initializeGame.ic" NAME="GameControllerTest.initializeGame Coverage Results" MODIFIED="1719391291512" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ProgettoSW$TestMain.ic" NAME="TestMain Coverage Results" MODIFIED="1716363320275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>TEST.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoSW$GameControllerTest_getPlayerHand.ic" NAME="GameControllerTest.getPlayerHand Coverage Results" MODIFIED="1715698739662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>controller.*</FILTER>
     </SUITE>
   </component>

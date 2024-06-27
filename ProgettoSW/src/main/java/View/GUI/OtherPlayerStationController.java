@@ -77,8 +77,8 @@ public class OtherPlayerStationController implements Initializable {
             }
             card.setFitHeight(65);
             card.setFitWidth(110);
-            first = 500 + firstCoordinateDistanceFromStarting*80;
-            second = 375 + secondCoordinateDistanceFromStarting*40;
+            first = 1500 + firstCoordinateDistanceFromStarting*80;
+            second = 1125 + secondCoordinateDistanceFromStarting*40;
             card.setLayoutX(first);
             card.setLayoutY(second);
             stationPane.getChildren().add(card);

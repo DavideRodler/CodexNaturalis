@@ -233,8 +233,8 @@ public class StationController implements Initializable {
             imageToCardMap.put(startingCard, clientController.getClientModel().getMyplayer().getStation().getCardStarting());
             stationPane.setVisible(true);
             // 500 e 375 è il centro del pane
-            startingCard.setLayoutX(500);
-            startingCard.setLayoutY(375);
+            startingCard.setLayoutX(1500);
+            startingCard.setLayoutY(1125);
             setCardDimensions(startingCard);
             //aggiungo handler per essere carta su cui piazzare
             startingCard.setOnMouseClicked(this::chooseCardToPlayOn);
@@ -824,8 +824,8 @@ public class StationController implements Initializable {
 
         cardAdded.setFitHeight(65);
         cardAdded.setFitWidth(110);
-        double first = 500 + distance1*80;
-        double second = 375 + distance2*40;
+        double first = 1500 + distance1*85;
+        double second = 1125 + distance2*45;
 
         cardAdded.setLayoutX(first);
         cardAdded.setLayoutY(second);
