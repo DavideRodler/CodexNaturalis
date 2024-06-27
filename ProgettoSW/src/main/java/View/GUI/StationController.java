@@ -463,6 +463,7 @@ public class StationController implements Initializable {
     }
 
     private void chooseCardToDraw(MouseEvent event){
+
         ImageView choiceOfDraw = (ImageView) event.getSource();
         System.out.println("hai scelto una carta da pescare");
         if(choiceOfDraw.equals(centralGoldImage1)){
@@ -484,7 +485,13 @@ public class StationController implements Initializable {
         }
         instructionsLabel.setText("Your turn is finished.");
         choiceOfDraw.setImage(null);
-
+        //tolgo handler alle carte da pescare
+        centralGoldImage1.setOnMouseClicked(null);
+        centralGoldImage2.setOnMouseClicked(null);
+        centralResourceImage1.setOnMouseClicked(null);
+        centralResourceImage2.setOnMouseClicked(null);
+        deckResourceImage.setOnMouseClicked(null);
+        deckGoldImage.setOnMouseClicked(null);
     }
 
 
