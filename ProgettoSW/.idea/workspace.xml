@@ -9,8 +9,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model.ser" beforeDir="false" afterPath="$PROJECT_DIR$/model.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ScoreBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ScoreBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -875,6 +873,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/View/GUI/StationController.java</url>
           <line>410</line>
           <option name="timeStamp" value="414" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/View/GUI/StationController.java</url>
+          <line>798</line>
+          <option name="timeStamp" value="415" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

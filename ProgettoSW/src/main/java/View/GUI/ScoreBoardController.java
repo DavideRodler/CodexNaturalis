@@ -224,12 +224,15 @@ public class ScoreBoardController implements Initializable{
 
     public void printScores(LinkedHashMap<String, ArrayList<Integer>> map){
         int i = 0;
+        btngoback.setVisible(false);
+
         for(Map.Entry<String, ArrayList<Integer>> entry : map.entrySet()){
             String playerName = entry.getKey();
             ArrayList<Integer> playerData = entry.getValue();
             int totalScore = playerData.get(0);
             int completedObjectives = playerData.get(1);
-            String playerInfo = playerName + ": Total Score = " + totalScore + ", Completed Objectives = " + completedObjectives;
+            int position = playerData.get(2);
+            String playerInfo = playerName + "arrived" + position + ": Total Score = " + totalScore + ", Completed Objectives = " + completedObjectives;
             Label label = findLabel(i);
             if(label != null){
                 label.setText(playerInfo);
