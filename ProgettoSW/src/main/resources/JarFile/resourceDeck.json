@@ -61,7 +61,7 @@
     "upleft": "empty",
     "downright": "null",
     "downleft": "empty",
-    "points": 20
+    "points": 1
   },
   {
     "type": "fungi",
@@ -69,7 +69,7 @@
     "upleft": "fungi",
     "downright": "empty",
     "downleft": "empty",
-    "points": 20
+    "points": 1
   },
   {
     "type": "fungi",
@@ -77,7 +77,7 @@
     "upleft": "null",
     "downright": "empty",
     "downleft": "fungi",
-    "points": 20
+    "points": 1
   },
   {
     "type": "plant",
@@ -141,7 +141,7 @@
     "upleft": "empty",
     "downright": "null",
     "downleft": "plant",
-    "points": 20
+    "points": 1
   },
   {
     "type": "plant",
@@ -149,7 +149,7 @@
     "upleft": "empty",
     "downright": "plant",
     "downleft": "null",
-    "points": 20
+    "points": 1
   },
   {
     "type": "plant",
@@ -157,7 +157,7 @@
     "upleft": "null",
     "downright": "empty",
     "downleft": "empty",
-    "points": 20
+    "points": 1
   },
   {
     "type": "animal",
@@ -221,7 +221,7 @@
     "upleft": "null",
   "downright": "empty",
     "downleft": "animal",
-    "points": 20
+    "points": 1
   },
   {
     "type": "animal",
@@ -229,7 +229,7 @@
     "upleft": "empty",
     "downright": "animal",
     "downleft": "empty",
-    "points": 20
+    "points": 1
   },
   {
     "type": "animal",
@@ -237,7 +237,7 @@
     "upleft": "empty",
     "downright": "null",
     "downleft": "empty",
-    "points": 20
+    "points": 1
   },
   {
     "type": "insect",
@@ -301,7 +301,7 @@
     "upleft": "insect",
     "downright": "empty",
     "downleft": "empty",
-    "points": 20
+    "points": 1
   },
   {
     "type": "insect",
@@ -309,7 +309,7 @@
     "upleft": "empty",
     "downright": "insect",
     "downleft": "null",
-    "points": 20
+    "points": 1
   },
   {
     "type": "insect",
@@ -317,6 +317,6 @@
     "upleft": "null",
     "downright": "empty",
     "downleft": "empty",
-    "points": 20
+    "points": 1
   }
 ]
