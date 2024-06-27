@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.PlayingStation;
+import model.cards.CardResource;
 import model.client.ClientBoard;
 import model.enums.*;
 
@@ -210,5 +211,14 @@ public class Gui extends Application implements UI {
                 !clientController.getClientModel().getGameState().equals(GameState.INITIALIZE_GAME)) {
             Platform.runLater(() -> stationController.updateHand());
         }
+    }
+
+    @Override
+    public void updateViewAfterCardAddedToStation(CardResource card, int x, int y, boolean playedBack) {
+        if (!clientController.getClientModel().getGameState().equals(GameState.SELECT_TOKEN) &&
+                !clientController.getClientModel().getGameState().equals(GameState.SELECT_STARTINGCARDFACE) &&
+                !clientController.getClientModel().getGameState().equals(GameState.SELECT_OBJECTIVE) &&
+                !clientController.getClientModel().getGameState().equals(GameState.INITIALIZE_GAME))
+        Platform.runLater(() -> stationController.updateViewAfterCardAddedToStation(card, x, y, playedBack));
     }
 }

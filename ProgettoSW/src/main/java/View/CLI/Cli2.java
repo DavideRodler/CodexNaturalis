@@ -5,6 +5,7 @@ import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
 import View.UI;
 import model.PlayingStation;
+import model.cards.CardResource;
 import model.client.ClientBoard;
 import model.enums.CliState;
 import model.enums.GameState;
@@ -209,6 +210,11 @@ public class Cli2 implements UI {
 
     @Override
     public void updateHand() {
+
+    }
+
+    @Override
+    public void updateViewAfterCardAddedToStation(CardResource card, int x, int y, boolean playedBack) {
 
     }
 

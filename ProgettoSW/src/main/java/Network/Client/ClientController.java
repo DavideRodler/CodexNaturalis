@@ -7,6 +7,7 @@ import Network.Server.VirtualServer;
 import Socket.Messages.Chat.AddPrivateChatMessage;
 import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
+import View.CLI.CardMatrixCreator;
 import View.CLI.Cli2;
 import View.GUI.ChooseNickAndTokenController;
 import View.GUI.Gui;
@@ -260,6 +261,7 @@ public class ClientController {
                     try {
                         int points = clientModel.getMyplayer().getStation().addCard(cardAddedToStationMessage.getCard(),cardAddedToStationMessage.getX(), cardAddedToStationMessage.getY(), cardAddedToStationMessage.getPlayedBack(), null);
                         clientModel.getMyplayer().setPoints(clientModel.getMyplayer().getPoints() + points);
+                        ui.updateViewAfterCardAddedToStation(cardAddedToStationMessage.getCard(), cardAddedToStationMessage.getX(), cardAddedToStationMessage.getY(), cardAddedToStationMessage.getPlayedBack());
                     } catch (InvalidPlacingCondition e) {
                         throw new RuntimeException(e);
                     }
@@ -267,7 +269,6 @@ public class ClientController {
                 else {
                     for (ReductPlayer player : clientModel.getOtherplayers()) {
                         if (player.getNickname().equals(cardAddedToStationMessage.getNickname())) {
-
                             //the card is added to the station of other player
                             //it is always possible to add it
                             try {
@@ -277,8 +278,6 @@ public class ClientController {
                             } catch (InvalidPlacingCondition e) {
                                 throw new RuntimeException(e);
                             }
-
-
                             //ui.printOtherPlayersStation(cardAddedToStationMessage.getNickname());
                         }
                     }

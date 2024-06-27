@@ -45,4 +45,6 @@ public interface UI {
     void updatePrivateChat();
 
     void updateHand();
+
+    void updateViewAfterCardAddedToStation(CardResource card, int x, int y, boolean playedBack);
 }

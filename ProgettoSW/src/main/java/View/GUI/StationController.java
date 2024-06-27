@@ -312,22 +312,17 @@ public class StationController implements Initializable {
 
     synchronized void chooseCardSide(MouseEvent event){
         ImageView selectedCard = (ImageView) event.getSource();
-        cardToPlay = new ImageView();
-        cardToPlay.setImage(selectedCard.getImage());
 
         if(selectedCard.equals(chooseCard1)){
             playedBack = false;
         } else if(selectedCard.equals(chooseCard2)){
             playedBack = true;
         }
-        //TODO: DA FARE DOPO?
-        //imageToCardMap.put(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
         instructionsLabel.setText("Choose a card on the station to play on!");
         //potrei fare che per tutte le immagini che sono dentro la mappa di carte giocabili aggiungo handler
         for(ImageView image: imageToCardMap.keySet()){
             image.setOnMouseClicked(this::chooseCardToPlayOn);
         }
-        imageToCardMap.put(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
     }
 
     //TODO: aggiungere le carte alle mappe!
@@ -406,47 +401,6 @@ public class StationController implements Initializable {
     public synchronized void cardPlacedCorrectly(){
         //boolean flag = false;
         //aggiungo carta alla mappa delle carte piazzate
-        do {
-            if(cardToPlay != null) {
-                /*
-                for (Map.Entry<ArrayList<Integer>, CardPlaying> entry : clientController.getClientModel().getMyplayer().getStation().getMap().entrySet()) {
-                    if (entry.getValue().getId().equals((imageToCardMap.get(cardToPlay)).getId())) {
-                        flag = true;
-                    }
-                    else
-                        flag=false;
-                }
-                if (!flag) {*/
-
-                    switch (position) {
-                        case 0 -> {
-                            cardToPlay.setLayoutX(this.firstCoordinate - 80);
-                            cardToPlay.setLayoutY(this.secondCoordinate + 40);
-                            setCardDimensions(cardToPlay);
-                            stationPane.getChildren().add(cardToPlay);
-                        }
-                        case 1 -> {
-                            cardToPlay.setLayoutX(this.firstCoordinate + 80);
-                            cardToPlay.setLayoutY(this.secondCoordinate + 40);
-                            setCardDimensions(cardToPlay);
-                            stationPane.getChildren().add(cardToPlay);
-                        }
-                        case 2 -> {
-                            cardToPlay.setLayoutX(this.firstCoordinate - 80);
-                            cardToPlay.setLayoutY(this.secondCoordinate - 40);
-                            setCardDimensions(cardToPlay);
-                            stationPane.getChildren().add(cardToPlay);
-                        }
-                        case 3 -> {
-                            cardToPlay.setLayoutX(this.firstCoordinate + 80);
-                            cardToPlay.setLayoutY(this.secondCoordinate - 40);
-                            setCardDimensions(cardToPlay);
-                            stationPane.getChildren().add(cardToPlay);
-                        }
-                    }
-                }
-           // }
-        }while (cardToPlay == null/* && !flag*/);
         instructionsLabel.setText("Choose a card to draw");
         System.out.println("hai piazzato la carta");
         //aggiungo handler alle carte da pescare
@@ -848,5 +802,31 @@ public class StationController implements Initializable {
         ScoreBoardController controller = fxmlLoader.getController();
         controller.printScores(map);
 
+    }
+
+    public void updateViewAfterCardAddedToStation(CardResource card, int x, int y, boolean playedBack) {
+        ImageView cardAdded = new ImageView();
+
+        if(!playedBack) {
+            cardAdded.setImage(cardLoader.getFront(card.getId()));
+        }
+        else {
+            cardAdded.setImage(cardLoader.getBack(card.getId()));
+        }
+
+        double distance1 = y - 40;
+        double distance2 = x -40;
+
+        cardAdded.setFitHeight(65);
+        cardAdded.setFitWidth(110);
+        double first = 500 + distance1*80;
+        double second = 375 + distance2*40;
+
+        cardAdded.setLayoutX(first);
+        cardAdded.setLayoutY(second);
+
+        stationPane.getChildren().add(cardAdded);
+
+        imageToCardMap.put(cardAdded, card);
     }
 }
