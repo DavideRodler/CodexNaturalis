@@ -19,10 +19,7 @@ import model.enums.TokenEnum;
 
 import java.io.*;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -32,7 +29,6 @@ public class Server implements Serializable{
     private final List<VirtualView> clients;
     private HashMap<String, VirtualView> clientsMap;
     private BlockingQueue<Message> queue = new ArrayBlockingQueue<>(100);
-    private boolean isNewGame = false;
 
 
     public void serverToClientCall() throws RemoteException {
@@ -256,10 +252,28 @@ public class Server implements Serializable{
         clientsMap = new HashMap<>();
 
         File f = new File("model.ser");
-        if(f.exists() && !f.isDirectory()) {
-            loadModel();
+        System.out.println("Select 2 to load old game and 1 to start a new game");
+        Scanner scanner = new Scanner(System.in);
+        String input = "";
+        while (true) {
+                input = scanner.nextLine();
+                if (input.equals("1")) {
+                    break;
+                } else if (input.equals("2")) {
+                    break;
+                } else {
+                    System.out.println("Invalid input");
+                }
         }
-        else {
+        if(input.equals("2")) {
+            if (f.exists() && !f.isDirectory()) {
+                loadModel();
+            } else {
+                System.out.println("no old game found, starting new game");
+                gameController = new GameController();
+            }
+        }
+        else{
             gameController = new GameController();
         }
 
