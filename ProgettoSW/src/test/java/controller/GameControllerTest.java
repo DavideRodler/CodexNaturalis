@@ -118,13 +118,6 @@ class GameControllerTest {
         game.setPlayerNumber(2);
         game.addPlayer("tommy");
         game.addPlayer("davide");
-        Server server = new Server();
-        VirtualServer server1 = new RmiServer(server);
-        RmiClientToServer client = new RmiClientToServer(server1);
-        HashMap<String, Observer> observerHashMap = new HashMap<>();
-        observerHashMap.put("isa", client);
-        ObservableModel model = new ObservableModel();
-        model.addSpecificObserver("isa",client);
         Boolean caught = false;
         try{
             game.InitializeGame();
@@ -191,13 +184,6 @@ class GameControllerTest {
             caught = true;
         }
         assertEquals(true, caught);
-        //game.getBoard().getPlayer("tommy").setSecretObjective(cardObjectiveTmp);
-        //game.getBoard().getPlayer("davide").setSecretObjective(cardObjectiveTmp);
-        //assertEquals(GameState.PLACING_CARD, game.getBoard().getGameState());
-
-
-
-        //if all player has setted the objective i can start the game
     }
 
     @Test
@@ -250,13 +236,6 @@ class GameControllerTest {
         hand.add(card);
         game.getBoard().getPlayer("isa").setHand(hand);
         game.getBoard().setGameState(GameState.ADDING_CARD_TO_HAND);
-        Server server = new Server();
-        VirtualServer server1 = new RmiServer(server);
-        RmiClientToServer client = new RmiClientToServer(server1);
-        HashMap<String, Observer> observerHashMap = new HashMap<>();
-        observerHashMap.put("isa", client);
-        ObservableModel model = new ObservableModel();
-        model.addSpecificObserver("isa",client);
         Boolean caught = false;
         try{
             game.addCardFromCentralCardsToPlayerHand("isa",1 );
@@ -364,13 +343,6 @@ class GameControllerTest {
         game.selectToken("dave", TokenEnum.BLUE);
         game.getBoard().setCurrentPlayer("isa");
         game.getBoard().setGameState(GameState.CHANGING_TURN);
-        Server server = new Server();
-        VirtualServer server1 = new RmiServer(server);
-        RmiClientToServer client = new RmiClientToServer(server1);
-        HashMap<String, Observer> observerHashMap = new HashMap<>();
-        observerHashMap.put("isa", client);
-        ObservableModel model = new ObservableModel();
-        model.addSpecificObserver("isa",client);
         game.changeTurn();
         assertEquals("dave", game.getCurrentPlayer());
     }
@@ -551,13 +523,6 @@ class GameControllerTest {
     @Test
     void addNewPrivateChat() throws RemoteException {
         PrivateChat chat = new PrivateChat("isa", "tommy");
-        Server server = new Server();
-        VirtualServer server1 = new RmiServer(server);
-        RmiClientToServer client = new RmiClientToServer(server1);
-        HashMap<String, Observer> observerHashMap = new HashMap<>();
-        observerHashMap.put("isa", client);
-        ObservableModel model = new ObservableModel();
-        model.addSpecificObserver("isa",client);
         Boolean caught = false;
         try{
             game.addNewPrivateChat("isa", "tommy");
@@ -583,13 +548,6 @@ class GameControllerTest {
         PrivateChat chat = new PrivateChat("isa", "tommy");
         PrivateChatMessage mex = new PrivateChatMessage("ciaoo", "tommy", "isa");
         chat.addMessage(mex);
-        Server server = new Server();
-        VirtualServer server1 = new RmiServer(server);
-        RmiClientToServer client = new RmiClientToServer(server1);
-        HashMap<String, Observer> observerHashMap = new HashMap<>();
-        observerHashMap.put("isa", client);
-        ObservableModel model = new ObservableModel();
-        model.addSpecificObserver("isa",client);
         Boolean caught = false;
         try{
             game.addNewPrivateChat("isa", "tommy");
@@ -601,5 +559,4 @@ class GameControllerTest {
         assertEquals(true, caught);
     }
 
-        //inizialize e getscoreboard
 }

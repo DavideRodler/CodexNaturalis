@@ -128,8 +128,6 @@ public void setLastTurn(boolean turn){
 
 
 
-
-
     /**
      * this method is used to add a player to the game
      * @param nickname the nickname of the player

@@ -272,13 +272,6 @@ class PlayingBoardTest {
         @Test
    void addNewPrivateChat() throws RemoteException {
         PrivateChat chat = new PrivateChat("isa", "tommy");
-            Server server = new Server();
-            VirtualServer server1 = new RmiServer(server);
-            RmiClientToServer client = new RmiClientToServer(server1);
-            HashMap<String, Observer> observerHashMap = new HashMap<>();
-            observerHashMap.put("isa", client);
-            ObservableModel model = new ObservableModel();
-            model.addSpecificObserver("isa",client);
             Boolean caught = false;
             try{
                 board.addNewPrivateChat("isa", "tommy");
@@ -294,13 +287,6 @@ class PlayingBoardTest {
         PrivateChat chat = new PrivateChat("isa", "tommy");
         PrivateChatMessage mex = new PrivateChatMessage("ciaoo", "tommy", "isa");
         chat.addMessage(mex);
-        Server server = new Server();
-        VirtualServer server1 = new RmiServer(server);
-        RmiClientToServer client = new RmiClientToServer(server1);
-        HashMap<String, Observer> observerHashMap = new HashMap<>();
-        observerHashMap.put("isa", client);
-        ObservableModel model = new ObservableModel();
-        model.addSpecificObserver("isa",client);
         Boolean caught = false;
         try{
             board.addNewPrivateChat("isa", "tommy");
@@ -317,13 +303,6 @@ class PlayingBoardTest {
         PrivateChat chat = new PrivateChat("isa", "tommy");
         PrivateChatMessage mex = new PrivateChatMessage("ciaoo", "tommy", "isa");
         chat.addMessage(mex);
-        Server server = new Server();
-        VirtualServer server1 = new RmiServer(server);
-        RmiClientToServer client = new RmiClientToServer(server1);
-        HashMap<String, Observer> observerHashMap = new HashMap<>();
-        observerHashMap.put("isa", client);
-        ObservableModel model = new ObservableModel();
-        model.addSpecificObserver("isa",client);
         Boolean caught = false;
         try{
             board.addNewPrivateChat("isa", "tommy");

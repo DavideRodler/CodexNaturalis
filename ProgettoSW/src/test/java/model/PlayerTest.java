@@ -40,13 +40,6 @@ class PlayerTest {
         Points obj = new ObjectiveAssign();
         CardResource cardAnimal1 = new CardResource(0, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
         CardResource cardAnimal2 = new CardResource(1, frontTmp, backTmp, SuitEnum.ANIMAL, 1, obj);
-        Server server = new Server();
-        VirtualServer server1 = new RmiServer(server);
-        RmiClientToServer client = new RmiClientToServer(server1);
-        HashMap<String, Observer> observerHashMap = new HashMap<>();
-        observerHashMap.put("isa", client);
-        ObservableModel model = new ObservableModel();
-        model.addSpecificObserver("isa",client);
         Boolean caught = false;
         try{
             isa.addCardToHandWithObserver(cardAnimal1);
@@ -95,7 +88,6 @@ class PlayerTest {
         PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
         ArrayList<CardResource> hand = new ArrayList<>();
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
-        //isa.setSelectibleObjectivesWithObserver(cards);
         isa.setSelectibleObjectives(cards);
         assertEquals(cards, isa.getSelectibleObjectives());
 
@@ -137,7 +129,6 @@ class PlayerTest {
         handexpected.add(0, card1);
         handexpected.add(1, card3);
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
-        //isa.removeCardFromHandWithObs(1);
         isa.removeCardFromHand(1);
         assertEquals(hand, handexpected);
 
@@ -173,13 +164,6 @@ class PlayerTest {
         handexpected.add(1, card2);
         handexpected.add(2, card3);
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
-            Server server = new Server();
-            VirtualServer server1 = new RmiServer(server);
-            RmiClientToServer client = new RmiClientToServer(server1);
-            HashMap<String, Observer> observerHashMap = new HashMap<>();
-            observerHashMap.put("isa", client);
-            ObservableModel model = new ObservableModel();
-            model.addSpecificObserver("isa",client);
             Boolean caught = false;
             try{
                 isa.addCardToHandWithObserver(card3);
@@ -219,13 +203,7 @@ class PlayerTest {
         PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
         ArrayList<CardResource> hand = new ArrayList<>();
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
-            Server server = new Server();
-            VirtualServer server1 = new RmiServer(server);
-            RmiClientToServer client = new RmiClientToServer(server1);
-            HashMap<String, Observer> observerHashMap = new HashMap<>();
-            observerHashMap.put("isa", client);
-            ObservableModel model = new ObservableModel();
-            model.addSpecificObserver("isa",client);
+
             Boolean caught = false;
             try{
                 isa.setSelectibleObjectivesWithObserver(objs);
@@ -250,13 +228,6 @@ class PlayerTest {
         PlayingStation station = PlayingStationTemplate.test_2Cards_0Diagonal_c();
         ArrayList<CardResource> hand = new ArrayList<>();
         Player isa = new Player("isa", TokenEnum.YELLOW, station, 2, hand);
-        Server server = new Server();
-        VirtualServer server1 = new RmiServer(server);
-        RmiClientToServer client = new RmiClientToServer(server1);
-        HashMap<String, Observer> observerHashMap = new HashMap<>();
-        observerHashMap.put("isa", client);
-        ObservableModel model = new ObservableModel();
-        model.addSpecificObserver("isa",client);
         isa.setSecretObjective(objcard1);
         assertEquals(objcard1, isa.getSecretObjective());
     }
