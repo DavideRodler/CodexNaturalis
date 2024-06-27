@@ -27,9 +27,10 @@ public class PrivateChat {
         return nickname2;
     }
 
+
     /**
      * Add message to the chat
-     * @param chatMessage
+     * @param chatMessage message to add
      */
     public void addMessage(PrivateChatMessage chatMessage){
         message.add(chatMessage);

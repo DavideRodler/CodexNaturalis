@@ -15,9 +15,11 @@ public class GlobalChat {
         return message;
     }
 
+
+
     /**
      * Add message to the chat
-     * @param chatMessage
+     * @param chatMessage message to add
      */
     public void addMessage(GlobalChatMessage chatMessage){
         message.add(chatMessage);

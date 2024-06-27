@@ -104,12 +104,21 @@ public class ClientBoard implements Serializable {
         this.currentPlayer = currentPlayer;
     }
 
+
+
+
+    /**
+     * Get the player with the given nickname or null if the player is not found
+     * @param nickname the nickname of the player
+     * @return the player with the given nickname or null if the player is not found
+     */
     public ReductPlayer getOtherPlayer(String nickname) {
         return otherplayers.stream()
                 .filter(p -> p.getNickname().equals(nickname))
                 .findFirst()
                 .orElse(null);
     }
+
 
 
     /**
@@ -147,6 +156,8 @@ public class ClientBoard implements Serializable {
     }
 
 
+
+
     /**
      * Update a specific private chat between two players
      * @param typeOfChat the type of chat
@@ -172,6 +183,8 @@ public class ClientBoard implements Serializable {
     }
 
 
+
+
     /**
      * Update the global chat
      * @param typeOfChat the type of chat
@@ -183,6 +196,8 @@ public class ClientBoard implements Serializable {
             globalChat.addMessage(new GlobalChatMessage("GLOBAL", globalChatMessage, nickname));
         }
     }
+
+
 
 
     /**
@@ -199,11 +214,14 @@ public class ClientBoard implements Serializable {
         return globalChat;
     }
 
+
+
+
     /**
      * Get a private chat between two players
-     * @param nickname
-     * @param nickname1
-     * @return
+     * @param nickname the nickname of the first player
+     * @param nickname1 the nickname of the second player
+     * @return the private chat between two players
      */
     public ArrayList<PrivateChatMessage> getPrivateChat(String nickname, String nickname1) {
         return privateChats.stream()

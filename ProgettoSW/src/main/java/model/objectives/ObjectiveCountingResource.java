@@ -7,6 +7,11 @@ import java.io.Serializable;
 public class ObjectiveCountingResource implements Objective, Serializable {
     public SuitEnum symbol;
 
+
+    /**
+     * @param station is the station where we want to count the points
+     * @return the points of the objective
+     */
     @Override
     public int countObjectivePoints(PlayingStation station) {
         return switch(symbol){

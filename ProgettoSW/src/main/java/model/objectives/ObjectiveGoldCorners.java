@@ -8,6 +8,11 @@ import java.util.ArrayList;
 
 public class ObjectiveGoldCorners implements Points, Serializable {
 
+
+    /**
+     * @param station is the station where we want to count the points
+     * @return the points of the objective
+     */
     @Override
     public int countObjectivePoints(PlayingStation station , CardResource card, Integer x, Integer y) {
         int points = 0;
