@@ -359,7 +359,7 @@ public class StationController implements Initializable {
                     secondCoordinate = entry.getKey().getLast();
                 }
             }
-            imageToCardMap.put(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
+
             if(buttonPressed.equals(placeCardDownLeftButton)){
                 System.out.println("Scelto bottone in basso a sinistra");
                 position = 0;
@@ -444,9 +444,10 @@ public class StationController implements Initializable {
                     }
                 }
             }
-        }while (cardToPlay == null || !flag);
+        }while (cardToPlay == null && !flag);
         instructionsLabel.setText("Choose a card to draw");
         System.out.println("hai piazzato la carta");
+        imageToCardMap.put(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
         //aggiungo handler alle carte da pescare
         centralGoldImage1.setOnMouseClicked(this::chooseCardToDraw);
         centralGoldImage2.setOnMouseClicked(this::chooseCardToDraw);
@@ -462,7 +463,7 @@ public class StationController implements Initializable {
     }
 
     public void cardPlaceIncorrectly(String message){
-        imageToCardMap.remove(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
+        //imageToCardMap.remove(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
         instructionsLabel.setText(message);
         cardToPlay.setImage(null);
         cardPlacementBox.setVisible(false);

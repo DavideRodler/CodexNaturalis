@@ -349,14 +349,6 @@
       <workItem from="1718095046519" duration="8826000" />
       <workItem from="1719261691920" duration="2232000" />
     </task>
-    <task id="LOCAL-00030" summary="esempio Socket per capire il funzionamento e per poter fare un pull">
-      <option name="closed" value="true" />
-      <created>1714226826749</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1714226826749</updated>
-    </task>
     <task id="LOCAL-00031" summary="Aggiunta delle carte alla mano dei Players">
       <option name="closed" value="true" />
       <created>1714237739149</created>
@@ -741,7 +733,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719504323806</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="guifix">
+      <option name="closed" value="true" />
+      <created>1719504583723</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1719504583723</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -864,6 +864,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>
           <line>343</line>
           <option name="timeStamp" value="391" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/View/GUI/StationController.java</url>
+          <line>408</line>
+          <option name="timeStamp" value="414" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
