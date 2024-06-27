@@ -182,7 +182,7 @@ public class StationController implements Initializable {
 
     private int postion;
 
-
+    private String receiverNick;
 
 
     public StationController() {
@@ -386,7 +386,11 @@ public class StationController implements Initializable {
                 postion = 3;
             }
 
-
+            chooseCard1.setOnMouseClicked(null);
+            chooseCard2.setOnMouseClicked(null);
+            chooseCard1.setVisible(false);
+            chooseCard2.setVisible(false);
+            cardPlacementBox.setVisible(false);
 
             //chooseCard1.setImage(null);
             //chooseCard2.setImage(null);
@@ -484,6 +488,20 @@ public class StationController implements Initializable {
     }
 
 
+    private void sendMessage(MouseEvent event) {
+        String message = chatTextField.getText();
+        clientController.sendGlobalMessage(new GlobalChatMessage("GLOBAL", message, clientController.getClientModel().getMyplayer().getNickname()));
+        chatTextField.clear();
+    }
+
+
+    private void sendPrivateMessage(MouseEvent event){
+        String message = chatTextField.getText();
+        clientController.sendPrivateMessage(new PrivateChatMessage(message, clientController.getClientModel().getMyplayer().getNickname(), receiverNick));
+        chatTextField.clear();
+    }
+
+
     private void openChat(MouseEvent event) {
         chatButton.setOnMouseClicked(null);
         chatBox.setVisible(true);
@@ -509,19 +527,44 @@ public class StationController implements Initializable {
     }
 
     private void showPublicChat(MouseEvent event){
-        for(GlobalChatMessage globalMessage : clientController.getClientModel().getGlobalChat().getMessage()) {
-            chatTextArea.appendText(globalMessage.getNickname() + ": " + globalMessage.getMessage());
+        printGlobalChat();
+        chatSendTextButton.setOnMouseClicked(this::sendMessage);
+    }
+
+
+
+    private void showPrivateChat(MouseEvent event){
+        this.receiverNick = privateChatChoice.getValue();
+        boolean resume = false;
+        for(ReductPlayer player : clientController.getClientModel().getOtherplayers()){
+            if (player.getNickname().equals(receiverNick)) {
+                resume = true;
+                break;
+            }
+        }
+        if(resume) {
+            printPrivateChat();
+            chatSendTextButton.setOnMouseClicked(this::sendPrivateMessage);
         }
     }
 
-    private void showPrivateChat(MouseEvent event){
+
+    public void printPrivateChat(){
+        chatTextArea.clear();
         for(PrivateChat privateChat : clientController.getClientModel().getPrivateChats()){
             if(privateChatChoice.getValue().equals(privateChat.getNickname1()) || privateChatChoice.getValue().equals(privateChat.getNickname2()))
             {
                 for(PrivateChatMessage privateChatMessage : privateChat.getMessage()){
-                    chatTextArea.appendText(privateChatMessage.getNicknameReceiver() + ": " + privateChatMessage.getMessage() + "/n");
+                    chatTextArea.appendText(privateChatMessage.getNicknameReceiver() + ": " + privateChatMessage.getMessage() + "\n");
                 }
             }
+        }
+    }
+
+    public void printGlobalChat(){
+        chatTextArea.clear();
+        for(GlobalChatMessage globalMessage : clientController.getClientModel().getGlobalChat().getMessage()) {
+            chatTextArea.appendText(globalMessage.getNickname() + ": " + globalMessage.getMessage() + "\n");
         }
     }
 
@@ -683,11 +726,6 @@ public class StationController implements Initializable {
         chatButton.setOnMouseClicked(this::openChat);
         menuPane.setVisible(true);
         scoreboardButton.setOnMouseClicked(this::switchToScoreBoard);
-        chooseCard1.setOnMouseClicked(null);
-        chooseCard2.setOnMouseClicked(null);
-        chooseCard1.setVisible(false);
-        chooseCard2.setVisible(false);
-        cardPlacementBox.setVisible(false);
     }
 
     /**

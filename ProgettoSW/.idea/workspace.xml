@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="cantiere gui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ScoreBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ScoreBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/BLACK_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/BLACK_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/BLUE_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/BLUE_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/GREEN_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/GREEN_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/RED_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/RED_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/YELLOW_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/YELLOW_token.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +225,7 @@
       <recent name="Socket.Messages.queqe" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientApp">
+  <component name="RunManager" selected="Application.ServerApp">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
       <module name="ProgettoSW" />
@@ -324,8 +319,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -875,21 +870,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>
           <line>344</line>
           <option name="timeStamp" value="391" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/GUI/StationController.java</url>
-          <line>312</line>
-          <option name="timeStamp" value="392" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/GUI/StationController.java</url>
-          <line>311</line>
-          <option name="timeStamp" value="393" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/View/GUI/StationController.java</url>
-          <line>397</line>
-          <option name="timeStamp" value="396" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/main/java/model/enums/DeckEnum.java</url>

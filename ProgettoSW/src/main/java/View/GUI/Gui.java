@@ -181,12 +181,12 @@ public class Gui extends Application implements UI {
 
     @Override
     public void updateGlobalChat() {
-
+        Platform.runLater(() -> stationController.printGlobalChat());
     }
 
     @Override
     public void updatePrivateChat() {
-
+        Platform.runLater(() -> stationController.printPrivateChat());
     }
 
     @Override
