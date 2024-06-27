@@ -444,7 +444,7 @@ public class StationController implements Initializable {
                     }
                 }
             }
-        }while (cardToPlay == null);
+        }while (cardToPlay == null || !flag);
         instructionsLabel.setText("Choose a card to draw");
         System.out.println("hai piazzato la carta");
         //aggiungo handler alle carte da pescare

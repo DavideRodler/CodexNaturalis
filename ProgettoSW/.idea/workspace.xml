@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="aggiustata classifica">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="guifix" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -350,14 +348,6 @@
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
       <workItem from="1719261691920" duration="2232000" />
-    </task>
-    <task id="LOCAL-00029" summary="cli 2 commentata">
-      <option name="closed" value="true" />
-      <created>1714082765430</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1714082765430</updated>
     </task>
     <task id="LOCAL-00030" summary="esempio Socket per capire il funzionamento e per poter fare un pull">
       <option name="closed" value="true" />
@@ -743,7 +733,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719502038724</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="guifix">
+      <option name="closed" value="true" />
+      <created>1719504323803</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1719504323806</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -823,7 +821,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="buttons" />
     <MESSAGE value="GUI setUp" />
     <MESSAGE value="station test xml" />
     <MESSAGE value="fix definitivo addCard" />
@@ -848,7 +845,8 @@
     <MESSAGE value="tolto metodo gui inutile (ora tutti i metodi ui vengono utilizzati sua da gui che da cli)" />
     <MESSAGE value="aggiustati nomi bottini altre station" />
     <MESSAGE value="aggiustata classifica" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiustata classifica" />
+    <MESSAGE value="guifix" />
+    <option name="LAST_COMMIT_MESSAGE" value="guifix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
