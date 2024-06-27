@@ -121,7 +121,33 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printFinalPoints(LinkedHashMap<String, ArrayList<Integer>> map) {
-        Platform.runLater(() -> stationController.gameFinished(map));
+        Platform.runLater(() -> {
+            try {
+                // Carica il file FXML per la nuova scena
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ScoreBoard.fxml"));
+                Parent root = loader.load();
+
+                // Ottieni il controller per la nuova scena e imposta il ClientController
+                scoreBoardController = loader.getController();
+                scoreBoardController.setClientController(clientController);
+
+
+                // Crea la nuova scena
+                Scene scene = new Scene(root);
+
+                // Ottieni lo Stage corrente e imposta la nuova scena
+                Stage currentStage = (Stage) stationController.getStationPane().getScene().getWindow();
+                currentStage.setScene(scene);
+
+                // Mostra la nuova scena
+                currentStage.show();
+
+                // Aggiorna la visualizzazione delle carte centrali
+                stationController.gameFinished(map);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override

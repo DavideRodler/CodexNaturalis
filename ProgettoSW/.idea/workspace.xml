@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="tolto metodo gui inutile (ora tutti i metodi ui vengono utilizzati sua da gui che da cli)">
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="aggiustati nomi bottini altre station">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/Gui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -350,14 +352,6 @@
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
       <workItem from="1719261691920" duration="2232000" />
-    </task>
-    <task id="LOCAL-00027" summary="Settaggio gioco iniziale con observer in modo reattivo">
-      <option name="closed" value="true" />
-      <created>1714081410216</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1714081410217</updated>
     </task>
     <task id="LOCAL-00028" summary="Settaggio gioco iniziale con observer in modo reattivo">
       <option name="closed" value="true" />
@@ -743,7 +737,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719498752231</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="aggiustati nomi bottini altre station">
+      <option name="closed" value="true" />
+      <created>1719501214820</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1719501214820</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -823,7 +825,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="inizio classi per gui" />
     <MESSAGE value="riordinato package view" />
     <MESSAGE value="buttons" />
     <MESSAGE value="GUI setUp" />
@@ -848,7 +849,8 @@
     <MESSAGE value="chat funzionante al 100%, gui cli e cli gui" />
     <MESSAGE value="fixate le carte da pescare" />
     <MESSAGE value="tolto metodo gui inutile (ora tutti i metodi ui vengono utilizzati sua da gui che da cli)" />
-    <option name="LAST_COMMIT_MESSAGE" value="tolto metodo gui inutile (ora tutti i metodi ui vengono utilizzati sua da gui che da cli)" />
+    <MESSAGE value="aggiustati nomi bottini altre station" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiustati nomi bottini altre station" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

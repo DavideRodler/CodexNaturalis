@@ -153,6 +153,10 @@ public class StationController implements Initializable {
     @FXML
     private ImageView thirdCardInHand;
 
+    public Pane getStationPane() {
+        return stationPane;
+    }
+
 
     @FXML
     private ImageView startingCard;
@@ -824,6 +828,7 @@ public class StationController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         ScoreBoardController controller = fxmlLoader.getController();
         controller.printScores(map);
 
