@@ -42,4 +42,8 @@ public class ObservableModel {
             }
         }
     }
+    public void removeAllObservers(){
+        this.observers.clear();
+        this.observerHashMap.clear();
+    }
 }

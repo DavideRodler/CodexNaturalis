@@ -136,6 +136,10 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
                 startHeartbeat();
             } catch (RemoteException e) {
                 System.out.println("Server disconnected");
+                new Thread(() -> {
+                    clientController.tryToReconnect();
+                }).start();
+
             }
         }
         ).start();

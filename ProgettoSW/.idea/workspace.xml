@@ -4,15 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="cantiere gui">
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="Gui che funziona sia per piazzare carta in back che per la scoreboard.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ScoreBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ScoreBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/BLACK_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/BLACK_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/BLUE_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/BLUE_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/GREEN_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/GREEN_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/RED_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/RED_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tokens/YELLOW_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/YELLOW_token.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/VirtualSocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/VirtualSocketServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RMI/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RMI/RmiServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/GlobalChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/GlobalChat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PrivateChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PrivateChat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/observers/ObservableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/observers/ObservableModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -313,8 +317,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.ServerApp" />
+        <item itemvalue="Application.ClientApp" />
         <item itemvalue="JUnit.GameControllerTest" />
         <item itemvalue="JUnit.GameControllerTest.addCardToPlayingStation" />
         <item itemvalue="JUnit.GameControllerTest.isGamefinished" />
@@ -359,14 +363,6 @@
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
       <workItem from="1719261691920" duration="2232000" />
-    </task>
-    <task id="LOCAL-00024" summary="Aggiunto display cardStarting">
-      <option name="closed" value="true" />
-      <created>1713865523143</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1713865523143</updated>
     </task>
     <task id="LOCAL-00025" summary="aggiunta colori">
       <option name="closed" value="true" />
@@ -752,7 +748,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719409156967</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Gui che funziona sia per piazzare carta in back che per la scoreboard.">
+      <option name="closed" value="true" />
+      <created>1719444568535</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1719444568535</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -832,7 +836,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Test corretti obj" />
     <MESSAGE value="uploadate risorse grafiche + tolti metodi print card nella cli" />
     <MESSAGE value="bozza struttura cli" />
     <MESSAGE value="inizio classi per gui" />
@@ -857,7 +860,8 @@
     <MESSAGE value="GUI OK MANCA FINE TURNO" />
     <MESSAGE value="CHAT GUI + MODIFICHE ALLO STATION CONTROLLER" />
     <MESSAGE value="cantiere gui" />
-    <option name="LAST_COMMIT_MESSAGE" value="cantiere gui" />
+    <MESSAGE value="Gui che funziona sia per piazzare carta in back che per la scoreboard." />
+    <option name="LAST_COMMIT_MESSAGE" value="Gui che funziona sia per piazzare carta in back che per la scoreboard." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -891,6 +895,16 @@
           <line>397</line>
           <option name="timeStamp" value="396" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Server/Server.java</url>
+          <line>269</line>
+          <option name="timeStamp" value="408" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="410" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/main/java/model/enums/DeckEnum.java</url>
           <line>4</line>
@@ -902,6 +916,7 @@
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="controller.GameController" memberName="board" />
+        <PinnedItemInfo parentTag="Network.Server.Server" memberName="gameController" />
       </pinned-members>
     </pin-to-top-manager>
     <watches-manager>

@@ -2,9 +2,10 @@ package model;
 
 import Socket.Messages.ChatMessage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Chat {
+public class Chat implements Serializable {
     private ArrayList<ChatMessage> message;
 
     public Chat() {

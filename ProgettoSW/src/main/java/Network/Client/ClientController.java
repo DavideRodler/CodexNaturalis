@@ -1,5 +1,8 @@
 package Network.Client;
 
+import Network.Client.RMI.RmiClientToServer;
+import Network.Client.RMI.VirtualView;
+import Network.Server.VirtualServer;
 import Socket.Messages.Chat.AddPrivateChatMessage;
 import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
@@ -22,7 +25,10 @@ import model.enums.TokenEnum;
 import Socket.Messages.Message;
 import Socket.Messages.*;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -392,4 +398,42 @@ public class ClientController {
         clientToServerCommunication.sendPrivateMessage(privateMessage);
     }
 
+    public synchronized void tryToReconnect() {
+        System.out.println("Press enter to try to reconnect");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+
+        if (clientToServerCommunication instanceof RmiClientToServer) {
+
+            VirtualServer server;
+            Registry registry = null;
+            while (true) {
+                try {
+                    registry = LocateRegistry.getRegistry("127.0.0.1", 16000);
+                    server = (VirtualServer) registry.lookup("MyServer");
+                    break;
+                } catch (RemoteException | NotBoundException e) {
+                    System.out.println("Server is not available, press enter to try again");
+                    scanner.nextLine();
+                }
+            }
+
+            RmiClientToServer Newclient = null;
+            try {
+                Newclient = new RmiClientToServer(server);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+            Newclient.setClientController(this);
+            this.clientToServerCommunication = Newclient;
+
+            try {
+                server.reconnect(clientModel.getMyplayer().getNickname(), (VirtualView) clientToServerCommunication);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Reconnected successfully");
+        }
+
+    }
 }

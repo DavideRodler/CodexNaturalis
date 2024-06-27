@@ -2,9 +2,10 @@ package model;
 
 import Socket.Messages.Chat.GlobalChatMessage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GlobalChat {
+public class GlobalChat implements Serializable {
     private ArrayList<GlobalChatMessage> message;
 
     public GlobalChat() {
