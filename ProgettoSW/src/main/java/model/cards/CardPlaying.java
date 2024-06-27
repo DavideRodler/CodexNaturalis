@@ -23,14 +23,16 @@ public abstract  class CardPlaying extends Card implements Serializable {
     public Face getBack() {
         return back;
     }
+
     public void setPlayingBack(boolean playingBack){
         this.playedBack=playingBack;
     }
+
     public boolean getPlayingBack(){
         return playedBack;
     }
 
     public int countResource(SuitEnum suit){
         return 0;
-    }
+    } //base case
 }

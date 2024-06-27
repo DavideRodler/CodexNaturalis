@@ -5,8 +5,6 @@ import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
 import View.UI;
 import model.PlayingStation;
-import model.PrivateChat;
-import model.cards.CardResource;
 import model.client.ClientBoard;
 import model.enums.CliState;
 import model.enums.GameState;

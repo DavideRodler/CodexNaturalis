@@ -6,6 +6,8 @@ import model.*;
 import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
+import model.chats.GlobalChat;
+import model.chats.PrivateChat;
 import model.enums.GameState;
 import model.enums.SuitEnum;
 import model.enums.TokenEnum;

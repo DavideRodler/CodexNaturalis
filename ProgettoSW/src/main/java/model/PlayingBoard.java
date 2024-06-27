@@ -4,6 +4,8 @@ import Socket.Messages.Chat.AddPrivateChatMessage;
 import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
 import model.cards.*;
+import model.chats.GlobalChat;
+import model.chats.PrivateChat;
 import model.enums.GameState;
 import model.enums.SuitEnum;
 import observers.ObservableModel;

@@ -18,4 +18,5 @@
     exports model to java.rmi;
     exports model.cards to java.rmi;
      exports Network.Server.RMI to java.rmi;
+     exports model.chats to java.rmi;
  }

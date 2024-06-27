@@ -20,5 +20,5 @@ public class CardObjective extends Card implements Serializable {
 
   public int getPoints() {
     return points;
-  } // getter
+  }
 }

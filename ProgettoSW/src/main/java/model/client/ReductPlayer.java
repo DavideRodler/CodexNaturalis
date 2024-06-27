@@ -1,7 +1,6 @@
 package model.client;
 
 import model.PlayingStation;
-import model.cards.CardResource;
 import model.enums.SuitEnum;
 import model.enums.TokenEnum;
 

@@ -1,6 +1,5 @@
-package model;
+package model.chats;
 
-import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
 
 import java.util.ArrayList;
@@ -28,6 +27,10 @@ public class PrivateChat {
         return nickname2;
     }
 
+    /**
+     * Add message to the chat
+     * @param chatMessage
+     */
     public void addMessage(PrivateChatMessage chatMessage){
         message.add(chatMessage);
     }

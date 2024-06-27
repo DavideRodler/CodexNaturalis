@@ -1,6 +1,5 @@
 package controller;
 
-import model.GlobalChat;
 import model.Player;
 import model.PlayingBoard;
 import model.PlayingStation;

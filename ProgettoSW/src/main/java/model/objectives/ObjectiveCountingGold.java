@@ -2,15 +2,10 @@ package model.objectives;
 
 import model.PlayingStation;
 import model.cards.*;
-import model.enums.SuitEnum;
 
 import java.io.Serializable;
 
 
-/**
- * this class represents the objective that counts the gold cards, it is used both in the cardObjective to count the
- *
- */
 public class ObjectiveCountingGold implements Objective, Points ,Serializable {
 
   private int countInkwell;

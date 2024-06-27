@@ -1,4 +1,4 @@
-package model;
+package model.chats;
 
 import Socket.Messages.Chat.GlobalChatMessage;
 
@@ -15,6 +15,10 @@ public class GlobalChat {
         return message;
     }
 
+    /**
+     * Add message to the chat
+     * @param chatMessage
+     */
     public void addMessage(GlobalChatMessage chatMessage){
         message.add(chatMessage);
     }

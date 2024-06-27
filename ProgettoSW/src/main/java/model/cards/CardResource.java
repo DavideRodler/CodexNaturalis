@@ -10,14 +10,14 @@ import java.io.Serializable;
 public class CardResource extends CardPlaying implements Serializable {
     private final SuitEnum symbol;
     private final Integer points;
-    private final Points objective;  // Aggiunto l'attributo Objective
+    private final Points objective;
 
 
     public CardResource(int ID, Face front, Face back, SuitEnum symbol, Integer points, Points objective) {
         super(ID, front, back);
         this.symbol = symbol;
         this.points = points;
-        this.objective = objective;  // Inizializzato l'attributo Objective
+        this.objective = objective;
     }
 
     public SuitEnum getSymbol() {
@@ -54,7 +54,7 @@ public class CardResource extends CardPlaying implements Serializable {
                 }
         }
         else {
-            if(getSymbol().equals(suit)){ //in back there is only one symbol in the middle
+            if(getSymbol().equals(suit)){ //On the back of the card there is only one symbol in the middle
                 count++;
             }
         }

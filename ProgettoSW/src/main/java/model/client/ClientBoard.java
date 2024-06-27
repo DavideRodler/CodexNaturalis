@@ -2,10 +2,9 @@ package model.client;
 
 import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
-import model.Chat;
-import model.GlobalChat;
+import model.chats.GlobalChat;
 import model.Player;
-import model.PrivateChat;
+import model.chats.PrivateChat;
 import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
@@ -15,7 +14,6 @@ import model.enums.TokenEnum;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class ClientBoard implements Serializable {
@@ -45,10 +43,6 @@ public class ClientBoard implements Serializable {
         this.globalChat = new GlobalChat();
     }
 
-    // public ClientBoard(CardObjective firstObjective, CardObjective secondObjective, GameState gameState) {
-    //     this.firstObjective = firstObjective;
-    //     this.secondObjective = secondObjective;
-    // }
 
     public ArrayList<CardGold> getCentralCardsGold() {
         return centralCardsGold;
@@ -161,7 +155,6 @@ public class ClientBoard implements Serializable {
      * @param privateChatMessage the message of the private chat
      */
     public void updatePrivateChat(String typeOfChat, String nicknameSender, String nicknameReceiver, String privateChatMessage) {
-
         synchronized (privateChats) {
             if (typeOfChat.equals("PRIVATE")) {
                 for (PrivateChat p : privateChats) {
@@ -185,11 +178,11 @@ public class ClientBoard implements Serializable {
      * @param nickname the nickname of the player
      * @param globalChatMessage     the message of the global chat
      */
-        public void updateGlobalChat (String typeOfChat, String nickname, String globalChatMessage){
-            if (typeOfChat.equals("GLOBAL")) {
-                globalChat.addMessage(new GlobalChatMessage("GLOBAL", globalChatMessage, nickname));
-            }
+    public void updateGlobalChat (String typeOfChat, String nickname, String globalChatMessage){
+        if (typeOfChat.equals("GLOBAL")) {
+            globalChat.addMessage(new GlobalChatMessage("GLOBAL", globalChatMessage, nickname));
         }
+    }
 
 
     /**
@@ -198,7 +191,6 @@ public class ClientBoard implements Serializable {
      * @param nickname2 the nickname of the second player
      */
     public void addNewPrivateChat (String nickname1, String nickname2){
-
             privateChats.add(new PrivateChat(nickname1, nickname2));
         }
 
@@ -207,6 +199,12 @@ public class ClientBoard implements Serializable {
         return globalChat;
     }
 
+    /**
+     * Get a private chat between two players
+     * @param nickname
+     * @param nickname1
+     * @return
+     */
     public ArrayList<PrivateChatMessage> getPrivateChat(String nickname, String nickname1) {
         return privateChats.stream()
                 .filter(p -> (p.getNickname1().equals(nickname) && p.getNickname2().equals(nickname1)) || (p.getNickname1().equals(nickname1) && p.getNickname2().equals(nickname)))

@@ -1,4 +1,4 @@
-package model;
+package model.chats;
 
 import Socket.Messages.ChatMessage;
 
@@ -15,6 +15,10 @@ public class Chat {
         return message;
     }
 
+    /**
+     * Add message to the chat
+     * @param chatMessage
+     */
     public void addMessage(ChatMessage chatMessage){
         message.add(chatMessage);
     }

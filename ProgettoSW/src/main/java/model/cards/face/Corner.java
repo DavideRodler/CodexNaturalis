@@ -1,6 +1,6 @@
 package model.cards.face;
-import model.enums.SuitEnum;
 
+import model.enums.SuitEnum;
 import java.io.Serializable;
 
 public class Corner implements Serializable {

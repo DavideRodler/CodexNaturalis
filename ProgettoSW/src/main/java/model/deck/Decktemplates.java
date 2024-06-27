@@ -23,7 +23,7 @@ import org.json.simple.parser.ParseException;
 
 import static java.util.Collections.shuffle;
 
-// create a static class that has for each deck a static method that returns the List of all model.cards that need to be in that deck
+//This is a static class that for each deck has a static method that returns the List of all model.cards that need to be in that deck
 public class Decktemplates implements Serializable {
   private final static String deckGoldJson = "src/main/resources/JarFile/GoldDeck.json";
   private final static String deckresourceJson = "src/main/resources/JarFile/resourceDeck.json";
@@ -31,8 +31,7 @@ public class Decktemplates implements Serializable {
   private final static String deckObjectiveJson = "src/main/resources/JarFile/ObjectiveCard.json";
   // creating the DeckResource Deck
   // each line in the text represent the card:
-  // we have in order: suit of the card, the four corner(starting from upright)
-  // and the points
+  // In order: suit of the card, the four corners (starting from upright) and the points
 
 //  there are 40 cards in the deck
 //  the id starts from 1 and goes to 40
@@ -42,6 +41,7 @@ public class Decktemplates implements Serializable {
 
   /**
    * This method creates a deck of resource cards (id from 1 to 40)
+   * In order: suit of the card, the four corners (starting from upright) and the points
    * @return a LinkedList of CardResource
    */
   public static LinkedList<CardResource> ResourceCardDeck() {
@@ -71,7 +71,7 @@ public class Decktemplates implements Serializable {
       id++;
 
     }
-    //i shuffle the deck before returning it
+    //shuffle the deck before returning it
     shuffle(deck);
     return deck;
   }
@@ -114,7 +114,7 @@ public class Decktemplates implements Serializable {
       id++;
 
     }
-    //i shuffle the deck before returning it
+    //shuffle the deck before returning it
     shuffle(deck);
     return deck;
   }
@@ -162,7 +162,7 @@ public class Decktemplates implements Serializable {
       id++;
 
     }
-    //i shuffle the deck before returning it
+    //shuffle the deck before returning it
     shuffle(deck);
     return deck;
   }
@@ -223,7 +223,7 @@ public class Decktemplates implements Serializable {
         }
         id++;
       }
-    //i shuffle the deck before returning it
+    //shuffle the deck before returning it
     shuffle(deck);
     return deck;
   }
@@ -298,11 +298,10 @@ public class Decktemplates implements Serializable {
 
 
   /**
-   * create a private method AssignOvbective that takes a string (null,corenrs or
-   *  gold resource:manuscript,inkwell,quill) and create an object that is
-   *   statically type Objective and dinamically type Objective,
-   *    ObjectiveCountingResources or ObjectiveGoldCorners if the string is
-   *    respectability null, corners or gold resource and return that objective
+   * create a private method AssignObjective that takes a string and creates an object that is
+   * statically type Objective and dinamically type Objective,
+   * ObjectiveCountingResources or ObjectiveGoldCorners if the string is
+   * respectability null, corners or gold resource and return that objective
    * @param s
    * @return
    */

@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import model.PrivateChat;
+import model.chats.PrivateChat;
 import model.cards.*;
 import model.client.ReductPlayer;
 

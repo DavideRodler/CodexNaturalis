@@ -1,6 +1,7 @@
 package model;
 
 import Socket.Messages.ChatMessage;
+import model.chats.Chat;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
