@@ -470,6 +470,7 @@ public class Cli2 implements UI {
 
     @Override
     public void printCommonObjectives() {
+        printSetupPlayerHand();
         ObjectivePrinter objPrinter = new ObjectivePrinter();
         System.out.println("Common objectives: ");
         objPrinter.printSelectableObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
@@ -560,8 +561,7 @@ public class Cli2 implements UI {
     /**
      * this method prints the hand of the player at the setup stage of the game
      */
-    @Override
-    public void printSetupPlayerHand() {
+    private void printSetupPlayerHand() {
         System.out.println("Here is your hand:");
         HandPrinter playerHand = new HandPrinter();
         playerHand.addCardsToHand(clientBoard.getMyplayer().getHand());

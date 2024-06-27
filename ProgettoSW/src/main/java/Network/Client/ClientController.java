@@ -372,7 +372,6 @@ public class ClientController {
     }
 
     public synchronized void showHandsAndCommonObjectives() {
-        ui.printSetupPlayerHand();
         ui.printCommonObjectives();
     }
 

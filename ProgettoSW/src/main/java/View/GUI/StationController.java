@@ -778,9 +778,13 @@ public class StationController implements Initializable {
         this.clientController = clientController;
     }
 
-    public void gameFinished(LinkedHashMap<String, ArrayList<Integer>> map) throws IOException {
+    public void gameFinished(LinkedHashMap<String, ArrayList<Integer>> map){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ScoreBoard.fxml"));
+        try{
         Parent root = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         ScoreBoardController controller = fxmlLoader.getController();
         controller.printScores(map);
 

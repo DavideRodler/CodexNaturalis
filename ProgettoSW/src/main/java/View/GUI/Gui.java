@@ -59,10 +59,6 @@ public class Gui extends Application implements UI {
     }
 
 
-
-
-
-
     @Override
     public void askNickname() {
         Platform.runLater(() -> chooseNickAndTokenController.setNickname());
@@ -75,7 +71,6 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printCommonObjectives() {
-        //stationController.show2CommonObjectives(clientBoard.getFirstObjective(), clientBoard.getSecondObjective());
         Platform.runLater(() -> stationController.showCommonObjectives());
     }
 
@@ -117,15 +112,8 @@ public class Gui extends Application implements UI {
     }
 
 
-
-    @Override
-    public void printSetupPlayerHand() {
-
-    }
-
     @Override
     public void printPlayerHand() {
-        //stationController.showPlayerHand(clientBoard.getMyplayer().getHand().get(0),clientBoard.getMyplayer().getHand().get(1), clientBoard.getMyplayer().getHand().get(2),clientBoard.getMyplayer().getSecretObjective());
         Platform.runLater(() -> stationController.showPlayerHand());
     }
 
@@ -133,11 +121,11 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printFinalPoints(LinkedHashMap<String, ArrayList<Integer>> map) {
-        //Platform.runLater(() -> stationController.gameFinished(map));
+        Platform.runLater(() -> stationController.gameFinished(map));
     }
 
     @Override
-    public void askToken(ArrayList<TokenEnum> availableTokens) { //TODO: passare per al controller l'arraylist
+    public void askToken(ArrayList<TokenEnum> availableTokens) {
         Platform.runLater(() -> chooseNickAndTokenController.setAvailableTokens(availableTokens));
 
     }
@@ -198,12 +186,3 @@ public class Gui extends Application implements UI {
         }
     }
 }
-
-//TODO:
-// - caricare carte -> seguo ID (da ogni front posso risalire al back - trovo pattern)
-// - passare da una scena all'altra tramite button
-// - salvare scelte di un giocatore a seconda del button
-// - COME PIAZZARE CARTE
-// - come passare da salvataggio giocatori a start game
-// - caricare bene immagini nelle ImageView
-// - label nel salvataggio nickname e token

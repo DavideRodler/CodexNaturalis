@@ -23,8 +23,6 @@ public interface UI {
     void printCommonObjectives();
 
     void print4CentralCards();
-    
-    void printSetupPlayerHand();
 
     void printPlayerHand();
 
