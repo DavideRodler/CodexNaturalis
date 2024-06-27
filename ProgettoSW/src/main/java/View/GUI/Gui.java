@@ -133,7 +133,7 @@ public class Gui extends Application implements UI {
 
     @Override
     public void printFinalPoints(LinkedHashMap<String, ArrayList<Integer>> map) {
-
+        //Platform.runLater(() -> stationController.gameFinished(map));
     }
 
     @Override

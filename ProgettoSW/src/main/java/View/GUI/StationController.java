@@ -20,10 +20,7 @@ import model.client.ReductPlayer;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class StationController implements Initializable {
 
@@ -779,5 +776,13 @@ public class StationController implements Initializable {
 
     public void setClientController(ClientController clientController) {
         this.clientController = clientController;
+    }
+
+    public void gameFinished(LinkedHashMap<String, ArrayList<Integer>> map) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ScoreBoard.fxml"));
+        Parent root = fxmlLoader.load();
+        ScoreBoardController controller = fxmlLoader.getController();
+        controller.printScores(map);
+
     }
 }
