@@ -23,7 +23,7 @@ public class StartingCardPrinter {
     }
     /**
      * this method prints the starting card's front and back
-     * @param cardStarting
+     * @param cardStarting is the starting card of the player
      */
     public void cardStartingPrinter(CardStarting cardStarting){
         String[][] front = createFrontPlayingCard(cardStarting);

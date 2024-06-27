@@ -20,14 +20,12 @@ public class StationMatrix {
     // colonne --> 955/2 = 477
     // centro è stationMatrix[159][477]
 
-    //TODO: modificare il codice per fare in modo che vada bene con le nuove dimensioni della matrice
 
     private final String black = "\033[0;30m";
     private final String reset = "\03cR[0m";
     private final int cardHeight = 3;
     private final int cardLength = 7;
     private final int cardStartingPosition = 40;
-    //TODO: dimCardStation forse non è il nome più adatto. indica la posizione della carta starting
 
     /**
      * this method is the constructor where the matrix StationPrint is initiated.
@@ -36,7 +34,7 @@ public class StationMatrix {
         initializeStationPrint();
     }
 
-    //TODO: in questo metodo bisogna aggiungere le coordinate.
+
     /**
      * this method initializes the matrix stationPrint with the coordinates for card placement
      */
@@ -104,8 +102,7 @@ public class StationMatrix {
 //            m++;
 //        }
     }
-    //TODO: possibile che il controllo del corner covered sia inutile?
-    // metto qua le coordinate
+
     private void addCard(String[][] cardToAdd, boolean[] cornerCovered, boolean[] voidPositions,int i, int j){
         //al posto che ottenere la posizione di partenza della stampa nel for --> uso la formula --> servono i e j.
         int m = 0, l = 0;
@@ -113,7 +110,7 @@ public class StationMatrix {
         int colLeftCorner = 6*j - 6;
 
         if(voidPositions[0] && !cardToAdd[0][0].equals("N")){ //aggiungo in alto a sx
-            addCoordinates(i-1, j-1); //TODO!!!!!!!" con formule i: 2i-1 e j: 6j-5
+            addCoordinates(i-1, j-1);
         }
         if(voidPositions[1] && !cardToAdd[0][cardLength-1].equals("N")){ //aggiungo in alto a dx
             addCoordinates(i-1, j+1);
@@ -371,71 +368,6 @@ public class StationMatrix {
 
     }
 
-    //Vorrei ad esempio che se mi viene passata la carta in pos 40x40 aggiungo 39x39. Avrò bisogno della posizione della carta piazzata
-    private void addCoordinatesUpLeft(int i, int j){
-        int row = i * 4 - 1; //numeri per estetica
-        int col = j * 8 - 6; //numeri per estetica
-        int rowCoordinate = i-1;
-        int colCoordinate = j-1;
-        int firstDigitRowCoordinate = rowCoordinate/10;
-        int secondDigitRowCoordinate = rowCoordinate%10;
-        int firstDigitColCoordinate = colCoordinate/10;
-        int secondDigitColCoordinate = colCoordinate%10;
-        stationPrint[row][col] = String.valueOf(firstDigitRowCoordinate);
-        stationPrint[row][col+1] = String.valueOf(secondDigitRowCoordinate);
-        stationPrint[row][col+2] = "x";
-        stationPrint[row][col+3] = String.valueOf(firstDigitColCoordinate);
-        stationPrint[row][col+4] = String.valueOf(secondDigitColCoordinate);
-    }
-
-    private void addCoordinatesUpRight(int i, int j){
-        int row = i * 4 - 1; //numeri per estetica
-        int col = j * 8 + 8; //numeri per estetica
-        int rowCoordinate = i-1;
-        int colCoordinate = j+1;
-        int firstDigitRowCoordinate = rowCoordinate/10;
-        int secondDigitRowCoordinate = rowCoordinate%10;
-        int firstDigitColCoordinate = colCoordinate/10;
-        int secondDigitColCoordinate = colCoordinate%10;
-        stationPrint[row][col] = String.valueOf(firstDigitRowCoordinate);
-        stationPrint[row][col+1] = String.valueOf(secondDigitRowCoordinate);
-        stationPrint[row][col+2] = "x";
-        stationPrint[row][col+3] = String.valueOf(firstDigitColCoordinate);
-        stationPrint[row][col+4] = String.valueOf(secondDigitColCoordinate);
-
-    }
-
-    private void addCoordinatesDownLeft(int i, int j){
-        int row = i * 4 + 3; //numeri per estetica
-        int col = j * 8 - 6; //numeri per estetica
-        int rowCoordinate = i+1;
-        int colCoordinate = j-1;
-        int firstDigitRowCoordinate = rowCoordinate/10;
-        int secondDigitRowCoordinate = rowCoordinate%10;
-        int firstDigitColCoordinate = colCoordinate/10;
-        int secondDigitColCoordinate = colCoordinate%10;
-        stationPrint[row][col] = String.valueOf(firstDigitRowCoordinate);
-        stationPrint[row][col+1] = String.valueOf(secondDigitRowCoordinate);
-        stationPrint[row][col+2] = "x";
-        stationPrint[row][col+3] = String.valueOf(firstDigitColCoordinate);
-        stationPrint[row][col+4] = String.valueOf(secondDigitColCoordinate);
-    }
-
-    private void addCoordinatesDownRight(int i, int j){
-        int row = i * 4 + 3; //numeri per estetica
-        int col = j * 8 + 8; //numeri per estetica
-        int rowCoordinate = i+1;
-        int colCoordinate = j+1;
-        int firstDigitRowCoordinate = rowCoordinate/10;
-        int secondDigitRowCoordinate = rowCoordinate%10;
-        int firstDigitColCoordinate = colCoordinate/10;
-        int secondDigitColCoordinate = colCoordinate%10;
-        stationPrint[row][col] = String.valueOf(firstDigitRowCoordinate);
-        stationPrint[row][col+1] = String.valueOf(secondDigitRowCoordinate);
-        stationPrint[row][col+2] = "x";
-        stationPrint[row][col+3] = String.valueOf(firstDigitColCoordinate);
-        stationPrint[row][col+4] = String.valueOf(secondDigitColCoordinate);
-    }
 
     /**
      * this method prints the station of a player distant ato most by max from the starting card. 120 to 122 and 280 to 286 is the position of the starting card.
@@ -491,10 +423,6 @@ public class StationMatrix {
      * @param max is the distance between the starting card and the furthest card played in the station
      */
 
-    //TODO: qua dentro quando chiamo la addCard aggiungo un array che mi dice se la carta ha nei suoi angoli carte null
-    // se così è --> allora metterò le coordinate else no.
-    // inoltre devo potenzialmente aggiungere coordinate anche alla carta centrale
-    // aggiungo parametri alla chiamata passando anche il booleano di ogni carta adiacente: se true --> allora c'è una carta, else --> non c'è una carta --> stampa coordinate
     public void addCardsToStation(CardPlaying[][] station, int max){
         boolean[] voidPositions;
         for(int i = cardStartingPosition -max; i < cardStartingPosition +max+1; i++){
@@ -529,6 +457,13 @@ public class StationMatrix {
         }
     }
 
+    /**
+     * this method checks if the position next to a card are void, or if it is occupied by another card
+     * @param station is a matrix representing the station of a player
+     * @param i is the row of the card
+     * @param j is the column of the card
+     * @return is an array of booleans
+     */
     private boolean[] positionIsVoid(CardPlaying[][] station, int i, int j){
         boolean[] voidPositions = new boolean[4];
         if(station[i-1][j-1] == null){ //angolo in alto a sinistra
@@ -627,7 +562,7 @@ public class StationMatrix {
      * this method prints the point of the players
      * @param clientBoard is the board of the client needed to get the points.
      */
-    public void printPoints(ClientBoard clientBoard){ //TODO: togliere obiettivi degli altri giocatori e aggiungere il colore
+    public void printPoints(ClientBoard clientBoard){
         int clientPoints = clientBoard.getMyplayer().getPoints();
         System.out.println("You have " + clientPoints + " points");
         for(ReductPlayer reductPlayer : clientBoard.getOtherplayers()){

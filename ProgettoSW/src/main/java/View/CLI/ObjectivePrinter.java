@@ -7,6 +7,9 @@ import java.util.Arrays;
 
 import static View.CLI.CardMatrixCreator.*;
 
+/**
+ * this class prints the different types of objectives
+ */
 public class ObjectivePrinter {
     final int cardHeight = 3;
     final int cardLength = 7;
@@ -46,11 +49,7 @@ public class ObjectivePrinter {
         for(int i = 0; i < commonObjectives.length; i++) { //copio obiettivo in commonObjective.
             System.arraycopy(tmp[i], 0, commonObjectives[i], 0, tmp[i].length);
         }
-//        for(int i = 0; i < commonObjectives.length; i++) { //inserisco spazi tra le due carte
-//            for(int j = 7; j < 9; j++) {
-//                commonObjectives[i][j] =  black + "█" + reset;;
-//            }
-//        }
+
         obj = obj2.getObjective();
         tmp = getObjectiveCard(obj);
         for(int i = 0; i < commonObjectives.length; i++) { //copio secondo obiettivo in commonObjective.

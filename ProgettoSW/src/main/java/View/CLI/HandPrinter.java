@@ -11,7 +11,7 @@ import java.util.Arrays;
 import static View.CLI.CardMatrixCreator.*;
 
 /**
- * Oltre alla mano c'è anche l'obiettivo segreto.
+ * This class prints the hand of the player
  */
 public class HandPrinter {
     private String[][] handMatrix = new String[3][36];
@@ -24,11 +24,10 @@ public class HandPrinter {
         initializeMatrix();
     }
 
-//    private void addCardToHand(CardPlaying card, int pos) { //pos da 0 a 2
-//        //prende una carta e a seconda della pos la aggiunge alla matrice in coordinate diverse
-//        //es. la prima carta andrà da 0.0 a 2.10 poi una colonna di spazi e poi si aggiunge la seconda e così via.
-//    }
 
+    /**
+     * this method initializes the hand matrix
+     */
     //inizializzo la matrice
     private void initializeMatrix(){
         for (String[] matrix : handMatrix) {
@@ -36,6 +35,11 @@ public class HandPrinter {
         }
     }
 
+    /**
+     * this method adds a card to the hand of the player
+     * @param card is the card to be added
+     * @param pos is the position of the card to be added in the hand
+     */
     private void addCardToHand(CardPlaying card, int pos) {
         String[][] tmp = new String[3][7];
         if(card instanceof CardGold) {
@@ -66,37 +70,10 @@ public class HandPrinter {
         }
     }
 
-//    private void addCardToHand(CardGold card, int pos) {
-//        String[][] tmp = createFrontPlayingCard(card);
-//        if(pos == 0){
-//            for(int i = 0; i < 3; i++) {
-//                for(int j = 0; j < 7; j++) {
-//                    handMatrix[i][j] = tmp[i][j];
-//                }
-//            }
-//            for(int i = 0; i < 3; i++) {
-//                handMatrix[i][7] = " ";
-//                handMatrix[i][8] = " ";
-//            }
-//        }
-//        else if(pos == 1){
-//            for(int i = 0; i < 3; i++) {
-//                for(int j = 0; j < 7; j++) {
-//                    handMatrix[i][j+9] = tmp[i][j];
-//                }
-//            }
-//            for(int i = 0; i < 3; i++) {
-//                handMatrix[i][16] = " ";
-//                handMatrix[i][17] = " ";
-//            }
-//        } else if(pos == 2){
-//            for(int i = 0; i < 3; i++) {
-//                for(int j = 0; j < 7; j++) {
-//                    handMatrix[i][j+18] = tmp[i][j];
-//                }
-//            }
-//        }
-//    }
+    /**
+     * this method adds cards to the hand of the player
+     * @param cards in the array of cards to be added
+     */
     public void addCardsToHand(ArrayList<CardResource> cards) { //cambiare anche hand in Player --> deve essere CardRes non playing
         //itero per ogni carta dentro l'arraylist chiamando la funzione sopra
         //devo fare in modo che restituisca una matrice
@@ -107,6 +84,10 @@ public class HandPrinter {
         }
     }
 
+    /**
+     * this method adds the secret objective to the hand
+     * @param cardObj is the secret objective
+     */
     public void addObjectiveToHand(CardObjective cardObj){
         ObjectivePrinter objectivePrinter = new ObjectivePrinter();
         String[][] tmp = objectivePrinter.getObjectiveCard(cardObj.getObjective());
@@ -117,6 +98,9 @@ public class HandPrinter {
         }
     }
 
+    /**
+     * this method prints the hand
+     */
     public void printHandMatrix() {
         for(int i = 0; i < handMatrix.length; i++) {
             for(int j = 0; j < handMatrix[0].length-2; j++) {
@@ -126,5 +110,4 @@ public class HandPrinter {
         }
     }
 
-    //fare metodo
 }

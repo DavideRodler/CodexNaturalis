@@ -30,10 +30,7 @@ public class CentralCardsCreator {
             for(int i = 0; i < tmp.length; i++) {
                 System.arraycopy(tmp[i], 0, centralCards[i], 0, tmp[0].length);
             }
-//            for(int i = 0; i < 3; i++) { //aggiungo spazi tra carta in alto a destra e in alto a sinistra
-//                centralCards[i][7] = " ";
-//                centralCards[i][8] = " ";
-//            }
+
         } else if (pos == 1) { //aggiungo la carta in alto a destra
             for(int i = 0; i < 3; i++) {
                 for(int j = 0; j < 7; j++) {
@@ -50,10 +47,7 @@ public class CentralCardsCreator {
                 l = 0;
                 m++;
             }
-//            for(int i = 3; i < 6; i++) { //aggiungo spazi tra carta in basso a destra e in basso a sinistra.
-//                centralCards[i][7] = " ";
-//                centralCards[i][8] = " ";
-//            }
+
         } else if(pos == 3) { //in basso a destra.
             for(int i = 3; i < 6; i++) {
                 for(int j = 0; j < 7; j++) {
@@ -65,12 +59,6 @@ public class CentralCardsCreator {
             }
         }
     }
-
-    private void addResCardToCentral(CardResource card, int pos) {
-    }
-
-    private void addGoldCardToCentral(CardGold card, int pos) {}
-
 
     /**
      * this method adds a card resource to centralCards
@@ -118,7 +106,6 @@ public class CentralCardsCreator {
         }
     }
 
-    //TODO: aggiungo un metodo per la stampa delle del back delle carte
     /** this method add the decks next to the central cards
      *
      */

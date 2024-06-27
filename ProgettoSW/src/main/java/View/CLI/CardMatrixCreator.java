@@ -6,6 +6,9 @@ import model.objectives.*;
 
 import java.util.ArrayList;
 
+/**
+ * this class creates a matrix of a card
+ */
 public class CardMatrixCreator {
 
     private static final String black = "\033[0;30m";
@@ -200,6 +203,11 @@ public class CardMatrixCreator {
         return startingCard;
     }
 
+    /**
+     * this method creates the back of the deck resource
+     * @param suit is the suit of tha card
+     * @return a matrix representing the card
+     */
     public static String[][] createBackResCardDeck(SuitEnum suit){
         String[][] resCard = new String[3][7];
         int rows = resCard.length;
@@ -348,9 +356,9 @@ public class CardMatrixCreator {
     }
 
     /**
-     * this method checks
-     * @param card
-     * @param mat
+     * this method checks if a card has points
+     * @param card is the card to be checked
+     * @param mat is a matrix representing the card
      */
     public static void hasPoints(CardResource card, String[][] mat) {
         int points = card.getPoints();
@@ -375,7 +383,11 @@ public class CardMatrixCreator {
             }
         }
     }
-    
+
+    /**
+     * this method prints a card
+     * @param mat is the card to be printed
+     */
     public static void printMatrix(String[][] mat){
         for (int i = 0; i < mat.length; i++) {
             for (int j = 0; j < mat[0].length; j++) {
@@ -384,7 +396,11 @@ public class CardMatrixCreator {
             System.out.println();
         }
     }
-    
+
+    /**
+     * these methods create the positioning type of objective
+     * @return is the matrix representing the card
+     */
     public static String[][] createFungiPositioning(){
         String[][] fungiPos = new String[3][7];
         int rows = fungiPos.length;
@@ -448,7 +464,12 @@ public class CardMatrixCreator {
         insPos[0][3] = lightBlue + "█" + reset;
         return insPos;
     }
-    
+
+    /**
+     * these methods create the counting gold type of objective
+     * @param suit is the suit to count
+     * @return a matrix representing the card
+     */
     public static String[][] createCountGold(SuitEnum suit){
         String[][] countGold = new String[3][7];
         int rows = countGold.length;
@@ -479,7 +500,12 @@ public class CardMatrixCreator {
         countGold[1][5] = manuscript;
         return countGold;
     }
-    
+
+    /**
+     * this method create the diagonal type of objective
+     * @param suit is the suit of the objective
+     * @return a matrix representing the card
+     */
     public static String[][] createDiagonal(SuitEnum suit){
         String[][] diag = new String[3][7];
         int rows = diag.length;
@@ -513,7 +539,11 @@ public class CardMatrixCreator {
         }
         return diag;
     }
-    
+    /**
+     * these methods create the counting resource type of objective
+     * @param suit is the resource to count
+     * @return a matrix representing the card
+     */
     public static String[][] createCountRes(SuitEnum suit){
         String[][] countRes = new String[3][7];
         int rows = countRes.length;
@@ -534,6 +564,11 @@ public class CardMatrixCreator {
         return new String[3][7];
     }
 
+    /**
+     * thsi method creates a different objective based on the type
+     * @param objective is the objective to be created
+     * @return a matrix representing the card
+     */
     public static String[][] createObjective(ObjectivePositioning objective){
         if(objective.getColorTwoCards() == SuitEnum.FUNGI){
             return createFungiPositioning();
