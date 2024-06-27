@@ -16,7 +16,10 @@ import model.enums.TokenEnum;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.Map.Entry.comparingByValue;
 
 
 public class ScoreBoardController implements Initializable{
@@ -210,15 +213,26 @@ public class ScoreBoardController implements Initializable{
         this.preScene = preScene;
     }
 
-
-    //VERSIONE DELLE FUNZIONI PER TEST CON CLIENTMODEL
-
-    public void updateTokens2(){
-        findPos(this.getClientModel().getMyplayer().getPoints()).setImage(this.getImageToken(this.getClientModel().getMyplayer().getToken()));
-        for(ReductPlayer player: this.getClientModel().getOtherplayers() ){
-            findPos(player.getPoints()).setImage(this.getImageToken(player.getToken()));
+/*    public String findLabel(int i){
+        switch(i){
+            case 0: return
         }
     }
+    public void setScoreBoard() {
+        Map<String, int> points = new LinkedHashMap<>();
+        points.put(clientController.getClientModel().getMyplayer().getNickname(), clientController.getClientModel().getMyplayer().getPoints());
+        for (ReductPlayer player : clientController.getClientModel().getOtherplayers()) {
+            points.put(player.getNickname(), player.getPoints());
+        }
+        Map<String, int> result = points.entrySet()
+                .stream()
+                .sorted(Map.Entry<String, Integer> comparingByValue().reversed())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new));
+    } */
 
 
 

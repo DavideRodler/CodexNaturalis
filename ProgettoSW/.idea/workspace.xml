@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="chat funzionante al 100%, gui cli e cli gui">
+    <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="cantiere gui">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/ScoreBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/ScoreBoardController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,6 +354,14 @@
       <workItem from="1718094094565" duration="903000" />
       <workItem from="1718095046519" duration="8826000" />
       <workItem from="1719261691920" duration="2232000" />
+    </task>
+    <task id="LOCAL-00024" summary="Aggiunto display cardStarting">
+      <option name="closed" value="true" />
+      <created>1713865523143</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1713865523143</updated>
     </task>
     <task id="LOCAL-00025" summary="aggiunta colori">
       <option name="closed" value="true" />
@@ -737,15 +747,7 @@
       <option name="project" value="LOCAL" />
       <updated>1719409156967</updated>
     </task>
-    <task id="LOCAL-00073" summary="chat funzionante al 100%, gui cli e cli gui">
-      <option name="closed" value="true" />
-      <created>1719487572644</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1719487572645</updated>
-    </task>
-    <option name="localTasksCounter" value="74" />
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -825,6 +827,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Test corretti obj" />
     <MESSAGE value="uploadate risorse grafiche + tolti metodi print card nella cli" />
     <MESSAGE value="bozza struttura cli" />
     <MESSAGE value="inizio classi per gui" />
@@ -849,8 +852,7 @@
     <MESSAGE value="GUI OK MANCA FINE TURNO" />
     <MESSAGE value="CHAT GUI + MODIFICHE ALLO STATION CONTROLLER" />
     <MESSAGE value="cantiere gui" />
-    <MESSAGE value="chat funzionante al 100%, gui cli e cli gui" />
-    <option name="LAST_COMMIT_MESSAGE" value="chat funzionante al 100%, gui cli e cli gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="cantiere gui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -866,8 +868,14 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>
-          <line>343</line>
+          <line>344</line>
           <option name="timeStamp" value="391" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/main/java/model/enums/DeckEnum.java</url>
+          <line>4</line>
+          <properties field="DECK_GOLD" class="model.enums.DeckEnum" />
+          <option name="timeStamp" value="350" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
