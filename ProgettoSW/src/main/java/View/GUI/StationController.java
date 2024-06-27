@@ -795,12 +795,17 @@ public class StationController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ScoreBoard.fxml"));
         try{
         Parent root = fxmlLoader.load();
+        ScoreBoardController controller = fxmlLoader.getController();
+        controller.setClientController(clientController);
+        Stage stage = (Stage)scoreboardButton.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        controller.printScores(map);
+        controller.updateTokens();
+        stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        ScoreBoardController controller = fxmlLoader.getController();
-        controller.printScores(map);
 
     }
 

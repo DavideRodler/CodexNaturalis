@@ -132,11 +132,11 @@ public class Gui extends Application implements UI {
                 scoreBoardController = loader.getController();
                 scoreBoardController.setClientController(clientController);
 
-
                 // Crea la nuova scena
                 Scene scene = new Scene(root);
 
                 // Ottieni lo Stage corrente e imposta la nuova scena
+
                 Stage currentStage = (Stage) stationController.getStationPane().getScene().getWindow();
                 currentStage.setScene(scene);
 
