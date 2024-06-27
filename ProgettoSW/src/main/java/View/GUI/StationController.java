@@ -310,7 +310,7 @@ public class StationController implements Initializable {
         chooseCard2.setOnMouseClicked(this::chooseCardSide);
     }
 
-    void chooseCardSide(MouseEvent event){
+    synchronized void chooseCardSide(MouseEvent event){
         ImageView selectedCard = (ImageView) event.getSource();
         cardToPlay = new ImageView();
         cardToPlay.setImage(selectedCard.getImage());
@@ -331,7 +331,7 @@ public class StationController implements Initializable {
 
     //TODO: aggiungere le carte alle mappe!
 
-    void chooseCardToPlayOn(MouseEvent event){
+    synchronized void chooseCardToPlayOn(MouseEvent event){
         cardToPlayOn = (ImageView) event.getSource();
         System.out.println("Hai premuto una carta su cui piazzare");
         instructionsLabel.setText("Choose where you want to play your cards using the buttons");
@@ -346,7 +346,7 @@ public class StationController implements Initializable {
      * this method handles the placement of the card in the station
      * @param event mouse click on the corresponding button
      */
-    private void chooseCardPlacement(MouseEvent event){
+    private synchronized void chooseCardPlacement(MouseEvent event){
             //adesso mi metto nell'ipotesi che la carta si posso sempre giocare --> non considero caso in cui non possa giocarla
             Button buttonPressed = (Button) event.getSource();
             firstCoordinate = cardToPlayOn.getLayoutX();
@@ -402,7 +402,7 @@ public class StationController implements Initializable {
         showCentralCardsAndDecks();
     }
 
-    public void cardPlacedCorrectly(){
+    public synchronized void cardPlacedCorrectly(){
         boolean flag = false;
         //aggiungo carta alla mappa delle carte piazzate
         do {
