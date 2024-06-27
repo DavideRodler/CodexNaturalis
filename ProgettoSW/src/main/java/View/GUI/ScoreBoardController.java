@@ -28,7 +28,6 @@ public class ScoreBoardController implements Initializable{
     @FXML
     private Button btngoback;
 
-    @FXML
     public ClientController clientController;
 
     @FXML
@@ -136,15 +135,13 @@ public class ScoreBoardController implements Initializable{
     private Integer oldpoints;
 
     private Scene preScene;
+
     private ClientBoard clientBoard;
 
     public void setClientController(ClientController clientController){
         this.clientController = clientController;
     }
 
-    public void setClientBoard(ClientBoard clientBoard){
-        this.clientBoard = clientBoard;
-    }
 
     public ClientBoard getClientModel(){
         return clientBoard;

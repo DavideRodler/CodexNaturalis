@@ -177,7 +177,7 @@ public class StationController implements Initializable {
 
     private boolean playedBack;
 
-    private int postion;
+    private int position;
 
     private String receiverNick;
 
@@ -358,7 +358,7 @@ public class StationController implements Initializable {
             imageToCardMap.put(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
             if(buttonPressed.equals(placeCardDownLeftButton)){
                 System.out.println("Scelto bottone in basso a sinistra");
-                postion = 0;
+                position = 0;
                 // boolean playedbakck,
                 //    int x,
                 //    int y,
@@ -370,17 +370,17 @@ public class StationController implements Initializable {
             } else if(buttonPressed.equals(placeCardDownRightButton)){
                 System.out.println("Scelto bottone in basso a destra");
                 clientController.playCardOnPlayngStation_UI(playedBack, firstCoordinate+1, secondCoordinate+1, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced).getId());
-                postion = 1;
+                position = 1;
 
             } else if(buttonPressed.equals(placeCardUpLeftButton)) {
                 System.out.println("Scelto bottone in alto a sinistra");
                 clientController.playCardOnPlayngStation_UI(playedBack, firstCoordinate-1, secondCoordinate-1, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced).getId());
-                postion = 2;
+                position = 2;
 
             } else if((buttonPressed.equals(placeCardUpRightButton))) {
                 System.out.println("Scelto bottone in alto a destra");
                 clientController.playCardOnPlayngStation_UI(playedBack, firstCoordinate-1, secondCoordinate+1, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced).getId());
-                postion = 3;
+                position = 3;
             }
 
             chooseCard1.setOnMouseClicked(null);
@@ -401,7 +401,7 @@ public class StationController implements Initializable {
     public void cardPlacedCorrectly(){
         //aggiungo carta alla mappa delle carte piazzate
 
-        switch(postion){
+        switch(position){
             case 0 -> {
                 cardToPlay.setLayoutX(this.firstCoordinate -80);
                 cardToPlay.setLayoutY(this.secondCoordinate +40);
@@ -572,7 +572,6 @@ public class StationController implements Initializable {
         }
     }
 
-    //TODO:
 
         /**
          * this method shows the starting card to the player.
@@ -597,7 +596,7 @@ public class StationController implements Initializable {
             //ho ottenuto l'immagine della carta --> devo metterla nel centro della station
             //questo lo faccio una volta che la carta viene premuta
 
-
+            setupOtherPlayerStation();
         }
 
     /**
@@ -654,16 +653,8 @@ public class StationController implements Initializable {
             centralGoldImage2.setImage(cardLoader.getFront(centralGoldCard2.getId()));
             deckGoldImage.setImage(cardLoader.getTopDeckGold(clientController.getClientModel().getBackOfGoldDeck()));
             deckResourceImage.setImage(cardLoader.getTopDeckResource(clientController.getClientModel().getBackOfResourceDeck()));
-
-//            imageToCardMap.put(centralResourceImage1, centralResourceCard1);
-//            imageToCardMap.put(centralResourceImage2, centralResourceCard2);
-//            imageToCardMap.put(centralGoldImage1, centralGoldCard1);
-//            imageToCardMap.put(centralGoldImage2, centralGoldCard2);
-
-
             showPlayerHand();
 
-            //qua si deve usare il chooseCardToDrawClicked
         }
 
     /**
@@ -681,18 +672,35 @@ public class StationController implements Initializable {
             if(secretObjective!= null) {
                 secretObjectiveInHand.setImage(cardLoader.getFront(secretObjective.getId()));
             }
+    }
 
-            //non lo si fa adesso, lo si farà quando una di queste carte deve essere giocatore
-//            imageToCardMap.put(firstCardInHand, cardInHand1);
-//            imageToCardMap.put(secondCardInHand, cardInHand2);
-//            imageToCardMap.put(thirdCardInHand, cardInHand3);
+    private void showOtherPlayerStation(MouseEvent event) {
+        Button srcButton = (Button) event.getSource();
+        int playerChosen = 0;
+        if(srcButton.equals(player1StationButton)){
+            playerChosen = 0;
+        } else if(srcButton.equals(player2StationButton)) {
+            playerChosen = 1;
+        } else if(srcButton.equals(player3StationButton)){
+            playerChosen = 2;
+        }
 
-
-        //TODO --> questi in realtà devo aspettare a metterli --> solo quando è turno del giocatore
-
-//            firstCardInHand.setOnMouseClicked(this::chooseCardToPlayCLicked);
-//            secondCardInHand.setOnMouseClicked(this::chooseCardToPlayCLicked);
-//            thirdCardInHand.setOnMouseClicked(this::chooseCardToPlayCLicked);
+        //TODO: devo passare al controller della otherPlayerStation la
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/OtherPlayerStation.fxml"));
+            Parent root = fxmlLoader.load();
+            OtherPlayerStationController controller = fxmlLoader.getController();
+            controller.setClientController(clientController);
+            controller.setPlayerChosen(playerChosen);
+            controller.setPreScene(scoreboardButton.getScene());
+            controller.showStation();
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -704,12 +712,39 @@ public class StationController implements Initializable {
         }
     }
 
+    private void setupOtherPlayerStation(){
+        int size = clientController.getClientModel().getOtherplayers().size();
+        player1StationButton.setVisible(false);
+        player2StationButton.setVisible(false);
+        player3StationButton.setVisible(false);
+
+
+        for(int i = 0; i < size; i++){
+            if(i==0){
+                player1StationButton.setText(clientController.getClientModel().getOtherplayers().getFirst().getNickname() + "'s station");
+                player1StationButton.setOnMouseClicked(this::showOtherPlayerStation);
+                player1StationButton.setVisible(true);
+            }else if(i == 1){
+                player2StationButton.setText(clientController.getClientModel().getOtherplayers().get(1).getNickname() + "'s station");
+                player2StationButton.setOnMouseClicked(this::showOtherPlayerStation);
+                player2StationButton.setVisible(true);
+
+            } else if(i == 2) {
+                player3StationButton.setText(clientController.getClientModel().getOtherplayers().getFirst().getNickname() + "'s station");
+                player3StationButton.setOnMouseClicked(this::showOtherPlayerStation);
+                player3StationButton.setVisible(true);
+
+            }
+        }
+    }
+
     private void startTurn(){
         instructionsLabel.setText("It's your turn! Choose a card to play from your hand!");
         updateCentralCardsAndDecks();
         cardPlacementBox.setVisible(false);
         chatButton.setOnMouseClicked(this::openChat);
         menuPane.setVisible(true);
+
         if(firstCardInHand != null){
             firstCardInHand.setOnMouseClicked(this::cardInHandChosen);
         }
