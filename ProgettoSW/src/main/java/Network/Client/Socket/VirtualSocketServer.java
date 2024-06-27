@@ -212,4 +212,16 @@ public class VirtualSocketServer implements VirtualServer {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void reconnect(String nickname, VirtualView client) throws RemoteException {
+        ReconnectMessage message = new ReconnectMessage(nickname);
+        try {
+            output.writeObject(message);
+            output.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }

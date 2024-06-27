@@ -26,4 +26,6 @@ public interface ClientToServerCommunication {
     void sendGlobalMessage(GlobalChatMessage global);
 
     void sendPrivateMessage(PrivateChatMessage privateMessage);
+
+    void reconnectToServer(String nickname);
 }

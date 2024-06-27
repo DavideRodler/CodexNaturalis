@@ -490,6 +490,7 @@ public void setLastTurn(boolean turn){
      * @return  a Hasmap that has as key the nickname of the player and an arraylist that
      * contains as the first element the total points that the players has scored
      * and as the second element the number of objective that he has completed
+     * and as the third element the position in the ranking
      */
     public LinkedHashMap<String,ArrayList<Integer>> getScoreBoard() {
         HashMap<String, ArrayList<Integer>> scoreBoard = new HashMap<>();

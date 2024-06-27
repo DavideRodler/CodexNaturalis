@@ -136,6 +136,10 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
                 startHeartbeat();
             } catch (RemoteException e) {
                 System.out.println("Server disconnected");
+                new Thread(() -> {
+                    clientController.tryToReconnect();
+                }).start();
+
             }
         }
         ).start();
@@ -306,6 +310,16 @@ public class RmiClientToServer extends UnicastRemoteObject implements ClientToSe
         catch (InterruptedException e){
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void reconnectToServer(String nickname) {
+        try {
+            server.reconnect(nickname, this);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     ///////////////////////////VIRTUAL VIEW METHODS//////////////////////////

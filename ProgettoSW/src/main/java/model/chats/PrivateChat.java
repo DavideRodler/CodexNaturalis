@@ -2,9 +2,10 @@ package model.chats;
 
 import Socket.Messages.Chat.PrivateChatMessage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PrivateChat {
+public class PrivateChat implements Serializable {
     private ArrayList<PrivateChatMessage> message;
     private String nickname1;
     private String nickname2;

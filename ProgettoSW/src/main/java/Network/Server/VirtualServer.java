@@ -3,18 +3,10 @@ package Network.Server;
 import Network.Client.RMI.VirtualView;
 import Socket.Messages.Chat.GlobalChatMessage;
 import Socket.Messages.Chat.PrivateChatMessage;
-import exception.ChangedStateException;
-import exception.InvalidPlacingCondition;
-import exception.NotMyTurnException;
-import exception.NotValidMoveException;
-import model.cards.CardGold;
-import model.cards.CardObjective;
-import model.cards.CardResource;
 import model.enums.TokenEnum;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 public interface VirtualServer extends Remote {
     void ping() throws RemoteException;
@@ -40,4 +32,6 @@ public interface VirtualServer extends Remote {
     void takeGlobalMessage(GlobalChatMessage globalChatMessage) throws RemoteException;
 
     void takePrivateMessage(PrivateChatMessage privateChatMessage) throws RemoteException;
+
+    void reconnect(String nickname, VirtualView client) throws RemoteException;
 }

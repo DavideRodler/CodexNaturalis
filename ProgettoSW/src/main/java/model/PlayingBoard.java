@@ -13,10 +13,11 @@ import Socket.Messages.*;
 //import socket.Messages.CommonObjectivesMessage;
 //import socket.Messages.PlayersInfoMessage;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.*;
 
-public class PlayingBoard extends ObservableModel {
+public class PlayingBoard extends ObservableModel implements Serializable {
 
     private LinkedList<CardGold> deckCardGold;
     private LinkedList<CardResource> deckCardResource;

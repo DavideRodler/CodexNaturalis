@@ -49,7 +49,7 @@ public class ClientApp implements Remote {
         System.out.println("Do you want to play with 1.GUI or 2.CLI?");
         Scanner scanner = new Scanner(System.in);
         String answer;
-        ClientController clientController = new ClientController();
+        ClientController clientController = new ClientController(ip);
         UI ui ;
         do {
             answer = scanner.nextLine();

@@ -17,6 +17,7 @@ import model.Player;
 import model.enums.GameState;
 import model.enums.TokenEnum;
 
+import java.io.*;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,12 +26,13 @@ import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public class Server {
+public class Server implements Serializable{
 
-    private final GameController gameController;
+    private GameController gameController;
     private final List<VirtualView> clients;
     private HashMap<String, VirtualView> clientsMap;
     private BlockingQueue<Message> queue = new ArrayBlockingQueue<>(100);
+    private boolean isNewGame = false;
 
 
     public void serverToClientCall() throws RemoteException {
@@ -252,8 +254,106 @@ public class Server {
     public Server() {
         clients = new ArrayList<>();
         clientsMap = new HashMap<>();
-        gameController = new GameController();
+
+        File f = new File("model.ser");
+        if(f.exists() && !f.isDirectory()) {
+            loadModel();
+        }
+        else {
+            gameController = new GameController();
+        }
+
         startServerToClientCallThread();
+        startSaveModelThread();
+    }
+    public void reconnect(VirtualView client, String nickname){
+        if(this.gameController.getBoard().getPlayers().stream()
+                .map(Player::getNickname)
+                .toList()
+                .contains(nickname)){
+            clientsMap.put(nickname, client);
+            clients.add(client);
+        }
+        else {System.out.println("Player not found");}
+        if(gameController.getBoard().getPlayers().size() == (clients.size())){
+            System.out.println("All players reconnected");
+            recreateObservers();
+        }
+    }
+
+    private void recreateObservers(){
+        //removing all observers
+        for (Player p : gameController.getBoard().getPlayers()){
+            p.removeAllObservers();
+            p.getStation().removeAllObservers();
+        }
+        gameController.getBoard().removeAllObservers();
+
+        for (Player p : gameController.getBoard().getPlayers()){
+            //adding  normal observers to players and stations
+            for(VirtualView client : clients){
+                p.addObserver(client);
+                p.getStation().addObserver(client);
+            }
+            //adding specific observers to players and stations
+            for (Map.Entry<String, VirtualView> entry : clientsMap.entrySet()) {
+                p.addSpecificObserver(entry.getKey(), entry.getValue());
+                p.getStation().addSpecificObserver(entry.getKey(), entry.getValue());
+            }
+        }
+        for (Map.Entry<String, VirtualView> entry : clientsMap.entrySet()) {
+            gameController.getBoard().addSpecificObserver(entry.getKey(), entry.getValue());
+            gameController.getBoard().addObserver(entry.getValue());
+        }
+        for(var c : gameController.getBoard().getPlayers()){
+            for(var d : gameController.getBoard().getPlayers()){
+                if(!c.getNickname().equals(d.getNickname())){
+                    gameController.addNewPrivateChat(c.getNickname(), d.getNickname());
+                }
+            }
+        }
+    }
+
+    public void startSaveModelThread() {
+        new Thread(() -> {
+            while (true) {
+                saveModel();
+                try {
+                    Thread.sleep(5000);  // Save the model every 5 seconds
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void saveModel() {
+        try {
+            FileOutputStream fileOut = new FileOutputStream("model.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(gameController);
+            out.close();
+            fileOut.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+    }
+
+    public void loadModel() {
+        try {
+            FileInputStream fileIn = new FileInputStream("model.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            gameController = (GameController) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+            return;
+        } catch (ClassNotFoundException c) {
+            System.out.println("GameController class not found");
+            c.printStackTrace();
+            return;
+        }
     }
 
     public void connectClient(VirtualView client) {
@@ -463,6 +563,7 @@ public class Server {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     private void initializeGame() {

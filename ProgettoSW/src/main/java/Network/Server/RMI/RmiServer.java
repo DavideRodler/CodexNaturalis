@@ -84,4 +84,9 @@ public class RmiServer implements VirtualServer {
         server.takePrivateMessage(privateChatMessage);
 
     }
+
+    @Override
+    public void reconnect(String nickname, VirtualView client) throws RemoteException {
+        server.reconnect(client, nickname);
+    }
 }
