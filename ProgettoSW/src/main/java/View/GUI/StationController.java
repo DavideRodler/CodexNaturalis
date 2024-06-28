@@ -1,8 +1,8 @@
 package View.GUI;
 
 import Network.Client.ClientController;
-import Socket.Messages.Chat.GlobalChatMessage;
-import Socket.Messages.Chat.PrivateChatMessage;
+import Messages.Chat.GlobalChatMessage;
+import Messages.Chat.PrivateChatMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

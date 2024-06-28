@@ -2,16 +2,13 @@ package Network.Server.Socket;
 
 import Network.Client.RMI.VirtualView;
 import Network.Server.Server;
-import Network.Server.ServerToClientCommunication;
-import Socket.Messages.Chat.GlobalChatMessage;
-import Socket.Messages.Chat.PrivateChatMessage;
-import Socket.Messages.ClientToServer.*;
-import Socket.Messages.Message;
-import Socket.Messages.ServerToClient.ActionMessage;
-import Socket.Messages.ServerToClient.GameFinishedMessage;
-import Socket.Messages.ServerToClient.ResultOfCardAddedToStationMessage;
-import exception.ChangedStateException;
-import exception.NotValidMoveException;
+import Messages.Chat.GlobalChatMessage;
+import Messages.Chat.PrivateChatMessage;
+import Messages.ClientToServer.*;
+import Messages.Message;
+import Messages.ServerToClient.ActionMessage;
+import Messages.ServerToClient.GameFinishedMessage;
+import Messages.ServerToClient.ResultOfCardAddedToStationMessage;
 
 import java.io.*;
 import java.rmi.RemoteException;
@@ -29,6 +26,11 @@ public class SocketClientHandler implements VirtualView {
         this.server = server;
     }
 
+    /**
+     * This method is used to run the virtual view
+     * It reads the messages from the input stream and handles them
+     * @throws IOException if an I/O error occurs
+     */
     public void runVirtualView() throws IOException {
         Message message;
         while (true) {
@@ -95,6 +97,9 @@ public class SocketClientHandler implements VirtualView {
 
 
 
+    /**
+     * This method is used to set the players number
+     */
     @Override
     public void setupOfPlayersNumber() throws RemoteException {
         Message message = new ActionMessage("setupOfPlayersNumber");
@@ -107,6 +112,9 @@ public class SocketClientHandler implements VirtualView {
 
     }
 
+    /**
+     * This method is used to notify another player that a player is setting the number of players
+     */
     @Override
     public void notifyAnotherPlayerSettingNumOfPlayers() throws RemoteException {
         Message message = new ActionMessage("notifyAnotherPlayerSettingNumOfPlayers");
@@ -118,6 +126,9 @@ public class SocketClientHandler implements VirtualView {
         }
     }
 
+    /**
+     * This method is used to notify that the game is waiting for players to join
+     */
     @Override
     public void notifyWaitingForPlayersToJoin() throws RemoteException {
         Message message = new ActionMessage("notifyWaitingForPlayersToJoin");
@@ -129,6 +140,9 @@ public class SocketClientHandler implements VirtualView {
         }
     }
 
+    /**
+     * This method is used to notify that all players are connected
+     */
     @Override
     public void notifyAllPlayersConnected() throws RemoteException {
         Message message = new ActionMessage("notifyAllPlayersConnected");
@@ -140,6 +154,9 @@ public class SocketClientHandler implements VirtualView {
         }
     }
 
+    /**
+     * This method is used to notify that the game is already started
+     */
     @Override
     public void notifyGameAlreadyStarted() throws RemoteException {
         Message message = new ActionMessage("notifyGameAlreadyStarted");
@@ -151,6 +168,9 @@ public class SocketClientHandler implements VirtualView {
         }
     }
 
+    /**
+     * This method is used to start the  setup the nickname
+     */
     @Override
     public void setupOfNickname() throws RemoteException {
         Message message = new ActionMessage("setupOfNicknameAndToken");
@@ -167,6 +187,9 @@ public class SocketClientHandler implements VirtualView {
 
     }
 
+    /**
+     * This method is used to notify the start of the setup of the starting card
+     */
     @Override
     public void notifyStartSetupOfStartingCard() throws RemoteException {
         Message message = new ActionMessage("notifyStartSetupOfStartingCard");
@@ -178,6 +201,9 @@ public class SocketClientHandler implements VirtualView {
         }
     }
 
+    /**
+     * This method is used to show the four central cards
+     */
     @Override
     public void showFourCentralCards() throws RemoteException {
         Message message = new ActionMessage("showFourCentralCards");
@@ -189,6 +215,10 @@ public class SocketClientHandler implements VirtualView {
         }
     }
 
+    /**
+     * This method is used to notify the player that the common objectives are shown
+     * and the hands are shown
+     */
     @Override
     public void showHandsAndCommonObjectives() throws RemoteException {
         Message message = new ActionMessage("showHandsAndCommonObjectives");
@@ -201,6 +231,9 @@ public class SocketClientHandler implements VirtualView {
 
     }
 
+    /**
+     * This method is used to setup the secret objective
+     */
     @Override
     public void setupOfSecretObjective() throws RemoteException {
         Message message = new ActionMessage("setupOfSecretObjective");
@@ -213,6 +246,9 @@ public class SocketClientHandler implements VirtualView {
 
     }
 
+    /**
+     * This method is used to notify that the nickname is already taken
+     */
     @Override
     public void notifyNicknameAlreadyTaken() throws RemoteException {
         Message message = new ActionMessage("notifyNicknameAlreadyTaken");
@@ -225,6 +261,9 @@ public class SocketClientHandler implements VirtualView {
 
     }
 
+    /**
+     * This method is used to notify that the token is already taken
+     */
     @Override
     public void notifyTokenAlreadyTaken() throws RemoteException {
         Message message = new ActionMessage("notifyTokenAlreadyTaken");
@@ -236,6 +275,9 @@ public class SocketClientHandler implements VirtualView {
         }
     }
 
+    /**
+     * This method is used to start the setup the token
+     */
     @Override
     public void setupOfToken() throws RemoteException {
         Message message = new ActionMessage("setupOfToken");
@@ -247,6 +289,9 @@ public class SocketClientHandler implements VirtualView {
         }
     }
 
+    /**
+     * This method is used to start the game
+     */
     @Override
     public void StartGame() throws RemoteException {
         Message message = new ActionMessage("startGame");
@@ -258,6 +303,11 @@ public class SocketClientHandler implements VirtualView {
         }
     }
 
+    /**
+     * This method is used to notify the result of the card added to the station
+     * @param result the result of the card added to the station
+     * @param message the message to show
+     */
     @Override
     public void notifyResultOfCardAddedToStation(boolean result, String message) throws RemoteException {
         ResultOfCardAddedToStationMessage resultOfCardAddedToStationMessage = new ResultOfCardAddedToStationMessage(result, message);
@@ -270,6 +320,10 @@ public class SocketClientHandler implements VirtualView {
 
     }
 
+    /**
+     * This method is used to notify the game is finished
+     * @param scoreBoard the score board of the game
+     */
     @Override
     public void notifyGameFinished(LinkedHashMap<String, ArrayList<Integer>> scoreBoard) throws RemoteException {
         GameFinishedMessage gameFinishedMessage = new GameFinishedMessage(scoreBoard);
@@ -281,6 +335,10 @@ public class SocketClientHandler implements VirtualView {
         }
     }
 
+    /**
+     * This method is used to send an update of the model
+     * @param message the global message to send
+     */
     @Override
     public void update(Message message) throws RemoteException {
         try {

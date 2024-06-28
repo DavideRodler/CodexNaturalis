@@ -1,6 +1,6 @@
 package model.chats;
 
-import Socket.Messages.Chat.GlobalChatMessage;
+import Messages.Chat.GlobalChatMessage;
 
 import java.io.Serializable;
 import java.util.ArrayList;

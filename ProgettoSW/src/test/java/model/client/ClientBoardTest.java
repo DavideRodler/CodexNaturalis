@@ -1,7 +1,7 @@
 package model.client;
 
-import Socket.Messages.Chat.GlobalChatMessage;
-import Socket.Messages.Chat.PrivateChatMessage;
+import Messages.Chat.GlobalChatMessage;
+import Messages.Chat.PrivateChatMessage;
 import model.*;
 import model.cards.CardGold;
 import model.cards.CardObjective;

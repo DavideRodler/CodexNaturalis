@@ -1,6 +1,6 @@
 package model.chats;
 
-import Socket.Messages.Chat.PrivateChatMessage;
+import Messages.Chat.PrivateChatMessage;
 
 import java.io.Serializable;
 import java.util.ArrayList;

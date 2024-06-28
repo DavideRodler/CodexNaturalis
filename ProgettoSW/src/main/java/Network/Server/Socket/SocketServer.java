@@ -24,6 +24,10 @@ public class SocketServer {
         this.listenSocket = serverSocket;
     }
 
+    /**
+     * This method is used to run the server
+     * @throws IOException if an I/O error occurs
+     */
     public void RunServer() throws IOException {
         Socket clientSocket = null;
         while ((clientSocket = this.listenSocket.accept()) != null) {

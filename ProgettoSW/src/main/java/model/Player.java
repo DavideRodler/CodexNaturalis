@@ -1,6 +1,7 @@
 package model;
 
-import Socket.Messages.*;
+import Messages.ModelUpdates.*;
+import Messages.*;
 import model.cards.*;
 import model.enums.TokenEnum;
 import observers.ObservableModel;
@@ -71,7 +72,6 @@ public class Player extends ObservableModel implements Serializable{
             throw new RuntimeException(e);
         }
     }
-
     public void setSecretObjectiveWithObs(CardObjective secretObjective) {
         this.secretObjective = secretObjective;
         Message message = new SelectionOfSecretObjMessage(secretObjective.getId());
@@ -105,7 +105,9 @@ public class Player extends ObservableModel implements Serializable{
         return selectibleObjectives;
     }
     public PlayingStation getStation(){return station;}
-
+    public int getNumberOfCardInHand(){
+        return hand.size();
+    }
     public CardObjective getSecretObjective() {
         return secretObjective;
     }
@@ -125,15 +127,25 @@ public class Player extends ObservableModel implements Serializable{
             throw new RuntimeException(e);
         }
     }
+    /**
+     * This method removes a card from the player's hand, given the card instance, using functional programming,
+     * returning exception if not present
+     *
+     * @return
+     */
     public void removeCardFromHand(int cardId) throws Exception {
         hand.remove(hand.stream()
                 .filter(card -> card.getId().equals(cardId))
                 .findFirst()
                 .orElseThrow(() -> new Exception("Card not found in hand")));
     }
-    public int getNumberOfCardInHand(){
-        return hand.size();
-    }
+
+
+    /**
+     * This method adds a card to the player's hand
+     *
+     * @param card the card to add
+     */
     public void addCardToHandWithObserver(CardResource card) {
         hand.add(card);
         Message message = new CardAddedToHandMessage(card);

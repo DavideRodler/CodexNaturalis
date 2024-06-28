@@ -6,14 +6,75 @@
   <component name="ChangeListManager">
     <list default="true" id="850a39f4-763d-4788-a2e8-adf1cb1b8c97" name="Changes" comment="aumentata dimensione del pane">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/CardMatrixCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/CardMatrixCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/CentralCardsCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/CentralCardsCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/HandPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/HandPrinter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/ObjectivePrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/ObjectivePrinter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/StartingCardPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/StartingCardPrinter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/StationMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/StationMatrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/ClientToServerCommunication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/ClientToServerCommunication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/RMI/RmiClientToServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/SocketClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/VirtualSocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Client/Socket/VirtualSocketServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/RMI/RmiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/RMI/RmiServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/ServerToClientCommunication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/Socket/SocketServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network/Server/VirtualServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/Answers/ObjectChoosen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/Answers/StartingGame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/BackOfFirstCardOfDeckMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/BackOfFirstCardOfDeckMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/CardAddedToHandMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/CardAddedToHandMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/CardAddedToStationMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/CardAddedToStationMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/CardRemovedFromHandMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/CardRemovedFromHandMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/CardStartingMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/CardStartingMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/CardStartingPlayedBackMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/CardStartingPlayedBackMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/CentralCardGoldMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/CentralCardGoldMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/CentralCardResourceMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/CentralCardResourceMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/CentralCardResourceRemovedMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/CentralCardResourceRemovedMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ChangeStateMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/ChangeStateMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/Chat/AddPrivateChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/Chat/AddPrivateChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/Chat/GlobalChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/Chat/GlobalChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/Chat/PrivateChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/Chat/PrivateChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/ChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/AddCardFromCentralCardsToPlayerHandMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ClientToServer/AddCardFromCentralCardsToPlayerHandMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/AddCardFromDeckToPlayerHandMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ClientToServer/AddCardFromDeckToPlayerHandMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/AddCardToStationMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ClientToServer/AddCardToStationMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/AddPlayerMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ClientToServer/AddPlayerMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/ConnectToServerMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ClientToServer/ConnectToServerMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/ReconnectMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ClientToServer/ReconnectMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/SetPlayerNumberMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ClientToServer/SetPlayerNumberMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/SetSecretObjectiveMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ClientToServer/SetSecretObjectiveMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/SetStartingCardPlayedBackMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ClientToServer/SetStartingCardPlayedBackMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/SetTokenMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ClientToServer/SetTokenMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ClientToServer/StartTurnMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ClientToServer/StartTurnMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/CommonObjectivesMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/CommonObjectivesMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/CurrentPlayerMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/CurrentPlayerMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/PlayersInfoMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/PlayersInfoMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/SelectableObjMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/SelectableObjMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/SelectionOfSecretObjMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/SelectionOfSecretObjMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ServerToClient/ActionMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ServerToClient/ActionMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ServerToClient/GameFinishedMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ServerToClient/GameFinishedMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/ServerToClient/ResultOfCardAddedToStationMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ServerToClient/ResultOfCardAddedToStationMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/TokenOfPlayerMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/ModelUpdates/TokenOfPlayerMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/queqe/QueueActionMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/queqe/QueueActionMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/queqe/QueueActionWithClientMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/queqe/QueueActionWithClientMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Socket/Messages/queqe/QueueResultOfCardAddedToStationMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Messages/queqe/QueueResultOfCardAddedToStationMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartApplication/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CLI/Cli2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/GUI/StationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PlayingStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/chats/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/chats/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/chats/GlobalChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/chats/GlobalChat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/chats/PrivateChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/chats/PrivateChat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/client/ClientBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/observers/ObservableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/observers/ObservableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/observers/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/observers/Observer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/controller/GameControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/ChatTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/ChatTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/GlobalChatTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/GlobalChatTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/PlayingBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PlayingBoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/PrivateChatTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PrivateChatTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/client/ClientBoardTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +102,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="ericscemo" />
+        <entry key="$PROJECT_DIR$/.." value="persistenza" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -55,12 +116,12 @@
     &quot;assignee&quot;: &quot;tommypic&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler.git&quot;,
-    &quot;accountId&quot;: &quot;ad3a3da8-fb67-4a71-8fdd-a0d917853f52&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler.git",
+    "accountId": "a3d271fb-6c6c-4c38-8a7a-48f3d47d3e52"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -235,7 +296,7 @@
       <recent name="Socket.Messages.queqe" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.controller in ProgettoSW">
+  <component name="RunManager" selected="Application.ServerApp">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartApplication.ClientApp" />
       <module name="ProgettoSW" />
@@ -301,10 +362,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ServerApp" />
         <item itemvalue="JUnit.controller in ProgettoSW" />
         <item itemvalue="JUnit.model in ProgettoSW (1)" />
         <item itemvalue="Application.ClientApp" />
-        <item itemvalue="Application.ServerApp" />
         <item itemvalue="JUnit.model in ProgettoSW" />
       </list>
     </recent_temporary>
@@ -858,11 +919,6 @@
           <url>file://$PROJECT_DIR$/src/test/java/model/deck/DeckConstructorTest.java</url>
           <line>19</line>
           <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/controller/GameController.java</url>
-          <line>341</line>
-          <option name="timeStamp" value="391" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

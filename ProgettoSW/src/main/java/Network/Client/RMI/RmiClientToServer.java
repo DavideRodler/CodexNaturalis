@@ -4,10 +4,10 @@ import Network.Client.ClientToServerCommunication;
 import Network.Client.ClientController;
 import Network.Server.VirtualServer;
 
-import Socket.Messages.Chat.GlobalChatMessage;
-import Socket.Messages.Chat.PrivateChatMessage;
-import Socket.Messages.ClientToServer.*;
-import Socket.Messages.Message;
+import Messages.Chat.GlobalChatMessage;
+import Messages.Chat.PrivateChatMessage;
+import Messages.ClientToServer.*;
+import Messages.Message;
 import model.enums.TokenEnum;
 
 import java.rmi.RemoteException;

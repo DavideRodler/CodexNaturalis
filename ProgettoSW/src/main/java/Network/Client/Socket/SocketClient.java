@@ -2,11 +2,11 @@ package Network.Client.Socket;
 
 import Network.Client.ClientController;
 import Network.Client.ClientToServerCommunication;
-import Socket.Messages.Chat.GlobalChatMessage;
-import Socket.Messages.Chat.PrivateChatMessage;
-import Socket.Messages.Message;
-import Socket.Messages.ServerToClient.GameFinishedMessage;
-import Socket.Messages.ServerToClient.ResultOfCardAddedToStationMessage;
+import Messages.Chat.GlobalChatMessage;
+import Messages.Chat.PrivateChatMessage;
+import Messages.Message;
+import Messages.ServerToClient.GameFinishedMessage;
+import Messages.ServerToClient.ResultOfCardAddedToStationMessage;
 import model.enums.TokenEnum;
 
 import java.io.*;

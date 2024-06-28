@@ -2,9 +2,9 @@ package Network.Client.Socket;
 
 import Network.Client.RMI.VirtualView;
 import Network.Server.VirtualServer;
-import Socket.Messages.Chat.GlobalChatMessage;
-import Socket.Messages.Chat.PrivateChatMessage;
-import Socket.Messages.ClientToServer.*;
+import Messages.Chat.GlobalChatMessage;
+import Messages.Chat.PrivateChatMessage;
+import Messages.ClientToServer.*;
 import model.enums.TokenEnum;
 
 import java.io.IOException;

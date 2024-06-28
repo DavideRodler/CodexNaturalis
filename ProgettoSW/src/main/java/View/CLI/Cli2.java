@@ -1,8 +1,8 @@
 package View.CLI;
 
 import Network.Client.ClientController;
-import Socket.Messages.Chat.GlobalChatMessage;
-import Socket.Messages.Chat.PrivateChatMessage;
+import Messages.Chat.GlobalChatMessage;
+import Messages.Chat.PrivateChatMessage;
 import View.UI;
 import model.PlayingStation;
 import model.cards.CardResource;

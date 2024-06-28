@@ -1,11 +1,7 @@
 package controller;
 
-import Network.Client.RMI.RmiClientToServer;
-import Network.Server.RMI.RmiServer;
-import Network.Server.Server;
-import Network.Server.VirtualServer;
-import Socket.Messages.Chat.GlobalChatMessage;
-import Socket.Messages.Chat.PrivateChatMessage;
+import Messages.Chat.GlobalChatMessage;
+import Messages.Chat.PrivateChatMessage;
 import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
 import exception.NotMyTurnException;
@@ -27,13 +23,10 @@ import model.enums.TokenEnum;
 import model.objectives.ObjectiveAssign;
 import model.objectives.ObjectiveDiagonal;
 import model.testTemplates.PlayingStationTemplate;
-import observers.ObservableModel;
-import observers.Observer;
 import org.junit.jupiter.api.Test;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import static org.junit.jupiter.api.Assertions.*;

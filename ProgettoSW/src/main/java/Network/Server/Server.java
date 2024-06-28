@@ -1,13 +1,13 @@
 package Network.Server;
 
 import Network.Client.RMI.VirtualView;
-import Socket.Messages.Chat.GlobalChatMessage;
-import Socket.Messages.Chat.PrivateChatMessage;
-import Socket.Messages.Message;
-import Socket.Messages.ServerToClient.ActionMessage;
-import Socket.Messages.ServerToClient.GameFinishedMessage;
-import Socket.Messages.queqe.QueueActionWithClientMessage;
-import Socket.Messages.queqe.QueueResultOfCardAddedToStationMessage;
+import Messages.Chat.GlobalChatMessage;
+import Messages.Chat.PrivateChatMessage;
+import Messages.Message;
+import Messages.ServerToClient.ActionMessage;
+import Messages.ServerToClient.GameFinishedMessage;
+import Messages.queqe.QueueActionWithClientMessage;
+import Messages.queqe.QueueResultOfCardAddedToStationMessage;
 import controller.GameController;
 import exception.ChangedStateException;
 import exception.InvalidPlacingCondition;
@@ -30,6 +30,11 @@ public class Server implements Serializable{
     private HashMap<String, VirtualView> clientsMap;
     private BlockingQueue<Message> queue = new ArrayBlockingQueue<>(100);
 
+
+    /**
+     * This method is used to handle the server to client call
+     * @throws RemoteException if a remote error occurs
+     */
 
     public void serverToClientCall() throws RemoteException {
         while (true) {
@@ -233,6 +238,9 @@ public class Server implements Serializable{
         }
     }
 
+    /**
+     * This method is used to start the server to client call thread
+     */
     public void startServerToClientCallThread(){
         Thread t = new Thread(() -> {
             while(true)
@@ -247,6 +255,10 @@ public class Server implements Serializable{
         t.start();
     }
 
+    /**
+     * This method is used to create a new server
+     * it chesks if there is an old game to load
+     */
     public Server() {
         clients = new ArrayList<>();
         clientsMap = new HashMap<>();
@@ -280,6 +292,11 @@ public class Server implements Serializable{
         startServerToClientCallThread();
         startSaveModelThread();
     }
+    /**
+     * This method is used to reconnect a player
+     * @param client the client to reconnect
+     * @param nickname the nickname of the player
+     */
     public void reconnect(VirtualView client, String nickname){
         if(this.gameController.getBoard().getPlayers().stream()
                 .map(Player::getNickname)
@@ -295,6 +312,10 @@ public class Server implements Serializable{
         }
     }
 
+    /**
+     * This method is used to recreate the observers
+     * after the server has been restarted
+     */
     private void recreateObservers(){
         //removing all observers
         for (Player p : gameController.getBoard().getPlayers()){
@@ -328,12 +349,15 @@ public class Server implements Serializable{
         }
     }
 
+    /**
+     * This method is used to start the save model thread
+     */
     public void startSaveModelThread() {
         new Thread(() -> {
             while (true) {
                 saveModel();
                 try {
-                    Thread.sleep(5000);  // Save the model every 5 seconds
+                    Thread.sleep(2000);  // Save the model every 2 seconds
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -341,6 +365,9 @@ public class Server implements Serializable{
         }).start();
     }
 
+    /**
+     * This method is used to save the model
+     */
     public void saveModel() {
         try {
             FileOutputStream fileOut = new FileOutputStream("model.ser");
@@ -353,6 +380,10 @@ public class Server implements Serializable{
         }
     }
 
+
+    /**
+     * This method is used to load the model
+     */
     public void loadModel() {
         try {
             FileInputStream fileIn = new FileInputStream("model.ser");
@@ -370,10 +401,18 @@ public class Server implements Serializable{
         }
     }
 
+    /**
+     * This method is used to connect the client to the server
+     * @param client the client to connect
+     */
     public void connectClient(VirtualView client) {
         handleNewClient(client);
     }
 
+    /**
+     * This method is used to handle a new client
+     * @param client the client to handle
+     */
     private void handleNewClient(VirtualView client) {
         //first player to join
         if (clients.isEmpty()) {
@@ -425,6 +464,10 @@ public class Server implements Serializable{
             }
         }
     }
+    /**
+     * This method is used to set the player number
+     * @param playerNumber the player number
+     */
     public void setPlayerNumber(int playerNumber){
         try {
             gameController.setPlayerNumber(playerNumber);
@@ -435,6 +478,11 @@ public class Server implements Serializable{
         }
     }
 
+    /**
+     * This method is used to add a player
+     * @param nickname the nickname of the player
+     * @param Myclient the client to add
+     */
     public void addPlayer(String nickname, VirtualView Myclient) throws RemoteException {
         try {
             gameController.addPlayer(nickname);
@@ -457,6 +505,11 @@ public class Server implements Serializable{
         }
     }
 
+    /**
+     * This method is used to set the token of a player
+     * @param nickname the nickname of the player
+     * @param token the token to set
+     */
     public void setToken(String nickname, TokenEnum token) throws RemoteException {
         synchronized (gameController) {
             try {
@@ -484,6 +537,12 @@ public class Server implements Serializable{
     }
 
 
+    /**
+     * This method is used to set the starting card played back
+     * @param playedback the starting card played back
+     * @param nickname the nickname of the player
+     * @param Id the id of the card
+     */
     public void setStartingCardPlayedBack(boolean playedback, String nickname, int Id) {
         synchronized (gameController) {
             try {
@@ -499,6 +558,11 @@ public class Server implements Serializable{
         }
     }
 
+    /**
+     * This method is used to set the secret objective of a player
+     * @param nickname the nickname of the player
+     * @param id the id of the objective
+     */
     public void setSecretObjective(String nickname, Integer id) {
         synchronized (gameController){
             try {
@@ -515,6 +579,14 @@ public class Server implements Serializable{
     }
 
 
+    /**
+     * This method is used to add a card to a station
+     * @param nickname the nickname of the player
+     * @param id the id of the card
+     * @param playedBack the played back value
+     * @param x the x coordinate
+     * @param y the y coordinate
+     */
     public void addCardToStation(String nickname,int id, boolean playedBack, int x, int y) {
         try {
             gameController.addCardToPlayingStation(nickname, id, playedBack, x, y);
@@ -537,6 +609,11 @@ public class Server implements Serializable{
     }
 
 
+    /**
+     * This method is used to add a card from the deck to the player hand
+     * @param nickname the nickname of the player
+     * @param deck the deck to take the card from
+     */
     public void addCardFromDeckToPlayerHand(String nickname, int deck){
         try {
             gameController.addCardFromDeckToPlayerHand(nickname, deck);
@@ -556,6 +633,11 @@ public class Server implements Serializable{
         }
     }
 
+    /**
+     * This method is used to add a card from the central cards to the player hand
+     * @param nickname the nickname of the player
+     * @param cardId the id of the card
+     */
     public void addCardFromCentralCardsToPlayerHand(String nickname, int cardId){
         try {
             gameController.addCardFromCentralCardsToPlayerHand(nickname, cardId);
@@ -571,6 +653,9 @@ public class Server implements Serializable{
         }
     }
 
+    /**
+     * This method is used to start the game
+     */
     public  void startGame(){
         try {
             queue.put(new ActionMessage("startGame"));
@@ -580,6 +665,10 @@ public class Server implements Serializable{
 
     }
 
+    /**
+     * This method is used to initialize the game controller
+     * after all players has joined
+     */
     private void initializeGame() {
         for (Player p : gameController.getBoard().getPlayers()){
             //adding  normal observers to players and stations
@@ -619,6 +708,9 @@ public class Server implements Serializable{
         }
     }
 
+    /**
+     * This method is used to show the four central cards to the players
+     */
     private void showFourCentralCardsToPlayers()  {
         try {
             queue.put(new ActionMessage("showFourCentralCardsToPlayers"));
@@ -629,6 +721,9 @@ public class Server implements Serializable{
     }
 
 
+    /**
+     * This method is used to start the setup of the starting card
+     */
     private void startSetupOfStartingCard()  {
         try {
             queue.put(new ActionMessage("startSetupOfStartingCard"));
@@ -637,6 +732,9 @@ public class Server implements Serializable{
         }
     }
 
+    /**
+     * This method is used to show the hands and common objectives
+     */
     private void showHandsAndCommonObjectives()  {
         try {
             queue.put(new ActionMessage("showHandsAndCommonObjectives"));
@@ -646,6 +744,9 @@ public class Server implements Serializable{
         setupOfSecretObjective();
     }
 
+    /**
+     * This method is used to setup the secret objective
+     */
     private void setupOfSecretObjective()  {
         try {
             queue.put(new ActionMessage("setupOfSecretObjective"));
@@ -656,11 +757,18 @@ public class Server implements Serializable{
 
 
 
+    /**
+     * This method is used to take a message from the global chat from a player
+     * @param message the message to take
+     */
     public synchronized void takeGlobalMessage(GlobalChatMessage message){
         gameController.addMessageToGlobalChat(message.getNickname(), message.getMessage());
     }
 
-
+    /**
+     * This method is used to take a message from the private chat from a player
+     * @param message the message to take
+     */
     public void takePrivateMessage(PrivateChatMessage message) {
         gameController.addMessageToPrivateChat(message.getNicknameReceiver(), message.getNicknameSender(), message.getMessage());
     }

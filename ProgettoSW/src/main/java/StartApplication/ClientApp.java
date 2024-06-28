@@ -19,6 +19,11 @@ import java.net.Socket;
 
 public class ClientApp implements Remote {
 
+    /**
+     * This is the main method of the client
+     * @param args the arguments
+     * @throws IOException if an I/O error occurs
+     */
     public static void main(String[] args) throws IOException {
         Scanner in = new Scanner(new InputStreamReader(System.in));
         String ip;

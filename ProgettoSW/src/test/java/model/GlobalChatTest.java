@@ -1,6 +1,6 @@
 package model;
 
-import Socket.Messages.Chat.GlobalChatMessage;
+import Messages.Chat.GlobalChatMessage;
 import model.chats.GlobalChat;
 import org.junit.jupiter.api.Test;
 

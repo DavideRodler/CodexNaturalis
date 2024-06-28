@@ -1,12 +1,14 @@
 package model;
 
 import exception.InvalidPlacingCondition;
+import Messages.ModelUpdates.CardAddedToStationMessage;
+import Messages.ModelUpdates.CardStartingMessage;
+import Messages.ModelUpdates.CardStartingPlayedBackMessage;
 import model.cards.*;
 //import model.cards.face.Corner;
 import model.cards.face.Corner;
 import model.enums.SuitEnum;
 import observers.ObservableModel;
-import Socket.Messages.*;
 
 
 import java.io.Serializable;

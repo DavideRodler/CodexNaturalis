@@ -1,11 +1,13 @@
 package Network.Client;
 
+import Messages.ModelUpdates.*;
 import Network.Client.RMI.RmiClientToServer;
 import Network.Client.Socket.SocketClient;
 import Network.Server.VirtualServer;
-import Socket.Messages.Chat.AddPrivateChatMessage;
-import Socket.Messages.Chat.GlobalChatMessage;
-import Socket.Messages.Chat.PrivateChatMessage;
+import Messages.*;
+import Messages.Chat.AddPrivateChatMessage;
+import Messages.Chat.GlobalChatMessage;
+import Messages.Chat.PrivateChatMessage;
 import View.UI;
 import exception.InvalidPlacingCondition;
 import model.Player;
@@ -16,8 +18,6 @@ import model.cards.CardStarting;
 import model.client.ClientBoard;
 import model.client.ReductPlayer;
 import model.enums.TokenEnum;
-import Socket.Messages.Message;
-import Socket.Messages.*;
 
 import java.io.*;
 import java.net.Socket;

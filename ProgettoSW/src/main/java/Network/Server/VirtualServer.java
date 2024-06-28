@@ -1,8 +1,8 @@
 package Network.Server;
 
 import Network.Client.RMI.VirtualView;
-import Socket.Messages.Chat.GlobalChatMessage;
-import Socket.Messages.Chat.PrivateChatMessage;
+import Messages.Chat.GlobalChatMessage;
+import Messages.Chat.PrivateChatMessage;
 import model.enums.TokenEnum;
 
 import java.rmi.Remote;

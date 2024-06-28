@@ -1,17 +1,15 @@
 package model;
 
-import Socket.Messages.Chat.AddPrivateChatMessage;
-import Socket.Messages.Chat.GlobalChatMessage;
-import Socket.Messages.Chat.PrivateChatMessage;
+import Messages.Chat.AddPrivateChatMessage;
+import Messages.Chat.GlobalChatMessage;
+import Messages.Chat.PrivateChatMessage;
+import Messages.ModelUpdates.*;
 import model.cards.*;
 import model.chats.GlobalChat;
 import model.chats.PrivateChat;
 import model.enums.GameState;
 import model.enums.SuitEnum;
 import observers.ObservableModel;
-import Socket.Messages.*;
-//import socket.Messages.CommonObjectivesMessage;
-//import socket.Messages.PlayersInfoMessage;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;

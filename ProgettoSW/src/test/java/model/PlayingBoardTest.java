@@ -1,11 +1,7 @@
 package model;
 
-import Network.Client.RMI.RmiClientToServer;
-import Network.Server.RMI.RmiServer;
-import Network.Server.Server;
-import Network.Server.VirtualServer;
-import Socket.Messages.Chat.GlobalChatMessage;
-import Socket.Messages.Chat.PrivateChatMessage;
+import Messages.Chat.GlobalChatMessage;
+import Messages.Chat.PrivateChatMessage;
 import model.cards.CardGold;
 import model.cards.CardObjective;
 import model.cards.CardResource;
@@ -23,13 +19,10 @@ import model.objectives.ObjectiveCountingGold;
 import model.objectives.Points;
 import model.testTemplates.PlayingBoardTemplate;
 import model.testTemplates.PlayingStationTemplate;
-import observers.ObservableModel;
-import observers.Observer;
 import org.junit.jupiter.api.Test;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
