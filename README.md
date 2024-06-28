@@ -7,7 +7,6 @@ Il progetto consiste nell'implementazione del gioco da tavolo codex naturalis.
 - Interazione e gameplay: linea di comando (CLI) e grafica (GUI).
 
 ## Documentazione
-Javadoc è disponibile al seguente link: [Javadoc](
 
 ### UML
 I seguenti diagrammi delle classi rappresentano rispettivamente il modello iniziale sviluppato durante la fase di progettazione e i diagrammi del prodotto finale nelle parti critiche riscontrate.
