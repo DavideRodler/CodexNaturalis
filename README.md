@@ -23,8 +23,8 @@ I seguenti diagrammi di sequenza rappresentano le interazioni tra le il client e
 ### Coverage report
 Al seguente link è possibile consultare il report della coverage dei test effettuati con Junit
 
-- [Coverage model](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/coveraageModel.png)
-- [Coverage controller](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/coverageController.png)
+- [Coverage model](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/coverageModel.jpeg)
+- [Coverage controller](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/coverageController.jpeg)
 
 ### Librerie e Plugins
 | Libreria/Plugin | Descrizione                                                                              |
@@ -51,7 +51,7 @@ Questo progetto richiede una versione di Java 22 o superiore per essere eseguito
 ###  Client
 Le seguenti istruzioni descrivono come eseguire il client con interfaccia CLI o GUI.
 
-- Scaricare il file jar al seguente [qui](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/jar/CodexNaturalis-client.jar)
+- Scaricare il file jar [qui](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/jar/)
 - digitare il seguente comando per avviare il client con interfaccia grafica
 ```
 java -jar CodexNaturalis-client.jar
@@ -66,11 +66,10 @@ java -jar CodexNaturalis-client.jar
 
 Le seguenti istruzioni descrivono come eseguire il server.
 
-- Scaricare il file jar al seguente [qui](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/jar/CodexNaturalis-client.jar)
-  - digitare il seguente comando per avviare il server
+- Scaricare il file jar [qui](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/jar)
+- digitare il seguente comando per avviare il server
 ```
 java -jar CodexNaturalis-server.jar 
-
 ```
 - inserire il proprio indirizzo ip
 - inserire se si vuole avviare una nuova partita o riprendere una partita salvata
