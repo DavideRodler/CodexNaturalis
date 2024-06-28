@@ -1,0 +1,322 @@
+[
+  {
+    "type": "fungi",
+    "upright": "empty",
+    "upleft": "fungi",
+    "downright": "null",
+    "downleft": "fungi",
+    "points": 0
+  },
+  {
+    "type": "fungi",
+    "upright": "fungi",
+    "upleft": "fungi",
+    "downright": "empty",
+    "downleft": "null",
+    "points": 0
+  },
+  {
+    "type": "fungi",
+    "upright": "null",
+    "upleft": "empty",
+    "downright": "fungi",
+    "downleft": "fungi",
+    "points": 0
+  },
+  {
+    "type": "fungi",
+    "upright": "fungi",
+    "upleft": "null",
+    "downright": "fungi",
+    "downleft": "empty",
+    "points": 0
+  },
+  {
+    "type": "fungi",
+    "upright": "quill",
+    "upleft": "null",
+    "downright": "fungi",
+    "downleft": "plant",
+    "points": 0
+  },
+  {
+    "type": "fungi",
+    "upright": "fungi",
+    "upleft": "inkwell",
+    "downright": "animal",
+    "downleft": "null",
+    "points": 0
+  },
+  {
+    "type": "fungi",
+    "upright": "insect",
+    "upleft": "fungi",
+    "downright": "empty",
+    "downleft": "manuscript",
+    "points": 0
+  },
+  {
+    "type": "fungi",
+    "upright": "fungi",
+    "upleft": "empty",
+    "downright": "null",
+    "downleft": "empty",
+    "points": 1
+  },
+  {
+    "type": "fungi",
+    "upright": "null",
+    "upleft": "fungi",
+    "downright": "empty",
+    "downleft": "empty",
+    "points": 1
+  },
+  {
+    "type": "fungi",
+    "upright": "empty",
+    "upleft": "null",
+    "downright": "empty",
+    "downleft": "fungi",
+    "points": 1
+  },
+  {
+    "type": "plant",
+    "upright": "empty",
+    "upleft": "plant",
+    "downright": "null",
+    "downleft": "plant",
+    "points": 0
+  },
+  {
+    "type": "plant",
+    "upright": "plant",
+    "upleft": "plant",
+    "downright": "empty",
+    "downleft": "null",
+    "points": 0
+  },
+  {
+    "type": "plant",
+    "upright": "null",
+    "upleft": "empty",
+    "downright": "plant",
+    "downleft": "plant",
+    "points": 0
+  },
+  {
+    "type": "plant",
+    "upright": "plant",
+    "upleft": "null",
+    "downright": "plant",
+    "downleft": "empty",
+    "points": 0
+  },
+  {
+    "type": "plant",
+    "upright": "insect",
+    "upleft": "null",
+    "downright": "plant",
+    "downleft": "quill",
+    "points": 0
+  },
+  {
+    "type": "plant",
+    "upright": "plant",
+    "upleft": "fungi",
+    "downright": "inkwell",
+    "downleft": "null",
+    "points": 0
+  },
+  {
+    "type": "plant",
+    "upright": "null",
+    "upleft": "manuscript",
+    "downright": "animal",
+    "downleft": "plant",
+    "points": 0
+  },
+  {
+    "type": "plant",
+    "upright": "empty",
+    "upleft": "empty",
+    "downright": "null",
+    "downleft": "plant",
+    "points": 1
+  },
+  {
+    "type": "plant",
+    "upright": "empty",
+    "upleft": "empty",
+    "downright": "plant",
+    "downleft": "null",
+    "points": 1
+  },
+  {
+    "type": "plant",
+    "upright": "plant",
+    "upleft": "null",
+    "downright": "empty",
+    "downleft": "empty",
+    "points": 1
+  },
+  {
+    "type": "animal",
+    "upright": "animal",
+    "upleft": "animal",
+    "downright": "null",
+    "downleft": "empty",
+    "points": 0
+  },
+  {
+    "type": "animal",
+    "upright": "empty",
+    "upleft": "null",
+    "downright": "animal",
+    "downleft": "animal",
+    "points": 0
+  },
+  {
+    "type": "animal",
+    "upright": "null",
+    "upleft": "animal",
+    "downright": "empty",
+    "downleft": "animal",
+    "points": 0
+  },
+  {
+    "type": "animal",
+    "upright": "animal",
+    "upleft": "empty",
+    "downright": "animal",
+    "downleft": "null",
+    "points": 0
+  },
+  {
+    "type": "animal",
+    "upright": "insect",
+    "upleft": "null",
+    "downright": "animal",
+    "downleft": "inkwell",
+    "points": 0
+  },
+  {
+    "type": "animal",
+    "upright": "animal",
+    "upleft": "plant",
+    "downright": "manuscript",
+    "downleft": "null",
+    "points": 0
+  },
+  {
+    "type": "animal",
+    "upright": "null",
+    "upleft": "quill",
+    "downright": "fungi",
+    "downleft": "animal",
+    "points": 0
+  },
+  {
+    "type": "animal",
+    "upright": "empty",
+    "upleft": "null",
+  "downright": "empty",
+    "downleft": "animal",
+    "points": 1
+  },
+  {
+    "type": "animal",
+    "upright": "null",
+    "upleft": "empty",
+    "downright": "animal",
+    "downleft": "empty",
+    "points": 1
+  },
+  {
+    "type": "animal",
+    "upright": "animal",
+    "upleft": "empty",
+    "downright": "null",
+    "downleft": "empty",
+    "points": 1
+  },
+  {
+    "type": "insect",
+    "upright": "insect",
+    "upleft": "insect",
+    "downright": "null",
+    "downleft": "empty",
+    "points": 0
+  },
+  {
+    "type": "insect",
+    "upright": "empty",
+    "upleft": "null",
+    "downright": "insect",
+    "downleft": "insect",
+    "points": 0
+  },
+  {
+    "type": "insect",
+    "upright": "null",
+    "upleft": "insect",
+    "downright": "empty",
+    "downleft": "insect",
+    "points": 0
+  },
+  {
+    "type": "insect",
+    "upright": "insect",
+    "upleft": "empty",
+    "downright": "insect",
+    "downleft": "null",
+    "points": 0
+  },
+  {
+    "type": "insect",
+    "upright": "quill",
+    "upleft": "null",
+    "downright": "insect",
+    "downleft": "animal",
+    "points": 0
+  },
+  {
+    "type": "insect",
+    "upright": "insect",
+    "upleft": "manuscript",
+    "downright": "fungi",
+    "downleft": "null",
+    "points": 0
+  },
+  {
+    "type": "insect",
+    "upright": "plant",
+    "upleft": "insect",
+    "downright": "null",
+    "downleft": "inkwell",
+    "points": 0
+  },
+  {
+    "type": "insect",
+    "upright": "null",
+    "upleft": "insect",
+    "downright": "empty",
+    "downleft": "empty",
+    "points": 1
+  },
+  {
+    "type": "insect",
+    "upright": "empty",
+    "upleft": "empty",
+    "downright": "insect",
+    "downleft": "null",
+    "points": 1
+  },
+  {
+    "type": "insect",
+    "upright": "insect",
+    "upleft": "null",
+    "downright": "empty",
+    "downleft": "empty",
+    "points": 1
+  }
+]

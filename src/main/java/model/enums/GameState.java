@@ -1,0 +1,15 @@
+package model.enums;
+
+
+public enum GameState {
+    SET_PLAYER_NUMBER,
+    ADD_PLAYERS,
+    INITIALIZE_GAME,
+    SELECT_TOKEN,
+    SELECT_STARTINGCARDFACE,
+    SELECT_OBJECTIVE,
+    PLACING_CARD,
+    ADDING_CARD_TO_HAND,
+    CHANGING_TURN,
+    FINISHED
+}

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="820.0" prefWidth="1280.0" styleClass="root" stylesheets="@../css/background.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GUI.StationController">
+   <children>
+      <VBox fx:id="menuPane" layoutX="1068.0" layoutY="463.0" spacing="10.0">
+         <children>
+            <Button fx:id="chatButton" mnemonicParsing="false" prefWidth="120.0" text="Chat" />
+            <Button fx:id="scoreboardButton" mnemonicParsing="false" prefWidth="120.0" text="scoreboard" />
+            <Button fx:id="player1StationButton" mnemonicParsing="false" prefWidth="120.0" text="player1station" />
+            <Button fx:id="player2StationButton" mnemonicParsing="false" prefWidth="120.0" text="player2Station" />
+            <Button fx:id="player3StationButton" mnemonicParsing="false" prefWidth="120.0" text="player3Station" />
+         </children>
+      </VBox>
+      <FlowPane fx:id="centralCardsAndDecksPane" alignment="CENTER" hgap="10.0" layoutX="-3.0" layoutY="7.0" prefHeight="265.0" prefWidth="380.0" vgap="10.0">
+         <children>
+            <ImageView fx:id="deckResourceImage" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="centralResourceImage1" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="centralResourceImage2" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="deckGoldImage" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="centralGoldImage1" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="centralGoldImage2" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="deckObjectivesImage" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="commonObjectiveImage1" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="commonObjectiveImage2" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </FlowPane>
+      <VBox fx:id="handPane" layoutX="1075.0" layoutY="20.0" prefHeight="372.0" prefWidth="98.0" spacing="20.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="111.0" stylesheets="@../css/labelText.css" text="HAND" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <ImageView fx:id="firstCardInHand" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="secondCardInHand" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="thirdCardInHand" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="secretObjectiveInHand" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </VBox>
+      <ScrollPane hbarPolicy="ALWAYS" layoutX="404.0" layoutY="19.0" prefHeight="502.0" prefWidth="636.0" vbarPolicy="ALWAYS">
+         <content>
+            <Pane fx:id="stationPane" prefHeight="2250.0" prefWidth="3000.0" style="-fx-background-color: GREY;" />
+         </content>
+      </ScrollPane>
+      <HBox alignment="CENTER_LEFT" layoutX="349.0" layoutY="605.0" prefHeight="100.0" prefWidth="694.0" spacing="100.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="404.0" spacing="10.0">
+               <children>
+                  <HBox fx:id="cardPlacementBox" alignment="CENTER" spacing="10.0">
+                     <children>
+                        <FlowPane hgap="20.0" prefHeight="100.0" prefWidth="171.0" vgap="20.0">
+                           <children>
+                              <Button fx:id="placeCardUpLeftButton" mnemonicParsing="false" prefWidth="75.0" text="up left" />
+                              <Button fx:id="placeCardUpRightButton" mnemonicParsing="false" prefWidth="75.0" text="up right" />
+                              <Button fx:id="placeCardDownLeftButton" mnemonicParsing="false" prefWidth="75.0" text="down left" />
+                              <Button fx:id="placeCardDownRightButton" mnemonicParsing="false" prefWidth="75.0" text="down right" />
+                           </children>
+                        </FlowPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox fx:id="chooseCardBox" alignment="CENTER" prefHeight="100.0" prefWidth="404.0" spacing="75.0">
+               <children>
+                  <ImageView fx:id="chooseCard1" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../86_starting_front.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="chooseCard2" fitHeight="65.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../86_starting_back.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <VBox fx:id="chatBox" layoutX="13.0" layoutY="289.0">
+         <children>
+            <HBox fx:id="chatChoiceBox" prefHeight="26.0" prefWidth="351.0" spacing="30.0">
+               <children>
+                  <Button fx:id="publicChatButton" mnemonicParsing="false" text="Public" />
+                  <ChoiceBox fx:id="privateChatChoice" prefWidth="150.0" />
+                  <Button fx:id="privateChatButton" mnemonicParsing="false" text="Private" />
+               </children>
+            </HBox>
+            <ScrollPane fx:id="chatPane" prefWidth="366.0" vbarPolicy="ALWAYS">
+               <content>
+                  <TextArea fx:id="chatTextArea" prefHeight="392.0" prefWidth="349.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+      <TextField fx:id="chatTextField" layoutX="13.0" layoutY="654.0" prefHeight="43.0" prefWidth="348.0" />
+      <Button fx:id="chatSendTextButton" layoutX="299.0" layoutY="654.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="67.0" text="Send" />
+      <Label fx:id="instructionsLabel" alignment="CENTER" layoutX="400.0" layoutY="540.0" prefHeight="17.0" prefWidth="639.0" stylesheets="@../css/labelText.css" text="Label" />
+   </children>
+</AnchorPane>
