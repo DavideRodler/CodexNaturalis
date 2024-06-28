@@ -12,6 +12,11 @@ Javadoc è disponibile al seguente link: [Javadoc](
 ### UML
 I seguenti diagrammi delle classi rappresentano rispettivamente il modello iniziale sviluppato durante la fase di progettazione e i diagrammi del prodotto finale nelle parti critiche riscontrate.
 
+### Sequence Diagram
+I seguenti diagrammi di sequenza rappresentano le interazioni tra le il client e il server.
+
+[Seqence Diagram Connection](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/AcionDiagram.png)
+[Seqence Diagram_Action_From_Client](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/NetworkDiagram.png)
 
 ### Coverage report
 Al seguente link è possibile consultare il report della coverage dei test effettuati con Junit
@@ -41,6 +46,7 @@ Questo progetto richiede una versione di Java 22 o superiore per essere eseguito
 ###  Client
 Le seguenti istruzioni descrivono come eseguire il client con interfaccia CLI o GUI.
 
+
 ```
 java -jar CodexNaturalis-client.jar
 ```
@@ -49,3 +55,4 @@ java -jar CodexNaturalis-client.jar
 Per lanciare il Server digitare da terminale il comando:
 ```
 java -jar CodexNaturalis-server.jar 
+
