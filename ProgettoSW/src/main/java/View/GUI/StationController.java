@@ -418,9 +418,7 @@ public class StationController implements Initializable {
     }
 
     public void cardPlaceIncorrectly(String message){
-        imageToCardMap.remove(cardToPlay, clientController.getClientModel().getMyplayer().getHand().get(indexOfCardToReplaced));
         instructionsLabel.setText(message);
-        cardToPlay.setImage(null);
         cardPlacementBox.setVisible(false);
         //tolgo gli handler ai bottoni piazzamento perchè inizio nuovo ciclo di piazzamento
         placeCardDownRightButton.setOnMouseClicked(null);

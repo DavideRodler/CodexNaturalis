@@ -3,7 +3,6 @@ package View;
 import Network.Client.ClientController;
 import Network.Client.RMI.RmiClientToServer;
 import Network.Server.RMI.RmiServer;
-import Socket.VirtualServer;
 import View.GUI.Gui;
 import model.Player;
 import model.PlayingStation;

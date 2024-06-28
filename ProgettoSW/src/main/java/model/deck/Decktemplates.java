@@ -1,8 +1,6 @@
 package model.deck;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -26,10 +24,10 @@ import static java.util.Collections.shuffle;
 *This is a static class that for each deck has a static method that returns the List of all model.cards that need to be in that deck
  **/
 public class Decktemplates implements Serializable {
-  private final static String deckGoldJson = "src/main/resources/JarFile/GoldDeck.json";
-  private final static String deckresourceJson = "src/main/resources/JarFile/resourceDeck.json";
-  private final static String deckStarticgJson = "src/main/resources/JarFile/StartingDeck.json";
-  private final static String deckObjectiveJson = "src/main/resources/JarFile/ObjectiveCard.json";
+  private final static String deckGoldJson = "/JarFile/GoldDeck.json";
+  private final static String deckresourceJson = "/JarFile/resourceDeck.json";
+  private final static String deckStarticgJson = "/JarFile/StartingDeck.json";
+  private final static String deckObjectiveJson = "/JarFile/ObjectiveCard.json";
   // creating the DeckResource Deck
   // each line in the text represent the card:
   // In order: suit of the card, the four corners (starting from upright) and the points
@@ -50,9 +48,10 @@ public class Decktemplates implements Serializable {
     LinkedList<CardResource> deck = new LinkedList<>();
     JSONParser parser = new JSONParser();
       JSONArray resourceCard = null;
+      InputStream inputStream = Decktemplates.class.getResourceAsStream(deckresourceJson);
       try {
           resourceCard = (JSONArray) parser
-              .parse(new FileReader(deckresourceJson));
+              .parse(new InputStreamReader(inputStream));
       } catch (IOException | ParseException e) {
           throw new RuntimeException(e);
       }
@@ -88,8 +87,9 @@ public class Decktemplates implements Serializable {
     LinkedList<CardGold> deck = new LinkedList<>();
     JSONParser parser = new JSONParser();
       JSONArray goldCard = null;
+      InputStream inputStream = Decktemplates.class.getResourceAsStream(deckGoldJson);
       try {
-          goldCard = (JSONArray) parser.parse(new FileReader(deckGoldJson));
+          goldCard = (JSONArray) parser.parse(new InputStreamReader(inputStream));
       } catch (IOException | ParseException e) {
           throw new RuntimeException(e);
       }
@@ -133,9 +133,10 @@ public class Decktemplates implements Serializable {
     LinkedList<CardStarting> deck = new LinkedList<>();
     JSONParser parser = new JSONParser();
       JSONArray startingCard = null;
+    InputStream inputStream = Decktemplates.class.getResourceAsStream(deckStarticgJson);
       try {
           startingCard = (JSONArray) parser
-              .parse(new FileReader(deckStarticgJson));
+              .parse(new InputStreamReader(inputStream));
       } catch (IOException | ParseException e) {
           throw new RuntimeException(e);
       }
@@ -175,11 +176,12 @@ public class Decktemplates implements Serializable {
   public static LinkedList<CardObjective> ObjectiveCardDeck() {
     int id =87;
     LinkedList<CardObjective> deck = new LinkedList<>();
+    InputStream inputStream = Decktemplates.class.getResourceAsStream(deckObjectiveJson);
     JSONParser parser = new JSONParser();
       JSONArray objectiveCard = null;
-      try {
+    try {
           objectiveCard = (JSONArray) parser
-              .parse(new FileReader(deckObjectiveJson));
+              .parse(new InputStreamReader(inputStream));
       } catch (IOException | ParseException e) {
           throw new RuntimeException(e);
       }
