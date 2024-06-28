@@ -11,15 +11,20 @@ Javadoc è disponibile al seguente link: [Javadoc](
 
 ### UML
 I seguenti diagrammi delle classi rappresentano rispettivamente il modello iniziale sviluppato durante la fase di progettazione e i diagrammi del prodotto finale nelle parti critiche riscontrate.
+- [UML finale](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/UML_finale.pdf)
+- [UML iniziale](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/UML_iniziale.pdf)
 
 ### Sequence Diagram
 I seguenti diagrammi di sequenza rappresentano le interazioni tra le il client e il server.
 
-[Seqence Diagram Connection](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/AcionDiagram.png)
-[Seqence Diagram_Action_From_Client](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/NetworkDiagram.png)
+- [Seqence Diagram Connection](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/ActionDiagram.png)
+- [Seqence Diagram_Action_From_Client](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/NetworkDiagram.png)
 
 ### Coverage report
 Al seguente link è possibile consultare il report della coverage dei test effettuati con Junit
+
+- [Coverage model](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/coveraageModel.png)
+- [Coverage controller](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/coverageController.png)
 
 ### Librerie e Plugins
 | Libreria/Plugin | Descrizione                                                                              |
@@ -46,13 +51,27 @@ Questo progetto richiede una versione di Java 22 o superiore per essere eseguito
 ###  Client
 Le seguenti istruzioni descrivono come eseguire il client con interfaccia CLI o GUI.
 
-
+- Scaricare il file jar al seguente [qui](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/jar/CodexNaturalis-client.jar)
+- digitare il seguente comando per avviare il client con interfaccia grafica
 ```
 java -jar CodexNaturalis-client.jar
 ```
+- inserire l'indirizzo ip del server
+- selezionare l'interfaccia grafica
+- Nel caso si scelga la **GUI** bisogna selezionare la comunicazione da riga di comando e aspettare che il client si connetta al server
+- nel caso in cui un altro giocatore sta selezionando il numero di giocatori premere invio per ritentare la connessione
+- nel caso di disconnessione premere invio due volte per riconnettersi, il comando va fatto da terminale anche se si usa la GUI
 
 ### Server
-Per lanciare il Server digitare da terminale il comando:
+
+Le seguenti istruzioni descrivono come eseguire il server.
+
+- Scaricare il file jar al seguente [qui](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/jar/CodexNaturalis-client.jar)
+  - digitare il seguente comando per avviare il server
 ```
 java -jar CodexNaturalis-server.jar 
+
+```
+- inserire il proprio indirizzo ip
+- inserire se si vuole avviare una nuova partita o riprendere una partita salvata
 
