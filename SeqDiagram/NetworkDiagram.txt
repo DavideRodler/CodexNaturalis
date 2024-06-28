@@ -1,0 +1,42 @@
+title Netword diagram
+participant UI
+participant ClientController
+participant SocketClient
+participant RmiClient
+participant VirtualSocketServer
+participant SocketClientHandler
+participant RmiServer
+participant Server
+
+SocketClient -> VirtualSocketServer: connect
+VirtualSocketServer -> SocketClientHandler: connect(Message)
+SocketClientHandler -> Server: connect
+
+
+
+RmiClient -> RmiServer: connect
+RmiServer -> Server: connect
+
+note right of Server
+Server handle the request 
+of connention of client
+and sends a response
+end note
+
+Server -> SocketClientHandler: connection result
+SocketClientHandler -> SocketClient: connection result
+SocketClient -> ClientController: connection result
+
+Server -> RmiClient: connection result
+RmiClient -> ClientController: connection result
+
+note left of ClientController
+calling a method
+of the ui to
+display the
+result of 
+connecniton
+end note
+
+ClientController -> UI: display result
+

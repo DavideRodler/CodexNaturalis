@@ -1,0 +1,78 @@
+title Diagram of an Action of the client
+participant UI
+participant ClientModel
+participant ClientController
+participant SocketClient
+participant RmiClient
+participant VirtualSocketServer
+participant SocketClientHandler
+participant RmiServer
+participant Server
+participant GameController
+participant Model
+
+note left of UI
+client performs an 
+action with ui or gui 
+and sends it to 
+client controller
+end note
+
+UI -> ClientController: HandleAction
+ClientController -> SocketClient: SendAction
+SocketClient -> VirtualSocketServer: SendAction
+VirtualSocketServer -> SocketClientHandler: Message
+SocketClientHandler -> Server: Send action
+
+
+ClientController -> RmiClient: SendAction
+RmiClient -> RmiServer: SendAction
+RmiServer -> Server: Send action
+
+note right of Server
+Server handle the action
+request of the client
+calls and method of the
+controller
+end note
+
+Server -> GameController: performAction
+GameController -> Model: update model
+note right of Model
+updates the model
+of the server
+and sends an update
+to all the 
+observers(clients)
+end note
+
+Model -> SocketClientHandler: updateClient Model
+SocketClientHandler -> SocketClient: updateClient model
+SocketClient -> ClientController: updateClient model
+ClientController -> ClientModel: update
+ClientModel -> UI: update view
+
+
+GameController -> Server: 
+
+note left of Server
+asks clients
+to start another 
+phase of the game
+end note 
+
+
+
+Server -> SocketClientHandler: startAnotherPhase
+SocketClientHandler -> SocketClient: startAnotherPhase
+SocketClient -> ClientController: start Another Phase
+
+Server -> RmiClient: Start another phase
+RmiClient -> ClientController: Start another pahse
+
+note left of ClientController
+Display another phase 
+of the game
+end note
+
+ClientController -> UI: display new phase
