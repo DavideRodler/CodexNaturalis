@@ -46,6 +46,6 @@ java -jar CodexNaturalis-client.jar
 ```
 
 ### Server
-Per lanciare Santorini Server digitare da terminale il comando:
+Per lanciare il Server digitare da terminale il comando:
 ```
 java -jar CodexNaturalis-server.jar 
