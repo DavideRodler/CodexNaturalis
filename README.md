@@ -13,6 +13,10 @@ I seguenti diagrammi delle classi rappresentano rispettivamente il modello inizi
 - [UML finale](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/UML_finale.pdf)
 - [UML iniziale](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/SeqDiagram/UML_iniziale.pdf)
 
+### JavaDoc
+La documentazione del codice è stata generata con JavaDoc e può essere consultata al seguente link:
+- [JavaDoc](https://github.com/tommypic/ing-sw-2024-piccoli-ponzani-piotti-rodler/tree/main/JavaDocs/allclasses-index.html)
+- 
 ### Sequence Diagram
 I seguenti diagrammi di sequenza rappresentano le interazioni tra le il client e il server.
 
