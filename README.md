@@ -1,8 +1,8 @@
 # Software Engineering Project 2024 - Codex Naturalis
+> 🏆 **Final Grade: 30/30 cum laude**
 ![Codex Naturalis](/src/main/resources/README/Slider-Codex-2-1920x1080.jpg)
 
 This project is a full software implementation of the board game **Codex Naturalis**, developed as part of the Software Engineering course at Politecnico di Milano (2024).
-> 🏆 **Final Grade: 30/30 cum laude**
 
 - **Network communication** is handled via both Socket and RMI protocols.
 - **User interaction** is supported through a Command Line Interface (CLI) and a Graphical User Interface (GUI).
