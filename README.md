@@ -1,57 +1,85 @@
-# Progetto Di Ingegneria del Software 2024 - Codex Naturalis
-![alt text](/src/main/resources/README/Slider-Codex-2-1920x1080.jpg)
-Il progetto consiste nell'implementazione del gioco da tavolo codex naturalis.
-- La comunicazione e' stata gestita con Socket ed RMI.
-- Interazione e gameplay: linea di comando (CLI) e grafica (GUI).
-## Documentazione
-### UML
-I seguenti diagrammi delle classi rappresentano rispettivamente il modello iniziale sviluppato durante la fase di progettazione e i diagrammi del prodotto finale nelle parti critiche riscontrate.
-- [UML finale](https://github.com/DavideRodler/CodexNaturalis/tree/main/SeqDiagram/UML_finale.pdf)
-- [UML iniziale](https://github.com/DavideRodler/CodexNaturalis/tree/main/SeqDiagram/UML_iniziale.pdf)
+# Software Engineering Project 2024 - Codex Naturalis
+![Codex Naturalis](/src/main/resources/README/Slider-Codex-2-1920x1080.jpg)
+
+This project is a full software implementation of the board game **Codex Naturalis**, developed as part of the Software Engineering course at Politecnico di Milano (2024).
+
+- **Network communication** is handled via both Socket and RMI protocols.
+- **User interaction** is supported through a Command Line Interface (CLI) and a Graphical User Interface (GUI).
+
+---
+
+## Documentation
+
+### UML Diagrams
+The following class diagrams represent the initial model designed during the planning phase and the final architecture of the most critical components.
+- [Final UML](https://github.com/DavideRodler/CodexNaturalis/tree/main/SeqDiagram/UML_finale.pdf)
+- [Initial UML](https://github.com/DavideRodler/CodexNaturalis/tree/main/SeqDiagram/UML_iniziale.pdf)
+
 ### JavaDoc
-La documentazione del codice è stata generata con JavaDoc e può essere consultata al seguente link:
+The full API documentation was generated with JavaDoc and is available at the following link:
 - [JavaDoc](https://github.com/DavideRodler/CodexNaturalis/tree/main/JavaDocs/allclasses-index.html)
-- 
-### Sequence Diagram
-I seguenti diagrammi di sequenza rappresentano le interazioni tra le il client e il server.
-- [Seqence Diagram Connection](https://github.com/DavideRodler/CodexNaturalis/tree/main/SeqDiagram/ActionDiagram.png)
-- [Seqence Diagram_Action_From_Client](https://github.com/DavideRodler/CodexNaturalis/tree/main/SeqDiagram/NetworkDiagram.png)
-### Coverage report
-Al seguente link è possibile consultare il report della coverage dei test effettuati con Junit
-- [Coverage model](https://github.com/DavideRodler/CodexNaturalis/tree/main/SeqDiagram/coverageModel.jpeg)
-- [Coverage controller](https://github.com/DavideRodler/CodexNaturalis/tree/main/SeqDiagram/coverageController.jpeg)
-### Librerie e Plugins
-| Libreria/Plugin | Descrizione                                                                              |
-| --------------- | ---------------------------------------------------------------------------------------- |
-| __Maven__       | Strumento di automazione della compilazione utilizzato principalmente per progetti Java. |
-| __JavaFx__      | Libreria grafica per realizzare interfacce utente.                                       |
-| __JUnit__       | Framework di unit testing.                                                               |
-## Funzionalità
-### Funzionalità Sviluppate
-- Regole Complete
-- CLI
-- GUI
-- Socket
-- RMI
-- 2 FA (Funzionalità Avanzate):
-    - __Persistenza:__ lo stato di una partita deve essere salvato su disco, in modo che la partita possa riprendere anche a seguito dell'interruzione dell'esecuzione del server.
-    - **Chat**: Possibilita' di scrivere su una chat globale o privata sia nella GUI che nella CLI
-## Esecuzione
-Questo progetto richiede una versione di Java 22 o superiore per essere eseguito correttamente.
-###  Client
-Le seguenti istruzioni descrivono come eseguire il client con interfaccia CLI o GUI.
-- Scaricare il file jar [qui](https://github.com/DavideRodler/CodexNaturalis/tree/main/jar/)
-- digitare il seguente comando per avviare il client con interfaccia grafica
+
+### Sequence Diagrams
+The following sequence diagrams illustrate the interactions between the client and the server.
+- [Connection Sequence Diagram](https://github.com/DavideRodler/CodexNaturalis/tree/main/SeqDiagram/ActionDiagram.png)
+- [Action from Client Sequence Diagram](https://github.com/DavideRodler/CodexNaturalis/tree/main/SeqDiagram/NetworkDiagram.png)
+
+### Test Coverage Report
+The following reports detail the test coverage achieved using JUnit.
+- [Model Coverage](https://github.com/DavideRodler/CodexNaturalis/tree/main/SeqDiagram/coverageModel.jpeg)
+- [Controller Coverage](https://github.com/DavideRodler/CodexNaturalis/tree/main/SeqDiagram/coverageController.jpeg)
+
+### Libraries & Plugins
+| Library / Plugin | Description |
+| ---------------- | ----------- |
+| **Maven**        | Build automation tool used for dependency management and project compilation. |
+| **JavaFX**       | UI toolkit for building rich graphical interfaces. |
+| **JUnit**        | Framework for unit testing. |
+
+---
+
+## Features
+
+### Implemented Features
+- Complete game rules
+- Command Line Interface (CLI)
+- Graphical User Interface (GUI)
+- Socket communication
+- RMI communication
+- 2 Advanced Features (FA):
+  - **Persistence:** the game state is saved to disk, allowing a match to resume after a server interruption.
+  - **Chat:** players can communicate via a global or private chat, available in both GUI and CLI.
+
+---
+
+## Running the Application
+
+This project requires **Java 22 or higher**.
+
+### Client
+
+To run the client in either CLI or GUI mode:
+
+1. Download the JAR file [here](https://github.com/DavideRodler/CodexNaturalis/tree/main/jar/).
+2. Launch the client with the following command:
+```bash
 java -jar CodexNaturalis-client.jar
-- inserire l'indirizzo ip del server
-- selezionare l'interfaccia grafica
-- Nel caso si scelga la **GUI** bisogna selezionare la comunicazione da riga di comando e aspettare che il client si connetta al server
-- nel caso in cui un altro giocatore sta selezionando il numero di giocatori premere invio per ritentare la connessione
-- nel caso di disconnessione premere invio due volte per riconnettersi, il comando va fatto da terminale anche se si usa la GUI
+```
+3. Enter the server's IP address when prompted.
+4. Select the desired interface (CLI or GUI).
+
+> **Note — GUI mode:** select the communication type from the command line and wait for the client to connect to the server.
+
+> **Note — waiting for players:** if another player is currently selecting the number of players, press `Enter` to retry the connection.
+
+> **Note — reconnection:** in case of disconnection, press `Enter` twice to reconnect. This must be done from the terminal even when using the GUI.
+
 ### Server
-Le seguenti istruzioni descrivono come eseguire il server.
-- Scaricare il file jar [qui](https://github.com/DavideRodler/CodexNaturalis/tree/main/jar)
-- digitare il seguente comando per avviare il server
+
+To run the server:
+
+1. Download the JAR file [here](https://github.com/DavideRodler/CodexNaturalis/tree/main/jar).
+2. Launch the server with the following command:
+```bash
 java -jar CodexNaturalis-server.jar
-
-
+```
